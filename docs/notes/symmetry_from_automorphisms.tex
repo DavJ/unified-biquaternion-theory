@@ -5,8 +5,7 @@
 % See LICENSE.md for full license text.
 %
 % File: docs/notes/symmetry_from_automorphisms.tex
-% Purpose: Expository note — WHY UBT derives gauge symmetries from automorphisms
-%          of ℂ⊗ℍ rather than postulating them.
+% Purpose: Expository note — distinguish algebra automorphisms from carrier/module symmetries in UBT.
 %          Target reader: physics/engineering graduate (Ing. level, ČVUT).
 % Status: expository / [STD] + references — NO new claims, NO new derivations.
 % Author: Ing. David Jaroš
@@ -47,9 +46,8 @@
 
 % ---- document metadata ----
 \title{%
-  Why Gauge Symmetry Is a \emph{Theorem} in UBT:\\[4pt]
-  \large Automorphisms of $\mathbb{C}\otimes\mathbb{H}$
-  as the Origin of Gauge Structure}
+  Algebraic and Carrier Symmetries in UBT:\\[4pt]
+  \large What follows from $\mathbb{C}\otimes\mathbb{H}$ and what remains dynamical}
 \author{Ing.\ David Jaro\v{s}}
 \date{July 2026 — v1.0 (expository note, \textbf{[STD]}+refs)}
 
@@ -120,8 +118,11 @@ Unified Biquaternion Theory (UBT) answers this challenge differently: instead
 of starting with a metric and splitting it, it starts with an algebra
 ($\mathbb{C}\otimes\mathbb{H}$, defined in Section~\ref{sec:biquaternions}) and
 asks what symmetries the algebra itself forces onto any field built from it.
-The gauge groups of the Standard Model emerge as the automorphism group of the
-algebra.  This note explains why.
+The Lorentz/spin symmetry is tied directly to the biquaternionic algebra.
+The involution structure also selects useful internal carriers.  However,
+$\mathrm{SU}(3)$ color and the global $\mathrm{U}(1)$ phase act as
+carrier/module symmetries rather than algebra automorphisms, and their
+canonical dynamical selection remains an open part of the gauge programme.
 
 % ===========================================================================
 \section{Quaternions and Biquaternions from Scratch}
@@ -416,8 +417,13 @@ complex matrices with determinant~1.
   the multiplication table of $\mathbb{C}\otimes\mathbb{H}$.
 \end{keybox}
 
-This is the first instance of the algebra-first principle: symmetry is not
-postulated; it is read off from the structure.
+This is the first instance of the algebra-first principle: the Lorentz/spin
+symmetry is read off from the algebraic structure.  By contrast, a global
+$\mathrm{U}(1)$ phase and an $\mathrm{SU}(3)$ action on an associated
+$\mathbb{C}^3$ carrier are module/carrier symmetries, not algebra
+automorphisms: multiplying every algebra element by a phase does not preserve
+products, and a generic $\mathrm{SU}(3)$ carrier rotation does not preserve the
+quaternionic square relations.
 
 % ===========================================================================
 \section{From Global to Local: Gauge Fields}
@@ -470,9 +476,10 @@ The automorphisms of this algebra that preserve its involution structure
     (Theorem~\ref{thm:aut_H});
   \item Their complexification $\mathrm{SL}(2,\mathbb{C})$
     (Proposition~\ref{prop:sl2c});
-  \item Additional sector automorphisms linked to the $\mathbb{Z}_2^3$
-    involution structure that yield $\mathrm{SU}(3)\times\mathrm{SU}(2)_L$
-    (proved in the canonical layer, Section~\ref{sec:pointers}).
+  \item A complex rank-three carrier selected by the $\mathbb{Z}_2^3$
+    involution structure.  A unitary $\mathrm{SU}(3)$ action can be introduced
+    on this carrier, but is not an automorphism of the underlying algebra and
+    is not yet derived from the canonical action.
 \end{itemize}
 
 \subsection{Contrast with Chamseddine's approach}
@@ -486,12 +493,12 @@ In UBT the logic is reversed:
 
 \begin{keybox}
 \sloppy
-  The Standard Model gauge group
-  $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
-  is the automorphism group of the algebra.  It is \textbf{not} an input;
-  it is a \textbf{theorem} about $\mathbb{C}\otimes\mathbb{H}$.
-  (Proofs: \texttt{canonical/su3\_derivation/\allowbreak su3\_from\_involutions.tex},
-  \texttt{canonical/chirality/\allowbreak step4\_no\_wr\_derivation.tex}.)
+  The algebra fixes the Lorentz/spin automorphism structure, while its
+  involutions select internal carrier spaces.  The present UBT gauge programme
+  introduces unitary actions on those carriers and must still derive their
+  Yang--Mills dynamics, chirality selection, and couplings from the canonical
+  action.  In particular, $\mathrm{SU}(3)$ is not a subgroup of
+  $\mathrm{Aut}_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})$.
 \end{keybox}
 
 This is exactly the ``higher symmetry principle'' Einstein identified as
@@ -614,11 +621,11 @@ varying $G$ and $B$ independently; they are not coordinates of a single
 algebraic object.  In UBT:
 
 \begin{keybox}
-  The components of $E_\mu$ are entries in a single element of
-  $\mathbb{C}\otimes\mathbb{H}$.  Any symmetry transformation must respect the
-  algebra's multiplication table.  The metric, the connection, and the gauge
-  fields all arise from \emph{one} object under the \emph{one} automorphism
-  group of that object.  This is the higher symmetry principle Einstein sought.
+  The components of $E_\mu$ are entries in a single algebraic object, so
+  Lorentz/frame transformations must respect the multiplication table.  Internal
+  color and phase transformations instead act on associated carriers/modules.
+  Establishing how those carrier symmetries and their dynamics arise from the
+  finalized canonical action is a separate, explicitly open step.
 \end{keybox}
 
 % ===========================================================================
@@ -653,9 +660,10 @@ canonical layer.  The table below maps each main claim to its proof file.}
   $\mathbb{Z}_2^3$ involution structure of $\mathbb{C}\otimes\mathbb{H}$
   & {[L0]}
   & \texttt{canonical/algebra/}\linebreak\texttt{involutions\_Z2xZ2xZ2.tex} \\
-  $\mathrm{SU}(3)$ from involutions
-  & {[L1]}
-  & \texttt{canonical/su3\_derivation/}\linebreak\texttt{su3\_from\_involutions.tex} \\
+  Carrier $V_c\cong\mathbb{C}^3$ from involutions; unitary dynamics postulated
+  & {[L0 proved / dynamics open]}
+  & \texttt{canonical/su3\_derivation/}\linebreak\texttt{su3\_from\_involutions.tex};
+    \texttt{GAP-SU3-DYN} \\
   Chirality: $\mathrm{SU}(2)_L$ selection, $\mathrm{SU}(2)_R$ exclusion
   & {[L1 cond.]}
   & \texttt{canonical/chirality/}\linebreak\texttt{step4\_no\_wr\_derivation.tex} \\

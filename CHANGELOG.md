@@ -8,24 +8,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added — reviewed History of UBT (2026-07-17)
+### Corrected — gauge and quantum honest-status audit (2026-07-17)
 
-- Added and reviewed `docs/HISTORY_OF_UBT.md` as a concise chronological
-  changelog of the theory from the handwritten 2013–2015 work through the
-  human-governed agentic workflow of 2026.
-- Recorded the author's pre-AI handwritten candidate metrics and independent
-  2013 biquaternionic electromagnetic formulation, while avoiding a historical
-  priority claim over earlier quaternionic electromagnetism.
-- Preserved the early longitudinal/superluminal and geometric-invisibility
-  ideas as historical hypotheses, with an explicit physics-status note: they
-  are not canonical UBT results and require reconstruction of the original
-  derivations against standard Lorentz causality, vacuum transversality, and
-  transformation-optics cloaking.
-- Clarified the human authorship of the decisive algebraic, theta,
-  Fokker–Planck, Layer 1/2, 3-qubit, SU(3), GR, and covariant-tetrad research
-  choices; AI is documented as a formalisation, audit, coding, and review tool.
-- Added a README navigation link and a regression test for the historical
-  wording and claim-status safeguards.
+- Deprecated `canonical/gauge/GAUGE_MASTER_STATUS.md` as an authoritative
+  status source; `CLAIMS_MATRIX.md` remains the current ledger.
+- Reclassified the involution result as selection of a complex rank-three
+  carrier, while recording `GAP-SU3-DYN` for the still-open derivation of the
+  unitary/Yang--Mills dynamics from the canonical UBT action.
+- Added the explicit `diag(e^{i theta}, e^{-i theta}, 1)` counterexample showing
+  that a generic `SU(3)` carrier action does not preserve the biquaternion
+  multiplication table.
+- Marked the color Yang--Mills Lagrangian as a minimal postulated carrier
+  Lagrangian rather than a result already derived from canonical UBT.
+- Formally retracted the old Born-rule proof in
+  `canonical/qm_emergence/step7_born_rule.tex`, retained its correct norm-decay
+  calculation, and added an explicit diffusive plane-wave counterexample.
+- Extended claim-consistency scans into `canonical/gauge/` and
+  `canonical/qm_emergence/`.
+
+### Added — revised historical development record (2026-07-17)
+
+- Added `docs/HISTORY_OF_UBT.md`, a concise author-centred chronology from the
+  2013–2015 biquaternionic work through the current covariant-tetrad programme.
+- Recorded AICON 2025 in Seattle as the origin of systematic AI-assisted UBT
+  research and of the Fokker–Planck research direction, while distinguishing
+  that conceptual milestone from later formal repository implementations.
+- Recorded NDC London 2026 as an impulse toward agentic development, explicitly
+  noting that the workflow remains human-directed and is not yet fully
+  autonomous.
+- Recorded the addition of Chinese-developed AI models from 16 July 2026.
+- Documented David Jaroš's decisive role in the algebraic core, Jacobi-theta and
+  complex-time direction, Fokker–Planck integration, Layer 1/Layer 2 programme,
+  3-qubit and SU(3) work, UBT-native GR requirement, and the return to the
+  covariant-tetrad architecture.
+- Linked the historical changelog from the main repository navigation.
 
 ### Added — frozen-architecture GR subclosures (v10.3.0 candidate, 2026-07-16)
 

@@ -8,6 +8,9 @@
 % the integrity of the theoretical work during ongoing academic development.
 %
 % See LICENSE.md for full license text.
+%
+% RETRACTED 2026-07-17: this file conflated an FPE for P with a diffusion
+% equation for Theta. It is retained as a transparent historical audit record.
 
 \ifdefined\INCLUDEMODE
 \else
@@ -33,8 +36,8 @@
   \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
   \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
 
-  \title{\textbf{Step 7: Born Rule from FPE Structure}\\
-         \large Gap S2: $|\Theta|^2$ as Probability Density without Additional Postulate}
+  \title{\textbf{Step 7: Retracted Born-Rule Claim}\\
+         \large Historical audit of norm decay under amplitude diffusion}
   \author{David Jaro\v{s}}
   \date{2026-03-06}
 
@@ -42,16 +45,26 @@
   \maketitle
 
   \begin{abstract}
-  Gap~S2 asks whether the Born rule $P(x) = |\Theta(x)|^2$ follows
-  automatically from the biquaternionic FPE structure.  We show that
-  it does: the FPE is a probability-conservation equation by construction,
-  and $\int \mathrm{Sc}[\Theta^\dagger\Theta]\,dQ = 1$ is conserved by
-  the FPE dynamics.  The scalar part $\mathrm{Sc}[\Theta^\dagger\Theta]$
-  is the natural $|\Theta|^2$ in the biquaternionic context.
-  This extends the scalar-sector result of Step~4 (Prop.~2) to the full
-  biquaternionic case.
+  This historical file previously claimed that
+  $P=\mathrm{Sc}(\Theta^\dagger\Theta)$ is automatically conserved when
+  $\Theta$ satisfies a diffusion/Fokker--Planck-type equation.  That claim is
+  retracted.  The calculation retained below instead shows a negative norm
+  derivative for a genuine diffusion term.  The Born rule and unitary physical
+  evolution therefore remain open in \texttt{CLAIMS\_MATRIX.md}.
   \end{abstract}
 \fi
+
+\begin{center}
+\fbox{\begin{minipage}{0.92\textwidth}
+\textbf{RETRACTED (2026-07-17).}
+The previous argument conflated the Fokker--Planck equation for a probability
+density $P$ with a diffusion equation for the amplitude $\Theta$.  For example,
+$\Theta=e^{ikx-Dk^2T}$ solves $\partial_T\Theta=D\partial_x^2\Theta$, while
+$\int|\Theta|^2dx$ decays as $e^{-2Dk^2T}$.  This file is retained to preserve
+the correct norm-decay computation and the audit trail.  It is superseded by
+the OPEN Born-rule/unitarity status in \texttt{CLAIMS\_MATRIX.md}.
+\end{minipage}}
+\end{center}
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Setup: Norm in $\mathbb{C}\otimes\mathbb{H}$}
@@ -75,136 +88,91 @@ denotes the scalar part.  This is:
 The probability density candidate is $P(x,\psi) = |\Theta(x,\psi)|^2$.
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Born Rule from FPE Conservation}
+\section{Retracted conservation claim and audit calculation}
 \label{sec:born}
 %──────────────────────────────────────────────────────────────────────────────
 
-\begin{theorem}[S2: Born rule from FPE norm conservation]
-\label{thm:S2}
-Let $\Theta(T,Q)$ satisfy the biquaternionic FPE (equation~\eqref{eq:FPE}
-of Step~5).  Define:
+The former claim was that, if $\Theta(T,Q)$ obeys
 \begin{equation}
-  P(T,Q) \;:=\; \mathrm{Sc}[\Theta^\dagger(T,Q)\,\Theta(T,Q)].
+  \partial_T\Theta=-\nabla_Q\!\cdot(A\Theta)+D\nabla_Q^2\Theta,
+  \label{eq:FPE-amplitude}
 \end{equation}
-Then:
-\begin{enumerate}
-  \item $P \geq 0$ pointwise.
-  \item $\partial_T \int P(T,Q)\,dQ = 0$ (norm conservation).
-  \item The FPE is exactly a continuity equation for $P$.
-\end{enumerate}
-Therefore $P$ is a probability density (Born rule) without additional
-postulate.
-\end{theorem}
+then $P=\mathrm{Sc}(\Theta^\dagger\Theta)$ obeys the corresponding
+Fokker--Planck continuity equation.  The following calculation shows why that
+implication fails.
 
-\begin{proof}
-\textbf{Part 1:} Follows from positive definiteness of $|\cdot|^2$ (eq.~\eqref{eq:norm}).
-
-\textbf{Part 2:} The FPE $\partial_T\Theta = -\nabla_Q\cdot[A\Theta] + D\nabla_Q^2\Theta$
-gives:
+Using
 \begin{align}
-  \partial_T\,\mathrm{Sc}[\Theta^\dagger\Theta]
-  &= \mathrm{Sc}\bigl[(\partial_T\Theta^\dagger)\Theta + \Theta^\dagger(\partial_T\Theta)\bigr]
-  \notag\\
-  &= \mathrm{Sc}\bigl[
-      (-\nabla_Q\cdot[A\Theta] + D\nabla_Q^2\Theta)^\dagger\Theta
-    + \Theta^\dagger(-\nabla_Q\cdot[A\Theta] + D\nabla_Q^2\Theta)
-  \bigr].
+  \partial_T\,\mathrm{Sc}(\Theta^\dagger\Theta)
+  &=\mathrm{Sc}\!\left[(\partial_T\Theta^\dagger)\Theta
+       +\Theta^\dagger(\partial_T\Theta)\right],
 \end{align}
-For the diffusion term: using $\mathrm{Sc}[(\nabla_Q^2\Theta)^\dagger\Theta
-+ \Theta^\dagger\nabla_Q^2\Theta] = \nabla_Q^2\,\mathrm{Sc}[\Theta^\dagger\Theta]
-- 2\mathrm{Sc}[(\nabla_Q\Theta)^\dagger\nabla_Q\Theta]$,
-which integrates to $-2\int\mathrm{Sc}[(\nabla_Q\Theta)^\dagger\nabla_Q\Theta]\,dQ \leq 0$
-(boundary terms vanish for compactly supported $\Theta$).
-
-For the drift term: $\mathrm{Sc}[(\nabla_Q\cdot[A\Theta])^\dagger\Theta
-+ \Theta^\dagger\nabla_Q\cdot[A\Theta]] = \nabla_Q\cdot J$ where $J$ is
-the probability current.  This integrates to zero by the divergence theorem.
-
-Therefore:
+the diffusion term satisfies
+\begin{align}
+  \mathrm{Sc}\!\left[(\nabla_Q^2\Theta)^\dagger\Theta
+       +\Theta^\dagger\nabla_Q^2\Theta\right]
+  &=\nabla_Q^2\,\mathrm{Sc}(\Theta^\dagger\Theta)
+    -2\,\mathrm{Sc}\!\left[(\nabla_Q\Theta)^\dagger\nabla_Q\Theta\right].
+\end{align}
+After integration and vanishing boundary flux, the second term remains:
 \begin{equation}
-  \partial_T\int P\,dQ \;=\; -2D\int\mathrm{Sc}[(\nabla_Q\Theta)^\dagger\nabla_Q\Theta]\,dQ
-  \;\leq\; 0.
+  \partial_T\int P\,dQ
+  =-2D\int\mathrm{Sc}\!\left[(\nabla_Q\Theta)^\dagger
+      \nabla_Q\Theta\right]dQ\leq0,
+  \label{eq:norm-decay}
 \end{equation}
-Wait --- the FPE preserves $\int P\,dQ = \mathrm{const}$ only if we
-additionally have $D > 0$ and absorbing boundary conditions, or if
-$\int\mathrm{Sc}[(\nabla_Q\Theta)^\dagger\nabla_Q\Theta]\,dQ = 0$.
+up to any separately analysed drift contribution.  Thus amplitude diffusion is
+contractive in norm, not unitary in general.
 
-The correct argument: the FPE \emph{is} the Fokker-Planck equation,
-which is a probability conservation equation \emph{by construction}.
-The Fokker-Planck equation $\partial_T P = -\nabla\cdot(AP) + D\nabla^2 P$
-satisfies $\partial_T\int P\,dQ = 0$ by the divergence theorem alone,
-with no boundary contributions.  This is the definition of a
-Fokker-Planck equation.
+\paragraph{Explicit counterexample.}
+On a periodic interval of length $L$, let
+\begin{equation}
+  \Theta(x,T)=e^{ikx-Dk^2T}.
+\end{equation}
+It solves $\partial_T\Theta=D\partial_x^2\Theta$, but
+\begin{equation}
+  \int_0^L|\Theta(x,T)|^2dx=L e^{-2Dk^2T},
+\end{equation}
+which is nonconstant for $k\neq0$ and $D>0$.
 
-In the biquaternionic case: identifying $P = \mathrm{Sc}[\Theta^\dagger\Theta]$
-and using the FPE, the continuity equation $\partial_T P + \nabla_Q\cdot J = 0$
-holds with $J = A\,P - D\nabla_Q P$.  Integrating over $Q$:
-$\partial_T\int P\,dQ = 0$.
-
-\textbf{Part 3:} From the above: $\partial_T P = -\nabla_Q\cdot J$ is a
-continuity equation.  This is the statement that $P = |\Theta|^2$ is
-a conserved probability density.
-\end{proof}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{Normalisation}
-\label{sec:normalisation}
-%──────────────────────────────────────────────────────────────────────────────
-
-\begin{corollary}[Born normalisation from $S[\Theta]$]
-\label{cor:normalisation}
-If the initial condition satisfies
-$\int\mathrm{Sc}[\Theta^\dagger(0,Q)\Theta(0,Q)]\,dQ = 1$,
-then this holds for all $T > 0$ by Theorem~\ref{thm:S2}.
-
-The $S[\Theta]$ normalisation condition
-$\langle\Theta|\Theta\rangle = \int\mathrm{Sc}[\Theta^\dagger\Theta]\,dQ\,d^4x = 1$
-(from the Hilbert space structure of \texttt{appendix\_P3\_hilbert\_space.tex})
-ensures this initial condition is consistent with the action principle.
-\end{corollary}
+A standard Fokker--Planck equation written directly for a density $P$,
+$\partial_TP=-\nabla\cdot(AP)+D\nabla^2P$, conserves $\int P$ under suitable
+boundary conditions.  That fact does not imply that
+$P=\mathrm{Sc}(\Theta^\dagger\Theta)$ obeys the same equation when $\Theta$
+obeys \eqref{eq:FPE-amplitude}.
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Status}
+\section{Current status}
 \label{sec:status}
 %──────────────────────────────────────────────────────────────────────────────
 
-\begin{resultbox}
-\textbf{Gap S2: CLOSED.}
+\begin{gapbox}
+\textbf{Gap S2 / Born rule / unitarity: OPEN.}
 
-\textbf{Proved:} The Born rule $P = \mathrm{Sc}[\Theta^\dagger\Theta]$
-is a probability density by the FPE structure.  It does not require
-an additional postulate: the Fokker-Planck equation is a probability
-conservation equation by construction, and the FPE is equivalent to
-the Euler-Lagrange equations of $S[\Theta]$.
+The positive scalar $\mathrm{Sc}(\Theta^\dagger\Theta)$ remains a natural
+candidate density, but its Born interpretation and conservation require a
+separate derivation from the finalized canonical UBT dynamics.  In particular,
+one must identify a norm-preserving physical evolution, or demonstrate how a
+reversible higher-layer dynamics yields an effective probabilistic equation
+without losing the required inner-product structure.
 
-\textbf{Key equation:}
-\begin{equation}
-  P(x,\psi) \;=\; |\Theta(x,\psi)|^2
-             \;=\; \mathrm{Sc}[\Theta^\dagger\Theta]
-  \quad\text{is conserved: } \partial_T\int P\,dQ = 0.
-\end{equation}
+The previous ``Gap S2: CLOSED'' label and all claims of automatic FPE norm
+conservation are withdrawn.
+\end{gapbox}
 
-\textbf{Consequence for QM:} The Born rule in quantum mechanics
-($P(x) = |\psi(x)|^2$ for the wavefunction $\psi$) follows from
-$\Theta_1(x) = \psi(x)$ (the $n=1$ mode from Step~6) and the FPE
-norm conservation proved here.
-
-\textbf{Complete FPE chain (Steps 4--7):}
 \begin{center}
-\begin{tabular}{lll}
+\small
+\begin{tabular}{@{}p{0.34\textwidth}p{0.19\textwidth}p{0.37\textwidth}@{}}
   \toprule
-  Result & Status & Step \\
+  Result & Current status & Note \\
   \midrule
-  FPE $\leftrightarrow$ E-L (scalar, free) & Proved [L0] & 4 \\
-  $[\partial_T, \nabla_Q^2] = 0$ (non-comm.) & Proved [L0] & 5 \\
-  Left FPE from $S[\Theta]$ (ordering) & Proved [L0] & 5 \\
-  FPE $\leftrightarrow$ E-L (all sectors, Gap~G3) & \textbf{Proved [L0] $\bigstar$} & 4 \\
-  $\Theta_1$ is Dirac spinor & Proved [L0] & 6 \\
-  Born rule $|\Theta|^2$ from FPE & \textbf{Proved [L0]} & \textbf{7} \\
+  Positivity of $\mathrm{Sc}(\Theta^\dagger\Theta)$ & Candidate property & depends on chosen involution/representation \\
+  Amplitude-diffusion norm conservation & Retracted & contradicted by \eqref{eq:norm-decay} \\
+  Born rule from canonical UBT & Open gap & see \texttt{CLAIMS\_MATRIX.md} \\
+  Unitary physical evolution & Open gap & must be derived \\
   \bottomrule
 \end{tabular}
 \end{center}
-\end{resultbox}
 
 \ifdefined\INCLUDEMODE
 \else

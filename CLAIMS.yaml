@@ -49,7 +49,13 @@ claims:
     - canonical/interactions/
     - canonical/su3_derivation/
     - papers/UBT_Gauge_Submission.tex
-    forbidden_wording: []
+    - reviews/gauge_qm_honest_status_audit_2026-07-17.md
+    assumptions:
+    - 'The involution structure selects a complex rank-three carrier V_c congruent to C^3'
+    - 'GAP-SU3-DYN: OPEN — derive the unitary/Yang-Mills structure on the involution carrier from the canonical action; SU(3) is not an algebra automorphism, and an explicit counterexample is documented'
+    forbidden_wording:
+    - SU(3) derived from automorphisms
+    - gauge group follows from automorphisms alone
   three_generations:
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:
@@ -73,7 +79,13 @@ claims:
     evidence:
     - src/ubt/quantum/quantum_scaffold.py
     - docs/quantum_sector_status.md
-    forbidden_wording: []
+    - canonical/qm_emergence/step7_born_rule.tex
+    - reviews/gauge_qm_honest_status_audit_2026-07-17.md
+    assumptions:
+    - 'GAP-QM-UNITARITY: OPEN — derive a norm-preserving physical evolution and the Born rule from canonical UBT dynamics'
+    forbidden_wording:
+    - Born rule proved
+    - P = Θ†Θ is conserved
   psychon_sector:
     status: SPECULATIVE
     evidence:

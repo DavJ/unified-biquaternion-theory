@@ -18,6 +18,22 @@ TARGET_FILES = [
     REPO_ROOT / "docs" / "THEORY_STATUS.md",
     REPO_ROOT / "docs" / "FINAL_STATUS_REPORT.md",
 ]
+TARGET_DIRS = [
+    REPO_ROOT / "canonical" / "gauge",
+    REPO_ROOT / "canonical" / "qm_emergence",
+]
+TARGET_SUFFIXES = {".md", ".tex"}
+
+
+def _iter_target_files() -> list[Path]:
+    files = list(TARGET_FILES)
+    for directory in TARGET_DIRS:
+        files.extend(
+            path
+            for path in directory.rglob("*")
+            if path.is_file() and path.suffix.casefold() in TARGET_SUFFIXES
+        )
+    return sorted(set(files))
 
 
 def _parse_claims_yaml(path: Path) -> dict[str, dict[str, object]]:
@@ -80,7 +96,7 @@ def test_forbidden_wording_not_present_in_status_docs() -> None:
         context_tokens = claim_data.get("context_tokens", [])
         for phrase in claim_data.get("forbidden_wording", []):
             needle = phrase.casefold()
-            for file_path in TARGET_FILES:
+            for file_path in _iter_target_files():
                 for lineno, text in enumerate(file_path.read_text(encoding="utf-8").splitlines(), start=1):
                     line_cf = text.casefold()
                     if needle not in line_cf:
@@ -92,3 +108,15 @@ def test_forbidden_wording_not_present_in_status_docs() -> None:
                     )
 
     assert not violations, "Forbidden claim wording found:\n" + "\n".join(violations)
+
+
+def test_gauge_and_qm_honest_status_headers_present() -> None:
+    gauge = (REPO_ROOT / "canonical" / "gauge" / "GAUGE_MASTER_STATUS.md").read_text(encoding="utf-8")
+    su3 = (REPO_ROOT / "canonical" / "su3_derivation" / "su3_from_involutions.tex").read_text(encoding="utf-8")
+    born = (REPO_ROOT / "canonical" / "qm_emergence" / "step7_born_rule.tex").read_text(encoding="utf-8")
+
+    assert "DEPRECATED AS A STATUS SOURCE" in gauge
+    assert "GAP-SU3-DYN" in su3
+    assert "(e^{i\\theta}\\mathbf{I})^2=-e^{2i\\theta}" in su3
+    assert "RETRACTED (2026-07-17)" in born
+    assert "L e^{-2Dk^2T}" in born

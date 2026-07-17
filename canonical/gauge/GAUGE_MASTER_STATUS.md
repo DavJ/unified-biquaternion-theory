@@ -1,11 +1,21 @@
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
+> [!WARNING]
+> **DEPRECATED AS A STATUS SOURCE (2026-07-17).** The legacy labels in this
+> file, including `SU(3): PROVED` and `SU(2)_L: PROVED`, are superseded by
+> `CLAIMS_MATRIX.md`, where the Standard-Model gauge chain is
+> `DERIVED_WITH_ASSUMPTIONS`. The July 2026 gauge audit established that the
+> involutions select a complex rank-three carrier, while the unitary/Yang--Mills
+> dynamics on that carrier is still an introduced structure (`GAP-SU3-DYN`).
+> This file is retained for historical traceability and must not override the
+> current claim ledger. See `reviews/gauge_qm_honest_status_audit_2026-07-17.md`.
+
 # GAUGE_MASTER_STATUS.md — T2_GAUGE Canonical Master Status
 
 **Author**: Ing. David Jaroš  
 **Date**: 2026-05-13 (updated)  
 **Track**: T2_GAUGE — Standard Model Gauge Structure  
-**Purpose**: Single authoritative file consolidating the gauge sector status.
+**Purpose**: Historical consolidation of the gauge-sector status; no longer authoritative.
 Supersedes and summarises: `reports/gauge_status_matrix.md`, `reports/gauge_truth_matrix.md`,
 `reports/chirality_gap.md`, `reports/anomaly_gap.md`, `reports/higgs_yukawa_dependency.md`.  
 **Truth anchor**: `STATUS_OF_UBT.md §T2_GAUGE`
