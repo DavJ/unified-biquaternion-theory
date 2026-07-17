@@ -134,6 +134,7 @@ See:
 - Canonical theory tree: [`canonical/`](canonical/)
 - Research tracks: [`research_tracks/`](research_tracks/)
 - Speculative extensions: [`speculative_extensions/`](speculative_extensions/)
+- History of the theory: [`docs/HISTORY_OF_UBT.md`](docs/HISTORY_OF_UBT.md)
 - Historical archive: [`ARCHIVE/`](ARCHIVE/)
 
 ---

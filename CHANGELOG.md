@@ -8,6 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — reviewed History of UBT (2026-07-17)
+
+- Added and reviewed `docs/HISTORY_OF_UBT.md` as a concise chronological
+  changelog of the theory from the handwritten 2013–2015 work through the
+  human-governed agentic workflow of 2026.
+- Recorded the author's pre-AI handwritten candidate metrics and independent
+  2013 biquaternionic electromagnetic formulation, while avoiding a historical
+  priority claim over earlier quaternionic electromagnetism.
+- Preserved the early longitudinal/superluminal and geometric-invisibility
+  ideas as historical hypotheses, with an explicit physics-status note: they
+  are not canonical UBT results and require reconstruction of the original
+  derivations against standard Lorentz causality, vacuum transversality, and
+  transformation-optics cloaking.
+- Clarified the human authorship of the decisive algebraic, theta,
+  Fokker–Planck, Layer 1/2, 3-qubit, SU(3), GR, and covariant-tetrad research
+  choices; AI is documented as a formalisation, audit, coding, and review tool.
+- Added a README navigation link and a regression test for the historical
+  wording and claim-status safeguards.
+
 ### Added — frozen-architecture GR subclosures (v10.3.0 candidate, 2026-07-16)
 
 - Added `gap_10t_paladini_torsion_dynamics.tex`: the minimal first-order

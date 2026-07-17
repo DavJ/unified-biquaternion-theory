@@ -46,31 +46,44 @@ captures fundamental physics must be decided by proofs, solutions, predictions,
 and independent review; the unusual breadth and inventiveness of the research
 programme are nevertheless part of its documented history.
 
-## 2013–2015 — Biquaternionic and electromagnetic origins
+## 2013–2015 — Handwritten metric and electromagnetic foundations
 
-- In 2013, David Jaroš independently developed a unified biquaternionic notation
-  for the electromagnetic field in handwritten work. This is recorded as an
-  independent development within the history of UBT; it is not a claim of
-  priority over the earlier quaternionic and biquaternionic literature on
-  electromagnetism.
-- During 2013–2015 he calculated several candidate metric tensors and related
-  algebraic constructions by hand, without AI assistance. These calculations
-  supplied a long-lived physical and mathematical reference point for later
-  computer-assisted work.
+- In 2013, David Jaroš independently developed a unified biquaternionic
+  representation of the electromagnetic field and related Maxwell-type
+  relations in handwritten work. This is an authorship statement about the
+  origin of UBT, not a claim of historical priority over earlier quaternionic
+  and biquaternionic formulations of electromagnetism.
+- During 2013–2015 he calculated several candidate metric tensors and associated
+  algebraic constructions on paper, without AI assistance. These were not merely
+  later reconstructions prompted by language models: they formed part of the
+  pre-AI mathematical foundation from which the UBT gravity programme grew.
 - Commutators and anticommutators already appeared in the early calculations.
   A persistent intuition was that the symmetric algebraic product should encode
   metric information, while antisymmetric or noncommutative structures should
   encode orientation, spin, field strength, or curvature.
-- Related exploratory work included Pauli–quaternion correspondences, toroidal
-  resonator ideas, extended-kinematics questions, null and geometric invisibility
-  conditions, and the Octonion Multiverse programme. Claims concerning
-  superluminal longitudinal modes or the necessity of biquaternionic coordinates
-  for invisibility are retained only as historical hypotheses pending
-  reconstruction and modern verification of the original handwritten
-  derivations; they are not current canonical UBT results.
+- The notebooks also explored Pauli–quaternion correspondences, toroidal
+  resonator ideas, longitudinal modes, extended relativistic kinematics, null
+  conditions, and a geometric ``invisibility machine'' based on
+  biquaternionic-coordinate hypotheses.
+- Two especially strong early conclusions are preserved as **historical research
+  hypotheses**, not current canonical theorems: that superluminal propagation
+  could occur only in a genuinely biquaternionic spacetime and only through
+  longitudinal modes, and that a geometry-based invisibility device would
+  require biquaternionic coordinates. Their precise scope cannot be judged
+  without reconstructing the original derivations.
+- Current physics places important constraints on any revival of those claims.
+  Ordinary Lorentz transformations preserve the null cone and do not transform
+  a causal light signal into a superluminal one; source-free plane
+  electromagnetic waves in standard vacuum Maxwell theory are transverse; and
+  transformation-optics/metamaterial cloaking can be formulated without
+  biquaternionic spacetime coordinates. A viable modern version of the early
+  hypotheses would therefore have to specify a nonstandard extension of the
+  physical kinematics, a different mode or medium, or a narrower notion of
+  geometric invisibility, and then derive experimentally distinguishable
+  consequences.
 - The modern covariant-tetrad equations, connection reconstruction, and rank
-  theorems did not yet exist in their present form, but the algebraic intuition
-  from which they later developed was already present.
+  theorems did not yet exist in their present form, but the algebraic and metric
+  intuition from which they later developed was already present.
 
 ## c. 2019 — Complex time and Jacobi-theta structure
 
@@ -326,6 +339,27 @@ choices made, initiated, or persistently defended by David Jaroš include:
 
 This list is not exhaustive. It can be extended as older notebooks, emails,
 conference notes, commits, and research discussions are reviewed.
+
+## Selected external context for the early programme
+
+The historical wording above is intentionally narrower than the original
+private conclusions. It is consistent with the following established context:
+
+- quaternionic and biquaternionic representations of electromagnetism predate
+  UBT, including Ludwik Silberstein's early twentieth-century work and the
+  later Riemann–Silberstein formalism;
+- the Lorentz group preserves the Minkowski interval and the vacuum light cone;
+- standard transformation optics provides theoretical and experimental
+  electromagnetic cloaking mechanisms using anisotropic material parameters.
+
+Useful reference points include J. B. Pendry, D. Schurig, and D. R. Smith,
+“Controlling Electromagnetic Fields,” *Science* **312** (2006), 1780–1782,
+doi:10.1126/science.1125907, and D. Schurig et al., “Metamaterial
+Electromagnetic Cloak at Microwave Frequencies,” *Science* **314** (2006),
+977–980, doi:10.1126/science.1133628. These references do not decide whether a
+more specific UBT construction is possible; they delimit what cannot be claimed
+solely from the existence of quaternionic notation or standard Lorentz
+transformations.
 
 ## Current direction
 
