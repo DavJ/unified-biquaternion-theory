@@ -1,0 +1,350 @@
+# History of Unified Biquaternion Theory
+
+This document is a concise historical changelog of Unified Biquaternion Theory
+(UBT). It records how the research programme developed, including earlier
+formulations that were later refined or superseded. It is not the current proof
+ledger: canonical claims are governed by `CLAIMS_MATRIX.md`,
+`DERIVATION_INDEX.md`, and `STATUS_OF_UBT.md`.
+
+Dates before the public repository period are approximate and are based on the
+author's surviving notes, files, releases, and recollection. The chronology is
+representative rather than exhaustive and may be expanded as older material is
+recovered.
+
+The central ideas, research direction, and decisive architectural choices were
+made by David Jaroš. AI systems have assisted with formalisation, symbolic and
+numerical work, code, documentation, criticism, and independent cross-checking.
+They have not replaced human authorship, scientific responsibility, or final
+decision-making. UBT is therefore best described as a modern, nontraditional,
+multidisciplinary independent research programme with a human-led, multi-model
+workflow.
+
+## Historical perspective on the author and research style
+
+David Jaroš approached UBT through an unusual combination of electrical
+engineering, radioelectronics, software engineering, mathematical physics, and
+long-term independent experimentation. His route was not that of a conventional
+single-specialty academic career. It was closer to an inventor-researcher
+tradition: beginning with handwritten calculations, physical analogies, and
+engineering intuition, then gradually building a formal mathematical and
+computational programme around them.
+
+The originality of this programme does not rest on claiming that every early
+idea was correct or historically unprecedented. It lies in the persistence of a
+coherent algebraic intuition across more than a decade, the ability to connect
+subjects that are normally studied separately, and the willingness to revise
+architecture when later calculations exposed a weakness. The return to the
+covariant-tetrad formulation is a representative example: the decisive physical
+choice was made by the author, while AI systems helped test, formalise, and audit
+its consequences.
+
+The historical record therefore does not support a picture of passive reliance
+on generated mathematics. It shows a technically trained independent researcher
+using contemporary computational tools to extend and challenge a body of ideas
+that substantially predates modern generative AI. Whether UBT ultimately
+captures fundamental physics must be decided by proofs, solutions, predictions,
+and independent review; the unusual breadth and inventiveness of the research
+programme are nevertheless part of its documented history.
+
+## 2013–2015 — Biquaternionic and electromagnetic origins
+
+- In 2013, David Jaroš independently developed a unified biquaternionic notation
+  for the electromagnetic field in handwritten work. This is recorded as an
+  independent development within the history of UBT; it is not a claim of
+  priority over the earlier quaternionic and biquaternionic literature on
+  electromagnetism.
+- During 2013–2015 he calculated several candidate metric tensors and related
+  algebraic constructions by hand, without AI assistance. These calculations
+  supplied a long-lived physical and mathematical reference point for later
+  computer-assisted work.
+- Commutators and anticommutators already appeared in the early calculations.
+  A persistent intuition was that the symmetric algebraic product should encode
+  metric information, while antisymmetric or noncommutative structures should
+  encode orientation, spin, field strength, or curvature.
+- Related exploratory work included Pauli–quaternion correspondences, toroidal
+  resonator ideas, extended-kinematics questions, null and geometric invisibility
+  conditions, and the Octonion Multiverse programme. Claims concerning
+  superluminal longitudinal modes or the necessity of biquaternionic coordinates
+  for invisibility are retained only as historical hypotheses pending
+  reconstruction and modern verification of the original handwritten
+  derivations; they are not current canonical UBT results.
+- The modern covariant-tetrad equations, connection reconstruction, and rank
+  theorems did not yet exist in their present form, but the algebraic intuition
+  from which they later developed was already present.
+
+## c. 2019 — Complex time and Jacobi-theta structure
+
+- Complex time became a central element of the developing framework:
+  \[
+  \tau=t+i\psi.
+  \]
+- Jacobi theta functions, toroidal periodicity, diffusion, spectral structure,
+  and complex-time evolution became increasingly important.
+- These ideas prepared the later formulation of a fundamental field
+  \(\Theta(q,\tau)\) and the use of periodic analytic structures to connect
+  topology, dynamics, and observable spectra.
+
+## Before June 2025 — Consolidation into a broader unification programme
+
+- Earlier biquaternionic, complex-time, and theta-function work was consolidated
+  into a programme extending beyond electromagnetism toward gravity, quantum
+  equations, gauge structure, particle generations, mass hierarchies, and
+  cosmology.
+- David Jaroš laid the conceptual foundations of the later **Layer 1**
+  programme and opened the first **Layer 2** questions: first build a
+  reproducible algebraic and geometric core, then investigate deeper spectral,
+  topological, and dynamical selection mechanisms.
+- Author-led investigations included the **3-qubit model**, the **SU(3)**
+  direction, and related generation structures. These were not outputs of later
+  automated repository analysis; they were part of the human-directed research
+  programme.
+- Much of this period remained exploratory and predated the repository's later
+  claim-level and reproducibility discipline.
+
+## June 2025 — AICON Seattle and the start of systematic AI-assisted research
+
+- During **AICON 2025 in Seattle**, David Jaroš decided to make AI assistance a
+  systematic part of the UBT research process rather than an occasional writing
+  aid.
+- The idea of incorporating a **Fokker–Planck equation** into the UBT dynamical
+  picture also arose during this Seattle period. It offered a natural language
+  for drift, diffusion, probability transport, periodic domains, and the
+  emergence of Jacobi-theta solutions.
+- The Seattle milestone marks the origin of the idea and research direction;
+  the explicit mathematical and repository formulations were developed and
+  revised afterward.
+- AI systems were used for proposed derivations, symbolic checks, numerical
+  experiments, software implementation, documentation, literature-oriented
+  comparison, and adversarial review.
+- From the beginning, AI outputs were treated as suggestions requiring human
+  judgment and reproducible verification. Scientific ownership and final
+  responsibility remained with David Jaroš.
+
+## June 2025 — First public formulation of UBT
+
+- The first public UBT formulation was released in June 2025, including an OSF
+  publication and a public source repository shortly afterward.
+- The central object was formulated as a biquaternion-valued field
+  \[
+  \Theta(q,\tau)
+  \]
+  over biquaternionic coordinates and complex time.
+- Initial public research tracks addressed the GR limit, Dirac and Schrödinger
+  limits, gauge structure, the fine-structure constant, mass hierarchies, dark
+  matter candidates, and consciousness-related speculative extensions.
+- This stage transformed UBT from a collection of private ideas into a public,
+  testable, and versioned research programme.
+
+## 2025 — Expansion of the mathematical and computational programme
+
+- The repository expanded into separate gravity, gauge, alpha, mass, quantum,
+  cosmology, and speculative research tracks.
+- The Fokker–Planck/Jacobi-theta direction was progressively translated from the
+  Seattle insight into more explicit equations and research documents.
+- The Layer 1/Layer 2 distinction, 3-qubit constructions, SU(3) structure,
+  generation questions, and links between algebra and physical observables were
+  developed further under the author's direction.
+- Symbolic and numerical verifiers, tests, derivation indexes, and claim levels
+  were introduced. Strong early conjectures were increasingly separated from
+  conditional or reproducible results.
+
+## May 2026 — First cohesive GR paper
+
+- The paper *General Relativity as a Real-Projected Limit of Unified
+  Biquaternion Theory* presented the first cohesive attempt to organise the GR
+  programme in a single manuscript.
+- It used a projected bilinear of derivatives of \(\Theta\) as the metric
+  readout, gave a five-step route to standard GR geometry, and included a
+  reproducible numerical check of the spatial Schwarzschild metric.
+- The manuscript was an important milestone because it converted the broad GR
+  ambition into a concrete proof programme and exposed the exact places where
+  representation, variation, dynamics, and uniqueness had to be distinguished.
+- Later audits narrowed some of its strongest claims, especially concerning
+  variational closure, the temporal Schwarzschild component, uniqueness, and
+  the origin of Einstein dynamics. Useful calculations and the overall demand
+  for a genuine UBT-native GR sector were retained.
+
+## 2026 — NDC London and the move toward agentic development
+
+- **NDC London in 2026** provided a further impulse for developing a more
+  structured, multi-agent research and engineering workflow around UBT.
+- The focus moved from ordinary AI-assisted work toward **agentic development**:
+  assigning distinct roles such as derivation, verification, hostile review,
+  consistency checking, code generation, and status-ledger maintenance.
+- This workflow is still human-directed and is not yet fully automated.
+  David Jaroš continues to choose research goals, resolve architectural
+  questions, approve claims, and decide which proposed changes enter the
+  canonical theory. A more automated orchestration platform remains under
+  development.
+
+## June–July 2026 — Audits and the explicit GAP-10 programme
+
+- Detailed audits distinguished the ability to represent a metric from the
+  stronger task of deriving all ten Einstein equations through variations of
+  the fundamental UBT variables.
+- `GAP-10` became the central GR closure programme, separating metric rank,
+  connection dynamics, integrability, action origin, and on-shell solution
+  selection.
+- Claim ledgers were revised so that standard GR input, conditional closure, and
+  genuinely UBT-native results were no longer treated as interchangeable.
+
+## Early July 2026 — Compact-fiber completion route
+
+- A compact \(\psi\)-fiber route was developed to enlarge the available
+  variation space in an induced-metric formulation and obtain rank-ten closure.
+- The route was mathematically consistent and demonstrated considerable
+  representational flexibility.
+- That flexibility also revealed weak canonical selection: multiple redundant
+  representations could encode the same geometry without a sufficiently strong
+  UBT-native mechanism selecting one of them.
+- The route was therefore retained as a historical and exploratory framework,
+  not dismissed as a mathematical failure. Some reported constructions remain
+  subject to repository-level reproduction before being promoted to verified
+  historical results.
+
+## 15–16 July 2026 — Return to the covariant-tetrad architecture
+
+- David Jaroš made the decisive human choice to return the GR programme to the
+  original anticommutator and tetrad intuition, now in an explicit covariant
+  form:
+  \[
+  E_\mu=\frac{1}{\sqrt{\mathcal N_0}}D_\mu\Theta,
+  \qquad
+  \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+  =g_{\mu\nu}\mathbf 1.
+  \]
+- This was not an autonomous AI pivot. The initial pressure for a tetrad/
+  Clifford formulation and the later decision to restore it were both driven by
+  the author's physical and algebraic intuition, with AI support used to
+  formalise and audit the consequences.
+- The metric was no longer based on an arbitrarily chosen real projection or
+  fiber average; it arose from the central symmetric product of a
+  biquaternionic tetrad.
+- The local metric rank became
+  \[
+  16\text{ tetrad components}-6\text{ Lorentz gauge directions}
+  =10\text{ metric components}.
+  \]
+- The programme then developed the relation between Christoffel symbols,
+  frame/spin connections, torsion, and contorsion; an explicit affine
+  single-field Minkowski representative; a conditional one-sided connection
+  no-go; and a two-sided bimodule connection as the current minimal escape
+  route.
+
+## 16 July 2026 — Release v10.2.0: Covariant Tetrad and Connection Milestone
+
+- Release `v10.2.0` publicly archived the projection-free tetrad metric, full
+  local metric rank, explicit Minkowski realisation, and reconstruction of a
+  metric-compatible connection from tetrad plus torsion.
+- The release explicitly retained curved on-shell generation and the derivation
+  of Einstein dynamics from the canonical UBT action as open problems.
+- GitHub release tagging and automatic Zenodo archiving created a stable,
+  citable record of this architectural milestone.
+
+## From 16 July 2026 — Chinese AI models join the workflow
+
+- From **16 July 2026**, Chinese-developed AI models were added to the UBT
+  multi-model research environment.
+- They were used alongside Western and local models for independent derivation
+  attempts, code and proof review, mathematical criticism, and cross-checking of
+  model-specific assumptions.
+- No model family was granted privileged authority. Agreement between models
+  counted as useful evidence only when supported by explicit mathematics,
+  reproducible code, or primary-source verification.
+
+## July 2026 — Architecture freeze, agent safeguards, and reproducible builds
+
+- The covariant-tetrad architecture was frozen for the `v10.x` development
+  line.
+- The rule **architecture before repair** was adopted: before adding fields,
+  dimensions, fibers, projections, or auxiliary modes, researchers and agents
+  must first test whether the apparent obstruction is an artifact of the chosen
+  formulation.
+- Standard Cartan/tetrad geometry was explicitly separated from UBT-specific
+  contributions.
+- Repository-wide LaTeX workflows were redesigned to attempt all active PDF
+  roots, continue after individual failures, preserve logs, publish successful
+  builds, and protect the exact source-commit provenance of generated PDFs.
+- Agentic tooling continued to expand, but canonical decisions remained subject
+  to explicit human approval.
+
+## July 2026 — Conditional GR subclosures toward v10.3.0
+
+- In a minimal Palatini/Einstein–Cartan branch, the Cartan torsion map was
+  verified to have full pointwise rank, so zero spin current gives zero torsion
+  and specified spin current determines contorsion.
+- The Lorentz real slice was characterised as the fixed set of a natural
+  involution, with conditional symmetry-propagation results for its dynamical
+  preservation.
+- Exact augmented-holonomy criteria were formulated for local integrability when
+  the tetrad and paired connections are prescribed.
+- Under minimal Palatini and four-dimensional Lovelock assumptions, the
+  low-energy gravitational tensor structure was conditionally narrowed to
+  \[
+  G_{\mu\nu}+\Lambda g_{\mu\nu}=\kappa T_{\mu\nu}.
+  \]
+- This fixes the possible low-energy tensor form under the stated assumptions;
+  the values and signs of \(\kappa\) and \(\Lambda\), and the derivation of those
+  infrared assumptions from the fundamental UBT action, remain open research
+  problems.
+
+## Research method and verification discipline
+
+- The author compares major structural results with physical intuition and with
+  calculations developed by hand before the use of generative AI.
+- Most decisive claims are subjected to logical criticism and to adversarial
+  comparison across multiple model families rather than accepted from a single
+  model output.
+- At the exploratory stage, this process does not imply that every intermediate
+  proof has already received a complete line-by-line human verification.
+- Before a result is treated as final, the intended standard is a definition-by-
+  definition and line-by-line review, reproducible symbolic or numerical checks
+  where applicable, and ultimately independent human scrutiny.
+- Multi-model agreement is treated as a useful error-detection mechanism, not as
+  proof by consensus. Canonical status is controlled by explicit assumptions,
+  derivation ledgers, tests, and human approval.
+
+## Author-led decisions in the AI-assisted era
+
+The following list is deliberately explicit because the research increasingly
+uses AI tools, while the scientific direction remains human-authored. Major
+choices made, initiated, or persistently defended by David Jaroš include:
+
+- maintaining biquaternionic algebra as the non-negotiable mathematical core;
+- placing Jacobi's theta function and complex time at the centre of UBT;
+- introducing the Fokker–Planck direction after the Seattle 2025 insight;
+- defining the Layer 1 programme and initiating Layer 2 investigations;
+- developing the 3-qubit model, SU(3) direction, and generation structures;
+- insisting that GR be derived from UBT-native principles rather than accepted
+  as an independent metric theory;
+- pressing the initial tetrad/Clifford interpretation and later deciding to
+  restore the covariant-tetrad architecture;
+- deciding which AI suggestions were accepted, revised, rejected, or retained
+  only as exploratory work;
+- creating a claim and audit discipline in which attractive calculations do not
+  become canonical without reproducible support.
+
+This list is not exhaustive. It can be extended as older notebooks, emails,
+conference notes, commits, and research discussions are reviewed.
+
+## Current direction
+
+The current programme keeps the covariant-tetrad architecture fixed and focuses
+on the remaining bridges:
+
+- derive the paired connections, torsion sector, and low-energy action from
+  fundamental UBT principles;
+- solve the self-consistent curved system for \(\Theta\), tetrad, and connection;
+- derive rather than assume the Palatini/Lovelock infrared conditions;
+- determine the normalization, Newton coupling, and cosmological constant;
+- select Schwarzschild, cosmological, and perturbative solutions on shell;
+- continue developing a human-governed agentic research platform while keeping
+  every canonical claim auditable and reproducible.
+
+The history of UBT is not a sequence of discarded theories. It is a progressive
+refinement from long-standing physical intuition, through increasingly explicit
+mathematics and computational testing, toward a smaller and more clearly stated
+set of proof obligations. Its historical interest lies not only in the eventual
+fate of the theory, but also in the attempt to combine independent invention,
+engineering discipline, mathematical synthesis, and human-governed artificial
+intelligence within one sustained research programme.
