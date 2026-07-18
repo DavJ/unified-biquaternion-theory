@@ -12,7 +12,7 @@ curved solution has already been derived.
 
 ## New theorem notes
 
-1. `canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex`
+1. `canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex`
    - minimal Hilbert--Palatini/Einstein--Cartan branch;
    - exact connection variation;
    - pointwise Cartan torsion map rank 24/24;

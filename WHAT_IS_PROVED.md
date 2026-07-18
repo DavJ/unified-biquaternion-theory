@@ -142,7 +142,7 @@ they are rederived in this route.
 | G8 | Two-sided derivative gives exact left/right curvature identity and allows nonzero intertwined curvatures | [L1 identity; route narrowed] | same |
 | G9 | Minimal Palatini action yields Einstein--Λ and Lovelock assumptions make the four-dimensional infrared endpoint unique | [L1 conditional] | `gap_10d_low_energy_uniqueness.tex` |
 | G10 | Prescribed paired-connection system has an exact augmented-holonomy existence criterion | [L1] | `gap_10i_augmented_holonomy.tex` |
-| G11 | Minimal Palatini branch has an invertible algebraic torsion equation | [L1 conditional] | `gap_10t_paladini_torsion_dynamics.tex` |
+| G11 | Minimal Palatini branch has an invertible algebraic torsion equation | [L1 conditional] | `gap_10t_palatini_torsion_dynamics.tex` |
 | G11b | Full canonical UBT selects its torsion/current and self-consistent curved tetrad | [NARROWED/OPEN] | `GAP-10T-DYN`, `GAP-10I-CURVED` |
 | G12 | Schwarzschild full tetrad/lapse selected by canonical \(\Theta\) dynamics | [OPEN] | `GAP-U2Theta` |
 

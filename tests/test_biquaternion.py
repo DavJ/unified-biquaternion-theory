@@ -242,33 +242,34 @@ class TestComplexTime:
 class TestBiquaternionTetradMinkowski:
     """Minkowski tetrad → emergent metric should be η = diag(-1,+1,+1,+1)."""
 
-    @pytest.fixture(scope="class")
-    def tetrad(self) -> BiquaternionTetrad:
-        return BiquaternionTetrad.minkowski()
+    @pytest.fixture(scope="class", autouse=True)
+    @classmethod
+    def _setup_tetrad(cls) -> None:
+        cls.tetrad = BiquaternionTetrad.minkowski()
 
-    def test_g00(self, tetrad: BiquaternionTetrad) -> None:
-        assert tetrad.metric_component_real(0, 0) == pytest.approx(-1.0, abs=1e-12)
+    def test_g00(self) -> None:
+        assert self.tetrad.metric_component_real(0, 0) == pytest.approx(-1.0, abs=1e-12)
 
-    def test_g11(self, tetrad: BiquaternionTetrad) -> None:
-        assert tetrad.metric_component_real(1, 1) == pytest.approx(1.0, abs=1e-12)
+    def test_g11(self) -> None:
+        assert self.tetrad.metric_component_real(1, 1) == pytest.approx(1.0, abs=1e-12)
 
-    def test_g22(self, tetrad: BiquaternionTetrad) -> None:
-        assert tetrad.metric_component_real(2, 2) == pytest.approx(1.0, abs=1e-12)
+    def test_g22(self) -> None:
+        assert self.tetrad.metric_component_real(2, 2) == pytest.approx(1.0, abs=1e-12)
 
-    def test_g33(self, tetrad: BiquaternionTetrad) -> None:
-        assert tetrad.metric_component_real(3, 3) == pytest.approx(1.0, abs=1e-12)
+    def test_g33(self) -> None:
+        assert self.tetrad.metric_component_real(3, 3) == pytest.approx(1.0, abs=1e-12)
 
-    def test_off_diagonal_zero(self, tetrad: BiquaternionTetrad) -> None:
+    def test_off_diagonal_zero(self) -> None:
         for mu in range(4):
             for nu in range(4):
                 if mu != nu:
-                    assert tetrad.metric_component_real(mu, nu) == pytest.approx(
+                    assert self.tetrad.metric_component_real(mu, nu) == pytest.approx(
                         0.0, abs=1e-12
                     )
 
-    def test_verify_gr_limit(self, tetrad: BiquaternionTetrad) -> None:
+    def test_verify_gr_limit(self) -> None:
         eta = np.diag([-1.0, 1.0, 1.0, 1.0])
-        result = verify_gr_limit(tetrad, eta)
+        result = verify_gr_limit(self.tetrad, eta)
         assert result["passed"]
 
 

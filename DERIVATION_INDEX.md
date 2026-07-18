@@ -38,7 +38,7 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 - `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` — central anticommutator metric and exact rank-ten theorem.
 - `canonical/gr_closure/gap_10omega_connection_elimination.tex` — unique reconstruction of every metric-compatible connection from tetrad and specified torsion; Levi-Civita torsion-free corollary.
 - `canonical/gr_closure/gap_10i_integrability_selection.tex` — explicit affine Minkowski/constant-tetrad representers; one-sided invertible curved no-go; exact two-sided curvature identity.
-- `canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex` — invertible 24-component Cartan torsion map and algebraic torsion elimination in the minimal first-order branch.
+- `canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex` — invertible 24-component Cartan torsion map and algebraic torsion elimination in the minimal first-order branch.
 - `canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex` — intrinsic Lorentz-slice involution, equivariant fixed-set propagation, and metric invariance under vertical Lorentz/translation-symmetric psi evolution.
 - `canonical/gr_closure/gap_10i_augmented_holonomy.tex` — exact augmented-connection/holonomy existence criterion for prescribed `(E,A,B)`.
 - `canonical/gr_closure/gap_10d_low_energy_uniqueness.tex` — conditional Palatini field equations and four-dimensional Lovelock uniqueness of the Einstein--Lambda infrared endpoint.

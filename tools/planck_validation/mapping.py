@@ -28,11 +28,15 @@ def M_ns(R=constants.RS_N):
 
 
 def M_phase():
-    raise NotImplementedError("M_phase")
+    raise NotImplementedError(
+        "M_phase is not implemented; NO additional tunable parameters are permitted."
+    )
 
 
 def M_SNR():
-    raise NotImplementedError("M_SNR")
+    raise NotImplementedError(
+        "M_SNR is not implemented; NO additional tunable parameters are permitted."
+    )
 
 
 def get_all_predictions():

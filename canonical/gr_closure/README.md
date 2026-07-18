@@ -22,7 +22,7 @@ The current canonical route is:
   tetrad and torsion; Levi-Civita corollary.
 - `gap_10i_integrability_selection.tex` — affine Minkowski/constant-tetrad
   representers, one-sided no-go, and two-sided curvature identity.
-- `gap_10t_paladini_torsion_dynamics.tex` — algebraic Cartan torsion equation
+- `gap_10t_palatini_torsion_dynamics.tex` — algebraic Cartan torsion equation
   and minimal-branch torsion elimination.
 - `gap_10l_psi_symmetry_propagation.tex` — Lorentz-slice and imaginary-time
   symmetry propagation theorems.

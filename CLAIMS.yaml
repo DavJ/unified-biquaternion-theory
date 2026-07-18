@@ -9,7 +9,7 @@ claims:
     - canonical/geometry/biquaternion_connection.tex
     - canonical/gr_closure/gap_10omega_connection_elimination.tex
     - canonical/gr_closure/gap_10i_integrability_selection.tex
-    - canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex
+    - canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex
     - canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex
     - canonical/gr_closure/gap_10i_augmented_holonomy.tex
     - canonical/gr_closure/gap_10d_low_energy_uniqueness.tex

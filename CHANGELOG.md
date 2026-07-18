@@ -1,6 +1,23 @@
 # Changelog
 
 
+
+## 2026-07-18 — Pre-release naming, provenance, and test-hygiene polish
+
+- Corrected the historical filename typo `paladini` to `palatini` for the
+  GAP-10T torsion-dynamics source and published PDF, and updated active
+  references and tests.
+- Added standard-source attribution to the augmented-holonomy note
+  (Kobayashi--Nomizu) and the symmetry-propagation note (Olver).
+- No equations, claim levels, architecture, or open-gap statuses changed.
+- Updated the class-scoped Minkowski tetrad fixture for pytest 9/10 compatibility;
+  the six tetrad-core regression tests now run without the removed instance-fixture pattern.
+- Restored the exact `NO additional tunable parameters` policy wording in the
+  unimplemented `M_phase` and `M_SNR` Planck mapping stubs; no mapping was implemented.
+- Rechecked the reviewed History of UBT integration and retained the early
+  superluminal/longitudinal and invisibility ideas only as historical hypotheses,
+  not current canonical claims.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -45,7 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added — frozen-architecture GR subclosures (v10.3.0 candidate, 2026-07-16)
 
-- Added `gap_10t_paladini_torsion_dynamics.tex`: the minimal first-order
+- Added `gap_10t_palatini_torsion_dynamics.tex`: the minimal first-order
   Cartan torsion map is pointwise invertible (rank 24/24), so zero spin current
   gives zero torsion and specified spin current gives unique contorsion.
 - Added `gap_10l_psi_symmetry_propagation.tex`: the Lorentz slice is the fixed

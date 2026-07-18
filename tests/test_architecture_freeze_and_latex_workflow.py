@@ -44,7 +44,7 @@ def test_pdf_publish_map_contains_tetrad_milestone_documents() -> None:
         "papers/UBT_GR_Submission.pdf",
         "gap_10omega_connection_elimination.pdf",
         "gap_10i_integrability_selection.pdf",
-        "gap_10t_paladini_torsion_dynamics.pdf",
+        "gap_10t_palatini_torsion_dynamics.pdf",
         "gap_10l_psi_symmetry_propagation.pdf",
         "gap_10i_augmented_holonomy.pdf",
         "gap_10d_low_energy_uniqueness.pdf",

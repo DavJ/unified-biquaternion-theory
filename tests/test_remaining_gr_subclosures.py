@@ -31,7 +31,7 @@ def test_exact_remaining_gr_subclosure_verifier_runs() -> None:
 
 def test_new_subclosure_sources_are_present_and_scoped() -> None:
     required = {
-        "canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex": (
+        "canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex": (
             "GAP-10T-PALATINI: CLOSED CONDITIONALLY",
             "GAP-10T-DYN: NARROWED",
         ),
@@ -109,7 +109,7 @@ def test_agent_instructions_guard_conditional_subclosures() -> None:
 def test_publish_map_contains_v10_3_subclosure_papers() -> None:
     mapping = (ROOT / ".github/latex_publish_map.tsv").read_text(encoding="utf-8")
     for name in (
-        "gap_10t_paladini_torsion_dynamics.pdf",
+        "gap_10t_palatini_torsion_dynamics.pdf",
         "gap_10l_psi_symmetry_propagation.pdf",
         "gap_10i_augmented_holonomy.pdf",
         "gap_10d_low_energy_uniqueness.pdf",

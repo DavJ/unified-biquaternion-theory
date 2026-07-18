@@ -37,7 +37,7 @@ fiber test remains skipped by design.
 
 Nine roots were compiled in isolated directories with strict failure handling:
 
-1. `canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex`
+1. `canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex`
 2. `canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex`
 3. `canonical/gr_closure/gap_10i_augmented_holonomy.tex`
 4. `canonical/gr_closure/gap_10d_low_energy_uniqueness.tex`
