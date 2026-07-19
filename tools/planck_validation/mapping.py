@@ -40,7 +40,14 @@ def M_SNR():
 
 
 def get_all_predictions():
-    return {"omega_b_h2": M_payload(), "omega_c_h2": M_parity(), "n_s": M_ns()}
+    """Return all pre-registered Planck mappings, using ``None`` for open TBD entries."""
+    return {
+        "omega_b_h2": M_payload(),
+        "omega_c_h2": M_parity(),
+        "n_s": M_ns(),
+        "theta_star": None,
+        "sigma_8": None,
+    }
 
 
 def validate_mappings():
