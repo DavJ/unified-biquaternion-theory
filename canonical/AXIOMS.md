@@ -64,7 +64,7 @@ where $\mathcal N_0>0$ is a fixed global unit-setting constant.  $D_\mu$ is the 
 
 $$\omega=\mathring\omega(e)+K(T),\qquad K_{abc}=\frac12(T_{cab}-T_{abc}-T_{bca}).$$
 
-The torsion-free classical GR branch has $T=K=0$ and the unique Levi--Civita spin connection.  Lorentz-slice and metric compatibility reduce the pure no-new-field pair to $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$, modulo a common central term that cancels.  That pure pair is a proved no-go for generic curved GR because it implies $\nabla_\mu V^\nu=\delta_\mu{}^\nu$.  The remaining full-UBT problem is therefore to derive torsion and a nontrivial relative left/right action from the canonical action, and to prove that the latter is composite or auxiliary rather than propagating.
+The torsion-free classical GR branch has $T=K=0$ and the unique Levi--Civita spin connection.  Lorentz-slice and metric compatibility reduce the pure no-new-field pair to $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$, modulo a common central term that cancels.  With $K=0$ this pair is a proved no-go for the non-flat Schwarzschild vacuum exterior because it implies $\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu$.  The no-go is specifically torsion-free.  On every sufficiently small non-null Gaussian patch, an explicit composite metric-compatible contortion gives a local single-$\Theta$ representer for an arbitrary smooth tetrad without independent $A_\mu$ or $B_\mu$ fields.  The remaining full-UBT problem is therefore action-level selection and physical control of this torsionful branch, or derivation of an optional torsion-free relative left/right action as a composite or auxiliary nonpropagating structure.
 
 Let $i$ denote the commuting complex unit and $\mathbf e_k$ the quaternion units.  The classical Lorentz sector is the real four-dimensional slice
 
@@ -100,8 +100,8 @@ is the antisymmetric algebraic part of the same product.  It may carry oriented-
 4. Do not use a local normalization denominator; $\mathcal N_0$ is fixed globally.
 5. The connection must not be treated as an arbitrary extra physical field; it is reconstructed from tetrad and torsion.
 6. Do not use a naive one-sided regular connection as the generic invertible curved-GR route.
-7. The canonical curved research route is the general two-sided biquaternionic derivative plus a torsion equation derived from the action; the pure pair $A=\Omega$, $B=-\Omega^\ddagger$ is only a proved diagnostic no-go.
-8. Any nontrivial relative left/right component must be derived as composite or auxiliary and shown nonpropagating; do not postulate two independent new connection fields.
+7. The canonical curved research route is the two-sided biquaternionic derivative together with a torsion equation derived from the action.  The pure pair $A=\Omega$, $B=-\Omega^\ddagger$ has a proved no-go only in the torsion-free generated-tetrad branch; with explicit composite contortion it has a local right inverse for every smooth Lorentzian tetrad.
+8. A nontrivial relative left/right component is optional for local kinematics.  If used as a torsion-free route, it must be derived as composite or auxiliary and shown nonpropagating; do not postulate two independent new connection fields.
 9. The compact-fiber construction is retained only as a noncanonical candidate-completion branch.
 
 ---
@@ -148,10 +148,11 @@ is **not yet unconditional**.  The current open tasks are:
 - **GAP-10I-SR — CLOSED [L1]:** affine representer of constant Lorentz tetrads.
 - **GAP-10I-1S — CLOSED AS NO-GO [L1]:** one-sided invertible torsion-free curved route forces zero curvature.
 - **GAP-10I-PAIR-KIN — CLOSED [L1]:** the Lorentz-compatible pair reduces to the single spin connection modulo a cancelling central term.
-- **GAP-10I-PAIR-GR — CLOSED AS NO-GO [L1]:** that pure pairing implies a concurrent vector and excludes generic curved GR/Schwarzschild with nonzero mass.
-- **GAP-10I-2S — NARROWED [L1]:** a viable generic branch requires a nontrivial relative bimodule action derived as composite or auxiliary without propagating fields.
+- **GAP-10I-PAIR-GR — CLOSED AS A TORSION-FREE NO-GO [L1]:** with $K=0$ the pure pairing implies a concurrent vector and excludes the non-flat Schwarzschild vacuum exterior with nonzero mass.
+- **GAP-10I-TORSION-LOCAL — CLOSED LOCALLY [L1]:** every smooth Lorentzian tetrad has a local single-$\Theta$ representer with explicit composite metric-compatible contortion.
+- **GAP-10I-2S — NOT REQUIRED FOR LOCAL KINEMATICS:** a relative bimodule action remains an optional torsion-free composite/auxiliary route.
 - **GAP-10I-PRESCRIBED — CLOSED [L1]:** specified coefficients admit an exact augmented-holonomy criterion.
-- **GAP-10I-CURVED — NARROWED:** self-consistent generation, regularity, and global continuation remain.
+- **GAP-10I-CURVED — LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED:** action selection, physical torsion constraints, regularity, and global continuation remain.
 - **GAP-10D-PALATINI / UNIQUENESS — CLOSED CONDITIONALLY [L1]:** the conditional infrared endpoint is Einstein--$\Lambda$.
 - **GAP-10D — NARROWED:** derive the infrared assumptions, coefficients, and matter action from canonical UBT.
 - **GAP-10ψ-KIN / SYM — CLOSED / CLOSED CONDITIONALLY [L1]:** gauge or translation symmetry protects the metric.

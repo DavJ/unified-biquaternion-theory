@@ -225,11 +225,15 @@ simultaneously.
 \begin{remark}[Subsequent pure-pair audit]
 Lorentz-slice and metric compatibility select the no-new-field representative
 $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$ modulo a cancelling
-central term.  That representative is closed as a concurrent-vector no-go for
-generic curved GR and Schwarzschild with nonzero mass.  Consequently the
-remaining viable route requires a nontrivial relative bimodule action derived
-as composite or auxiliary from the canonical action.  See
-\texttt{canonical/gr\_closure/gap\_10i\_paired\_connection\_audit.tex}.
+central term.  With $K=0$ that representative is closed as a
+concurrent-vector no-go for the non-flat Schwarzschild vacuum exterior with
+nonzero mass.  The no-go is torsion-free.  A companion theorem constructs an
+explicit local single-$\Theta$ representer for every smooth tetrad using
+composite metric-compatible contortion inside the same one-connection pair.
+A relative bimodule action is therefore optional for local kinematics and
+remains a possible torsion-free composite/auxiliary route.  See
+\texttt{canonical/gr\_closure/gap\_10i\_paired\_connection\_audit.tex} and
+\texttt{canonical/gr\_closure/gap\_10i\_torsionful\_local\_representer.tex}.
 \end{remark}
 
 \section{Implicit and possibly transcendental self-consistency}
@@ -268,14 +272,19 @@ under torsion-free tetrad compatibility.
 reduces to one spin connection modulo a central term that cancels.
 
 \medskip
-\textbf{GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1].}  The pure pair implies a
-concurrent vector and excludes generic curved GR and Schwarzschild with
-nonzero mass.
+\textbf{GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO [L1].}  With
+$K=0$ the pure pair implies a concurrent vector and excludes the non-flat
+Schwarzschild vacuum exterior with nonzero mass.
 
 \medskip
-\textbf{GAP-10I-2S: NARROWED [L1].}  The general two-sided derivative avoids
-the one-sided flatness obstruction, but a viable relative bimodule action must
-be derived as composite or auxiliary and shown nonpropagating.
+\textbf{GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1].}  The same one-connection
+pair with explicit composite metric-compatible contortion has a local
+single-$\Theta$ representer for every smooth Lorentzian tetrad.
+
+\medskip
+\textbf{GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATICS.}  A relative bimodule
+action remains an optional torsion-free completion and, if used, must be
+derived as composite or auxiliary and shown nonpropagating.
 
 \medskip
 \textbf{GAP-10I-PRESCRIBED: CLOSED [L1].}  For specified smooth
@@ -284,9 +293,11 @@ holonomy criterion proved in
 \texttt{gap\_10i\_augmented\_holonomy.tex}.
 
 \medskip
-\textbf{GAP-10I-CURVED: NARROWED.}  Self-consistent action-level selection,
-regularity, and global continuation for Schwarzschild, Kerr, FRW, and generic
-Einstein geometries remain to be proved from the canonical UBT action.
+\textbf{GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART
+NARROWED.}  Local representability is explicit.  Canonical action-level
+selection, physical torsion constraints, regularity, and global continuation
+for Schwarzschild, Kerr, FRW, and generic Einstein geometries remain to be
+proved.
 \end{tcolorbox}
 
 \end{document}

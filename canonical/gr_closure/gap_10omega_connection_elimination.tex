@@ -239,9 +239,13 @@ branch, whereas a natural two-sided biquaternionic bimodule action can support
 nonzero conjugate left/right curvatures.  This is proved separately in
 \texttt{canonical/gr\_closure/gap\_10i\_integrability\_selection.tex}.
 A subsequent audit proves that the pure Lorentz-compatible representative
-$A=\Omega$, $B=-\Omega^\ddagger$ is not the generic solution: it implies a
-concurrent vector and excludes Schwarzschild with nonzero mass.  See
-\texttt{canonical/gr\_closure/gap\_10i\_paired\_connection\_audit.tex}.
+$A=\Omega$, $B=-\Omega^\ddagger$ has a torsion-free obstruction: with $K=0$
+it implies a concurrent vector and excludes the non-flat Schwarzschild vacuum
+exterior with nonzero mass.  A companion theorem then constructs a local
+single-$\Theta$ representer for every smooth tetrad using explicit composite
+metric-compatible contortion inside the same pair.  See
+\texttt{canonical/gr\_closure/gap\_10i\_paired\_connection\_audit.tex} and
+\texttt{canonical/gr\_closure/gap\_10i\_torsionful\_local\_representer.tex}.
 
 \begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Defensible status]
 \textbf{GAP-10$\Omega$-KIN: CLOSED [L1].}  For every nondegenerate tetrad and
@@ -276,7 +280,12 @@ $(E_\mu,A_\mu,B_\mu)$, existence and path independence are exactly controlled
 by augmented holonomy; see \texttt{gap\_10i\_augmented\_holonomy.tex}.
 
 \medskip
-\textbf{GAP-10I-CURVED: NARROWED.}  Self-consistent on-shell generation,
+\textbf{GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1].}  Composite contortion
+provides an explicit local curved right inverse of the tetrad map.
+
+\medskip
+\textbf{GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART
+NARROWED.}  Canonical on-shell selection, physical torsion constraints,
 regularity, and global continuation of the implicit system remain to be
 proved.
 \end{tcolorbox}

@@ -41,7 +41,7 @@ def test_new_subclosure_sources_are_present_and_scoped() -> None:
         ),
         "canonical/gr_closure/gap_10i_augmented_holonomy.tex": (
             "GAP-10I-PRESCRIBED: CLOSED",
-            "GAP-10I-CURVED: NARROWED",
+            "GAP-10I-CURVED: LOCAL KINEMATICS CLOSED",
         ),
         "canonical/gr_closure/gap_10d_low_energy_uniqueness.tex": (
             "GAP-10D-PALATINI: CLOSED CONDITIONALLY",
@@ -64,7 +64,7 @@ def test_claim_ledger_uses_conditional_and_narrowed_statuses() -> None:
         "GAP-10L-SYM: CLOSED CONDITIONALLY",
         "GAP-10L-DYN: NARROWED",
         "GAP-10I-PRESCRIBED: CLOSED",
-        "GAP-10I-CURVED: NARROWED",
+        "GAP-10I-CURVED: LOCAL KINEMATICS CLOSED",
         "GAP-10D-PALATINI: CLOSED CONDITIONALLY",
         "GAP-10D: NARROWED",
         "GAP-10psi: NARROWED",

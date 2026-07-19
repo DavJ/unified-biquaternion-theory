@@ -328,7 +328,7 @@ intertwines the left and right curvature representations.  This is a genuine
 structural narrowing of GAP-10I: the two-sided/bimodule derivative is the
 minimal algebra-native route that avoids the generic flatness obstruction.
 
-\subsection{No-new-field reduction and its curved-space no-go}
+\subsection{No-new-field reduction, torsion-free no-go, and torsionful local right inverse}
 On the Lorentz slice $W_L=\{X\mid X^\ddagger=-X\}$, preservation of the slice
 and of its quadratic form reduces the pure pair, modulo a common central
 one-form that cancels, to
@@ -338,19 +338,41 @@ one-form that cancels, to
 Thus $A_\mu$ and $B_\mu$ are not independent gravitational fields in this
 branch.  They are the two module actions of the one spin connection.
 
-This does not close curved GR.  The same involution-compatible derivative makes
-a nondegenerate torsion-free solution
-$D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ imply a vector field satisfying
+With zero torsion, the same involution-compatible derivative makes a
+nondegenerate solution $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ imply
 \[
- \boxed{\nabla_\mu V^\nu=\delta_\mu{}^\nu,}
+ \boxed{\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu,}
  \qquad \mathcal L_Vg=2g.
 \]
-Schwarzschild with nonzero mass has no such proper homothety.  The pure pair is
-therefore closed kinematically and closed as a no-go for generic curved GR.
-A viable completion must derive a relative term
-$P_\mu X-XQ_\mu$ beyond the pure spin lift and prove that it is composite or
-auxiliary rather than a new propagating field.  A common central constant does
-not help because it cancels.
+The non-flat Schwarzschild vacuum exterior with nonzero mass has no such proper
+homothety.  The pure pair is therefore closed kinematically and its $K=0$
+branch is closed as a torsion-free no-go.
+
+The qualifier matters.  On a sufficiently small non-null Gaussian patch,
+choose $\rho\ne0$ with
+$g^{\mu\nu}\partial_\mu\rho\partial_\nu\rho=\varepsilon=\pm1$ and set
+\[
+ V^\mu=\varepsilon\rho\nabla^\mu\rho,
+ \qquad
+ W_{\mu\nu}=g_{\mu\nu}-\mathring\nabla_\mu V_\nu,
+\]
+\[
+ \boxed{K_{\nu\mu\rho}
+ =\frac{W_{\mu\nu}V_\rho-V_\nu W_{\mu\rho}}{V^2}.}
+\]
+Then $K_{\nu\mu\rho}=-K_{\rho\mu\nu}$ and
+$\nabla^{(\mathring\Gamma+K)}_\mu V^\nu=\delta_\mu{}^\nu$.  Therefore
+\[
+ \Theta=\sqrt{\mathcal N_0}V^a\mathbf u_a
+\]
+obeys $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$.  Every smooth tetrad has such a
+local representer with composite metric-compatible contortion and no
+independent $A_\mu,B_\mu$ fields.
+
+A relative term $P_\mu X-XQ_\mu$ is no longer required for local kinematic
+existence.  It remains a possible torsion-free completion and, if used, must be
+composite or auxiliary rather than a new propagating field.  A common central
+constant does not remove the torsion-free obstruction because it cancels.
 
 \section{Conditional dynamical subclosures}
 \subsection{The algebraic Cartan torsion equation}
@@ -466,8 +488,10 @@ The following results are closed at their stated levels:
        no-go;
  \item GAP-10I-PAIR-KIN: the pure compatible pair reduces to the one spin
        connection;
- \item GAP-10I-PAIR-GR: that pure pair is a concurrent-vector no-go for generic
-       curved GR and Schwarzschild with nonzero mass;
+ \item GAP-10I-PAIR-GR: the $K=0$ pure pair is a concurrent-vector no-go
+       for the non-flat Schwarzschild vacuum exterior with nonzero mass;
+ \item GAP-10I-TORSION-LOCAL: every smooth tetrad has a local single-$\Theta$
+       representer with explicit composite metric-compatible contortion;
  \item GAP-10D-PALATINI/UNIQUENESS (conditional): the minimal first-order
        branch and Lovelock hypotheses select Einstein--$\Lambda$;
  \item GAP-10$\psi$-KIN/SYM: Lorentz-gauge flow or translation symmetry
@@ -478,10 +502,11 @@ The undivided full-theory gaps are narrowed rather than fully closed:
 \begin{enumerate}
  \item GAP-10T-DYN: derive the selected first-order branch, spin current,
        normalization and possible extra torsion invariants from canonical UBT;
- \item GAP-10I-2S/CURVED: derive a nontrivial relative bimodule action as a
-       composite or auxiliary nonpropagating variable, then establish
-       self-consistent on-shell selection, regularity and global continuation
-       of $(\Theta,E,A,B,T)$;
+ \item GAP-10I-CURVED: local kinematics is closed; derive canonical
+       action-level selection and physical admissibility of the composite
+       torsionful branch, or an optional torsion-free relative bimodule branch,
+       and establish regularity and global continuation of
+       $(\Theta,E,A,B,T)$;
  \item GAP-10L-DYN: prove equivariance and well-posed uniqueness for the final
        complete dynamics;
  \item GAP-10D: derive the low-energy Palatini/Lovelock assumptions, couplings

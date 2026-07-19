@@ -8,8 +8,9 @@ Verifies:
 3. The paired derivative commutes with J(X)=-X^dagger.
 4. A proper homothety is incompatible with Schwarzschild f=1-2M/r, M != 0.
 
-This does NOT construct the missing relative bimodule connection or close the
-canonical action/Einstein bridge.
+This verifier is intentionally restricted to the torsion-free branch.  A
+separate exact verifier constructs a local composite-contortion representer;
+neither verifier closes the canonical action/Einstein bridge.
 """
 from __future__ import annotations
 
@@ -118,8 +119,8 @@ def main() -> None:
     print("  Lorentz slice: preservation iff B=-A^dagger+cI, c real")
     print("  metric-compatible action: central term cancels; one Omega remains")
     print("  paired derivative: J-equivariant")
-    print("  Schwarzschild M!=0: proper homothety/concurrent-vector branch excluded")
-    print("  NOT TESTED: missing relative bimodule action or full GAP-10D closure")
+    print("  Schwarzschild M!=0: torsion-free homothety/concurrent branch excluded")
+    print("  NOT TESTED: composite torsion branch, action selection, or full GAP-10D closure")
 
 
 if __name__ == "__main__":

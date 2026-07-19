@@ -21,18 +21,22 @@ $D_\mu X=\partial_\mu X+A_\mu X-XB_\mu$ appears to introduce two new
 connection fields.  This note proves that this is not necessary in the pure
 Lorentz branch: preservation of the intrinsic Lorentz real slice and its
 metric reduces the pair uniquely, modulo a central term that cancels from the
-action, to the single existing spin connection,
+bimodule derivative, to the single existing spin connection,
 $D_\mu X=\partial_\mu X+\Omega_\mu X+X\Omega_\mu^\ddagger$.
 However, the same reduction exposes a decisive obstruction.  If
 $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ is a nondegenerate torsion-free tetrad,
 then a Lorentz-real projection of $\Theta$ defines a concurrent spacetime
 vector $V$ satisfying $\nabla_\mu V^\nu=\delta_\mu{}^\nu$.  Hence the metric
 admits a proper homothety and $R^\rho{}_{\sigma\mu\nu}V^\sigma=0$.
-Schwarzschild with nonzero mass, and generic Einstein geometries, do not obey
-this restriction.  Thus the no-new-field Lorentz pairing is rigorously closed
-as a kinematic reduction but closed as a no-go for generic curved GR.  A
-viable two-sided completion must derive a nontrivial relative bimodule action
-from the canonical UBT action without adding propagating degrees of freedom.
+The non-flat Schwarzschild vacuum exterior with nonzero mass, and generic
+torsion-free Einstein geometries, do not obey this restriction.  Thus the
+no-new-field Lorentz pairing is rigorously closed as a kinematic reduction and
+its torsion-free generated-tetrad branch is closed as a no-go.  This statement
+is not a no-go for the same pairing with composite torsion: the companion note
+\texttt{gap\_10i\_torsionful\_local\_representer.tex} constructs an explicit
+local right inverse for every smooth tetrad.  A relative bimodule action is
+therefore optional for local kinematics, though it remains a possible
+torsion-free completion if derived without propagating degrees of freedom.
 \end{abstract}
 
 \section{Algebraic conventions}
@@ -177,9 +181,9 @@ Symmetrization yields the homothety equation.  Antisymmetrizing two covariant
 derivatives of $V$ yields the curvature-kernel identity.
 \end{proof}
 
-\begin{proposition}[Schwarzschild exclusion]
-The Schwarzschild metric with mass $M\ne0$ admits no vector satisfying
-Eq.~\eqref{eq:concurrent}; indeed it admits no proper homothety
+\begin{proposition}[Torsion-free Schwarzschild-exterior exclusion]
+The non-flat Schwarzschild vacuum exterior with mass $M\ne0$ admits no vector
+satisfying Eq.~\eqref{eq:concurrent}; indeed it admits no proper homothety
 $\mathcal L_Vg=2g$.
 \end{proposition}
 
@@ -199,14 +203,15 @@ then gives
 so $f'(r)=0$, contradicting $f'(r)=2M/r^2\ne0$.
 \end{proof}
 
-\begin{remark}[Why constants in a potential do not remove the obstruction]
+\begin{remark}[Constants, auxiliary fields, and the torsionful escape]
 A central constant or central one-form cancels from the bimodule derivative
 and cannot change Eq.~\eqref{eq:concurrent}.  A potential may make an
 additional field auxiliary or fix its vacuum value, but a constant parameter
-cannot provide the spacetime-dependent relative left/right action required to
-evade the concurrent-vector restriction.  Any such relative component must
-be derived algebraically from the canonical action and shown to carry no new
-propagating degree of freedom.
+alone cannot provide a spacetime-dependent torsion-free relative action.
+However, the obstruction also disappears when the same one-connection pair
+uses a nonzero metric-compatible composite contortion.  That local construction
+is given in \texttt{gap\_10i\_torsionful\_local\_representer.tex}.  Neither
+route is dynamically selected by the present kinematic theorem.
 \end{remark}
 
 \section{Defensible gap status}
@@ -217,24 +222,36 @@ $(A_\mu,B_\mu)$ to the single existing spin connection, modulo a central term
 that cancels identically.  In flat inertial gauge both vanish.
 
 \medskip
-\textbf{GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1].}
-That pure Lorentz pairing makes a nondegenerate torsion-free tetrad generated
-by one $\Theta$ imply a concurrent vector and a proper homothety.  It therefore
-cannot represent generic curved GR and excludes Schwarzschild with $M\ne0$.
+\textbf{GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO [L1].}
+That pure Lorentz pairing with $K=0$ makes a nondegenerate generated tetrad
+imply a concurrent vector and a proper homothety.  It therefore excludes the
+non-flat Schwarzschild vacuum exterior with $M\ne0$ and generic torsion-free
+Einstein geometries.
 
 \medskip
-\textbf{GAP-10I-2S / GAP-10I-CURVED: NARROWED.}
-The remaining admissible route must derive a nontrivial relative bimodule
-connection from the canonical action, prove that it is composite or auxiliary
-rather than propagating, and then establish self-consistent existence and
-regularity.  Merely naming two independent connections is not a closure.
+\textbf{GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1] IN A COMPANION THEOREM.}
+The same one-connection pairing with explicit composite metric-compatible
+contortion has a local single-$\Theta$ representer for every smooth Lorentzian
+tetrad on a non-null Gaussian patch.
+
+\medskip
+\textbf{GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATICS.}
+A relative bimodule connection remains an optional torsion-free completion and,
+if used, must be derived as composite or auxiliary rather than propagating.
+
+\medskip
+\textbf{GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART
+NARROWED.}
+Canonical action selection, physical torsion constraints, regularity at
+$V^2=0$, horizons/caustics, and global continuation remain open.
 
 \medskip
 \textbf{GAP-10D: NOT CLOSED BY THIS REDUCTION.}
-The result removes a false no-new-field shortcut and identifies the exact
-missing object in the variational bridge.  The Palatini/Lovelock endpoint
-remains conditional until the relative action, its algebraic elimination, and
-the induced metric variation are derived from canonical UBT.
+The result identifies the torsion-free obstruction but does not choose between
+the composite-contortion branch and an optional torsion-free relative action.
+The Palatini/Lovelock endpoint remains conditional until canonical UBT derives
+the selected branch, its algebraic elimination or spin current, and the
+induced metric variation.
 \end{tcolorbox}
 
 \end{document}

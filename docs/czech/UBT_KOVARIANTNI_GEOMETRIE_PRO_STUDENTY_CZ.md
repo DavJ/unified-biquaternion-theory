@@ -397,30 +397,60 @@ až na společný centrální člen, který se mezi levým a pravým násobením
 zruší. V této větvi tedy \(A\) a \(B\) nejsou dva nové fyzikální objekty, ale
 dvě reprezentace jediné spinové konexe.
 
-Tato úsporná volba má však překvapivě silný důsledek. Jestliže je torze nulová a
-jedno pole \(\Theta\) generuje nedegenerovanou tetrádu, existuje vektor \(V\)
-takový, že
+Tato úsporná volba má však v **beztorzní** větvi překvapivě silný
+důsledek. Jestliže je \(K=0\) a jedno pole \(\Theta\) generuje
+nedegenerovanou tetrádu, existuje vektor \(V\) takový, že
 
 \[
-\boxed{\nabla_\mu V^\nu=\delta_\mu{}^\nu.}
+\boxed{\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu.}
 \]
 
 Metrika by tedy musela připouštět vlastní homotetrii
-\(\mathcal L_Vg=2g\). Schwarzschildova metrika s nenulovou hmotností tuto
-podmínku nesplňuje. Čistá identifikace s \(\Omega\) proto uzavírá otázku
-zdvojení polí, ale současně je uzavřena jako no-go pro obecnou zakřivenou GR.
+\(\mathcal L_Vg=2g\). Nenulový Schwarzschildův vakuový exteriér tuto
+podmínku nesplňuje. To je přesné no-go pro beztorzní větev; nezávisí na tom,
+zda v přírodě existuje ideálně nerotující černá díra, protože stejná metrika
+popisuje i vakuový exteriér sférického tělesa.
 
-Zbývající možnost má tvar
+Tím však není vyloučena stejná jediná spinová konexe s pomocnou kontorzí.
+Na malém okolí lze zvolit nenulovou Gaussovu souřadnici \(\rho\), pro niž
+\(g^{-1}(d\rho,d\rho)=\varepsilon=\pm1\), a položit
+
+\[
+V^\mu=\varepsilon\rho\nabla^\mu\rho,
+\qquad
+W_{\mu\nu}=g_{\mu\nu}-\mathring\nabla_\mu V_\nu,
+\]
+
+\[
+\boxed{
+K_{\nu\mu\rho}
+=\frac{W_{\mu\nu}V_\rho-V_\nu W_{\mu\rho}}{V^2}.}
+\]
+
+Tato kontorze je metrická a splňuje
+\(\nabla^{(\mathring\Gamma+K)}_\mu V^\nu=\delta_\mu{}^\nu\). Pro
+
+\[
+\Theta=\sqrt{\mathcal N_0}\,V^a\mathbf u_a
+\]
+
+pak přesně vyjde \(D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu\). Každá hladká
+Lorentzova tetráda tedy má lokální jedno-\(\Theta\) representer se složenou
+kontorzí a bez dvou nezávislých polí \(A,B\).
+
+Relativní větev
 
 \[
 A_\mu=\Omega_\mu+P_\mu,\qquad
-B_\mu=-\Omega_\mu^\ddagger+Q_\mu.
+B_\mu=-\Omega_\mu^\ddagger+Q_\mu
 \]
 
-Relativní člen \(P_\mu X-XQ_\mu\) nesmí být pouze libovolně přidanou novou
-hmotou. Musí být odvozen z kanonické akce jako složená nebo pomocná veličina a
-nesmí přidávat propagující stupně volnosti. Společná centrální konstanta ani
-konstantní člen potenciálu tuto překážku neodstraní, protože v derivaci zaniká.
+proto není nutná pro lokální kinematickou existenci. Zůstává možnou cestou,
+pokud chceme zachovat beztorzní fyzikální konexi. Pak ale člen
+\(P_\mu X-XQ_\mu\) musí být odvozen z kanonické akce jako složená nebo pomocná
+veličina a nesmí přidávat propagující stupně volnosti. Společná centrální
+konstanta ani konstantní člen potenciálu beztorzní překážku neodstraní, protože
+v derivaci zaniká.
 
 ## 10. Co se podařilo uzavřít na dynamické úrovni
 
@@ -578,23 +608,27 @@ náhrada za prostorovou nebo časovou derivaci.
    torsion-free křivost uzavřena jako no-go.
 8. `GAP-10I-PAIR-KIN`: čistá Lorentzova dvojice se redukuje na jedinou
    spinovou konexi, takže \(A,B\) nejsou dvě nová gravitační pole.
-9. `GAP-10I-PAIR-GR`: stejná větev je uzavřena jako no-go pro obecnou GR,
-   protože vynucuje konkurenční vektor a vylučuje Schwarzschild pro \(M\ne0\).
-10. `GAP-10I-PRESCRIBED`: pro zadané \((E,A,B)\) platí přesné holonomické
+9. `GAP-10I-PAIR-GR`: beztorzní větev je uzavřena jako no-go, protože
+   vynucuje konkurenční vektor a vylučuje nenulový Schwarzschildův vakuový
+   exteriér.
+10. `GAP-10I-TORSION-LOCAL`: každá hladká Lorentzova tetráda má lokální
+    jedno-\(\Theta\) representer s explicitní složenou metrickou kontorzí.
+11. `GAP-10I-PRESCRIBED`: pro zadané \((E,A,B)\) platí přesné holonomické
     kritérium existence a jednohodnotnosti.
-11. `GAP-10D-PALATINI/UNIQUENESS` **podmíněně**: minimální první řád a
+12. `GAP-10D-PALATINI/UNIQUENESS` **podmíněně**: minimální první řád a
     Lovelockovy předpoklady vedou jednoznačně k Einstein--\(Lambda\).
-12. `GAP-10psi-KIN/SYM`: Lorentzova gauge evoluce nebo translační symetrie
+13. `GAP-10psi-KIN/SYM`: Lorentzova gauge evoluce nebo translační symetrie
     chrání klasickou metriku za přesně uvedených podmínek.
 
 ### Zúžené, ale ne úplně uzavřené
 
 1. `GAP-10T-DYN`: odvodit minimální větev, přesný spinový proud, normalizaci a
    případné další torzní invarianty z fundamentální UBT.
-2. `GAP-10I-2S/CURVED`: z kanonické akce odvodit netriviální relativní
-   levé/pravé působení, dokázat jeho pomocný nebo složený charakter a vyřešit
-   samokonzistentní výběr \((E,A,B,T,\Theta)\), regularitu a globální
-   pokračování.
+2. `GAP-10I-CURVED`: lokální kinematika je uzavřena. Zbývá z kanonické
+   akce vybrat a fyzikálně omezit složenou torzní větev, případně odvodit
+   pomocnou beztorzní relativní větev, a dokázat regularitu a globální
+   pokračování. `GAP-10I-2S` už není nutný pro lokální existenci, ale zůstává
+   volitelnou beztorzní cestou.
 3. `GAP-10L-DYN`: ověřit ekvivarianci a dobře položenou jednoznačnost finálních
    UBT rovnic.
 4. `GAP-10D`: odvodit nízkoenergetické Palatiniho/Lovelockovy předpoklady,

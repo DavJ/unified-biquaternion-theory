@@ -77,11 +77,13 @@ This narrows, but does not close, curved-space integrability.
 ## Status guardrails
 
 Closed/narrowed: `GAP-10K`, `GAP-10Omega-KIN`, `GAP-10Omega-GR`,
-`GAP-10L-CONN`, `GAP-10I-SR`, `GAP-10I-1S` (no-go), `GAP-10I-2S`
-(narrowed).
+`GAP-10L-CONN`, `GAP-10I-SR`, `GAP-10I-1S` (no-go),
+`GAP-10I-PAIR-KIN`, `GAP-10I-PAIR-GR` (torsion-free no-go), and
+`GAP-10I-TORSION-LOCAL` (closed locally).  `GAP-10I-2S` is optional for local
+kinematics and remains a possible torsion-free auxiliary route.
 
 Conditional/closed subgaps: `GAP-10T-PALATINI`, `GAP-10L-SYM`, `GAP-10I-PRESCRIBED`, `GAP-10D-PALATINI/UNIQUENESS`, and `GAP-10psi-KIN/SYM`.
-Narrowed full gaps: `GAP-10T-DYN`, `GAP-10L-DYN`, `GAP-10I-CURVED`, `GAP-10D`, `GAP-10psi`. Open bridges: `GAP-B-MASTER`, `GAP-U2Theta`.
+Narrowed full gaps: `GAP-10T-DYN`, `GAP-10L-DYN`, the dynamical/global part of `GAP-10I-CURVED`, `GAP-10D`, `GAP-10psi`. Open bridges: `GAP-B-MASTER`, `GAP-U2Theta`.
 
 Alpha is not derived. Schwarzschild is not yet selected on shell by canonical
 Theta dynamics. Fiber/projection GR routes are historical or exploratory.
@@ -93,5 +95,8 @@ Never promote a Palatini or Lovelock branch to an unconditional UBT derivation.
 `GAP-10T-PALATINI`, `GAP-10L-SYM`, `GAP-10D-PALATINI`,
 `GAP-10D-UNIQUENESS`, and `GAP-10psi-SYM` are conditional theorems.
 `GAP-10I-PRESCRIBED` closes only the system with prescribed coefficients.
-The full-theory gaps remain narrowed until the canonical UBT action selects the
-required hypotheses and self-consistent fields.
+`GAP-10I-TORSION-LOCAL` closes only local kinematic representability through a
+composite contortion; it does not prove action selection, physical torsion
+admissibility, or global continuation.  The full-theory gaps remain narrowed
+until the canonical UBT action selects the required hypotheses and
+self-consistent fields.

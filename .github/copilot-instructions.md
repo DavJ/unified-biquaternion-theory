@@ -1,6 +1,6 @@
 # GitHub Copilot Instructions — Unified Biquaternion Theory
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
-<!-- Last updated: 2026-07-19 — paired-connection reduction and concurrent-vector no-go -->
+<!-- Last updated: 2026-07-19 — torsion-free no-go and torsionful local representer -->
 
 ## Repository role and authority
 
@@ -97,8 +97,8 @@ D_mu Theta = partial_mu Theta + A_mu Theta - Theta B_mu
 
 For invertible `Theta`, torsion-free integrability requires the curvature
 intertwiner `F^A=Theta F^B Theta^{-1}`. This removes the one-sided flatness
-obstruction; it does not prove curved-space existence.
-
+obstruction but, by itself, is only an identity.  Local curved existence is
+instead supplied by the explicit composite-contortion theorem below.
 The no-new-field Lorentz-compatible representative is exactly
 
 ```text
@@ -106,12 +106,20 @@ A_mu = Omega_mu
 B_mu = -Omega_mu^ddagger
 ```
 
-modulo a common central one-form that cancels. Do not present this as the
-generic curved solution: it implies `nabla_mu V^nu=delta_mu^nu` and excludes
-Schwarzschild with nonzero mass. A viable remaining branch must derive a
-nontrivial relative left/right action as composite or auxiliary and prove that
-it adds no propagating degrees of freedom. Do not merely postulate two new
-connections.
+modulo a common central one-form that cancels.  With the torsion-free
+Levi-Civita lift it implies `nabla_mu V^nu=delta_mu^nu` and excludes the
+non-flat Schwarzschild vacuum exterior with nonzero mass.  State this only as
+a **torsion-free** no-go.
+
+The complementary theorem
+`canonical/gr_closure/gap_10i_torsionful_local_representer.tex` gives an
+explicit local single-Theta representer for every smooth Lorentzian tetrad by
+using a metric-compatible composite contortion on a non-null Gaussian patch.
+It introduces no independent `A_mu` or `B_mu` fields, but it does not derive
+canonical action selection, physical torsion suppression, or global/horizon
+continuation.  A relative left/right action remains an optional torsion-free
+route and must be composite or auxiliary if used; never merely postulate two
+new propagating connections.
 
 ## Exact status vocabulary
 
@@ -126,9 +134,12 @@ Use these labels exactly:
 - `GAP-10I-SR: CLOSED [L1]`.
 - `GAP-10I-1S: CLOSED AS NO-GO [L1]`.
 - `GAP-10I-PAIR-KIN: CLOSED [L1]`.
-- `GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1]`.
-- `GAP-10I-2S: NARROWED [L1]`.
-- `GAP-10I-PRESCRIBED: CLOSED`; `GAP-10I-CURVED: NARROWED`.
+- `GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO [L1]`.
+- `GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1]`.
+- `GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATIC REPRESENTABILITY`; it remains
+  an optional torsion-free completion.
+- `GAP-10I-PRESCRIBED: CLOSED`; `GAP-10I-CURVED: LOCAL KINEMATICS CLOSED;
+  DYNAMICS/GLOBAL PART NARROWED`.
 - `GAP-10D-PALATINI/UNIQUENESS`: CLOSED CONDITIONALLY; `GAP-10D` and `GAP-10psi`: NARROWED; `GAP-B-MASTER` and `GAP-U2Theta`: OPEN.
 
 Do not restore the obsolete `GAP-10Omega-FULL` or undivided `GAP-10I` labels
@@ -170,6 +181,7 @@ canonical/gr_closure/covariant_tetrad_rank_theorem.tex
 canonical/gr_closure/gap_10omega_connection_elimination.tex
 canonical/gr_closure/gap_10i_integrability_selection.tex
 canonical/gr_closure/gap_10i_paired_connection_audit.tex
+canonical/gr_closure/gap_10i_torsionful_local_representer.tex
 docs/czech/UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md
 papers/UBT_GR_Submission.tex
 STATUS_OF_UBT.md

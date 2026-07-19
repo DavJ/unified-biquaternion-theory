@@ -2,7 +2,7 @@
 
 # WHAT_IS_PROVED.md — Definitive Map of Proved Results
 
-## 2026-07-19 update — paired-connection reduction and concurrent-vector audit
+## 2026-07-19 update — torsion-free no-go and torsionful local representer
 
 | # | Claim | Level | Source |
 |---|---|---|---|
@@ -17,9 +17,10 @@
 | GR-T9 | Naive one-sided regular connection + invertible $\Theta$ + torsion-free compatibility forces zero curvature | [L1 NO-GO] | same |
 | GR-T10 | Two-sided derivative obeys $[D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}$ and permits nonzero intertwined curvatures | [L1] | same |
 | GR-T11 | Lorentz-slice and metric compatibility reduce the pure pair to $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$ modulo a cancelling central term | [L1] | `canonical/gr_closure/gap_10i_paired_connection_audit.tex`; `tools/verify_gap_10i_paired_connection.py` |
-| GR-T12 | The pure Lorentz pair implies $\nabla_\mu V^\nu=\delta_\mu{}^\nu$ and excludes generic curved GR and Schwarzschild with $M\ne0$ | [L1 NO-GO] | same |
-| GR-T13 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
-| GR-T14 | Integrable on-shell generation of required curved tetrads by one $\Theta$ with a derived nontrivial relative bimodule action | [OPEN] | GAP-10I-CURVED |
+| GR-T12 | With $K=0$, the pure Lorentz pair implies $\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu$ and excludes the non-flat Schwarzschild vacuum exterior with $M\ne0$ | [L1 NO-GO] | same |
+| GR-T13 | Every smooth Lorentzian tetrad has a local single-$\Theta$ representer with explicit composite metric-compatible contortion | [L1, local] | `canonical/gr_closure/gap_10i_torsionful_local_representer.tex`; `tools/verify_gap_10i_torsionful_local_representer.py` |
+| GR-T14 | Canonical UBT action selects the composite-contortion branch (or an auxiliary torsion-free relative branch), with physical torsion control and global continuation | [OPEN/NARROWED] | GAP-10I-CURVED, GAP-10T-DYN |
+| GR-T15 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
 
 The former compact-$\psi$ fiber-average rank closure is noncanonical and must
 not be listed as the proved UBT metric mechanism.
@@ -173,10 +174,11 @@ they are rederived in this route.
 | GAP-10I-SR | **CLOSED [L1]:** affine representer for constant Lorentz tetrads |
 | GAP-10I-1S | **CLOSED AS NO-GO [L1]:** stated one-sided invertible curved route forces flatness |
 | GAP-10I-PAIR-KIN | **CLOSED [L1]:** the Lorentz-compatible pair reduces to one spin connection; no independent A,B fields |
-| GAP-10I-PAIR-GR | **CLOSED AS NO-GO [L1]:** the pure Lorentz pair implies a concurrent vector and excludes generic curved GR/Schwarzschild with nonzero mass |
-| GAP-10I-2S | **NARROWED [L1]:** derive the required relative bimodule action as composite or auxiliary without propagating fields |
+| GAP-10I-PAIR-GR | **CLOSED AS A TORSION-FREE NO-GO [L1]:** with $K=0$ the pure Lorentz pair implies a concurrent vector and excludes the non-flat Schwarzschild vacuum exterior |
+| GAP-10I-TORSION-LOCAL | **CLOSED LOCALLY [L1]:** every smooth Lorentzian tetrad has a local single-$\Theta$ representer with composite metric-compatible contortion |
+| GAP-10I-2S | **NOT REQUIRED FOR LOCAL KINEMATICS:** remains an optional torsion-free composite/auxiliary route |
 | GAP-10I-PRESCRIBED | **CLOSED [L1]:** exact augmented-holonomy criterion for specified coefficients |
-| GAP-10I-CURVED | **NARROWED:** self-consistent generation, regularity, and global continuation remain |
+| GAP-10I-CURVED | **LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED:** action selection, physical torsion constraints, and global continuation remain |
 | GAP-10D-PALATINI / UNIQUENESS | **CLOSED CONDITIONALLY [L1]:** conditional Einstein--Λ infrared endpoint |
 | GAP-10D | **NARROWED:** derive the low-energy assumptions, coefficients, and matter action from UBT |
 | GAP-10ψ-KIN / SYM | **CLOSED / CLOSED CONDITIONALLY [L1]:** gauge or translation symmetry protects the metric |

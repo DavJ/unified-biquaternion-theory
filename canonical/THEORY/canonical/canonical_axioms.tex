@@ -104,12 +104,18 @@ Every constant Lorentz tetrad has an affine representer
  \Theta_{\rm aff}=\Theta_0+\sqrt{\mathcal N_0}\,\bar E_\mu x^\mu.
 \]
 The generic one-sided, invertible, torsion-free curved route obeys a conditional
-flatness no-go.  The two-sided derivative instead has
+flatness no-go.  For the two-sided derivative,
 \[
- [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu},
+ [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
 \]
-which permits nonzero intertwined curvatures but does not prove curved-space
-existence.
+Lorentz-slice and metric compatibility reduce the no-new-field pair to
+$A_\mu=\Omega_\mu$ and $B_\mu=-\Omega_\mu^\ddagger$, modulo a common
+central term that cancels.  With $K=0$ this generated-tetrad branch is a
+concurrent-vector no-go for the non-flat Schwarzschild vacuum exterior.  With
+the explicit composite metric-compatible contortion of
+\texttt{gap\_10i\_torsionful\_local\_representer.tex}, every smooth
+Lorentzian tetrad instead has a local single-$\Theta$ representer.  This is a
+kinematic existence theorem, not an action-selection result.
 
 \section{Conditional subclosures and remaining canonical bridges}
 
@@ -129,10 +135,12 @@ The full-theory bridges remain narrowed:
 \begin{itemize}
  \item derive the selected first-order branch, vacuum or spin-sourced torsion,
        exact spin current and normalization from the UBT action (GAP-10T-DYN);
- \item derive the exact relation between $A_\mu$, $B_\mu$, the Lorentz frame
-       connection, gauge connections, and the involutions;
- \item prove self-consistent local/global existence, uniqueness and regularity
-       of the curved system (GAP-10I-CURVED);
+ \item derive from the canonical action whether the explicit composite
+       contortion branch, or another physically admissible torsion branch, is
+       selected, and derive its exact spin current;
+ \item prove global existence, uniqueness and regularity beyond non-null
+       Gaussian patches, caustics, horizons, and topology
+       (the dynamical/global part of GAP-10I-CURVED);
  \item verify Lorentz-slice and physical $\psi$ stability for the complete
        dynamics (GAP-10L-DYN and GAP-10$\psi$);
  \item derive the Palatini/Lovelock infrared assumptions, couplings and matter

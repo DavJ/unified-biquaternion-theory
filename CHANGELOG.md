@@ -25,6 +25,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added/Corrected — torsionful local representer (2026-07-19)
+
+- Corrected the scope of the paired-connection no-go: the concurrent-vector
+  obstruction applies to the generated-tetrad branch with zero contortion
+  (`K=0`), not to the same pure Lorentz pairing with arbitrary
+  metric-compatible torsion.
+- Constructed an explicit composite contortion on every sufficiently small
+  non-null Gaussian patch,
+  `K_{nu mu rho}=[W_{mu nu}V_rho-V_nu W_{mu rho}]/V^2`, with
+  `W_{mu nu}=g_{mu nu}-nabla^LC_mu V_nu`, and proved exactly that
+  `nabla^(LC+K)_mu V^nu=delta_mu^nu`.
+- Consequently every smooth Lorentzian tetrad, including every local patch of
+  the non-flat Schwarzschild vacuum exterior, has a local single-Theta
+  representer with `A=Omega(e,K)` and `B=-Omega(e,K)^ddagger`, without
+  independent left/right connection fields.
+- Closed `GAP-10I-TORSION-LOCAL` locally at L1 and reclassified
+  `GAP-10I-PAIR-GR` as a torsion-free no-go. `GAP-10I-2S` is optional for
+  local kinematics rather than required.
+- Kept the dynamical/global part of `GAP-10I-CURVED`, `GAP-10T-DYN`,
+  `GAP-10D`, and `GAP-U2Theta` open/narrowed: the canonical action must still
+  select a physically admissible torsion/current and establish global
+  continuation and Einstein dynamics.
+- Added an exact symbolic verifier, regression tests, a standalone theorem
+  note, revised canonical/status/student surfaces, and rebuilt PDFs.
+
 ### Added — paired-connection audit and concurrent-vector no-go (2026-07-19)
 
 - Proved that Lorentz-slice and metric compatibility reduce the pure
@@ -36,15 +61,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   homothety and a curvature-kernel condition.
 - Proved explicitly that Schwarzschild with nonzero mass cannot satisfy that
   condition. The pure pair is therefore closed as a kinematic reduction and
-  closed as a no-go for generic curved GR.
-- Narrowed the remaining two-sided gap to deriving a nontrivial relative
-  bimodule action from the canonical UBT action and proving that it is
-  composite or auxiliary rather than a new propagating field.
+  closed as a no-go for the torsion-free generated-tetrad branch.
+- At that audit stage, the remaining route was stated as a nontrivial relative
+  bimodule action.  The later composite-contortion theorem supersedes that
+  necessity: a relative pair is optional for local kinematics.
 - Added an exact SymPy verifier, regression tests, canonical/paper/student
   updates, and strict anti-overclaim guardrails.
-- `GAP-10D` remains narrowed, not closed: the relative action, its algebraic
-  elimination, the low-energy coefficients, and the induced metric variation
-  still require a canonical derivation.
+- `GAP-10D` remains narrowed, not closed: canonical torsion/current selection,
+  low-energy coefficients, global continuation, and the induced metric
+  variation still require a canonical derivation.
 
 
 ### Corrected — gauge and quantum honest-status audit (2026-07-17)

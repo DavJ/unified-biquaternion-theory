@@ -144,12 +144,21 @@ antisymmetric tetrad compatibility, and the same induced connection forces
 zero curvature. Do not use that route for generic curved GR.
 
 The seemingly economical identification `A_mu=Omega_mu`,
-`B_mu=-Omega_mu^ddagger` is also not a generic curved-GR completion. It reduces
-the pair to the existing spin connection, but then `E_mu=D_mu Theta/sqrt(N0)`
-implies a concurrent vector `nabla_mu V^nu=delta_mu^nu`; Schwarzschild with
-nonzero mass is excluded. Use this branch only as a proved no-go/diagnostic.
-A viable relative left/right component must be derived from the action and
-shown composite or auxiliary, not simply postulated as two new fields.
+`B_mu=-Omega_mu^ddagger` reduces the pair to the existing spin connection.  In
+the **torsion-free** generated-tetrad branch it implies a concurrent vector
+`nabla_mu V^nu=delta_mu^nu`; the non-flat Schwarzschild vacuum exterior with
+nonzero mass is excluded.  This is a torsion-free no-go, not a no-go for the
+same one-connection pair with arbitrary composite contortion.
+
+A complementary theorem in
+`canonical/gr_closure/gap_10i_torsionful_local_representer.tex` constructs, on
+every sufficiently small non-null Gaussian patch, a Lorentz-real single-Theta
+representer with an explicit metric-compatible composite contortion.  This
+closes local kinematic curved representability without independent `A_mu` or
+`B_mu` fields.  It does **not** derive action selection, physical torsion
+suppression, or global/horizon continuation.  A nontrivial relative left/right
+component remains an optional torsion-free route and must be derived as
+composite or auxiliary if used.
 
 ## 4. Exact GR gap ledger
 
@@ -181,17 +190,22 @@ Use these statuses unless a new proof explicitly changes them:
 - `GAP-10I-PAIR-KIN: CLOSED [L1]` — Lorentz-slice and metric compatibility
   reduce the apparent pair to one spin connection modulo a central term that
   cancels.
-- `GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1]` — that pure Lorentz pair implies a
-  concurrent vector and cannot generate generic curved GR or Schwarzschild
-  with nonzero mass.
-- `GAP-10I-2S: NARROWED [L1]` — the remaining generic route requires a
-  nontrivial relative bimodule action derived as composite or auxiliary, with
-  no new propagating degrees of freedom.
+- `GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO [L1]` — with `K=0` the
+  pure Lorentz pair implies a concurrent vector and excludes the non-flat
+  Schwarzschild vacuum exterior with nonzero mass.
+- `GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1]` — every smooth Lorentzian tetrad
+  has, on a sufficiently small non-null Gaussian patch, an explicit
+  single-`Theta` representer with composite metric-compatible contortion.
+- `GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATIC REPRESENTABILITY` — a relative
+  bimodule action remains a possible torsion-free completion and must be
+  derived as composite or auxiliary if used.
 - `GAP-10I-PRESCRIBED: CLOSED [L1]` — for specified `(E,A,B)` the exact
   existence and path-independence criterion is stabilization of `(Theta0,1)`
   by the augmented holonomy.
-- `GAP-10I-CURVED: NARROWED` — self-consistent action-level selection,
-  regularity, and global continuation remain open.
+- `GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED`
+  — local curved representability is explicit, while canonical action-level
+  selection, physical torsion constraints, regularity, and global continuation
+  remain open.
 - `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS`: CLOSED CONDITIONALLY [L1].
 - `GAP-10D: NARROWED` — derive the low-energy Palatini/Lovelock assumptions,
   couplings, and matter sector from canonical UBT.

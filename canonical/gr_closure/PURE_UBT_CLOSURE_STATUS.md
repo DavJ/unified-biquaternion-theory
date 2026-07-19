@@ -34,9 +34,14 @@ and two-sided integrability; not compact-fiber averaging.
 - **GAP-10I-PAIR-KIN — CLOSED [L1].** Lorentz-slice and metric compatibility
   reduce the apparent pair to one spin connection, with no independent
   gravitational fields \(A_\mu,B_\mu\).
-- **GAP-10I-PAIR-GR — CLOSED AS NO-GO [L1].** The pure Lorentz pair implies a
-  concurrent vector \(\nabla_\mu V^\nu=\delta_\mu{}^\nu\) and therefore
-  cannot generate generic curved GR or Schwarzschild with nonzero mass.
+- **GAP-10I-PAIR-GR — CLOSED AS A TORSION-FREE NO-GO [L1].** With
+  \(K=0\), the pure Lorentz pair implies
+  \(\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu\) and therefore excludes the
+  non-flat Schwarzschild vacuum exterior with nonzero mass.
+- **GAP-10I-TORSION-LOCAL — CLOSED LOCALLY [L1].** Every smooth Lorentzian
+  tetrad has, on a sufficiently small non-null Gaussian patch, a local
+  single-\(\Theta\) representer with explicit composite metric-compatible
+  contortion and no independent \(A_\mu,B_\mu\) fields.
 - **Two-sided curvature identity — PROVED [L1].** For
   \(D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu\),
   \[
@@ -63,16 +68,18 @@ and two-sided integrability; not compact-fiber averaging.
 
 ## Narrowed or open results
 
-- **GAP-10I-2S — NARROWED:** the pure Lorentz pairing is now excluded as the
-  generic route; the canonical action must derive a nontrivial relative
-  bimodule component and prove that it is composite or auxiliary rather than
+- **GAP-10I-2S — NOT REQUIRED FOR LOCAL KINEMATIC REPRESENTABILITY:** a
+  nontrivial relative bimodule component remains an optional torsion-free
+  completion and, if used, must be composite or auxiliary rather than
   propagating.
 - **GAP-10T-DYN — NARROWED:** derive the minimal first-order branch, exact spin
   current, normalization, and possible torsion dynamics from canonical UBT.
 - **GAP-10L-DYN — NARROWED:** verify equivariance and well-posed uniqueness for
   the complete UBT equations and sources.
-- **GAP-10I-CURVED — NARROWED:** self-consistent on-shell generation,
-  regularity, and global continuation remain open.
+- **GAP-10I-CURVED — LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART
+  NARROWED:** local curved representability is explicit, while canonical
+  action selection, physical torsion constraints, regularity, and global
+  continuation remain open.
 - **GAP-10D — NARROWED:** derive the Palatini/Lovelock infrared assumptions,
   coefficients, and matter coupling from the canonical action.
 - **GAP-10ψ — NARROWED:** show that canonical dynamics realizes a sufficient

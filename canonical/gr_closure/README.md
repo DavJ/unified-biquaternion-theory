@@ -23,7 +23,10 @@ The current canonical route is:
 - `gap_10i_integrability_selection.tex` — affine Minkowski/constant-tetrad
   representers, one-sided no-go, and two-sided curvature identity.
 - `gap_10i_paired_connection_audit.tex` — no-new-field Lorentz-pair reduction
-  and the concurrent-vector/Schwarzschild no-go for that pure pairing.
+  and the concurrent-vector no-go for its torsion-free branch.
+- `gap_10i_torsionful_local_representer.tex` — explicit local single-Theta
+  representer for arbitrary smooth tetrads using composite metric-compatible
+  contortion, including a Schwarzschild vacuum-exterior patch.
 - `gap_10t_palatini_torsion_dynamics.tex` — algebraic Cartan torsion equation
   and minimal-branch torsion elimination.
 - `gap_10l_psi_symmetry_propagation.tex` — Lorentz-slice and imaginary-time
@@ -43,7 +46,9 @@ The current canonical route is:
 - `../../tools/verify_gap_10i_integrability.py` — affine representer and
   left/right integrability checks.
 - `../../tools/verify_gap_10i_paired_connection.py` — exact pair reduction and
-  Schwarzschild homothety no-go.
+  torsion-free Schwarzschild homothety no-go.
+- `../../tools/verify_gap_10i_torsionful_local_representer.py` — exact
+  composite-contortion and local curved-representer checks.
 - `../../tools/verify_remaining_gr_subclosures.py` — Cartan rank, Lorentz
   involution, psi-gauge metric invariance, and augmented-curvature checks.
 
@@ -54,11 +59,14 @@ The current canonical route is:
 - `GAP-10T-PALATINI`: CLOSED CONDITIONALLY; `GAP-10T-DYN`: NARROWED.
 - `GAP-10I-SR`: CLOSED.
 - `GAP-10I-1S`: CLOSED AS NO-GO.
-- `GAP-10I-PAIR-KIN`: CLOSED; `GAP-10I-PAIR-GR`: CLOSED AS NO-GO.
-- `GAP-10I-2S`: NARROWED to a nontrivial relative bimodule action derived as
-  composite or auxiliary without propagating degrees of freedom.
+- `GAP-10I-PAIR-KIN`: CLOSED; `GAP-10I-PAIR-GR`: CLOSED AS A
+  TORSION-FREE NO-GO.
+- `GAP-10I-TORSION-LOCAL`: CLOSED LOCALLY.
+- `GAP-10I-2S`: not required for local kinematics; retained as an optional
+  torsion-free composite/auxiliary route.
 - `GAP-10L-SYM`: CLOSED CONDITIONALLY; `GAP-10L-DYN`: NARROWED.
-- `GAP-10I-PRESCRIBED`: CLOSED; `GAP-10I-CURVED`: NARROWED.
+- `GAP-10I-PRESCRIBED`: CLOSED; `GAP-10I-CURVED`: LOCAL KINEMATICS
+  CLOSED, DYNAMICS/GLOBAL PART NARROWED.
 - `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS`: CLOSED CONDITIONALLY;
   `GAP-10D`: NARROWED.
 - `GAP-10psi-KIN`: CLOSED; `GAP-10psi-SYM`: CLOSED CONDITIONALLY;

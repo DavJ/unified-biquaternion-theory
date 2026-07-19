@@ -126,30 +126,48 @@ Thus $A_\mu$ and $B_\mu$ are not two new gravitational fields in this branch;
 they are the left and right representations of the one already reconstructed
 spin connection.
 
-This economical reduction is nevertheless not the generic curved-GR
-solution.  Because Eq.~\eqref{eq:canonical:pure-lorentz-pair} commutes with the
-Lorentz involution, a nondegenerate torsion-free solution
+This economical reduction has two sharply different branches.  Because
+Eq.~\eqref{eq:canonical:pure-lorentz-pair} commutes with the Lorentz involution,
+a nondegenerate **torsion-free** solution
 $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ implies a spacetime vector $V$ obeying
 \begin{equation}
- \boxed{\nabla_\mu V^\nu=\delta_\mu{}^\nu,}
+ \boxed{\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu,}
  \qquad
  \mathcal L_Vg=2g,
  \qquad
  R^\rho{}_{\sigma\mu\nu}V^\sigma=0.
 \end{equation}
-This concurrent-vector condition excludes Schwarzschild with nonzero mass and
-generic Einstein geometries.  Hence the pure Lorentz pair is closed
-kinematically but closed as a no-go for generic curved GR.  Any viable
-remainder
+This concurrent-vector condition excludes the non-flat Schwarzschild vacuum
+exterior with nonzero mass and generic torsion-free Einstein geometries.
+Therefore GAP-10I-PAIR-GR is closed as a torsion-free no-go.
+
+It is not a no-go for the same one-connection pair with composite torsion.  On
+a sufficiently small non-null Gaussian patch, define
+\begin{equation}
+ W_{\mu\nu}=g_{\mu\nu}-\mathring\nabla_\mu V_\nu,
+ \qquad
+ K_{\nu\mu\rho}
+ =\frac{W_{\mu\nu}V_\rho-V_\nu W_{\mu\rho}}{V^2},
+\end{equation}
+with $V_\mu=\tfrac12\partial_\mu V^2$.  Then $K$ is metric-compatible and
+$\nabla^{(\mathring\Gamma+K)}_\mu V^\nu=\delta_\mu{}^\nu$.  Taking
+$\Theta=\sqrt{\mathcal N_0}V^a\mathbf u_a$ gives exactly
+$D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$.  This closes
+GAP-10I-TORSION-LOCAL locally without independent $A_\mu,B_\mu$ fields.
+
+A relative remainder
 \begin{equation}
  A_\mu=\Omega_\mu+P_\mu,
  \qquad
  B_\mu=-\Omega_\mu^\ddagger+Q_\mu
 \end{equation}
-must be derived from the canonical action, and $P_\mu X-XQ_\mu$ must be shown
-composite or auxiliary rather than a new propagating sector.  A common central
-constant or one-form cannot help because it cancels.  The complete proof is in
-\path{canonical/gr_closure/gap_10i_paired_connection_audit.tex}.
+is therefore optional for local kinematics, though it remains a possible
+torsion-free completion.  If used, $P_\mu X-XQ_\mu$ must be derived from the
+canonical action and shown composite or auxiliary rather than propagating.  A
+common central constant or one-form cannot remove the torsion-free obstruction
+because it cancels.  The proofs are in
+\path{canonical/gr_closure/gap_10i_paired_connection_audit.tex} and
+\path{canonical/gr_closure/gap_10i_torsionful_local_representer.tex}.
 
 \subsection{Flat limit and explicit representer}
 In a flat inertial torsion-free sector,
@@ -181,11 +199,12 @@ The full-theory questions are narrowed rather than closed:
 \begin{itemize}
  \item GAP-10T-DYN: derive the selected first-order branch, spin current,
        normalization and possible extra torsion invariants from UBT;
- \item GAP-10I-PAIR-KIN is closed and GAP-10I-PAIR-GR is closed as a
-       no-go; derive the remaining nontrivial relative bimodule action as a
-       composite or auxiliary nonpropagating variable;
- \item GAP-10I-CURVED: solve the self-consistent implicit curved system,
-       regularity and global continuation;
+ \item GAP-10I-PAIR-KIN is closed; GAP-10I-PAIR-GR is closed as a
+       torsion-free no-go; GAP-10I-TORSION-LOCAL is closed locally;
+ \item GAP-10I-2S is optional for local kinematics and remains a possible
+       torsion-free composite/auxiliary completion;
+ \item GAP-10I-CURVED has local kinematics closed, while action selection,
+       physical torsion constraints, regularity and global continuation remain;
  \item GAP-10L-DYN: verify equivariance and well-posed uniqueness for the full
        dynamics.
 \end{itemize}

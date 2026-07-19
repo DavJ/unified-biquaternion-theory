@@ -1,0 +1,249 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\newcommand{\B}{\mathbb B}
+\newcommand{\LC}{\mathring\nabla}
+\title{GAP-10I Torsionful Local Representer:\\An Explicit Composite-Contortion Right Inverse}
+\author{Ing. David Jaro\v{s}}
+\date{19 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The concurrent-vector obstruction excludes the pure Lorentz pair only in the
+torsion-free generated-tetrad branch.  This note proves an exact complementary
+result.  On every sufficiently small non-null Gaussian patch of a smooth
+Lorentzian tetrad, one can construct a Lorentz-real biquaternion field
+$\Theta$ and an explicit metric-compatible contortion $K[e,\Theta]$ such that
+\[
+ D_\mu\Theta=\sqrt{\mathcal N_0}\,E_\mu,
+ \qquad
+ A_\mu=\Omega_\mu(e,K),\quad
+ B_\mu=-\Omega_\mu(e,K)^\ddagger .
+\]
+No independent left/right connection fields are introduced.  The construction
+is a local kinematic right inverse of the covariant-tetrad map for an arbitrary
+smooth metric.  It does not prove that canonical UBT dynamics selects this
+contortion, that the torsion is physically invisible, or that the solution
+extends globally through horizons or caustics.  Accordingly it closes a new
+local representability subgap while leaving the action-level and global parts
+of GAP-10I-CURVED open.
+\end{abstract}
+
+\section{Geometric setting}
+Let $(U,g)$ be a smooth four-dimensional Lorentzian patch with a smooth
+nondegenerate tetrad $e_\mu{}^a$.  Let $\LC$ denote the Levi--Civita derivative.
+Assume that $U$ carries a smooth non-null Gaussian function $\rho$ satisfying
+\begin{equation}
+ g^{\mu\nu}\partial_\mu\rho\,\partial_\nu\rho=\varepsilon,
+ \qquad \varepsilon\in\{+1,-1\},
+ \qquad \rho\ne0\ \hbox{on }U.
+ \label{eq:eikonal}
+\end{equation}
+Such a function exists on a sufficiently small Gaussian-normal neighbourhood
+of any non-null hypersurface; shifting the Gaussian coordinate by a constant
+ensures $\rho\ne0$ on a smaller patch.
+
+Define
+\begin{equation}
+ V^\mu:=\varepsilon\rho\,\nabla^\mu\rho.
+ \label{eq:V-def}
+\end{equation}
+Then
+\begin{equation}
+ V^2=\varepsilon\rho^2,
+ \qquad
+ V_\mu=\frac12\partial_\mu(V^2).
+ \label{eq:norm-gradient}
+\end{equation}
+
+\section{Composite contortion}
+Introduce the tensor
+\begin{equation}
+ W_{\mu\nu}:=g_{\mu\nu}-\LC_\mu V_\nu.
+ \label{eq:W-def}
+\end{equation}
+Equation~\eqref{eq:norm-gradient} gives
+\begin{equation}
+ W_{\mu\nu}V^\nu
+ =V_\mu-\frac12\partial_\mu(V^2)=0.
+ \label{eq:W-orthogonal}
+\end{equation}
+
+\begin{theorem}[Explicit metric-compatible contortion]
+On the patch $V^2\ne0$, define
+\begin{equation}
+ \boxed{
+ K_{\nu\mu\rho}
+ :=\frac{W_{\mu\nu}V_\rho-V_\nu W_{\mu\rho}}{V^2}.}
+ \label{eq:K-def}
+\end{equation}
+Then $K_{\nu\mu\rho}=-K_{\rho\mu\nu}$, so
+\begin{equation}
+ \Gamma^\nu{}_{\mu\rho}
+ =\mathring\Gamma^\nu{}_{\mu\rho}+K^\nu{}_{\mu\rho}
+ \label{eq:Gamma-K}
+\end{equation}
+is metric-compatible.  Moreover,
+\begin{equation}
+ \boxed{\nabla^{\Gamma}_\mu V^\nu=\delta_\mu{}^\nu.}
+ \label{eq:torsionful-concurrent}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Antisymmetry of Eq.~\eqref{eq:K-def} in the first and third lowered indices is
+immediate and is precisely the metric-compatibility condition for the
+difference of two affine connections.  Contracting with $V^\rho$ and using
+Eq.~\eqref{eq:W-orthogonal} gives
+\begin{equation}
+ K^\nu{}_{\mu\rho}V^\rho=W_\mu{}^\nu.
+\end{equation}
+Therefore
+\begin{equation}
+ \nabla^{\Gamma}_\mu V^\nu
+ =\LC_\mu V^\nu+W_\mu{}^\nu
+ =\delta_\mu{}^\nu.
+\end{equation}
+\end{proof}
+
+The torsion is the composite tensor
+\begin{equation}
+ T^\rho{}_{\mu\nu}=2K^\rho{}_{[\mu\nu]}.
+ \label{eq:torsion}
+\end{equation}
+No independent torsion variable is needed for this local representer.
+
+\section{Single-$\Theta$ tetrad representer}
+Let $\{\mathbf u_a\}$ be a Lorentz-real biquaternion basis and write
+\begin{equation}
+ E_\mu=e_\mu{}^a\mathbf u_a,
+ \qquad
+ V^a=e^a{}_{\nu}V^\nu,
+ \qquad
+ s:=\sqrt{\mathcal N_0}.
+\end{equation}
+Define the Lorentz-real field
+\begin{equation}
+ \boxed{\Theta:=sV^a\mathbf u_a.}
+ \label{eq:Theta-def}
+\end{equation}
+Let $\omega(e,K)$ be the frame connection corresponding to
+Eq.~\eqref{eq:Gamma-K}, and let $\Omega=\rho_*(\omega)$ be its
+biquaternionic spin representation.  Use the already proved Lorentz pairing
+\begin{equation}
+ D_\mu X=\partial_\mu X+\Omega_\mu X+X\Omega_\mu^\ddagger,
+ \qquad
+ A_\mu=\Omega_\mu,
+ \quad B_\mu=-\Omega_\mu^\ddagger.
+ \label{eq:pure-pair}
+\end{equation}
+
+\begin{theorem}[Local torsionful right inverse of the tetrad map]
+The field in Eq.~\eqref{eq:Theta-def} satisfies
+\begin{equation}
+ \boxed{D_\mu\Theta=sE_\mu.}
+ \label{eq:right-inverse}
+\end{equation}
+Consequently the canonical anticommutator readout reproduces the prescribed
+metric exactly:
+\begin{equation}
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ =g_{\mu\nu}\mathbf1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The tetrad postulate for $(e,\omega,\Gamma)$ gives
+\begin{equation}
+ D_\mu V^a=e^a{}_{\nu}\nabla^{\Gamma}_\mu V^\nu.
+\end{equation}
+Using Eq.~\eqref{eq:torsionful-concurrent},
+\begin{equation}
+ D_\mu\Theta
+ =s(D_\mu V^a)\mathbf u_a
+ =s e^a{}_{\nu}\delta_\mu{}^\nu\mathbf u_a
+ =sE_\mu.
+\end{equation}
+The metric identity then follows from the Lorentz Clifford anticommutator.
+\end{proof}
+
+\begin{corollary}[Local existence for arbitrary smooth Lorentzian tetrads]
+Every point of a smooth Lorentzian tetrad manifold has a sufficiently small
+patch on which a shifted non-null Gaussian coordinate satisfies
+Eq.~\eqref{eq:eikonal} with $\rho\ne0$.  Hence every smooth tetrad has a local
+single-$\Theta$ representer of the form above with a composite
+metric-compatible contortion.
+\end{corollary}
+
+\section{Schwarzschild vacuum exterior}
+The result is about the metric geometry and does not require interpreting the
+central object as an exactly nonrotating physical black hole.  On any exterior
+patch $r>2M$ of the non-flat Schwarzschild vacuum metric, let
+\begin{equation}
+ f(r)=1-\frac{2M}{r},
+ \qquad
+ \rho(r)=\rho_0+\int_{r_0}^{r}\frac{du}{\sqrt{f(u)}}.
+ \label{eq:schwarzschild-rho}
+\end{equation}
+Then $g^{-1}(d\rho,d\rho)=+1$ and
+\begin{equation}
+ V=\rho\,\partial_\rho
+   =\rho\sqrt{f(r)}\,\partial_r.
+\end{equation}
+Equations~\eqref{eq:K-def} and~\eqref{eq:Theta-def} therefore give an explicit
+local torsionful representer of the Schwarzschild vacuum exterior with
+$M\ne0$.  This does not contradict the torsion-free no-go: the constructed
+connection has, in general, nonzero composite torsion.
+
+\section{What this does and does not close}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,
+ title=Exact status after the torsionful construction]
+\textbf{GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1].}
+For every smooth Lorentzian tetrad, a local non-null Gaussian patch admits an
+explicit Lorentz-real single-$\Theta$ representer with
+$A=\Omega(e,K)$, $B=-\Omega(e,K)^\ddagger$ and composite
+metric-compatible contortion~\eqref{eq:K-def}.  No independent $A$, $B$, or
+propagating torsion field is introduced at the kinematic level.
+
+\medskip
+\textbf{GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO [L1].}
+The concurrent-vector obstruction remains valid when $K=0$.  It must not be
+stated as a no-go for the same pure Lorentz pairing with arbitrary composite
+torsion.
+
+\medskip
+\textbf{GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATIC REPRESENTABILITY.}
+A nontrivial relative left/right pair $(P,Q)$ is one possible torsion-free
+completion, but it is not the only local curved route.  Composite contortion
+already supplies a local right inverse inside the one-connection pairing.
+
+\medskip
+\textbf{GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED.}
+The construction does not show that the canonical UBT action selects
+Eq.~\eqref{eq:K-def}, that the induced torsion is compatible with all matter
+couplings and observations, or that the representer extends through zeros of
+$V^2$, Gaussian caustics, horizons, and global topology.
+
+\medskip
+\textbf{GAP-10D and GAP-U2$\Theta$: NOT CLOSED.}
+Einstein dynamics, the exact spin current, action-level algebraic elimination
+of torsion, physical torsion constraints, and on-shell selection of the
+Schwarzschild/Kerr/FRW sectors remain separate dynamical problems.
+\end{tcolorbox}
+
+\begin{thebibliography}{9}
+\bibitem{wald1984} R.~M.~Wald, \emph{General Relativity}, University of Chicago Press (1984).
+\bibitem{hehl1976} F.~W.~Hehl, P.~von der Heyde, D.~G.~Kerlick, and J.~M.~Nester,
+``General Relativity with Spin and Torsion: Foundations and Prospects,''
+\emph{Rev. Mod. Phys.} \textbf{48}, 393--416 (1976).
+\end{thebibliography}
+\end{document}

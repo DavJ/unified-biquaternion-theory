@@ -10,8 +10,10 @@
    do not treat it as arbitrary kinematic freedom.
 6. Use the exact split status labels from `AGENTS.md`, including
    `GAP-10Omega-KIN`, `GAP-10T-DYN`, and the `GAP-10I-*` subgaps.
-7. Reject the naive one-sided invertible torsion-free curved route; investigate
-   the two-sided bimodule derivative without claiming curved existence.
+7. Reject the naive one-sided invertible torsion-free curved route.  For the
+   pure Lorentz pair, state the concurrent-vector result only as a $K=0$ no-go;
+   use the explicit composite-contortion theorem for local curved existence,
+   without claiming canonical action selection or global continuation.
 8. State assumptions, proof level, gauge freedom, and remaining gaps.
 9. Update all status surfaces, students' explanations, tests, and patch notes
    in the same change.
@@ -22,4 +24,4 @@
 11. **Framework freeze:** no v10.x architecture pivot is allowed without an
     explicit human decision and comparative audit. Work on the current gaps.
 
-12. Treat the minimal Palatini torsion equation, symmetry propagation, augmented holonomy for prescribed coefficients, and Lovelock infrared uniqueness as conditional subclosures. They narrow but do not replace `GAP-10T-DYN`, `GAP-10L-DYN`, `GAP-10I-CURVED`, or `GAP-10D`.
+12. Treat the minimal Palatini torsion equation, symmetry propagation, augmented holonomy for prescribed coefficients, and Lovelock infrared uniqueness as conditional subclosures. `GAP-10I-TORSION-LOCAL` closes only local kinematic representability. These results narrow but do not replace `GAP-10T-DYN`, the dynamical/global part of `GAP-10I-CURVED`, or `GAP-10D`.

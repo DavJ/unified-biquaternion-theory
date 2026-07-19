@@ -182,11 +182,32 @@ The left-hand side is already a real central element of the biquaternion algebra
 At every nondegenerate tetrad the differential `e_μ^a -> g_μν` has rank ten.  Its six-dimensional kernel is the infinitesimal local Lorentz freedom.  Thus the old comparison “Θ has eight real components but g has ten” is not a local kinematic obstruction: the metric is built from four covariant first derivatives, not from the value of Θ alone.
 
 The local rank theorem does **not** by itself prove that every required curved
-tetrad is generated on shell by one $\Theta$.  The connection and integrability
-results refine this statement substantially.  In particular, imposing the pure
+tetrad is generated dynamically on shell by one $\Theta$.  The connection and
+integrability results refine this statement substantially.  Imposing the pure
 Lorentz pair `A_mu=Omega_mu`, `B_mu=-Omega_mu^ddagger` removes independent A/B
-fields but forces a concurrent vector `nabla_mu V^nu=delta_mu^nu`; it therefore
-does not cover generic curved GR or Schwarzschild with nonzero mass.
+fields.  With the torsion-free Levi--Civita lift it forces a concurrent vector
+`nabla_LC_mu V^nu=delta_mu^nu` and therefore excludes the non-flat
+Schwarzschild vacuum exterior with nonzero mass.  This is specifically a
+torsion-free no-go.
+
+A complementary local theorem closes kinematic curved representability.  On a
+sufficiently small non-null Gaussian patch of any smooth Lorentzian tetrad one
+can choose a nonzero Gaussian function `rho`, set
+`V^mu=epsilon rho grad^mu rho`, and define
+
+```text
+W_munu = g_munu - nabla_LC_mu V_nu,
+K_numurho = (W_munu V_rho - V_nu W_murho)/V^2.
+```
+
+Then `K_numurho=-K_rhomunu`, so `Gamma=Gamma_LC+K` is metric-compatible, and
+`nabla^(Gamma)_mu V^nu=delta_mu^nu`.  With
+`Theta=sqrt(N0) V^a u_a` and the same one-connection pair
+`A=Omega(e,K)`, `B=-Omega(e,K)^ddagger`, one obtains exactly
+`D_mu Theta=sqrt(N0) E_mu`.  This is `GAP-10I-TORSION-LOCAL: CLOSED LOCALLY
+[L1]`.  It introduces no independent A/B fields, but it does not prove that
+the canonical action selects this contortion or that the torsion is physically
+acceptable or globally regular.
 
 ### Connection and Christoffel symbols
 
@@ -261,13 +282,20 @@ For invertible `Theta`, integrability permits nonzero curvatures related by
 F^A_mu_nu = Theta F^B_mu_nu Theta^(-1).
 ```
 
-This narrows `GAP-10I-2S`, but the action must still determine the paired
-connections, involution, torsion, and boundary conditions.  For specified
-smooth `(E,A,B)` the inhomogeneous system is exactly a homogeneous parallel
-section problem for an augmented connection; existence and path independence
-are equivalent to the augmented holonomy fixing `(Theta_0,1)`.  This closes
-`GAP-10I-PRESCRIBED`.  Self-consistent on-shell selection, regularity, and
-global continuation remain the narrowed `GAP-10I-CURVED`.
+The general two-sided identity remains valid, but a nontrivial relative
+left/right action is **not required for local kinematic curved
+representability** because the composite-contortion construction already gives
+a local right inverse inside the one-connection pairing.  Such a relative
+action remains an optional torsion-free completion and, if used, must be
+derived as composite or auxiliary and shown nonpropagating.
+
+For specified smooth `(E,A,B)` the inhomogeneous system is exactly a homogeneous
+parallel-section problem for an augmented connection; existence and path
+independence are equivalent to the augmented holonomy fixing `(Theta_0,1)`.
+This closes `GAP-10I-PRESCRIBED`.  `GAP-10I-CURVED` is now split honestly:
+local kinematic existence is closed, while canonical action-level selection,
+physical torsion constraints, regularity at `V^2=0`, horizons/caustics, and
+global continuation remain narrowed/open.
 
 ### Implicit versus transcendental
 

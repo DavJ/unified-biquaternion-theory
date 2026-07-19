@@ -1,5 +1,7 @@
 # Patch notes: GAP-10I paired-connection audit
 
+> **Superseded scope note (19 July 2026):** the concurrent-vector no-go below is valid only for the torsion-free (`K=0`) generated-tetrad branch. The later `GAP-10I-TORSION-LOCAL` theorem constructs a local composite-contortion representer for every smooth Lorentzian tetrad, so a relative pair is not required for local kinematics.
+
 **Date:** 2026-07-19  
 **Baseline:** `unified-biquaternion-theory-master(16).zip`
 
@@ -15,26 +17,29 @@ full Einstein/action bridge.
    
    modulo a common central one-form that cancels identically. Thus the pure
    branch does not introduce two new gravitational fields.
-2. **GAP-10I-PAIR-GR — CLOSED AS NO-GO [L1].** In the torsion-free branch,
+2. **GAP-10I-PAIR-GR — CLOSED AS A TORSION-FREE NO-GO [L1].** In the torsion-free branch,
    `D_mu Theta = sqrt(N0) E_mu` then implies a concurrent vector
    `nabla_mu V^nu = delta_mu^nu`. Consequently the metric admits a proper
    homothety and `R^rho_{ sigma mu nu} V^sigma = 0`. Schwarzschild with
    nonzero mass violates this condition.
 
-## Exact remaining gap
+## Exact remaining gap (superseded refinement)
 
-The general bimodule derivative remains structurally possible, but the
-canonical action must derive a nontrivial relative component
+The original audit correctly showed that a common central constant, central
+one-form, or scalar potential parameter cannot evade the **torsion-free**
+concurrent-vector obstruction.  It initially identified a relative pair
 
-`A_mu = Omega_mu + P_mu`, `B_mu = -Omega_mu^ddagger + Q_mu`,
+`A_mu = Omega_mu + P_mu`, `B_mu = -Omega_mu^ddagger + Q_mu`
 
-and prove that `P_mu X - X Q_mu` is composite or auxiliary and carries no new
-propagating degree of freedom. A common central constant, central one-form, or
-scalar potential parameter cannot evade the no-go because it cancels from the
-derivative.
+as the remaining route.  The companion `GAP-10I-TORSION-LOCAL` theorem later
+proved that this route is optional: explicit composite metric-compatible
+contortion already provides local curved representability inside the single
+connection pairing.
 
-Therefore **GAP-10I-2S/CURVED remains NARROWED** and **GAP-10D remains
-NARROWED**, not closed.
+The remaining gap is therefore dynamical/global rather than local kinematic:
+derive the selected torsion/current from the canonical action, prove physical
+admissibility and nonpropagation where required, and establish global
+continuation and Einstein dynamics.
 
 ## New proof and verifier
 

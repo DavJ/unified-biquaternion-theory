@@ -25,7 +25,8 @@ def test_pairing_audit_has_honest_status():
         encoding="utf-8"
     )
     assert "GAP-10I-PAIR-KIN: CLOSED" in text
-    assert "GAP-10I-PAIR-GR: CLOSED AS NO-GO" in text
+    assert "GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO" in text
+    assert "GAP-10I-TORSION-LOCAL: CLOSED LOCALLY" in text
     assert "GAP-10D: NOT CLOSED BY THIS REDUCTION" in text
     assert r"B_\mu=-\Omega_\mu^\ddagger" in text
 

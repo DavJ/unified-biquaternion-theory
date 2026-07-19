@@ -54,10 +54,13 @@ curved geometry the general algebra-native candidate is
 The no-new-field Lorentz representative is uniquely
 $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$ modulo a cancelling central
 term.  In the torsion-free generated-tetrad branch it implies a concurrent
-vector $\nabla_\mu V^\nu=\delta_\mu{}^\nu$, so it cannot generate generic
-curved GR or Schwarzschild with nonzero mass.  The remaining viable branch
-must derive a nontrivial relative left/right action as a composite or
-auxiliary variable without adding propagating degrees of freedom.
+vector $\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu$, so it excludes the
+non-flat Schwarzschild vacuum exterior with nonzero mass.  This is not a no-go
+for the same pair with composite torsion: a local metric-compatible contortion
+construction gives a single-$\Theta$ representer for every smooth tetrad.
+Canonical dynamics must select and physically constrain that torsionful branch,
+or else derive an optional torsion-free relative left/right action as a
+composite or auxiliary nonpropagating variable.
 
 \section{Einstein bridge}
 
@@ -66,7 +69,7 @@ The target equation
  G_{\mu\nu}[g]=\kappa T_{\mu\nu}
 \end{equation}
 has not yet been derived unconditionally from the same canonical UBT action
-that determines $\Theta$, the relative bimodule action, and torsion.  A composed
+that determines $\Theta$, the selected torsion/relative representation, and its physical couplings.  A composed
 Einstein--Hilbert branch can reproduce standard tetrad GR under its assumptions,
 but it does not close GAP-10D or GAP-B-MASTER.
 
@@ -92,10 +95,11 @@ and its equations.
  \item GAP-10I-SR: CLOSED [L1].
  \item GAP-10I-1S: CLOSED AS NO-GO [L1].
  \item GAP-10I-PAIR-KIN: CLOSED [L1].
- \item GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1].
- \item GAP-10I-2S: NARROWED [L1].
+ \item GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO [L1].
+ \item GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1].
+ \item GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATICS; optional torsion-free route.
  \item GAP-10I-PRESCRIBED: CLOSED [L1].
- \item GAP-10I-CURVED: NARROWED.
+ \item GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED.
  \item GAP-10D-PALATINI and GAP-10D-UNIQUENESS: CLOSED CONDITIONALLY [L1].
  \item GAP-10D and GAP-10$\psi$: NARROWED.
  \item GAP-B-MASTER and GAP-U2$\Theta$: OPEN.

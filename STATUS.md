@@ -1,4 +1,4 @@
-> **GR geometry update (16 July 2026):** Projection-free covariant-tetrad kinematics closes rank ten, connection reconstruction and the affine Minkowski representer.  New conditional subclosures establish algebraic torsion elimination in the minimal Palatini branch, exact augmented-holonomy integrability for prescribed coefficients, symmetry propagation of the Lorentz/psi-stable sectors, and the Palatini/Lovelock Einstein--Lambda infrared endpoint.  Their derivation from the fundamental canonical UBT action and self-consistent curved global solutions remain unresolved.
+> **GR geometry update (19 July 2026):** Projection-free covariant-tetrad kinematics closes rank ten, connection reconstruction, the affine Minkowski representer, and local curved representability by an explicit composite metric-compatible contortion.  The concurrent-vector exclusion is only a torsion-free no-go.  Canonical action selection, physical torsion control, global continuation, and Einstein dynamics remain unresolved.
 
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
@@ -7,7 +7,7 @@
 > **DEPRECATED as status source — see `CLAIMS_MATRIX.md` and `CLAIMS.yaml` (authoritative).**
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-07-16  
+**Date**: 2026-07-19  
 **Update frequency**: Per milestone  
 **Purpose**: Single-glance status of every major track.
 
@@ -38,13 +38,17 @@ Compact-\(\psi\) fiber averaging is noncanonical. The connection is not an
 arbitrary extra field: for specified tetrad and torsion it is uniquely
 \(\omega=\mathring\omega(e)+K(T)\); the torsion-free branch is Levi--Civita.
 Every constant Lorentz tetrad, including Minkowski spacetime, has an explicit
-affine single-\(\Theta\) representer. A naive one-sided invertible torsion-free
-curved route is a proved conditional no-go. The two-sided bimodule derivative removes that obstruction.  For prescribed
-coefficients, curved local existence/path independence now has an exact
-augmented-holonomy criterion.  In the minimal Palatini branch torsion is
-algebraically selected, and under Lovelock low-energy assumptions the
-conditional metric endpoint is Einstein--Lambda.  Fundamental UBT must still
-select that branch and solve the self-consistent curved system.
+affine single-\(\Theta\) representer.  Lorentz-slice and metric compatibility
+reduce the apparent two-field pair \(A,B\) to one spin connection.  With zero
+torsion this generated-tetrad branch is a concurrent-vector no-go for the
+non-flat Schwarzschild vacuum exterior.  With explicit composite
+metric-compatible contortion, however, every smooth Lorentzian tetrad has a
+local single-\(\Theta\) representer.  For prescribed coefficients, local
+existence/path independence has an exact augmented-holonomy criterion.  In the
+minimal Palatini branch torsion is algebraically selected, and under Lovelock
+low-energy assumptions the conditional metric endpoint is Einstein--Lambda.
+Fundamental UBT must still select the physical torsion branch and solve the
+global self-consistent dynamics.
 
 | Item | Status |
 |------|--------|
@@ -55,11 +59,13 @@ select that branch and solve the self-consistent curved system.
 | Lorentz-slice preservation by compatible transport | ✅ [L1] |
 | Constant-tetrad / Minkowski representer | ✅ Explicit [L1] |
 | One-sided invertible torsion-free curved route | ⛔ NO-GO [L1, conditional] |
-| Two-sided curvature identity/intertwiner | ✅ Identity; route narrowed [L1] |
+| Pure Lorentz left/right pairing | ✅ One spin connection; no field doubling [L1] |
+| Torsion-free generated-tetrad pure pair | ⛔ Concurrent-vector no-go for Schwarzschild exterior, \(M\ne0\) [L1] |
+| Composite-contortion local curved representer | ✅ Every smooth Lorentzian tetrad locally [L1] |
 | Minimal Palatini torsion equation | ✅ Conditional algebraic closure; Cartan map rank 24/24 [L1] |
 | Torsion selected by fundamental UBT action | 🟠 `GAP-10T-DYN` NARROWED |
 | Prescribed curved coefficients | ✅ Exact augmented-holonomy criterion [L1] |
-| Self-consistent curved single-Theta existence/global regularity | 🟠 `GAP-10I-CURVED` NARROWED |
+| Self-consistent curved single-Theta system | ✅ local kinematics; 🟠 action selection/global regularity narrowed |
 | Lorentz/psi symmetry propagation | ✅ Conditional fixed-set/metric-stability theorems [L1] |
 | Einstein--Lambda infrared endpoint | ✅ Conditional Palatini/Lovelock closure [L1] |
 | Einstein dynamics derived from fundamental canonical UBT | 🟠 `GAP-10D` NARROWED |

@@ -10,6 +10,7 @@ claims:
     - canonical/gr_closure/gap_10omega_connection_elimination.tex
     - canonical/gr_closure/gap_10i_integrability_selection.tex
     - canonical/gr_closure/gap_10i_paired_connection_audit.tex
+    - canonical/gr_closure/gap_10i_torsionful_local_representer.tex
     - canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex
     - canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex
     - canonical/gr_closure/gap_10i_augmented_holonomy.tex
@@ -27,10 +28,11 @@ claims:
     - 'GAP-10I-SR: CLOSED — every constant Lorentz tetrad has an explicit affine single-Theta representer in the flat inertial branch'
     - 'GAP-10I-1S: CLOSED AS NO-GO — a naive one-sided regular connection with invertible Theta forces zero curvature under torsion-free tetrad compatibility'
     - 'GAP-10I-PAIR-KIN: CLOSED — Lorentz-slice and metric compatibility reduce A,B to the single spin connection modulo a central term that cancels'
-    - 'GAP-10I-PAIR-GR: CLOSED AS NO-GO — the pure Lorentz pair implies a concurrent vector and cannot generate generic curved GR or Schwarzschild with nonzero mass'
-    - 'GAP-10I-2S: NARROWED — a viable generic branch requires a nontrivial relative bimodule action derived as composite or auxiliary from the canonical action'
+    - 'GAP-10I-PAIR-GR: CLOSED AS A TORSION-FREE NO-GO — with K=0 the pure Lorentz pair implies a concurrent vector and excludes the non-flat Schwarzschild vacuum exterior with nonzero mass'
+    - 'GAP-10I-TORSION-LOCAL: CLOSED LOCALLY — every smooth Lorentzian tetrad has a local single-Theta representer with explicit composite metric-compatible contortion'
+    - 'GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATICS — a relative bimodule action remains an optional torsion-free composite or auxiliary route'
     - 'GAP-10I-PRESCRIBED: CLOSED — prescribed E,A,B have an exact augmented-holonomy existence and path-independence criterion'
-    - 'GAP-10I-CURVED: NARROWED — self-consistent on-shell selection, regularity, and global continuation remain open'
+    - 'GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED — canonical action selection, physical torsion constraints, regularity, and global continuation remain open'
     - 'GAP-10D-PALATINI: CLOSED CONDITIONALLY — the minimal first-order action yields Einstein-Lambda dynamics'
     - 'GAP-10D-UNIQUENESS: CLOSED CONDITIONALLY — Lovelock assumptions make Einstein-Lambda the unique four-dimensional second-order metric endpoint'
     - 'GAP-10D: NARROWED — derive the low-energy assumptions, coefficients, and matter sector from canonical UBT'
