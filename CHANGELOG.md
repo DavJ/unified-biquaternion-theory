@@ -25,6 +25,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — self-contained UBT/Theta introduction in the GR manuscript (2026-07-20)
+
+- Added a dedicated opening section to `papers/UBT_GR_Submission.tex` defining
+  UBT as a single-biquaternion-field research programme and introducing
+  `Theta(q,tau)`, its component count, complex time, and the distinction between
+  the UBT master field and a Jacobi theta function.
+- Made the gravitational construction explicit as the chain
+  `Theta -> D_mu Theta -> E_mu -> (g_mu nu, omega, R)`.
+- Clarified that the unique-fundamental-field statement is an architectural
+  postulate, while action-level derivation of torsion, Einstein dynamics, and
+  the wider gauge/quantum sectors remains open.
+- Rebuilt and visually checked `docs/pdfs/UBT_GR_Submission.pdf`.
+
 ### Added/Corrected — torsionful local representer (2026-07-19)
 
 - Corrected the scope of the paired-connection no-go: the concurrent-vector
