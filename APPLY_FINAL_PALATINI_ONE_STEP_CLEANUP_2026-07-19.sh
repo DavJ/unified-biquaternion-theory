@@ -17,7 +17,7 @@ rm -f -- "$old_tex" "$old_pdf"
 [[ ! -e "$old_tex" ]] || { echo "ERROR: failed to remove $old_tex" >&2; exit 1; }
 [[ ! -e "$old_pdf" ]] || { echo "ERROR: failed to remove $old_pdf" >&2; exit 1; }
 
-python -m pytest -q \
+python3 -m pytest -q \
   tests/test_release_polish_palatini_refs.py \
   tests/test_theta_fit_tau.py \
   tests/test_planck_validation_mapping.py
