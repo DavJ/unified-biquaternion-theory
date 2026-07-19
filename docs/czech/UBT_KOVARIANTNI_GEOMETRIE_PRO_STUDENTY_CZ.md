@@ -381,8 +381,46 @@ F^A_{\mu\nu}
 
 Levá a pravá křivost mohou být nenulové; \(\Theta\) mezi nimi funguje jako
 propojovací neboli intertwining objekt. Oboustranná derivace tedy odstraňuje
-plochostní no-go, ale ještě sama nedokazuje existenci řešení pro každou
-zakřivenou metriku.
+jednostranné plochostní no-go, ale ještě sama nedokazuje existenci řešení pro
+každou zakřivenou metriku.
+
+### 9.3 Jsou \(A_\mu\) a \(B_\mu\) nová pole?
+
+Nemusejí být. Požadavek, aby derivace zachovávala Lorentzův řez a jeho metriku,
+vynutí v nejúspornější větvi
+
+\[
+\boxed{A_\mu=\Omega_\mu,\qquad B_\mu=-\Omega_\mu^\ddagger,}
+\]
+
+až na společný centrální člen, který se mezi levým a pravým násobením přesně
+zruší. V této větvi tedy \(A\) a \(B\) nejsou dva nové fyzikální objekty, ale
+dvě reprezentace jediné spinové konexe.
+
+Tato úsporná volba má však překvapivě silný důsledek. Jestliže je torze nulová a
+jedno pole \(\Theta\) generuje nedegenerovanou tetrádu, existuje vektor \(V\)
+takový, že
+
+\[
+\boxed{\nabla_\mu V^\nu=\delta_\mu{}^\nu.}
+\]
+
+Metrika by tedy musela připouštět vlastní homotetrii
+\(\mathcal L_Vg=2g\). Schwarzschildova metrika s nenulovou hmotností tuto
+podmínku nesplňuje. Čistá identifikace s \(\Omega\) proto uzavírá otázku
+zdvojení polí, ale současně je uzavřena jako no-go pro obecnou zakřivenou GR.
+
+Zbývající možnost má tvar
+
+\[
+A_\mu=\Omega_\mu+P_\mu,\qquad
+B_\mu=-\Omega_\mu^\ddagger+Q_\mu.
+\]
+
+Relativní člen \(P_\mu X-XQ_\mu\) nesmí být pouze libovolně přidanou novou
+hmotou. Musí být odvozen z kanonické akce jako složená nebo pomocná veličina a
+nesmí přidávat propagující stupně volnosti. Společná centrální konstanta ani
+konstantní člen potenciálu tuto překážku neodstraní, protože v derivaci zaniká.
 
 ## 10. Co se podařilo uzavřít na dynamické úrovni
 
@@ -538,19 +576,25 @@ náhrada za prostorovou nebo časovou derivaci.
    \(\Theta\)-representer.
 7. `GAP-10I-1S`: jednoduchá jednostranná invertibilní větev je pro obecnou
    torsion-free křivost uzavřena jako no-go.
-8. `GAP-10I-PRESCRIBED`: pro zadané \((E,A,B)\) platí přesné holonomické
-   kritérium existence a jednohodnotnosti.
-9. `GAP-10D-PALATINI/UNIQUENESS` **podmíněně**: minimální první řád a
-   Lovelockovy předpoklady vedou jednoznačně k Einstein--\(\Lambda\).
-10. `GAP-10psi-KIN/SYM`: Lorentzova gauge evoluce nebo translační symetrie
+8. `GAP-10I-PAIR-KIN`: čistá Lorentzova dvojice se redukuje na jedinou
+   spinovou konexi, takže \(A,B\) nejsou dvě nová gravitační pole.
+9. `GAP-10I-PAIR-GR`: stejná větev je uzavřena jako no-go pro obecnou GR,
+   protože vynucuje konkurenční vektor a vylučuje Schwarzschild pro \(M\ne0\).
+10. `GAP-10I-PRESCRIBED`: pro zadané \((E,A,B)\) platí přesné holonomické
+    kritérium existence a jednohodnotnosti.
+11. `GAP-10D-PALATINI/UNIQUENESS` **podmíněně**: minimální první řád a
+    Lovelockovy předpoklady vedou jednoznačně k Einstein--\(Lambda\).
+12. `GAP-10psi-KIN/SYM`: Lorentzova gauge evoluce nebo translační symetrie
     chrání klasickou metriku za přesně uvedených podmínek.
 
 ### Zúžené, ale ne úplně uzavřené
 
 1. `GAP-10T-DYN`: odvodit minimální větev, přesný spinový proud, normalizaci a
    případné další torzní invarianty z fundamentální UBT.
-2. `GAP-10I-CURVED`: vyřešit samokonzistentní výběr \((E,A,B,T,\Theta)\),
-   regularitu a globální pokračování.
+2. `GAP-10I-2S/CURVED`: z kanonické akce odvodit netriviální relativní
+   levé/pravé působení, dokázat jeho pomocný nebo složený charakter a vyřešit
+   samokonzistentní výběr \((E,A,B,T,\Theta)\), regularitu a globální
+   pokračování.
 3. `GAP-10L-DYN`: ověřit ekvivarianci a dobře položenou jednoznačnost finálních
    UBT rovnic.
 4. `GAP-10D`: odvodit nízkoenergetické Palatiniho/Lovelockovy předpoklady,

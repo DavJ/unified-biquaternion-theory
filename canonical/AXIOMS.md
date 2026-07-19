@@ -64,7 +64,7 @@ where $\mathcal N_0>0$ is a fixed global unit-setting constant.  $D_\mu$ is the 
 
 $$\omega=\mathring\omega(e)+K(T),\qquad K_{abc}=\frac12(T_{cab}-T_{abc}-T_{bca}).$$
 
-The torsion-free classical GR branch has $T=K=0$ and the unique Levi--Civita spin connection.  The remaining full-UBT problem is to derive torsion and the exact paired left/right action on $\Theta$ from the canonical action.
+The torsion-free classical GR branch has $T=K=0$ and the unique Levi--Civita spin connection.  Lorentz-slice and metric compatibility reduce the pure no-new-field pair to $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$, modulo a common central term that cancels.  That pure pair is a proved no-go for generic curved GR because it implies $\nabla_\mu V^\nu=\delta_\mu{}^\nu$.  The remaining full-UBT problem is therefore to derive torsion and a nontrivial relative left/right action from the canonical action, and to prove that the latter is composite or auxiliary rather than propagating.
 
 Let $i$ denote the commuting complex unit and $\mathbf e_k$ the quaternion units.  The classical Lorentz sector is the real four-dimensional slice
 
@@ -100,8 +100,9 @@ is the antisymmetric algebraic part of the same product.  It may carry oriented-
 4. Do not use a local normalization denominator; $\mathcal N_0$ is fixed globally.
 5. The connection must not be treated as an arbitrary extra physical field; it is reconstructed from tetrad and torsion.
 6. Do not use a naive one-sided regular connection as the generic invertible curved-GR route.
-7. The canonical curved research route is the two-sided biquaternionic derivative plus a torsion equation derived from the action.
-8. The compact-fiber construction is retained only as a noncanonical candidate-completion branch.
+7. The canonical curved research route is the general two-sided biquaternionic derivative plus a torsion equation derived from the action; the pure pair $A=\Omega$, $B=-\Omega^\ddagger$ is only a proved diagnostic no-go.
+8. Any nontrivial relative left/right component must be derived as composite or auxiliary and shown nonpropagating; do not postulate two independent new connection fields.
+9. The compact-fiber construction is retained only as a noncanonical candidate-completion branch.
 
 ---
 
@@ -117,7 +118,7 @@ $$\text{canonical UBT equations}\quad\Longrightarrow\quad G_{\mu\nu}=\kappa T_{\
 is **not yet unconditional**.  The current open tasks are:
 
 - derive vacuum or spin-sourced torsion from the canonical UBT action;
-- fix the precise paired left/right connection and involution acting on $\Theta$;
+- derive a nontrivial relative left/right action beyond the pure spin lift, prove its involution properties, and show that it is composite or auxiliary rather than propagating;
 - prove that the complete $\Theta$ dynamics, not only Lorentz parallel transport, preserves the Lorentz slice and central anticommutator condition;
 - prove local and global existence of the implicit curved system $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$;
 - derive the Einstein equations and perturbation bridge from the canonical UBT dynamics rather than from an inserted Einstein--Hilbert branch;
@@ -146,7 +147,9 @@ is **not yet unconditional**.  The current open tasks are:
 - **GAP-10L-DYN — NARROWED:** verify canonical equivariance and well-posed uniqueness.
 - **GAP-10I-SR — CLOSED [L1]:** affine representer of constant Lorentz tetrads.
 - **GAP-10I-1S — CLOSED AS NO-GO [L1]:** one-sided invertible torsion-free curved route forces zero curvature.
-- **GAP-10I-2S — NARROWED [L1]:** two-sided curvature intertwining avoids flatness; action-level pairing remains open.
+- **GAP-10I-PAIR-KIN — CLOSED [L1]:** the Lorentz-compatible pair reduces to the single spin connection modulo a cancelling central term.
+- **GAP-10I-PAIR-GR — CLOSED AS NO-GO [L1]:** that pure pairing implies a concurrent vector and excludes generic curved GR/Schwarzschild with nonzero mass.
+- **GAP-10I-2S — NARROWED [L1]:** a viable generic branch requires a nontrivial relative bimodule action derived as composite or auxiliary without propagating fields.
 - **GAP-10I-PRESCRIBED — CLOSED [L1]:** specified coefficients admit an exact augmented-holonomy criterion.
 - **GAP-10I-CURVED — NARROWED:** self-consistent generation, regularity, and global continuation remain.
 - **GAP-10D-PALATINI / UNIQUENESS — CLOSED CONDITIONALLY [L1]:** the conditional infrared endpoint is Einstein--$\Lambda$.

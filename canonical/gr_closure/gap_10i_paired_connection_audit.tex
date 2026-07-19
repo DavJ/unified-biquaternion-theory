@@ -1,0 +1,240 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\newcommand{\B}{\mathbb B}
+\title{GAP-10I Pairing Audit:\\No-New-Field Reduction and the Concurrent-Vector Obstruction}
+\author{Ing. David Jaro\v{s}}
+\date{19 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The generic two-sided UBT derivative
+$D_\mu X=\partial_\mu X+A_\mu X-XB_\mu$ appears to introduce two new
+connection fields.  This note proves that this is not necessary in the pure
+Lorentz branch: preservation of the intrinsic Lorentz real slice and its
+metric reduces the pair uniquely, modulo a central term that cancels from the
+action, to the single existing spin connection,
+$D_\mu X=\partial_\mu X+\Omega_\mu X+X\Omega_\mu^\ddagger$.
+However, the same reduction exposes a decisive obstruction.  If
+$E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ is a nondegenerate torsion-free tetrad,
+then a Lorentz-real projection of $\Theta$ defines a concurrent spacetime
+vector $V$ satisfying $\nabla_\mu V^\nu=\delta_\mu{}^\nu$.  Hence the metric
+admits a proper homothety and $R^\rho{}_{\sigma\mu\nu}V^\sigma=0$.
+Schwarzschild with nonzero mass, and generic Einstein geometries, do not obey
+this restriction.  Thus the no-new-field Lorentz pairing is rigorously closed
+as a kinematic reduction but closed as a no-go for generic curved GR.  A
+viable two-sided completion must derive a nontrivial relative bimodule action
+from the canonical UBT action without adding propagating degrees of freedom.
+\end{abstract}
+
+\section{Algebraic conventions}
+Let $\B\simeq\operatorname{Mat}(2,\mathbb C)$ and let $\ddagger$ denote
+Hermitian conjugation (complex conjugation followed by quaternion
+conjugation).  The classical Lorentz slice is
+\begin{equation}
+ W_L=\{X\in\B\mid X^\ddagger=-X\}
+ =\{i x^0\mathbf1+x^k\mathbf e_k\mid x^a\in\mathbb R\}.
+\end{equation}
+Equivalently, $W_L$ is the fixed set of
+$\mathcal JX=-X^\ddagger$.
+
+Consider the most general regular bimodule connection on $\B$,
+\begin{equation}
+ D_\mu X=\partial_\mu X+A_\mu X-XB_\mu.
+ \label{eq:general-pair}
+\end{equation}
+
+\section{Exact reduction of the pair}
+\begin{theorem}[Lorentz-slice preserving pairs]
+At a fixed spacetime point, Eq.~\eqref{eq:general-pair} maps $W_L$ into
+$W_L$ for every $X\in W_L$ if and only if
+\begin{equation}
+ \boxed{B_\mu=-A_\mu^\ddagger+c_\mu\mathbf1,\qquad c_\mu\in\mathbb R.}
+ \label{eq:slice-pair}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $X^\ddagger=-X$, slice preservation is equivalent to
+$(D_\mu X)^\ddagger=-D_\mu X$.  The connection terms give
+\begin{equation}
+ (A_\mu+B_\mu^\ddagger)X
+ =X(A_\mu^\ddagger+B_\mu).
+ \label{eq:P-condition}
+\end{equation}
+Put $P_\mu=A_\mu+B_\mu^\ddagger$.  Taking $X=i\mathbf1$ in
+Eq.~\eqref{eq:P-condition} gives $P_\mu=P_\mu^\ddagger$.  Taking
+$X=\mathbf e_k$ then gives $[P_\mu,\mathbf e_k]=0$ for all three quaternion
+units.  Their commutant in $\operatorname{Mat}(2,\mathbb C)$ is the center,
+so $P_\mu=c_\mu\mathbf1$; Hermiticity makes $c_\mu$ real.  This is
+Eq.~\eqref{eq:slice-pair}.  The converse follows by direct substitution.
+\end{proof}
+
+\begin{theorem}[Metric-compatible reduction to one spin connection]
+Assume in addition that the induced transport preserves the Lorentz quadratic
+form.  Write
+\begin{equation}
+ A_\mu=\Omega_\mu+\alpha_\mu\mathbf1,
+ \qquad \operatorname{tr}\Omega_\mu=0.
+\end{equation}
+Then metric compatibility requires
+$c_\mu=2\operatorname{Re}\alpha_\mu$, and Eq.~\eqref{eq:general-pair}
+reduces exactly to
+\begin{equation}
+ \boxed{D_\mu X=\partial_\mu X+\Omega_\mu X+X\Omega_\mu^\ddagger.}
+ \label{eq:lorentz-pair}
+\end{equation}
+Equivalently one may choose the representative
+\begin{equation}
+ \boxed{A_\mu=\Omega_\mu,\qquad B_\mu=-\Omega_\mu^\ddagger.}
+ \label{eq:A-B-Omega}
+\end{equation}
+The common central one-form is invisible because it cancels between left and
+right multiplication.
+\end{theorem}
+
+\begin{proof}
+Using Eq.~\eqref{eq:slice-pair}, the connection part becomes
+\begin{equation}
+ A_\mu X-XB_\mu
+ =\Omega_\mu X+X\Omega_\mu^\ddagger
+ +(2\operatorname{Re}\alpha_\mu-c_\mu)X.
+\end{equation}
+The final real scalar term is a local dilation of every Lorentz vector and
+therefore rescales the Lorentz bilinear form.  Metric compatibility sets its
+coefficient to zero.  Then
+$B_\mu=-\Omega_\mu^\ddagger+\alpha_\mu\mathbf1$, and the same central
+$\alpha_\mu\mathbf1$ occurs on both sides of Eq.~\eqref{eq:general-pair}, so
+it cancels identically.  The traceless spin lift fixes the representative
+Eq.~\eqref{eq:A-B-Omega}.
+\end{proof}
+
+\begin{corollary}[No additional Lorentz connection fields]
+In the pure gravitational Lorentz branch, $A_\mu$ and $B_\mu$ are not two
+independent fields.  They are the left and right actions of the one spin
+connection
+\begin{equation}
+ \Omega_\mu=\frac14\omega_{\mu ab}\Sigma^{ab}.
+\end{equation}
+For specified tetrad and torsion,
+$\Omega=\Omega(e,T)$ is already fixed.  In the torsion-free branch it is the
+Levi--Civita spin connection, and in Cartesian inertial Minkowski gauge
+$A_\mu=B_\mu=\Omega_\mu=0$.
+\end{corollary}
+
+\section{The obstruction exposed by the reduction}
+\begin{theorem}[Concurrent-vector theorem]
+Let the torsion-free metric-compatible derivative be
+Eq.~\eqref{eq:lorentz-pair}.  Suppose
+\begin{equation}
+ D_\mu\Theta=sE_\mu,\qquad s:=\sqrt{\mathcal N_0},
+ \qquad E_\mu\in W_L,
+ \label{eq:tetrad-generation}
+\end{equation}
+and $E_\mu$ is a nondegenerate tetrad.  Then there exists a real spacetime
+vector field $V$ satisfying
+\begin{equation}
+ \boxed{\nabla_\mu V^\nu=\delta_\mu{}^\nu.}
+ \label{eq:concurrent}
+\end{equation}
+Consequently
+\begin{equation}
+ \mathcal L_Vg_{\mu\nu}=2g_{\mu\nu},
+ \qquad
+ R^\rho{}_{\sigma\mu\nu}V^\sigma=0.
+ \label{eq:homothety-curvature}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:lorentz-pair} commutes with
+$\mathcal JX=-X^\ddagger$.  Therefore the Lorentz-real projection
+\begin{equation}
+ X:=\frac12(\Theta+\mathcal J\Theta)\in W_L
+\end{equation}
+obeys $D_\mu X=sE_\mu$, because $\mathcal JE_\mu=E_\mu$.  Write
+$X=X^a\mathbf u_a$ and $E_\mu=e_\mu{}^a\mathbf u_a$ in a Lorentz basis and
+define
+\begin{equation}
+ V^\nu:=s^{-1}e_a{}^\nu X^a.
+\end{equation}
+Using the inverse tetrad postulate and $D_\mu X^a=s e_\mu{}^a$ gives
+\begin{equation}
+ \nabla_\mu V^\nu
+ =s^{-1}e_a{}^\nu D_\mu X^a
+ =e_a{}^\nu e_\mu{}^a
+ =\delta_\mu{}^\nu.
+\end{equation}
+Symmetrization yields the homothety equation.  Antisymmetrizing two covariant
+derivatives of $V$ yields the curvature-kernel identity.
+\end{proof}
+
+\begin{proposition}[Schwarzschild exclusion]
+The Schwarzschild metric with mass $M\ne0$ admits no vector satisfying
+Eq.~\eqref{eq:concurrent}; indeed it admits no proper homothety
+$\mathcal L_Vg=2g$.
+\end{proposition}
+
+\begin{proof}
+Average a putative homothetic vector over the rotational isometry group.  The
+averaged vector remains homothetic and has the form
+$V=T(t,r)\partial_t+R(t,r)\partial_r$.  For
+\begin{equation}
+ ds^2=-f(r)dt^2+f(r)^{-1}dr^2+r^2d\Omega^2,
+ \qquad f(r)=1-\frac{2M}{r},
+\end{equation}
+the angular component of $\mathcal L_Vg=2g$ gives $R=r$.  The $rr$ component
+then gives
+\begin{equation}
+ -\frac{r f'(r)}{f(r)^2}+\frac{2}{f(r)}=\frac{2}{f(r)},
+\end{equation}
+so $f'(r)=0$, contradicting $f'(r)=2M/r^2\ne0$.
+\end{proof}
+
+\begin{remark}[Why constants in a potential do not remove the obstruction]
+A central constant or central one-form cancels from the bimodule derivative
+and cannot change Eq.~\eqref{eq:concurrent}.  A potential may make an
+additional field auxiliary or fix its vacuum value, but a constant parameter
+cannot provide the spacetime-dependent relative left/right action required to
+evade the concurrent-vector restriction.  Any such relative component must
+be derived algebraically from the canonical action and shown to carry no new
+propagating degree of freedom.
+\end{remark}
+
+\section{Defensible gap status}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=New exact subclosures]
+\textbf{GAP-10I-PAIR-KIN: CLOSED [L1].}
+Lorentz-slice and metric compatibility reduce the apparent fields
+$(A_\mu,B_\mu)$ to the single existing spin connection, modulo a central term
+that cancels identically.  In flat inertial gauge both vanish.
+
+\medskip
+\textbf{GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1].}
+That pure Lorentz pairing makes a nondegenerate torsion-free tetrad generated
+by one $\Theta$ imply a concurrent vector and a proper homothety.  It therefore
+cannot represent generic curved GR and excludes Schwarzschild with $M\ne0$.
+
+\medskip
+\textbf{GAP-10I-2S / GAP-10I-CURVED: NARROWED.}
+The remaining admissible route must derive a nontrivial relative bimodule
+connection from the canonical action, prove that it is composite or auxiliary
+rather than propagating, and then establish self-consistent existence and
+regularity.  Merely naming two independent connections is not a closure.
+
+\medskip
+\textbf{GAP-10D: NOT CLOSED BY THIS REDUCTION.}
+The result removes a false no-new-field shortcut and identifies the exact
+missing object in the variational bridge.  The Palatini/Lovelock endpoint
+remains conditional until the relative action, its algebraic elimination, and
+the induced metric variation are derived from canonical UBT.
+\end{tcolorbox}
+
+\end{document}

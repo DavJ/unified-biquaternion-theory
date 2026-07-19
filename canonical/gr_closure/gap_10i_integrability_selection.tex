@@ -214,14 +214,22 @@ acts as an intertwiner between the left and right curvature representations.
 \end{corollary}
 
 \begin{remark}[What has and has not been selected]
-The theorem does not yet derive $A_\mu$, $B_\mu$, their relation under the UBT
-involutions, or their action from the canonical action.  It proves a structural constraint and exhibits a minimal algebra-native
-escape from the one-sided obstruction: a two-sided/bimodule connection can
-retain invertible $\Theta$, torsion-free compatibility, and nonzero
-curvature simultaneously.  It is not proved to be the unique logically
-possible escape.  A paired Lorentz spin connection is a natural candidate,
-but its precise involution and normalization must be fixed in the canonical
-action.
+The theorem alone does not derive $A_\mu$, $B_\mu$, their relation under the
+UBT involutions, or their action from the canonical action.  It proves a
+structural constraint and exhibits a minimal algebra-native escape from the
+one-sided obstruction: a general two-sided/bimodule connection can retain
+invertible $\Theta$, torsion-free compatibility, and nonzero curvature
+simultaneously.
+\end{remark}
+
+\begin{remark}[Subsequent pure-pair audit]
+Lorentz-slice and metric compatibility select the no-new-field representative
+$A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$ modulo a cancelling
+central term.  That representative is closed as a concurrent-vector no-go for
+generic curved GR and Schwarzschild with nonzero mass.  Consequently the
+remaining viable route requires a nontrivial relative bimodule action derived
+as composite or auxiliary from the canonical action.  See
+\texttt{canonical/gr\_closure/gap\_10i\_paired\_connection\_audit.tex}.
 \end{remark}
 
 \section{Implicit and possibly transcendental self-consistency}
@@ -256,10 +264,18 @@ connection with invertible $\Theta$ cannot support generic nonzero curvature
 under torsion-free tetrad compatibility.
 
 \medskip
-\textbf{GAP-10I-2S: NARROWED [L1].}  The two-sided bimodule derivative avoids
-the flatness obstruction and reduces integrability to the curvature-intertwiner
-condition Eq.~\eqref{eq:curvature-intertwiner}.  This is a necessary structural
-advance, not a proof of existence for arbitrary curved tetrads.
+\textbf{GAP-10I-PAIR-KIN: CLOSED [L1].}  The pure Lorentz-compatible pair
+reduces to one spin connection modulo a central term that cancels.
+
+\medskip
+\textbf{GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1].}  The pure pair implies a
+concurrent vector and excludes generic curved GR and Schwarzschild with
+nonzero mass.
+
+\medskip
+\textbf{GAP-10I-2S: NARROWED [L1].}  The general two-sided derivative avoids
+the one-sided flatness obstruction, but a viable relative bimodule action must
+be derived as composite or auxiliary and shown nonpropagating.
 
 \medskip
 \textbf{GAP-10I-PRESCRIBED: CLOSED [L1].}  For specified smooth

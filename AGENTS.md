@@ -143,6 +143,14 @@ A naive one-sided regular connection with invertible `Theta`, torsion-free
 antisymmetric tetrad compatibility, and the same induced connection forces
 zero curvature. Do not use that route for generic curved GR.
 
+The seemingly economical identification `A_mu=Omega_mu`,
+`B_mu=-Omega_mu^ddagger` is also not a generic curved-GR completion. It reduces
+the pair to the existing spin connection, but then `E_mu=D_mu Theta/sqrt(N0)`
+implies a concurrent vector `nabla_mu V^nu=delta_mu^nu`; Schwarzschild with
+nonzero mass is excluded. Use this branch only as a proved no-go/diagnostic.
+A viable relative left/right component must be derived from the action and
+shown composite or auxiliary, not simply postulated as two new fields.
+
 ## 4. Exact GR gap ledger
 
 Use these statuses unless a new proof explicitly changes them:
@@ -170,8 +178,15 @@ Use these statuses unless a new proof explicitly changes them:
   affine single-`Theta` representer; Minkowski is included.
 - `GAP-10I-1S: CLOSED AS NO-GO [L1]` — the stated one-sided invertible curved
   route forces zero curvature.
-- `GAP-10I-2S: NARROWED [L1]` — the two-sided derivative removes that flatness
-  obstruction and yields a left/right curvature-intertwiner condition.
+- `GAP-10I-PAIR-KIN: CLOSED [L1]` — Lorentz-slice and metric compatibility
+  reduce the apparent pair to one spin connection modulo a central term that
+  cancels.
+- `GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1]` — that pure Lorentz pair implies a
+  concurrent vector and cannot generate generic curved GR or Schwarzschild
+  with nonzero mass.
+- `GAP-10I-2S: NARROWED [L1]` — the remaining generic route requires a
+  nontrivial relative bimodule action derived as composite or auxiliary, with
+  no new propagating degrees of freedom.
 - `GAP-10I-PRESCRIBED: CLOSED [L1]` — for specified `(E,A,B)` the exact
   existence and path-independence criterion is stabilization of `(Theta0,1)`
   by the augmented holonomy.

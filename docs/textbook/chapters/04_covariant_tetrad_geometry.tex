@@ -328,9 +328,29 @@ intertwines the left and right curvature representations.  This is a genuine
 structural narrowing of GAP-10I: the two-sided/bimodule derivative is the
 minimal algebra-native route that avoids the generic flatness obstruction.
 
-It is not yet a complete curved-space solution.  The action must still fix the
-relation between $A_\mu$ and $B_\mu$, their involution properties, torsion, and
-boundary conditions.
+\subsection{No-new-field reduction and its curved-space no-go}
+On the Lorentz slice $W_L=\{X\mid X^\ddagger=-X\}$, preservation of the slice
+and of its quadratic form reduces the pure pair, modulo a common central
+one-form that cancels, to
+\[
+ \boxed{A_\mu=\Omega_\mu,\qquad B_\mu=-\Omega_\mu^\ddagger.}
+\]
+Thus $A_\mu$ and $B_\mu$ are not independent gravitational fields in this
+branch.  They are the two module actions of the one spin connection.
+
+This does not close curved GR.  The same involution-compatible derivative makes
+a nondegenerate torsion-free solution
+$D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ imply a vector field satisfying
+\[
+ \boxed{\nabla_\mu V^\nu=\delta_\mu{}^\nu,}
+ \qquad \mathcal L_Vg=2g.
+\]
+Schwarzschild with nonzero mass has no such proper homothety.  The pure pair is
+therefore closed kinematically and closed as a no-go for generic curved GR.
+A viable completion must derive a relative term
+$P_\mu X-XQ_\mu$ beyond the pure spin lift and prove that it is composite or
+auxiliary rather than a new propagating field.  A common central constant does
+not help because it cancels.
 
 \section{Conditional dynamical subclosures}
 \subsection{The algebraic Cartan torsion equation}
@@ -444,6 +464,10 @@ The following results are closed at their stated levels:
        exact augmented-holonomy criterion for prescribed curved coefficients;
  \item GAP-10I-1S: the naive one-sided invertible curved route is a conditional
        no-go;
+ \item GAP-10I-PAIR-KIN: the pure compatible pair reduces to the one spin
+       connection;
+ \item GAP-10I-PAIR-GR: that pure pair is a concurrent-vector no-go for generic
+       curved GR and Schwarzschild with nonzero mass;
  \item GAP-10D-PALATINI/UNIQUENESS (conditional): the minimal first-order
        branch and Lovelock hypotheses select Einstein--$\Lambda$;
  \item GAP-10$\psi$-KIN/SYM: Lorentz-gauge flow or translation symmetry
@@ -454,8 +478,10 @@ The undivided full-theory gaps are narrowed rather than fully closed:
 \begin{enumerate}
  \item GAP-10T-DYN: derive the selected first-order branch, spin current,
        normalization and possible extra torsion invariants from canonical UBT;
- \item GAP-10I-CURVED: establish self-consistent on-shell selection, regularity
-       and global continuation of $(\Theta,E,A,B,T)$;
+ \item GAP-10I-2S/CURVED: derive a nontrivial relative bimodule action as a
+       composite or auxiliary nonpropagating variable, then establish
+       self-consistent on-shell selection, regularity and global continuation
+       of $(\Theta,E,A,B,T)$;
  \item GAP-10L-DYN: prove equivariance and well-posed uniqueness for the final
        complete dynamics;
  \item GAP-10D: derive the low-energy Palatini/Lovelock assumptions, couplings

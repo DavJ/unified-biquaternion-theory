@@ -103,8 +103,53 @@ for which
 Torsion-free antisymmetric compatibility requires
 $F^A_{\mu\nu}\Theta=\Theta F^B_{\mu\nu}$; if $\Theta$ is invertible, the two
 curvatures are conjugate rather than zero.  This removes the one-sided
-flatness obstruction but does not yet derive the precise relation between
-$A_\mu$ and $B_\mu$ from the action.
+flatness obstruction, but the general pair is not thereby derived from the
+action.
+
+\subsection{Pure Lorentz pairing: exact reduction and exact obstruction}
+Let $W_L=\{X\mid X^\ddagger=-X\}$ be the Lorentz slice.  Requiring the
+bimodule derivative to preserve $W_L$ for every $X\in W_L$ gives
+\begin{equation}
+ B_\mu=-A_\mu^\ddagger+c_\mu\mathbf1,
+ \qquad c_\mu\in\mathbb R.
+\end{equation}
+Requiring in addition preservation of the Lorentz quadratic form removes the
+real dilation and reduces the connection action, modulo a common central
+one-form that cancels identically, to
+\begin{equation}
+ \boxed{D_\mu X=\partial_\mu X+\Omega_\mu X+X\Omega_\mu^\ddagger,}
+ \qquad
+ \boxed{A_\mu=\Omega_\mu,\quad B_\mu=-\Omega_\mu^\ddagger.}
+ \label{eq:canonical:pure-lorentz-pair}
+\end{equation}
+Thus $A_\mu$ and $B_\mu$ are not two new gravitational fields in this branch;
+they are the left and right representations of the one already reconstructed
+spin connection.
+
+This economical reduction is nevertheless not the generic curved-GR
+solution.  Because Eq.~\eqref{eq:canonical:pure-lorentz-pair} commutes with the
+Lorentz involution, a nondegenerate torsion-free solution
+$D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ implies a spacetime vector $V$ obeying
+\begin{equation}
+ \boxed{\nabla_\mu V^\nu=\delta_\mu{}^\nu,}
+ \qquad
+ \mathcal L_Vg=2g,
+ \qquad
+ R^\rho{}_{\sigma\mu\nu}V^\sigma=0.
+\end{equation}
+This concurrent-vector condition excludes Schwarzschild with nonzero mass and
+generic Einstein geometries.  Hence the pure Lorentz pair is closed
+kinematically but closed as a no-go for generic curved GR.  Any viable
+remainder
+\begin{equation}
+ A_\mu=\Omega_\mu+P_\mu,
+ \qquad
+ B_\mu=-\Omega_\mu^\ddagger+Q_\mu
+\end{equation}
+must be derived from the canonical action, and $P_\mu X-XQ_\mu$ must be shown
+composite or auxiliary rather than a new propagating sector.  A common central
+constant or one-form cannot help because it cancels.  The complete proof is in
+\path{canonical/gr_closure/gap_10i_paired_connection_audit.tex}.
 
 \subsection{Flat limit and explicit representer}
 In a flat inertial torsion-free sector,
@@ -136,7 +181,9 @@ The full-theory questions are narrowed rather than closed:
 \begin{itemize}
  \item GAP-10T-DYN: derive the selected first-order branch, spin current,
        normalization and possible extra torsion invariants from UBT;
- \item fix the exact paired left/right connection and involution on $\Theta$;
+ \item GAP-10I-PAIR-KIN is closed and GAP-10I-PAIR-GR is closed as a
+       no-go; derive the remaining nontrivial relative bimodule action as a
+       composite or auxiliary nonpropagating variable;
  \item GAP-10I-CURVED: solve the self-consistent implicit curved system,
        regularity and global continuation;
  \item GAP-10L-DYN: verify equivariance and well-posed uniqueness for the full

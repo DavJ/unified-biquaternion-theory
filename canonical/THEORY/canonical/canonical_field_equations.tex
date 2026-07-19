@@ -45,14 +45,19 @@ torsion, the compatible frame connection is uniquely
 The torsion-free branch is the standard Levi--Civita spin connection.
 
 Every constant Lorentz tetrad has an affine single-$\Theta$ representer.  For
-curved geometry the active candidate is
+curved geometry the general algebra-native candidate is
 \[
  D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu,
-\]
-with
-\[
+ \qquad
  [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
 \]
+The no-new-field Lorentz representative is uniquely
+$A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$ modulo a cancelling central
+term.  In the torsion-free generated-tetrad branch it implies a concurrent
+vector $\nabla_\mu V^\nu=\delta_\mu{}^\nu$, so it cannot generate generic
+curved GR or Schwarzschild with nonzero mass.  The remaining viable branch
+must derive a nontrivial relative left/right action as a composite or
+auxiliary variable without adding propagating degrees of freedom.
 
 \section{Einstein bridge}
 
@@ -61,7 +66,7 @@ The target equation
  G_{\mu\nu}[g]=\kappa T_{\mu\nu}
 \end{equation}
 has not yet been derived unconditionally from the same canonical UBT action
-that determines $\Theta$, the paired connections, and torsion.  A composed
+that determines $\Theta$, the relative bimodule action, and torsion.  A composed
 Einstein--Hilbert branch can reproduce standard tetrad GR under its assumptions,
 but it does not close GAP-10D or GAP-B-MASTER.
 
@@ -86,6 +91,8 @@ and its equations.
  \item GAP-10L-DYN: NARROWED.
  \item GAP-10I-SR: CLOSED [L1].
  \item GAP-10I-1S: CLOSED AS NO-GO [L1].
+ \item GAP-10I-PAIR-KIN: CLOSED [L1].
+ \item GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1].
  \item GAP-10I-2S: NARROWED [L1].
  \item GAP-10I-PRESCRIBED: CLOSED [L1].
  \item GAP-10I-CURVED: NARROWED.

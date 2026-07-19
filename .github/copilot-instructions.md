@@ -1,6 +1,6 @@
 # GitHub Copilot Instructions — Unified Biquaternion Theory
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
-<!-- Last updated: 2026-07-16 — covariant tetrad, torsion reconstruction, integrability selection -->
+<!-- Last updated: 2026-07-19 — paired-connection reduction and concurrent-vector no-go -->
 
 ## Repository role and authority
 
@@ -97,8 +97,21 @@ D_mu Theta = partial_mu Theta + A_mu Theta - Theta B_mu
 
 For invertible `Theta`, torsion-free integrability requires the curvature
 intertwiner `F^A=Theta F^B Theta^{-1}`. This removes the one-sided flatness
-obstruction; it does not prove curved-space existence or derive `(A,B)` from
-the action.
+obstruction; it does not prove curved-space existence.
+
+The no-new-field Lorentz-compatible representative is exactly
+
+```text
+A_mu = Omega_mu
+B_mu = -Omega_mu^ddagger
+```
+
+modulo a common central one-form that cancels. Do not present this as the
+generic curved solution: it implies `nabla_mu V^nu=delta_mu^nu` and excludes
+Schwarzschild with nonzero mass. A viable remaining branch must derive a
+nontrivial relative left/right action as composite or auxiliary and prove that
+it adds no propagating degrees of freedom. Do not merely postulate two new
+connections.
 
 ## Exact status vocabulary
 
@@ -112,6 +125,8 @@ Use these labels exactly:
 - `GAP-10L-SYM: CLOSED CONDITIONALLY`; `GAP-10L-DYN: NARROWED`.
 - `GAP-10I-SR: CLOSED [L1]`.
 - `GAP-10I-1S: CLOSED AS NO-GO [L1]`.
+- `GAP-10I-PAIR-KIN: CLOSED [L1]`.
+- `GAP-10I-PAIR-GR: CLOSED AS NO-GO [L1]`.
 - `GAP-10I-2S: NARROWED [L1]`.
 - `GAP-10I-PRESCRIBED: CLOSED`; `GAP-10I-CURVED: NARROWED`.
 - `GAP-10D-PALATINI/UNIQUENESS`: CLOSED CONDITIONALLY; `GAP-10D` and `GAP-10psi`: NARROWED; `GAP-B-MASTER` and `GAP-U2Theta`: OPEN.
@@ -154,6 +169,7 @@ canonical/geometry/biquaternion_connection.tex
 canonical/gr_closure/covariant_tetrad_rank_theorem.tex
 canonical/gr_closure/gap_10omega_connection_elimination.tex
 canonical/gr_closure/gap_10i_integrability_selection.tex
+canonical/gr_closure/gap_10i_paired_connection_audit.tex
 docs/czech/UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md
 papers/UBT_GR_Submission.tex
 STATUS_OF_UBT.md

@@ -2,7 +2,7 @@
 
 # WHAT_IS_PROVED.md — Definitive Map of Proved Results
 
-## 2026-07-16 update — covariant-tetrad connection and integrability
+## 2026-07-19 update — paired-connection reduction and concurrent-vector audit
 
 | # | Claim | Level | Source |
 |---|---|---|---|
@@ -16,8 +16,10 @@
 | GR-T8 | $\Theta_{\rm SR}=\Theta_0+\sqrt{\mathcal N_0}(ix^0\mathbf1+x^k\mathbf e_k)$ generates Minkowski spacetime and has zero second derivatives | [L1] | same; `tools/verify_gap_10i_integrability.py` |
 | GR-T9 | Naive one-sided regular connection + invertible $\Theta$ + torsion-free compatibility forces zero curvature | [L1 NO-GO] | same |
 | GR-T10 | Two-sided derivative obeys $[D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}$ and permits nonzero intertwined curvatures | [L1] | same |
-| GR-T11 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
-| GR-T12 | Integrable on-shell generation of required curved tetrads by one $\Theta$ | [OPEN] | GAP-10I-CURVED |
+| GR-T11 | Lorentz-slice and metric compatibility reduce the pure pair to $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$ modulo a cancelling central term | [L1] | `canonical/gr_closure/gap_10i_paired_connection_audit.tex`; `tools/verify_gap_10i_paired_connection.py` |
+| GR-T12 | The pure Lorentz pair implies $\nabla_\mu V^\nu=\delta_\mu{}^\nu$ and excludes generic curved GR and Schwarzschild with $M\ne0$ | [L1 NO-GO] | same |
+| GR-T13 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
+| GR-T14 | Integrable on-shell generation of required curved tetrads by one $\Theta$ with a derived nontrivial relative bimodule action | [OPEN] | GAP-10I-CURVED |
 
 The former compact-$\psi$ fiber-average rank closure is noncanonical and must
 not be listed as the proved UBT metric mechanism.
@@ -26,7 +28,7 @@ not be listed as the proved UBT metric mechanism.
 
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-07-16  
+**Date**: 2026-07-19  
 **Purpose**: Authoritative list of what UBT has proved, at what level,
 and where the proof lives.  Every claim here is backed by a source file.
 If it is not on this list, it is not claimed as proved.
@@ -170,7 +172,9 @@ they are rederived in this route.
 | GAP-10L-DYN | **NARROWED:** verify canonical equivariance and well-posed uniqueness |
 | GAP-10I-SR | **CLOSED [L1]:** affine representer for constant Lorentz tetrads |
 | GAP-10I-1S | **CLOSED AS NO-GO [L1]:** stated one-sided invertible curved route forces flatness |
-| GAP-10I-2S | **NARROWED [L1]:** two-sided curvature intertwinement removes that no-go |
+| GAP-10I-PAIR-KIN | **CLOSED [L1]:** the Lorentz-compatible pair reduces to one spin connection; no independent A,B fields |
+| GAP-10I-PAIR-GR | **CLOSED AS NO-GO [L1]:** the pure Lorentz pair implies a concurrent vector and excludes generic curved GR/Schwarzschild with nonzero mass |
+| GAP-10I-2S | **NARROWED [L1]:** derive the required relative bimodule action as composite or auxiliary without propagating fields |
 | GAP-10I-PRESCRIBED | **CLOSED [L1]:** exact augmented-holonomy criterion for specified coefficients |
 | GAP-10I-CURVED | **NARROWED:** self-consistent generation, regularity, and global continuation remain |
 | GAP-10D-PALATINI / UNIQUENESS | **CLOSED CONDITIONALLY [L1]:** conditional Einstein--Λ infrared endpoint |

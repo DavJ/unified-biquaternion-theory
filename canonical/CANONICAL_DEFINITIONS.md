@@ -183,7 +183,10 @@ At every nondegenerate tetrad the differential `e_μ^a -> g_μν` has rank ten. 
 
 The local rank theorem does **not** by itself prove that every required curved
 tetrad is generated on shell by one $\Theta$.  The connection and integrability
-results refine this statement substantially.
+results refine this statement substantially.  In particular, imposing the pure
+Lorentz pair `A_mu=Omega_mu`, `B_mu=-Omega_mu^ddagger` removes independent A/B
+fields but forces a concurrent vector `nabla_mu V^nu=delta_mu^nu`; it therefore
+does not cover generic curved GR or Schwarzschild with nonzero mass.
 
 ### Connection and Christoffel symbols
 

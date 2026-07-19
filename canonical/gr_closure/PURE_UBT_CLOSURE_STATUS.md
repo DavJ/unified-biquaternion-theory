@@ -1,6 +1,6 @@
 # UBT GR Closure Status — Covariant-Tetrad Route
 
-**Date:** 2026-07-16  
+**Date:** 2026-07-19  
 **Canonical route:** local covariant tetrad, unique connection reconstruction,
 and two-sided integrability; not compact-fiber averaging.
 
@@ -31,6 +31,12 @@ and two-sided integrability; not compact-fiber averaging.
 - **GAP-10I-1S — CLOSED AS NO-GO [L1].** A naive one-sided regular connection
   with invertible \(\Theta\) forces zero curvature under torsion-free
   compatibility.
+- **GAP-10I-PAIR-KIN — CLOSED [L1].** Lorentz-slice and metric compatibility
+  reduce the apparent pair to one spin connection, with no independent
+  gravitational fields \(A_\mu,B_\mu\).
+- **GAP-10I-PAIR-GR — CLOSED AS NO-GO [L1].** The pure Lorentz pair implies a
+  concurrent vector \(\nabla_\mu V^\nu=\delta_\mu{}^\nu\) and therefore
+  cannot generate generic curved GR or Schwarzschild with nonzero mass.
 - **Two-sided curvature identity — PROVED [L1].** For
   \(D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu\),
   \[
@@ -57,9 +63,10 @@ and two-sided integrability; not compact-fiber averaging.
 
 ## Narrowed or open results
 
-- **GAP-10I-2S — NARROWED:** two-sided action avoids the flatness obstruction,
-  but the canonical action must fix the paired left/right connections and
-  involution.
+- **GAP-10I-2S — NARROWED:** the pure Lorentz pairing is now excluded as the
+  generic route; the canonical action must derive a nontrivial relative
+  bimodule component and prove that it is composite or auxiliary rather than
+  propagating.
 - **GAP-10T-DYN — NARROWED:** derive the minimal first-order branch, exact spin
   current, normalization, and possible torsion dynamics from canonical UBT.
 - **GAP-10L-DYN — NARROWED:** verify equivariance and well-posed uniqueness for
