@@ -103,12 +103,34 @@ def compute_derived_params(model_name, popt, perr):
     raise ValueError(f"Unknown model_name: {model_name}")
 
 
-def compute_goodness_of_fit(y_true, y_pred):
+def compute_goodness_of_fit(y_true, y_pred, mask=None):
     y_true = np.asarray(y_true, dtype=float)
     y_pred = np.asarray(y_pred, dtype=float)
-    residual = y_true - y_pred
+
+    if mask is None:
+        residual = y_true - y_pred
+        rmse = float(np.sqrt(np.mean(residual**2)))
+        ss_res = float(np.sum(residual**2))
+        ss_tot = float(np.sum((y_true - np.mean(y_true)) ** 2))
+        r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else 1.0
+        return {"rmse": rmse, "r2": r2}
+
+    mask = np.asarray(mask, dtype=bool)
+    if mask.shape != y_true.shape or y_pred.shape != y_true.shape:
+        raise ValueError("y_true, y_pred, and mask must have matching shapes")
+    if not np.any(mask):
+        raise ValueError("mask must select at least one bin")
+
+    y_true_masked = y_true[mask]
+    residual = y_true_masked - y_pred[mask]
     rmse = float(np.sqrt(np.mean(residual**2)))
     ss_res = float(np.sum(residual**2))
-    ss_tot = float(np.sum((y_true - np.mean(y_true)) ** 2))
-    r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else 1.0
-    return {"rmse": rmse, "r2": r2}
+    ss_tot = float(np.sum((y_true_masked - np.mean(y_true_masked)) ** 2))
+    r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else 0.0
+    return {
+        "rmse": rmse,
+        "r2": r2,
+        "residual_mean": float(np.mean(residual)),
+        "residual_std": float(np.std(residual)),
+        "residual_max_abs": float(np.max(np.abs(residual))),
+    }

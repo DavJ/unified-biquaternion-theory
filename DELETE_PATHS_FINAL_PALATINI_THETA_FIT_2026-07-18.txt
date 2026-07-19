@@ -1,0 +1,1 @@
+canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex
