@@ -6,8 +6,8 @@
 Layer 2 Coding Constraints and Fine-Structure Constant α — Scan Script
 =======================================================================
 
-Route A4: Test whether Hamming (8,4,4), Gray transport, or the 1⊕3⊕3̄⊕1
-decomposition of the biquaternion algebra fix the U(1) phase quantization
+Route A4: Test whether Hamming (8,4,4), Gray transport, or an abstract
+1⊕3⊕3⊕1 block ansatz fixes the U(1) phase quantization
 in a way that constrains or determines α.
 
 Acceptance criteria:
@@ -117,7 +117,7 @@ def test_hamming_844_structure() -> dict:
     weights = sorted(set(hamming_weight(c) for c in codewords))
 
     # Check: does d_min = 4 relate to physical charge fractions?
-    # In the 1⊕3⊕3̄⊕1 decomposition (dim=8), minimum distance 4 = dim/2.
+    # In an abstract 1⊕3⊕3⊕1 bookkeeping ansatz (dim=8), d_min=4 equals dim/2.
     # If charges are quantized in units of e/d_min, the elementary unit is e/4.
     # But e is not fixed by the coding structure; only the ratio is constrained.
 
@@ -133,8 +133,9 @@ def test_hamming_844_structure() -> dict:
         "d_min": d_min,
         "codeword_weights": weights,
         "observation": (
-            f"d_min = {d_min}, matching 1⊕3⊕3̄⊕1 half-dimension (8/2 = 4). "
-            "This is a structural match but does NOT fix the coupling magnitude."
+            f"d_min = {d_min}; numerically this equals half of an 8-state "
+            "register dimension, but that equality has no representation-theoretic "
+            "content by itself and does not fix a coupling magnitude."
         ),
         "alpha_if_e_equals_1_over_dmin": alpha_if_charge_quarter,
         "matches_observed_alpha": abs(alpha_if_charge_quarter - ALPHA_OBSERVED) < 0.001,
@@ -222,80 +223,44 @@ def test_gray_transport_layer() -> dict:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Section 3: 1⊕3⊕3̄⊕1 Decomposition
+# Section 3: Abstract 1⊕3⊕3⊕1 Block Ansatz
 # ──────────────────────────────────────────────────────────────────────────────
 
-def test_su2_decomposition_1330() -> dict:
+def test_abstract_block_ansatz_1331() -> dict:
     """
-    Test 3: Assess whether the 1⊕3⊕3̄⊕1 decomposition of the biquaternion
-    algebra under SU(2) constrains U(1) phase normalization.
+    Test 3: Assess whether an abstract 1⊕3⊕3⊕1 block decomposition constrains
+    U(1) phase normalization.
 
-    The biquaternion algebra B = C⊗H has real dimension 8.
-    Under SU(2) acting on the quaternion part:
-        B = 1 ⊕ 3 ⊕ 3̄ ⊕ 1
-
-    Dimensions: 1 + 3 + 3 + 1 = 8. ✓
-
-    The two singlets (1, 1) correspond to the real and imaginary scalar parts;
-    the two triplets (3, 3̄) correspond to the quaternion imaginary parts
-    and their complex conjugates.
-
-    Returns dict with findings and classification.
+    Important correction: this block count is not a derived decomposition of
+    the biquaternion algebra under SU(2). For SU(2), the triplet is real
+    (3bar ≅ 3), and isometry/classical dimension counting does not select these
+    four blocks. The separately verified three-qubit fermionic Fock construction
+    does yield 1⊕3⊕3bar⊕1 under SU(3), but that is a different carrier and does
+    not determine hypercharge normalization.
     """
-    # Casimir eigenvalues for SU(2) representations
-    # j=0: C_2 = 0 (singlet)
-    # j=1: C_2 = j(j+1) = 2 (triplet)
-    j_values = [0, 1, 1, 0]  # singlet, triplet, anti-triplet, singlet
-    dims = [2 * j + 1 for j in j_values]  # [1, 3, 3, 1]
-    total_dim = sum(dims)  # 8
-
-    # The U(1)_Y generator Y must commute with all of SU(2)_L.
-    # By Schur's lemma, Y acts as a scalar on each irrep:
-    #   Y|singlet_1⟩ = y_1 |singlet_1⟩
-    #   Y|triplet_3⟩ = y_3 |triplet_3⟩  (same for all 3 components)
-    #   Y|triplet_3̄⟩ = y_3bar |triplet_3̄⟩
-    #   Y|singlet_4⟩ = y_4 |singlet_4⟩
-
-    # The hypercharge assignments are free (y_1, y_3, y_3bar, y_4 undetermined
-    # from algebra alone without further physical input).
-    n_free_hypercharges = 4  # one per irrep block (here 4 distinct blocks)
-
-    # For the Higgs doublet analog: we need a doublet (j=1/2) representation.
-    # BUT: the 1⊕3⊕3̄⊕1 decomposition has NO j=1/2 (doublet) representations!
-    # This is a critical observation.
-
-    has_doublet = any(j == 0.5 for j in j_values)
-
-    # The SM Higgs doublet requires j=1/2. The absence of j=1/2 in B means
-    # the Higgs-analog must come from a product representation or a sub-algebra.
-
-    # Possible doublet: take a 2-dimensional subspace spanning one singlet and
-    # one component of a triplet. But this is NOT an irreducible SU(2) doublet;
-    # it is a reducible representation.
+    block_dims = [1, 3, 3, 1]
+    total_dim = sum(block_dims)
+    n_free_block_charges = len(block_dims)
 
     return {
-        "test": "1⊕3⊕3̄⊕1 decomposition under SU(2)",
-        "irreps": list(zip(j_values, dims)),
+        "test": "abstract 1⊕3⊕3⊕1 block ansatz",
+        "block_dims": block_dims,
         "total_dim": total_dim,
-        "n_free_hypercharge_assignments": n_free_hypercharges,
-        "has_SU2_doublet_irrep": has_doublet,
+        "n_free_block_charge_assignments": n_free_block_charges,
         "critical_finding": (
-            "The 1⊕3⊕3̄⊕1 decomposition contains NO j=1/2 doublet representations. "
-            "The SM Higgs requires a doublet. The UBT Higgs-analog must come from "
-            "a different construction (e.g., product representation, sub-algebra, "
-            "or extended field content). This is Gap EW-2."
+            "The dimension split alone does not specify the acting group, the "
+            "representation maps, or a physical U(1) generator. Under the natural "
+            "three-qubit fermionic SU(3) action it describes 1⊕3⊕3bar⊕1, not six "
+            "quark flavors and not an SU(2) Higgs decomposition."
         ),
         "coupling_constraint": (
-            "Hypercharge assignments y_1, y_3, y_3bar, y_4 are free parameters "
-            "of the embedding of U(1)_Y into Aut(B). The decomposition fixes the "
-            "STRUCTURE of allowed charge assignments but not their magnitude."
+            "A commuting U(1) may assign one scalar to each independent block, so "
+            "the charge normalization remains free without an action-level input."
         ),
         "classification": "failed",
         "reason": (
-            "1⊕3⊕3̄⊕1 fixes the representation structure but: "
-            "(1) contains no j=1/2 doublet needed for SM Higgs, "
-            "(2) does not fix the U(1)_Y normalization, "
-            "(3) does not determine the ratio g'/g."
+            "Block dimensions alone neither derive a physical gauge group nor fix "
+            "the elementary charge, g'/g, or alpha."
         ),
     }
 
@@ -312,13 +277,13 @@ def test_combined_coding_constraint() -> dict:
     Layer 2 structure:
       L2S (Hamming): fixes state survival rules (which states are protected)
       L2T (Gray):    fixes transition cost structure (which paths are preferred)
-      1⊕3⊕3̄⊕1:     fixes representation structure of B under SU(2)
+      1⊕3⊕3⊕1:      abstract block count only; acting representation must be supplied
 
     For α = e²/(4π), we need e in physical units.
     The coding layer provides:
       - Charge quantization: q ∈ ℤ · e_unit   (from Hamming minimum distance)
       - Phase discretization: Δφ = 2π/N       (from Gray code, N free)
-      - Representation structure               (from 1⊕3⊕3̄⊕1)
+      - Abstract block bookkeeping              (no acting group inferred)
 
     None of these determines the SCALE of e_unit in physical units.
 
@@ -328,7 +293,7 @@ def test_combined_coding_constraint() -> dict:
     constrained = [
         "Charge spectrum: integer multiples of e_unit (Dirac quantization + Hamming)",
         "Phase step: 2π/N per symbol (Gray, N free)",
-        "Representation structure under SU(2): 1⊕3⊕3̄⊕1",
+        "Abstract 1⊕3⊕3⊕1 block bookkeeping (no group fixed)",
         "State parity: Hamming syndrome = 0 for physical states",
     ]
     free_parameters = [
@@ -370,8 +335,9 @@ def test_combined_coding_constraint() -> dict:
         "near_miss_candidates": candidates,
         "classification": "failed",
         "reason": (
-            "Coding constraints (Hamming + Gray + 1⊕3⊕3̄⊕1) fix the STRUCTURE "
-            "of allowed charges and transitions, but do not determine the "
+            "Hamming and Gray constructions constrain selected coding and path "
+            "properties. An abstract 1⊕3⊕3⊕1 count adds no charge normalization. "
+            "These ingredients do not determine the "
             "magnitude of the elementary charge unit e in physical units. "
             "α = e²/(4π) requires the magnitude, which must come from the "
             "dynamics of S[Θ], not from the coding layer."
@@ -437,8 +403,9 @@ def test_positive_contributions() -> dict:
             "not the magnitude of the coupling. It is a geometric kinematic constraint."
         ),
         "finding_4": (
-            "The 1⊕3⊕3̄⊕1 structure correctly predicts that color charges come "
-            "in triplets and singlets, but does not fix the overall coupling strength."
+            "If the independently verified fermionic SU(3) Fock action is adopted, "
+            "the three-qubit carrier decomposes as 1⊕3⊕3bar⊕1. This is a conditional "
+            "representation result and does not fix flavor assignments or coupling strength."
         ),
         "positive_role_of_coding": (
             "Layer 2 coding provides a SELECTION RULE for the charge spectrum "
@@ -447,8 +414,8 @@ def test_positive_contributions() -> dict:
         ),
         "classification": "conditional",
         "condition": (
-            "Coding provides necessary structure (charge quantization, "
-            "representation content), but the coupling magnitude must come from "
+            "Coding may provide selection rules and a chosen carrier structure, "
+            "but the coupling magnitude must come from "
             "the dynamical sector S[Θ] (existing prime-attractor + one-loop result)."
         ),
     }
@@ -483,7 +450,7 @@ def print_result(result: dict) -> None:
 def main() -> None:
     print("=" * 70)
     print("UBT Layer 2 Coding Constraints — Alpha Derivation Scan")
-    print("Route A4: Hamming / Gray / 1⊕3⊕3̄⊕1 vs. Fine-Structure Constant")
+    print("Route A4: Hamming / Gray / abstract block count vs. Fine-Structure Constant")
     print(f"Observed α⁻¹ = {ALPHA_INV_OBSERVED:.6f} (CODATA 2018)")
     print("=" * 70)
     print()
@@ -495,7 +462,7 @@ def main() -> None:
     results = [
         test_hamming_844_structure(),
         test_gray_transport_layer(),
-        test_su2_decomposition_1330(),
+        test_abstract_block_ansatz_1331(),
         test_combined_coding_constraint(),
         test_positive_contributions(),
     ]
@@ -508,12 +475,12 @@ def main() -> None:
     print("SUMMARY OF ROUTE A4")
     print("=" * 70)
     print()
-    print("Layer 2 coding constraints (Hamming + Gray + 1⊕3⊕3̄⊕1):")
+    print("Layer 2 coding constraints (Hamming + Gray + abstract block count):")
     print()
     print("  WHAT IS CONSTRAINED BY CODING:")
     print("    ✓ Charge spectrum structure (integer/half-integer multiples)")
     print("    ✓ Phase-symbol transition costs (Gray adjacency preference)")
-    print("    ✓ Representation content under SU(2) (1⊕3⊕3̄⊕1)")
+    print("    ✓ Abstract block-count bookkeeping (1⊕3⊕3⊕1)")
     print("    ✓ State stability (Hamming syndrome = 0)")
     print()
     print("  WHAT IS NOT CONSTRAINED BY CODING:")

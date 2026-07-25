@@ -259,7 +259,9 @@ def print_dimension_argument():
     print(f"  dim_C(ℂ³)   = 3   [color space = ℂ-span{{I,J,K}}]")
     print(f"  U(ℂ³)       = U(3) [norm-preserving unitaries]")
     print(f"  U(1) factor = U(1)_Y [overall phase — proved in appendix_E2]")
-    print(f"  Residual    = SU(3) = U(3) / U(1)  [color gauge group]")
+    print("  Lie algebra split: u(3) = su(3) ⊕ u(1)")
+    print("  Group quotient U(3)/U(1) is projective U(3); selecting the")
+    print("  determinant-one subgroup SU(3) requires an additional physical convention.")
     print(f"  dim(SU(3))  = 3²-1 = 8  [8 Gell-Mann generators / gluons]")
     print(f"  → All numbers follow from dim_R(Im ℍ) = 3.  No free parameters.")
 
@@ -379,13 +381,14 @@ def main():
     if all_passed:
         print("RESULT: ALL CHECKS PASSED")
         print()
-        print("SU(3)_c color symmetry is VERIFIED via quantum superposition:")
+        print("An SU(3) matrix representation is VERIFIED for the chosen triplet carrier:")
         print("  Θ_color = α·I + β·J + γ·K  (α,β,γ ∈ ℂ)")
         print("  Symmetry group: U(ℂ³) = U(3)")
-        print("  After U(1)_Y:   SU(3)")
+        print("  Traceless part: su(3) at Lie-algebra level")
         print("  ℤ₂×ℤ₂ skeleton: {1, P_I, P_J, P_K} ⊂ SU(3)")
         print()
-        print("Verdict: PROVED [L0]")
+        print("Verdict: REPRESENTATION/ALGEBRA VERIFIED")
+        print("Open: dynamical selection as the physical UBT color gauge symmetry.")
         print("Reference: step1_superposition_approach.tex (Theorem 4.2)")
     else:
         print("RESULT: SOME CHECKS FAILED — see details above")

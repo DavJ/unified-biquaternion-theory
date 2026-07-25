@@ -1,0 +1,19 @@
+UBT SU(3) triqubit differential patch validation
+Date: 2026-07-25
+Base: unified-biquaternion-theory-master (1)(3).zip
+Base archive commit marker: 2a3144d664c347ae04f53b733646f440317cdb20
+
+PASS: Python syntax compilation for modified/new Python files
+PASS: 60 tests collected and passed in:
+      research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/tests
+PASS: tools/verify_three_qubit_su3.py
+      maximum su(3) algebra residual = 1.755e-16
+PASS: tools/verify_su3_superposition.py
+      conclusion downgraded to representation/algebra verified
+PASS: research_tracks/alpha/layer2_coding_alpha_scan.py
+PASS: pdflatex canonical/interactions/su3_qubit_encoding.tex (2 runs)
+PASS: pdflatex research_tracks/gray_transport_layer/gray_path_fingerprint.tex (2 runs)
+
+Scope note:
+This validates the edited qubit/SU(3) track. It is not a full repository test run
+and does not prove action-level QCD dynamics or a physical dark-sector ratio.

@@ -5,6 +5,7 @@
 **Track**: T2_GAUGE — Standard Model Gauge Structure  
 **Scope**: Detailed status of the SU(3)_c derivation from `ℂ⊗ℍ`  
 **Date**: 2026-04-27  
+**Audit update**: 2026-07-25 — qubit route corrected to representation-level status  
 **Sources**: `canonical/su3_derivation/`, `canonical/interactions/sm_gauge.tex`,
 `canonical/algebra/involutions_Z2xZ2xZ2.tex`, `canonical/interactions/su3_qubit_encoding.tex`,
 `canonical/bridges/su3_gauge_qubit_equivalence.tex`
@@ -90,21 +91,26 @@ orthogonal — the strong and electroweak gauge sectors decouple algebraically.
 
 ## Derivation Route 2: Qubit / Triqubit Encoding
 
-An independent second derivation of SU(3) from `ℂ⊗ℍ` uses the qubit encoding:
+A complementary representation-level realization of `su(3)` uses a qubit encoding:
 
 ```
 ℂ⊗ℍ ≅ Mat(2,ℂ) ≅ (qubit algebra)
 ```
 
-Three qubits encode the three colour degrees of freedom.  The SU(3) colour
-symmetry acts on the qubit state space.
+The canonical one-hot construction embeds the fundamental triplet in the
+weight-1 sector and extends the action trivially on its five-dimensional
+complement. A separate fermionic Fock construction acts naturally on all eight
+states and yields `1⊕3⊕3bar⊕1`. Both algebras are verified, but they are not the
+same eight-dimensional representation.
 
-**Status**: PROVED [L0], independent of Route 1  
+**Status**: REPRESENTATION VERIFIED; not an independent action-level derivation  
 **Source**: `canonical/interactions/su3_qubit_encoding.tex`,
 `canonical/bridges/su3_gauge_qubit_equivalence.tex`,
 `research_tracks/su3_qubit_mapping/`
 
-The equivalence of Routes 1 and 2 is proved:  
+The bridge to Route 1 establishes equivalence on the selected fundamental
+triplet carrier. It does not by itself show that UBT dynamics selects the
+one-hot extension, the Fock extension, or local QCD gauge dynamics.  
 **Source**: `canonical/bridges/su3_gauge_qubit_equivalence.tex`
 
 ---
@@ -184,11 +190,14 @@ The following elements are **ready to write up** for the SM gauge paper:
 - [x] Biquaternion algebra isomorphism `ℂ⊗ℍ ≅ Mat(2,ℂ)` — [L0]
 - [x] Involutions `ℤ₂×ℤ₂×ℤ₂` and `𝔰𝔲(3)` realisation — [L0]
 - [x] Theorems G.A, G.B, G.C, G.D — all [L0] proved
-- [x] Independent qubit encoding confirmation — [L0]
+- [x] Qubit carrier and `su(3)` algebra confirmation — representation level
 - [x] Structural confinement argument — [L0]
 - [x] Three generations from `ψ`-modes — [L0]
 - [ ] Strong coupling `g_s` — to be stated as open
 - [ ] CP violation / strong CP — to be stated as open
 - [ ] Quark-hadron duality / spectrum — to be stated as open
 
-No outstanding [L0] or [L1] gaps block the submission of the SU(3) sector.
+A representation-focused note is ready. A paper claiming a full physical
+derivation of QCD still requires action-level gauge dynamics, matter-field
+identification, coupling normalization and a consistent choice of the 8D
+qubit extension.

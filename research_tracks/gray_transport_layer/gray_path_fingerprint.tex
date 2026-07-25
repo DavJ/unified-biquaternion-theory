@@ -158,7 +158,7 @@ The one-hot triqubit encoding assigns:
 \]
 Each color state has \emph{Hamming weight exactly 1} in the 3-qubit register.
 
-\begin{proposition}[Single-error detection by Hamming weight-1 stabilizer]
+\begin{proposition}[Single-bit-flip leakage detection by the weight-1 sector]
 \label{prop:hamming_weight1}
 Any single bit-flip error on a one-hot state produces a state outside the
 one-hot subspace (either weight 0 or weight $\geq 2$), and is therefore
@@ -176,10 +176,11 @@ In both cases the result is outside the one-hot subspace. \qed
 \end{proposition}
 
 \begin{remark}
-This is precisely the stabilizer property relevant to L2S: the Hamming
-weight-1 constraint protects color state identity against single-qubit errors.
-It is a special case of the extended Hamming $(8,4,4)$ syndrome test applied
-to a 3-bit sub-block.
+This is an occupation-sector property relevant to L2S: the Hamming weight-1
+constraint detects every individual computational-basis bit flip $X_i$. It is
+not a standard Pauli stabilizer code and does not detect phase-only errors
+$Z_i$. The statement is logically separate from the extended Hamming
+$(8,4,4)$ test on full 8-symbol blocks.
 \end{remark}
 
 % -------------------------------------------------------------------
@@ -303,11 +304,11 @@ distinct physical questions (state identity vs.\ path consistency) and are
 independently testable.
 
 \begin{itemize}
-\item \textbf{L2S status}: ⭐ \textsc{canonical}.
+\item \textbf{L2S status}: \textsc{canonical}.
   Observable $P_0$; code: Hamming $(8,4,4)$.
 \item \textbf{L2T status}: \textsc{research track}.
   Observable $A_{\mathrm{gray}}$; code: reflected binary Gray.
-\item \textbf{No conflict}: one-hot triqubit stabilizer logic is preserved.
+\item \textbf{No conflict}: one-hot triqubit occupation-sector logic is preserved.
   Gray applies only to diagonal (phase) transitions; Hamming governs the
   full 8-block state.
 \end{itemize}

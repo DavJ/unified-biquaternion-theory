@@ -1,0 +1,23 @@
+Differential overlay file list
+Base: unified-biquaternion-theory-master (1)(3).zip
+Base commit marker: 2a3144d664c347ae04f53b733646f440317cdb20
+
+PATCH_FILELIST_SU3_TRIQUBIT_2026-07-25.txt
+PATCH_SU3_TRIQUBIT_AUDIT_2026-07-25.md
+PATCH_VALIDATION_SU3_TRIQUBIT_2026-07-25.txt
+canonical/interactions/su3_qubit_encoding.tex
+docs/sm_embedding_roadmap.md
+research_tracks/T2_GAUGE/su3_proof_status.md
+research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/README.md
+research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/fermionic_fock_su3_decomposition.md
+research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/one_hot_sector_dynamics.md
+research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/su3_qubit_core/fock.py
+research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/tests/test_fermionic_fock_su3.py
+research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/triqubit_minimality_note.md
+research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/triqubit_optimality_criteria.md
+research_tracks/alpha/layer2_coding_alpha_scan.py
+research_tracks/gray_transport_layer/README.md
+research_tracks/gray_transport_layer/gray_path_fingerprint.tex
+research_tracks/gray_transport_layer/gray_vs_hamming_layer2.md
+tools/verify_su3_superposition.py
+tools/verify_three_qubit_su3.py

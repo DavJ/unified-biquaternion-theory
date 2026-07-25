@@ -124,6 +124,7 @@ Both Casimirs commute with all generators: **[C_i, L_a] = 0** for all a.
 | `gell_mann.py` | Gell-Mann matrices, structure constants f_{abc}, symmetric d-tensor |
 | `qubit_ops.py` | Pauli matrices, 3-qubit tensor products, Pauli decomposition |
 | `mapping.py` | One-hot embedding, lifted generators L_a, Pauli decompositions, constraint |
+| `fock.py` | Jordan–Wigner modes and natural `1⊕3⊕3bar⊕1` Fock-space action |
 | `casimir.py` | C₁ and C₂ in 3D and 8D, qubit decompositions, verification |
 
 ### `tests/`
@@ -132,6 +133,7 @@ Both Casimirs commute with all generators: **[C_i, L_a] = 0** for all a.
 |-----------|----------------|
 | `test_gell_mann.py` | Normalisation, commutation, structure constants, Jacobi identity |
 | `test_mapping.py` | Embedding, lifted generators, SU(3) algebra, Pauli decompositions, constraint |
+| `test_fermionic_fock_su3.py` | CAR, full-space SU(3), `3`/`3bar` sectors, coding limits |
 | `test_casimir.py` | Casimir eigenvalues, commutativity, Pauli decompositions, analytical formulas |
 
 ### `experiments/`
@@ -148,7 +150,7 @@ Both Casimirs commute with all generators: **[C_i, L_a] = 0** for all a.
 # From repository root:
 
 # Run tests
-pytest THEORY_COMPARISONS/su3_qubit_mapping/tests/ -v
+pytest research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/tests/ -v
 
 # Run experiment (prints full mapping table)
 python -m THEORY_COMPARISONS.su3_qubit_mapping.experiments.e01_mapping_summary
@@ -173,6 +175,25 @@ python -m THEORY_COMPARISONS.su3_qubit_mapping.experiments.e01_mapping_summary
    (no X or Y needed to express the Casimir)
 
 ---
+
+## Two Distinct 8D Extensions
+
+The one-hot lift used above is not the only `su(3)` action on the three-qubit
+space.
+
+1. **One-hot extension**: `L_a = P lambda_a P†`, with representation content
+   `3 ⊕ 1^5`. It is nontrivial only on the selected color sector.
+2. **Fermionic Fock extension**: `T_a = c_i†(lambda_a/2)_{ij}c_j`, with content
+   `1 ⊕ 3 ⊕ 3bar ⊕ 1`. It follows naturally when the qubits are occupation modes.
+
+The two actions agree on the weight-1 sector after the conventional factor of
+`1/2`, but differ on the five-dimensional complement. The repository therefore
+does not identify the complement uniquely until the UBT action selects one of
+these extensions. See `fermionic_fock_su3_decomposition.md`.
+
+The Fock decomposition is a representation theorem. It does not identify the
+six non-singlet states with the six quark flavors, and it does not justify dark
+sector densities by state counting.
 
 ## Relationship to Mainline UBT Derivation
 
@@ -204,14 +225,15 @@ summary of all SU(3) approaches.
 - The qubit space ℂ²⊗ℂ²⊗ℂ² carries an su(3) action via the lifted generators;
   this is NOT an isomorphism to su(2)³ (which has dimension 9, not 8)
 - The mapping uses only the 3-dimensional color subspace of the 8-dimensional qubit space
-- The full 8D space carries the **adjoint representation** of SU(3) when the
-  generators act on themselves via the adjoint action (separate construction)
+- An 8-dimensional adjoint carrier is a separate representation and should not
+  be confused with either the one-hot `3⊕1^5` action or the fermionic
+  `1⊕3⊕3bar⊕1` action on this register
 
 ---
 
 ## Status: ✅ COMPLETE
 
 - Core homomorphism implemented and verified
-- All 51 tests pass
+- Original one-hot tests plus the fermionic Fock decomposition tests pass
 - Explicit Pauli decompositions for all 8 generators computed
 - Casimir operators in qubit representation derived analytically

@@ -123,11 +123,13 @@ These encode 3 states in 2 bits, but they violate the **one-hot requirement**:
 If the one-hot constraint is not mandatory, 2 bits suffice for 3 states (using
 ⌈log₂ 3⌉ = 2 bits). However:
 
-1. Non-one-hot encodings **lose the isometric embedding property** (P†P ≠ I₃).
-2. They **break the permutation-symmetry** of the Weyl group (r↔g is no longer
-   a simple qubit swap).
-3. They produce **non-uniform Hamming weights**, making the SU(3) generators less
-   natural in the Pauli basis.
+1. Non-one-hot encodings can still be perfectly **isometric**: any three
+   orthonormal basis states of the two-qubit space define an embedding
+   `P: ℂ³ → ℂ⁴` with `P†P = I₃`.
+2. They generally lose the direct channel-per-color interpretation and make the
+   Weyl permutations less uniform than physical SWAPs of three channels.
+3. They use non-uniform Hamming weights, so occupation-number penalties and
+   computational-basis bit-flip leakage tests are less transparent.
 
 Under the one-hot constraint, 2 bits are definitively insufficient.
 
@@ -211,8 +213,8 @@ SU(3) acts naturally on ℂ³ as the defining/fundamental representation.
 - Not a binary (qubit) substrate; requires ternary hardware.
 - Harder to implement in binary-native architectures (superconducting qubits,
   trapped ions in qubit mode, etc.).
-- Quantum error correcting codes (surface codes, stabilizer codes) are natively
-  designed for qubits; qutrit error correction is more complex.
+- Many hardware and software stacks are qubit-native, although both qubit and
+  qutrit error-correction schemes exist.
 
 ### 4.2 Triqubit Approach (One-Hot)
 
@@ -221,9 +223,9 @@ The triqubit uses 3 binary channels to represent the same 3 states.
 **Advantages of triqubit**:
 - Native binary substrate; compatible with qubit-based quantum hardware.
 - Weyl symmetry (r↔g, g↔b, r↔b) expressed as SWAP gates (standard 2-qubit gates).
-- Stabilizer structure: The one-hot constraint (Hamming weight = 1) is a natural
-  stabilizer code — the code subspace is protected against weight-0 and weight-≥2
-  errors.
+- Occupation structure: the one-hot constraint is the `N=1` eigenspace and every
+  individual computational-basis bit flip leaves that sector, making `X`-flip
+  leakage directly detectable.
 - Pauli decomposition of SU(3) generators is explicit and sparse (4 terms each).
 
 **Disadvantages of triqubit**:
@@ -240,8 +242,9 @@ The triqubit uses 3 binary channels to represent the same 3 states.
 | Triqubit (one-hot) | ℂ⁸ (= ℂ²⊗ℂ²⊗ℂ²) | ℂ³ (one-hot sector) | 8/3 ≈ 2.67× |
 | 2-bit binary | ℂ⁴ | ℂ³ (non-one-hot) | 4/3 ≈ 1.33× |
 
-The triqubit uses 8/3 times more Hilbert space than the qutrit, but this overhead
-provides the stabilizer structure and binary compatibility.
+The triqubit uses 8/3 times more Hilbert space than the qutrit. The overhead
+provides a transparent channel-per-color structure and computational-basis
+bit-flip leakage detection, but not a full stabilizer quantum code.
 
 ### 4.4 SU(3) Generator Complexity
 
@@ -273,9 +276,9 @@ This is a simple counting argument: the number of Hamming-weight-1 strings in
 on a qubit system.
 
 Alternative realizations exist:
-- **Adjoint representation on 8 qubits**: SU(3) acts on the 8-dimensional adjoint
-  space directly; requires 3 qubits for the 8-dimensional space but represents a
-  different sector.
+- **Adjoint representation in an 8-dimensional register**: the SU(3) adjoint
+  carrier can be encoded in three qubits, but it is a different representation
+  from the fundamental color triplet.
 - **Qubit encodings of qutrits**: Techniques exist to encode one qutrit into 2 or
   3 qubits using non-one-hot mappings (e.g., Ding et al. 2023 for qudit simulation).
 - **Gauge group encodings for lattice QCD**: Various qubit register choices for
@@ -290,7 +293,8 @@ of SU(3), each with different properties.
 ### 5.3 Optimality (Context-Dependent)
 
 **Not universally proved, but supported under specific assumptions**:
-The triqubit may be *optimal* under binary-substrate-plus-QEC assumptions.
+The triqubit may be *optimal* under binary-channel, one-hot and simple
+computational-basis leakage-detection assumptions.
 
 See `triqubit_optimality_criteria.md` for a detailed analysis of optimality metrics.
 Briefly:
@@ -298,8 +302,9 @@ Briefly:
   triqubit achieves the minimum n = 3.
 - Under the constraint that color permutation symmetry (Weyl group S₃) be realizable
   as single-layer SWAP circuits, the triqubit is natural and efficient.
-- Under quantum error correction considerations, the Hamming-weight-1 stabilizer
-  structure provides natural single-error detection.
+- Under computational-basis bit-flip noise, the Hamming-weight-1 constraint
+  provides natural single-`X` leakage detection. It does not detect general
+  one-qubit phase errors.
 
 ### 5.4 Summary Table
 
@@ -307,7 +312,7 @@ Briefly:
 |----------|--------|---------------|
 | 3 qubits minimal for one-hot binary triplet | ✅ Proved | Counting argument (§3.2) |
 | Triqubit unique among all SU(3) qubit realizations | ❌ Not proved | Multiple alternatives exist (§5.2) |
-| Triqubit optimal under binary + QEC assumptions | 🔶 Supported | See triqubit_optimality_criteria.md |
+| Triqubit optimal under one-hot channel assumptions | 🔶 Supported | See triqubit_optimality_criteria.md |
 | Triqubit equivalent to qutrit in all respects | ❌ Not claimed | Different substrates; triqubit has overhead |
 | One-hot sector physically privileged | 🔶 Conjectural | See one_hot_sector_dynamics.md |
 
@@ -316,7 +321,7 @@ Briefly:
 ## 6. Note on Gray-Code Complementarity (L2T Research Track)
 
 The one-hot encoding analyzed here sits within UBT Layer 2 State (L2S), where
-the **Hamming weight-1 stabilizer** protects color identity. A complementary
+the **Hamming weight-1 occupation constraint** detects color-sector leakage under `X` flips. A complementary
 research-track hypothesis — the **Gray-code transport layer (L2T)** — addresses
 a distinct question: are sequential phase-symbol transitions path-consistent?
 
@@ -335,9 +340,9 @@ Key points:
   transitions between different one-hot states (Hamming distance 2). These are
   governed by L2S, not L2T.
 
-- **No conflict**: the one-hot triqubit stabilizer logic presented in this note
-  is fully preserved. Gray transport is a research-track transport hypothesis,
-  not a replacement for the one-hot Hamming stabilizer.
+- **No conflict**: the one-hot occupation-sector logic presented in this note is
+  preserved. Gray transport is a research-track transport hypothesis, not a
+  replacement for the one-hot `X`-flip leakage test.
 
 - **What is not claimed**: Gray code does not replace Hamming. Not all SU(3)
   generators are a single SWAP. Gray transport does not prove QCD.

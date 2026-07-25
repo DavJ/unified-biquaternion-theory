@@ -67,19 +67,18 @@ codeword to a non-codeword (error detection), but not to another codeword
 (no uncorrectable single-bit-flip error within the code).
 
 **Comparison**:
-| Encoding | Code distance d | Single-bit flip detected? |
+| Computational-basis encoding | Classical Hamming distance d | Single X flip detected by sector test? |
 |----------|-----------------|--------------------------|
 | 2-bit binary {00,01,10} | 1 (00↔01) | No |
 | Triqubit one-hot | **2** (uniform) | Yes |
 | 3-bit parity check code | 2 | Yes |
 | Full quantum error correcting code (5-qubit) | 3 | Yes (corrects) |
 
-**Assessment**: The triqubit achieves the **maximum possible code distance d = 2**
-for a one-hot code with 3 codewords in 3 bits. This is optimal within the
-one-hot constraint. It provides single-error *detection* but not correction.
-
-For single-error *correction*, d ≥ 3 is required, which would need a larger code
-(e.g., 5+ qubits for the standard quantum error-correcting code).
+**Assessment**: The three one-hot computational-basis codewords have uniform
+classical Hamming distance `d = 2`. Thus every single `X_i` flip leaves the
+one-hot sector and can be detected by measuring `Π_color`. This classical
+distance statement is not the distance of a general quantum stabilizer code;
+phase errors require separate protection.
 
 ---
 
@@ -98,8 +97,9 @@ A single bit-flip X_i on the one-hot subspace:
 - All results are outside the one-hot subspace (weight 0 or 2)
 - **Error is detectable**: any bit-flip exits the code subspace
 
-The projection Π_color (color neutrality projector) can detect this: a state
-outside the one-hot sector has D_r + D_g + D_b ≠ Π_color.
+A projective measurement `{Π_color, I-Π_color}` detects this leakage. The
+operator identity `D_r + D_g + D_b = Π_color` holds independently of the
+state and should not itself be interpreted as a syndrome equation.
 
 **Tolerance**: All single-qubit X errors are *detectable* (though not correctable
 without additional ancilla).
@@ -128,7 +128,7 @@ syndrome measurements are needed to detect phase errors.
 |-----------|-------------|----------------------------|
 | Bit-flip (X) | ✅ Yes (exits one-hot sector) | ❌ No (ancilla needed) |
 | Phase-flip (Z) | ❌ No (stays in one-hot sector) | ❌ No |
-| Combined (Y = iXZ) | ✅ Partially (X component exits) | ❌ No |
+| Combined (Y = iXZ) | ✅ Yes for sector leakage | ❌ No |
 
 **Assessment**: The triqubit is **optimally noise-tolerant for bit-flip errors**
 within the one-hot constraint (all X-errors are detected). Phase-flip errors
@@ -199,11 +199,19 @@ coupling constant. This Hamiltonian:
 The one-hot sector is thus the **ground sector** of H_penalty, with an energy gap
 Δ = λ separating it from all other states.
 
-### 5.2 Stabilizer / Syndrome Interpretation
+### 5.2 Occupation-Sector Measurement
 
-Equivalently, the Hamming-weight-1 condition defines a **stabilizer code**: the
-code space is the +1 eigenspace of the projector Π_color = |100⟩⟨100| + |010⟩⟨010|
-+ |001⟩⟨001|. This can be implemented as a syndrome measurement on an ancilla.
+The Hamming-weight-1 condition defines the spectral sector `N = 1`, with
+projector
+
+```text
+Π_color = |100⟩⟨100| + |010⟩⟨010| + |001⟩⟨001|.
+```
+
+A projective measurement `{Π_color, I-Π_color}` can be implemented with an
+ancilla to detect leakage caused by a single `X_i` flip. This is not a standard
+Pauli stabilizer code: the sector has dimension 3, and `Z_i` phase errors remain
+inside it.
 
 ### 5.3 Status
 

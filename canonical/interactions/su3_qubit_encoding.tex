@@ -16,6 +16,7 @@
 % Author: Ing. David Jaroš
 
 \ifdefined\INCLUDEMODE
+  \def\UBTSUThreeEndDocument{}
 \else
   \documentclass[12pt,a4paper]{article}
   \usepackage[a4paper, margin=2.5cm]{geometry}
@@ -38,7 +39,7 @@
   \newtheorem{remark}[theorem]{Remark}
 
   \newcommand{\C}{\mathbb{C}}
-  \newcommand{\H}{\mathbb{H}}
+  \newcommand{\HH}{\mathbb{H}}
   \newcommand{\Hcolor}{\mathcal{H}_{\mathrm{color}}}
   \newcommand{\Hthreeq}{\mathcal{H}_{3q}}
   \newcommand{\Pcolor}{P_{\mathrm{color}}}
@@ -50,13 +51,14 @@
   \date{2026-04-27}
 
   \begin{document}
+  \def\UBTSUThreeEndDocument{\end{document}}
   \maketitle
 
   \begin{abstract}
   We establish a precise equivalence between the standard UBT SU(3) gauge
-  connection $A_\mu = A_\mu^a \lambda_a$ and a three-qubit encoded gauge
-  connection $A_\mu^{3q} = A_\mu^a G_a$, where $G_a$ are the Gell-Mann
-  generators lifted to the one-hot (color) subspace of
+  connection $A_\mu = A_\mu^a \lambda_a/2$ and a three-qubit encoded gauge
+  connection $A_\mu^{3q} = A_\mu^a G_a/2$, where $G_a$ are the Gell--Mann
+  matrices lifted to the one-hot (color) subspace of
   $\Hthreeq = \C^2 \otimes \C^2 \otimes \C^2$.
   The equivalence is representation-level: both descriptions carry the same
   $\mathfrak{su}(3)$ Lie algebra and the same local gauge covariant derivative on
@@ -157,11 +159,18 @@ $\Hcolor^\perp$:
 \]
 \end{definition}
 
+\begin{remark}[Generator normalisation]
+The matrices $G_a$ lift the full Gell--Mann matrices, not the conventionally
+normalised Lie generators $\lambda_a/2$.  Consequently
+$[G_a,G_b]=2if_{abc}G_c$, while gauge connections and exponentials use
+$G_a/2$.  This distinction is kept explicit below.
+\end{remark}
+
 \begin{definition}[Encoded gauge connection and covariant derivative]
 \label{def:Amu3q}
 Given real gauge functions $A_\mu^a(x)$, define
 \[
-  A_\mu^{3q}(x) = \sum_{a=1}^{8} A_\mu^a(x)\, G_a
+  A_\mu^{3q}(x) = \sum_{a=1}^{8} A_\mu^a(x)\, \frac{G_a}{2}
   \;\in\; \mathrm{End}(\C^8),
 \]
 and the \emph{encoded covariant derivative}
@@ -228,7 +237,7 @@ vanishes on $\Hcolor^\perp$.}
 \label{thm:commutators}
 For all $a,b \in \{1,\ldots,8\}$,
 \[
-  [G_a, G_b] = i f_{abc}\, G_c \quad \text{on } \Hcolor,
+  [G_a, G_b] = 2i f_{abc}\, G_c \quad \text{on } \Hcolor,
 \]
 where $f_{abc}$ are the totally antisymmetric $\mathfrak{su}(3)$ structure
 constants.
@@ -247,15 +256,15 @@ Therefore
 \[
   [G_a, G_b]|v\rangle
   = P[\lambda_a, \lambda_b]\mathbf{v}
-  = P (if_{abc}\lambda_c)\mathbf{v}
-  = if_{abc}\, G_c |v\rangle,
+  = P (2i f_{abc}\lambda_c)\mathbf{v}
+  = 2i f_{abc}\, G_c |v\rangle,
 \]
 using the standard $\mathfrak{su}(3)$ relation $[\lambda_a,\lambda_b] =
-if_{abc}\lambda_c$ in the last step.
+2i f_{abc}\lambda_c$ in the last step.
 
 For $|v\rangle \in \Hcolor^\perp$: $G_a|v\rangle = P\lambda_a P^\dagger|v\rangle
 = 0$ (since $P^\dagger|v\rangle = 0$), so $[G_a,G_b]|v\rangle = 0 =
-if_{abc}G_c|v\rangle$.  The relation holds on all of $\Hthreeq$.
+2i f_{abc}G_c|v\rangle$.  The relation holds on all of $\Hthreeq$.
 \end{proof}
 
 \begin{remark}
@@ -322,9 +331,9 @@ QCD covariant derivative on $\C^3$.
 \begin{proof}
 \begin{align*}
   D_\mu^{3q}\,\psi
-  &= \partial_\mu(P\varphi) + ig A_\mu^a G_a (P\varphi) \\
-  &= P(\partial_\mu\varphi) + ig A_\mu^a P\lambda_a \varphi \\
-  &= P\!\left(\partial_\mu\varphi + ig A_\mu^a \lambda_a \varphi\right)
+  &= \partial_\mu(P\varphi) + ig A_\mu^a \frac{G_a}{2} (P\varphi) \\
+  &= P(\partial_\mu\varphi) + ig A_\mu^a P\frac{\lambda_a}{2} \varphi \\
+  &= P\!\left(\partial_\mu\varphi + ig A_\mu^a \frac{\lambda_a}{2} \varphi\right)
    = P(D_\mu\varphi).
 \end{align*}
 Applying $P^\dagger$ to both sides and using $P^\dagger P = I_3$ gives the
@@ -359,12 +368,12 @@ Let $\Hcolor = \mathrm{span}\{|100\rangle,|010\rangle,|001\rangle\} \subset
   \item \textbf{Generator equivalence.}
         The map $\lambda_a \mapsto G_a = P\lambda_a P^\dagger$ is a faithful
         representation of $\mathfrak{su}(3)$ on $\Hcolor$, i.e.\
-        $[G_a, G_b] = if_{abc}G_c$ on $\Hcolor$.
+        $[G_a, G_b] = 2i f_{abc}G_c$ on $\Hcolor$.
 
   \item \textbf{Gauge field equivalence.}
-        The encoded gauge connection $A_\mu^{3q} = A_\mu^a G_a$ restricted to
+        The encoded gauge connection $A_\mu^{3q} = A_\mu^a G_a/2$ restricted to
         $\Hcolor$ is isomorphic to the standard connection $A_\mu = A_\mu^a
-        \lambda_a$ via the isometry $P$.
+        \lambda_a/2$ via the isometry $P$.
 
   \item \textbf{Covariant derivative equivalence.}
         The encoded derivative $D_\mu^{3q}$ restricted to $\Hcolor$ is
@@ -458,7 +467,7 @@ Do \textbf{not} claim:
 %──────────────────────────────────────────────────────────────────────────────
 
 The canonical UBT derivation of $\mathrm{SU}(3)_c$ proceeds via the involution
-structure of $\C\otimes\H$:
+structure of $\C\otimes\HH$:
 \[
   V_c = \ker(P_2 + \mathbf{1}) \cong \C^3, \qquad
   \mathrm{SU}(3) = \mathrm{Aut}(V_c, \langle\cdot,\cdot\rangle),
@@ -472,7 +481,7 @@ The two constructions are therefore \textbf{equivalent representations of the
 same Lie algebra}, realized via isometric embeddings of $\C^3$ into (different)
 ambient eight-dimensional spaces:
 \begin{align*}
-  V_c = \ker(P_2+\mathbf{1}) \subset \C\otimes\H \cong \C^8, \\
+  V_c = \ker(P_2+\mathbf{1}) \subset \C\otimes\HH \cong \C^8, \\
   \Hcolor = \mathrm{range}(P) \subset \C^2\otimes\C^2\otimes\C^2 \cong \C^8.
 \end{align*}
 Both identify the same group $\mathrm{SU}(3)$; neither replaces the canonical
@@ -482,7 +491,4 @@ the bridge document
 
 % End of su3_qubit_encoding.tex
 
-\ifdefined\INCLUDEMODE
-\else
-  \end{document}
-\fi
+\UBTSUThreeEndDocument

@@ -105,8 +105,9 @@ weight exactly 1**. This means:
 - Any error that flips the single 1→0 creates a weight-0 state (the vacuum) —
   also outside the one-hot subspace.
 
-Therefore, the one-hot Hamming-weight-1 stabilizer provides **natural
-single-error detection** for color identity.
+Therefore, the one-hot Hamming-weight-1 occupation constraint provides
+**natural single-`X`-flip leakage detection** for color identity. It is not a
+general Pauli stabilizer code and does not detect phase-only errors.
 
 **The Hamming (8,4,4) fingerprint test (P₀) measures state survival**, not path
 properties.

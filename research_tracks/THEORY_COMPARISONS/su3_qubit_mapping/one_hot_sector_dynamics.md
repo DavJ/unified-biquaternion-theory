@@ -17,7 +17,7 @@ construction that was chosen for convenience?**
 A sector is *physically privileged* if one of the following holds:
 1. It is preserved by the relevant effective Hamiltonian (dynamical conservation).
 2. It corresponds to the lowest-energy excitation (energetic selection).
-3. It is protected by a code constraint / stabilizer (topological / gauge protection).
+3. Its fixed-occupation constraint detects leakage under computational-basis bit flips.
 4. It is selected by the axioms of the UBT simulation cell (foundational selection).
 
 We analyze each route and state clearly whether the claimed privilege is:
@@ -142,9 +142,9 @@ SU(3) covariant kinetic term. After projection to the color sector:
    would represent "two simultaneous color excitations" on a single color degree of
    freedom, which has no direct physical counterpart within the one-quark sector.
 
-**Physical argument**: The one-hot constraint is the qubit incarnation of the
-statement "a quark carries exactly one color charge." This is not a dynamical
-statement but a *definition* of what we mean by a quark color state.
+**Physical argument**: The one-hot basis represents one occupied color channel,
+while arbitrary superpositions inside `C` represent the usual quantum color state.
+This is an encoding convention, not yet a dynamical consequence of UBT.
 
 **Status: 🔶 SUPPORTED but not proved from first UBT principles.** The one-hot
 sector is selected by the physical definition of a quark's color charge, but a
@@ -153,49 +153,68 @@ without an explicit penalty term has not been completed.
 
 ---
 
-## 4. Route 3: Sector Protected by Code Constraint / Stabilizer
+## 4. Route 3: Occupation Constraint and Bit-Flip Leakage Detection
 
-### 4.1 Stabilizer Structure of the One-Hot Code
+### 4.1 Spectral Projector onto the One-Hot Sector
 
-The one-hot sector C = span{|100⟩, |010⟩, |001⟩} can be described as the
-code space of a **stabilizer code**. Define the projector:
+Let
 
+```text
+N = n̂₁ + n̂₂ + n̂₃,     n̂_i = (I - Z_i)/2.
 ```
-Π_C = (I + Z₁Z₂)(I + Z₁Z₃)(I - Z₁)(I - Z₂)(I - Z₃) / (normalization)
+
+The one-hot sector is exactly the eigenspace `N = 1`. Its orthogonal projector is
+
+```text
+Π_C = |100⟩⟨100| + |010⟩⟨010| + |001⟩⟨001|
+    = ½ N(N - 2I)(N - 3I).
 ```
 
-More directly, the one-hot sector is the simultaneous +1 eigenspace of the
-**parity checks**:
+This is an occupation-number constraint. It is **not** a standard Pauli
+stabilizer code: a Pauli stabilizer code on qubits has dimension `2^k`, whereas
+`dim(C) = 3`.
 
-- **Total parity**: n̂₁ + n̂₂ + n̂₃ = 1 (Hamming weight exactly 1)
-- This is equivalent to the syndrome conditions:
-  - n̂₁ + n̂₂ ≠ 0 (at most one of q₁, q₂ is 1) — ensured by Z₁Z₂ anticommutation
-  - n̂₁ + n̂₃ ≠ 0
-  - n̂₂ + n̂₃ ≠ 0
+### 4.2 What Error Detection Actually Holds
 
-### 4.2 Color Neutrality Constraint as Stabilizer
+For every individual computational-basis bit flip `X_i`,
 
-The UBT color neutrality constraint (see `su3_qubit_core/mapping.py`):
+```text
+Π_C X_i Π_C = 0.
 ```
-D_r + D_g + D_b = Π_C
+
+A single `X_i` changes Hamming weight `1 → 0` or `1 → 2`, so a measurement of
+`Π_C` detects leakage out of the one-hot sector. The classical one-hot codewords
+also have pairwise Hamming distance 2.
+
+This does **not** establish detection of an arbitrary one-qubit quantum error.
+For example, `Z_i` preserves the one-hot sector and changes relative phases:
+
+```text
+Π_C Z_i Π_C ≠ c Π_C
 ```
-is precisely the **stabilizer condition** that defines the one-hot sector:
-a state is in the one-hot sector if and only if it is in the range of Π_C.
 
-This constraint arises from the identification of the u(1) direction in u(3) and
-its identification with the projector onto the full color subspace (§ "9→8
-Algebraic Constraint" in README.md).
+for any common scalar `c`. Thus phase errors act as logical operations inside
+`C` and are not detected by the occupation constraint alone. The one-hot sector
+is an `X`-flip leakage-detecting subspace, not a full quantum error-correcting
+code.
 
-**Status: ✅ PROVED** — The one-hot sector is the unique sector satisfying the
-color neutrality constraint D_r + D_g + D_b = Π_C. This is a gauge constraint
-(analogous to a stabilizer condition in quantum error correction), and the one-hot
-sector is its code space.
+### 4.3 Meaning of the Diagonal Projector Identity
 
-**Physical interpretation**: The color neutrality constraint is the qubit-level
-analog of the SU(3) Gauss law: physical quark states must transform in the
-fundamental representation, and the projector Π_C identifies exactly those states.
-This is a *gauge protection* argument — the one-hot sector is protected by the
-gauge constraint.
+The relation implemented in `su3_qubit_core/mapping.py`,
+
+```text
+D_r + D_g + D_b = Π_C,
+```
+
+is the resolution of the identity on the encoded color triplet. It identifies
+the central `u(1)` direction when one passes from `u(3)` to traceless `su(3)`
+generators. It should not by itself be called an SU(3) Gauss-law constraint or a
+stabilizer condition; such a physical interpretation would require an
+independent derivation from the UBT action.
+
+**Status: ✅ PROVED at representation level** — `C` is the `N=1` sector and all
+single `X_i` flips leave it. General quantum-error protection and dynamical gauge
+protection remain open.
 
 ---
 
@@ -203,8 +222,9 @@ gauge constraint.
 
 ### 5.1 The UBT Simulation Cell
 
-UBT models the quark color degree of freedom via a minimal simulation cell — the
-smallest quantum system that can faithfully represent the SU(3) color algebra.
+This route models the quark color degree of freedom via a minimal **one-hot
+channel cell**. It does not claim the smallest Hilbert-space embedding of a qutrit;
+two qubits already provide a four-dimensional carrier containing ℂ³.
 The simulation cell axioms (in the binary/qubit substrate) are:
 
 **Axiom S1 (Binary substrate)**: The simulation cell consists of n binary channels
@@ -214,23 +234,26 @@ The simulation cell axioms (in the binary/qubit substrate) are:
 su(3) Lie algebra via traceless Hermitian operators L_a satisfying
 [L_a, L_b] = 2i f_{abc} L_c.
 
-**Axiom S3 (Isometric embedding)**: The color states {|r⟩, |g⟩, |b⟩} embed
-isometrically: ∃ P with P†P = I₃ such that |color⟩ = P|c⟩ for |c⟩ ∈ ℂ³.
+**Axiom S3 (One-hot occupancy)**: Each color basis state is represented by
+exactly one occupied binary channel, and color permutations act by channel
+permutations.
 
 **Axiom S4 (Minimality)**: n is the smallest integer satisfying S1–S3.
 
 Under these axioms:
-- S4 + S3 + S1 directly force the one-hot sector: by `triqubit_minimality_note.md`
-  §3.2, the minimal isometric embedding of ℂ³ into (ℂ²)^⊗n requires n = 3, and
-  the unique (up to qubit permutation) isometric embedding at n = 3 is the one-hot
-  embedding.
+- S4 + S3 + S1 force `n = 3`: an n-channel one-hot register contains exactly n
+  weight-1 basis states. Three colors therefore require at least three channels,
+  and `|100⟩, |010⟩, |001⟩` attain the bound.
+- Isometry alone does **not** force three qubits; ℂ³ embeds isometrically into a
+  two-qubit ℂ⁴ register. The minimality result is specifically a one-hot/channel
+  result.
 
 **Status: ✅ PROVED** — Given axioms S1–S4, the one-hot sector is the unique
 minimal choice (up to qubit permutation).
 
-**Caveat**: Axioms S1–S4 are a choice of framework. If axiom S3 (isometric
-embedding) is relaxed or replaced by a different structural requirement, other
-sectors may be preferred. The privilege of the one-hot sector is conditional on
+**Caveat**: Axioms S1–S4 are a choice of framework. If axiom S3 (one-hot
+occupancy) is relaxed or replaced by a different structural requirement, other
+encodings may be preferred. The privilege of the one-hot sector is conditional on
 these axioms.
 
 ---
@@ -244,8 +267,8 @@ these axioms.
 | Route 1: Hamiltonian invariance | C preserved by all SU(3) generators L_a | ✅ Proved | One-hot embedding assumed |
 | Route 2a: Energy (H_penalty) | C is ground sector of H_c = λ(n̂_total - 1)² | ✅ Proved | H_c must be externally imposed |
 | Route 2b: Energy (UBT H_eff) | C is ground sector of UBT effective Hamiltonian | 🔶 Supported | Full derivation open |
-| Route 3: Stabilizer / gauge | C is code space of color neutrality Π_C constraint | ✅ Proved | Constraint physically motivated |
-| Route 4: Simulation cell axioms | One-hot is unique minimal isometric binary embedding | ✅ Proved | Axioms S1–S4 assumed |
+| Route 3: Occupation / leakage | Π_C detects every single X_i flip out of C | ✅ Proved | Does not detect general phase errors |
+| Route 4: Simulation cell axioms | One-hot uses the minimum three binary channels | ✅ Proved | One-hot/channel axiom assumed |
 
 ### 6.2 Overall Assessment
 
@@ -259,13 +282,13 @@ with the stated status:
    penalty Hamiltonian, which is the natural enforcement of the "exactly one color
    charge" constraint.
 
-3. **Proved**: The one-hot sector is the code space of the color neutrality
-   constraint D_r + D_g + D_b = Π_C — a gauge constraint that can be regarded as
-   a physical axiom of the quark color sector.
+3. **Proved**: The one-hot sector is the `N=1` occupation sector, and every
+   individual computational-basis bit flip `X_i` produces detectable leakage.
+   General one-qubit quantum-error protection is not obtained.
 
-4. **Proved (conditional)**: Under the UBT simulation cell axioms (binary substrate,
-   isometric embedding, minimality), the one-hot sector is the unique minimal
-   choice.
+4. **Proved (conditional)**: Under the UBT simulation-cell axioms (binary
+   substrate, one-hot occupancy and minimality), three channels are necessary and
+   sufficient, uniquely up to channel permutation.
 
 5. **Supported but not yet proved from first UBT principles**: A derivation that
    the UBT biquaternionic effective Hamiltonian itself dynamically confines to the
@@ -274,10 +297,10 @@ with the stated status:
 
 ### 6.3 Honest Statement
 
-The current situation is this: **the one-hot sector is not merely chosen — it is
-the unique sector satisfying all reasonable structural requirements for a binary
-color simulation cell**. The privilege is established at the level of algebraic
-and axiomatic argument.
+The current situation is this: **the one-hot sector is a clean and conditionally
+minimal encoding once the one-channel-per-color axiom is imposed**. Its invariance
+under the lifted color action and its single-`X` leakage detection are proved.
+The one-hot choice is not forced by Hilbert-space dimension or isometry alone.
 
 What remains open is whether the UBT dynamics *directly* generates a Hamiltonian
 confining to the one-hot sector without an external imposition — this would

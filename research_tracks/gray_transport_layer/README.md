@@ -85,7 +85,8 @@ In the one-hot triqubit representation {|r⟩=|100⟩, |g⟩=|010⟩, |b⟩=|001
   state and are natural candidates for Gray-adjacent phase steps.
 
 Gray transport applies specifically to the diagonal/phase sector. It is a
-path-ordering constraint, not a replacement for the one-hot Hamming stabilizer.
+path-ordering constraint, not a replacement for the one-hot occupation-sector
+`X`-flip leakage test.
 
 ---
 

@@ -18,8 +18,8 @@ Model (SM) from the Unified Biquaternion Theory (UBT).
 |---------|--------|-------|
 | U(1)_Y hypercharge quantization | **Open** | Why are hypercharges rational? Not derived from biquaternion structure. |
 | SU(2)_L weak isospin | **Proved [L1]** | Generators T^a: M → (iσ^a/2)M from left action on ℂ⊗ₐℍ; commutation [T^a,T^b]=ε^{abc}T^c verified by direct computation. See `consolidation_project/appendix_E2_SM_geometry.tex §6`. |
-| SU(3)_C color symmetry | **Proved [L0]** | Algebra and gauge structure proved via involutions (V_c = span_ℂ{I,J,K}); Theorems G.A–G.D in `consolidation_project/appendix_G_internal_color_symmetry.tex`; confinement open (Clay Millennium Problem). See `consolidation_project/SU3_derivation/step1_involution_summary.tex`. Complementary derivation via quantum superposition (v46): Θ_color = α·I+β·J+γ·K, symmetry U(3)→SU(3) after U(1)_Y; verified numerically in `tools/verify_su3_superposition.py`; see `consolidation_project/SU3_derivation/step1_superposition_approach.tex`. |
-| Full SM group G_SM = SU(3)×SU(2)×U(1) | **Substantially proved** | SU(3) proved via involutions (Thm. G.D: EW decoupling); SU(2)_L from left action; U(1)_Y from right action. Direct product structure follows from commutativity of color and EW sectors. Weinberg angle and hypercharge quantization remain open. |
+| SU(3)_C color carrier | **Representation/algebra verified; dynamical selection open** | Standard Gell-Mann algebra and a fundamental triplet carrier are constructed and numerically verified. The one-hot route gives `3⊕1^5`; the natural fermionic three-qubit route gives `1⊕3⊕3bar⊕1`. These are representation-level results. Derivation from `S[Θ]` of local color gauging, the Yang–Mills term, matter coupling and `g_s` remains open. |
+| Full SM group G_SM = SU(3)×SU(2)×U(1) | **Candidate structural assembly** | Algebraic carriers for the factors are proposed, but their simultaneous local gauging, physical field assignments, hypercharge normalization, anomaly cancellation and couplings are not yet derived from one canonical UBT action. |
 
 ## Matter Content
 
@@ -27,7 +27,7 @@ Model (SM) from the Unified Biquaternion Theory (UBT).
 |---------|--------|-------|
 | Three generations of quarks and leptons | **Mechanism proved [L0] — ψ-winding modes; mass ratios supported numerically** | ψ-modes of Θ are proved independent [L0] with same SU(3) quantum numbers; ψ-parity forbids inter-generational mixing. Mass ratios: Hecke eigenvalue matches at p=137, p=139 (numerical support only). See `research_tracks/three_generations/`. |
 | Chirality mechanism (L/R asymmetry) | **Proved [L1]** | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex is P_ψ-odd because S[Θ] contains no W_R coupling — U(1)_Y is the only right-handed gauge interaction. Parity violation follows from ψ-circle orientation, not a separate postulate. See `consolidation_project/chirality_derivation/step3_gap_C1_resolution.tex`. |
-| Quark color quantum numbers | **Open** | Dependent on SU(3) derivation (see above). |
+| Quark color quantum numbers | **Partial** | A triplet carrier is explicit. Identifying UBT field modes with quark flavors, antiquarks and the full Standard Model charge assignments remains open. |
 | Lepton number conservation | **Open** | No mechanism demonstrated. |
 
 ## Mass Generation
