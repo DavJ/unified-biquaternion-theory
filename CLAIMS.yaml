@@ -15,13 +15,16 @@ claims:
     - canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex
     - canonical/gr_closure/gap_10i_augmented_holonomy.tex
     - canonical/gr_closure/gap_10d_low_energy_uniqueness.tex
+    - canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex
     - papers/UBT_GR_Submission.tex
     assumptions:
     - 'GAP-10K: CLOSED locally — the nondegenerate tetrad-to-metric map has rank ten; six kernel directions are local Lorentz freedom'
     - 'GAP-10Omega-KIN: CLOSED — specified nondegenerate tetrad and torsion uniquely determine the metric-compatible frame connection, up to Lorentz gauge'
     - 'GAP-10Omega-GR: CLOSED — the torsion-free branch is the unique Levi-Civita spin connection of the tetrad'
     - 'GAP-10T-PALATINI: CLOSED CONDITIONALLY — minimal Hilbert-Palatini variation gives an invertible algebraic Cartan torsion equation'
-    - 'GAP-10T-DYN: NARROWED — derive the minimal branch, exact UBT spin current, normalization, and any extra torsion terms from the canonical action'
+    - 'GAP-10T-SPIN: CLOSED CONDITIONALLY — the exact tree-level spin current of the canonical kinetic term is derived for the pure-pair representative; it couples only to the anti-Hermitian part of Theta and its joint kernel over the four tetrad slots is exactly anti-Hermitian part zero; conditional on the two stated Hermitian pairings'
+    - 'GAP-10T-FLAT-NOGO: CLOSED AS NO-GO — the minimal Hilbert-Palatini plus kinetic branch forces nonzero torsion on the complement of at most one point of every flat affine representer; the spin-current gradient is a Theta0-independent nonzero constant, so the flat inertial torsion-free solution is not a solution of the minimal branch'
+    - 'GAP-10T-DYN: NARROWED — construct and derive from the canonical action a branch whose torsion sector admits the flat affine representer: a non-minimal torsion term, a canonically selected pairing or projection annihilating the affine spin current, or a torsion-free relative bimodule completion'
     - 'GAP-10L-CONN: CLOSED — every metric-compatible Lorentz connection preserves eta_ab and the Lorentz slice'
     - 'GAP-10L-SYM: CLOSED CONDITIONALLY — the Lorentz slice is preserved by unique J-equivariant dynamics with J-real data and sources'
     - 'GAP-10L-DYN: NARROWED — verify equivariance and well-posed uniqueness for the finalized UBT equations'
@@ -35,7 +38,7 @@ claims:
     - 'GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED — canonical action selection, physical torsion constraints, regularity, and global continuation remain open'
     - 'GAP-10D-PALATINI: CLOSED CONDITIONALLY — the minimal first-order action yields Einstein-Lambda dynamics'
     - 'GAP-10D-UNIQUENESS: CLOSED CONDITIONALLY — Lovelock assumptions make Einstein-Lambda the unique four-dimensional second-order metric endpoint'
-    - 'GAP-10D: NARROWED — derive the low-energy assumptions, coefficients, and matter sector from canonical UBT'
+    - 'GAP-10D: NARROWED — remaining lemma named: induced-Palatini derivation showing the Theta effective action contains the Hilbert-Palatini term with sign and coefficient fixed by N0 and the Theta vacuum, for example via the curved heat-kernel a2 coefficient of D-dagger-D; present spectral tooling reaches only flat tori'
     - 'GAP-10psi-KIN: CLOSED — a psi-flow tangent to a Lorentz gauge orbit leaves the metric invariant'
     - 'GAP-10psi-SYM: CLOSED CONDITIONALLY — unique psi-translation-invariant dynamics preserves psi-independent data'
     - 'GAP-10psi: NARROWED — derive which stability mechanism is selected and exclude physical unstable psi modes'

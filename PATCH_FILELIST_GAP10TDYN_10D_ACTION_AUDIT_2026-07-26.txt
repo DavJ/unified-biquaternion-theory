@@ -1,0 +1,10 @@
+Differential overlay file list
+Base commit marker: c9cf57384dc9bc0609614a6f9bcf14281407d2ac
+
+PATCH_FILELIST_GAP10TDYN_10D_ACTION_AUDIT_2026-07-26.txt
+PATCH_NOTES_GAP10TDYN_10D_ACTION_AUDIT_2026-07-26.md
+CLAIMS.yaml
+CLAIMS_MATRIX.md
+canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex
+tests/test_canonical_spin_current.py
+tools/verify_canonical_spin_current.py
