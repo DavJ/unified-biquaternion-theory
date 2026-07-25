@@ -34,6 +34,7 @@ mathematical closure, and compatibility with canonical structure).
 | GR off-shell rank proof | `research/` | **Strong Partial** | ker J = U(2) on ℝ¹˒³ proved; compact M⁴ open |
 | Schwarzschild from Θ | `research/` | **Strong Partial** | Full metric proved [L1]; Zerilli even-parity open |
 | Graviton in Schwarzschild background | `research/` | **Strong Partial** | Odd-parity (Regge-Wheeler) proved; even-parity (Zerilli) open |
+| GEM compact modes / Gödel-type test | `gem_compact_modes/` | **Candidate / Open** | Exact balanced-mode kinematics and Lorentz-rotor no-go closed; action-derived spin/metric response and Gödel dynamics open |
 | Mirror sector (twin prime vacuum) | `mirror_sector/` | **Candidate** | V_eff(139) branch motivated; mirror α⁻¹=139 is numerical observation |
 | Moduli space / de Sitter structure | `research/` | **Candidate** | dS physical M⁴ follows from GR+Λ; AdS/CFT analogy is structural only |
 | Higgs/Yukawa sector | `research/` | **Candidate** | Radiative Hosotani partially proved [L1]; λ gap factor ~11 open |
@@ -113,4 +114,4 @@ A research track may be promoted to `canonical/` when:
 
 ---
 
-**Last Updated**: 2026-05-04
+**Last Updated**: 2026-07-25

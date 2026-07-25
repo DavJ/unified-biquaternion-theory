@@ -182,3 +182,22 @@ Core files use neutral terminology:
 
 **Last Updated**: 2026-02-28  
 **Author**: David Jaroš (UBT Developer)
+
+---
+
+## Historical causality/CTC branch preservation (2026-07-25)
+
+The original causality, imaginary-metric, Kerr, and Gödel exploratory documents
+are intentionally retained as historical and didactic sources.  They are not
+silently rewritten to match the current covariant-tetrad architecture, and they
+are not classified as disproved merely because the main architecture changed.
+
+Their current relationship to the active compact-mode/tetrad investigation is
+mapped in:
+
+- `../research_tracks/gem_compact_modes/LEGACY_MAP.md`
+- `../research_tracks/gem_compact_modes/README.md`
+
+The active track uses the central anticommutator metric, exact compact-mode
+averages, and an explicit Lorentz-rotation no-go.  The historical files remain
+available for later reinterpretation if a consistent bridge is derived.

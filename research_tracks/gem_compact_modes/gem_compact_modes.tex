@@ -1,0 +1,295 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newcommand{\B}{\mathbb B}
+\newcommand{\avg}[1]{\overline{#1}}
+\newcommand{\grade}[2]{\left\langle #1\right\rangle_{#2}}
+
+\title{Counter-Propagating Compact Modes and Candidate\\
+Electro-Geometric Response in UBT}
+\author{David Jaro\v{s}}
+\date{25 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!8,colframe=black!45,title=Proof status]
+This is a non-canonical research track.  Compact-mode identities, the balanced
+current/pressure result, the pure-Lorentz metric no-go, and the Gödel coframe
+kinematics are established.  The action-level source, a non-zero balanced spin
+channel, and a Gödel-type UBT solution remain open.
+\end{tcolorbox}
+
+\begin{abstract}
+We separate two structures that were previously discussed as competing ideas.
+Counter-propagating modes in the compact complex-time coordinate provide a
+spectral source candidate; the biquaternionic/tetrad algebra determines whether
+that candidate can enter the metric or connection.  A balanced pair has zero
+net compact current but positive compact-gradient energy.  Hence it may source
+a scalar or radion-like response, but it cannot select a rotation direction
+without an additional covariant bivector or spin observable.  We prove that a
+common local Lorentz rotation of the tetrad cannot change the metric, formulate
+a falsifiable balanced-polarization test, and define the Gödel coframe only as a
+kinematic target.  No closed-timelike-curve or enhanced-gravity claim is made.
+\end{abstract}
+
+\section{Canonical anchors and scope}
+The current UBT geometric branch uses
+\begin{equation}
+ \Theta(q,\tau)\in\B=\mathbb C\otimes\mathbb H,
+ \qquad \tau=t+i\psi,
+\end{equation}
+with covariant tetrad and metric readout
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+ \qquad
+ \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+ =g_{\mu\nu}\mathbf1.
+ \label{eq:metric-readout}
+\end{equation}
+The complementary oriented product is
+\begin{equation}
+ \Sigma_{\mu\nu}
+ =\frac12\left(E_\mu^\sharp E_\nu-E_\nu^\sharp E_\mu\right).
+ \label{eq:sigma}
+\end{equation}
+The track asks whether compact modes can generate a nontrivial source for
+\eqref{eq:metric-readout} or for the connection.  It does not replace the
+canonical action, and it does not identify \(\psi\) with an observed fifth
+spacetime coordinate.
+
+\section{Counter-propagating compact modes}
+Let \(\psi\sim\psi+2\pi R_\psi\), \(n\in\mathbb Z\setminus\{0\}\), and
+\(k=n/R_\psi\).  Consider
+\begin{equation}
+ \Theta(t,\psi)
+ =A_+Q_+e^{-i\omega t+ik\psi}
+ +A_-Q_-e^{-i\omega t-ik\psi},
+ \label{eq:pair}
+\end{equation}
+where \(Q_\pm\in\B\) are fixed internal polarizations.  For the reduced
+mode bookkeeping only, let \(X^\ddagger:=\overline{X^\sharp}\) denote the
+Hermitian involution and define the positive weights
+\begin{equation}
+ N_\pm:=\grade{Q_\pm^\ddagger Q_\pm}{0}>0,
+ \qquad
+ W_\pm:=N_\pm|A_\pm|^2.
+\end{equation}
+This Hermitian pairing is used to count mode occupation and energy; it does not
+replace the \(\sharp\)-anticommutator metric readout in
+Eq.~\eqref{eq:metric-readout}.
+For a periodic quantity define
+\begin{equation}
+ \avg{X}:=\frac{1}{2\pi R_\psi}
+ \int_0^{2\pi R_\psi}X(\psi)\,d\psi.
+\end{equation}
+The nonzero winding makes all \(e^{\pm2ik\psi}\) interference terms vanish
+under the circle average.
+
+\begin{definition}[Compact current and gradient energy]
+Within the reduced mode calculation define
+\begin{align}
+ j_\psi&:=\operatorname{Im}\,
+ \grade{\avg{\Theta^\ddagger\partial_\psi\Theta}}{0},\\
+ \mathcal P_\psi&:=
+ \grade{\avg{(\partial_\psi\Theta)^\ddagger
+                         (\partial_\psi\Theta)}}{0}.
+\end{align}
+The symbol \(\mathcal P_\psi\) is a positive compact-gradient quantity; its
+conversion into a component of a covariant stress tensor depends on the action
+and signature convention.
+\end{definition}
+
+\begin{theorem}[Exact averaged pair identities]
+For the ansatz \eqref{eq:pair},
+\begin{align}
+ j_\psi&=k(W_+-W_-),
+ \label{eq:j}\tag{K1}\\
+ \mathcal P_\psi&=k^2(W_++W_-).
+ \label{eq:p}\tag{K2}
+\end{align}
+For the usual quadratic time derivative,
+\begin{equation}
+ \grade{\avg{(\partial_t\Theta)^\ddagger(\partial_t\Theta)}}{0}
+ =\omega^2(W_++W_-).
+ \label{eq:et}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiate \eqref{eq:pair}.  The diagonal \(+n\) and \(-n\) terms give
+respectively \(+ikW_+\) and \(-ikW_-\) in
+\(\Theta^\sharp\partial_\psi\Theta\).  Cross terms contain
+\(e^{\pm2ik\psi}\) and integrate to zero.  The squared derivative removes the
+sign and gives \(k^2(W_++W_-)\).  The time derivative is identical for both
+modes and gives \(\omega^2(W_++W_-)\).
+\end{proof}
+
+\begin{corollary}[Balanced standing pair]
+If \(W_+=W_-=W>0\), then
+\begin{equation}
+ j_\psi=0,
+ \qquad
+ \mathcal P_\psi=2k^2W>0.
+ \label{eq:balanced}
+\end{equation}
+Thus cancellation of compact momentum/current does not cancel compact-gradient
+energy.
+\end{corollary}
+
+\section{Does the pair source \(\Theta\)?}
+If \eqref{eq:pair} is an ansatz for the master field itself, it is not an
+external source of \(\Theta\).  It becomes self-gravitating only through the
+nonlinear dependence of the action, tetrad, connection, and metric on
+\(\Theta\).  Schematically,
+\begin{equation}
+ \frac{\delta S[\Theta]}{\delta\Theta^\sharp}=0
+ \quad\Longrightarrow\quad
+ \text{mode energy and orientation enter only through the varied action}.
+\end{equation}
+If instead a distinct compact field \(C\) is introduced in an explicitly
+non-canonical effective action,
+\begin{equation}
+ S[\Theta,C]=S_\Theta+S_C[g(\Theta),C]+S_{\rm mix}[\Theta,C],
+\end{equation}
+then variation gives an actual source term for \(\Theta\).  This route remains
+open until \(S_C\) and \(S_{\rm mix}\) are derived or stated with controlled
+effective-field assumptions.
+
+\section{Algebra and grade audit}
+The canonical carrier \(\B\cong Cl^+_{1,3}\) is closed under its associative
+product.  Therefore products formed solely from \(F\in Cl^2\),
+\(\Theta\in\B\), and an even spin connection remain in the even carrier.
+A component derivative \(D_\mu\Theta\) has an external spacetime index but does
+not by itself create an independent odd Clifford field.
+
+An odd intermediate such as a vector plus trivector appears only after an
+\emph{explicit} lift to the full Clifford module and multiplication by an odd
+vector factor:
+\begin{equation}
+ aF=a\mathbin{\cdot}F+a\mathbin{\wedge}F
+ \in Cl^1\oplus Cl^3.
+\end{equation}
+This identity is valid, but its use in UBT requires a stated embedding of the
+Lorentz module into the full Clifford algebra.  It must not be presented as an
+additional fundamental component of the eight-real-dimensional \(\Theta\).
+
+For the present track the safer native orientation observable is the averaged
+UBT bivector
+\begin{equation}
+ \avg{\Sigma}_{\mu\nu}
+ :=\frac{1}{2\pi R_\psi}
+ \int_0^{2\pi R_\psi}\Sigma_{\mu\nu}(\psi)\,d\psi.
+ \label{eq:sigmabar}
+\end{equation}
+A balanced pair may have \(j_\psi=0\) while
+\(\avg{\Sigma}_{\mu\nu}\neq0\), but this is an open polarization-existence
+problem, not an established result.
+
+\section{Metric-response no-go for a pure rotor}
+Let \(e_\mu{}^a\) be a tetrad and
+\(g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}\).  Under an infinitesimal common
+Lorentz rotation
+\begin{equation}
+ \delta e_\mu{}^a=\lambda^a{}_b e_\mu{}^b,
+ \qquad \lambda_{ab}=-\lambda_{ba},
+\end{equation}
+we obtain
+\begin{align}
+ \delta g_{\mu\nu}
+ &=\lambda_{ab}e_\mu{}^be_\nu{}^a
+   +\lambda_{ab}e_\nu{}^be_\mu{}^a=0.
+ \label{eq:rotor-nogo}
+\end{align}
+Hence a bivector that merely rotates every tetrad leg by the same local
+Lorentz transformation cannot tilt the physical light cone.  A successful
+channel must generate symmetric tetrad strain, a nontrivial relative
+left/right action, or an action-derived connection/torsion response.
+
+\section{Pressure versus rotation}
+The balanced result \eqref{eq:balanced} supplies no oriented current.  By
+itself it can source only quantities that do not require a handed direction,
+such as an energy density, lapse/radion contribution, or diagonal stress.
+A rotating metric requires a surviving covariant orientation, for example
+\(\avg{\Sigma}_{\mu\nu}\), a spin current, axial torsion, or an unbalanced
+mode current.  Therefore the candidate chain is
+\begin{equation}
+ \begin{gathered}
+ \text{balanced compact energy}
+ +\text{nonzero covariant orientation}
+ +\text{action-derived coupling}\\
+ \longrightarrow
+ \delta g_{0i}\ \text{or connection vorticity}
+ \end{gathered}
+ \label{eq:chain}
+\end{equation}
+Every arrow after the first term remains open.
+
+\section{Gödel-type kinematic target}
+A convenient Gödel coframe is
+\begin{equation}
+ \vartheta^0=a(dt+e^xdy),\qquad
+ \vartheta^1=a\,dx,\qquad
+ \vartheta^2=\frac{a}{\sqrt2}e^xdy,\qquad
+ \vartheta^3=a\,dz,
+ \label{eq:godel-coframe}
+\end{equation}
+with
+\begin{equation}
+ ds^2=-(\vartheta^0)^2+(\vartheta^1)^2
+      +(\vartheta^2)^2+(\vartheta^3)^2.
+\end{equation}
+It has
+\begin{equation}
+ g_{ty}=-a^2e^x\neq0,
+ \qquad
+ d\vartheta^0=ae^x\,dx\wedge dy\neq0.
+ \label{eq:godel-kin}
+\end{equation}
+Equations \eqref{eq:godel-coframe}--\eqref{eq:godel-kin} define a rotating
+kinematic target.  They do not show that a compact pair produces this tetrad.
+A UBT Gödel-type closure requires:
+\begin{enumerate}
+ \item a \(\Theta\) and admissible connection satisfying
+       \(D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu\) for the target coframe;
+ \item the canonical Euler--Lagrange equation;
+ \item action-derived source matching;
+ \item a separate global causality analysis.
+\end{enumerate}
+Local tetrad representability is not dynamical selection, and rotating
+kinematics is not a closed-timelike-curve theorem.
+
+\section{Closed boundary and next theorem}
+The exact result of this note is
+\begin{equation}
+ \boxed{
+ W_+=W_-
+ \Longrightarrow
+ j_\psi=0,\quad \mathcal P_\psi>0,
+ }
+\end{equation}
+together with the no-go \eqref{eq:rotor-nogo}.  The next decisive theorem is
+therefore not a Gödel construction.  It is the balanced-polarization question:
+\begin{equation}
+ \boxed{
+ j_\psi=0
+ \quad\text{and}\quad
+ \avg{\Sigma}_{\mu\nu}\stackrel{?}{\neq}0
+ }
+ \label{eq:next}
+\end{equation}
+for an admissible biquaternionic pair.  A negative answer reduces the track to
+a compact-pressure/radion branch.  A positive answer permits, but does not yet
+establish, an action-level rotation channel.
+
+\end{document}

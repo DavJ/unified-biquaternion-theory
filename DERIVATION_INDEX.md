@@ -151,3 +151,21 @@ These extensions are not part of the canonical UBT derivation chain and are not 
 Speculative material is maintained under `speculative_extensions/`, including
 consciousness/psychons, ThetaComm-like narratives, afterlife/survival claims,
 and metaphysical/simulation-style interpretations.
+
+### GEM compact modes and Gödel-type kinematic target (2026-07-25)
+
+- `research_tracks/gem_compact_modes/gem_compact_modes.tex` —
+  `GEM-CM-K1/K2` [L1]: exact averaged `(+n,-n)` current and compact-gradient
+  identities; balanced current/flux vanish while gradient energy remains
+  positive.
+- Same note — `GEM-CM-GA1` [L1]: even-carrier/odd-lift grade audit; no
+  independent odd field is added to canonical biquaternionic Theta.
+- Same note — `GEM-CM-NG1` [L1]: common infinitesimal Lorentz rotor gives
+  `delta g=0` and cannot be a physical light-cone response.
+- `tools/verify_gem_compact_modes.py` — exact/numerical regression for compact
+  modes, the Lorentz no-go, and the Gödel coframe kinematic target.
+- Open: balanced non-zero bivector/spin polarization, canonical action source,
+  symmetric metric strain, distinction from standard stress-energy, dynamical
+  `R_psi`, Gödel-type solution, and global chronology.
+- Historical imaginary-metric/CTC documents remain preserved under
+  `speculative_extensions/`; see `research_tracks/gem_compact_modes/LEGACY_MAP.md`.

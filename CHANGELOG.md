@@ -25,6 +25,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — GEM compact-mode and Gödel-type research track (2026-07-25)
+
+- Added a non-canonical `research_tracks/gem_compact_modes/` package that
+  separates compact `(+n,-n)` mode kinematics, biquaternionic orientation,
+  tetrad response, and Gödel-type dynamics.
+- Proved exact circle-averaged identities: a balanced pair has zero compact
+  current/flux but positive compact-gradient energy.
+- Added an explicit grade/parity scope statement: canonical biquaternionic
+  products stay in the even carrier; odd Clifford intermediates require an
+  explicit full-Clifford lift and are not new fundamental Theta components.
+- Added the exact no-go that a common infinitesimal Lorentz rotation of the
+  tetrad leaves the metric unchanged.
+- Added a Gödel coframe kinematic verifier while keeping action-level source
+  matching, metric response, Gödel dynamics, and chronology open.
+- Preserved all earlier causality/imaginary-metric/CTC files unchanged and
+  documented their historical relationship in `LEGACY_MAP.md`.
+- Added `tools/verify_gem_compact_modes.py` and regression tests.
+
 ### Added — self-contained UBT/Theta introduction in the GR manuscript (2026-07-20)
 
 - Added a dedicated opening section to `papers/UBT_GR_Submission.tex` defining
