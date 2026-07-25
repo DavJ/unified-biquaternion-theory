@@ -25,6 +25,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Corrected — repository hygiene and provenance fail-closed audit (2026-07-25)
+
+- Restored the active forensic-fingerprint modules as canonical root-level
+  implementations instead of runtime shims into `ARCHIVE/`; preserved legacy
+  copies remain unchanged for historical provenance.
+- Ported the complete Planck/WMAP loaders, covariance utilities, CMB-comb,
+  Grid-255, invariance, synthetic-control, and real-data runner paths.
+- Made manifest validation fail closed on empty/malformed manifests, resolve
+  repo-relative paths from the manifest location rather than the process CWD,
+  and retain an explicit legacy bare-filename fallback in the real-data runner.
+- Removed the remaining active `ubt_with_chronofactor` /
+  `ubt_no_chronofactor` runtime import shims used by the test suite, including
+  spectral utilities, `ubt_core`, alpha reproduction, mass utilities, and
+  flavour/RGE helpers.
+- Corrected Route A4 wording from an unconditional “existing L1 result” to
+  `[L1 cond.] on G137-B`.
+- Aligned the three-generations statement with `CLAIMS.yaml`: the exact
+  three-dimensional carrier count is retained, while its identification with
+  the three physical generations is `DERIVED_WITH_ASSUMPTIONS` and dynamical
+  selection remains open.
+- Reproduced all 617 collectable tests in three deterministic groups; the only
+  unexecuted module is the optional Hypothesis property-test module because
+  `hypothesis` is unavailable in the validation environment.
+
 ### Added — GEM compact-mode and Gödel-type research track (2026-07-25)
 
 - Added a non-canonical `research_tracks/gem_compact_modes/` package that

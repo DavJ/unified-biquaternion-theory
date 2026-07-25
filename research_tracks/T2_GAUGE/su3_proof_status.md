@@ -140,21 +140,23 @@ consistent); dynamical proof OPEN.
 
 ## Three Generations
 
-Three identical copies of the SM quantum number structure (three generations)
-arise from the three independent `ψ`-winding modes on `S¹_ψ`:
+The three-dimensional real imaginary-quaternion sector supplies three
+independent candidate mode directions.  Identifying those directions with the
+three observed Standard-Model generations, and selecting the physical
+`ψ`-winding realization, requires additional model assumptions:
 
 ```
-n = 1, 2, 3  (three winding numbers)
+candidate directions:  dim_ℝ(Im ℍ) = 3
+physical identification:  candidate directions ↔ three generations
 ```
 
-Each mode carries identical gauge quantum numbers but couples to a different
-mass scale (mass hierarchy open problem — see `T3_ALPHA/assumptions_audit.md`).
+Under that identification the copies carry the same gauge quantum numbers,
+while their distinct mass scales remain an open dynamical problem (see
+`T3_ALPHA/assumptions_audit.md`).  The dimension count is exact; the physical
+generation assignment is not yet selected by the canonical action.
 
-- `dim_ℝ(Im ℍ) = 3` — directly gives three modes.
-- No fine-tuning or additional assumptions needed.
-
-**Status**: [L0] PROVED  
-**Source**: `DERIVATION_INDEX.md`: "ψ-modes as independent B-fields [L0]: Proven"
+**Status**: DERIVED WITH ASSUMPTIONS (`CLAIMS.yaml: three_generations`)  
+**Source**: `canonical/n_eff/`, `canonical/interactions/`; dynamical selection OPEN
 
 ---
 
@@ -192,7 +194,7 @@ The following elements are **ready to write up** for the SM gauge paper:
 - [x] Theorems G.A, G.B, G.C, G.D — all [L0] proved
 - [x] Qubit carrier and `su(3)` algebra confirmation — representation level
 - [x] Structural confinement argument — [L0]
-- [x] Three generations from `ψ`-modes — [L0]
+- [x] Three candidate generation directions from `ψ`/`Im ℍ` structure — derived with assumptions
 - [ ] Strong coupling `g_s` — to be stated as open
 - [ ] CP violation / strong CP — to be stated as open
 - [ ] Quark-hadron duality / spectrum — to be stated as open

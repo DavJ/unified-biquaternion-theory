@@ -1,8 +1,9 @@
 # Copyright (c) 2025 Ing. David Jaroš
 # Licensed under the MIT License
-"""Root shim package: scripts.spectral -> ubt_with_chronofactor.scripts.spectral."""
-import importlib as _importlib
-import sys as _sys
+"""Canonical root-level spectral utilities package.
 
-_real = _importlib.import_module("ubt_with_chronofactor.scripts.spectral")
-_sys.modules[__name__] = _real
+Submodules are implemented locally in this package; no ARCHIVE import is
+required at runtime.
+"""
+
+__all__: list[str] = []

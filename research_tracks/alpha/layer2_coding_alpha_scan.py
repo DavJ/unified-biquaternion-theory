@@ -492,7 +492,7 @@ def main() -> None:
     print("  CLASSIFICATION: FAILED")
     print("  REASON: Coding layer is a necessary but insufficient condition.")
     print("          The coupling magnitude comes from the prime-attractor")
-    print("          mechanism (existing L1 result), not from coding.")
+    print("          mechanism ([L1 cond.] on G137-B), not from coding.")
     print()
     print("  Near-miss candidates found:", end=" ")
     near_misses = results[3]["near_miss_candidates"]

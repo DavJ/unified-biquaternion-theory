@@ -1,23 +1,28 @@
-# Copyright (c) 2025 Ing. David Jaroš
-# Licensed under the MIT License
-"""Root shim package for ubt_masses."""
-import importlib as _importlib
-import sys as _sys
-import pathlib as _pathlib
+# ubt_masses/__init__.py
+# SPDX-License-Identifier: MIT
+"""
+UBT Masses Package
+==================
 
+Fit-free fermion mass calculations from Unified Biquaternion Theory.
 
-def _find_repo_root(start: _pathlib.Path) -> _pathlib.Path:
-    """Walk upward from start to find the repo root (contains pytest.ini)."""
-    for parent in [start, *start.parents]:
-        if (parent / "pytest.ini").exists():
-            return parent
-    return start.parents[1]  # fallback
+Key features:
+- Uses exact two-loop α from alpha_core_repro (strict mode)
+- MSbar scheme with μ = m̄_ℓ(μ) for leptons
+- QED pole mass conversion (1-loop, TODO: 2-loop)
+- Self-consistent fixed-point solver
+"""
 
+from .core import (
+    ubt_alpha_msbar,
+    compute_lepton_msbar_mass,
+    solve_msbar_fixed_point,
+)
+from .qed import pole_from_msbar_lepton
 
-_repo_root = _find_repo_root(_pathlib.Path(__file__).resolve().parent)
-_archive = _repo_root / "ARCHIVE" / "archive_legacy" / "ARCHIVE" / "legacy_variants"
-if str(_archive) not in _sys.path:
-    _sys.path.insert(0, str(_archive))
-
-_real = _importlib.import_module("ubt_with_chronofactor.ubt_masses")
-_sys.modules[__name__] = _real
+__all__ = [
+    "ubt_alpha_msbar",
+    "compute_lepton_msbar_mass",
+    "solve_msbar_fixed_point",
+    "pole_from_msbar_lepton",
+]
