@@ -1,3 +1,28 @@
+## [2026-07-26] - GR endgame: auxiliary closure and induced-Einstein audit
+
+### Added
+
+- Action-level split-jet multiplier theorem proving algebraic nonpropagation,
+  vanishing on-shell multiplier, and zero auxiliary backreaction.
+- Surjectivity no-go showing that a pure split-jet constraint cannot select a
+  physical tetrad from the single field.
+- Curvature-coefficient underdetermination theorem: current kinematic axioms
+  cannot determine Newton's constant.
+- Correct four-dimensional proper-time/Kaluza--Klein induced-Einstein
+  coefficient for a specified gauge-fixed Laplace-type $\Theta$ Hessian.
+- Conditional effective Einstein--Lambda completion through two derivatives,
+  with the remaining UV/measure assumptions stated explicitly.
+- Exact verifier and regression tests for the auxiliary rank, heat-kernel
+  coefficient, compact-$\psi$ integral, and status propagation.
+
+### Corrected
+
+- Marked the older five-dimensional Seeley--DeWitt GR coefficient route as
+  superseded: it was not a canonical Hessian calculation and mixed dimensions,
+  curvature terms, and mode counts.
+- Separated recovery of GR as a renormalized low-energy effective theory from
+  the stronger, still-unproved prediction of the numerical Newton constant.
+
 ## [2026-07-26] - Historical provenance and minimal one-connection GR no-go
 
 ### Added

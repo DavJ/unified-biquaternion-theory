@@ -1,3 +1,13 @@
+## 2026-07-26 GR endgame update — auxiliary jet and induced coefficient
+
+- **GAP-10T-JET-AUX — CLOSED [L1]:** the split-jet multiplier action enforces the right-inverse constraint; variation of the Lorentz jet tensor and relative-central one-form forces the multiplier to vanish on every non-null patch. The jet sector is algebraic, nonpropagating, and has no on-shell metric or spin source.
+- **GAP-10T-JET-CONSTRAINT-SELECTION — CLOSED AS NO-GO [L1]:** because the right inverse is surjective for every non-null `X`, the pure constraint is solved with zero action for every tetrad and cannot select `E[Theta]`.
+- **GAP-10T-JET-DYN — NARROWED:** nonpropagation is closed; the origin of a separate metric effective action/non-surjective selector, null-patch continuation, and the constrained quantum measure remain.
+- **GAP-10D-UNDERDETERMINATION — CLOSED AS NO-GO [L1]:** all current kinematic axioms are compatible with an arbitrary coefficient multiplying `integral sqrt(g) R`; they cannot determine Newton's constant.
+- **GAP-10D-A2-FORM — CLOSED CONDITIONALLY [L1]:** a specified gauge-fixed Laplace-type Theta Hessian generates the Einstein term with `1/G_ind = N_B(1-6 xi) I_1/(12 pi)`, where `I_1` is the exact compact-psi proper-time KK integral.
+- **GAP-10D-SPECTRAL-IR — CLOSED CONDITIONALLY [L1]:** together with the nonpropagating split-jet auxiliary sector, the induced two-derivative action gives a complete conditional effective GR branch with generic local Levi-Civita curvature.
+- **GAP-10D — NARROWED:** the finalized UBT measure still must derive the physical mode count `N_B`, nonminimal coupling `xi`, UV identification and regulator/renormalisation prescription without fitting `G`.
+
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # WHAT_IS_PROVED.md — Definitive Map of Proved Results
@@ -20,8 +30,12 @@
 | GR-T12 | With $K=0$, the pure Lorentz pair implies $\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu$ and excludes the non-flat Schwarzschild vacuum exterior with $M\ne0$ | [L1 NO-GO] | same |
 | GR-T13 | Every smooth Lorentzian tetrad has a local single-$\Theta$ representer with explicit composite metric-compatible contortion | [L1, local] | `canonical/gr_closure/gap_10i_torsionful_local_representer.tex`; `tools/verify_gap_10i_torsionful_local_representer.py` |
 | GR-T14 | Direct fixed-background pure-pair matter spin current is derived; the minimal affine torsion-free branch and Lorentz-invariant pairing escape route are no-go results | [L1 conditional / L1 no-go] | `canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex`; `tools/verify_canonical_spin_current.py` |
-| GR-T15 | Canonical UBT action selects a composite/non-minimal or translational-relative torsion completion, with physical torsion control and global continuation | [OPEN/NARROWED] | GAP-10I-CURVED, GAP-10T-DYN |
-| GR-T16 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
+| GR-T15 | Split-jet multiplier action enforces the local right inverse; jet variables are algebraic and their multiplier vanishes on shell on non-null patches | [L1] | `canonical/gr_closure/gap_10t_split_jet_auxiliary_completion.tex`; `tools/verify_gr_endgame_completion.py` |
+| GR-T16 | A pure surjective split-jet constraint cannot select a tetrad from $\Theta$ | [L1 NO-GO] | same |
+| GR-T17 | For a specified gauge-fixed Laplace-type $\Theta$ Hessian, the compact-$\psi$ proper-time determinant generates the Einstein term with the explicit coefficient $1/G_{\rm ind}=N_B(1-6\xi)\mathcal I_1/(12\pi)$ | [L1 conditional] | `canonical/gr_closure/gap_10d_induced_gravity_endgame.tex` |
+| GR-T18 | Current kinematic axioms do not determine the coefficient of $\int\sqrt gR$ or the numerical Newton constant | [L1 NO-GO] | same |
+| GR-T19 | Generic local Levi--Civita Einstein--$\Lambda$ dynamics through two derivatives, combined with the nonpropagating split-jet sector | [L1 conditional effective branch] | `canonical/gr_closure/gap_10_gr_effective_completion.tex` |
+| GR-T20 | Unconditional single-$\Theta$ derivation of the constrained Hessian, physical mode count, curvature coupling, UV matching and global/null-patch continuation | [OPEN/NARROWED] | GAP-10T-JET-DYN, GAP-10D, GAP-Q |
 
 The former compact-$\psi$ fiber-average rank closure is noncanonical and must
 not be listed as the proved UBT metric mechanism.

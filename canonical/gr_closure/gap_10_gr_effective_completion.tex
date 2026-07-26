@@ -1,0 +1,90 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[most]{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\title{Conditional Effective GR Completion of UBT}
+\author{Ing. David Jaro\v{s}}
+\date{26 July 2026}
+\begin{document}\maketitle
+\begin{abstract}
+This note combines the exact split-jet auxiliary theorem with the corrected
+induced-gravity coefficient.  It states the strongest complete GR result that
+is presently justified: a local, generic-curvature, torsion-free Einstein
+infrared branch exists as a mathematically closed effective theory under an
+explicit spectral/Hessian assumption.  The note also records why this is not
+yet an unconditional single-$\Theta$ derivation.
+\end{abstract}
+
+Let $e$ be the physical tetrad, $\mathring\omega(e)$ its Levi--Civita
+connection, and let $S_{\rm aux}$ be the split-jet multiplier action of
+\texttt{gap\_10t\_split\_jet\_auxiliary\_completion.tex}.  Under the specified
+one-loop assumptions of
+\texttt{gap\_10d\_induced\_gravity\_endgame.tex}, the infrared effective action
+through two derivatives is
+\begin{equation}
+ \Gamma_{\rm IR}
+ =-\frac1{16\pi G_{\rm ind}}
+ \int d^4x\sqrt g\,(R-2\Lambda_{\rm ren})
+ +S_{\rm aux}+S_{\rm matter}
+ +O(R^2/\Lambda^2,\nabla^4/\Lambda^2).
+ \label{eq:IR}
+\end{equation}
+Here $G_{\rm ind}$ is the exact regulated expression
+\begin{equation}
+ \frac1{G_{\rm ind}}
+ =\frac{N_B(1-6\xi)}{12\pi}
+ \int_{\Lambda^{-2}}^\infty ds\,s^{-2}e^{-m^2s}
+ \vartheta_3(0,e^{-s/R_\psi^2}).
+\end{equation}
+
+\begin{theorem}[Conditional effective GR closure]
+On a non-null split-jet patch, variation of Eq.~\eqref{eq:IR} gives:
+\begin{enumerate}
+ \item the exact split-jet representation
+ $\widehat D_\mu X=\sqrt{\mathcal N_0}e_\mu$;
+ \item vanishing multiplier $\lambda=0$, so the jet variables are
+ nonpropagating and do not source the metric or physical spin connection;
+ \item the torsion-free Levi--Civita physical connection;
+ \item the Einstein equation
+ \begin{equation}
+ G_{\mu\nu}+\Lambda_{\rm ren}g_{\mu\nu}
+ =8\pi G_{\rm ind}T_{\mu\nu}
+ +O(\nabla^4/\Lambda^2).
+ \end{equation}
+\end{enumerate}
+The allowed local curvature is as general as in GR because the split-jet map is
+a right inverse for every tetrad.
+\end{theorem}
+
+\begin{theorem}[GR recovery versus prediction of $G$]
+Recovery of general relativity as an infrared effective theory requires a
+finite positive renormalized coefficient $G_{\rm R}$ in the Einstein equation;
+it does not require the low-energy theory to predict the numerical value of
+that dimensionful coefficient.  Equation~\eqref{eq:IR} therefore closes the
+conditional GR-recovery problem.  Predicting $G_{\rm R}$ from the fundamental
+$\Theta$ measure is a strictly stronger UV-completion problem and remains
+open.
+\end{theorem}
+
+\begin{proof}
+The auxiliary Euler--Lagrange theorem gives the constraint and $\lambda=0$.
+All auxiliary contributions to the tetrad and connection equations therefore
+vanish on shell.  The remaining two-derivative variation is the standard
+variation of the Einstein--Hilbert functional.  Universal local
+representability follows from the split-jet right inverse.
+\end{proof}
+
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Strongest justified conclusion]
+\textbf{UBT has a complete conditional effective GR branch:} generic local GR
+kinematics, nonpropagating split-jet auxiliaries, and Einstein--Lambda infrared
+dynamics with an explicitly computable induced Newton coefficient.
+
+\medskip
+\textbf{It is not yet an unconditional single-field derivation:} the current
+axioms do not derive the gauge-fixed Hessian, physical mode count, curvature
+coupling, UV cutoff identification, or constrained path-integral measure.
+Those are exactly the remaining first-principles inputs.
+\end{tcolorbox}
+\end{document}

@@ -1,3 +1,5 @@
+> **GR endgame update (26 July 2026):** `GAP-10T-JET-AUX` is closed: an explicit multiplier action makes the split-jet variables algebraic and nonpropagating and forces their multiplier to vanish on shell. `GAP-10T-JET-CONSTRAINT-SELECTION` is closed as a no-go: universal surjectivity means that constraint alone cannot select a tetrad from Theta. `GAP-10D-UNDERDETERMINATION` is closed as a no-go, while `GAP-10D-A2-FORM` and `GAP-10D-SPECTRAL-IR` are closed conditionally with an exact proper-time/KK formula for the induced Newton coefficient. This gives a complete conditional effective GR branch, not an unconditional single-Theta derivation.
+
 > **GR geometry update (19 July 2026):** Projection-free covariant-tetrad kinematics closes rank ten, connection reconstruction, the affine Minkowski representer, and local curved representability by an explicit composite metric-compatible contortion.  The concurrent-vector exclusion is only a torsion-free no-go.  Canonical action selection, physical torsion control, global continuation, and Einstein dynamics remain unresolved.
 
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
@@ -71,18 +73,23 @@ global self-consistent dynamics.
 | `GAP-10T-DCOMP-RES` real-exponential symbol sector (6-dim) | 🔶 Open: generic linear Riemann rank 6, but variable-coefficient/nonlinear assembly, exceptional loci, gauge/ghost count, quadratic action, and on-shell torsion remain open |
 | `GAP-10T-MINIMAL-ONE-CONNECTION-GR` | ⛔ Closed as no-go: one physical connection cannot give both universal local single-Theta representability and exact generic torsion-free GR [L1] |
 | `GAP-10T-JET-KIN` | ✅ Closed locally: explicit composite Lorentz + relative-central split-jet right inverse; physical connection remains Levi-Civita [L1] |
-| `GAP-10T-JET-DYN` | 🟠 Open: canonical selection of E and the jet representative, nonpropagation, null-patch continuation, and full variation |
+| `GAP-10T-JET-AUX` | ✅ Closed: multiplier action; jet variables algebraic/nonpropagating; multiplier and on-shell backreaction vanish [L1] |
+| `GAP-10T-JET-CONSTRAINT-SELECTION` | ⛔ Closed as no-go: the surjective pure constraint cannot select one tetrad from Theta [L1] |
+| `GAP-10T-JET-DYN` | 🟠 Narrowed: nonpropagation closed; origin of the metric effective action or another non-surjective selector, null patches/global continuation, and constrained measure remain |
 | `GAP-10T-GRADIENT-FLATNESS` exact-gradient composite branch | ⛔ Closed as no-go: every nondegenerate `e^a=N₀^{-1/2}dY^a` metric is locally flat; affine stationarity is only a Jacobian/null-Lagrangian corollary [L1] |
-| Torsion/jet role selected by fundamental UBT action | 🟠 split-jet kinematics closed; `GAP-10T-DYN` still lacks action-level selection/nonpropagation |
+| Torsion/jet role selected by fundamental UBT action | 🟠 split-jet kinematics and auxiliary nonpropagation closed; pure constraint selection is a no-go, so a separately derived metric action/non-surjective law is required |
 | Prescribed curved coefficients | ✅ Exact augmented-holonomy criterion [L1] |
 | Self-consistent curved single-Theta system | ✅ local kinematics; 🟠 action selection/global regularity narrowed |
 | Lorentz/psi symmetry propagation | ✅ Conditional fixed-set/metric-stability theorems [L1] |
 | Einstein--Lambda infrared endpoint | ✅ Conditional Palatini/Lovelock closure [L1] |
-| Einstein dynamics derived from fundamental canonical UBT | 🟠 `GAP-10D` NARROWED |
+| `GAP-10D-UNDERDETERMINATION` | ⛔ Closed as no-go: current kinematic axioms cannot fix the coefficient of integral sqrt(g) R [L1] |
+| `GAP-10D-A2-FORM` | ✅ Conditional: exact induced coefficient for a specified gauge-fixed Laplace-type Theta Hessian and KK trace [L1] |
+| `GAP-10D-SPECTRAL-IR` | ✅ Conditional complete effective Einstein-Lambda branch once N_B, xi and cutoff are specified/derived [L1] |
+| Einstein dynamics derived unconditionally from finalized UBT measure | 🟠 `GAP-10D` NARROWED: N_B, xi, cutoff identification and constrained measure remain |
 | Schwarzschild tetrad/lapse selected on shell | ⚪ `GAP-U2Theta` OPEN |
 
 **Submission file**: `papers/UBT_GR_Submission.tex`  
-**Verdict**: not submission-ready as an unconditional UBT derivation until the jet-connection and curvature-action lemmas are closed; the minimal one-connection exact-GR route is now ruled out.
+**Verdict**: a complete conditional effective GR branch is now explicit, but the paper is not submission-ready as an unconditional single-Theta derivation until the gauge-fixed Hessian/mode count, curvature coupling, cutoff identification, constrained measure, and global/null-patch continuation are derived.
 
 ---
 

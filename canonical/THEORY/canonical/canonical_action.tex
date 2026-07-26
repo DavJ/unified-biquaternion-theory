@@ -77,6 +77,49 @@ geometric fields), its gravitational tensor is necessarily
 $aG_{\mu\nu}+bg_{\mu\nu}$.  Thus Einstein--$\Lambda$ is the unique conditional
 infrared endpoint under these assumptions.
 
+\section{Split-jet auxiliary action and conditional induced gravity}
+The local split-jet right inverse admits an action-level auxiliary
+implementation.  On a non-null Lorentz-real patch define
+\[
+ C_\mu{}^a=\mathring D_\mu X^a+K^{J\,a}{}_{\mu b}X^b+w_\mu X^a
+ -\sqrt{\mathcal N_0}e_\mu{}^a
+\]
+and
+\[
+ S_{\rm aux}=\int d^4x\sqrt{-g}\,\lambda_a{}^\mu C_\mu{}^a.
+\]
+Variation of $K^J$ and $w$ gives
+$\lambda^{\mu[a}X^{b]}=0$ and $\lambda_a{}^\mu X^a=0$, hence
+$\lambda=0$ whenever $X^2\ne0$.  The jet variables are therefore algebraic,
+nonpropagating, and have no on-shell metric or spin source.  This closes
+GAP-10T-JET-AUX.  Because the right inverse is surjective for every tetrad,
+the pure constraint cannot select $e$ from $\Theta$; this closes
+GAP-10T-JET-CONSTRAINT-SELECTION as a no-go and narrows GAP-10T-JET-DYN.
+
+A corrected one-loop calculation also isolates the strongest justified
+curvature-action statement.  If the finalized gauge-fixed $\Theta$ Hessian has
+$N_B$ real bosonic Laplace-type modes
+$P_n=-\nabla^2+m^2+n^2/R_\psi^2+\xi R+\mathcal E_0$, proper-time integration
+gives
+\[
+ \frac1{G_{\rm ind}}=\frac{N_B(1-6\xi)}{12\pi}
+ \int_{\Lambda^{-2}}^\infty ds\,s^{-2}e^{-m^2s}
+ \vartheta_3(0,e^{-s/R_\psi^2}).
+\]
+Thus the Einstein--Hilbert form and coefficient are closed conditionally once
+the Hessian, physical mode count, curvature coupling, and cutoff are fixed.
+At $\Lambda R_\psi=1$, $m=0$, the KK factor is
+$C_\psi=1.303410251859\ldots$.  Combined with $S_{\rm aux}$ this gives a
+complete conditional effective GR branch through two derivatives.
+
+The present kinematic axioms do not determine the coefficient of
+$\int\sqrt gR$: an arbitrary multiple can be added without changing the
+covariant tetrad, metric identity, connection reconstruction, or split-jet
+right inverse.  GAP-10D-UNDERDETERMINATION is therefore closed as a no-go.
+GAP-10D-A2-FORM and GAP-10D-SPECTRAL-IR are closed conditionally, while full
+GAP-10D remains narrowed until $(N_B,\xi,\Lambda)$ and the constrained
+fluctuation measure are derived from the finalized UBT theory.
+
 \section{Curved integrability and symmetry conditions}
 For prescribed $E_\mu,A_\mu,B_\mu$, the two-sided defining equation
 \[
@@ -118,13 +161,13 @@ GAP-10D, and GAP-10$\psi$.  The direct fixed-background matter spin current
 of the kinetic term is now derived for the pure-pair representative, and its
 flat affine obstruction is proved.  The $\sharp$/Minkowski pairing is unique
 up to scale among nonzero symmetric Lorentz-invariant slice pairings, so a
-pairing change alone cannot remove that obstruction.  The remaining tasks are
-to compute the full composite $\Theta$-only variation, derive the selected
-low-energy action and torsion cancellation/completion, decide between the
-composite-contortion branch and an optional torsion-free relative bimodule
-branch, derive coefficients and stability hypotheses, prove nonpropagation of
-all auxiliary variables, and establish physical torsion compatibility and
-global regularity.
+pairing change alone cannot remove that obstruction.  The split-jet auxiliary action now proves algebraic nonpropagation and on-shell
+decoupling, while its surjectivity proves that the pure constraint cannot
+select a tetrad.  The induced Einstein coefficient is known conditionally for
+a specified gauge-fixed Hessian.  The remaining tasks are to derive the
+physical fluctuation measure, $N_B$, $\xi$, and the cutoff/scale identification,
+or to supply another non-surjective metric-selection law, together with global
+null-patch continuation and physical stability.
 
 \medskip
 No compact-fiber average or projection is part of the canonical metric route.

@@ -30,7 +30,7 @@ Sources: `canonical/fields/`, `canonical/THEORY/math/fields/`
 - Rank-ten/non-degeneracy and Lorentz-signature chain
 - Connection reconstruction from tetrad and specified torsion
 - Flat affine representers and curved integrability selection
-- Open Einstein/action bridge and Schwarzschild on-shell selection
+- Conditional effective Einstein/action bridge now explicit; first-principles Hessian/mode/cutoff/measure derivation and Schwarzschild on-shell selection remain open
 
 Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submission.tex`
 
@@ -51,8 +51,8 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 - `tools/verify_remaining_gr_subclosures.py` — exact Cartan rank, Lorentz involution, psi-gauge metric stability, and augmented-curvature checks.
 - `tools/verify_canonical_spin_current.py` — direct fixed-background matter current, affine torsion no-go, Lorentz-invariant pairing classification, and the auxiliary affine-stationarity sample.
 - `tools/verify_gradient_composite_flatness.py` — exact determinant identity and nonlinear pullback check supporting the exact-gradient flatness no-go.
-- Closed/conditional/narrowed: GAP-10K; GAP-10Ω-KIN/GR; GAP-10I-PAIR-KIN and GAP-10I-PAIR-GR (torsion-free no-go), GAP-10I-TORSION-LOCAL (closed locally); GAP-10T-PALATINI and GAP-10T-SPIN (conditional), GAP-10T-FLAT-NOGO, GAP-10T-PAIRING-NOGO, and GAP-10T-GRADIENT-FLATNESS (no-go), with full GAP-10T-DYN narrowed; GAP-10L-CONN and GAP-10L-SYM (conditional) with GAP-10L-DYN narrowed; GAP-10I-SR and GAP-10I-PRESCRIBED, GAP-10I-1S (no-go), GAP-10I-2S optional for torsion-free completion and GAP-10I-CURVED local kinematics closed with dynamics/global part narrowed; GAP-10D-PALATINI/UNIQUENESS (conditional) with GAP-10D narrowed; GAP-10psi-KIN/SYM with GAP-10psi narrowed.
-- Still open at full theory level: the canonical self-consistent D-composite Theta-only action variation and torsion completion, induced gravitational coefficients, self-consistent curved on-shell selection and global regularity, selection/exclusion of physical psi modes, GAP-B-MASTER, and GAP-U2Theta.
+- Closed/conditional/narrowed: GAP-10K; GAP-10Ω-KIN/GR; GAP-10I-PAIR-KIN and GAP-10I-PAIR-GR (torsion-free no-go), GAP-10I-TORSION-LOCAL (closed locally); GAP-10T-PALATINI and GAP-10T-SPIN (conditional), GAP-10T-FLAT-NOGO, GAP-10T-PAIRING-NOGO, and GAP-10T-GRADIENT-FLATNESS (no-go), with `GAP-10T-JET-AUX` closed, `GAP-10T-JET-CONSTRAINT-SELECTION` closed as a no-go, and full GAP-10T-DYN narrowed; GAP-10L-CONN and GAP-10L-SYM (conditional) with GAP-10L-DYN narrowed; GAP-10I-SR and GAP-10I-PRESCRIBED, GAP-10I-1S (no-go), GAP-10I-2S optional for torsion-free completion and GAP-10I-CURVED local kinematics closed with dynamics/global part narrowed; GAP-10D-PALATINI/UNIQUENESS, GAP-10D-A2-FORM and GAP-10D-SPECTRAL-IR (conditional), GAP-10D-UNDERDETERMINATION (no-go), with GAP-10D narrowed; GAP-10psi-KIN/SYM with GAP-10psi narrowed.
+- Still open at full theory level: derivation of the constrained gauge-fixed Hessian and physical mode count, nonminimal curvature coupling, UV scale/regulator from the finalized Theta measure, a non-surjective tetrad-selection principle or induced collective-field construction, global/null-patch continuation, self-consistent curved on-shell selection, physical psi stability, GAP-B-MASTER, and GAP-U2Theta.
 - The earlier compact-ψ fiber-average closure is retained as a noncanonical exploratory branch.
 
 **GR closure files:**
@@ -179,3 +179,7 @@ and metaphysical/simulation-style interpretations.
 
 - `canonical/gr_closure/gap_10t_minimal_one_connection_gr_no_go.tex` — architecture-level exact-GR no-go and completion fork.
 - `canonical/gr_closure/gap_10t_split_jet_right_inverse.tex` — explicit local composite Lorentz plus relative-central jet right inverse, keeping physical curvature Levi-Civita; kinematic closure only.
+- `canonical/gr_closure/gap_10t_split_jet_auxiliary_completion.tex` — multiplier action, exact lambda=0 theorem, nonpropagation/on-shell decoupling, and surjective-selection no-go.
+- `canonical/gr_closure/gap_10d_induced_gravity_endgame.tex` — axiomatic underdetermination theorem and corrected proper-time/Kaluza--Klein induced Einstein coefficient.
+- `canonical/gr_closure/gap_10_gr_effective_completion.tex` — complete conditional effective GR branch through two derivatives.
+- `tools/verify_gr_endgame_completion.py` — multiplier-rank, proper-time coefficient, self-dual KK constant, and Planck-ratio checks.

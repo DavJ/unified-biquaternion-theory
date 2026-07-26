@@ -1,3 +1,7 @@
+## Update 2026-07-26: GR endgame boundary
+
+The local split-jet construction now has an action-level auxiliary completion. `GAP-10T-JET-AUX` is **CLOSED [L1]** and `GAP-10T-JET-CONSTRAINT-SELECTION` is **CLOSED AS NO-GO [L1]**: the jet variables are nonpropagating and decouple on shell, but universal representability means that the pure constraint cannot choose a tetrad. The corrected proper-time/Kaluza-Klein calculation closes `GAP-10D-A2-FORM` and `GAP-10D-SPECTRAL-IR` conditionally, while `GAP-10D-UNDERDETERMINATION` is closed as a no-go. UBT therefore has a **complete conditional effective GR branch**, but not an unconditional single-Theta prediction of Newton's constant; `N_B`, `xi`, the UV scale and the constrained measure remain to be derived.
+
 # 2026-07-19 — Torsion-free no-go and torsionful local curved representer
 
 ## Canonical geometry

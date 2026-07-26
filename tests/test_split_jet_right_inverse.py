@@ -18,4 +18,4 @@ def test_exact_samples():
 def test_status_is_kinematic_not_dynamic():
     claims=(ROOT/'CLAIMS.yaml').read_text()
     assert 'GAP-10T-JET-KIN: CLOSED LOCALLY' in claims
-    assert 'GAP-10T-JET-DYN: OPEN' in claims
+    assert 'GAP-10T-JET-DYN: NARROWED' in claims

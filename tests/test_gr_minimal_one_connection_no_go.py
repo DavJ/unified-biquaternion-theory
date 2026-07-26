@@ -39,7 +39,7 @@ def test_architecture_no_go_is_propagated_to_authoritative_ledgers():
 def test_completion_is_not_overclaimed():
     claims = (ROOT / "CLAIMS.yaml").read_text()
     assert "GAP-10T-JET-KIN: CLOSED LOCALLY" in claims
-    assert "GAP-10T-JET-DYN: OPEN" in claims
+    assert "GAP-10T-JET-DYN: NARROWED" in claims
     assert "GAP-10D: NARROWED" in claims
     paper = (ROOT / "papers" / "UBT_GR_Submission.tex").read_text()
     assert r"does not select $E[\Theta]$" in paper

@@ -1,0 +1,167 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\LC}{\mathring D}
+\title{GAP-10T Split-Jet Auxiliary Completion:\\
+Nonpropagation, On-Shell Decoupling, and the Remaining Selection No-Go}
+\author{Ing. David Jaro\v{s}}
+\date{26 July 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+The split-jet right inverse represents every local Lorentz tetrad while the
+physical connection remains Levi--Civita, but the previous construction was
+kinematic.  We give an action-level auxiliary implementation and prove its
+complete local Euler--Lagrange structure.  A Lagrange-multiplier constraint
+forces the split-jet equation.  Variation of the Lorentz jet tensor and the
+relative-central one-form then forces the multiplier itself to vanish on every
+non-null patch.  Consequently the jet variables carry no derivatives, no
+propagating modes, no stress tensor, and no spin source on shell.  When this
+sector is added to any gravitational effective action, the metric equation is
+unchanged while every tetrad remains locally representable by the single
+biquaternionic jet.  We also prove the exact limitation: because the algebraic
+jet map is surjective, this constraint sector cannot select a tetrad from
+$\Theta$.  A separate metric effective action or a genuinely new dynamical
+relation is logically necessary.
+\end{abstract}
+
+\section{Fields and constraint}
+Let $e_\mu{}^a$ be a nondegenerate tetrad, let
+$\mathring\omega(e)$ be its Levi--Civita spin connection, and let
+$X=X^a\mathbf u_a$ be the Lorentz-real projection of $\Theta$ on a patch
+where
+\begin{equation}
+ X^2:=\eta_{ab}X^aX^b\ne0,
+ \qquad s:=\sqrt{\mathcal N_0}.
+\end{equation}
+Introduce a Lorentz-algebra-valued jet variable
+$K^J_{\mu ab}=-K^J_{\mu ba}$, a real relative-central one-form $w_\mu$, and
+a vector-valued Lagrange multiplier $\lambda_a{}^\mu$.  None of these objects
+is used in physical curvature.  Define
+\begin{equation}
+ C_\mu{}^a:=\mathring D_\mu X^a
+ +K^{J\,a}{}_{\mu b}X^b+w_\mu X^a-s e_\mu{}^a
+\end{equation}
+and the auxiliary action
+\begin{equation}
+ \boxed{
+ S_{\rm aux}[e,X,K^J,w,\lambda]
+ =\int d^4x\,\sqrt{-g}\;\lambda_a{}^\mu C_\mu{}^a.}
+ \label{eq:Saux}
+\end{equation}
+This is a constraint sector, not an additional kinetic sector.
+
+\section{Euler--Lagrange theorem}
+\begin{theorem}[Auxiliary split-jet closure]\label{thm:aux}
+On every patch with $X^2\ne0$, the Euler--Lagrange equations of
+Eq.~\eqref{eq:Saux} imply
+\begin{equation}
+ C_\mu{}^a=0,
+ \qquad \lambda_a{}^\mu=0.
+ \label{eq:lambda-zero}
+\end{equation}
+Thus $K^J$, $w$, and $\lambda$ add no local propagating degree of freedom and
+the auxiliary sector contributes neither a tetrad source nor a physical spin
+current on shell.
+\end{theorem}
+
+\begin{proof}
+Variation with respect to $\lambda_a{}^\mu$ gives $C_\mu{}^a=0$.  Variation
+with respect to $w_\mu$ gives
+\begin{equation}
+ \lambda_a{}^\mu X^a=0. \label{eq:wvar}
+\end{equation}
+Because $K^J_{\mu ab}$ is antisymmetric, its variation gives
+\begin{equation}
+ \lambda^{\mu[a}X^{b]}=0. \label{eq:Kvar}
+\end{equation}
+For fixed $\mu$, Eq.~\eqref{eq:Kvar} says that $\lambda^\mu$ and $X$ are
+linearly dependent: $\lambda_a{}^\mu=\alpha^\mu X_a$.  Substitution into
+Eq.~\eqref{eq:wvar} gives $\alpha^\mu X^2=0$.  Since $X^2\ne0$,
+$\alpha^\mu=0$, proving Eq.~\eqref{eq:lambda-zero}.
+
+The variables $K^J$, $w$, and $\lambda$ occur without derivatives.  Their
+field equations are therefore algebraic.  Variations of $e$, $X$, and the
+physical Levi--Civita connection arising from $S_{\rm aux}$ are proportional
+to $\lambda$ or its covariant derivative after integration by parts.  They
+vanish on the solution $\lambda=0$.  Hence the constraint sector has no
+on-shell stress or spin source and no propagator of its own.
+\end{proof}
+
+\section{Right inverse and stabilizer}
+The constraint is solvable for every $(e,X)$.  Put
+\begin{equation}
+ Z_\mu{}^a:=s e_\mu{}^a-\mathring D_\mu X^a,
+ \qquad
+ w_\mu:=\frac{X_aZ_\mu{}^a}{X^2},
+ \qquad
+ Z_{\mu\perp}{}^a:=Z_\mu{}^a-w_\mu X^a.
+\end{equation}
+Then the representative
+\begin{equation}
+ K^J_{\mu ab}
+ =\frac{Z_{\mu\perp a}X_b-X_aZ_{\mu\perp b}}{X^2}
+ \label{eq:Krep}
+\end{equation}
+satisfies $K^{J\,a}{}_{\mu b}X^b=Z_{\mu\perp}{}^a$ and hence $C=0$.
+The general solution contains an algebraic stabilizer
+$C_{\mu ab}^{\rm stab}X^b=0$.  Setting this component to zero is a local
+representative choice; it is invisible in the tetrad and physical curvature.
+
+\begin{corollary}[No backreaction on a gravitational effective action]
+Let $\Gamma_{\rm grav}[e]$ be any diffeomorphism- and Lorentz-invariant
+functional of the physical tetrad and its Levi--Civita curvature.  The combined
+action
+\begin{equation}
+ \Gamma_{\rm tot}=\Gamma_{\rm grav}[e]+S_{\rm aux}
+\end{equation}
+has exactly the metric/tetrad equation of $\Gamma_{\rm grav}$ on shell, while
+$C=0$ supplies a local single-$\Theta$ jet representation of every solution.
+\end{corollary}
+
+\section{Selection no-go for the pure constraint branch}
+\begin{proposition}[Surjectivity prevents tetrad selection]\label{prop:noselect}
+For every non-null $X$ and every tetrad $e$, there exist algebraic $(K^J,w)$
+solving $C=0$.  Therefore the pure auxiliary action Eq.~\eqref{eq:Saux} imposes
+no equation selecting one tetrad $e$ from $X$ or $\Theta$.  Eliminating the
+auxiliary variables cannot produce a nontrivial metric potential: the
+constraint is solvable with zero action for every tetrad.
+\end{proposition}
+
+\begin{proof}
+Equation~\eqref{eq:Krep} is an explicit right inverse for arbitrary
+$Z=s e-\mathring D X$.  On $C=0$, $S_{\rm aux}=0$, and Theorem~\ref{thm:aux}
+shows that its first variation with respect to physical variables vanishes as
+well.  Hence no tetrad is preferred by this sector.
+\end{proof}
+
+This is not a defect of the algebraic right inverse; it is the precise price
+of universal representability.  The physical tetrad must be selected by a
+separate effective action, or the fundamental theory must supply an additional
+non-surjective dynamical relation.
+
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Exact status]
+\textbf{GAP-10T-JET-AUX: CLOSED [L1].}
+The split-jet relation has an explicit local action implementation.  Its jet
+variables are algebraic, nonpropagating, and decouple from the physical field
+equations on shell.
+
+\medskip
+\textbf{GAP-10T-JET-CONSTRAINT-SELECTION: CLOSED AS NO-GO [L1].}
+A pure multiplier implementation of the surjective right inverse cannot select
+$E[\Theta]$; every tetrad is admissible.
+
+\medskip
+\textbf{GAP-10T-JET-DYN: NARROWED.}
+Nonpropagation and on-shell decoupling are closed.  What remains is the origin
+of the separate metric effective action (or another non-surjective dynamical
+principle), null-patch/global continuation, and a complete quantum degree-of-
+freedom measure.
+\end{tcolorbox}
+\end{document}

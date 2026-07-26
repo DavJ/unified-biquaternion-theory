@@ -775,6 +775,68 @@ derive the completion from the action.  The exact proofs are in
 \path{canonical/gr_closure/gap_10t_minimal_one_connection_gr_no_go.tex} and
 \path{canonical/gr_closure/gap_10t_split_jet_right_inverse.tex}.
 
+\subsection{Auxiliary split-jet action and conditional effective completion}
+The right inverse also has a local action-level implementation.  Introduce an
+antisymmetric jet tensor $K^J_{\mu ab}$, a relative-central one-form $w_\mu$,
+and a vector multiplier $\lambda_a{}^\mu$, none of which enters physical
+curvature, and define
+\begin{equation}
+ S_{\rm aux}=\int d^4x\sqrt{-g}\,\lambda_a{}^\mu
+ \left(\mathring D_\mu X^a+K^{J\,a}{}_{\mu b}X^b
+ +w_\mu X^a-\sqrt{\mathcal N_0}e_\mu{}^a\right).
+ \label{eq:Saux-paper}
+\end{equation}
+Variation of $K^J$ and $w$ gives
+$\lambda^{\mu[a}X^{b]}=0$ and $\lambda_a{}^\mu X^a=0$.  On every patch with
+$X^2\ne0$ these imply $\lambda_a{}^\mu=0$.  Hence the jet variables are
+algebraic and nonpropagating and their on-shell stress and physical spin source
+vanish.  This closes \texttt{GAP-10T-JET-AUX}.  Since the right inverse exists
+for every tetrad, the constraint action is zero on shell for every tetrad and
+cannot select $E[\Theta]$; this closes
+\texttt{GAP-10T-JET-CONSTRAINT-SELECTION} as a no-go and narrows
+\texttt{GAP-10T-JET-DYN}.
+
+The remaining metric action can be generated conditionally by a specified
+one-loop $\Theta$ Hessian.  For $N_B$ physical real bosonic modes with
+Laplace-type KK operators
+\begin{equation}
+ P_n=-\nabla^2+m^2+\frac{n^2}{R_\psi^2}+\xi R+\mathcal E_0
+\end{equation}
+and a proper-time cutoff $\Lambda$, the exact induced coefficient is
+\begin{equation}
+ \frac1{G_{\rm ind}}
+ =\frac{N_B(1-6\xi)}{12\pi}
+ \int_{\Lambda^{-2}}^\infty ds\,s^{-2}e^{-m^2s}
+ \vartheta_3\!\left(0,e^{-s/R_\psi^2}\right).
+ \label{eq:Gind-paper}
+\end{equation}
+At $\Lambda R_\psi=1$ and $m=0$, the integral is
+$C_\psi\Lambda^2$ with
+$C_\psi=1.303410251859\ldots$.  Thus a specified gauge-fixed Hessian,
+physical mode count, curvature coupling and cutoff give the two-derivative
+infrared action
+\begin{equation}
+ \Gamma_{\rm IR}=-\frac1{16\pi G_{\rm ind}}
+ \int d^4x\sqrt g\,(R-2\Lambda_{\rm ren})+S_{\rm aux}
+ +O(R^2/\Lambda^2),
+ \label{eq:conditional-effective-paper}
+\end{equation}
+whose on-shell equations are Einstein--Lambda and whose local curvature is as
+general as GR.  This closes \texttt{GAP-10D-A2-FORM} and
+\texttt{GAP-10D-SPECTRAL-IR} conditionally.
+
+The existing kinematic axioms cannot fix the coefficient in
+Eq.~\eqref{eq:conditional-effective-paper}: adding
+$c\int\sqrt gR$ with arbitrary $c$ leaves every tetrad, metric, connection and
+right-inverse identity unchanged.  Therefore
+\texttt{GAP-10D-UNDERDETERMINATION} is closed as a no-go.  An unconditional
+prediction of $G$ still requires derivation of $(N_B,\xi,\Lambda)$ and the
+constrained fluctuation measure from the finalized UBT action.  The exact
+proofs are in
+\path{canonical/gr_closure/gap_10t_split_jet_auxiliary_completion.tex},
+\path{canonical/gr_closure/gap_10d_induced_gravity_endgame.tex}, and
+\path{canonical/gr_closure/gap_10_gr_effective_completion.tex}.
+
 The resulting equation is schematically
 \begin{equation}
  E_\mu=\mathcal N_0^{-1/2}
@@ -1010,8 +1072,10 @@ GAP-10T-DCOMP-LIN-REALFREQ & \textbf{CLOSED AS NO-GO}: the frozen torsion-free $
 GAP-10T-DCOMP-RES & \textbf{OPEN}: six-dimensional real-exponential symbol sector with nonzero linearized Riemann image; variable-coefficient assembly, gauge/ghost content, and quadratic action undecided.\\
 GAP-10T-MINIMAL-ONE-CONNECTION-GR & \textbf{CLOSED AS NO-GO}: one and the same physical connection cannot supply both universal local single-$\Theta$ representability and exact generic torsion-free GR.\\
 GAP-10T-JET-KIN & \textbf{CLOSED LOCALLY}: explicit composite Lorentz plus relative-central split-jet right inverse for every tetrad on a non-null Lorentz-real patch; physical curvature remains Levi--Civita.\\
-GAP-10T-JET-DYN & \textbf{OPEN}: derive canonical selection of $E[\Theta]$ and the jet representative, nonpropagation, null-patch continuation, and the complete chain-rule variation.\\
-GAP-10T-DYN & \textbf{NARROWED}: exact GR kinematics is locally available in the split architecture, but dynamical selection, degrees of freedom, and coefficient origin remain open; the one-connection alternative is torsionful gravity.\\
+GAP-10T-JET-AUX & \textbf{CLOSED [L1]}: explicit multiplier action; jet variables are algebraic/nonpropagating and decouple on shell.\\
+GAP-10T-JET-CONSTRAINT-SELECTION & \textbf{CLOSED AS NO-GO [L1]}: the surjective pure constraint cannot select one tetrad from $\Theta$.\\
+GAP-10T-JET-DYN & \textbf{NARROWED}: nonpropagation is closed; the origin of the metric effective action/non-surjective selector, null-patch continuation, and the constrained measure remain.\\
+GAP-10T-DYN & \textbf{NARROWED}: split-jet kinematics and auxiliary nonpropagation are closed, but the pure constraint cannot select a tetrad; a separately derived metric effective action or another non-surjective law is required.\\
 GAP-10L-CONN & \textbf{CLOSED}: metric-compatible Lorentz transport preserves $\eta$ and the Lorentz slice.\\
 GAP-10L-SYM & \textbf{CLOSED CONDITIONALLY}: unique $\mathcal J$-equivariant evolution preserves the Lorentz fixed set.\\
 GAP-10L-DYN & \textbf{NARROWED}: verify equivariance and well-posed uniqueness for the complete UBT dynamics.\\
@@ -1024,7 +1088,9 @@ GAP-10I-2S & \textbf{NOT REQUIRED FOR LOCAL KINEMATICS}: optional torsion-free c
 GAP-10I-PRESCRIBED & \textbf{CLOSED}: exact augmented-holonomy criterion for specified $(E,A,B)$.\\
 GAP-10I-CURVED & \textbf{LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL NARROWED}: canonical selection, physical torsion constraints, regularity, and global continuation remain.\\
 GAP-10D-PALATINI / UNIQUENESS & \textbf{CLOSED CONDITIONALLY}: minimal first-order dynamics and Lovelock infrared uniqueness.\\
-GAP-10D & \textbf{NARROWED}: derive those low-energy assumptions, couplings, and matter sector from canonical UBT.\\
+GAP-10D-UNDERDETERMINATION & \textbf{CLOSED AS NO-GO [L1]}: present kinematic axioms cannot fix the coefficient of $\int\sqrt gR$.\\
+GAP-10D-A2-FORM / SPECTRAL-IR & \textbf{CLOSED CONDITIONALLY [L1]}: a specified gauge-fixed Laplace-type $\Theta$ Hessian gives the exact induced Newton coefficient and Einstein--Lambda infrared action.\\
+GAP-10D & \textbf{NARROWED}: derive $N_B$, $\xi$, the cutoff/scale identification and constrained measure without fitting $G$.\\
 GAP-10$\psi$-KIN / SYM & \textbf{CLOSED / CLOSED CONDITIONALLY}: Lorentz-gauge flow or translation symmetry protects the metric.\\
 GAP-10$\psi$ & \textbf{NARROWED}: show which mechanism is selected and exclude unstable physical $\psi$ modes.\\
 GAP-B-MASTER & \textbf{OPEN}: perturbation bridge from the original master dynamics.\\
@@ -1063,12 +1129,17 @@ representer only because it is locally flat for every nondegenerate
 configuration.  The combined one-connection audit shows that exact generic GR cannot be the
 endpoint of the minimal same-physical-connection interpretation.  A local
 split-jet right inverse now restores fully general GR kinematics without
-physical torsion, but it does not dynamically select the tetrad.  The decisive
-tasks are therefore action-level selection of $E[\Theta]$ and the nonpropagating
-jet representative (or an explicitly physical torsionful theory), derivation of
-the Hilbert--Palatini curvature term and Newton coefficient, the
-physical degree-of-freedom and stability count, global continuation, and
-on-shell generation of observed geometries.
+physical torsion.  Its auxiliary action proves nonpropagation and on-shell
+decoupling, while surjectivity proves that the pure constraint cannot select a
+tetrad.  A corrected one-loop heat-kernel calculation gives a complete
+conditional effective Einstein--Lambda branch with the exact coefficient
+Eq.~\eqref{eq:Gind-paper}.  The decisive remaining first-principles tasks are
+derivation of the gauge-fixed Hessian, physical mode count, curvature coupling,
+UV scale and constrained measure from the finalized $\Theta$ theory, global
+null-patch continuation, and on-shell generation of observed geometries.  Thus
+the effective GR branch is complete under explicit assumptions, whereas an
+unconditional single-$\Theta$ prediction of Newton's constant is not yet
+proved.
 
 \begin{thebibliography}{9}
 \bibitem{wald1984} R.~M.~Wald, \emph{General Relativity}, University of Chicago Press (1984).

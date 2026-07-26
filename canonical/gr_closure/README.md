@@ -12,8 +12,14 @@ The current canonical route is:
 6. use the two-sided algebra-native derivative
    `D_mu Theta = partial_mu Theta + A_mu Theta - Theta B_mu` for the generic
    curved branch;
-7. solve the implicit curved-space integrability problem;
-8. derive, rather than assume, torsion dynamics and the Einstein/UBT bridge.
+7. use the split-jet right inverse only as a local representation theorem, with
+   the physical connection kept Levi--Civita;
+8. implement the split-jet relation by an algebraic multiplier sector and prove
+   that its multiplier vanishes on shell;
+9. derive the two-derivative metric effective action.  The proper-time/KK
+   coefficient is known for a specified gauge-fixed Hessian, while its finite
+   Newton coupling remains a renormalized/UV input until the finalized UBT
+   measure is derived.
 
 ## Authoritative files
 
@@ -35,6 +41,14 @@ The current canonical route is:
 - `gap_10t_composite_flat_admissibility.tex` — proves the stronger exact-gradient
   flatness no-go; affine stationarity is a Jacobian/null-Lagrangian corollary,
   not a surviving curved-GR branch.
+- `gap_10t_split_jet_auxiliary_completion.tex` — action-level split-jet
+  constraint, proof of algebraic nonpropagation and on-shell decoupling, and
+  the surjectivity/selection no-go.
+- `gap_10d_induced_gravity_endgame.tex` — curvature-coefficient
+  underdetermination theorem and corrected four-dimensional proper-time/KK
+  induced-Einstein coefficient.
+- `gap_10_gr_effective_completion.tex` — strongest complete result: the
+  conditional local Einstein--Lambda effective branch and its exact boundary.
 - `gap_10l_psi_symmetry_propagation.tex` — Lorentz-slice and imaginary-time
   symmetry propagation theorems.
 - `gap_10i_augmented_holonomy.tex` — exact prescribed-connection integrability
@@ -59,6 +73,9 @@ The current canonical route is:
   involution, psi-gauge metric invariance, and augmented-curvature checks.
 - `../../tools/verify_canonical_spin_current.py` — exact fixed-background spin
   current, affine obstruction, and Lorentz-invariant pairing classification.
+- `../../tools/verify_gr_endgame_completion.py` — exact auxiliary multiplier
+  rank, induced coefficient, compact-$\psi$ integral, and self-dual numerical
+  checks.
 
 ## Locked status language
 
@@ -69,8 +86,12 @@ The current canonical route is:
   `GAP-10T-PAIRING-NOGO`: CLOSED AS NO-GO.
 - `GAP-10T-GRADIENT-FLATNESS`: CLOSED AS NO-GO; exact-gradient tetrads are
   locally flat.
-- `GAP-10T-DYN`: NARROWED to the canonical self-consistent D-composite
-  variation and a non-minimal or translational/relative torsion completion.
+- `GAP-10T-JET-AUX`: CLOSED; the split-jet variables are algebraic and
+  decouple on shell on every non-null patch.
+- `GAP-10T-JET-CONSTRAINT-SELECTION`: CLOSED AS NO-GO; a surjective pure
+  constraint cannot select a physical tetrad from $\Theta$.
+- `GAP-10T-DYN`: NARROWED to a non-surjective metric-selection principle or
+  the explicitly declared effective-tetrad branch, plus null/global completion.
 - `GAP-10I-SR`: CLOSED.
 - `GAP-10I-1S`: CLOSED AS NO-GO.
 - `GAP-10I-PAIR-KIN`: CLOSED; `GAP-10I-PAIR-GR`: CLOSED AS A
@@ -81,8 +102,14 @@ The current canonical route is:
 - `GAP-10L-SYM`: CLOSED CONDITIONALLY; `GAP-10L-DYN`: NARROWED.
 - `GAP-10I-PRESCRIBED`: CLOSED; `GAP-10I-CURVED`: LOCAL KINEMATICS
   CLOSED, DYNAMICS/GLOBAL PART NARROWED.
-- `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS`: CLOSED CONDITIONALLY;
-  `GAP-10D`: NARROWED.
+- `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS`: CLOSED CONDITIONALLY.
+- `GAP-10D-UNDERDETERMINATION`: CLOSED AS NO-GO; kinematics alone cannot fix
+  a Newton coefficient.
+- `GAP-10D-A2-FORM` and `GAP-10D-SPECTRAL-IR`: CLOSED CONDITIONALLY for a
+  specified gauge-fixed Hessian, mode count, curvature coupling, and UV
+  prescription.
+- `GAP-10D`: NARROWED to derivation of the constrained measure and the
+  renormalized/UV matching data; the conditional GR effective branch is closed.
 - `GAP-10psi-KIN`: CLOSED; `GAP-10psi-SYM`: CLOSED CONDITIONALLY;
   `GAP-10psi`: NARROWED.
 
