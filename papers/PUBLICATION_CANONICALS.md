@@ -35,6 +35,19 @@ This file defines the long-term publication hygiene policy for multiple papers.
 - `papers/DEPOSITION_LOG.md`:
 	- append-only external upload log (OSF, arXiv, Zenodo)
 
+## Noncanonical root-level legacy drafts
+
+The following root-level files are retained only for backward file-history
+compatibility and are **superseded** by `papers/UBT_GR_Submission.tex`:
+
+- `papers/UBT_GR_Flagship.tex`
+- `papers/UBT_GR_RC2_final.tex`
+
+They contain historical claim language that is not the current audited status
+and must not be submitted, cited as the current result, or used to prepare a
+release. A future repository-cleanup commit may move them to
+`papers/old_releases/`; until then, the canonical registry above controls.
+
 ## Archived Releases (historical)
 
 - `papers/old_releases/UBT_GR_RC1_v2.tex`

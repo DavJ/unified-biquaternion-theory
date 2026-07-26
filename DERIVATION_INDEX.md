@@ -176,3 +176,6 @@ and metaphysical/simulation-style interpretations.
   `R_psi`, Gödel-type solution, and global chronology.
 - Historical imaginary-metric/CTC documents remain preserved under
   `speculative_extensions/`; see `research_tracks/gem_compact_modes/LEGACY_MAP.md`.
+
+- `canonical/gr_closure/gap_10t_minimal_one_connection_gr_no_go.tex` — architecture-level exact-GR no-go and completion fork.
+- `canonical/gr_closure/gap_10t_split_jet_right_inverse.tex` — explicit local composite Lorentz plus relative-central jet right inverse, keeping physical curvature Levi-Civita; kinematic closure only.

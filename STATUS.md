@@ -66,10 +66,14 @@ global self-consistent dynamics.
 | Direct fixed-background matter current | ✅ Conditional derivation; affine torsion-free branch excluded [L1] |
 | `GAP-10T-PAIRING-NOGO` Lorentz-invariant pairing escape route | ⛔ No-go: only sharp/Minkowski pairing up to scale [L1] |
 | `GAP-10T-DCOMP-WL-SECTOR` Lorentz-real W_L subsector | ✅ Closed conditionally: consistent subsector; necessity disproved by counterexample [L0] |
-| `GAP-10T-DCOMP-LIN-OFFRES` linearized off-resonance flatness | ✅ Closed conditionally: A³=qA² (+trace theorem); driven modes exactly holonomic off q=1 in the frozen W_L exponential-symbol scheme [L1] |
-| `GAP-10T-DCOMP-RES` exponential symbol sector (6-dim, nonzero linear Riemann) | 🔶 Open: real-frequency propagation, gauge/ghost count, quadratic action, assembly, on-shell torsion |
+| `GAP-10T-DCOMP-LIN-OFFRES` linearized off-resonance flatness | ✅ Closed conditionally: A³=qA² (+trace theorem); driven modes exactly holonomic off q=1 in the frozen W_L real-exponential-symbol scheme [L1] |
+| `GAP-10T-DCOMP-LIN-REALFREQ` real-frequency frozen linear sector | ⛔ Closed as no-go: det(I-A(ik))=(1-iλ·k)^6 never vanishes for real k; no nonzero homogeneous curved Fourier mode [L1] |
+| `GAP-10T-DCOMP-RES` real-exponential symbol sector (6-dim) | 🔶 Open: generic linear Riemann rank 6, but variable-coefficient/nonlinear assembly, exceptional loci, gauge/ghost count, quadratic action, and on-shell torsion remain open |
+| `GAP-10T-MINIMAL-ONE-CONNECTION-GR` | ⛔ Closed as no-go: one physical connection cannot give both universal local single-Theta representability and exact generic torsion-free GR [L1] |
+| `GAP-10T-JET-KIN` | ✅ Closed locally: explicit composite Lorentz + relative-central split-jet right inverse; physical connection remains Levi-Civita [L1] |
+| `GAP-10T-JET-DYN` | 🟠 Open: canonical selection of E and the jet representative, nonpropagation, null-patch continuation, and full variation |
 | `GAP-10T-GRADIENT-FLATNESS` exact-gradient composite branch | ⛔ Closed as no-go: every nondegenerate `e^a=N₀^{-1/2}dY^a` metric is locally flat; affine stationarity is only a Jacobian/null-Lagrangian corollary [L1] |
-| Torsion selected by fundamental UBT action | 🟠 canonical self-consistent `D`-composite `GAP-10T-DYN` NARROWED |
+| Torsion/jet role selected by fundamental UBT action | 🟠 split-jet kinematics closed; `GAP-10T-DYN` still lacks action-level selection/nonpropagation |
 | Prescribed curved coefficients | ✅ Exact augmented-holonomy criterion [L1] |
 | Self-consistent curved single-Theta system | ✅ local kinematics; 🟠 action selection/global regularity narrowed |
 | Lorentz/psi symmetry propagation | ✅ Conditional fixed-set/metric-stability theorems [L1] |
@@ -78,7 +82,7 @@ global self-consistent dynamics.
 | Schwarzschild tetrad/lapse selected on shell | ⚪ `GAP-U2Theta` OPEN |
 
 **Submission file**: `papers/UBT_GR_Submission.tex`  
-**Verdict**: not submission-ready until the curved dynamical bridge is closed.
+**Verdict**: not submission-ready as an unconditional UBT derivation until the jet-connection and curvature-action lemmas are closed; the minimal one-connection exact-GR route is now ruled out.
 
 ---
 
@@ -153,7 +157,7 @@ If fails: publish conditional integer-137 result as companion note.
 |--------|-------|
 | Core proved theorems (T1_GR) | 8 [L1] theorems + 5 [L0] identities |
 | Core proved theorems (T2_GAUGE) | 10 [L0] + 1 [L1] |
-| Remaining full-theory problems | GAP-10T-DYN, GAP-10I-CURVED, GAP-10L-DYN, GAP-10D, GAP-10psi (all narrowed), GAP-U2Theta and GAP-B-MASTER (open) |
+| Remaining full-theory problems | GAP-10T-JET-DYN, GAP-10D, GAP-10T-DYN, GAP-10I-CURVED, GAP-10L-DYN, GAP-10psi (narrowed/open), plus GAP-U2Theta and GAP-B-MASTER |
 | Dead-end routes | 3 (A3, A4 alpha; Weinberg pure-algebra route EW-1) |
 | Tracks ready for submission | 0 pending GR closure audit |
 | Tracks 6–8 weeks from submission | 1 (T2_GAUGE) |

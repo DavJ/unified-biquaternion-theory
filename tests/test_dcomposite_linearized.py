@@ -37,6 +37,11 @@ def test_gradient_annihilation_regression(symbol_matrix):
     assert dcomp.check_gradient_annihilation(symbol_matrix)["gradients_in_kernel"]
 
 
+@pytest.mark.slow
+def test_gradient_annihilation_symbolic(symbol_matrix):
+    assert dcomp.check_gradient_annihilation_symbolic(symbol_matrix)["gradients_in_kernel_symbolic"]
+
+
 def test_generic_ranks_and_determinant(symbol_matrix):
     res = dcomp.check_generic_ranks(symbol_matrix)
     assert res["rank_A_is_9"]
@@ -70,9 +75,15 @@ def test_resonant_multipoint(symbol_matrix):
 
 def test_resonant_riemann_image(symbol_matrix):
     res = dcomp.check_resonant_riemann_image(symbol_matrix)
-    assert res["all_resonant_modes_have_nonzero_linear_riemann"]
+    assert res["riemann_map_rank6_at_all_generic_test_points"]
 
 
 @pytest.mark.slow
 def test_trace_theorem_symbolic(symbol_matrix):
     assert dcomp.check_trace_theorem(symbol_matrix)["traces_6qk_symbolic"]
+
+
+def test_real_fourier_no_go():
+    res = dcomp.check_real_fourier_no_go()
+    assert res["fourier_determinant_modulus_is_1_plus_r2"]
+    assert res["no_real_fourier_singularity"]

@@ -83,3 +83,6 @@ EXPERIMENTS/channel_selection/results/
 !reports/latex_build/
 !reports/latex_build/**
 /build/latex-audit/
+
+# Test/build caches anywhere in the tree
+.pytest_cache/

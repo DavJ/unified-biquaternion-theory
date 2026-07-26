@@ -1,6 +1,6 @@
 % © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 % Status: linearized frozen-coefficient analysis of the self-consistent
-% D-composite scheme; GAP-10T-DYN remains NARROWED (resonant sector open).
+% D-composite scheme; GAP-10T-DYN remains NARROWED.
 \documentclass[11pt,a4paper]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[most]{tcolorbox}
@@ -11,50 +11,53 @@
 \newcommand{\B}{\mathbb B}
 \newcommand{\dd}{\ddagger}
 \title{The Self-Consistent $D$-Composite Scheme at Linear Order:\\
-Sector Constraint, Symbol Identity, Off-Resonance Flatness,\\
-and the Six-Dimensional Resonant Sector}
+$W_L$ Subsector, Symbol Identity, Real-Frequency No-Go,\\
+and the Six-Dimensional Exponential Sector}
 \author{Ing. David Jaro\v{s}}
 \date{26 July 2026}
 \begin{document}\maketitle
 
 \begin{abstract}
-We begin the audit of the last unanalyzed variational scheme of the minimal
-branch: the self-consistent $D$-composite system in which the connection
-sits inside the defining jet.  Four exact results are proved at the
-linearized, frozen-coefficient level around the affine point.
-(i) Imposing $\Theta\in W_L$ defines a consistent Lorentz-real
-subsector; necessity for self-consistent solutions is \emph{not} proved
-(a constant Hermitian shift at a constant tetrad is a counterexample).
-(ii) The frozen symbol $A(s,\lambda)$ of the linearized implicit system
-satisfies the exact operator identity $A^3=(\lambda\!\cdot\!s)\,A^2$; its
-spectrum is $\{0^{10},\,q^{6}\}$ with $q=\lambda\!\cdot\!s$, with three
-nilpotent Jordan blocks on the kernel and $\det(I-A)=(1-q)^6$.
-(iii) Off the single resonance hyperplane $q=1$ the unique
-$\delta\Theta$-driven solution is the exact gradient; the linearized
-tetrad is holonomic and the linearized geometry pullback-flat.
-(iv) At $q=1$ there is an exactly six-dimensional space of homogeneous
-resonant modes --- $\dim\mathfrak{so}(1,3)$ of them --- and every one is
-anholonomic with linearly independent curls.  All linearized anholonomy,
-hence all candidate linearized curvature, is confined to this resonant
-sector.  The variable-coefficient assembly of resonant modes, the
-quadratic action on the resonant sector, on-shell torsion, and the
-chain-rule spin current remain open.  All algebraic statements are
-verified in \texttt{tools/verify\_dcomposite\_linearized.py}.
+We audit the last unanalyzed variational scheme of the minimal branch:
+the self-consistent $D$-composite system in which the connection sits
+inside the defining jet.  Exact results are obtained at the linearized,
+frozen-coefficient level around the affine point.  (i) Imposing
+$\Theta\in W_L$ defines a consistent Lorentz-real subsector; necessity
+for self-consistent solutions is \emph{not} proved, and a constant
+Hermitian shift at a constant tetrad is an explicit counterexample.
+(ii) The frozen symbol $A(s,\lambda)$ satisfies
+$A^3=(\lambda\!\cdot\!s)A^2$ and
+$\operatorname{tr}A^k=6(\lambda\!\cdot\!s)^k$ for $k=1,2,3$.
+Its characteristic polynomial is $t^{10}(t-q)^6$ with
+$q=\lambda\!\cdot\!s$ and $\det(I-A)=(1-q)^6$.  Generically the
+generalized zero-eigenspace contains three size-two and four size-one
+Jordan blocks.  (iii) Off $q=1$ the unique driven real-exponential
+solution is the exact gradient and is pullback-flat.  For every real
+Fourier covector $k$, $q=i\lambda\!\cdot\!k$ and the determinant never
+vanishes, so this frozen torsion-free $W_L$ linearization has no nonzero
+homogeneous curved real-frequency mode.  (iv) At $q=1$ there is an
+exactly six-dimensional real-exponential eigenspace.  Its curl map is
+injective, and at several exact generic points its linearized Riemann
+map has rank six.  Exceptional loci, variable-coefficient or nonlinear
+assembly, the quadratic action, gauge and ghost content, on-shell
+torsion, and the chain-rule spin current remain open.  All algebraic
+statements are verified in
+\texttt{tools/verify\_dcomposite\_linearized.py}.
 \end{abstract}
 
 \section{The self-consistent system}
 The scheme couples the covariant jet back to the connection:
 \begin{equation}
   E_\mu=\mathcal N_0^{-1/2}\bigl(\partial_\mu\Theta
-  +\Omega_\mu[E]\,\Theta+\Theta\,\Omega_\mu[E]^{\dd}\bigr),
+  +\Omega_\mu[E] \,\Theta+\Theta\,\Omega_\mu[E]^{\dd}\bigr),
   \qquad
   g_{\mu\nu}=\tfrac12\bigl(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\bigr),
   \label{eq:selfcons}
 \end{equation}
 with $\Omega_\mu[E]$ the spin representation of the Levi--Civita
 connection of the tetrad defined by the slice coordinates of $E_\mu$
-(torsion-free branch first; anholonomy, not torsion, is the requirement
-for curvature).
+(torsion-free branch first; anholonomy, not physical on-shell torsion,
+is the requirement for curvature).
 
 \begin{lemma}[$W_L$ subsector]\label{lem:sector}
 Demanding $E_\mu\in W_L$ for \emph{every} independently chosen Lorentz
@@ -75,9 +78,7 @@ E_\nu x^\nu$ with $\Theta_0\in W_L$ is an exact solution of
 $\Theta=\Theta_{\rm aff}+\varepsilon\theta$,
 $E=\bar E+\varepsilon F$, freeze coefficients at $x_0$, and pass to the
 real-exponential (Laplace-type) symbol $\partial_\nu\to s_\nu$ with
-real $s$; for real Fourier modes $\partial_\nu\to ik_\nu$ the invariant
-is $q=i\lambda\!\cdot\!k$, so $q=1$ has no real-$k$ solution and the
-sector below consists of exponential/evanescent symbol modes.  The system becomes
+real $s$.  The system becomes
 \begin{equation}
   (I-A(s,\lambda))\,F=\partial\theta',\qquad
   \lambda^a=\text{slice coords of }\Theta_{\rm aff}(x_0)/\sqrt{\mathcal N_0}
@@ -89,70 +90,100 @@ $\mathcal N_0$ cancels; $A$ is bilinear in $(s,\lambda)$.  Under the
 diagonal Lorentz group at the identity-tetrad background the mixed
 contraction $q=\lambda^a s_a$ is invariant.
 
-\begin{theorem}[Symbol identity and spectrum]\label{thm:symbol}
-$A^3=q\,A^2$ holds as a polynomial identity in all eight variables
-(check D2, symbolic).  Generically $\operatorname{rank}A=9$,
-$\operatorname{rank}A^2=6$; hence the characteristic polynomial is
-$t^{10}(t-q)^6$, the minimal polynomial $t^2(t-q)$, and
-$\det(I-A)=(1-q)^6$ (check D3).  The frozen full symbol is modewise
+\begin{theorem}[Symbol identity, spectrum, and Jordan structure]
+\label{thm:symbol}
+$A^3=qA^2$ holds as a polynomial identity in all eight variables
+(check D2), and $\operatorname{tr}A^k=6q^k$ for $k=1,2,3$
+(check D2b).  Hence the characteristic polynomial is
+$t^{10}(t-q)^6$ and
+\begin{equation}
+  \det(I-A)=(1-q)^6.
+\end{equation}
+At generic points $\operatorname{rank}A=9$ and
+$\operatorname{rank}A^2=6$ (check D3), so the minimal polynomial is
+$t^2(t-q)$ and the generalized zero-eigenspace contains three size-two
+plus four size-one Jordan blocks.  The frozen full symbol is modewise
 invertible iff $q\neq1$; local or global uniqueness for the
 variable-coefficient PDE does not follow from this alone.
 \end{theorem}
 
-\begin{theorem}[Off-resonance flatness]\label{thm:offres}
+\begin{corollary}[Frozen real-frequency no-go]\label{cor:fourier}
+For a real Fourier covector $k$, substitute $s=ik$.  Then
+$q=i\lambda\!\cdot\!k$ and
+\begin{equation}
+  \det(I-A(ik,\lambda))=(1-i\lambda\!\cdot\!k)^6\neq0,
+\end{equation}
+because $|1-ir|^2=1+r^2>0$ for every real $r$.  The homogeneous frozen
+symbol therefore has only the zero solution.  Since $A$ annihilates the
+exact-gradient image as a polynomial identity (check D1b), every driven
+real-frequency response is holonomic and linearly pullback-flat.  Thus
+this frozen torsion-free $W_L$ linearization contains no propagating
+anholonomic or curved Fourier mode (check D6).
+\end{corollary}
+
+\begin{theorem}[Off-$q=1$ flatness]\label{thm:offres}
 The linearized Levi--Civita connection factors through the curl of the
-tetrad perturbation, so $A$ annihilates every exact gradient
-(check D1).  Consequently, for $q\neq1$ the unique
-$\delta\Theta$-driven solution of $(I-A)F=\partial\theta'$ is
-$F=\partial\theta'$ itself: exactly holonomic, with pullback-flat
-linearized geometry (check D4).
+tetrad perturbation, so $A$ annihilates every exact gradient as a
+polynomial identity (checks D1--D1b).  Consequently, for $q\neq1$ the
+unique $\delta\Theta$-driven solution of
+$(I-A)F=\partial\theta'$ is $F=\partial\theta'$ itself: exactly
+holonomic, with pullback-flat linearized geometry (check D4).
 \end{theorem}
 
-\begin{theorem}[Resonant sector]\label{thm:res}
+\begin{theorem}[Six-dimensional real-exponential sector]
+\label{thm:res}
 At $q=1$ the eigenspace $\ker(I-A)$ is exactly six-dimensional
-($=\dim\mathfrak{so}(1,3)$).  Every resonant mode is anholonomic and the
-six curls are linearly independent (check D5, exact at a generic
-resonant point).  All linearized anholonomy of the $D$-composite scheme
-is confined to this sector.
+($=\dim\mathfrak{so}(1,3)$).  The curl map is injective: a curl-free
+symbol mode is an exact gradient and is therefore annihilated by $A$,
+whereas an eigenmode obeys $AF=F$; hence a curl-free eigenmode must
+vanish.  Exact multipoint checks D5--D5b confirm rank six.  All
+linearized anholonomy of the frozen $D$-composite scheme is confined to
+this real-exponential sector.
 \end{theorem}
 
 \begin{corollary}[Where linearized curvature can live]
-Since curvature at linear order requires anholonomy, any linearized
-gravitational content of the $D$-composite scheme must be assembled from
-the exponential symbol modes on the moving surface
-$(x_0+\theta_0)\!\cdot\!s=1$; each such mode carries a nonzero
-linearized Riemann image (check D5c), but their relation to
-real-frequency propagation is open.  Off it, the scheme is flat at linear
-order --- but, unlike the exact-gradient restriction, not identically:
-the resonant sector is a genuine nontrivial remainder.
+Any linearized curvature of the frozen scheme must be assembled from
+real-exponential symbol modes on the moving surface
+$(x_0+\theta_0)\!\cdot\!s=1$.  At several exact generic points the
+restricted linearized Riemann map has rank six (check D5c).  This proves
+a generic nonzero curvature image, not a theorem excluding exceptional
+loci.  The sector is not a real-frequency propagating sector by
+Corollary~\ref{cor:fourier}.  Its assembly into a variable-coefficient or
+nonlinear curved solution remains open.
 \end{corollary}
 
 \section{Answers to the six audit questions at this level}
-(1)~Modewise invertibility of the frozen full symbol: yes iff
-$q\neq1$; PDE-level uniqueness open.
-(2)~Anholonomy: driven solutions are exactly holonomic; anholonomy
-exists only in the resonant sector.
-(3)~$R\neq0$ without inserting curvature by hand: at linear order only
-through resonant modes; whether they assemble into curved solutions of
-the variable-coefficient system is open.
+(1)~Modewise invertibility of the frozen full real-exponential symbol:
+yes iff $q\neq1$; PDE-level uniqueness remains open.  For real Fourier
+covectors it is invertible for every $k$.
+(2)~Anholonomy: driven solutions are exactly holonomic; anholonomy exists
+only in the real-exponential $q=1$ sector.
+(3)~$R\neq0$ without inserting curvature by hand: the frozen
+real-frequency sector is a no-go; a generic nonzero linearized Riemann
+image exists only in the real-exponential sector, whose assembly into
+curved variable-coefficient solutions is open.
 (4)~Chain-rule spin current: not yet computed.
 (5)~On-shell torsion selection: not yet computed.
-(6)~Degeneracy: off resonance the scheme degenerates to the flat sector,
-but not identically --- the six-dimensional resonant remainder is the
-irreducible core on which the quadratic action must be evaluated next.
+(6)~Degeneracy: outside the exponential $q=1$ sector the scheme
+degenerates to the flat driven response.  The six-dimensional remainder
+is the only place where the quadratic action can yield nontrivial
+linearized geometric dynamics in this subsector.
 
 \begin{tcolorbox}[colback=orange!6!white,colframe=orange!70!black,
 title=Scope and non-claims]
-Frozen-coefficient (microlocal) analysis at the affine point.  Not a
-solution theory for the variable-coefficient system: $\lambda$ moves
-with $x_0$, so the resonance set sweeps spacetime and the constant-
-coefficient solvability statements do not globalize automatically.
-Nothing here derives the Hilbert--Palatini term, decides on-shell
-torsion, or establishes curved solutions.  A discovered-and-fixed index
-transposition in the linearized connection (which leaked the symmetric
-tetrad part into $\omega^1$) is documented in the verifier as regression
-check D1; results computed with the faulty formula (an earlier
-$\{0^4,q^9,(q/2)^3\}$ spectrum) are void.
+Frozen-coefficient analysis at the affine point, restricted to the
+$W_L$ torsion-free subsector.  It is not a solution theory for the
+variable-coefficient system: $\lambda$ moves with $x_0$, so the
+real-exponential condition sweeps spacetime and constant-coefficient
+solvability statements do not globalize automatically.  Nothing here
+derives the Hilbert--Palatini term, decides on-shell torsion, or
+establishes curved variable-coefficient solutions.  The real-frequency
+no-go applies only to this frozen torsion-free $W_L$ linearization;
+nonlinear dynamics, variable coefficients, torsionful closures, and
+sectors outside $W_L$ remain logically open.  A discovered-and-fixed
+index transposition in the linearized connection is documented in the
+verifier as regression check D1; results computed with the faulty
+formula (the earlier $\{0^4,q^9,(q/2)^3\}$ spectrum) are void.
 \end{tcolorbox}
 
 \end{document}

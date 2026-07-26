@@ -173,8 +173,9 @@ they are rederived in this route.
 | GAP-10T-FLAT-NOGO | **CLOSED AS NO-GO [L1]:** minimal affine torsion-free branch excluded |
 | GAP-10T-PAIRING-NOGO | **CLOSED AS NO-GO [L1]:** no nonzero nondegenerate symmetric Lorentz-invariant pairing cure |
 | GAP-10T-DCOMP-WL-SECTOR | **CLOSED CONDITIONALLY [L0]:** Theta in W_L is a consistent subsector; necessity disproved (constant Hermitian shift counterexample) |
-| GAP-10T-DCOMP-LIN-OFFRES | **CLOSED CONDITIONALLY [L1]:** frozen-coefficient symbol identity A³=qA²; off q=1 driven solutions exactly holonomic (pullback-flat) |
-| GAP-10T-DCOMP-RES | **OPEN:** all linearized anholonomy confined to the 6-dim exponential symbol sector at q=1 (nonzero linear Riemann image; real-frequency relation open) |
+| GAP-10T-DCOMP-LIN-OFFRES | **CLOSED CONDITIONALLY [L1]:** frozen-coefficient real-exponential symbol identity A³=qA²; off q=1 driven solutions exactly holonomic (pullback-flat) |
+| GAP-10T-DCOMP-LIN-REALFREQ | **CLOSED AS NO-GO [L1]:** for real Fourier k, det(I-A(ik))=(1-iλ·k)^6≠0; no nonzero homogeneous curved Fourier mode exists in the frozen torsion-free W_L linearization |
+| GAP-10T-DCOMP-RES | **OPEN:** all linearized anholonomy is confined to the 6-dim real-exponential sector at q=1; generic exact points have injective curl and Riemann maps, but variable-coefficient/nonlinear assembly and exceptional loci remain open |
 | GAP-10T-GRADIENT-FLATNESS | **CLOSED AS NO-GO [L1]:** every nondegenerate exact-gradient tetrad `e^a=N₀^{-1/2}dY^a` is locally a pullback of Minkowski space; curvature and the Hilbert-Palatini term vanish identically, while affine stationarity is only a Jacobian/null-Lagrangian corollary |
 | GAP-10T-DYN | **NARROWED:** the canonical self-consistent `D`-composite variation and any non-minimal or translational/relative torsion completion remain |
 | GAP-10L-CONN | **CLOSED [L1]:** compatible Lorentz transport preserves the Lorentz slice |
@@ -413,3 +414,25 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Quantum gravity / path integral | Long term — GAP-Q |
 | Cosmological solutions (FRW/de Sitter) | PARTIALLY CLOSED — FRW in solution space [L1]; Θ-ansatz [L1 conditional]; $g_{0i}=0$ comoving [L1 conditional] — GAP-C; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
 | Covariant-tetrad local closure | GAP-10K, GAP-10Ω-KIN/GR, GAP-10L-CONN, and GAP-10I-SR closed; one-sided curved route closed as no-go; torsion dynamics, curved integrability, Einstein dynamics, and ψ-stability remain open |
+
+## Minimal one-connection GR architecture
+
+**GAP-10T-MINIMAL-ONE-CONNECTION-GR — CLOSED AS NO-GO [L1].** If the same metric-compatible Lorentz connection both
+defines `E_mu=N0^(-1/2)D_mu Theta` and is the physical spacetime connection,
+then the torsion-free branch has the concurrent-vector restriction and is not
+generic GR. The local construction that represents an arbitrary tetrad uses
+nonzero contortion and therefore makes that same physical connection
+torsionful. Thus exact generic torsion-free GR plus universal local
+single-Theta representability requires a distinct nonpropagating jet
+connection (or abandonment of exact GR in favour of a torsionful theory).
+
+**GAP-10T-JET-KIN — CLOSED LOCALLY [L1].** The exact-GR split architecture
+has an explicit local right inverse: the component of
+`sE-D_LC X` parallel to non-null `X` is supplied by a composite relative
+central jet one-form, and the orthogonal component by a composite Lorentz jet
+tensor. The physical connection remains Levi-Civita, so arbitrary GR curvature
+is kinematically representable.
+
+This does **not** complete the GR derivation. `GAP-10T-JET-DYN` (action-level
+tetrad/jet selection and nonpropagation) and the Hilbert-Palatini curvature term
+with its coefficient still require canonical derivations.

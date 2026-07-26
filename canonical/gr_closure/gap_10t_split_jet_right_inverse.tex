@@ -1,0 +1,168 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\LC}{\mathring D}
+\newcommand{\dd}{\ddagger}
+\title{GAP-10T Split-Jet Right Inverse:\\
+Exact Generic-GR Kinematics with a Nonpropagating Composite Jet Connection}
+\author{Ing. David Jaro\v{s}}
+\date{26 July 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+The minimal one-connection architecture cannot simultaneously provide universal
+single-$\Theta$ representability and exact generic torsion-free GR.  This note
+constructs the smallest local kinematic completion after that no-go.  Physical
+curvature and matter transport use the Levi--Civita connection of an arbitrary
+prescribed tetrad.  Only the defining $\Theta$ jet is augmented by an explicitly
+composite Lorentz contortion and a composite real dilation one-form.  For every
+non-null Lorentz-real field $X$ and every smooth tetrad $E$, the formulas below
+give $\widehat D_\mu X=\sqrt{\mathcal N_0}E_\mu$ identically.  The added jet
+objects are algebraic in $(E,X,\mathring D X)$ and introduce no independent
+propagating field.  The construction closes local exact-GR representability of
+the split-connection architecture.  It does not derive the tetrad from
+$\Theta$, select the jet representative from an action, or derive the
+Hilbert--Palatini coefficient.
+\end{abstract}
+
+\section{Physical and jet connections}
+Let $E_\mu=e_\mu{}^a\mathbf u_a$ be an arbitrary smooth nondegenerate Lorentz
+tetrad and let $\mathring\omega(E)$ be its Levi--Civita spin connection.  This
+is the \emph{physical} connection:
+\begin{equation}
+ \Omega_{\rm phys}=\mathring\Omega(E),\qquad T_{\rm phys}=0,
+ \qquad R_{\rm phys}=R[\mathring\Omega(E)].
+ \label{eq:physical}
+\end{equation}
+Therefore $R_{\rm phys}$ is as general as the Riemann curvature of the
+prescribed GR tetrad.
+
+Let $X=X^a\mathbf u_a$ be the Lorentz-real projection of $\Theta$ on a patch
+where
+\begin{equation}
+ X^2:=\eta_{ab}X^aX^b\ne0,
+ \qquad s:=\sqrt{\mathcal N_0}.
+\end{equation}
+Define the covariant mismatch
+\begin{equation}
+ Z_\mu{}^a:=s e_\mu{}^a-\mathring D_\mu X^a.
+ \label{eq:Z}
+\end{equation}
+Decompose it into its component parallel to $X$ and its orthogonal component:
+\begin{equation}
+ w_\mu:=\frac{X_aZ_\mu{}^a}{X^2},
+ \qquad
+ Z_{\mu\perp}{}^a:=Z_\mu{}^a-w_\mu X^a,
+ \qquad X_aZ_{\mu\perp}{}^a=0.
+ \label{eq:decomp}
+\end{equation}
+
+\section{Exact algebraic right inverse}
+\begin{theorem}[Split-jet right inverse]
+Define the Lorentz-algebra-valued composite tensor
+\begin{equation}
+ \boxed{
+ K^J_{\mu ab}:=
+ \frac{Z_{\mu\perp a}X_b-X_aZ_{\mu\perp b}}{X^2},
+ \qquad K^J_{\mu ab}=-K^J_{\mu ba}.}
+ \label{eq:KJ}
+\end{equation}
+Let the jet derivative on $X$ be
+\begin{equation}
+ \widehat D_\mu X^a
+ :=\mathring D_\mu X^a+K^{J\,a}{}_{\mu b}X^b+w_\mu X^a.
+ \label{eq:Dhat}
+\end{equation}
+Then
+\begin{equation}
+ \boxed{\widehat D_\mu X^a=s e_\mu{}^a}
+ \label{eq:rightinverse}
+\end{equation}
+holds identically for every $(E,X)$ on the non-null patch.
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:decomp} makes $Z_{\mu\perp}$ orthogonal to $X$.
+Contracting Eq.~\eqref{eq:KJ} with $X^b$ gives
+\begin{equation}
+ K^{J\,a}{}_{\mu b}X^b
+ =Z_{\mu\perp}{}^a.
+\end{equation}
+Thus
+\begin{equation}
+ \widehat D_\mu X^a
+ =\mathring D_\mu X^a+Z_{\mu\perp}{}^a+w_\mu X^a
+ =\mathring D_\mu X^a+Z_\mu{}^a
+ =s e_\mu{}^a.
+\end{equation}
+\end{proof}
+
+The general Lorentz solution differs from Eq.~\eqref{eq:KJ} by a stabilizer
+term $C_{\mu ab}$ satisfying $C^a{}_{\mu b}X^b=0$.  Such a term is invisible in
+$\widehat D X$; Eq.~\eqref{eq:KJ} is the covariant representative with no
+stabilizer component.
+
+\section{Biquaternionic bimodule form}
+Let $\mathcal K^J_\mu$ be the spin lift of $K^J_{\mu ab}$.  The real one-form
+$w_\mu$ can be implemented by a relative central action:
+\begin{equation}
+ A^J_\mu=\mathring\Omega_\mu+\mathcal K^J_\mu+\frac12w_\mu\mathbf1,
+ \qquad
+ B^J_\mu=-\mathring\Omega_\mu^{\dd}-\mathcal K_\mu^{J\dd}
+          -\frac12w_\mu\mathbf1.
+ \label{eq:AB}
+\end{equation}
+Then $\partial_\mu X+A^J_\mu X-XB^J_\mu$ is precisely
+Eq.~\eqref{eq:Dhat}.  The relative central term is not a second physical gauge
+field: it is the fixed composite scalar in Eq.~\eqref{eq:decomp} and acts only
+in the defining jet.  It preserves the Lorentz-real slice but is not required
+to preserve the Lorentz norm under jet transport.  Physical metric
+compatibility remains entirely with Eq.~\eqref{eq:physical}.
+
+\begin{corollary}[Generic GR curvature is kinematically available]
+For every local GR tetrad, including Schwarzschild, Kerr, FRW, and generic
+numerical-relativity tetrads, choose any smooth non-null local $X$.  The
+split-jet construction represents that tetrad while the physical curvature is
+exactly its Levi--Civita curvature.  No concurrent-vector restriction is
+imposed on $\Omega_{\rm phys}$ because the concurrent derivative is
+$\widehat D$, not the physical Levi--Civita derivative.
+\end{corollary}
+
+\section{Boundary of the result}
+The construction is a local right inverse, not a dynamical map
+$\Theta\mapsto E$.  Because $K^J$ and $w$ are defined using the prescribed
+$E$, Eq.~\eqref{eq:rightinverse} does not select one tetrad among all possible
+tetrads.  A complete UBT derivation still needs an action or constraint
+principle that:
+\begin{enumerate}
+ \item selects the split jet structure without turning $K^J$ or $w$ into a
+ propagating physical field;
+ \item supplies Einstein curvature dynamics with the correct sign and Newton
+ coefficient;
+ \item gives a well-posed degree-of-freedom count and on-shell solutions.
+\end{enumerate}
+The construction also requires patching through $X^2=0$ or using complementary
+non-null representatives.
+
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Exact status]
+\textbf{GAP-10T-JET-KIN: CLOSED LOCALLY [L1].}
+The split architecture has an explicit local composite/nonpropagating jet right
+inverse for every tetrad and every non-null Lorentz-real $X$, while physical
+curvature remains exactly Levi--Civita and therefore as general as GR.
+
+\medskip
+\textbf{GAP-10T-JET-DYN: OPEN.}
+The canonical action does not yet select this representative or a unique tetrad
+from $\Theta$.
+
+\medskip
+\textbf{GAP-10D: NARROWED.}
+The Einstein endpoint is structurally available, but the curvature action and
+Newton coefficient are not derived from the original canonical UBT dynamics.
+\end{tcolorbox}
+\end{document}

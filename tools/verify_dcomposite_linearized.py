@@ -22,9 +22,13 @@ Exact checks for canonical/gr_closure/gap_10t_dcomposite_linearized.tex:
   D4  Off resonance the unique delta-Theta-driven solution is the exact
       gradient F = d(theta); zero anholonomy (pullback-flat at linear
       order).
-  D5  Resonant sector at q = 1: the eigenspace is exactly six-dimensional
-      (= dim so(1,3)); every resonant mode is anholonomic and their curls
-      are linearly independent (rank 6).
+  D5  Real-exponential sector at q = 1: the eigenspace is exactly six-dimensional
+      (= dim so(1,3)); every nonzero mode is anholonomic and the curl map
+      is injective.  At several exact generic points the linearized Riemann
+      map is also injective (rank 6).
+  D6  Real-frequency no-go: for real Fourier k, q = i lambda.k and
+      det(I-A(ik)) = (1-i lambda.k)^6 never vanishes; the homogeneous
+      frozen symbol has no nonzero real-frequency mode.
 
 Scope (do not overclaim): frozen-coefficient analysis of the linearization
 at the affine point, in the W_L subsector, using the real-exponential
@@ -202,6 +206,32 @@ def check_gradient_annihilation(a_mat, seed=3):
     return {"gradients_in_kernel": ok}
 
 
+def check_gradient_annihilation_symbolic(a_mat):
+    """D1b: A(s,lambda) annihilates the entire four-dimensional exact-gradient
+    image F_mu^a=s_mu v^a as a polynomial identity, not only at a sample."""
+    grad = sp.zeros(16, 4)
+    for mu in range(4):
+        for a in range(4):
+            grad[4 * mu + a, a] = S_SYM[mu]
+    prod = sp.expand(a_mat * grad)
+    return {
+        "gradients_in_kernel_symbolic": all(
+            sp.simplify(prod[i, j]) == 0 for i in range(16) for j in range(4)
+        )
+    }
+
+
+def check_real_fourier_no_go():
+    """D6: with real Fourier covector k, q=i r (r=lambda.k real).
+    The determinant factor has strictly positive modulus and cannot vanish."""
+    r = sp.symbols("r", real=True)
+    modulus_sq = sp.expand((1 - sp.I * r) * (1 + sp.I * r))
+    return {
+        "fourier_determinant_modulus_is_1_plus_r2": modulus_sq == 1 + r ** 2,
+        "no_real_fourier_singularity": sp.solveset(1 + r ** 2, r, domain=sp.S.Reals) == sp.EmptySet,
+    }
+
+
 def check_operator_identity(a_mat):
     a2 = sp.expand(a_mat * a_mat)
     r = sp.expand(a_mat * a2 - Q_SYM * a2)
@@ -347,24 +377,25 @@ def check_resonant_multipoint(a_mat):
 
 
 def check_resonant_riemann_image(a_mat):
-    """D5c: resonant modes have nonzero linearized curvature image
-    R^1_{mu nu}{}^{ab} = s_mu om^1_nu{}^{ab} - s_nu om^1_mu{}^{ab}."""
-    sub = _resonant_points()[0]
-    an = a_mat.subs(sub)
-    sv = [sub[S_SYM[m]] for m in range(4)]
-    eig = (an - sp.eye(16)).nullspace()
-    nonzero_modes = 0
-    for v in eig:
-        f = [[v[4 * mu + a] for a in range(4)] for mu in range(4)]
-        om = linearized_spin_connection(f, sv)
-        nz = any(
-            sp.simplify(sv[mu] * om[nu][a][b] - sv[nu] * om[mu][a][b]) != 0
-            for mu in range(4) for nu in range(mu + 1, 4)
-            for a in range(4) for b in range(4)
-        )
-        if nz:
-            nonzero_modes += 1
-    return {"all_resonant_modes_have_nonzero_linear_riemann": nonzero_modes == 6}
+    """D5c: at several exact generic q=1 points, the linearized Riemann
+    map restricted to ker(I-A) has rank six.  This proves generic injectivity
+    on the tested strata, not a global statement about exceptional loci."""
+    ranks = []
+    for sub in _resonant_points():
+        an = a_mat.subs(sub)
+        sv = [sub[S_SYM[m]] for m in range(4)]
+        eig = (an - sp.eye(16)).nullspace()
+        cols = []
+        for v in eig:
+            f = [[v[4 * mu + a] for a in range(4)] for mu in range(4)]
+            om = linearized_spin_connection(f, sv)
+            cols.append(sp.Matrix([
+                sp.simplify(sv[mu] * om[nu][a][b] - sv[nu] * om[mu][a][b])
+                for mu in range(4) for nu in range(mu + 1, 4)
+                for a in range(4) for b in range(a + 1, 4)
+            ]))
+        ranks.append(sp.Matrix.hstack(*cols).rank())
+    return {"riemann_map_rank6_at_all_generic_test_points": all(r == 6 for r in ranks)}
 
 
 def main() -> int:
@@ -375,6 +406,7 @@ def main() -> int:
     for name, res in (
         ("L0 sector lemma", check_sector_lemma()),
         ("D1 gradient annihilation", check_gradient_annihilation(a_mat)),
+        ("D1b symbolic gradient annihilation", check_gradient_annihilation_symbolic(a_mat)),
         ("D2 operator identity", check_operator_identity(a_mat)),
         ("D2b trace theorem", check_trace_theorem(a_mat)),
         ("D3 generic ranks", check_generic_ranks(a_mat)),
@@ -382,6 +414,7 @@ def main() -> int:
         ("D5 resonant sector", check_resonant_sector(a_mat)),
         ("D5b resonant multipoint", check_resonant_multipoint(a_mat)),
         ("D5c resonant Riemann image", check_resonant_riemann_image(a_mat)),
+        ("D6 real Fourier no-go", check_real_fourier_no_go()),
     ):
         for key, val in res.items():
             if val is not True:
@@ -394,9 +427,11 @@ def main() -> int:
         print("driven modes off q = 1 are exactly holonomic (pullback-flat).")
         print("All linearized anholonomy lives in the six-dimensional")
         print("exponential symbol sector at q = 1, whose modes carry nonzero")
-        print("linearized Riemann image.  Relation to real-frequency")
-        print("propagation, gauge/ghost content, quadratic action, on-shell")
-        print("torsion, and variable-coefficient assembly remain open.")
+        print("linearized Riemann image at generic exact points.  The frozen")
+        print("W_L torsion-free linearization has no nonzero real-frequency")
+        print("homogeneous curved mode.  Variable-coefficient/nonlinear")
+        print("assembly, gauge/ghost content, quadratic action, on-shell")
+        print("torsion, and the chain-rule current remain open.")
     return 0 if ok else 1
 
 

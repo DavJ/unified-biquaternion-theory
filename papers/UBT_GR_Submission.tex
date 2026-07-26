@@ -176,6 +176,10 @@ of the Einstein equations.
  \item an explicit local torsionful single-$\Theta$ representer for every
        smooth Lorentzian tetrad, with composite metric-compatible contortion
        and no independent $A_\mu,B_\mu$ fields;
+ \item an architecture-level no-go: if the same one Lorentz connection both
+       defines $D\Theta$ and is the physical metric connection, universal local
+       single-$\Theta$ representability and exact generic torsion-free GR cannot
+       both hold;
  \item the exact fixed-background spin current of the paired kinetic term and
        a flat affine no-go for the effective Palatini variation of the minimal
        first-order branch;
@@ -192,11 +196,11 @@ of the Einstein equations.
 \begin{itemize}
  \item deriving vacuum torsion or spin-sourced torsion from the canonical UBT
        action;
- \item deriving from the canonical action whether the local
-       composite-contortion branch is selected, and proving that its torsion is
-       auxiliary/nonpropagating and physically admissible;
- \item alternatively, deriving a torsion-free relative left/right action and
-       proving that it is composite or auxiliary rather than propagating;
+ \item deriving from the canonical action the dynamical selection of the
+       explicit local split-jet right inverse and proving that its additional
+       jet components are nonpropagating;
+ \item alternatively, selecting a physical torsionful branch and proving its
+       propagation, matter coupling, and observational admissibility;
  \item proving global existence and continuation of the curved-space system
        through zeros of $V^2$, Gaussian caustics, horizons, and topology;
  \item proving that the complete dynamics preserves the real Lorentz slice;
@@ -715,6 +719,62 @@ or auxiliary rather than propagating.  A common central constant or one-form
 cannot remove the torsion-free obstruction because it cancels from the
 derivative.
 
+\subsection{Minimal one-connection exact-GR dichotomy}
+The two preceding exact results imply a stronger architecture-level statement.
+Suppose that the same metric-compatible Lorentz connection used in
+$D_\mu\Theta$ is also the physical spacetime connection entering curvature
+and ordinary matter transport.  If this connection is torsion-free, it is the
+Levi--Civita spin connection and the concurrent-vector theorem applies, so
+generic GR geometries are excluded.  If the composite contortion
+Eq.~\eqref{eq:composite-K-paper} is retained to represent an arbitrary tetrad,
+the same physical connection has nonzero torsion in general and the endpoint is
+a torsionful gravity theory rather than exact ordinary GR.  Thus
+\begin{equation}
+ \boxed{\text{one physical connection} + \text{universal representability}
+ \not\Rightarrow \text{exact generic torsion-free GR}.}
+ \label{eq:one-connection-no-go-paper}
+\end{equation}
+An exact-GR completion must therefore distinguish the connection that makes the
+single-$\Theta$ jet representable from the physical Levi--Civita connection,
+or must extend the pure Lorentz pair by a derived relative bimodule action.  A
+minimal notation is
+\begin{equation}
+ \widehat\Omega=\mathring\Omega(E)+K_J[E,\Theta],
+ \qquad
+ E_\mu=\mathcal N_0^{-1/2}D_\mu^{\widehat\Omega}\Theta,
+ \qquad
+ \Omega_{\rm phys}=\mathring\Omega(E).
+ \label{eq:jet-physical-split-paper}
+\end{equation}
+The split kinematics can be made explicit.  Let $X$ be the Lorentz-real
+projection of $\Theta$ on a patch with $X^2\ne0$, put
+\begin{equation}
+ Z_\mu{}^a=\sqrt{\mathcal N_0}\,e_\mu{}^a-\mathring D_\mu X^a,
+ \qquad
+ w_\mu=\frac{X_aZ_\mu{}^a}{X^2},
+ \qquad
+ Z_{\mu\perp}{}^a=Z_\mu{}^a-w_\mu X^a,
+\end{equation}
+and define
+\begin{equation}
+ K^J_{\mu ab}=\frac{Z_{\mu\perp a}X_b-X_aZ_{\mu\perp b}}{X^2}.
+ \label{eq:split-jet-K-paper}
+\end{equation}
+Then $K^{J\,a}{}_{\mu b}X^b=Z_{\mu\perp}{}^a$ and the jet derivative
+\begin{equation}
+ \widehat D_\mu X^a=\mathring D_\mu X^a
+ +K^{J\,a}{}_{\mu b}X^b+w_\mu X^a
+ =\sqrt{\mathcal N_0}\,e_\mu{}^a
+ \label{eq:split-jet-right-inverse-paper}
+\end{equation}
+holds identically.  The real $w_\mu$ is a relative central jet action and
+$K^J$ is Lorentz-algebra valued; both are fixed composites and neither enters
+physical curvature.  This closes local split-jet representability, but because
+they are defined using the prescribed tetrad it does not select $E[\Theta]$ or
+derive the completion from the action.  The exact proofs are in
+\path{canonical/gr_closure/gap_10t_minimal_one_connection_gr_no_go.tex} and
+\path{canonical/gr_closure/gap_10t_split_jet_right_inverse.tex}.
+
 The resulting equation is schematically
 \begin{equation}
  E_\mu=\mathcal N_0^{-1/2}
@@ -812,12 +872,19 @@ $A^3=q\,A^2$ with $q=\lambda\!\cdot\!s$, giving
 $\det(I-A)=(1-q)^6$; off $q=1$ every $\delta\Theta$-driven mode is an
 exact gradient (pullback-flat), while at $q=1$ there is an exactly
 six-dimensional sector of anholonomic modes carrying nonzero linearized
-Riemann image.  For real Fourier frequencies $q$ is imaginary, so this
-sector is of exponential/evanescent type and its relation to
-real-frequency propagation, its gauge and ghost content, and its
-quadratic action are open.  Imposing $\Theta\in W_L$ is a consistent
-subsector, not proved necessary.  For all these reasons GAP-10T-DYN is
-narrowed rather than fully closed.  The proofs and
+Riemann image.  For real Fourier frequencies $q=i\lambda\!\cdot\!k$ and
+$\det(I-A)=(1-i\lambda\!\cdot\!k)^6$ never vanishes; hence this frozen
+$W_L$ torsion-free linearization has no nonzero homogeneous curved
+real-frequency mode.  The six-dimensional sector is instead of
+real-exponential/Laplace type; its variable-coefficient assembly, gauge and
+ghost content, and quadratic action remain open.  Imposing $\Theta\in W_L$ is a consistent
+subsector, not proved necessary.  Combining the exact torsion-free no-go
+with the torsionful arbitrary-tetrad representer further closes the minimal
+same-physical-connection exact-GR architecture as a no-go.  GAP-10T-DYN is
+therefore narrowed at the dynamical level.  The split-jet local right inverse
+is explicit, but the action must still select a tetrad and the jet
+representative and prove nonpropagation; the alternative is a selected and
+tested physical torsionful branch.  The proofs and
 exact verifiers are in
 \path{canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex},
 \path{canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex},
@@ -939,8 +1006,12 @@ GAP-10T-PAIRING-NOGO & \textbf{CLOSED AS NO-GO}: the $\sharp$/Minkowski form is 
 GAP-10T-GRADIENT-FLATNESS & \textbf{CLOSED AS NO-GO}: every nondegenerate exact-gradient tetrad $e^a=\mathcal N_0^{-1/2}dY^a$ induces a locally flat metric; affine stationarity is only a Jacobian/null-Lagrangian corollary.\\
 GAP-10T-DCOMP-WL-SECTOR & \textbf{CLOSED CONDITIONALLY}: $\Theta\in W_L$ is a consistent Lorentz-real subsector; necessity disproved by a constant Hermitian counterexample.\\
 GAP-10T-DCOMP-LIN-OFFRES & \textbf{CLOSED CONDITIONALLY}: frozen symbol obeys $A^3=qA^2$; off $q=1$ driven modes are exact gradients (pullback-flat), in the $W_L$ exponential-symbol scheme.\\
-GAP-10T-DCOMP-RES & \textbf{OPEN}: six-dimensional exponential symbol sector with nonzero linearized Riemann image; real-frequency relation, gauge/ghost content, and quadratic action undecided.\\
-GAP-10T-DYN & \textbf{NARROWED}: decide the exponential sector (quadratic action, propagation), variable-coefficient assembly, on-shell torsion, and coefficient origin.\\
+GAP-10T-DCOMP-LIN-REALFREQ & \textbf{CLOSED AS NO-GO}: the frozen torsion-free $W_L$ Fourier symbol is invertible for every real covector; no homogeneous curved real-frequency mode exists in this approximation.\\
+GAP-10T-DCOMP-RES & \textbf{OPEN}: six-dimensional real-exponential symbol sector with nonzero linearized Riemann image; variable-coefficient assembly, gauge/ghost content, and quadratic action undecided.\\
+GAP-10T-MINIMAL-ONE-CONNECTION-GR & \textbf{CLOSED AS NO-GO}: one and the same physical connection cannot supply both universal local single-$\Theta$ representability and exact generic torsion-free GR.\\
+GAP-10T-JET-KIN & \textbf{CLOSED LOCALLY}: explicit composite Lorentz plus relative-central split-jet right inverse for every tetrad on a non-null Lorentz-real patch; physical curvature remains Levi--Civita.\\
+GAP-10T-JET-DYN & \textbf{OPEN}: derive canonical selection of $E[\Theta]$ and the jet representative, nonpropagation, null-patch continuation, and the complete chain-rule variation.\\
+GAP-10T-DYN & \textbf{NARROWED}: exact GR kinematics is locally available in the split architecture, but dynamical selection, degrees of freedom, and coefficient origin remain open; the one-connection alternative is torsionful gravity.\\
 GAP-10L-CONN & \textbf{CLOSED}: metric-compatible Lorentz transport preserves $\eta$ and the Lorentz slice.\\
 GAP-10L-SYM & \textbf{CLOSED CONDITIONALLY}: unique $\mathcal J$-equivariant evolution preserves the Lorentz fixed set.\\
 GAP-10L-DYN & \textbf{NARROWED}: verify equivariance and well-posed uniqueness for the complete UBT dynamics.\\
@@ -989,11 +1060,15 @@ fixed-background spin current is now derived and the effective Palatini
 scheme of the minimal branch is excluded at the flat point for every
 admissible pairing.  The auxiliary exact-gradient restriction admits the flat
 representer only because it is locally flat for every nondegenerate
-configuration.  The decisive tasks are to compute the canonical
-self-consistent $D$-composite variation and curved dynamics, establish algebraic
-nonpropagation and physical torsion bounds, derive the low-energy
-coefficients, prove global continuation, establish
-well-posed symmetry propagation, and generate observed geometries on shell.
+configuration.  The combined one-connection audit shows that exact generic GR cannot be the
+endpoint of the minimal same-physical-connection interpretation.  A local
+split-jet right inverse now restores fully general GR kinematics without
+physical torsion, but it does not dynamically select the tetrad.  The decisive
+tasks are therefore action-level selection of $E[\Theta]$ and the nonpropagating
+jet representative (or an explicitly physical torsionful theory), derivation of
+the Hilbert--Palatini curvature term and Newton coefficient, the
+physical degree-of-freedom and stability count, global continuation, and
+on-shell generation of observed geometries.
 
 \begin{thebibliography}{9}
 \bibitem{wald1984} R.~M.~Wald, \emph{General Relativity}, University of Chicago Press (1984).

@@ -1,3 +1,23 @@
+## [2026-07-26] - Historical provenance and minimal one-connection GR no-go
+
+### Added
+
+- Mechanism-specific priority evidence index for the 2016/2017/2020 Octonion
+  Multiverse archive, including archive/page/asset SHA-256 hashes.
+- Selected legacy electroscalar equation assets under `ARCHIVE/legacy_research/`.
+- `GAP-10T-MINIMAL-ONE-CONNECTION-GR` architecture-level no-go and verifier.
+- Exact local split-jet right inverse using a composite Lorentz tensor plus
+  relative-central one-form while physical curvature remains Levi-Civita.
+- Controlled GR completion decision separating jet kinematics from physical
+  connection and from action-level selection.
+
+### Changed
+
+- Replaced blanket historical priority wording with evidence-scoped claims.
+- Narrowed `GAP-10T-DYN` to the exact-GR jet-connection versus physical-torsion
+  completion fork.
+- Synchronized the GR paper and authoritative claim ledgers.
+
 # Changelog
 
 ### Added/Corrected — triqubit SU(3) error-status closure (2026-07-26)

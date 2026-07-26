@@ -11,7 +11,10 @@ time section, or compact-fiber average.  The nondegenerate tetrad-to-metric
 differential has rank ten and a six-dimensional local-Lorentz kernel, so the
 naive `8<10` component objection is not a local kinematic obstruction.  The
 frame connection `Omega_mu` is related to Christoffel symbols by tetrad
-compatibility, and its curvature is the commutator `[D_mu,D_nu]`.  The remaining
-open problems are dynamical: derive or eliminate the connection from the single
-UBT action, preserve the Lorentz slice, prove integrability, and obtain Einstein
-dynamics and the observed GR solutions on shell.
+compatibility, and its curvature is the commutator `[D_mu,D_nu]`.  A one-physical-connection architecture cannot simultaneously provide universal
+local single-Theta representability and exact generic torsion-free GR.  A local
+split-jet right inverse restores arbitrary tetrad kinematics while leaving the
+physical connection Levi-Civita.  The remaining problems are dynamical: derive
+action-level selection of the tetrad and nonpropagating jet representative,
+derive and normalise the Hilbert--Palatini curvature term from canonical UBT,
+and prove the observed GR solutions and two graviton polarizations on shell.

@@ -302,3 +302,28 @@ infer a Matrix/simulation ontology from the existence of a structured color
 subspace. Quantum-simulation-register use and ontological simulation claims are
 separate statements.
 
+
+## 11. Priority/provenance and GR completion guardrails
+
+- Historical priority claims are mechanism-specific and must point to
+  `docs/priority_evidence/OCTONION_MULTIVERSE_EVIDENCE.json` or another pinned
+  external artifact. Do not backdate the 2026 tetrad, connection, or GR
+  theorems to the 2016/2020 electroscalar archive.
+- A related-work citation may be delimiting rather than genealogical. Do not
+  remove the closest literature merely because UBT did not derive from it.
+- `GAP-10T-MINIMAL-ONE-CONNECTION-GR: CLOSED AS NO-GO [L1]`: if the same
+  metric-compatible Lorentz connection is both the defining jet connection and
+  the physical spacetime connection, universal local single-Theta
+  representability and exact generic torsion-free GR cannot both hold.
+- For an exact-GR continuation, distinguish a derived composite/nonpropagating
+  jet connection from the physical Levi-Civita connection. Do not silently call
+  jet contortion physical torsion or introduce a second propagating connection.
+- The controlled completion remains conditional until the jet functional and
+  the Hilbert-Palatini term with Newton coefficient are derived from canonical
+  UBT.
+- `GAP-10T-JET-KIN: CLOSED LOCALLY [L1]`: the split exact-GR architecture has
+  an explicit composite Lorentz plus relative-central jet right inverse on
+  non-null Lorentz-real patches. Do not turn this kinematic identity into a
+  claim that the action selects `E[Theta]`.
+- `GAP-10T-JET-DYN: OPEN`: action-level selection, nonpropagation, null-patch
+  continuation, and uniqueness remain unresolved.

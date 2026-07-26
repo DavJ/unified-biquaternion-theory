@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-07-26",
+  "purpose": "Mechanism-specific provenance index; not a blanket priority claim for later UBT theorems.",
+  "source_archive": {
+    "description": "Google Takeout archives retained in the separate research-master archive.",
+    "archives": [
+      {
+        "name": "takeout-20250613T072957Z-001.zip",
+        "sha256": "b144c01eda80cc711167142d93b5bb9cacf751b59d5649fd0aee0721caa1acfc",
+        "size_bytes": 49558
+      },
+      {
+        "name": "takeout-20250613T072957Z-1-001.zip",
+        "sha256": "3571209e3ad0349e26ad81c65ed5aaecf619d0c5e5fd99e65122c4ec2ff64e7e",
+        "size_bytes": 9637579
+      }
+    ],
+    "site_backup_label": "Copy of Octonion multiverse - November 8, 2020, 8_"
+  },
+  "timestamped_pages": [
+    {
+      "id": "biquaternion_field_post",
+      "embedded_post_date": "2016-03-18 06:46:26",
+      "page": "untitledpost-3.html",
+      "sha256": "6dd145205e32ca7680b012bc12d3ff6d4724cb357afb07295b292680ddaf4dd7",
+      "supports": [
+        "public documentation of a biquaternion gradient",
+        "biquaternion vector potential",
+        "eight-intensity relation",
+        "scalar component G"
+      ],
+      "does_not_support": [
+        "2026 projection-free tetrad theorem",
+        "Einstein equations from UBT",
+        "current covariant D-composite architecture"
+      ]
+    },
+    {
+      "id": "research_history_post",
+      "embedded_post_date": "2016-03-18 06:31:29",
+      "page": "years2010-2013.html",
+      "sha256": "d946b98c8d5a06bb7387aac1bf9fd955ddd60bf58a6dddf3367edf308f595e07",
+      "supports": [
+        "dated retrospective account of quaternion/biquaternion research interests"
+      ],
+      "does_not_support": [
+        "independent timestamp for every claimed 2012-2013 equation"
+      ]
+    },
+    {
+      "id": "periodicity_post",
+      "embedded_post_date": "2017-12-01 22:33:10",
+      "page": "year2017.html",
+      "sha256": "0891de16f995f1ccd3d0f1e4b91a364b241937af37111961fed73e9286e2fd34",
+      "supports": [
+        "public historical self-report of a GR-duality interpretation and spacetime periodicity idea"
+      ],
+      "does_not_support": [
+        "proof of GR equivalence",
+        "current complex-time dynamics"
+      ]
+    },
+    {
+      "id": "theory_page_snapshot",
+      "snapshot_not_later_than": "2020-11-08",
+      "page": "theory-of-everything-unitary-theory-of-field.html",
+      "sha256": "be9a59d1cef6d43514f5e45294e8835c8dfd06359b8874996ce52f0948cd8488",
+      "supports": [
+        "presence in the dated site backup of the biquaternion electroscalar theory page"
+      ],
+      "does_not_support": [
+        "exact original publication date of an undated page",
+        "current tetrad metric derivation"
+      ]
+    },
+    {
+      "id": "gravity_appendix_snapshot",
+      "snapshot_not_later_than": "2020-11-08",
+      "page": "appendix-a---reasons-for-g-being-related-to-gravit.html",
+      "sha256": "1e593d34afa0730f2f8c2e600a98d5e3a059897bc367e8b72d7f8c7c6140ead4",
+      "supports": [
+        "historical heuristic linkage of scalar G energy to gravity"
+      ],
+      "does_not_support": [
+        "Einstein dynamics",
+        "general curved metric theorem",
+        "empirical validation of G as gravity"
+      ]
+    }
+  ],
+  "selected_primary_equation_assets": [
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/biquaternion-gradient.gif",
+      "sha256": "34d0baf7d558cd8d379aacd5bafe151c66f3ffedd92f1f03e9b98ee54c351442",
+      "label": "Biquaternion differential operator",
+      "legacy_source": "theory-of-everything/biquaternion-gradient.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/biquaternion-vector-potential.gif",
+      "sha256": "85d88a540843f4bf8ce9107cd5bc68a877c065f56670f58d2c754ad51d64c457",
+      "label": "Biquaternion vector potential",
+      "legacy_source": "theory-of-everything/biquaternion-vector-potential.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/biquaternion-gradient-of-vector-potential.gif",
+      "sha256": "b25a6ec337351744ccb4e7fca387891d09e3a06659bcce5ffeefb2f566addd08",
+      "label": "Gradient of the biquaternion potential",
+      "legacy_source": "theory-of-everything/biquaternion-gradient-of-vector-potential.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/biquaternion-eight-intensity.gif",
+      "sha256": "c3694ad85366223a9d0dc9092cdb3807cf4bdb91f9b406fd001248b6298f8570",
+      "label": "Eight-intensity definition",
+      "legacy_source": "theory-of-everything/biquaternion-eight-intensity.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/biquaternion-eight-intensity-meaning.gif",
+      "sha256": "375a53d3ac8e511482e344e62a8034dec3e8a1259637eccb8fe105320d202216",
+      "label": "Eight-intensity component meaning",
+      "legacy_source": "theory-of-everything/biquaternion-eight-intensity-meaning.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/scalar-component.gif",
+      "sha256": "0bd5364b5cbbd79ff55b87ae54e407eed951414b8408c890c20a4d4d9f2da1c7",
+      "label": "Scalar component G",
+      "legacy_source": "theory-of-everything/scalar-component.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/energy-complex-G.gif",
+      "sha256": "4a8e6c35fb325be2164066cd8cf8ff448b3deeecb892f754d161f33f87b8a11c",
+      "label": "Complex-G energy expression",
+      "legacy_source": "theory-of-everything/energy-complex-G.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/energy-real-G.gif",
+      "sha256": "d7789ca7ccefa3ca51f862dce2bb3576b99562cf88aa52b0b5778721efe44527",
+      "label": "Real-G energy expression",
+      "legacy_source": "theory-of-everything/energy-real-G.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/gravity-wg.gif",
+      "sha256": "8f51ee6d9d01f949a720513f30e03402bd7421b03193666846e71a1358cf87c2",
+      "label": "Historical scalar-energy/gravity relation",
+      "legacy_source": "theory-of-everything/relation_to_gravity/wg.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/gravity-em2.gif",
+      "sha256": "941bb52b1b0a1a9b7428807c48cb90366551b377738c317c99ae437f9a0cd76a",
+      "label": "Historical mass-energy relation",
+      "legacy_source": "theory-of-everything/relation_to_gravity/em2.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/gravity-div-grad-fi.gif",
+      "sha256": "0101aeda302b3dbb1c023bd57c003c3611578d2b7b8385e80cbdd8a186f4c64f",
+      "label": "Historical potential relation",
+      "legacy_source": "theory-of-everything/relation_to_gravity/div_grad_fi.gif"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_biquaternion-eight-intensity-meaning.tex",
+      "sha256": "e4902a9fe3caacaa8d84f691ab06cf120b12870e1e6507b1f2a7cfc6216c53c7",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/biquaternion-eight-intensity-meaning.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_biquaternion-eight-intensity.tex",
+      "sha256": "98ffb6a4dabba5e51e98c7cdd76259809a152e290c10a7e3aa1c96c4f847695f",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/biquaternion-eight-intensity.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_biquaternion-gradient-of-vector-potential.tex",
+      "sha256": "3f339b673c7571ef5105a1b339ab1ee0e19b477f86b6f4d63a4966ac74af0d52",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/biquaternion-gradient-of-vector-potential.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_biquaternion-gradient.tex",
+      "sha256": "0ab9ce6410f96300edf5f2b6d6f00f224620fd2344ae15fc3250b1d40bc2262a",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/biquaternion-gradient.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_biquaternion-vector-potential.tex",
+      "sha256": "252daf374c39dbbe447ebece163de7bace12784f289681a8ad53dc6742e6037c",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/biquaternion-vector-potential.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_energy-complex-G.tex",
+      "sha256": "103d2b68c642f0bbfb75b139053a4552cf276f67bf826f7f5be2851fd1df39fa",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/energy-complex-G.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_energy-real-G.tex",
+      "sha256": "c785e569066d10ff89a3f559915935dd5a412e1ff6bd34ccbfc71a597ded996c",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/energy-real-G.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_energy-simple-calculation.tex",
+      "sha256": "bbc083caccb0d8a35a769616d284e91037fecb6f5776b0dce2ac62b9ab07b37d",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/energy-simple-calculation.tex"
+    },
+    {
+      "path": "ARCHIVE/legacy_research/selected_sources/transcription_scalar-component.tex",
+      "sha256": "cec890e510e15b79e389e80d4f0fede70749f2f00afb1e42c7393e4c5bef8f34",
+      "label": "Later LaTeX transcription; not an independent timestamp",
+      "legacy_source": "theory-of-everything/latex/scalar-component.tex"
+    }
+  ],
+  "claim_policy": {
+    "allowed": [
+      "By 18 March 2016, a public post documented the listed biquaternion electroscalar structures.",
+      "The 8 November 2020 site backup contains the listed theory and gravity-appendix pages.",
+      "These records establish independent historical continuity of the author's biquaternion programme."
+    ],
+    "forbidden_without_new_evidence": [
+      "The 2026 projection-free tetrad/metric theorem was published in 2016.",
+      "General relativity was derived from UBT before the current proof programme.",
+      "Every equation retrospectively described as originating in 2013 was publicly timestamped in 2013.",
+      "A broad priority claim over all biquaternionic gravity mechanisms."
+    ]
+  }
+}

@@ -6,10 +6,11 @@ formulations that were later refined or superseded. It is not the current proof
 ledger: canonical claims are governed by `CLAIMS_MATRIX.md`,
 `DERIVATION_INDEX.md`, and `STATUS_OF_UBT.md`.
 
-Dates before the public repository period are approximate and are based on the
-author's surviving notes, files, releases, and recollection. The chronology is
-representative rather than exhaustive and may be expanded as older material is
-recovered.
+Dates before the public repository period have mixed evidence levels. Entries
+identified as public are tied to the hashes and embedded dates in
+`docs/priority_evidence/`; other early dates remain approximate and are based on
+surviving notes, files, and recollection. The chronology is representative
+rather than exhaustive.
 
 The central ideas, research direction, and decisive architectural choices were
 made by David Jaroš. AI systems have assisted with formalisation, symbolic and
@@ -84,6 +85,30 @@ programme are nevertheless part of its documented history.
 - The modern covariant-tetrad equations, connection reconstruction, and rank
   theorems did not yet exist in their present form, but the algebraic and metric
   intuition from which they later developed was already present.
+
+## 18 March 2016 — Public biquaternion electroscalar formulation
+
+- A Google Sites post with the embedded date 18 March 2016 publicly documented
+  a biquaternion gradient, biquaternion vector potential, generalized
+  eight-intensity equation, and a scalar component denoted by `G`.
+- The claim is mechanism-specific. It establishes the documented public
+  electroscalar formalism, not the later projection-free tetrad theorem or
+  Einstein dynamics. Archive and page hashes are listed in
+  `docs/priority_evidence/OCTONION_MULTIVERSE_EVIDENCE.json`.
+
+## 1 December 2017 — Periodicity and GR-duality research note
+
+- A dated public research note recorded the author's spacetime-periodicity
+  direction and a contemporaneous claim of a relation to general relativity.
+- The entry is historical provenance, not a retrospective proof of GR
+  equivalence.
+
+## 8 November 2020 — Archived Octonion Multiverse snapshot
+
+- The dated site backup contains the biquaternion theory page and a gravity
+  appendix that heuristically links the scalar `G` energy sector to gravity.
+- This establishes continuity of the research programme while leaving the
+  modern tetrad and dynamical GR claims to the 2025-2026 proof record.
 
 ## c. 2019 — Complex time and Jacobi-theta structure
 

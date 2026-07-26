@@ -59,6 +59,21 @@ kernel.
   \]
   This closes local curved representability without independent connection
   fields, but does not select the torsion dynamically.
+- **GAP-10T-MINIMAL-ONE-CONNECTION-GR — CLOSED AS NO-GO [L1]:** combining
+  the torsion-free concurrent-vector theorem with the arbitrary-tetrad
+  composite-contortion right inverse yields a dichotomy. If the one connection
+  in `DTheta` is also the physical Levi-Civita connection, generic GR is
+  excluded; if the required contortion is retained in that same physical
+  connection, the branch is torsionful rather than exact ordinary GR.
+- **GAP-10T-JET-KIN — CLOSED LOCALLY [L1]:** for every tetrad and every
+  non-null Lorentz-real projection `X`, the mismatch
+  `Z_mu=s E_mu-D_LC_mu X` has an exact covariant decomposition. Its parallel
+  part fixes a composite relative central one-form, and its orthogonal part
+  fixes a composite Lorentz jet tensor. Their jet action gives
+  `Dhat_mu X=s E_mu` identically while physical curvature remains Levi-Civita.
+- **GAP-10T-JET-DYN — OPEN:** the right inverse is kinematic. It does not
+  select a tetrad from `Theta`, derive the representative from the action, or
+  prove nonpropagation and global continuation through null patches.
 - **GAP-10I-2S — NOT REQUIRED FOR LOCAL KINEMATIC REPRESENTABILITY:** the
   general two-sided derivative remains useful, and a nontrivial relative
   left/right component is still a possible torsion-free completion. If used,
@@ -632,7 +647,8 @@ sequencing are maintained in `ROADMAP.md` under
 | GAP-10T-PAIRING-NOGO — Lorentz-invariant pairing escape route | CLOSED AS NO-GO [L1] |
 | GAP-10T-DCOMP-WL-SECTOR — Lorentz-real W_L subsector | CLOSED CONDITIONALLY [L0] |
 | GAP-10T-DCOMP-LIN-OFFRES — linearized off-resonance flatness | CLOSED CONDITIONALLY [L1] |
-| GAP-10T-DCOMP-RES — six-dimensional exponential symbol sector | OPEN |
+| GAP-10T-DCOMP-LIN-REALFREQ — frozen real-frequency curved-mode sector | CLOSED AS NO-GO [L1] |
+| GAP-10T-DCOMP-RES — six-dimensional real-exponential symbol sector | OPEN |
 | GAP-10T-GRADIENT-FLATNESS — exact-gradient composite branch | CLOSED AS NO-GO [L1] |
 | GAP-10T-DYN — canonical self-consistent D-composite variation and torsion completion | NARROWED |
 | GAP-10I-PAIR-KIN — no-new-field Lorentz reduction | CLOSED [L1] |

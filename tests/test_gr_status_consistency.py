@@ -239,3 +239,29 @@ class TestGRSectorConditionsContent:
             "gr_sector_conditions.tex must contain the mandatory statement: "
             "'GR reproduction is exact only on the sector satisfying the listed conditions'"
         )
+
+
+class TestCurrentJetStatusNames:
+    """Guard the split-jet kinematic/dynamic status after the one-connection audit."""
+
+    ACTIVE_FILES = [
+        "CLAIMS.yaml",
+        "CLAIMS_MATRIX.md",
+        "STATUS.md",
+        "STATUS_OF_UBT.md",
+        "WHAT_IS_PROVED.md",
+        "papers/UBT_GR_Submission.tex",
+    ]
+
+    @pytest.mark.parametrize("rel_path", ACTIVE_FILES)
+    def test_no_obsolete_jet_connection_gap(self, rel_path):
+        text = _read_file(ROOT / rel_path)
+        assert "GAP-10T-JET-CONNECTION" not in text, (
+            f"Obsolete pre-right-inverse status remains in {rel_path}; use "
+            "GAP-10T-JET-KIN and GAP-10T-JET-DYN."
+        )
+
+    def test_paper_contains_split_jet_statuses(self):
+        text = _read_file(ROOT / "papers/UBT_GR_Submission.tex")
+        assert "GAP-10T-JET-KIN" in text
+        assert "GAP-10T-JET-DYN" in text

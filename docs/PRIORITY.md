@@ -1,18 +1,88 @@
-# Priority Claim
+# UBT priority and provenance policy
 
-This repository documents the origin of the theoretical framework known as the **Unified Biquaternion Theory**, initiated and developed by **Ing. David Jaroš**.
+This repository records the development of the **Unified Biquaternion Theory
+(UBT)** by **Ing. David Jaroš**. Priority is claimed only for propositions that
+can be tied to a specific dated artifact. A historical use of biquaternions is
+not treated as priority over every later biquaternionic construction, and a
+historical physical interpretation is not promoted to a modern theorem.
 
-The theory was first published publicly on GitHub on **23.6.2025**, including core definitions, tensor-spinor field structures, covariant equations, and the formulation of complex time as a model of consciousness.
+## Evidence-backed historical claims
 
-The full structure and mathematical derivations were completed and made public incrementally, with all commits time-stamped and verifiable through the Git version history.
+### Public biquaternion electroscalar formalism by 18 March 2016
 
-This constitutes a clear and transparent **priority claim** for the origin of the theory.
+A Google Sites page with the embedded post date **18 March 2016, 06:46:26**
+documents, in one public presentation:
 
-This claim is made openly and verifiably for any future academic or legal purposes.
+- a biquaternion differential operator/gradient,
+- a biquaternion four-potential,
+- a biquaternion “eight-intensity” relation,
+- electromagnetic vector components together with a scalar component denoted
+  by \(G\).
 
-Note: the original theory location was [https://github.com/DavJ/complex-consciousness-theory/tree/master/unified_biquaternion_theory]
+The page hash, the containing Google Takeout archive hashes, and hashes of the
+selected equation images are recorded in
+[`priority_evidence/OCTONION_MULTIVERSE_EVIDENCE.json`](priority_evidence/OCTONION_MULTIVERSE_EVIDENCE.json).
+This supports a concrete priority claim for that electroscalar
+biquaternionic formulation as publicly documented by the stated date.
 
-—
-Ing. David Jaros
-[https://github.com/DavJ/unified-biquaternion-theory/tree/master/unified_biquaternion_theory]
+### Historical gravity interpretation present by the 8 November 2020 backup
 
+The dated Google Sites backup labelled **“Copy of Octonion multiverse -
+November 8, 2020”** contains a theory page and an appendix that heuristically
+associate the scalar \(G\) sector and its energy expression with gravity. This
+supports priority for the documented historical interpretation, not for an
+Einstein-equation derivation or for the present tetrad construction.
+
+### Public 2017 record of the periodicity/GR-duality research direction
+
+A page with embedded post date **1 December 2017, 22:33:10** records the
+author's then-current interpretation involving spacetime periodicity and a
+claimed duality with general relativity. It is retained as a dated historical
+self-report. It is not cited as proof that such a duality had been established.
+
+## Current results that are not backdated
+
+The following belong to the audited 2025-2026 UBT programme and are **not**
+described as results of the 2016/2020 materials:
+
+- the projection-free central Clifford anticommutator metric,
+- the rank-ten tetrad-to-metric theorem and six Lorentz gauge directions,
+- the Levi-Civita/contortion reconstruction theorem,
+- the concurrent-vector and gradient-flatness no-go results,
+- the self-consistent \(D\)-composite symbol analysis,
+- any claimed derivation of Einstein dynamics, Standard-Model dynamics, or
+  fundamental constants.
+
+Their priority must be tied to the current repository history, releases,
+preprints, and immutable deposits. The legacy archive proves continuity and
+independent development of specific older mechanisms; it does not automatically
+establish priority for later theorems.
+
+## Related work and independent development
+
+A delimiting citation is not a genealogical claim. The GR paper therefore cites
+nearby published biquaternionic programmes, including de Haas, and states the
+mechanism-level differences. The combination of dated historical evidence and
+explicit related-work delimitation is the intended priority record: neither
+silence about close literature nor an unsupported claim of dependence.
+
+## Repository and deposit evidence
+
+The complete legacy `research-master` archive is intentionally not copied into
+this repository. It contains unrelated material and large Google Takeout files.
+The main repository keeps:
+
+- hashes of the two Takeout archives,
+- hashes and dates of the relevant archived pages,
+- a manifest of the legacy research tree,
+- a small set of selected equation assets.
+
+For the strongest external provenance, the complete immutable archive should be
+deposited separately and its DOI added to the evidence record. Likewise, any
+claim that the current UBT repository was public on a particular date should
+cite a pinned commit, release, or archival DOI rather than an unpinned branch
+URL.
+
+## Author
+
+Ing. David Jaroš
