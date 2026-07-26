@@ -1,0 +1,7 @@
+Differential overlay file list
+Base commit marker: cb1ca2a6a5cc2cf09e28f6acb853a081481de6ef
+
+PATCH_FILELIST_GR_PAPER_PRIOR_ART_2026-07-26.txt
+PATCH_NOTES_GR_PAPER_PRIOR_ART_2026-07-26.md
+papers/UBT_GR_Submission.tex
+docs/pdfs/UBT_GR_Submission.pdf
