@@ -106,6 +106,14 @@ with a conditional EW-1b (EW1+RG) branch still tracked.
 **Submission plan**: Draft LaTeX paper after T1_GR submission.  Target: 2026-06-08 (4 weeks from 2026-05-11).  
 **Paper draft**: ✅ `papers/UBT_Gauge_Submission.tex` created and updated (2026-05-10)
 
+## T2_GAUGE — Triqubit error-status subclosure
+
+| Item | Status |
+|------|--------|
+| `GAP-SU3-TRIQUBIT-LEAKAGE` | ✅ CLOSED [L1] — every single `X_i`/`Y_i` error exits the one-hot color sector |
+| `GAP-SU3-TRIQUBIT-QEC` | ⛔ CLOSED AS NO-GO [L1] — Knill–Laflamme fails for unknown single `X_i`; `Z_i` is an undetected logical phase |
+| Matrix / simulation ontology | ⚪ SPECULATIVE — no inference follows from the encoding theorem |
+
 ---
 
 ## T3_ALPHA — Fine Structure Constant

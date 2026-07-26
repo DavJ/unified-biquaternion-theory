@@ -1,0 +1,29 @@
+Base: unified-biquaternion-theory-master(25).zip
+Date: 2026-07-26
+
+PASS python tools/verify_triqubit_qec_status.py
+  P X_i P max residual: 0
+  P Y_i P max residual: 0
+  compressed Z_i minimum non-scalar residual: 1.632993161855452
+  Knill-Laflamme maximum violation: 1.4142135623730951
+  witness: X1^dagger X2
+  code dimension: 3
+
+PASS python tools/verify_three_qubit_su3.py
+  8/8 residual groups PASS
+
+PASS focused pytest suite
+  14 casimir + 9 fermionic Fock + 12 Gell-Mann + 25 mapping + 5 QEC = 65 tests
+
+PASS claims/status consistency
+  tests/test_claims_consistency.py
+  tests/test_gr_status_consistency.py
+  one pre-existing optional skip
+
+PASS LaTeX
+  canonical/interactions/gap_su3_triqubit_qec.tex
+  canonical/interactions/su3_qubit_encoding.tex
+
+PASS visual render inspection
+  docs/pdfs/gap_su3_triqubit_qec.pdf
+  docs/pdfs/su3_qubit_encoding.pdf

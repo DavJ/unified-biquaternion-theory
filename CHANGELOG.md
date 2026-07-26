@@ -1,5 +1,14 @@
 # Changelog
 
+### Added/Corrected — triqubit SU(3) error-status closure (2026-07-26)
+
+- Proved exact single-qubit `X_i`/`Y_i` leakage detection for the one-hot color carrier.
+- Added the explicit Knill--Laflamme witness `P X_1 X_2 P`, closing correction of an unknown single bit flip as a no-go for the present encoding.
+- Recorded that compressed `Z_i` operators are non-scalar logical phases and are not detected by occupation measurement.
+- Separated quantum-simulation register utility from speculative Matrix/simulation ontology.
+- Added `tools/verify_triqubit_qec_status.py` and regression tests.
+
+
 
 
 ## 2026-07-18 — Pre-release naming, provenance, and test-hygiene polish

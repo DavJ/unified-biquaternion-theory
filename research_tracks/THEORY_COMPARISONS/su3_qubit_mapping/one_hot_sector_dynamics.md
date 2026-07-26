@@ -194,9 +194,25 @@ For example, `Z_i` preserves the one-hot sector and changes relative phases:
 ```
 
 for any common scalar `c`. Thus phase errors act as logical operations inside
-`C` and are not detected by the occupation constraint alone. The one-hot sector
-is an `X`-flip leakage-detecting subspace, not a full quantum error-correcting
-code.
+`C` and are not detected by the occupation constraint alone.
+
+The stronger correction question is decided by the Knill--Laflamme condition.
+For the candidate error set `{I, X_1, X_2, X_3}` correction would require
+
+```text
+Π_C E_a† E_b Π_C = c_ab Π_C
+```
+
+for every pair. But, for example,
+
+```text
+Π_C X_1 X_2 Π_C = |100><010| + |010><100|,
+```
+
+which swaps two color basis states and is not a scalar multiple of `Π_C`. Hence
+an unknown single `X_i` error is **not correctable** by this encoding. The one-hot
+sector is an `X/Y`-flip leakage-detecting subspace, not a full quantum
+error-correcting code.
 
 ### 4.3 Meaning of the Diagonal Projector Identity
 
@@ -212,9 +228,11 @@ generators. It should not by itself be called an SU(3) Gauss-law constraint or a
 stabilizer condition; such a physical interpretation would require an
 independent derivation from the UBT action.
 
-**Status: ✅ PROVED at representation level** — `C` is the `N=1` sector and all
-single `X_i` flips leave it. General quantum-error protection and dynamical gauge
-protection remain open.
+**Exact status at representation level**:
+
+- `GAP-SU3-TRIQUBIT-LEAKAGE: CLOSED [L1]` — all single `X_i` and `Y_i` errors leave `C`.
+- `GAP-SU3-TRIQUBIT-QEC: CLOSED AS NO-GO [L1]` — the present encoding fails Knill--Laflamme for an unknown single `X_i` and does not detect general `Z_i`.
+- Dynamical sector selection, a physical penalty Hamiltonian, decoder/recovery, and gauge protection from the UBT action remain open.
 
 ---
 

@@ -73,6 +73,11 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 
 Sources: `canonical/interactions/`, `canonical/su3_derivation/`, `canonical/chirality/`, `papers/UBT_Gauge_Submission.tex`
 
+**Triqubit error-status closure (2026-07-26):**
+- `canonical/interactions/gap_su3_triqubit_qec.tex` — exact projector proof that all single `X_i`/`Y_i` errors are leakage-detectable, compressed `Z_i` operators are non-scalar, and Knill--Laflamme fails for `{I,X_1,X_2,X_3}`.
+- `tools/verify_triqubit_qec_status.py` — matrix verifier and explicit `X_1 X_2` witness.
+- Status: `GAP-SU3-TRIQUBIT-LEAKAGE: CLOSED [L1]`; `GAP-SU3-TRIQUBIT-QEC: CLOSED AS NO-GO [L1]`. This is a quantum-simulation encoding statement, not evidence for simulation ontology.
+
 **Chirality derivation files:**
 - `canonical/chirality/step3_gap_C1_resolution.tex` — Gap C1 Step 3 — [L1] — SU(2)_L acts on left-chiral doublets
 - `canonical/chirality/step4_no_wr_derivation.tex` — Gap C1 upgrade — [MC]+[L1 cond.] — SU(2)_R decouples via ψ-parity; all Loopholes 1 [L1 cond.], 2 [L1 cond.], 3 [STD] closed; OP-S4 [L1 conditional]; Rem rem:minimality_anomaly: anomaly-safe (cond. SU(3) colour structure, C2-i CLOSED v55), unitarity deferred EW-2

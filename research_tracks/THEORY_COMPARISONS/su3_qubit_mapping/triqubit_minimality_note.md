@@ -303,8 +303,9 @@ Briefly:
 - Under the constraint that color permutation symmetry (Weyl group S₃) be realizable
   as single-layer SWAP circuits, the triqubit is natural and efficient.
 - Under computational-basis bit-flip noise, the Hamming-weight-1 constraint
-  provides natural single-`X` leakage detection. It does not detect general
-  one-qubit phase errors.
+  provides natural single-`X`/`Y` leakage detection. It does not detect general
+  one-qubit phase errors and fails the Knill--Laflamme conditions for correcting
+  an unknown single `X_i` error.
 
 ### 5.4 Summary Table
 

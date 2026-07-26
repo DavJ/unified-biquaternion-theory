@@ -218,6 +218,8 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | S5 | Independent triqubit derivation confirms SU(3) | [L0] | `su3_qubit_encoding.tex` |
 | S6 | Structural colour confinement: free quarks algebraically inadmissible | [L0] | `su3_from_involutions.tex Thm G.B` |
 | S7 | Involution and triqubit routes are equivalent | [L0] | `su3_gauge_qubit_equivalence.tex` |
+| S8 | One-hot color detects every single `X_i`/`Y_i` error as leakage | [L1] | `gap_su3_triqubit_qec.tex`, `verify_triqubit_qec_status.py` |
+| S9 | One-hot color cannot correct an unknown single `X_i` and does not detect general `Z_i` | [L1 no-go] | Knill--Laflamme witness in `gap_su3_triqubit_qec.tex` |
 
 *Note*: Dynamical confinement (Wilson loop area law) is the Clay Millennium Problem; it is not claimed.
 

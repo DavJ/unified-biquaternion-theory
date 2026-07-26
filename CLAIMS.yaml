@@ -64,9 +64,14 @@ claims:
     assumptions:
     - 'The involution structure selects a complex rank-three carrier V_c congruent to C^3'
     - 'GAP-SU3-DYN: OPEN — derive the unitary/Yang-Mills structure on the involution carrier from the canonical action; SU(3) is not an algebra automorphism, and an explicit counterexample is documented'
+    - 'GAP-SU3-TRIQUBIT-LEAKAGE: CLOSED [L1] — the one-hot color carrier detects every single-qubit X_i or Y_i error as leakage because P_color E P_color=0'
+    - 'GAP-SU3-TRIQUBIT-QEC: CLOSED AS NO-GO [L1] — the Knill-Laflamme conditions fail for {I,X_1,X_2,X_3}, compressed Z_i errors are non-scalar logical operations, and the three-dimensional carrier is not a Pauli stabilizer code'
+    - 'The triqubit result is a representation/quantum-simulation encoding statement and does not imply a simulation ontology'
     forbidden_wording:
     - SU(3) derived from automorphisms
     - gauge group follows from automorphisms alone
+    - triqubit one-hot color is a quantum error-correcting code
+    - quark color proves that reality is a simulation
   three_generations:
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:

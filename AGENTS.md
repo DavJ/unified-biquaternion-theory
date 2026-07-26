@@ -286,3 +286,19 @@ For theory changes:
 7. record assumptions and remaining gaps in patch notes.
 
 Prefer clarification and closure over adding new ontology.
+
+## 10. Triqubit SU(3) error-code wording
+
+Use the exact representation-level statuses:
+
+- `GAP-SU3-TRIQUBIT-LEAKAGE: CLOSED [L1]` — the one-hot color sector detects
+  every single-qubit `X_i` or `Y_i` error as leakage.
+- `GAP-SU3-TRIQUBIT-QEC: CLOSED AS NO-GO [L1]` — it fails the
+  Knill--Laflamme conditions for correcting an unknown single `X_i`, does not
+  detect general `Z_i` phase errors, and is not a Pauli stabilizer code.
+
+Do not call the present construction a quantum error-correcting code. Do not
+infer a Matrix/simulation ontology from the existence of a structured color
+subspace. Quantum-simulation-register use and ontological simulation claims are
+separate statements.
+

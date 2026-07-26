@@ -439,8 +439,11 @@ Three interpretations are available; they should not be conflated:
 
   \item \textbf{Quantum simulation context:} When using the three-qubit space as
         a quantum-simulation register for SU(3) dynamics, the leakage sector
-        must be actively suppressed (e.g.\ by energy penalty terms or
-        error-correcting constraints) to maintain faithful simulation.
+        must be actively suppressed (e.g.\ by energy penalty terms or by an
+        external error-correction layer) to maintain faithful simulation.  The
+        one-hot encoding itself detects single-$X_i$/$Y_i$ leakage but is not a
+        quantum error-correcting code; see
+        \path{canonical/interactions/gap_su3_triqubit_qec.tex}.
 \end{enumerate}
 
 \begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
@@ -457,7 +460,10 @@ Do \textbf{not} claim:
         QCD until dynamics (Yang-Mills action), confinement, anomaly
         cancellation, and fermion representations are addressed;
   \item that the leakage sector $\Hcolor^\perp$ has a canonical UBT
-        interpretation without further derivation.
+        interpretation without further derivation;
+  \item that the one-hot sector is a quantum error-correcting code, or that
+        its code-subspace form is evidence that physical reality is a
+        simulation.
 \end{itemize}
 \end{tcolorbox}
 

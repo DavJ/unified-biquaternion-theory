@@ -1,0 +1,136 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% GAP-SU3-TRIQUBIT-LEAKAGE / GAP-SU3-TRIQUBIT-QEC
+% Status: exact representation-level theorem; no physical-QCD or ontology claim.
+
+\ifdefined\INCLUDEMODE
+  \def\UBTTriqubitQECEndDocument{}
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper,margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{mathtools}
+  \usepackage{xcolor}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{breakable}
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{remark}[theorem]{Remark}
+  \newcommand{\C}{\mathbb C}
+  \newcommand{\Hcolor}{\mathcal H_{\mathrm{color}}}
+  \newcommand{\Pcolor}{P_{\mathrm{color}}}
+  \title{Triqubit SU(3) Encoding: Exact Error-Detection and QEC No-Go Status}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-07-26}
+  \begin{document}
+  \def\UBTTriqubitQECEndDocument{\end{document}}
+  \maketitle
+\fi
+
+\begin{abstract}
+The one-hot color carrier
+\(\Hcolor=\operatorname{span}\{|100\rangle,|010\rangle,|001\rangle\}\)
+is an exact three-qubit realization of the fundamental \(\C^3\) carrier of
+\(\mathrm{SU}(3)\).  We prove the precise noise statement: every individual
+single-qubit \(X_i\) or \(Y_i\) error is detectable as leakage from the
+one-hot sector, while single-qubit phase errors \(Z_i\) are not detected by the
+occupation projector.  More strongly, the Knill--Laflamme conditions fail for
+the error set \(\{I,X_1,X_2,X_3\}\), so the one-hot sector cannot correct an
+unknown single bit flip.  It is therefore a leakage-detecting qutrit embedding,
+not a quantum error-correcting code and not evidence for a simulation ontology.
+\end{abstract}
+
+\section{Definitions}
+Let
+\[
+ \Hcolor=\operatorname{span}\{|100\rangle,|010\rangle,|001\rangle\}
+ \subset (\C^2)^{\otimes 3},
+\]
+and let
+\[
+ \Pcolor=|100\rangle\!\langle100|+|010\rangle\!\langle010|
+          +|001\rangle\!\langle001|
+\]
+be the orthogonal projector.  The Pauli operator acting on qubit \(i\) is
+denoted by \(X_i,Y_i,Z_i\).
+
+An error \(E\) is detectable by the code projector precisely when
+\[
+ \Pcolor E\Pcolor=c_E\Pcolor
+\]
+for a scalar \(c_E\).  A finite error set \(\{E_a\}\) is correctable only if
+the Knill--Laflamme conditions hold:
+\[
+ \Pcolor E_a^\dagger E_b\Pcolor=c_{ab}\Pcolor
+ \qquad\text{for all }a,b.
+\]
+
+\section{Exact status theorem}
+\begin{theorem}[Leakage detection and correction no-go]
+\label{thm:triqubit-qec-status}
+For the one-hot color sector the following statements hold.
+\begin{enumerate}
+  \item For each \(i=1,2,3\),
+  \[
+    \Pcolor X_i\Pcolor=0,
+    \qquad
+    \Pcolor Y_i\Pcolor=0.
+  \]
+  Hence every individual \(X_i\) or \(Y_i\) error, and every coherent linear
+  combination of such operators, is detectable by the two-outcome measurement
+  \(\{\Pcolor,I-\Pcolor\}\) as leakage.
+
+  \item For each \(i\), \(\Pcolor Z_i\Pcolor\) is not proportional to
+  \(\Pcolor\).  Occupation-number measurement therefore does not detect a
+  general single-qubit phase error.
+
+  \item The error set \(\{I,X_1,X_2,X_3\}\) is not correctable.  For example,
+  \[
+    \Pcolor X_1X_2\Pcolor
+    =|100\rangle\!\langle010|+|010\rangle\!\langle100|,
+  \]
+  which is not a scalar multiple of \(\Pcolor\).  Thus the
+  Knill--Laflamme condition fails.
+
+  \item The three-dimensional sector is not a standard qubit Pauli-stabilizer
+  code, whose code-space dimension is a power of two.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+A one-hot basis state has Hamming weight one.  Acting with \(X_i\) changes that
+weight to zero or two; \(Y_i=iX_iZ_i\) has the same bit-flip support.  Their
+images are therefore orthogonal to \(\Hcolor\), proving the first identities.
+
+On the ordered color basis \((|100\rangle,|010\rangle,|001\rangle)\), each
+compressed \(Z_i\) has one sign opposite to the other two.  It is diagonal but
+not scalar, proving non-detectability by \(\Pcolor\).
+
+For correction, choose \(E_a=X_1\) and \(E_b=X_2\).  Since Pauli \(X\) is
+Hermitian, \(E_a^\dagger E_b=X_1X_2\), whose compression exchanges the red and
+green basis states and annihilates the blue basis state.  It is not scalar, so
+the necessary and sufficient Knill--Laflamme condition fails.  The stabilizer
+statement follows from the standard dimension formula \(2^k\) for a qubit
+Pauli-stabilizer code space.
+\end{proof}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!50!black,
+  title=Claim ledger]
+\begin{itemize}
+  \item \textbf{GAP-SU3-TRIQUBIT-LEAKAGE: CLOSED [L1].}
+  Single-qubit \(X_i\) and \(Y_i\) errors are exactly detected as leakage.
+  \item \textbf{GAP-SU3-TRIQUBIT-QEC: CLOSED AS NO-GO [L1].}
+  The present one-hot encoding does not correct an unknown single \(X_i\)
+  error and does not detect general \(Z_i\) errors.
+  \item No decoder, recovery channel, physical penalty Hamiltonian, or
+  UBT-derived noise model is supplied by this theorem.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{corollary}[No simulation inference]
+The representation-level code-subspace structure does not imply that quarks are
+an error-correcting code of an underlying simulator, nor that physical reality
+is a simulation.  Such an ontological interpretation is logically independent
+and remains speculative.
+\end{corollary}
+
+\UBTTriqubitQECEndDocument

@@ -677,6 +677,8 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | ℂ⊗ℍ ≅ Mat(2,ℂ) ≅ Cl₁,₃(ℝ) | [L0] | `canonical/algebra/biquaternion_algebra.tex` |
 | 𝔰𝔲(3) from ℤ₂×ℤ₂×ℤ₂ involutions | [L0] | `canonical/su3_derivation/su3_from_involutions.tex` |
 | Quarks in **3**, gluons in **8**, EW/strong decoupling | [L0] | `canonical/interactions/sm_gauge.tex` |
+| Triqubit one-hot detects every single `X_i`/`Y_i` as leakage (`GAP-SU3-TRIQUBIT-LEAKAGE`) | **[L1 CLOSED]** | `canonical/interactions/gap_su3_triqubit_qec.tex` |
+| Present one-hot encoding fails single-`X_i` correction and general `Z_i` detection (`GAP-SU3-TRIQUBIT-QEC`) | **[L1 NO-GO]** | Knill--Laflamme witness in `gap_su3_triqubit_qec.tex` |
 | SU(2)_L from left norm-preserving action | [L0] | `canonical/interactions/sm_gauge.tex §SU2` |
 | SU(2)_L acts on left-chiral doublets (Gap C1 closed) | [L1] | `canonical/chirality/step3_gap_C1_resolution.tex` |
 | SU(2)_R geometric decoupling via ψ-parity (Gap C1 Step 4) | [MC] | `canonical/chirality/step4_no_wr_derivation.tex §3 Thm 3.1` |
@@ -692,6 +694,8 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | $Y=(B{-}L)/2$ from OP-S4 + SU(3) colour (Gap C2 Step 1) | **[L1 cond. on OP-S4 + SU(3) colour structure from UBT]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` (v56) |
 | Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v56) |
 | Sub-gap C2-ii: $U(1)_B$ from $\psi$-winding | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding`; Lem `lem:c2ii_candidate` [MC] added v57; C2-iii obstacle named (does not block papers) |
+
+The triqubit theorem is a representation-level quantum-simulation encoding result. It does not derive a physical noise model, decoder/recovery, or a Matrix/simulation ontology.
 
 ### Open Physical Gaps
 

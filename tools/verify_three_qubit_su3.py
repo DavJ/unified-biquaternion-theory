@@ -29,6 +29,7 @@ def main() -> int:
     print("\nInterpretation limit:")
     print("  The six non-singlet states are 3 + 3bar, not six quark flavors.")
     print("  W + anti-W is not a one-X-flip-detecting code.")
+    print("  The one-hot W sector detects X/Y leakage but fails single-X QEC.")
     return 0 if all(value < tolerance for value in residuals.values()) else 1
 
 
