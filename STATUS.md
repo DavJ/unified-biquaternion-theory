@@ -65,8 +65,8 @@ global self-consistent dynamics.
 | Minimal Palatini torsion equation | ✅ Conditional algebraic closure; Cartan map rank 24/24 [L1] |
 | Direct fixed-background matter current | ✅ Conditional derivation; affine torsion-free branch excluded [L1] |
 | `GAP-10T-PAIRING-NOGO` Lorentz-invariant pairing escape route | ⛔ No-go: only sharp/Minkowski pairing up to scale [L1] |
-| `GAP-10T-COMPOSITE-FLAT` gradient-composite flat admissibility | ✅ Closed: flat affine representer stationary for all Λ, κ, N₀; schemes dynamically inequivalent [L1] |
-| Torsion selected by fundamental UBT action | 🟠 full composite `GAP-10T-DYN` NARROWED |
+| `GAP-10T-GRADIENT-FLATNESS` exact-gradient composite branch | ⛔ Closed as no-go: every nondegenerate `e^a=N₀^{-1/2}dY^a` metric is locally flat; affine stationarity is only a Jacobian/null-Lagrangian corollary [L1] |
+| Torsion selected by fundamental UBT action | 🟠 canonical self-consistent `D`-composite `GAP-10T-DYN` NARROWED |
 | Prescribed curved coefficients | ✅ Exact augmented-holonomy criterion [L1] |
 | Self-consistent curved single-Theta system | ✅ local kinematics; 🟠 action selection/global regularity narrowed |
 | Lorentz/psi symmetry propagation | ✅ Conditional fixed-set/metric-stability theorems [L1] |

@@ -67,12 +67,14 @@ fields.  At the dynamical level we derive the exact fixed-background spin
 current of the paired kinetic term and prove two complementary statements:
 the effective Palatini variation of the minimal first-order branch excludes
 every flat affine representer, for every symmetric Lorentz-invariant slice
-pairing (which is unique up to scale), while the gradient-composite
-$\Theta$-only variation of the same action admits the flat affine
-representer for all coefficients.  The two variational schemes are therefore
-dynamically inequivalent, and the surviving minimal continuation is
-composite.  Canonical action selection, physical torsion constraints, global
-continuation, and Einstein dynamics remain open.
+pairing (which is unique up to scale).  The auxiliary exact-gradient
+restriction $e^a=\mathcal N_0^{-1/2}dY^a$ does admit the affine representer,
+but for a stronger and non-dynamical reason: every nondegenerate metric in
+that restriction is locally a pullback of Minkowski space, so its curvature
+and Hilbert--Palatini density vanish identically and the remaining action is
+a Jacobian null Lagrangian.  The canonical self-consistent
+$D$-composite variation, action selection, physical torsion constraints,
+global continuation, and Einstein dynamics remain open.
 \end{abstract}
 
 \tableofcontents
@@ -179,10 +181,10 @@ of the Einstein equations.
        first-order branch;
  \item uniqueness (up to scale) of the symmetric Lorentz-invariant slice
        pairing, so pairing selection cannot remove that obstruction;
- \item composite flat admissibility: the gradient-composite $\Theta$-only
-       variation of the same minimal action admits the flat affine representer
-       for all coefficients, so the two variational schemes are dynamically
-       inequivalent.
+ \item an exact-gradient flatness no-go: if
+       $e^a=\mathcal N_0^{-1/2}dY^a$, every nondegenerate induced metric is
+       locally flat; affine stationarity for all coefficients is only the
+       resulting Jacobian/null-Lagrangian corollary, not a curved-GR branch.
 \end{itemize}
 \end{tcolorbox}
 
@@ -756,18 +758,16 @@ the minimal Hilbert--Palatini plus kinetic branch does not admit the flat
 inertial torsion-free solution.  Moreover, the $\sharp$/Minkowski pairing is
 unique up to scale among real symmetric Lorentz-invariant slice pairings; the
 $\ddagger$ Hilbert--Schmidt pairing fails boost invariance.  Hence pairing
-selection alone cannot remove the obstruction.  In contrast, the
-gradient-composite $\Theta$-only variation of the same minimal action, with
-the tetrad defined as the slice coordinate map of
-$\partial_\mu\Theta/\sqrt{\mathcal N_0}$, admits the flat affine representer
-as a stationary point for all values of $\Lambda$, $\kappa$, and
-$\mathcal N_0$: every momentum is constant on the affine jet and the
-Lagrangian contains no undifferentiated $\Theta$.  The two variational
-schemes are therefore dynamically inequivalent at the flat point, and the
-surviving minimal continuation is composite.  The self-consistent
-$D$-composite variation, the origin of the Hilbert--Palatini term and its
-normalization, and the curved dynamics of the composite branch remain open;
-therefore GAP-10T-DYN is narrowed rather than fully closed.  The proofs and
+selection alone cannot remove the obstruction.  The auxiliary exact-gradient restriction, with
+$e^a=\mathcal N_0^{-1/2}dY^a$, does admit the affine representer for all
+values of $\Lambda$, $\kappa$, and $\mathcal N_0$.  However, this is not a
+surviving curved branch: nondegeneracy makes $Y^a$ local coordinates and
+$g=\mathcal N_0^{-1}Y^*\eta$, so the Riemann curvature and
+Hilbert--Palatini density vanish identically for every configuration of the
+restriction.  The locked kinetic and cosmological terms reduce to a Jacobian
+null Lagrangian.  The canonical self-consistent $D$-composite variation, the
+origin and normalization of the Hilbert--Palatini term, and curved dynamics
+remain open; therefore GAP-10T-DYN is narrowed rather than fully closed.  The proofs and
 exact verifiers are in
 \path{canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex},
 \path{canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex},
@@ -886,8 +886,8 @@ GAP-10$\Omega$-GR & \textbf{CLOSED}: the torsion-free branch is the unique Levi-
 GAP-10T-PALATINI & \textbf{CLOSED CONDITIONALLY}: minimal first-order variation gives an invertible algebraic Cartan torsion equation.\\
 GAP-10T-SPIN / FLAT-NOGO & \textbf{CLOSED CONDITIONALLY / CLOSED AS NO-GO}: direct fixed-background current derived; minimal affine torsion-free branch excluded.\\
 GAP-10T-PAIRING-NOGO & \textbf{CLOSED AS NO-GO}: the $\sharp$/Minkowski form is the unique nonzero symmetric Lorentz-invariant slice pairing up to scale, so pairing selection cannot cure the affine obstruction.\\
-GAP-10T-COMPOSITE-FLAT & \textbf{CLOSED}: the gradient-composite $\Theta$-only variation admits the flat affine representer for all coefficients; the two variational schemes are dynamically inequivalent at the flat point.\\
-GAP-10T-DYN & \textbf{NARROWED}: compute the self-consistent composite variation and curved dynamics of the surviving composite branch; derive torsion selection, nonpropagation, and coefficient origin.\\
+GAP-10T-GRADIENT-FLATNESS & \textbf{CLOSED AS NO-GO}: every nondegenerate exact-gradient tetrad $e^a=\mathcal N_0^{-1/2}dY^a$ induces a locally flat metric; affine stationarity is only a Jacobian/null-Lagrangian corollary.\\
+GAP-10T-DYN & \textbf{NARROWED}: compute the canonical self-consistent $D$-composite variation and curved dynamics; derive torsion selection, nonpropagation, and coefficient origin.\\
 GAP-10L-CONN & \textbf{CLOSED}: metric-compatible Lorentz transport preserves $\eta$ and the Lorentz slice.\\
 GAP-10L-SYM & \textbf{CLOSED CONDITIONALLY}: unique $\mathcal J$-equivariant evolution preserves the Lorentz fixed set.\\
 GAP-10L-DYN & \textbf{NARROWED}: verify equivariance and well-posed uniqueness for the complete UBT dynamics.\\
@@ -934,9 +934,10 @@ a local single-$\Theta$ right inverse for every smooth tetrad.  The decisive
 remaining work is therefore dynamical rather than local kinematic: the
 fixed-background spin current is now derived and the effective Palatini
 scheme of the minimal branch is excluded at the flat point for every
-admissible pairing, while the gradient-composite scheme admits the flat
-representer; the decisive tasks are to compute the self-consistent composite
-variation and curved dynamics of that surviving branch, establish algebraic
+admissible pairing.  The auxiliary exact-gradient restriction admits the flat
+representer only because it is locally flat for every nondegenerate
+configuration.  The decisive tasks are to compute the canonical
+self-consistent $D$-composite variation and curved dynamics, establish algebraic
 nonpropagation and physical torsion bounds, derive the low-energy
 coefficients, prove global continuation, establish
 well-posed symmetry propagation, and generate observed geometries on shell.

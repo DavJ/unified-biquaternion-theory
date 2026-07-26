@@ -1,5 +1,5 @@
 % © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
-% Status: GAP-10T-COMPOSITE-FLAT closed [L1], scoped to the gradient-composite scheme.
+% Status: gradient-composite flatness no-go closed [L1]; affine stationarity is a corollary.
 \documentclass[11pt,a4paper]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[most]{tcolorbox}
@@ -7,105 +7,145 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newcommand{\B}{\mathbb B}
-\title{Composite Flat Admissibility:\\
-The Gradient-Composite Scheme Admits the Affine Representer\\
-for All Coefficients}
+\title{Gradient-Composite Flatness:\\
+Why Affine Stationarity Is Exact but Does Not Close the Canonical UBT Branch}
 \author{Ing. David Jaro\v{s}}
 \date{26 July 2026}
 \begin{document}\maketitle
 
 \begin{abstract}
-The effective Palatini variation of the minimal Hilbert--Palatini $+$ kinetic
-branch excludes the flat affine representer (flat affine no-go,
-\texttt{GAP-10T-FLAT-NOGO}).  We prove the complementary positive statement:
-in the \emph{gradient-composite} torsion-free scheme, where the tetrad is the
-slice coordinate map of $\partial_\mu\Theta/\sqrt{\mathcal N_0}$ and only
-$\Theta$ is varied, the affine representer $\Theta_{\rm aff}$ is a stationary
-point of the full action for \emph{all} values of $\Lambda$, $\kappa$, and
-$\mathcal N_0$.  The two variational schemes are therefore dynamically
-inequivalent at the flat point, and the Palatini no-go does not transfer.
-This closes \texttt{GAP-10T-COMPOSITE-FLAT} [L1] and sharpens
-\texttt{GAP-10T-DYN}: the surviving minimal continuation is composite.
+Consider the auxiliary gradient-composite restriction in which a Lorentz-real
+field is written as $\Theta=Y^a\mathbf u_a$ and the tetrad is defined by
+$e^a=\mathcal N_0^{-1/2}dY^a$.  We prove the stronger statement hidden behind
+the previously reported affine-stationarity calculation: every nondegenerate
+configuration of this restriction is locally a pullback of Minkowski space and
+therefore has identically vanishing Riemann curvature.  The Hilbert--Palatini
+term vanishes identically, while the locked kinetic and cosmological terms are
+multiples of the Jacobian volume and are null Lagrangians under compactly
+supported variations.  Hence the affine representer is stationary for all
+coefficients, but only as a corollary of a flatness no-go.  This auxiliary
+$\partial$-gradient restriction cannot be called the surviving GR branch of
+canonical UBT, whose tetrad is $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ and whose
+self-consistent $D$-composite variation remains open.
 \end{abstract}
 
-\section{Scheme and statement}
-Work on Lorentz-real fields: $\partial_\mu\Theta\in W_L$, tetrad
-$e^a{}_\mu$ defined by the slice coordinates of
-$\partial_\mu\Theta/\sqrt{\mathcal N_0}$, metric by the central Jordan
-identity, spin connection $\mathring\omega(e)$ Levi--Civita (torsion-free
-branch), potential $V\equiv0$.  The action is
+\section{Auxiliary gradient-composite restriction}
+On the Lorentz slice write
 \begin{equation}
-  S[\Theta]
-  =\frac1{4\kappa}\!\int\!\epsilon_{abcd}\,e^a\wedge e^b\wedge
-    R^{cd}(\mathring\omega(e))
-  -\frac{\Lambda}{2\kappa}\!\int\!\sqrt{-g}
-  +\frac12\!\int\!\sqrt{-g}\,g^{\mu\nu}
-    \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\sharp .
-  \label{eq:Scomp}
+ \Theta=Y^a\mathbf u_a,
+ \qquad
+ e^a{}_{\mu}=\mathcal N_0^{-1/2}\partial_\mu Y^a,
+ \qquad
+ e^a=\mathcal N_0^{-1/2}dY^a,
+ \label{eq:gradient-coframe}
 \end{equation}
-Only $\Theta$ varies; $e$, $g$, $\sqrt{-g}$, and $\mathring\omega$ vary by the
-chain rule.  This is the well-defined gradient-composite scheme; the
-self-consistent $D$-composite scheme (connection inside the defining jet)
-remains open and is \emph{not} treated here.
+with $\det(\partial_\mu Y^a)\neq0$.  The induced metric is
+\begin{equation}
+ g_{\mu\nu}=\eta_{ab}e^a{}_{\mu}e^b{}_{\nu}
+ =\mathcal N_0^{-1}\eta_{ab}\partial_\mu Y^a\partial_\nu Y^b.
+ \label{eq:pullback-metric}
+\end{equation}
+This is an auxiliary restriction obtained by replacing the canonical
+covariant jet $D_\mu\Theta$ by the exact gradient $\partial_\mu\Theta$.
 
-\begin{theorem}[Composite flat admissibility]\label{thm:cfa}
-$\Theta_{\rm aff}=\Theta_0+\sqrt{\mathcal N_0}\,\bar E_\mu x^\mu$ is a
-stationary point of \eqref{eq:Scomp} under compactly supported Lorentz-real
-variations, for all $(\Lambda,\kappa,\mathcal N_0)$.
+\begin{theorem}[Exact-gradient flatness no-go]
+\label{thm:gradient-flatness}
+Every nondegenerate metric of the form \eqref{eq:pullback-metric} is locally
+flat:
+\begin{equation}
+ R^\rho{}_{\sigma\mu\nu}[g]=0,
+ \qquad
+ R^{ab}[\mathring\omega(e)]=0.
+\end{equation}
+Consequently the gradient-composite restriction cannot represent a generic
+curved GR geometry.
 \end{theorem}
 
 \begin{proof}
-The Lagrangian density of \eqref{eq:Scomp} is a smooth local function of the
-$2$-jet of $\Theta$ in a neighbourhood of the affine jet (the affine tetrad
-is nondegenerate, so $\mathring\omega(e)$ is smooth there), and it contains
-no undifferentiated $\Theta$ ($V\equiv0$; the scheme replaces $D_\mu$ by
-$\partial_\mu$ in the defining jet).  The Euler--Lagrange derivative is
-\[
-  \mathcal E
-  =\frac{\partial L}{\partial\Theta}
-  -\partial_\mu\frac{\partial L}{\partial(\partial_\mu\Theta)}
-  +\partial_\mu\partial_\nu
-   \frac{\partial L}{\partial(\partial_\mu\partial_\nu\Theta)} .
-\]
-At the affine configuration the $2$-jet is constant in $x$, so both momenta
-are constant matrices and their derivatives vanish; the first term vanishes
-because $L$ has no undifferentiated $\Theta$.  Hence $\mathcal E=0$.
-
-Concretely, the three pieces vanish for transparent reasons: the kinetic and
-$\Lambda$ terms are volume-type functionals of the induced metric, and their
-first variation at the constant background is
-$\propto\int\eta^{\mu\nu}\langle\bar E_\mu,\partial_\nu\delta\Theta\rangle_\sharp
-=-\int\langle\partial_\nu\bar E^\nu,\delta\Theta\rangle_\sharp=0$;
-the Einstein term satisfies $R(\mathring\omega(\bar e))=0$ and
-$\delta\!\int\!\epsilon\,e\,e\,R
- =\int\!\epsilon\,e\,e\,\mathrm d(\delta\mathring\omega)
- =\int\!\mathrm d(\epsilon\,e\,e\,\delta\mathring\omega)=0$
-since $\mathrm d e=0$ for the constant background tetrad.
-Both integral statements are verified exactly (SymPy, polynomial
-boundary-vanishing variations with linear and quadratic coefficients,
-linearised Levi--Civita connection) in
-\texttt{tools/verify\_canonical\_spin\_current.py}, check C7.
+Nondegeneracy makes $Y=(Y^0,Y^1,Y^2,Y^3)$ a local coordinate map.  In the
+coordinates $Y^a$ the metric is simply $\mathcal N_0^{-1}\eta_{ab}$, so its
+Riemann tensor vanishes.  Equivalently, the coframe is exact,
+$d e^a=\mathcal N_0^{-1/2}d^2Y^a=0$.  The zero spin connection is
+metric-compatible and satisfies the torsion-free Cartan equation
+$d e^a+\mathring\omega^a{}_b\wedge e^b=0$; uniqueness of the Levi--Civita spin
+connection therefore gives $\mathring\omega^a{}_b=0$ in this coframe and
+$R^{ab}=0$.
 \end{proof}
 
-\begin{corollary}[Scheme inequivalence at the flat point]
-The effective Palatini scheme excludes every flat affine representer
-(\texttt{GAP-10T-FLAT-NOGO}), while the gradient-composite scheme admits it
-for all coefficients.  The two variational schemes of the same minimal
-action are dynamically inequivalent, and the surviving minimal continuation
-of canonical UBT is the composite one.
+\begin{corollary}[Hilbert--Palatini degeneracy]
+For every admissible configuration of the gradient-composite restriction,
+\begin{equation}
+ \epsilon_{abcd}\,e^a\wedge e^b\wedge
+ R^{cd}(\mathring\omega(e))=0.
+\end{equation}
+Thus the Einstein/Hilbert--Palatini term carries no local dynamics on this
+restriction, not merely at the affine background.
 \end{corollary}
+
+\section{The volume terms and affine stationarity}
+The central metric lock gives
+\begin{equation}
+ \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\sharp
+ =\mathcal N_0 g_{\mu\nu},
+\end{equation}
+so in four dimensions
+\begin{equation}
+ \frac12\sqrt{-g}\,g^{\mu\nu}
+ \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\sharp
+ =2\mathcal N_0\sqrt{-g}.
+\end{equation}
+On an orientation-preserving patch,
+\begin{equation}
+ \sqrt{-g}
+ =\det(e^a{}_{\mu})
+ =\mathcal N_0^{-2}\det(\partial_\mu Y^a).
+\end{equation}
+Therefore the complete restricted action with $V\equiv0$ is a coefficient
+multiple of the Jacobian integral
+\begin{equation}
+ \int d^4x\,\det(\partial_\mu Y^a),
+\end{equation}
+which is a null Lagrangian: its first variation is a boundary term by the
+Piola identity.  In particular the affine map
+\begin{equation}
+ \Theta_{\rm aff}=\Theta_0+
+ \sqrt{\mathcal N_0}\,\bar E_\mu x^\mu
+\end{equation}
+is stationary under compactly supported Lorentz-real variations for all
+$\Lambda$, $\kappa$, and $\mathcal N_0$.
+
+\begin{corollary}[Correct status of affine admissibility]
+The earlier statement called \texttt{GAP-10T-COMPOSITE-FLAT} is true only as
+an auxiliary corollary of Theorem~\ref{thm:gradient-flatness}.  It does not
+select a physical branch and does not evade the curved-space integrability
+problem.
+\end{corollary}
+
+\section{Relation to canonical UBT}
+Canonical UBT defines
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+\end{equation}
+where the connection is reconstructed from the tetrad and torsion and hence
+enters the defining jet self-consistently.  Replacing $D_\mu$ by $\partial_\mu$
+removes precisely the non-holonomic structure capable of carrying curvature.
+Accordingly:
+\begin{itemize}
+ \item \texttt{GAP-10T-GRADIENT-FLATNESS} is \textbf{CLOSED AS NO-GO [L1]};
+ \item gradient-composite affine stationarity is \textbf{CLOSED AS AN
+       AUXILIARY COROLLARY [L1]};
+ \item the actual self-consistent $D$-composite variation, curved dynamics,
+       torsion selection, and coefficient origin remain open under
+       \texttt{GAP-10T-DYN} and \texttt{GAP-10D}.
+\end{itemize}
 
 \begin{tcolorbox}[colback=orange!6!white,colframe=orange!70!black,title=Scope
 and non-claims]
-Proved for the gradient-composite torsion-free scheme with $V\equiv0$ and
-Lorentz-real variations.  Not proved: the self-consistent $D$-composite
-variation, stationarity on curved backgrounds, uniqueness or stability of
-the flat point, any derivation of $S_{\rm HP}$ or its coefficients.
-\texttt{GAP-10T-DYN} and \texttt{GAP-10D} remain NARROWED.  Note the
-$\Lambda$-independence of flat stationarity: the composite scheme imposes
-only divergence-type conditions on covariantly constant metric-sector
-mismatches, a unimodular-like feature that must be treated explicitly in
-the curved dynamical analysis.
+This note proves a no-go for the exact-gradient restriction.  It does not
+prove that the canonical $D$-composite system is flat, nor does it disprove a
+curved torsionful or relative-bimodule completion.  It also does not derive
+the Hilbert--Palatini term or its coefficients from the fundamental UBT
+action.
 \end{tcolorbox}
 
 \end{document}

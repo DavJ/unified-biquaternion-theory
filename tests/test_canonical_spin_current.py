@@ -106,7 +106,7 @@ def test_authoritative_ledgers_do_not_reopen_exact_spin_current():
 def test_composite_flat_admissibility_volume_terms():
     res = audit.check_composite_flat_admissibility(fast=True)
     assert res["volume_terms_first_variation_vanishes"], (
-        "gradient-composite volume terms must be stationary at the affine "
+        "auxiliary exact-gradient volume terms must be stationary at the affine "
         "background for all Lambda, kappa, N0"
     )
 
@@ -119,5 +119,5 @@ def test_composite_flat_admissibility_einstein_term():
     res = audit.check_composite_flat_admissibility(fast=False)
     assert res["einstein_term_first_variation_vanishes"], (
         "linearised Einstein-term variation must integrate to zero at the "
-        "constant-tetrad background"
+        "constant exact-gradient background"
     )

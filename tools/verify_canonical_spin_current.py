@@ -291,7 +291,7 @@ def check_lorentz_invariant_pairings() -> dict[str, bool]:
 
 
 def check_composite_flat_admissibility(fast: bool = False) -> dict[str, bool]:
-    """C7: gradient-composite scheme admits the flat affine representer.
+    """C7: auxiliary exact-gradient restriction admits the flat affine map.
 
     In the gradient-composite torsion-free scheme (tetrad defined from the
     slice coordinates of d Theta, V == 0, Lorentz-real variations) the first
@@ -306,10 +306,10 @@ def check_composite_flat_admissibility(fast: bool = False) -> dict[str, bool]:
         constant e, hence exact (verified by exact box integration of the
         linearised Levi-Civita spin connection unless fast=True).
 
-    Hence the effective-Palatini flat no-go (C5) does not transfer to the
-    gradient-composite scheme: the two variational schemes are dynamically
-    inequivalent at the flat point.  The self-consistent D-composite scheme
-    remains open (GAP-10T-DYN).
+    This verifies the affine-stationarity corollary only.  Since an exact
+    coframe e^a=dY^a/sqrt(N0) induces a locally flat pullback metric, the
+    restriction is a flatness no-go rather than a surviving curved-GR
+    branch.  The canonical self-consistent D-composite scheme remains open.
     """
     x = sp.symbols("x0:4", real=True)
     eta_m = sp.diag(-1, 1, 1, 1)
@@ -422,7 +422,7 @@ def main() -> int:
         ("C4 pointwise rigidity", check_pointwise_rigidity()),
         ("C5 flat affine no-go", check_flat_affine_no_go()),
         ("C6 Lorentz-invariant pairings", check_lorentz_invariant_pairings()),
-        ("C7 composite flat admissibility", check_composite_flat_admissibility()),
+        ("C7 auxiliary gradient-affine stationarity", check_composite_flat_admissibility()),
     ):
         for key, val in res.items():
             status = "PASS" if val is True else ("FAIL" if val is False else val)

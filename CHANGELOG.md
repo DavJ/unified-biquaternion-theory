@@ -25,6 +25,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Corrected — exact-gradient composite branch is a flatness no-go (2026-07-26)
+
+- Replaced the overstrong interpretation of `GAP-10T-COMPOSITE-FLAT`.
+  For `e^a=N0^(-1/2)dY^a`, nondegeneracy makes `Y^a` local coordinates and
+  the induced metric is exactly a pullback of Minkowski space.  Its Riemann
+  curvature and Hilbert-Palatini density vanish identically.
+- Reclassified the result as `GAP-10T-GRADIENT-FLATNESS: CLOSED AS NO-GO
+  [L1]`.  Affine stationarity for all coefficients remains true, but only as
+  the Jacobian/null-Lagrangian corollary of this flatness restriction.
+- Removed language calling the auxiliary partial-gradient restriction the
+  “surviving composite branch.”  Canonical UBT uses
+  `E_mu=N0^(-1/2)D_mu Theta`; its self-consistent D-composite variation and
+  curved dynamics remain open.
+- Added exact symbolic determinant and nonlinear pullback-curvature checks,
+  regression tests, synchronized ledgers, and corrected the GR submission.
+
 ### Added — GAP-10T Lorentz-pairing rigidity and fixed-background scope audit (2026-07-26)
 
 - Clarified that the exact kinetic spin current is the direct matter current of
