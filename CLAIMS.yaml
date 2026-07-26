@@ -17,6 +17,7 @@ claims:
     - canonical/gr_closure/gap_10d_low_energy_uniqueness.tex
     - canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex
     - canonical/gr_closure/gap_10t_composite_flat_admissibility.tex
+    - canonical/gr_closure/gap_10t_dcomposite_linearized.tex
     - papers/UBT_GR_Submission.tex
     assumptions:
     - 'GAP-10K: CLOSED locally — the nondegenerate tetrad-to-metric map has rank ten; six kernel directions are local Lorentz freedom'
@@ -27,6 +28,9 @@ claims:
     - 'GAP-10T-FLAT-NOGO: CLOSED AS NO-GO — in the fixed-background effective Palatini variation, the minimal Hilbert-Palatini plus kinetic branch forces nonzero torsion on the complement of at most one point of every flat affine representer; the spin-current gradient is a Theta0-independent nonzero constant, so the flat inertial torsion-free solution is not a solution of that minimal branch'
     - 'GAP-10T-PAIRING-NOGO: CLOSED AS NO-GO — every real symmetric bilinear form on the Lorentz slice invariant under the full Lorentz action is proportional to the sharp/Minkowski pairing; the ddagger Hilbert-Schmidt pairing is Euclidean on the slice and fails boost invariance; therefore no nonzero nondegenerate Lorentz-invariant pairing choice removes the affine spin-current obstruction'
     - 'GAP-10T-GRADIENT-FLATNESS: CLOSED AS NO-GO — if e^a=N0^(-1/2)dY^a with nondegenerate Jacobian, then g=N0^(-1)Y^*eta is locally flat, the Levi-Civita curvature and Hilbert-Palatini density vanish identically, and the remaining locked kinetic plus cosmological terms are Jacobian null Lagrangians; the gradient-composite affine stationarity claim is therefore true only as an auxiliary corollary, not as a surviving curved-GR branch'
+    - 'GAP-10T-DCOMP-SECTOR: CLOSED — the Lorentz-real self-consistent D-composite sector requires Theta in W_L identically; the Hermitian part is forced to vanish by slice consistency'
+    - 'GAP-10T-DCOMP-LIN-OFFRES: CLOSED CONDITIONALLY — at the linearized frozen-coefficient level around the affine point, the symbol satisfies A cubed equals q times A squared with q the invariant mixed contraction lambda dot s; off the single resonance hyperplane q equal one the unique delta-Theta-driven solution is the exact gradient, hence holonomic and pullback-flat at linear order; conditional on frozen coefficients'
+    - 'GAP-10T-DCOMP-RES: OPEN — all linearized anholonomy of the D-composite scheme lives in the exactly six-dimensional resonant sector on the moving hyperplane; whether resonant modes assemble into curved variable-coefficient solutions, the quadratic action on the resonant sector, on-shell torsion, and the chain-rule spin current are open'
     - 'GAP-10T-DYN: NARROWED — compute the self-consistent D-composite variation and curved dynamical equations of the canonical branch E_mu=N0^(-1/2)D_mu Theta, including torsion selection, nonpropagation, and coefficient origin; the auxiliary exact-gradient branch is closed as a flatness no-go, the effective-Palatini branch excludes the affine representer, and pairing selection alone is not an admissible escape route'
     - 'GAP-10L-CONN: CLOSED — every metric-compatible Lorentz connection preserves eta_ab and the Lorentz slice'
     - 'GAP-10L-SYM: CLOSED CONDITIONALLY — the Lorentz slice is preserved by unique J-equivariant dynamics with J-real data and sources'

@@ -1,0 +1,145 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Status: linearized frozen-coefficient analysis of the self-consistent
+% D-composite scheme; GAP-10T-DYN remains NARROWED (resonant sector open).
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage[margin=2.5cm]{geometry}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\B}{\mathbb B}
+\newcommand{\dd}{\ddagger}
+\title{The Self-Consistent $D$-Composite Scheme at Linear Order:\\
+Sector Constraint, Symbol Identity, Off-Resonance Flatness,\\
+and the Six-Dimensional Resonant Sector}
+\author{Ing. David Jaro\v{s}}
+\date{26 July 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+We begin the audit of the last unanalyzed variational scheme of the minimal
+branch: the self-consistent $D$-composite system in which the connection
+sits inside the defining jet.  Four exact results are proved at the
+linearized, frozen-coefficient level around the affine point.
+(i) The Lorentz-real sector requires $\Theta\in W_L$ identically; the
+Hermitian freedom of the Palatini analysis does not exist here.
+(ii) The frozen symbol $A(s,\lambda)$ of the linearized implicit system
+satisfies the exact operator identity $A^3=(\lambda\!\cdot\!s)\,A^2$; its
+spectrum is $\{0^{10},\,q^{6}\}$ with $q=\lambda\!\cdot\!s$, with three
+nilpotent Jordan blocks on the kernel and $\det(I-A)=(1-q)^6$.
+(iii) Off the single resonance hyperplane $q=1$ the unique
+$\delta\Theta$-driven solution is the exact gradient; the linearized
+tetrad is holonomic and the linearized geometry pullback-flat.
+(iv) At $q=1$ there is an exactly six-dimensional space of homogeneous
+resonant modes --- $\dim\mathfrak{so}(1,3)$ of them --- and every one is
+anholonomic with linearly independent curls.  All linearized anholonomy,
+hence all candidate linearized curvature, is confined to this resonant
+sector.  The variable-coefficient assembly of resonant modes, the
+quadratic action on the resonant sector, on-shell torsion, and the
+chain-rule spin current remain open.  All algebraic statements are
+verified in \texttt{tools/verify\_dcomposite\_linearized.py}.
+\end{abstract}
+
+\section{The self-consistent system}
+The scheme couples the covariant jet back to the connection:
+\begin{equation}
+  E_\mu=\mathcal N_0^{-1/2}\bigl(\partial_\mu\Theta
+  +\Omega_\mu[E]\,\Theta+\Theta\,\Omega_\mu[E]^{\dd}\bigr),
+  \qquad
+  g_{\mu\nu}=\tfrac12\bigl(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\bigr),
+  \label{eq:selfcons}
+\end{equation}
+with $\Omega_\mu[E]$ the spin representation of the Levi--Civita
+connection of the tetrad defined by the slice coordinates of $E_\mu$
+(torsion-free branch first; anholonomy, not torsion, is the requirement
+for curvature).
+
+\begin{lemma}[Sector constraint]\label{lem:sector}
+$E_\mu\in W_L$ for all connection values forces the Hermitian part of
+$\Theta$ to vanish identically: the Lorentz-real $D$-composite sector is
+$\Theta(x)\in W_L$.  (Exact solve; check L0.)
+\end{lemma}
+
+\section{Linearization and the frozen symbol}
+The affine field $\Theta_{\rm aff}=\Theta_0+\sqrt{\mathcal N_0}\,\bar
+E_\nu x^\nu$ with $\Theta_0\in W_L$ is an exact solution of
+\eqref{eq:selfcons} with $\Omega=0$.  Linearize
+$\Theta=\Theta_{\rm aff}+\varepsilon\theta$,
+$E=\bar E+\varepsilon F$, freeze coefficients at $x_0$, and pass to the
+plane-wave symbol $\partial_\nu\to s_\nu$.  The system becomes
+\begin{equation}
+  (I-A(s,\lambda))\,F=\partial\theta',\qquad
+  \lambda^a=\text{slice coords of }\Theta_{\rm aff}(x_0)/\sqrt{\mathcal N_0}
+  =x_0^a+\theta_0^a,
+\end{equation}
+where $A$ implements the linearized Levi--Civita connection of the
+perturbed tetrad acting on the background through the bimodule.
+$\mathcal N_0$ cancels; $A$ is bilinear in $(s,\lambda)$.  Under the
+diagonal Lorentz group at the identity-tetrad background the mixed
+contraction $q=\lambda^a s_a$ is invariant.
+
+\begin{theorem}[Symbol identity and spectrum]\label{thm:symbol}
+$A^3=q\,A^2$ holds as a polynomial identity in all eight variables
+(check D2, symbolic).  Generically $\operatorname{rank}A=9$,
+$\operatorname{rank}A^2=6$; hence the characteristic polynomial is
+$t^{10}(t-q)^6$, the minimal polynomial $t^2(t-q)$, and
+$\det(I-A)=(1-q)^6$ (check D3).  The linearized system is uniquely
+solvable iff $q\neq1$.
+\end{theorem}
+
+\begin{theorem}[Off-resonance flatness]\label{thm:offres}
+The linearized Levi--Civita connection factors through the curl of the
+tetrad perturbation, so $A$ annihilates every exact gradient
+(check D1).  Consequently, for $q\neq1$ the unique
+$\delta\Theta$-driven solution of $(I-A)F=\partial\theta'$ is
+$F=\partial\theta'$ itself: exactly holonomic, with pullback-flat
+linearized geometry (check D4).
+\end{theorem}
+
+\begin{theorem}[Resonant sector]\label{thm:res}
+At $q=1$ the eigenspace $\ker(I-A)$ is exactly six-dimensional
+($=\dim\mathfrak{so}(1,3)$).  Every resonant mode is anholonomic and the
+six curls are linearly independent (check D5, exact at a generic
+resonant point).  All linearized anholonomy of the $D$-composite scheme
+is confined to this sector.
+\end{theorem}
+
+\begin{corollary}[Where linearized curvature can live]
+Since curvature at linear order requires anholonomy, any linearized
+gravitational content of the $D$-composite scheme must be assembled from
+resonant modes on the moving hyperplane
+$(x_0+\theta_0)\!\cdot\!s=1$.  Off it, the scheme is flat at linear
+order --- but, unlike the exact-gradient restriction, not identically:
+the resonant sector is a genuine nontrivial remainder.
+\end{corollary}
+
+\section{Answers to the six audit questions at this level}
+(1)~Local uniqueness of $E[\Theta]$: yes iff $q\neq1$, with a single
+resonance hyperplane of multiplicity six.
+(2)~Anholonomy: driven solutions are exactly holonomic; anholonomy
+exists only in the resonant sector.
+(3)~$R\neq0$ without inserting curvature by hand: at linear order only
+through resonant modes; whether they assemble into curved solutions of
+the variable-coefficient system is open.
+(4)~Chain-rule spin current: not yet computed.
+(5)~On-shell torsion selection: not yet computed.
+(6)~Degeneracy: off resonance the scheme degenerates to the flat sector,
+but not identically --- the six-dimensional resonant remainder is the
+irreducible core on which the quadratic action must be evaluated next.
+
+\begin{tcolorbox}[colback=orange!6!white,colframe=orange!70!black,
+title=Scope and non-claims]
+Frozen-coefficient (microlocal) analysis at the affine point.  Not a
+solution theory for the variable-coefficient system: $\lambda$ moves
+with $x_0$, so the resonance set sweeps spacetime and the constant-
+coefficient solvability statements do not globalize automatically.
+Nothing here derives the Hilbert--Palatini term, decides on-shell
+torsion, or establishes curved solutions.  A discovered-and-fixed index
+transposition in the linearized connection (which leaked the symmetric
+tetrad part into $\omega^1$) is documented in the verifier as regression
+check D1; results computed with the faulty formula (an earlier
+$\{0^4,q^9,(q/2)^3\}$ spectrum) are void.
+\end{tcolorbox}
+
+\end{document}

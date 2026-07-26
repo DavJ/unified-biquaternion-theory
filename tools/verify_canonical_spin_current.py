@@ -366,8 +366,8 @@ def check_composite_flat_admissibility(fast: bool = False) -> dict[str, bool]:
                     eta_m[r, a]
                     * eta_m[s, b]
                     * (
-                        dif(r, sum(eta_m[s, c] * de[c][mu] for c in range(4)))
-                        - dif(s, sum(eta_m[r, c] * de[c][mu] for c in range(4)))
+                        dif(r, sum(eta_m[mu, c] * de[s][c] for c in range(4)))
+                        - dif(s, sum(eta_m[mu, c] * de[r][c] for c in range(4)))
                     )
                     for r in range(4)
                     for s in range(4)

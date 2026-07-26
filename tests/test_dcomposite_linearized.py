@@ -1,0 +1,60 @@
+# Copyright (c) 2026 Ing. David Jaroš
+# Licensed under the MIT License
+"""Regression tests for the linearized D-composite audit (GAP-10T-DYN).
+
+Mirrors tools/verify_dcomposite_linearized.py.  The symbol assembly is
+shared through a module-scoped fixture; symbolically heavy checks are
+marked slow.
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+import pytest
+
+repo_root = Path(__file__).resolve().parents[1]
+if str(repo_root / "tools") not in sys.path:
+    sys.path.insert(0, str(repo_root / "tools"))
+
+import verify_dcomposite_linearized as dcomp  # noqa: E402
+
+
+@pytest.fixture(scope="module")
+def symbol_matrix():
+    return dcomp.assemble_symbol()
+
+
+def test_sector_lemma_hermitian_part_zero():
+    assert dcomp.check_sector_lemma()["hermitian_part_forced_zero"]
+
+
+def test_gradient_annihilation_regression(symbol_matrix):
+    # regression for the 2026-07-26 delta-e transposition bug: the
+    # linearized Levi-Civita connection must annihilate exact gradients
+    assert dcomp.check_gradient_annihilation(symbol_matrix)["gradients_in_kernel"]
+
+
+def test_generic_ranks_and_determinant(symbol_matrix):
+    res = dcomp.check_generic_ranks(symbol_matrix)
+    assert res["rank_A_is_9"]
+    assert res["rank_A2_is_6"]
+    assert res["det_I_minus_A_is_(1-q)^6"]
+
+
+def test_off_resonance_flatness(symbol_matrix):
+    res = dcomp.check_off_resonance_flatness(symbol_matrix)
+    assert res["driven_solution_is_exact_gradient"]
+    assert res["zero_anholonomy_off_resonance"]
+
+
+def test_resonant_sector(symbol_matrix):
+    res = dcomp.check_resonant_sector(symbol_matrix)
+    assert res["resonant_eigenspace_dim_6"]
+    assert res["all_resonant_modes_anholonomic"]
+    assert res["resonant_curl_rank_6"]
+
+
+@pytest.mark.slow
+def test_operator_identity_symbolic(symbol_matrix):
+    assert dcomp.check_operator_identity(symbol_matrix)["A3_equals_qA2_symbolic"]
