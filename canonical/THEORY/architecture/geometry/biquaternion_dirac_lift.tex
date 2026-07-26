@@ -256,6 +256,90 @@ show either that the covariant complex-time equation possesses a compatible
 normal form after holomorphy is imposed, or directly that its constrained jet
 projection onto the ten metric directions remains surjective.
 
+
+
+\subsection{Exact constrained-rank projection criterion}
+The remaining holomorphic on-shell question is a constrained-map problem, not
+another component count.  Let $e\in\mathbb R^{16}$ denote the real tetrad
+coefficients, let $z\in\mathbb R^m$ collect all other first-jet variables that
+do not enter the metric directly, and let
+\begin{equation}
+ \mathcal F(e,z)=0\in\mathbb R^r
+ \label{eq:canonical:constraint-system}
+\end{equation}
+be the real form of the generalized-Dirac, holomorphy and auxiliary equations
+at a solution $(e_0,z_0)$.  Write
+\begin{equation}
+ F_e:=D_e\mathcal F(e_0,z_0),\qquad
+ F_z:=D_z\mathcal F(e_0,z_0),\qquad
+ G_e:=D_e g(e_0).
+\end{equation}
+The admissible tetrad variations are exactly
+\begin{equation}
+ \boxed{
+ \mathcal A
+ =\{\delta e\in\mathbb R^{16}:F_e\delta e\in\operatorname{im}F_z\}.}
+ \label{eq:canonical:admissible-tetrad-variations}
+\end{equation}
+Indeed, $(\delta e,\delta z)$ is tangent to the equation manifold precisely
+when
+\begin{equation}
+ F_e\delta e+F_z\delta z=0.
+\end{equation}
+Consequently the constrained metric rank is
+\begin{equation}
+ \boxed{
+ \operatorname{rank}\bigl(G_e|_{\mathcal A}\bigr).}
+ \label{eq:canonical:constrained-metric-rank}
+\end{equation}
+This formula is exact and supplies the correct test for the complete UBT
+system.
+
+\paragraph{Corollary (surjective nonmetric block preserves rank ten).}
+If $F_z$ is surjective, then $\mathcal A=\mathbb R^{16}$.  For every
+$\delta e$ one can solve
+\begin{equation}
+ F_z\delta z=-F_e\delta e,
+\end{equation}
+so the projection of the equation manifold onto tetrad space is a submersion.
+The constrained metric rank is therefore the already proved value ten.
+This is the general form of the earlier independent-$D_\psi\Psi$ normal-form
+theorem.
+
+\paragraph{Corollary (rank-budget obstruction).}
+If there are no nonmetric variables capable of absorbing the constraints and
+$F_e$ has real rank $r$, then
+\begin{equation}
+ \dim\mathcal A=16-r,
+ \qquad
+ \operatorname{rank}\bigl(G_e|_{\mathcal A}\bigr)
+ \le \min(10,16-r).
+ \label{eq:canonical:rank-budget-bound}
+\end{equation}
+Thus eight independent real equations imposed solely on the tetrad slots can
+have constrained metric rank at most eight.  A four-complex-component Dirac
+equation therefore cannot be treated as eight independent real conditions on
+$e$ alone while simultaneously claiming rank ten.  At least part of the
+equation must instead be solvable in nonmetric variables, be dependent, or act
+only in gauge directions.
+
+\paragraph{Strict holomorphy.}
+For the convention $\tau=t+i_{\rm c}\psi$, covariant holomorphy has the local
+Cauchy--Riemann form
+\begin{equation}
+ D_\psi\Psi=i_{\rm c}D_t\Psi
+ \label{eq:canonical:covariant-cr}
+\end{equation}
+when the connection is compatible with the complex-time structure.  After
+Eq.~\eqref{eq:canonical:covariant-cr} is substituted, $D_\psi\Psi$ is no
+longer an independent nonmetric slot, so the previous $\psi$-normal argument
+cannot be invoked by itself.  The next canonical calculation is therefore
+unambiguous: form the real Jacobian $(F_e\;F_z)$ of the actual action-derived
+holomorphic equation and evaluate
+Eq.~\eqref{eq:canonical:constrained-metric-rank}.  Rank ten is proved if
+$F_z$ is surjective, or more generally if $G_e|_{\mathcal A}$ has rank ten.
+Until that Jacobian is derived, holomorphic on-shell rank remains open.
+
 \subsection{Remaining proof gates}
 A complete closure requires:
 \begin{enumerate}

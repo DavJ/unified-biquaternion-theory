@@ -26,3 +26,6 @@ def test_active_dirac_track_states_holomorphy_boundary() -> None:
     assert "conditional psi-normal" in status.lower()
     assert "strict" in status.lower() and "holomorphy" in status.lower()
     assert "holomorphic on-shell rank" in status.lower()
+    assert "constrained-rank projection criterion" in status.lower()
+    assert "rank-budget" in status.lower()
+    assert "f_z" in status.lower()

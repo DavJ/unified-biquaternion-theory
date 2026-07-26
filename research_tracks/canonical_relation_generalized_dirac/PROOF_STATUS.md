@@ -128,7 +128,44 @@ reduce the rank-ten map `E -> g`.
 It is not yet the canonical holomorphic on-shell theorem, because strict
 holomorphy in `tau=t+i psi` relates the `t` and `psi` derivatives.
 
-## Open theorem G — canonical generalized-Dirac dynamics
+
+## Theorem G — exact constrained-rank projection criterion
+
+Let `e in R^16` be the tetrad coefficients, let `z` collect all nonmetric
+first-jet variables, and let `F(e,z)=0` be the real equation system.  At a
+solution define
+
+\[
+\mathcal A=\{\delta e:F_e\delta e\in\operatorname{im}F_z\}.
+\]
+
+Then the metric rank on the equation manifold is exactly
+
+\[
+\operatorname{rank}(D_e g|_{\mathcal A}).
+\]
+
+If `F_z` is surjective, every tetrad variation lifts to a tangent variation of
+the equation manifold and the metric rank remains ten.  The complementary
+**rank-budget obstruction** is: if instead `r`
+independent real constraints act only on the tetrad variables, the restricted
+rank is at most `min(10,16-r)`; in particular eight such constraints imply
+rank at most eight.
+
+**Status:** proved by finite-dimensional linear algebra `[L0]`; exact block
+verifier included.  This theorem gives the test for the holomorphic on-shell
+system but does not supply its still-unknown action-derived Jacobian.
+
+Under strict covariant holomorphy,
+
+\[
+D_\psi\Psi=i_{\rm c}D_t\Psi,
+\]
+
+so `D_psi Psi` is not an independent auxiliary slot.  The actual residual
+nonmetric block must therefore be derived from the complete equation.
+
+## Open theorem H — canonical generalized-Dirac dynamics
 
 Derive from one UBT action an operator of the form
 
@@ -143,7 +180,7 @@ with no independent metric, tetrad or arbitrary connection.
 
 **Status:** open.
 
-## Open theorem H — holomorphic on-shell rank and existence
+## Open theorem I — holomorphic on-shell rank and existence
 
 Prove that solutions of the complete implicit field equations retain a
 nondegenerate Lorentz tetrad and enough admissible variations for metric rank

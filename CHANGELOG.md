@@ -1,3 +1,15 @@
+## [2026-07-27] — Holomorphic on-shell rank criterion
+
+### Proved
+- Exact constrained-rank projection theorem for the canonical generalized-Dirac programme: admissible tetrad variations are those whose equation residual lies in the image of the nonmetric-variable Jacobian.
+- Surjective nonmetric block theorem: when the equations can be solved in auxiliary/nonmetric first-jet variables, the full tetrad projection survives and the metric rank remains ten.
+- Rank-budget obstruction: eight independent real constraints acting only on the sixteen tetrad coefficients leave metric rank at most eight.
+
+### Clarified
+- Strict covariant holomorphy `D_psi Psi = i_c D_t Psi` removes the independent `D_psi Psi` slot, so the earlier psi-normal theorem alone does not close the on-shell rank problem.
+- The next decisive calculation is the real action-derived Jacobian `(F_e, F_z)` and the rank of `D_e g` on its admissible tangent projection.
+- Removed accidentally reintroduced active copies of the historical spinor-current/dual-sector verifier; the dated history copy remains intact.
+
 ## [2026-07-27] — Canonical generalized-Dirac proof hardening
 
 ### Proved

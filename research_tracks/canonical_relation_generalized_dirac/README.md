@@ -36,7 +36,12 @@ construction.
   Dirac characteristic cone equals the canonical UBT metric null cone;
 - a conditional first-jet theorem: when the field equation is in an independent
   `psi`-normal form, the fifth channel can be solved uniquely and does not
-  reduce the rank-ten spacetime tetrad data.
+  reduce the rank-ten spacetime tetrad data;
+- an exact constrained-rank projection theorem: the on-shell rank is the rank
+  of `D_e g` on tetrad variations whose equation residual can be absorbed by
+  nonmetric variables; a surjective nonmetric block preserves rank 10;
+- a rank-budget no-go: eight independent real constraints acting only on the
+  16 tetrad coefficients leave metric rank at most eight.
 
 Run:
 
@@ -51,8 +56,8 @@ pytest -q tests/test_canonical_relation_dirac_lift.py
 - the precise physical role and signature of the complex-time `psi` channel;
 - local existence of the self-consistent implicit system
   `Theta -> E -> Gamma -> omega(E) -> D Theta`;
-- compatibility of the conditional `psi`-normal theorem with strict
-  holomorphy in `tau=t+i psi`;
+- derivation of the real holomorphic constraint Jacobian `(F_e, F_z)` from
+  the action and verification of the exact projection criterion;
 - preservation of the Lorentz slice and rank 10 for the fully constrained
   holomorphic on-shell system;
 - Einstein and quantum low-energy limits from the same action.

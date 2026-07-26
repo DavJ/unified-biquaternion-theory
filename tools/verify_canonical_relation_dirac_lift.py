@@ -7,10 +7,11 @@ Scope:
 - exact tetrad-to-metric rank 10 and six-dimensional Lorentz kernel;
 - exact fifth/grading channel anticommutation;
 - exact four- and five-channel principal-symbol factorisation;
-- exact conditional psi-normal-form solvability.
+- exact conditional psi-normal-form solvability;
+- exact constrained-rank projection criterion and rank-budget no-go.
 
 This does not prove the generalized UBT equation of motion, curved implicit
-existence, on-shell rank, or Einstein dynamics.
+existence, the actual holomorphic on-shell Jacobian, or Einstein dynamics.
 """
 from __future__ import annotations
 
@@ -244,6 +245,52 @@ def exact_rank_checks() -> dict[str, int]:
     }
 
 
+
+def exact_constraint_projection_checks() -> dict[str, int]:
+    """Verify the linear-algebra projection criterion for constrained rank.
+
+    Let e contain the 16 real tetrad coefficients, z auxiliary/non-metric
+    first-jet variables, and F(e,z)=0 the real constraint system.  If the
+    Jacobian with respect to z is surjective, every tetrad variation can be
+    lifted to a tangent variation of the constraint surface, so the metric
+    rank remains ten.  Conversely, eight independent constraints acting only
+    on e leave an at-most-eight-dimensional tangent space and cannot support
+    metric rank ten.
+
+    The universal statements are proved in the accompanying text.  The exact
+    matrices below verify the block construction and the rank budget without
+    floating arithmetic.
+    """
+    metric_jac, _ = tetrad_jacobian_at_identity()
+
+    # Eight real equations, with eight auxiliary variables.  B=I_8 is
+    # surjective, so for every delta e one may choose delta z=-A delta e.
+    a = sp.Matrix(8, 16, lambda i, j: ((i + 2 * j + 1) % 5) - 2)
+    b = sp.eye(8)
+    constraint = a.row_join(b)
+    tangent_lift = sp.Matrix.vstack(sp.eye(16), -a)  # (delta e, delta z)
+    metric_on_lift = metric_jac * tangent_lift[:16, :]
+
+    # Eight independent real constraints on tetrad variables alone.  Their
+    # tangent space has dimension eight, hence any restricted metric map has
+    # rank at most eight.  The chosen coordinate model makes the bound exact
+    # and readily checkable.
+    tetrad_only = sp.eye(8).row_join(sp.zeros(8, 8))
+    tetrad_only_tangent = sp.Matrix.vstack(sp.zeros(8, 8), sp.eye(8))
+    restricted_metric = metric_jac * tetrad_only_tangent
+
+    return {
+        "auxiliary_constraint_rank": int(constraint.rank()),
+        "auxiliary_block_rank": int(b.rank()),
+        "lifted_tangent_rank": int(tangent_lift.rank()),
+        "constraint_on_lift_residual_rank": int((constraint * tangent_lift).rank()),
+        "metric_rank_on_lift": int(metric_on_lift.rank()),
+        "tetrad_only_constraint_rank": int(tetrad_only.rank()),
+        "tetrad_only_tangent_rank": int(tetrad_only_tangent.rank()),
+        "tetrad_only_residual_rank": int((tetrad_only * tetrad_only_tangent).rank()),
+        "tetrad_only_metric_rank": int(restricted_metric.rank()),
+    }
+
 def assert_expected() -> dict[str, dict[str, sp.Expr | int]]:
     algebra = exact_lorentz_and_clifford_checks()
     assert all(value == 0 for value in algebra.values())
@@ -253,6 +300,17 @@ def assert_expected() -> dict[str, dict[str, sp.Expr | int]]:
 
     psi_normal = exact_psi_normal_form_checks()
     assert all(value == 0 for value in psi_normal.values())
+
+    projection = exact_constraint_projection_checks()
+    assert projection["auxiliary_constraint_rank"] == 8
+    assert projection["auxiliary_block_rank"] == 8
+    assert projection["lifted_tangent_rank"] == 16
+    assert projection["constraint_on_lift_residual_rank"] == 0
+    assert projection["metric_rank_on_lift"] == 10
+    assert projection["tetrad_only_constraint_rank"] == 8
+    assert projection["tetrad_only_tangent_rank"] == 8
+    assert projection["tetrad_only_residual_rank"] == 0
+    assert projection["tetrad_only_metric_rank"] <= 8
 
     rank = exact_rank_checks()
     assert rank["metric_jacobian_rank"] == 10
@@ -265,6 +323,7 @@ def assert_expected() -> dict[str, dict[str, sp.Expr | int]]:
         "algebra": algebra,
         "principal_symbol": principal,
         "psi_normal_form": psi_normal,
+        "constraint_projection": projection,
         "rank": rank,
     }
 
@@ -280,7 +339,8 @@ def main() -> None:
     print("\nAll checks are exact SymPy algebra; no floating tolerance is used.")
     print(
         "Scope: exact kinematic algebra, causal symbol, conditional psi-normal "
-        "form, and E->g rank. Holomorphic/full on-shell dynamics remain open."
+        "form, constrained-rank projection criterion, and E->g rank. The "
+        "actual holomorphic/full on-shell Jacobian remains open."
     )
 
 
