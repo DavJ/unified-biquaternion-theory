@@ -6,19 +6,14 @@ This test verifies the fix for the issue where run_real_data_cmb_comb.py
 would fail with "MISSING" errors when executed from different directories.
 """
 
-import sys
 import tempfile
 import json
 import os
 from pathlib import Path
 
-# Add project root to path
-repo_root = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(repo_root))
-sys.path.insert(0, str(repo_root / 'tools' / 'data_provenance'))
+from scripts import hash_dataset, validate_manifest
 
-import validate_manifest
-import hash_dataset
+repo_root = Path(__file__).resolve().parents[1]
 
 
 def find_repo_root(start_path=None):

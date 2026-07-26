@@ -9,30 +9,12 @@ Tests for enhanced manifest validation that ensures manifests contain
 the exact files used in the analysis run.
 """
 import json
-import os
-import sys
 import tempfile
 from pathlib import Path
 
-# Ensure imports work
+from scripts import hash_dataset, validate_manifest
+
 repo_root = Path(__file__).resolve().parents[1]
-if str(repo_root) not in sys.path:
-    sys.path.insert(0, str(repo_root))
-
-# Add tools and forensic_fingerprint to path
-tools_path = repo_root / 'tools' / 'data_provenance'
-forensic_path = repo_root / 'tools' / 'forensic_fingerprint'
-if str(tools_path) not in sys.path:
-    sys.path.insert(0, str(tools_path))
-if str(forensic_path) not in sys.path:
-    sys.path.insert(0, str(forensic_path))
-
-import hash_dataset
-import validate_manifest
-
-# Import the validation function from run_real_data_cmb_comb
-# We need to be careful here since it has dependencies
-sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
 
 
 def test_manifest_contains_exact_files():

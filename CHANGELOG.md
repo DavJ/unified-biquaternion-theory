@@ -1,3 +1,14 @@
+## [2026-07-26] - Pytest import-path hygiene
+
+### Corrected
+
+- Replaced provenance-test `sys.path` injection with imports from the active
+  `scripts` package.
+- Prevented `tools/forensic_fingerprint/tools` from shadowing the repository-root
+  `tools` package during combined pytest collection.
+- Added a regression test rejecting top-level path mutations in provenance tests.
+- No physics equations, claim levels, or research-track statuses changed.
+
 ## [2026-07-26] - Layer2 archive-detox and test-visibility repair
 
 ## 2026-07-26 — Active workflow path repair

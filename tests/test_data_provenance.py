@@ -12,23 +12,13 @@ Tests for hash_dataset.py and validate_manifest.py to ensure:
 """
 import json
 import os
-import sys
 import tempfile
 from pathlib import Path
 
-# Ensure imports work
+from scripts import hash_dataset, validate_manifest
+from scripts.repo_utils import find_repo_root
+
 repo_root = Path(__file__).resolve().parents[1]
-if str(repo_root) not in sys.path:
-    sys.path.insert(0, str(repo_root))
-
-# Add tools to path
-tools_path = repo_root / 'tools' / 'data_provenance'
-if str(tools_path) not in sys.path:
-    sys.path.insert(0, str(tools_path))
-
-import hash_dataset
-import validate_manifest
-from repo_utils import find_repo_root
 
 
 def test_hash_dataset_stores_repo_relative_paths():
