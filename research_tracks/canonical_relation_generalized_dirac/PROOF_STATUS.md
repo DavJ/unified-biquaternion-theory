@@ -33,6 +33,11 @@ the same metric defined by the canonical UBT relation.
 
 **Status:** proved algebraically `[L0]`; exact symbolic verifier included.
 
+A fixed complex-linear map `vec: B -> C^4` writes the same biquaternionic
+field as `Psi=vec(Theta)`.  Similarity changes of this carrier conjugate all
+`Gamma_mu` and leave the metric and characteristic determinant invariant.
+No second fundamental field is introduced.
+
 ## Theorem C — metric rank
 
 For every invertible tetrad `e`,
@@ -73,7 +78,57 @@ anticommutes with every lifted `Gamma_mu`. Hence either `Gamma_*` or
 
 This does not yet prove that `psi` is a macroscopic fifth spacetime coordinate.
 
-## Open theorem E — canonical generalized-Dirac dynamics
+## Theorem E — exact principal symbol and causal cone
+
+For
+
+\[
+\sigma_4(\xi)=\Gamma^\mu\xi_\mu,
+\]
+
+the Clifford relation implies
+
+\[
+\sigma_4(\xi)^2=g^{\mu\nu}\xi_\mu\xi_\nu I_4,
+\qquad
+\det\sigma_4(\xi)=\left(g^{\mu\nu}\xi_\mu\xi_\nu\right)^2.
+\]
+
+Thus the generalized-Dirac lift has exactly the causal cone of the metric
+already induced by the canonical UBT relation.  With an anticommuting fifth
+channel satisfying `Gamma_psi^2 = epsilon I`,
+
+\[
+\sigma_5^2=\left(g^{\mu\nu}\xi_\mu\xi_\nu
++\varepsilon\xi_\psi^2\right)I_4.
+\]
+
+**Status:** proved algebraically `[L0]`; exact polynomial verifier included.
+
+## Theorem F — conditional psi-normal first-jet projection
+
+For an equation
+
+\[
+\Gamma_\psi D_\psi\Psi+\mathcal F(\Psi,E_\mu)=0
+\]
+
+with `Gamma_psi^2 = epsilon I` and no `D_psi Psi` inside `F`, the unique
+pointwise solution is
+
+\[
+D_\psi\Psi=-\varepsilon\Gamma_\psi\mathcal F.
+\]
+
+Hence, while `D_psi Psi` is an independent first-jet slot, the equation
+manifold projects surjectively onto all Lorentz-admissible `E_mu` and does not
+reduce the rank-ten map `E -> g`.
+
+**Status:** exactly proved as a conditional algebraic theorem `[L0-C]`.
+It is not yet the canonical holomorphic on-shell theorem, because strict
+holomorphy in `tau=t+i psi` relates the `t` and `psi` derivatives.
+
+## Open theorem G — canonical generalized-Dirac dynamics
 
 Derive from one UBT action an operator of the form
 
@@ -88,7 +143,7 @@ with no independent metric, tetrad or arbitrary connection.
 
 **Status:** open.
 
-## Open theorem F — on-shell rank and existence
+## Open theorem H — holomorphic on-shell rank and existence
 
 Prove that solutions of the complete implicit field equations retain a
 nondegenerate Lorentz tetrad and enough admissible variations for metric rank

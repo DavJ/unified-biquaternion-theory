@@ -25,11 +25,18 @@ construction.
 
 - the central biquaternionic metric identity on the Lorentz slice;
 - the exact injective block lift `E -> Gamma(E)`;
+- the fixed vector-space identification `Psi=vec(Theta) in C^4`, showing that
+  the lifted matrices act on the same UBT field rather than on a new field;
 - the curved Clifford relation from the canonical metric relation;
 - rank 10 of `E -> g` at every nondegenerate tetrad and the six-dimensional
   Lorentz kernel;
 - an exact grading/fifth matrix anticommuting with all lifted four-dimensional
-  Clifford generators.
+  Clifford generators;
+- exact four- and five-channel principal-symbol factorisation, so the lifted
+  Dirac characteristic cone equals the canonical UBT metric null cone;
+- a conditional first-jet theorem: when the field equation is in an independent
+  `psi`-normal form, the fifth channel can be solved uniquely and does not
+  reduce the rank-ten spacetime tetrad data.
 
 Run:
 
@@ -44,7 +51,10 @@ pytest -q tests/test_canonical_relation_dirac_lift.py
 - the precise physical role and signature of the complex-time `psi` channel;
 - local existence of the self-consistent implicit system
   `Theta -> E -> Gamma -> omega(E) -> D Theta`;
-- preservation of the Lorentz slice and rank 10 on shell;
+- compatibility of the conditional `psi`-normal theorem with strict
+  holomorphy in `tau=t+i psi`;
+- preservation of the Lorentz slice and rank 10 for the fully constrained
+  holomorphic on-shell system;
 - Einstein and quantum low-energy limits from the same action.
 
 ## Historical branch

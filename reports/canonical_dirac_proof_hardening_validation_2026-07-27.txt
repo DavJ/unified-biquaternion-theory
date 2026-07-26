@@ -1,0 +1,40 @@
+== Exact verifier ==
+Canonical UBT relation -> Clifford/Dirac lift verifier
+==========================================================
+[algebra]
+PASS  lower_central_residual_rank                      0
+PASS  upper_central_residual_rank                      0
+PASS  clifford_residual_rank                           0
+PASS  grading_anticommutator_e_rank                    0
+PASS  grading_anticommutator_f_rank                    0
+PASS  grading_square_residual_rank                     0
+PASS  timelike_fifth_square_residual_rank              0
+PASS  lift_recovery_residual_rank                      0
+[principal_symbol]
+PASS  flat_basis_clifford_residual_rank                0
+PASS  four_symbol_square_residual_rank                 0
+PASS  four_symbol_determinant_residual                 0
+PASS  five_space_symbol_square_residual_rank           0
+PASS  five_time_symbol_square_residual_rank            0
+PASS  five_space_symbol_determinant_residual           0
+PASS  five_time_symbol_determinant_residual            0
+[psi_normal_form]
+PASS  space_inverse_left_residual_rank                 0
+PASS  space_inverse_right_residual_rank                0
+PASS  space_normal_solution_residual_rank              0
+PASS  time_inverse_left_residual_rank                  0
+PASS  time_inverse_right_residual_rank                 0
+PASS  time_normal_solution_residual_rank               0
+[rank]
+PASS  metric_jacobian_rank                             10
+PASS  metric_jacobian_nullity                          6
+PASS  lorentz_kernel_rank                              6
+PASS  lorentz_condition_residual_rank                  0
+PASS  jacobian_on_lorentz_kernel_residual_rank         0
+PASS  right_inverse_residual_rank                      0
+
+All checks are exact SymPy algebra; no floating tolerance is used.
+Scope: exact kinematic algebra, causal symbol, conditional psi-normal form, and E->g rank. Holomorphic/full on-shell dynamics remain open.
+
+== Targeted tests ==
+....................                                                     [100%]

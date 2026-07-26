@@ -5,7 +5,9 @@ Scope:
 - exact Lorentz-slice central metric identity;
 - exact injective 4x4 block Clifford lift;
 - exact tetrad-to-metric rank 10 and six-dimensional Lorentz kernel;
-- exact fifth/grading channel anticommutation.
+- exact fifth/grading channel anticommutation;
+- exact four- and five-channel principal-symbol factorisation;
+- exact conditional psi-normal-form solvability.
 
 This does not prove the generalized UBT equation of motion, curved implicit
 existence, on-shell rank, or Einstein dynamics.
@@ -87,6 +89,86 @@ def exact_lorentz_and_clifford_checks() -> dict[str, sp.Expr | int]:
     }
 
 
+
+def canonical_basis_gammas() -> tuple[sp.Matrix, ...]:
+    """Return the four exact lower-index Clifford generators."""
+    basis = []
+    for a in range(4):
+        v = sp.zeros(4, 1)
+        v[a] = 1
+        basis.append(clifford_lift(lorentz_biquaternion(v)))
+    return tuple(basis)
+
+
+def exact_principal_symbol_checks() -> dict[str, sp.Expr | int]:
+    """Verify the metric and fifth-channel symbols by exact polynomial algebra."""
+    p0, p1, p2, p3, ppsi = sp.symbols(
+        "p0 p1 p2 p3 ppsi", real=True
+    )
+    momenta = (p0, p1, p2, p3)
+    gammas = canonical_basis_gammas()
+    symbol4 = sum(
+        (momenta[a] * gammas[a] for a in range(4)),
+        sp.zeros(4),
+    )
+    q4 = -p0**2 + p1**2 + p2**2 + p3**2
+    grading = sp.diag(1, 1, -1, -1)
+    symbol5_space = symbol4 + ppsi * grading
+    symbol5_time = symbol4 + ppsi * I * grading
+
+    return {
+        "flat_basis_clifford_residual_rank": max(
+            (
+                (gammas[a] * gammas[b] + gammas[b] * gammas[a]
+                 - 2 * ETA[a, b] * I4).rank()
+                for a in range(4)
+                for b in range(4)
+            ),
+            default=0,
+        ),
+        "four_symbol_square_residual_rank": sp.simplify(
+            symbol4 * symbol4 - q4 * I4
+        ).rank(),
+        "four_symbol_determinant_residual": sp.factor(
+            symbol4.det() - q4**2
+        ),
+        "five_space_symbol_square_residual_rank": sp.simplify(
+            symbol5_space * symbol5_space - (q4 + ppsi**2) * I4
+        ).rank(),
+        "five_time_symbol_square_residual_rank": sp.simplify(
+            symbol5_time * symbol5_time - (q4 - ppsi**2) * I4
+        ).rank(),
+        "five_space_symbol_determinant_residual": sp.factor(
+            symbol5_space.det() - (q4 + ppsi**2) ** 2
+        ),
+        "five_time_symbol_determinant_residual": sp.factor(
+            symbol5_time.det() - (q4 - ppsi**2) ** 2
+        ),
+    }
+
+
+def exact_psi_normal_form_checks() -> dict[str, sp.Expr | int]:
+    """Verify exact pointwise solvability in the independent psi derivative."""
+    f = sp.Matrix(sp.symbols("f0:4"))
+    grading = sp.diag(1, 1, -1, -1)
+    checks: dict[str, sp.Expr | int] = {}
+    for name, gamma_psi, epsilon in (
+        ("space", grading, sp.Integer(1)),
+        ("time", I * grading, sp.Integer(-1)),
+    ):
+        inverse = epsilon * gamma_psi
+        solution = -inverse * f
+        checks[f"{name}_inverse_left_residual_rank"] = (
+            inverse * gamma_psi - I4
+        ).rank()
+        checks[f"{name}_inverse_right_residual_rank"] = (
+            gamma_psi * inverse - I4
+        ).rank()
+        checks[f"{name}_normal_solution_residual_rank"] = sp.simplify(
+            gamma_psi * solution + f
+        ).rank()
+    return checks
+
 def metric_components(e: sp.Matrix) -> sp.Matrix:
     g = e * ETA * e.T
     return sp.Matrix([g[mu, nu] for mu, nu in PAIRS])
@@ -166,6 +248,12 @@ def assert_expected() -> dict[str, dict[str, sp.Expr | int]]:
     algebra = exact_lorentz_and_clifford_checks()
     assert all(value == 0 for value in algebra.values())
 
+    principal = exact_principal_symbol_checks()
+    assert all(value == 0 for value in principal.values())
+
+    psi_normal = exact_psi_normal_form_checks()
+    assert all(value == 0 for value in psi_normal.values())
+
     rank = exact_rank_checks()
     assert rank["metric_jacobian_rank"] == 10
     assert rank["metric_jacobian_nullity"] == 6
@@ -173,7 +261,12 @@ def assert_expected() -> dict[str, dict[str, sp.Expr | int]]:
     assert rank["lorentz_condition_residual_rank"] == 0
     assert rank["jacobian_on_lorentz_kernel_residual_rank"] == 0
     assert rank["right_inverse_residual_rank"] == 0
-    return {"algebra": algebra, "rank": rank}
+    return {
+        "algebra": algebra,
+        "principal_symbol": principal,
+        "psi_normal_form": psi_normal,
+        "rank": rank,
+    }
 
 
 def main() -> None:
@@ -185,7 +278,10 @@ def main() -> None:
         for name, value in checks.items():
             print(f"PASS  {name:48s} {value}")
     print("\nAll checks are exact SymPy algebra; no floating tolerance is used.")
-    print("Scope: kinematic algebra and E->g rank. On-shell dynamics remain open.")
+    print(
+        "Scope: exact kinematic algebra, causal symbol, conditional psi-normal "
+        "form, and E->g rank. Holomorphic/full on-shell dynamics remain open."
+    )
 
 
 if __name__ == "__main__":

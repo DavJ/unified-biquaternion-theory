@@ -1,3 +1,14 @@
+## [2026-07-27] — Canonical generalized-Dirac proof hardening
+
+### Proved
+- Exact principal-symbol square and determinant: the generalized-Dirac characteristic cone is exactly the canonical UBT metric null cone.
+- Exact five-channel symbol factorisation for either sign of the complex-time/fifth direction.
+- Conditional `psi`-normal-form theorem: an invertible fifth channel uniquely solves for an independent `D_psi` first-jet slot and leaves the spacetime tetrad projection unrestricted.
+
+### Corrected
+- Explicitly separated the conditional independent-`D_psi` theorem from the still-open strict-holomorphy theorem, where `D_psi` and `D_t` are related.
+- Removed duplicate active dual-sector/current-tetrad verifier files; their exact calculations remain only in the dated history track.
+
 ## [2026-07-27] — Canonical relation generalized-Dirac consolidation
 
 ### Changed

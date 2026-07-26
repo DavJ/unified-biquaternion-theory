@@ -77,6 +77,29 @@ $H_L(E,F)I_4$.  Injectivity follows because either off-diagonal block recovers
 $E$.
 \end{proof}
 
+
+\subsection{Spinor carrier without a new fundamental field}
+As a complex vector space, $\mathbb B$ has dimension four.  Fix any complex-linear
+isomorphism
+\begin{equation}
+ \operatorname{vec}:\mathbb B\longrightarrow\mathbb C^4,
+ \qquad \Psi:=\operatorname{vec}(\Theta).
+\end{equation}
+The symbol $\Psi$ therefore denotes the same four-complex-component UBT field
+in a column representation; it is not an additional matter field.  The lifted
+matrices $\Gamma_\mu=\mathcal C(E_\mu)$ act on this carrier.  A different
+choice $\operatorname{vec}'=U\operatorname{vec}$, $U\in GL(4,\mathbb C)$,
+gives
+\begin{equation}
+ \Psi'=U\Psi,
+ \qquad
+ \Gamma_\mu'=U\Gamma_\mu U^{-1},
+\end{equation}
+and leaves the Clifford relation, the metric and the characteristic
+determinant invariant.  Thus the block representation is a faithful operator
+realisation of the canonical biquaternionic relation, not a change of physical
+field content.
+
 \subsection{Rank is inherited, not manufactured}
 The operator lift adds no geometric degrees of freedom.  The metric is still
 that of the tetrad coefficients $e_\mu{}^a$,
@@ -135,15 +158,103 @@ coordinate, a compact fibre, or an internal complex-time direction.
 The corresponding generalized first-order operator has the candidate form
 \begin{equation}
  \boxed{
- \mathcal D_{\rm UBT}[\Theta]
- =i_{\rm c}\Gamma^\mu[D\Theta]\nabla_\mu
-  +i_{\rm c}\Gamma_\psi D_\psi
-  -\mathcal M[\Theta,D\Theta].}
+ \mathcal D_{\rm UBT}[\Theta]\Psi
+ =i_{\rm c}\Gamma^\mu[D\Theta]\nabla_\mu\Psi
+  +i_{\rm c}\Gamma_\psi D_\psi\Psi
+  -\mathcal M[\Theta,D\Theta]\Psi.}
  \label{eq:canonical:generalized-dirac-candidate}
 \end{equation}
 Equation~\eqref{eq:canonical:generalized-dirac-candidate} is an architectural
 candidate until it is derived from the UBT action.  The proved statement is
 the Clifford lift and its compatibility with the central metric relation.
+
+
+\subsection{Principal symbol, causal cone and exact factorisation}
+Let
+\begin{equation}
+ \Gamma^\mu:=g^{\mu\nu}\Gamma_\nu
+\end{equation}
+and, for a real cotangent vector $\xi=\xi_\mu dx^\mu$, define the
+first-order principal symbol
+\begin{equation}
+ \sigma_4(\xi):=\Gamma^\mu\xi_\mu.
+\end{equation}
+The curved Clifford relation immediately gives
+\begin{equation}
+ \boxed{
+ \sigma_4(\xi)^2
+ =g^{\mu\nu}\xi_\mu\xi_\nu I_4.}
+ \label{eq:canonical:principal-symbol-square}
+\end{equation}
+Since $\sigma_4(\xi)$ is block off diagonal and traceless, its characteristic
+polynomial is
+\begin{equation}
+ \chi_{\sigma_4}(\lambda)
+ =\left(\lambda^2-g^{\mu\nu}\xi_\mu\xi_\nu\right)^2,
+\end{equation}
+and therefore
+\begin{equation}
+ \boxed{
+ \det\sigma_4(\xi)
+ =\left(g^{\mu\nu}\xi_\mu\xi_\nu\right)^2.}
+ \label{eq:canonical:principal-symbol-determinant}
+\end{equation}
+Thus the characteristic cone of the canonical generalized-Dirac lift is
+exactly the null cone of the metric already defined by the UBT relation.  No
+second causal structure is introduced.
+
+Including a fifth anticommuting channel with
+$\Gamma_\psi^2=\varepsilon I_4$, $\varepsilon=\pm1$, gives
+\begin{equation}
+ \sigma_5(\xi,\xi_\psi)
+ :=\sigma_4(\xi)+\Gamma_\psi\xi_\psi,
+\end{equation}
+and the exact factorisation
+\begin{equation}
+ \boxed{
+ \sigma_5(\xi,\xi_\psi)^2
+ =\left(g^{\mu\nu}\xi_\mu\xi_\nu
+       +\varepsilon\xi_\psi^2\right)I_4.}
+ \label{eq:canonical:five-channel-symbol-square}
+\end{equation}
+Equation~\eqref{eq:canonical:five-channel-symbol-square} is algebraic.  Its
+physical interpretation depends on whether $\psi$ is treated as a geometric
+coordinate, a compact fibre coordinate, or an internal complex-time spectral
+direction.
+
+\subsection{Conditional first-jet rank preservation by the fifth channel}
+The fifth matrix is invertible.  If $\Gamma_\psi^2=\varepsilon I_4$, then
+\begin{equation}
+ \Gamma_\psi^{-1}=\varepsilon\Gamma_\psi.
+\end{equation}
+Consider a first-order equation written in $\psi$-normal form,
+\begin{equation}
+ \Gamma_\psi D_\psi\Psi
+ +\mathcal F(\Psi,E_0,E_1,E_2,E_3)=0,
+ \label{eq:canonical:psi-normal-form}
+\end{equation}
+where $\mathcal F$ contains no $D_\psi\Psi$.  For every prescribed value of
+$\Psi$ and every prescribed Lorentz-admissible four-tetrad $E_\mu$, the unique
+pointwise solution is
+\begin{equation}
+ \boxed{
+ D_\psi\Psi
+ =-\varepsilon\Gamma_\psi
+   \mathcal F(\Psi,E_0,E_1,E_2,E_3).}
+ \label{eq:canonical:psi-normal-solution}
+\end{equation}
+Consequently, at the purely algebraic first-jet level, the equation manifold
+of~\eqref{eq:canonical:psi-normal-form} projects surjectively onto the four
+spacetime tetrad slots $E_\mu$.  Under these stated hypotheses the equation
+therefore does not lower the already proved rank ten of $E\mapsto g$.
+
+This is a conditional pointwise theorem, not yet the full UBT on-shell theorem.
+Canonical UBT also uses holomorphy in $\tau=t+i_{\rm c}\psi$.  A strict
+Cauchy--Riemann condition relates $D_\psi\Psi$ to the real-time derivative and
+removes its independent first-jet status.  The decisive remaining task is to
+show either that the covariant complex-time equation possesses a compatible
+normal form after holomorphy is imposed, or directly that its constrained jet
+projection onto the ten metric directions remains surjective.
 
 \subsection{Remaining proof gates}
 A complete closure requires:
