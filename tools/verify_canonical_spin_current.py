@@ -2,39 +2,45 @@
 # Copyright (c) 2026 Ing. David Jaroš
 # Licensed under the MIT License
 """
-Canonical spin-current audit verifier (GAP-10T-DYN / GAP-10D action audit).
+Canonical spin-current and pairing audit verifier
+(GAP-10T-DYN / GAP-10D action audit).
 
 Exact SymPy verification of the results in
 canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex:
 
   C1  Convention checks: central Jordan identity, anti-Hermiticity of the
       Lorentz-slice basis, connection action preserves the slice.
-  C2  The kinetic Lagrangian depends on the connection Omega only
-      algebraically (polynomial degree two, no derivatives of Omega),
-      hence its Omega-variation is the algebraic spin current and no
-      curvature term arises from the kinetic term at tree level.
-  C3  Slice lemma [L0]: for D_mu Theta in the Lorentz slice W_L, the spin
-      current depends only on the anti-Hermitian part of Theta.
-      Verified for both canonical pairings (ddagger Hilbert-Schmidt and
-      sharp scalar-part).
+  C2  The fixed-background kinetic Lagrangian depends on the independent
+      connection Omega only algebraically (polynomial degree two, no
+      derivatives of Omega).  Hence its Omega-variation is an algebraic
+      Palatini matter current and no curvature term arises from that kinetic
+      term at tree level.
+  C3  Slice lemma [L0]: for D_mu Theta in the Lorentz slice W_L, the fixed-
+      tetrad spin current depends only on the anti-Hermitian part of Theta.
+      Verified for the ddagger Hilbert--Schmidt corpus pairing and the sharp
+      scalar-part pairing.
   C4  Pointwise rigidity [L0]: with D_mu Theta = sqrt(N0) E_mu for the
       standard nondegenerate tetrad, tau == 0 for all (mu, M) iff the
       anti-Hermitian part of Theta vanishes at that point.
   C5  Flat affine no-go [L1]: on every affine representer
       Theta = Theta0 + sqrt(N0) E_nu x^nu, the anti-Hermitian part is an
-      affine non-constant W_L-valued map, so tau vanishes at most at one
-      spacetime point; the x-gradient of tau is a Theta0-independent
-      nonzero constant (+-2 N0 for the ddagger pairing, +-N0 for the
-      sharp pairing).  Combined with the proved invertibility of the
-      Cartan torsion map, the minimal Hilbert-Palatini + kinetic branch
-      forces nonzero torsion on the complement of a point of every flat
-      affine representer.
+      affine non-constant W_L-valued map, so tau vanishes at at most one
+      spacetime point; the x-gradient of tau is a Theta0-independent nonzero
+      constant (+-2 N0 for the ddagger pairing, +-N0 for the sharp pairing).
+  C6  Lorentz-invariant pairing rigidity [L1]: every real symmetric bilinear
+      form on W_L invariant under the full sl(2,C) Lorentz action is a scalar
+      multiple of eta = diag(-1,1,1,1).  The sharp pairing realizes eta.  The
+      ddagger Hilbert--Schmidt pairing realizes a Euclidean matrix and fails
+      boost invariance.  Therefore no nonzero nondegenerate Lorentz-invariant
+      pairing choice can remove C5.
 
-Scope limitation (do not overclaim): these are exact statements about the
-minimal first-order branch with the pure-pair representative
-A = Omega, B = -Omega^ddagger and the two stated pairings.  They do not
-decide non-minimal torsion terms, modified pairings/projections, or an
-induced-Palatini derivation; those remain GAP-10T-DYN / GAP-10D.
+Scope limitation (do not overclaim): the current formula holds for the
+independent Palatini/effective variation in which e, g, the volume form and
+Theta are fixed while Omega varies.  If e is first imposed as the composite
+jet D Theta / sqrt(N0), the induced variations of g, sqrt(-g), index raising
+and any composite connection must also be included.  This verifier does not
+compute that full Theta-only composite variation and does not derive the
+Hilbert--Palatini term or its coefficient.
 """
 from __future__ import annotations
 
@@ -44,11 +50,12 @@ I2 = sp.eye(2)
 S1 = sp.Matrix([[0, 1], [1, 0]])
 S2 = sp.Matrix([[0, -sp.I], [sp.I, 0]])
 S3 = sp.Matrix([[1, 0], [0, -1]])
+SIGMA = [S1, S2, S3]
 
 # Lorentz-slice basis: E_0 = i*1, E_k = -i*sigma_k (anti-Hermitian).
 E = [sp.I * I2, -sp.I * S1, -sp.I * S2, -sp.I * S3]
 
-# Real six-dimensional basis of sl(2, C) (spin representation of so(1,3)).
+# Real six-dimensional basis of sl(2, C) (boosts followed by rotations).
 SL2 = [S1 / 2, S2 / 2, S3 / 2, sp.I * S1 / 2, sp.I * S2 / 2, sp.I * S3 / 2]
 
 N0 = sp.symbols("N0", positive=True)
@@ -82,9 +89,43 @@ def generic_theta(prefix: str = "t"):
     return theta, t
 
 
+def slice_coordinates(x: sp.Matrix) -> sp.Matrix:
+    """Return real coordinates in E_0=i1, E_k=-i sigma_k for x in W_L."""
+    return sp.Matrix(
+        [
+            sp.simplify(-sp.I * sp.trace(x) / 2),
+            *[sp.simplify(sp.I * sp.trace(s * x) / 2) for s in SIGMA],
+        ]
+    )
+
+
+def lorentz_slice_generator(m: sp.Matrix) -> sp.Matrix:
+    """4x4 infinitesimal Lorentz matrix induced by X -> M X + X M^dag."""
+    columns = []
+    for basis_vector in E:
+        moved = sp.simplify(m * basis_vector + basis_vector * dag(m))
+        columns.append(slice_coordinates(moved))
+    return sp.Matrix.hstack(*columns)
+
+
+def pairing_matrix(pairing: str) -> sp.Matrix:
+    """Matrix of a corpus pairing restricted to the Lorentz slice."""
+    g = sp.zeros(4, 4)
+    for a in range(4):
+        for b in range(4):
+            if pairing == "ddagger":
+                raw = sp.trace(dag(E[a]) * E[b])
+            elif pairing == "sharp":
+                raw = sp.Rational(1, 2) * sp.trace(sharp(E[a]) * E[b])
+            else:  # pragma: no cover
+                raise ValueError(f"unknown pairing {pairing!r}")
+            g[a, b] = sp.simplify(sp.re(raw))
+    return g
+
+
 def tau_component(m: sp.Matrix, theta: sp.Matrix, d_slot: sp.Matrix,
                   pairing: str) -> sp.Expr:
-    """Spin current tau(M) = <delta_M D Theta, D Theta> for one slot."""
+    """Fixed-background current tau(M)=<delta_M DTheta,DTheta> for one slot."""
     delta_d = m * theta + theta * dag(m)
     if pairing == "ddagger":
         raw = sp.trace(dag(delta_d) * d_slot)
@@ -121,7 +162,7 @@ def check_conventions() -> dict[str, bool]:
 
 
 def check_algebraic_omega_dependence() -> dict[str, bool]:
-    """C2: kinetic density is polynomial of degree two in Omega components."""
+    """C2: fixed-background kinetic density is degree two in Omega."""
     theta, _ = generic_theta()
     w = sp.symbols("w0:6", real=True)
     omega = msum(w[j] * SL2[j] for j in range(6))
@@ -163,10 +204,8 @@ def check_pointwise_rigidity() -> dict[str, bool]:
             for mu in range(4)
             for m in SL2
         ]
-        sol = sp.solve(eqs, a4, dict=True)
-        results[pairing] = sol == [
-            {a4[0]: 0, a4[1]: 0, a4[2]: 0, a4[3]: 0}
-        ] or sol == [{s: 0 for s in a4}]
+        coefficient_matrix, _ = sp.linear_eq_to_matrix(eqs, a4)
+        results[pairing] = coefficient_matrix.rank() == 4
     return results
 
 
@@ -194,16 +233,74 @@ def check_flat_affine_no_go() -> dict[str, object]:
     return out
 
 
+def check_lorentz_invariant_pairings() -> dict[str, bool]:
+    """C6: classify real symmetric invariant bilinear forms on W_L."""
+    generators = [lorentz_slice_generator(m) for m in SL2]
+    eta = sp.diag(-1, 1, 1, 1)
+
+    # Generic symmetric matrix, ordered by upper-triangular entries.
+    gv = sp.symbols("g00 g01 g02 g03 g11 g12 g13 g22 g23 g33", real=True)
+    g00, g01, g02, g03, g11, g12, g13, g22, g23, g33 = gv
+    generic_g = sp.Matrix(
+        [
+            [g00, g01, g02, g03],
+            [g01, g11, g12, g13],
+            [g02, g12, g22, g23],
+            [g03, g13, g23, g33],
+        ]
+    )
+    equations = []
+    for j in generators:
+        equations.extend(list(j.T * generic_g + generic_g * j))
+    coefficient_matrix, _ = sp.linear_eq_to_matrix(equations, gv)
+    nullspace = coefficient_matrix.nullspace()
+    expected = sp.Matrix([-1, 0, 0, 0, 1, 0, 0, 1, 0, 1])
+    unique_eta = (
+        len(nullspace) == 1
+        and sp.Matrix.hstack(nullspace[0], expected).rank() == 1
+    )
+
+    g_dd = pairing_matrix("ddagger")
+    g_sh = pairing_matrix("sharp")
+    dd_invariant_all = all(
+        sp.simplify(j.T * g_dd + g_dd * j) == sp.zeros(4, 4)
+        for j in generators
+    )
+    dd_rotation_invariant = all(
+        sp.simplify(j.T * g_dd + g_dd * j) == sp.zeros(4, 4)
+        for j in generators[3:]
+    )
+    dd_all_boosts_fail = all(
+        sp.simplify(j.T * g_dd + g_dd * j) != sp.zeros(4, 4)
+        for j in generators[:3]
+    )
+    sharp_invariant = all(
+        sp.simplify(j.T * g_sh + g_sh * j) == sp.zeros(4, 4)
+        for j in generators
+    )
+
+    return {
+        "unique_symmetric_form_is_eta": unique_eta,
+        "sharp_matrix_is_eta": g_sh == eta,
+        "sharp_full_lorentz_invariant": sharp_invariant,
+        "ddagger_matrix_is_euclidean": g_dd == 2 * sp.eye(4),
+        "ddagger_rotation_invariant": dd_rotation_invariant,
+        "ddagger_all_boosts_fail": dd_all_boosts_fail,
+        "ddagger_not_full_lorentz_invariant": not dd_invariant_all,
+    }
+
+
 def main() -> int:
     ok = True
-    print("Canonical spin-current audit verifier")
-    print("=" * 46)
+    print("Canonical spin-current and pairing audit verifier")
+    print("=" * 52)
     for name, res in (
         ("C1 conventions", check_conventions()),
         ("C2 algebraic Omega dependence", check_algebraic_omega_dependence()),
         ("C3 slice lemma", check_slice_lemma()),
         ("C4 pointwise rigidity", check_pointwise_rigidity()),
         ("C5 flat affine no-go", check_flat_affine_no_go()),
+        ("C6 Lorentz-invariant pairings", check_lorentz_invariant_pairings()),
     ):
         for key, val in res.items():
             status = "PASS" if val is True else ("FAIL" if val is False else val)
@@ -213,11 +310,13 @@ def main() -> int:
     print()
     if ok:
         print("All exact checks passed.")
-        print("Verified: the minimal Hilbert-Palatini + kinetic branch with the")
-        print("pure-pair representative forces nonzero torsion on the complement")
-        print("of at most one point of every flat affine representer.")
-        print("Open (unchanged): non-minimal terms, modified pairings, and the")
-        print("induced-Palatini coefficient derivation (GAP-10T-DYN, GAP-10D).")
+        print("Verified: the fixed-background minimal Hilbert-Palatini + kinetic")
+        print("branch forces nonzero torsion away from at most one point of every")
+        print("flat affine representer.  The unique nondegenerate symmetric")
+        print("Lorentz-invariant slice pairing is the sharp/Minkowski pairing up")
+        print("to scale, so pairing selection alone cannot remove the obstruction.")
+        print("Open: the full composite Theta-only variation, non-minimal torsion")
+        print("terms or relative/translational completion, and induced Palatini.")
     return 0 if ok else 1
 
 

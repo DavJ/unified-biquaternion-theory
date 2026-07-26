@@ -25,6 +25,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — GAP-10T Lorentz-pairing rigidity and fixed-background scope audit (2026-07-26)
+
+- Clarified that the exact kinetic spin current is the direct matter current of
+  the effective Palatini variation with tetrad, metric, volume form, index
+  raising, and `Theta` held fixed; the full composite `Theta`-only variation
+  remains open.
+- Proved `GAP-10T-PAIRING-NOGO [L1]`: every real symmetric bilinear form on
+  the Lorentz slice invariant under the full `sl(2,C)` action is proportional
+  to the `sharp`/Minkowski pairing.  The `ddagger` Hilbert--Schmidt form is
+  Euclidean on the slice and fails all three boost-invariance checks.
+- Consequently closed the pairing-selection escape route: no nonzero
+  nondegenerate symmetric Lorentz-invariant pairing removes the affine
+  spin-current obstruction.
+- Narrowed `GAP-10T-DYN` to the full composite variation and a canonically
+  derived non-minimal torsion cancellation or translational/relative-bimodule
+  completion with no independent propagating fields.
+- Added exact SymPy checks, status-regression tests, synchronized the GR
+  ledgers/manuscript/student material, and regenerated the audit and GR PDFs.
+
 ### Corrected — repository hygiene and provenance fail-closed audit (2026-07-25)
 
 - Restored the active forensic-fingerprint modules as canonical root-level

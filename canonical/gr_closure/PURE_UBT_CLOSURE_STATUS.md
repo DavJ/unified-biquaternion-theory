@@ -72,8 +72,14 @@ and two-sided integrability; not compact-fiber averaging.
   nontrivial relative bimodule component remains an optional torsion-free
   completion and, if used, must be composite or auxiliary rather than
   propagating.
-- **GAP-10T-DYN — NARROWED:** derive the minimal first-order branch, exact spin
-  current, normalization, and possible torsion dynamics from canonical UBT.
+- **GAP-10T-SPIN — CLOSED CONDITIONALLY [L1]:** direct fixed-background
+  matter current derived for the effective pure-pair Palatini variation.
+- **GAP-10T-FLAT-NOGO / GAP-10T-PAIRING-NOGO — CLOSED AS NO-GO [L1]:**
+  the minimal affine torsion-free branch fails and no nonzero nondegenerate
+  symmetric Lorentz-invariant pairing choice removes the obstruction.
+- **GAP-10T-DYN — NARROWED:** compute the full composite Theta-only variation
+  and derive a canonical non-minimal torsion cancellation or
+  translational/relative completion, together with normalization.
 - **GAP-10L-DYN — NARROWED:** verify equivariance and well-posed uniqueness for
   the complete UBT equations and sources.
 - **GAP-10I-CURVED — LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART

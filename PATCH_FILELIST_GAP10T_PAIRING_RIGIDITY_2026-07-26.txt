@@ -1,0 +1,38 @@
+UBT differential overlay file list
+
+Base archive: unified-biquaternion-theory-master(22).zip
+Patch: GAP-10T Lorentz-pairing rigidity and fixed-background scope
+Date: 2026-07-26
+
+Legend: A = added, M = modified
+
+M	AGENTS.md
+M	CHANGELOG.md
+M	CLAIMS.yaml
+M	CLAIMS_MATRIX.md
+M	DERIVATION_INDEX.md
+A	OVERLAY_MANIFEST_GAP10T_PAIRING_RIGIDITY_2026-07-26.sha256
+A	PATCH_FILELIST_GAP10T_PAIRING_RIGIDITY_2026-07-26.txt
+A	PATCH_NOTES_GAP10T_PAIRING_RIGIDITY_2026-07-26.md
+M	STATUS.md
+M	STATUS_OF_UBT.md
+M	WHAT_IS_PROVED.md
+M	canonical/AXIOMS.md
+M	canonical/CANONICAL_DEFINITIONS.md
+M	canonical/THEORY/architecture/geometry/biquaternion_connection.tex
+M	canonical/THEORY/canonical/canonical_action.tex
+M	canonical/THEORY/canonical/canonical_axioms.tex
+M	canonical/THEORY/canonical/canonical_field_equations.tex
+M	canonical/appendices/appendix_metric_review.tex
+M	canonical/geometry/biquaternion_connection.tex
+M	canonical/gr_closure/PURE_UBT_CLOSURE_STATUS.md
+M	canonical/gr_closure/README.md
+M	canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex
+M	canonical/gr_closure/step2_theta_only_closure.tex
+M	docs/czech/UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md
+M	docs/pdfs/UBT_GR_Submission.pdf
+A	docs/pdfs/gap_10tdyn_10d_canonical_action_audit.pdf
+M	docs/textbook/chapters/04_covariant_tetrad_geometry.tex
+M	papers/UBT_GR_Submission.tex
+M	tests/test_canonical_spin_current.py
+M	tools/verify_canonical_spin_current.py

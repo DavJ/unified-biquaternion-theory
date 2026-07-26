@@ -29,6 +29,9 @@ The current canonical route is:
   contortion, including a Schwarzschild vacuum-exterior patch.
 - `gap_10t_palatini_torsion_dynamics.tex` — algebraic Cartan torsion equation
   and minimal-branch torsion elimination.
+- `gap_10tdyn_10d_canonical_action_audit.tex` — dependency audit, exact direct
+  fixed-background spin current, affine flat no-go, Lorentz-invariant pairing
+  classification, and the named remaining GAP-10T-DYN/GAP-10D lemmas.
 - `gap_10l_psi_symmetry_propagation.tex` — Lorentz-slice and imaginary-time
   symmetry propagation theorems.
 - `gap_10i_augmented_holonomy.tex` — exact prescribed-connection integrability
@@ -51,12 +54,18 @@ The current canonical route is:
   composite-contortion and local curved-representer checks.
 - `../../tools/verify_remaining_gr_subclosures.py` — Cartan rank, Lorentz
   involution, psi-gauge metric invariance, and augmented-curvature checks.
+- `../../tools/verify_canonical_spin_current.py` — exact fixed-background spin
+  current, affine obstruction, and Lorentz-invariant pairing classification.
 
 ## Locked status language
 
 - `GAP-10Omega-KIN`: CLOSED.
 - `GAP-10Omega-GR`: CLOSED.
-- `GAP-10T-PALATINI`: CLOSED CONDITIONALLY; `GAP-10T-DYN`: NARROWED.
+- `GAP-10T-PALATINI`: CLOSED CONDITIONALLY.
+- `GAP-10T-SPIN`: CLOSED CONDITIONALLY; `GAP-10T-FLAT-NOGO` and
+  `GAP-10T-PAIRING-NOGO`: CLOSED AS NO-GO.
+- `GAP-10T-DYN`: NARROWED to the full composite variation and a canonical
+  non-minimal or translational/relative torsion completion.
 - `GAP-10I-SR`: CLOSED.
 - `GAP-10I-1S`: CLOSED AS NO-GO.
 - `GAP-10I-PAIR-KIN`: CLOSED; `GAP-10I-PAIR-GR`: CLOSED AS A

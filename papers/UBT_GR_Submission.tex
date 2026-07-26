@@ -731,13 +731,23 @@ Connection variation gives the algebraic Cartan equation
 For a nondegenerate tetrad the 24-component map
 $T^a\mapsto\epsilon_{abcd}T^a\wedge e^b$ has rank 24.  Hence zero spin current
 forces $T=0$, while a specified spin current determines a unique contorsion.
-This closes GAP-10T-PALATINI conditionally.  It does not derive the
-Hilbert--Palatini term, the exact paired $\Theta$ spin current, its
-normalization, or the absence of extra torsion invariants from canonical UBT;
-therefore the overall GAP-10T-DYN is narrowed rather than fully closed.
-The proof and exact rank verifier are in
-\path{canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex} and
-\path{tools/verify_remaining_gr_subclosures.py}.
+This closes GAP-10T-PALATINI conditionally.  The direct tree-level matter
+spin current of the paired kinetic term has now been derived in the effective
+Palatini variation with $e$, $g$, the volume form and $\Theta$ held fixed.
+For an affine flat representer it is nonzero away from at most one point, so
+the minimal Hilbert--Palatini plus kinetic branch does not admit the flat
+inertial torsion-free solution.  Moreover, the $\sharp$/Minkowski pairing is
+unique up to scale among real symmetric Lorentz-invariant slice pairings; the
+$\ddagger$ Hilbert--Schmidt pairing fails boost invariance.  Hence pairing
+selection alone cannot remove the obstruction.  The full composite
+$\Theta$-only variation, the origin of the Hilbert--Palatini term and its
+normalization, and possible non-minimal torsion cancellation remain open;
+therefore GAP-10T-DYN is narrowed rather than fully closed.  The proofs and
+exact verifiers are in
+\path{canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex},
+\path{canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex},
+\path{tools/verify_remaining_gr_subclosures.py}, and
+\path{tools/verify_canonical_spin_current.py}.
 
 \section{Lorentz-slice and imaginary-time stability}
 The real Lorentz slice has an intrinsic fixed-set characterization.  Define
@@ -848,7 +858,9 @@ GAP-10K & \textbf{CLOSED locally}: tetrad-to-metric differential has rank ten.\\
 GAP-10$\Omega$-KIN & \textbf{CLOSED}: specified tetrad and torsion uniquely determine the metric-compatible frame connection.\\
 GAP-10$\Omega$-GR & \textbf{CLOSED}: the torsion-free branch is the unique Levi--Civita spin connection, up to Lorentz gauge.\\
 GAP-10T-PALATINI & \textbf{CLOSED CONDITIONALLY}: minimal first-order variation gives an invertible algebraic Cartan torsion equation.\\
-GAP-10T-DYN & \textbf{NARROWED}: derive the minimal branch, exact UBT spin current, normalization, and any extra torsion terms.\\
+GAP-10T-SPIN / FLAT-NOGO & \textbf{CLOSED CONDITIONALLY / CLOSED AS NO-GO}: direct fixed-background current derived; minimal affine torsion-free branch excluded.\\
+GAP-10T-PAIRING-NOGO & \textbf{CLOSED AS NO-GO}: the $\sharp$/Minkowski form is the unique nonzero symmetric Lorentz-invariant slice pairing up to scale, so pairing selection cannot cure the affine obstruction.\\
+GAP-10T-DYN & \textbf{NARROWED}: compute the full composite $\Theta$ variation and derive a non-minimal torsion cancellation or translational/relative completion; derive normalization and the selected branch.\\
 GAP-10L-CONN & \textbf{CLOSED}: metric-compatible Lorentz transport preserves $\eta$ and the Lorentz slice.\\
 GAP-10L-SYM & \textbf{CLOSED CONDITIONALLY}: unique $\mathcal J$-equivariant evolution preserves the Lorentz fixed set.\\
 GAP-10L-DYN & \textbf{NARROWED}: verify equivariance and well-posed uniqueness for the complete UBT dynamics.\\

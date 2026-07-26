@@ -19,8 +19,9 @@
 | GR-T11 | Lorentz-slice and metric compatibility reduce the pure pair to $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^\ddagger$ modulo a cancelling central term | [L1] | `canonical/gr_closure/gap_10i_paired_connection_audit.tex`; `tools/verify_gap_10i_paired_connection.py` |
 | GR-T12 | With $K=0$, the pure Lorentz pair implies $\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu$ and excludes the non-flat Schwarzschild vacuum exterior with $M\ne0$ | [L1 NO-GO] | same |
 | GR-T13 | Every smooth Lorentzian tetrad has a local single-$\Theta$ representer with explicit composite metric-compatible contortion | [L1, local] | `canonical/gr_closure/gap_10i_torsionful_local_representer.tex`; `tools/verify_gap_10i_torsionful_local_representer.py` |
-| GR-T14 | Canonical UBT action selects the composite-contortion branch (or an auxiliary torsion-free relative branch), with physical torsion control and global continuation | [OPEN/NARROWED] | GAP-10I-CURVED, GAP-10T-DYN |
-| GR-T15 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
+| GR-T14 | Direct fixed-background pure-pair matter spin current is derived; the minimal affine torsion-free branch and Lorentz-invariant pairing escape route are no-go results | [L1 conditional / L1 no-go] | `canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex`; `tools/verify_canonical_spin_current.py` |
+| GR-T15 | Canonical UBT action selects a composite/non-minimal or translational-relative torsion completion, with physical torsion control and global continuation | [OPEN/NARROWED] | GAP-10I-CURVED, GAP-10T-DYN |
+| GR-T16 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
 
 The former compact-$\psi$ fiber-average rank closure is noncanonical and must
 not be listed as the proved UBT metric mechanism.
@@ -146,7 +147,8 @@ they are rederived in this route.
 | G9 | Minimal Palatini action yields Einstein--Λ and Lovelock assumptions make the four-dimensional infrared endpoint unique | [L1 conditional] | `gap_10d_low_energy_uniqueness.tex` |
 | G10 | Prescribed paired-connection system has an exact augmented-holonomy existence criterion | [L1] | `gap_10i_augmented_holonomy.tex` |
 | G11 | Minimal Palatini branch has an invertible algebraic torsion equation | [L1 conditional] | `gap_10t_palatini_torsion_dynamics.tex` |
-| G11b | Full canonical UBT selects its torsion/current and self-consistent curved tetrad | [NARROWED/OPEN] | `GAP-10T-DYN`, `GAP-10I-CURVED` |
+| G11b | Direct fixed-background pure-pair matter current derived; affine torsion-free and Lorentz-invariant pairing escape routes excluded | [L1 conditional / L1 no-go] | `gap_10tdyn_10d_canonical_action_audit.tex` |
+| G11c | Full composite UBT selects its torsion completion and self-consistent curved tetrad | [NARROWED/OPEN] | `GAP-10T-DYN`, `GAP-10I-CURVED` |
 | G12 | Schwarzschild full tetrad/lapse selected by canonical \(\Theta\) dynamics | [OPEN] | `GAP-U2Theta` |
 
 ### Perturbations and named metrics
@@ -167,7 +169,10 @@ they are rederived in this route.
 | GAP-10Ω-KIN | **CLOSED [L1]:** specified tetrad and torsion reconstruct the metric-compatible connection |
 | GAP-10Ω-GR | **CLOSED [L1]:** torsion-free branch is Levi--Civita |
 | GAP-10T-PALATINI | **CLOSED CONDITIONALLY [L1]:** minimal Cartan torsion map is algebraic and invertible |
-| GAP-10T-DYN | **NARROWED:** derive the minimal branch, exact UBT current, normalization, and extra torsion terms |
+| GAP-10T-SPIN | **CLOSED CONDITIONALLY [L1]:** direct fixed-background pure-pair matter current derived |
+| GAP-10T-FLAT-NOGO | **CLOSED AS NO-GO [L1]:** minimal affine torsion-free branch excluded |
+| GAP-10T-PAIRING-NOGO | **CLOSED AS NO-GO [L1]:** no nonzero nondegenerate symmetric Lorentz-invariant pairing cure |
+| GAP-10T-DYN | **NARROWED:** full composite variation and canonical non-minimal or translational/relative torsion completion remain |
 | GAP-10L-CONN | **CLOSED [L1]:** compatible Lorentz transport preserves the Lorentz slice |
 | GAP-10L-SYM | **CLOSED CONDITIONALLY [L1]:** unique equivariant dynamics preserves the fixed set |
 | GAP-10L-DYN | **NARROWED:** verify canonical equivariance and well-posed uniqueness |

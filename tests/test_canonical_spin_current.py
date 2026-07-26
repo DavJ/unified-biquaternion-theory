@@ -55,3 +55,49 @@ def test_flat_affine_no_go_gradients():
     assert res["sharp_gradient_theta0_independent"]
     assert res["ddagger_nonzero_gradients"], "expected gradients {+-2 N0}"
     assert res["sharp_nonzero_gradients"], "expected gradients {+-N0}"
+
+def test_lorentz_invariant_pairing_rigidity():
+    res = audit.check_lorentz_invariant_pairings()
+    assert res["unique_symmetric_form_is_eta"]
+    assert res["sharp_matrix_is_eta"]
+    assert res["sharp_full_lorentz_invariant"]
+    assert res["ddagger_matrix_is_euclidean"]
+    assert res["ddagger_rotation_invariant"]
+    assert res["ddagger_all_boosts_fail"]
+    assert res["ddagger_not_full_lorentz_invariant"]
+
+
+
+def test_authoritative_ledgers_include_pairing_no_go():
+    root = repo_root
+    authoritative = [
+        root / "CLAIMS.yaml",
+        root / "CLAIMS_MATRIX.md",
+        root / "STATUS.md",
+        root / "STATUS_OF_UBT.md",
+        root / "WHAT_IS_PROVED.md",
+        root / "canonical/gr_closure/README.md",
+        root / "papers/UBT_GR_Submission.tex",
+    ]
+    for path in authoritative:
+        text = path.read_text(encoding="utf-8")
+        assert "GAP-10T-PAIRING-NOGO" in text, f"missing pairing no-go in {path}"
+
+
+def test_authoritative_ledgers_do_not_reopen_exact_spin_current():
+    stale = (
+        "derive the minimal branch, exact UBT spin current",
+        "derive the exact spin current",
+        "canonical action and exact spin current",
+    )
+    authoritative = [
+        repo_root / "CLAIMS.yaml",
+        repo_root / "STATUS_OF_UBT.md",
+        repo_root / "canonical/CANONICAL_DEFINITIONS.md",
+        repo_root / "canonical/THEORY/canonical/canonical_action.tex",
+        repo_root / "papers/UBT_GR_Submission.tex",
+    ]
+    for path in authoritative:
+        text = path.read_text(encoding="utf-8")
+        for phrase in stale:
+            assert phrase not in text, f"stale phrase {phrase!r} in {path}"

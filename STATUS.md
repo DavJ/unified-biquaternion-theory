@@ -63,7 +63,9 @@ global self-consistent dynamics.
 | Torsion-free generated-tetrad pure pair | ⛔ Concurrent-vector no-go for Schwarzschild exterior, \(M\ne0\) [L1] |
 | Composite-contortion local curved representer | ✅ Every smooth Lorentzian tetrad locally [L1] |
 | Minimal Palatini torsion equation | ✅ Conditional algebraic closure; Cartan map rank 24/24 [L1] |
-| Torsion selected by fundamental UBT action | 🟠 `GAP-10T-DYN` NARROWED |
+| Direct fixed-background matter current | ✅ Conditional derivation; affine torsion-free branch excluded [L1] |
+| `GAP-10T-PAIRING-NOGO` Lorentz-invariant pairing escape route | ⛔ No-go: only sharp/Minkowski pairing up to scale [L1] |
+| Torsion selected by fundamental UBT action | 🟠 full composite `GAP-10T-DYN` NARROWED |
 | Prescribed curved coefficients | ✅ Exact augmented-holonomy criterion [L1] |
 | Self-consistent curved single-Theta system | ✅ local kinematics; 🟠 action selection/global regularity narrowed |
 | Lorentz/psi symmetry propagation | ✅ Conditional fixed-set/metric-stability theorems [L1] |

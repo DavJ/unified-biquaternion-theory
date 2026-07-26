@@ -174,8 +174,14 @@ Use these statuses unless a new proof explicitly changes them:
   Hilbert--Palatini branch the Cartan equation is algebraic and invertible:
   zero spin current gives zero torsion; specified spin current gives unique
   contorsion.
-- `GAP-10T-DYN: NARROWED` — derive that minimal branch, its exact spin current,
-  normalization, and any additional torsion invariants from canonical UBT.
+- `GAP-10T-SPIN: CLOSED CONDITIONALLY [L1]` — the direct fixed-background
+  matter current is derived for the effective pure-pair Palatini variation.
+- `GAP-10T-FLAT-NOGO` and `GAP-10T-PAIRING-NOGO`: `CLOSED AS NO-GO [L1]` —
+  the minimal affine torsion-free branch fails, and no nonzero nondegenerate
+  symmetric Lorentz-invariant pairing change removes the obstruction.
+- `GAP-10T-DYN: NARROWED` — compute the full composite `Theta` variation and
+  derive a canonical non-minimal torsion cancellation or translational/relative
+  completion, together with the selected branch and normalization.
 - `GAP-10L-CONN: CLOSED [L1]` — metric-compatible Lorentz transport preserves
   `eta_ab` and the Lorentz slice.
 - `GAP-10L-SYM: CLOSED CONDITIONALLY [L1]` — the Lorentz slice is the fixed

@@ -141,7 +141,9 @@ is **not yet unconditional**.  The current open tasks are:
 - **GAP-10Ω-KIN — CLOSED [L1]:** specified $(e,T)$ uniquely determine $\omega$.
 - **GAP-10Ω-GR — CLOSED [L1]:** $T=0$ gives the Levi--Civita spin connection.
 - **GAP-10T-PALATINI — CLOSED CONDITIONALLY [L1]:** the minimal first-order Cartan equation algebraically determines torsion.
-- **GAP-10T-DYN — NARROWED:** derive the minimal branch, exact UBT spin current, normalization, and possible extra torsion invariants.
+- **GAP-10T-SPIN — CLOSED CONDITIONALLY [L1]:** direct fixed-background matter current derived for the effective pure-pair Palatini variation.
+- **GAP-10T-FLAT-NOGO / GAP-10T-PAIRING-NOGO — CLOSED AS NO-GO [L1]:** the minimal affine torsion-free branch fails, and no nonzero nondegenerate symmetric Lorentz-invariant pairing change removes the obstruction.
+- **GAP-10T-DYN — NARROWED:** compute the full composite Theta-only variation and derive a canonical non-minimal torsion cancellation or translational/relative completion, together with normalization.
 - **GAP-10L-CONN — CLOSED [L1]:** metric-compatible Lorentz transport preserves the Lorentz slice.
 - **GAP-10L-SYM — CLOSED CONDITIONALLY [L1]:** unique $\mathcal J$-equivariant dynamics preserves the Lorentz fixed set.
 - **GAP-10L-DYN — NARROWED:** verify canonical equivariance and well-posed uniqueness.

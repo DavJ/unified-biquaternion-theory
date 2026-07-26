@@ -11,7 +11,7 @@
 \newcommand{\B}{\mathbb B}
 \newcommand{\dd}{\ddagger}
 \title{Canonical UBT Action Audit for GAP-10T-DYN and GAP-10D:\\
-Dependency Classification, Exact Spin Current, and a Flat Affine No-Go}
+Fixed-Background Spin Current, Lorentz Pairing Rigidity, and Affine No-Go}
 \author{Ing. David Jaro\v{s}}
 \date{26 July 2026}
 \begin{document}\maketitle
@@ -21,21 +21,25 @@ We audit whether the canonical UBT action, as currently written in the
 repository, derives the Cartan torsion equation and the
 Einstein--$\Lambda$ tetrad equation without importing them.  The answer is
 negative and is now made precise.  We classify every term of the working
-action into derived, assumed, imported, or undefined.  We derive, exactly,
-the tree-level spin current of the canonical kinetic term for the pure-pair
-representative $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^{\dd}$, prove that it
-couples only to the anti-Hermitian part of $\Theta$ whenever
-$D_\mu\Theta$ lies in the Lorentz slice, and prove a pointwise rigidity
-statement: for a nondegenerate tetrad the current vanishes iff the
-anti-Hermitian part of $\Theta$ vanishes.  Consequently the minimal
-Hilbert--Palatini $+$ kinetic branch forces nonzero torsion on the
-complement of at most one point of \emph{every} flat affine representer,
-so the flat inertial solution of GAP-10I-SR is not a torsion-free solution
-of the minimal branch.  This is an exact flat-space no-go that corroborates,
-from an independent direction, the curved Gaussian-patch scaling obstruction.
-GAP-10T-DYN and GAP-10D remain NARROWED with the remaining lemmas named
-explicitly.  All algebraic statements are verified by
-\texttt{tools/verify\_canonical\_spin\_current.py}.
+action into derived, assumed, imported, or undefined.  In the effective
+Palatini variation, with tetrad, metric, volume form and $\Theta$ held fixed
+while the independent Lorentz connection varies, we derive exactly the
+tree-level matter spin current of the kinetic term for the pure-pair
+representative $A_\mu=\Omega_\mu$, $B_\mu=-\Omega_\mu^{\dd}$.  We prove that
+it couples only to the anti-Hermitian part of $\Theta$ whenever
+$D_\mu\Theta$ lies in the Lorentz slice, and prove pointwise rigidity for a
+nondegenerate standard tetrad.  Consequently the fixed-background minimal
+Hilbert--Palatini $+$ kinetic branch forces nonzero torsion on the complement
+of at most one point of every flat affine representer.  We further classify
+all real symmetric Lorentz-invariant bilinear forms on the Lorentz slice:
+they are scalar multiples of the Minkowski form realized by the $\sharp$
+pairing.  The Hilbert--Schmidt $\ddagger$ pairing is Euclidean on the slice
+and fails boost invariance.  Thus no nonzero nondegenerate Lorentz-invariant
+pairing choice removes the affine obstruction.  The full composite
+$\Theta$-only variation, in which $e$, $g$ and the connection are functions
+of $D\Theta$, is not computed here.  GAP-10T-DYN and GAP-10D remain NARROWED
+with the remaining lemmas named explicitly.  All algebraic statements are
+verified by \texttt{tools/verify\_canonical\_spin\_current.py}.
 \end{abstract}
 
 \section{Canonical field content}
@@ -66,10 +70,13 @@ is
 \end{equation}
 with $S_{\rm HP}$ the Hilbert--Palatini/Einstein--Cartan first-order term
 with cosmological constant.  Two pairings occur in the corpus and both are
-audited throughout: the $\dd$ Hilbert--Schmidt pairing
+audited algebraically: the $\dd$ Hilbert--Schmidt pairing
 $\langle X,Y\rangle_{\dd}=\operatorname{Re}\operatorname{tr}(X^{\dd}Y)$
 and the $\sharp$ scalar pairing
 $\langle X,Y\rangle_{\sharp}=\operatorname{Re}\operatorname{Sc}(X^\sharp Y)$.
+Only the latter is invariant under the full Lorentz action on $W_L$; the
+former is retained as a corpus comparison and is invariant only under the
+rotation subgroup on that slice (Theorem~\ref{thm:pairing}).
 
 \subsection*{Dependency classification (audit item 2)}
 \begin{center}
@@ -81,7 +88,7 @@ $\Theta$, $\B$, $\dd$, $\sharp$, $W_L$ & (a) derived/definitional & core algebra
 $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ & (a) derived & covariant-tetrad chain \\
 $g_{\mu\nu}$ from central Jordan identity & (a) derived & rank theorem [L1] \\
 $\Omega_\mu$ pure-pair form \eqref{eq:purepair} & (a) derived & GAP-10I-PAIR-KIN [L1] \\
-$S_\Theta$ kinetic form and pairing choice & (b) low-energy assumption & form assumed; pairing not selected canonically \\
+$S_\Theta$ kinetic form and normalization & (b) low-energy assumption & form assumed; Lorentz covariance selects $\sharp$ on $W_L$ up to scale, but sign/normalization are not fixed \\
 Spin current $\tau^{\mu}{}_{ab}$ & (a) \textbf{derived here} & Theorem~\ref{thm:spincurrent} \\
 $S_{\rm HP}$, $\Lambda$ term & (c) standard import & stated as effective branch \\
 $\kappa$, sign and value & (d) undefined from UBT & \S\,Coefficient matching \\
@@ -93,18 +100,26 @@ Potential $V[\Theta]$ & (b) assumption & unconstrained by this audit \\
 
 \section{Independent versus composite variations}
 Two inequivalent schemes exist and must not be conflated.
-\emph{Independent (Palatini) scheme:} $e$ and $\omega$ vary independently;
+\emph{Independent (Palatini) scheme:} $e$ and $\omega$ vary independently.
+For the connection variation performed below, $e$, $g$, $\sqrt{-g}$,
+$\Theta$ and the index-raising operation are held fixed.  In that variation
 $S_\Theta$ depends on $\omega$ only algebraically --- the kinetic density is a
 polynomial of total degree two in the components of $\Omega_\mu$ with no
 derivatives of $\Omega_\mu$ [C2].  Hence the $\omega$-variation of
-$S_\Theta$ is an algebraic current and \emph{no curvature invariant arises
-from $S_\Theta$ at tree level}; every curvature term in the field equations
-originates in the imported $S_{\rm HP}$.
-\emph{Composite scheme:} substituting $\omega=\mathring\omega(e)+K$ before
-variation makes $S_\Theta$ depend on $\partial e$; the induced quadratic form
-in $\partial e$ is $\Theta$-dependent and is \emph{not} shown to reproduce
-the Einstein--Hilbert contraction.  Deciding this is part of the named
-remaining lemma below, not a result of this audit.
+$S_\Theta$ is an algebraic matter current and \emph{no curvature invariant
+arises from this fixed-background kinetic term at tree level}; every
+curvature term in the effective field equations originates in the imported
+$S_{\rm HP}$.
+
+\emph{Composite scheme:} if the defining relation
+$e_\mu{}^a\sim D_\mu\Theta$ and $\omega=\mathring\omega(e)+K$ is imposed before
+variation, then $g$, $\sqrt{-g}$, index raising and the composite connection
+all vary with $\Theta$.  The current formula below is then only the direct
+$\delta_\omega D\Theta$ contribution, not the full Euler--Lagrange variation.
+The induced quadratic form in $\partial e$ is $\Theta$-dependent and is
+\emph{not} shown to reproduce the Einstein--Hilbert contraction.  Deciding
+this full composite variation is part of the named remaining lemma below,
+not a result of this audit.
 
 \section{Torsion equation}
 In the independent scheme, $\delta S/\delta\omega$ yields the Cartan equation
@@ -112,10 +127,11 @@ $\epsilon_{abcd}T^a\wedge e^b=\kappa\,\tau_{cd}$ with the $24\times24$ torsion
 map pointwise invertible for a nondegenerate tetrad (GAP-10T-PALATINI [L1]).
 The new content is the source itself.
 
-\begin{theorem}[Exact tree-level spin current]\label{thm:spincurrent}
-For the pure-pair representative \eqref{eq:purepair} and either pairing, the
-variation $\Omega_\mu\to\Omega_\mu+\varepsilon M$, $M\in\mathfrak{sl}(2,\mathbb C)$,
-gives
+\begin{theorem}[Exact fixed-background tree-level spin current]\label{thm:spincurrent}
+For the pure-pair representative \eqref{eq:purepair}, holding $e$, $g$,
+$\sqrt{-g}$ and $\Theta$ fixed, the variation
+$\Omega_\mu\to\Omega_\mu+\varepsilon M$,
+$M\in\mathfrak{sl}(2,\mathbb C)$, gives for either audited pairing
 \begin{equation}
   \tau^{\mu}(M)\;=\;\big\langle\,M\Theta+\Theta M^{\dd},\;D^\mu\Theta\,\big\rangle .
   \label{eq:tau}
@@ -149,6 +165,25 @@ flat inertial, torsion-free solution is \emph{not} a solution of the
 minimal branch.
 \end{corollary}
 
+\begin{theorem}[Lorentz-invariant pairing rigidity]\label{thm:pairing}
+Let $B$ be a real symmetric bilinear form on $W_L$ and require infinitesimal
+invariance under the full $\mathfrak{sl}(2,\mathbb C)$ action
+$\delta_M X=MX+XM^{\dd}$.  In the basis
+$(i\mathbf1,-i\sigma_1,-i\sigma_2,-i\sigma_3)$, the equations
+$J_M^T B+B J_M=0$ for the six Lorentz generators have the one-dimensional
+solution space
+\[
+  B=c\,\operatorname{diag}(-1,1,1,1).
+\]
+The $\sharp$ scalar pairing realizes the representative with $c=1$.  The
+$\ddagger$ Hilbert--Schmidt pairing restricts instead to $2\mathbf1_4$; it is
+rotation invariant but fails all three boost-invariance checks [C6].
+Consequently every nonzero nondegenerate symmetric Lorentz-invariant pairing
+is proportional to the $\sharp$ pairing and inherits Corollary~\ref{cor:nogo}.
+Pairing selection alone cannot annihilate the affine current without becoming
+degenerate/zero or breaking Lorentz invariance.
+\end{theorem}
+
 This is an exact flat-space counterpart of the curved Gaussian-patch scaling
 obstruction ($K\sim1/\rho$ kinematic versus $\tau\sim\rho$ sourced): both
 identify the same structural mismatch of the minimal branch, by independent
@@ -173,7 +208,7 @@ coefficient.  The coefficient therefore remains an explicit open subgap
 \section{No-circularity audit}
 (i) The spin current \eqref{eq:tau} is derived from $S_\Theta$ alone; no
 Einstein or Cartan equation is substituted anywhere in
-Theorems~\ref{thm:spincurrent}--\ref{thm:rigidity}.
+Theorems~\ref{thm:spincurrent}--\ref{thm:pairing}.
 (ii) The Cartan equation is used only \emph{after} the current is derived,
 and only its proved algebraic invertibility [L1] is invoked.
 (iii) No step assumes the conclusion of GAP-10D; the Einstein--$\Lambda$
@@ -186,15 +221,18 @@ the pure-pair representative.
 title=Verdict]
 \textbf{GAP-10T-DYN: NARROWED} (not closed, not closable in the minimal
 branch as written).  Newly derived inside it:
-the exact tree-level spin current (Theorem~\ref{thm:spincurrent},
-conditional [L1] on the stated pairing class and the pure-pair
-representative) and the flat affine no-go
-(Corollary~\ref{cor:nogo}, [L1]).  \textbf{Remaining lemma, named:}
-construct a canonical modification --- a non-minimal torsion term, a
-canonically selected pairing/projection annihilating the affine current, or
-a torsion-free relative bimodule completion --- whose torsion sector admits
-the flat affine representer, and derive the selected branch from
-$S[\Theta]$.
+the exact fixed-background tree-level spin current
+(Theorem~\ref{thm:spincurrent}, conditional [L1] on the effective Palatini
+variation and pure-pair representative), the flat affine no-go
+(Corollary~\ref{cor:nogo}, [L1]), and the Lorentz-invariant pairing no-go
+(Theorem~\ref{thm:pairing}, [L1]).  The pairing escape route is therefore
+closed for every nonzero nondegenerate symmetric Lorentz-invariant slice
+pairing.  \textbf{Remaining lemma, named:} compute the full composite
+$\Theta$-only variation and construct from $S[\Theta]$ a canonical torsion
+sector that admits the flat affine representer, either through a derived
+non-minimal torsion invariant/cancellation or through a translational or
+relative-bimodule completion that introduces no independent propagating
+fields.
 
 \medskip
 \textbf{GAP-10D: NARROWED.}  The Einstein--$\Lambda$ endpoint remains

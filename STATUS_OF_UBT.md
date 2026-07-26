@@ -72,6 +72,16 @@ The tensor $K(T)$ is the contorsion determined by the specified torsion.
 - **GAP-10T-PALATINI — CLOSED CONDITIONALLY [L1]:** in the minimal
   Hilbert--Palatini branch the Cartan torsion map has rank 24/24.  Zero spin
   current gives zero torsion; specified spin current gives unique contorsion.
+- **GAP-10T-SPIN — CLOSED CONDITIONALLY [L1]:** the direct tree-level matter
+  spin current is derived for the pure-pair representative in the effective
+  Palatini variation with tetrad, metric, volume form and $\Theta$ fixed.
+- **GAP-10T-FLAT-NOGO — CLOSED AS NO-GO [L1]:** that minimal effective branch
+  forces nonzero torsion away from at most one point of every flat affine
+  representer and therefore excludes the flat inertial torsion-free solution.
+- **GAP-10T-PAIRING-NOGO — CLOSED AS NO-GO [L1]:** the $\sharp$/Minkowski
+  pairing is unique up to scale among real symmetric Lorentz-invariant slice
+  pairings; the $\ddagger$ Hilbert--Schmidt form fails boost invariance, so
+  pairing selection alone cannot remove the affine obstruction.
 - **GAP-10L-SYM — CLOSED CONDITIONALLY [L1]:** the Lorentz slice is the fixed
   set of \(\mathcal JX=-\overline{X^\sharp}\) and is preserved by every unique
   equivariant evolution with fixed data and sources.
@@ -87,8 +97,11 @@ The tensor $K(T)$ is the contorsion determined by the specified torsion.
 
 ## Remaining narrowed/open GR bridge
 
-- **GAP-10T-DYN — NARROWED:** derive the minimal branch, exact UBT spin
-  current, normalization, and possible additional torsion invariants.
+- **GAP-10T-DYN — NARROWED:** compute the full composite $\Theta$-only
+  variation and derive a torsion sector that admits the affine flat
+  representer through a canonical non-minimal cancellation or a
+  translational/relative-bimodule completion with no independent propagating
+  fields; derive the selected branch and normalization.
 - **GAP-10I-CURVED — LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART
   NARROWED:** an explicit local right inverse now exists for arbitrary smooth
   tetrads using composite contortion. Canonical action-level selection,
@@ -606,7 +619,10 @@ sequencing are maintained in `ROADMAP.md` under
 | Gap | Status |
 |---|---|
 | GAP-10T-PALATINI — minimal algebraic torsion equation | CLOSED CONDITIONALLY [L1] |
-| GAP-10T-DYN — canonical action and exact spin current | NARROWED |
+| GAP-10T-SPIN — direct fixed-background matter current | CLOSED CONDITIONALLY [L1] |
+| GAP-10T-FLAT-NOGO — minimal affine torsion-free branch | CLOSED AS NO-GO [L1] |
+| GAP-10T-PAIRING-NOGO — Lorentz-invariant pairing escape route | CLOSED AS NO-GO [L1] |
+| GAP-10T-DYN — full composite variation and canonical torsion completion | NARROWED |
 | GAP-10I-PAIR-KIN — no-new-field Lorentz reduction | CLOSED [L1] |
 | GAP-10I-PAIR-GR — torsion-free GR under the pure Lorentz pair | CLOSED AS TORSION-FREE NO-GO [L1] |
 | GAP-10I-TORSION-LOCAL — local representer with composite contortion | CLOSED LOCALLY [L1] |

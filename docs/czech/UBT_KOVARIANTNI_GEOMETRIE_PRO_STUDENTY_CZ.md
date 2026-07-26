@@ -622,8 +622,14 @@ náhrada za prostorovou nebo časovou derivaci.
 
 ### Zúžené, ale ne úplně uzavřené
 
-1. `GAP-10T-DYN`: odvodit minimální větev, přesný spinový proud, normalizaci a
-   případné další torzní invarianty z fundamentální UBT.
+1. `GAP-10T-SPIN` je podmíněně uzavřen pro přímou variaci efektivní
+   Palatiniho větve při pevném tetrádu, metrice, míře a poli $\Theta$.
+   `GAP-10T-FLAT-NOGO` a `GAP-10T-PAIRING-NOGO` jsou uzavřené jako no-go:
+   minimální afinní beztorzní větev nefunguje a žádná nenulová nedegenerovaná
+   symetrická Lorentzovsky invariantní bilineární forma tento problém
+   neodstraní. `GAP-10T-DYN` zůstává zúžen na úplnou kompozitní variaci
+   $\Theta$ a odvození ne-minimálního torzního rušení nebo translační/relativní
+   bimodulové kompletace bez nových propagujících polí.
 2. `GAP-10I-CURVED`: lokální kinematika je uzavřena. Zbývá z kanonické
    akce vybrat a fyzikálně omezit složenou torzní větev, případně odvodit
    pomocnou beztorzní relativní větev, a dokázat regularitu a globální

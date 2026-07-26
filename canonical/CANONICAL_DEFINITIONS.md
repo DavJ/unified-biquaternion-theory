@@ -237,9 +237,13 @@ This closes `GAP-10Ω-KIN`.  In the torsion-free classical GR branch,
 Hilbert--Palatini branch, variation of the independent Lorentz connection gives
 an algebraic Cartan equation whose 24-component torsion map is invertible:
 zero spin current gives zero torsion and specified spin current gives unique
-contorsion.  This closes `GAP-10T-PALATINI` conditionally and narrows
-`GAP-10T-DYN` to deriving that branch, the exact UBT spin current,
-normalization, and any additional torsion terms from the canonical action.
+contorsion.  This closes `GAP-10T-PALATINI` conditionally.  The direct
+fixed-background matter spin current of the pure-pair kinetic term is also
+derived conditionally, while the affine flat branch and every nonzero
+nondegenerate symmetric Lorentz-invariant pairing escape route are closed as
+no-go results.  `GAP-10T-DYN` is narrowed to the full composite Theta-only
+variation and a canonically derived non-minimal torsion cancellation or
+translational/relative completion, together with normalization.
 
 Every metric-compatible Lorentz connection preserves `η_ab` and the Lorentz
 slice, closing `GAP-10L-CONN`.  The slice is also the fixed set of the intrinsic
