@@ -1,3 +1,22 @@
+## [2026-07-26] - Layer2 archive-detox and test-visibility repair
+
+### Corrected
+
+- Replaced the two active Layer2 CLI shims that executed implementations from
+  `ARCHIVE/` with self-contained root-level implementations.
+- Restored the active configuration-space, sweep, report, and metric helpers
+  needed by those CLIs without changing canonical UBT claims.
+- Rewired the fine-structure derivation helper to the active
+  `experiments/alpha_core_repro` package instead of the removed
+  `ubt_with_chronofactor` namespace.
+- Removed the unconditional pytest hook that silently skipped every test whose
+  node id contained `layer2` or `predictor`; optional failures must now be
+  explicit.
+- Replaced the hard-coded GitHub Actions working directory in the Layer2 CLI
+  tests with repository-relative discovery.
+- Marked the Layer2 `ubt` observable mapping as unimplemented rather than
+  silently returning the placeholder mapping.
+
 ## [2026-07-26] - GR endgame: auxiliary closure and induced-Einstein audit
 
 ### Added

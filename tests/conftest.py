@@ -50,12 +50,3 @@ _add(_repo_root / "core")
 
 # research_tracks/legacy_theory_variants/ → enables `import ubt`, `import ubt_core`
 _add(_repo_root / "research_tracks" / "legacy_theory_variants")
-
-
-def pytest_collection_modifyitems(items, config):
-    """Skip tests with missing optional dependencies."""
-    skip_missing = pytest.mark.skip(reason="optional dependency missing")
-    for item in items:
-        nodeid = item.nodeid.lower()
-        if "layer2" in nodeid or "predictor" in nodeid:
-            item.add_marker(skip_missing)

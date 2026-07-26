@@ -15,6 +15,8 @@ import tempfile
 import shutil
 from pathlib import Path
 
+repo_root = Path(__file__).resolve().parents[1]
+
 
 def test_cli_outputs_exist():
     """Test that CLI tool generates all required output files."""
@@ -37,7 +39,7 @@ def test_cli_outputs_exist():
         # Run from repo root
         result = subprocess.run(
             cmd,
-            cwd='/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory',
+            cwd=repo_root,
             capture_output=True,
             text=True,
             timeout=60
@@ -104,7 +106,7 @@ def test_cli_robustness_outputs():
         # Run from repo root
         result = subprocess.run(
             cmd,
-            cwd='/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory',
+            cwd=repo_root,
             capture_output=True,
             text=True,
             timeout=120
@@ -159,7 +161,7 @@ def test_cli_placeholder_warning():
         # Run from repo root
         result = subprocess.run(
             cmd,
-            cwd='/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory',
+            cwd=repo_root,
             capture_output=True,
             text=True,
             timeout=60

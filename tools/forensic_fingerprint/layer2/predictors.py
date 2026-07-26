@@ -39,8 +39,23 @@ def predict_constants(
     mode = mapping.lower()
     if mode not in {"placeholder", "ubt"}:
         raise ValueError(f"Unknown mapping: {mapping}")
+    if mode == "ubt":
+        raise RuntimeError(
+            "The Layer2-to-observables UBT adapter is not implemented in the active tree; "
+            "use mapping='placeholder' only for framework tests."
+        )
 
     preds = _base_predictions(cfg)
     if targets is None:
         return preds
     return {k: v for k, v in preds.items() if k in set(targets)}
+
+
+def get_experimental_values() -> dict[str, float]:
+    """Reference values used only to score the prototype sweep."""
+    return {"alpha_inv": 137.035999177, "electron_mass": 0.51099895069}
+
+
+def get_default_tolerances() -> dict[str, float]:
+    """Prototype hit tolerances; they are not UBT prediction uncertainties."""
+    return {"alpha_inv": 0.1, "electron_mass": 0.01}

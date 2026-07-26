@@ -1,0 +1,12 @@
+CHANGELOG.md
+PATCH_NOTES_LAYER2_ARCHIVE_DETOX_2026-07-26.md
+experiments/constants_derivation/derive_fine_structure.py
+tests/conftest.py
+tests/test_layer2_cli_outputs_exist.py
+tools/forensic_fingerprint/layer2/config_space.py
+tools/forensic_fingerprint/layer2/layer2_sweep.py
+tools/forensic_fingerprint/layer2/metrics.py
+tools/forensic_fingerprint/layer2/predictors.py
+tools/forensic_fingerprint/layer2/report.py
+tools/forensic_fingerprint/tools/layer2_fingerprint_sweep_v2.py
+tools/forensic_fingerprint/tools/layer2_rigidity_experiment.py

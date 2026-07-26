@@ -218,8 +218,10 @@ def compute_two_loop_correction(p: int) -> float:
     """
     # Import from existing implementation if available
     try:
-        sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-        from ubt_with_chronofactor.alpha_core_repro.alpha_two_loop import (  # noqa: PLC0415
+        experiments_root = Path(__file__).resolve().parents[1]
+        if str(experiments_root) not in sys.path:
+            sys.path.insert(0, str(experiments_root))
+        from alpha_core_repro.alpha_two_loop import (  # noqa: PLC0415
             compute_two_loop_delta,
             TwoLoopConfig,
         )
@@ -229,7 +231,7 @@ def compute_two_loop_correction(p: int) -> float:
         # Module not installed in this environment; fall through to analytic approx.
         import warnings
         warnings.warn(
-            f"ubt_with_chronofactor.alpha_core_repro not importable ({exc}); "
+            f"active alpha_core_repro not importable ({exc}); "
             "using analytic two-loop approximation.",
             stacklevel=2,
         )
