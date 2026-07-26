@@ -4,52 +4,52 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'ubt_with_chronofactor/tools/planck_validation/**'
+      - 'tools/planck_validation/**'
+      - 'experiments/planck.py'
       - 'tests/test_planck_validation_mapping.py'
+      - 'tests/test_planck_model_validation.py'
+      - 'tests/test_planck_units_and_strict_mode.py'
       - '.github/workflows/planck_validation.yml'
   pull_request:
     branches: [ main, master ]
     paths:
-      - 'ubt_with_chronofactor/tools/planck_validation/**'
+      - 'tools/planck_validation/**'
+      - 'experiments/planck.py'
       - 'tests/test_planck_validation_mapping.py'
+      - 'tests/test_planck_model_validation.py'
+      - 'tests/test_planck_units_and_strict_mode.py'
       - '.github/workflows/planck_validation.yml'
 
 jobs:
   test-planck-validation:
     name: Test Planck Validation Mappings
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pytest numpy scipy
-      
-      - name: Run Planck validation tests
+
+      - name: Run active Planck validation tests
         run: |
-          pytest tests/test_planck_validation_mapping.py -v
-      
+          pytest -q \
+            tests/test_planck_validation_mapping.py \
+            tests/test_planck_model_validation.py \
+            tests/test_planck_units_and_strict_mode.py
+
       - name: Test summary
         if: always()
         run: |
           echo "================================================================"
           echo "UBT Planck Validation Tests Complete"
           echo "================================================================"
-          echo ""
-          echo "These tests enforce the pre-registered protocol:"
-          echo "  1. Constants LOCKED (RS_N=255, RS_K=200, OFDM_CHANNELS=16)"
-          echo "  2. Mappings produce exact pre-registered predictions"
-          echo "  3. TBD mappings raise NotImplementedError (no silent fitting)"
-          echo "  4. All predictions within 1σ of Planck 2018 observations"
-          echo ""
-          echo "Protocol version: 1.0"
-          echo "See: REPO_GOVERNANCE.md for 'No-Fit / No Post-Hoc' policy"
-          echo "================================================================"
+          echo "The suite enforces locked constants, explicit mappings, and strict failure for TBD mappings."

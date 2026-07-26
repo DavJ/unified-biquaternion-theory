@@ -1,5 +1,12 @@
 ## [2026-07-26] - Layer2 archive-detox and test-visibility repair
 
+## 2026-07-26 — Active workflow path repair
+
+- Repaired alpha, forensic-fingerprint, and Planck GitHub Actions paths after archive detox.
+- Added a regression test forbidding active CI references to removed `ubt_with_chronofactor`, `ubt_no_chronofactor`, and lowercase legacy archive trees.
+- No physics or claim-status changes.
+
+
 ### Corrected
 
 - Replaced the two active Layer2 CLI shims that executed implementations from

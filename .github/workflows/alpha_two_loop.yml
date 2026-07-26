@@ -1,8 +1,10 @@
-name: Alpha Two-Loop CT Checks
+name: Alpha Two-Loop Active Checks
+
 on:
   push:
     branches: [ main, master ]
   pull_request:
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -11,19 +13,23 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install deps
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy sympy pytest
-      - name: Run CT tests
+          pip install numpy scipy sympy pytest
+      - name: Run active alpha reproducibility and provenance tests
         run: |
-          pytest -q archive/consolidation_project/alpha_two_loop/tests
-      - name: Run alpha core repro tests
+          pytest -q \
+            tests/test_alpha_export_runs.py \
+            tests/test_alpha_provenance.py \
+            tests/test_alpha_stability_scan.py \
+            tests/test_me_alpha_no_pdg.py \
+            tests/test_me_alpha_truth.py \
+            tests/test_scheme_independence.py \
+            tests/test_no_circularity.py
+      - name: Run electron-mass tests
         run: |
-          pytest -q ubt_with_chronofactor/alpha_core_repro/tests
-      - name: Run electron mass tests (fit-free)
-        run: |
-          pytest -v tests/test_electron_mass.py
-      - name: Run masses symbolic tests
-        run: |
-          cd archive/consolidation_project/masses && pytest -q tests
+          pytest -q \
+            tests/test_electron_mass.py \
+            tests/test_electron_mass_precision.py \
+            tests/test_electron_sensitivity.py
