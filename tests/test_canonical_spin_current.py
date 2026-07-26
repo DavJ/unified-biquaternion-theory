@@ -101,3 +101,23 @@ def test_authoritative_ledgers_do_not_reopen_exact_spin_current():
         text = path.read_text(encoding="utf-8")
         for phrase in stale:
             assert phrase not in text, f"stale phrase {phrase!r} in {path}"
+
+
+def test_composite_flat_admissibility_volume_terms():
+    res = audit.check_composite_flat_admissibility(fast=True)
+    assert res["volume_terms_first_variation_vanishes"], (
+        "gradient-composite volume terms must be stationary at the affine "
+        "background for all Lambda, kappa, N0"
+    )
+
+
+import pytest  # noqa: E402
+
+
+@pytest.mark.slow
+def test_composite_flat_admissibility_einstein_term():
+    res = audit.check_composite_flat_admissibility(fast=False)
+    assert res["einstein_term_first_variation_vanishes"], (
+        "linearised Einstein-term variation must integrate to zero at the "
+        "constant-tetrad background"
+    )

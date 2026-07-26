@@ -1,0 +1,111 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Status: GAP-10T-COMPOSITE-FLAT closed [L1], scoped to the gradient-composite scheme.
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage[margin=2.5cm]{geometry}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newcommand{\B}{\mathbb B}
+\title{Composite Flat Admissibility:\\
+The Gradient-Composite Scheme Admits the Affine Representer\\
+for All Coefficients}
+\author{Ing. David Jaro\v{s}}
+\date{26 July 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+The effective Palatini variation of the minimal Hilbert--Palatini $+$ kinetic
+branch excludes the flat affine representer (flat affine no-go,
+\texttt{GAP-10T-FLAT-NOGO}).  We prove the complementary positive statement:
+in the \emph{gradient-composite} torsion-free scheme, where the tetrad is the
+slice coordinate map of $\partial_\mu\Theta/\sqrt{\mathcal N_0}$ and only
+$\Theta$ is varied, the affine representer $\Theta_{\rm aff}$ is a stationary
+point of the full action for \emph{all} values of $\Lambda$, $\kappa$, and
+$\mathcal N_0$.  The two variational schemes are therefore dynamically
+inequivalent at the flat point, and the Palatini no-go does not transfer.
+This closes \texttt{GAP-10T-COMPOSITE-FLAT} [L1] and sharpens
+\texttt{GAP-10T-DYN}: the surviving minimal continuation is composite.
+\end{abstract}
+
+\section{Scheme and statement}
+Work on Lorentz-real fields: $\partial_\mu\Theta\in W_L$, tetrad
+$e^a{}_\mu$ defined by the slice coordinates of
+$\partial_\mu\Theta/\sqrt{\mathcal N_0}$, metric by the central Jordan
+identity, spin connection $\mathring\omega(e)$ Levi--Civita (torsion-free
+branch), potential $V\equiv0$.  The action is
+\begin{equation}
+  S[\Theta]
+  =\frac1{4\kappa}\!\int\!\epsilon_{abcd}\,e^a\wedge e^b\wedge
+    R^{cd}(\mathring\omega(e))
+  -\frac{\Lambda}{2\kappa}\!\int\!\sqrt{-g}
+  +\frac12\!\int\!\sqrt{-g}\,g^{\mu\nu}
+    \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\sharp .
+  \label{eq:Scomp}
+\end{equation}
+Only $\Theta$ varies; $e$, $g$, $\sqrt{-g}$, and $\mathring\omega$ vary by the
+chain rule.  This is the well-defined gradient-composite scheme; the
+self-consistent $D$-composite scheme (connection inside the defining jet)
+remains open and is \emph{not} treated here.
+
+\begin{theorem}[Composite flat admissibility]\label{thm:cfa}
+$\Theta_{\rm aff}=\Theta_0+\sqrt{\mathcal N_0}\,\bar E_\mu x^\mu$ is a
+stationary point of \eqref{eq:Scomp} under compactly supported Lorentz-real
+variations, for all $(\Lambda,\kappa,\mathcal N_0)$.
+\end{theorem}
+
+\begin{proof}
+The Lagrangian density of \eqref{eq:Scomp} is a smooth local function of the
+$2$-jet of $\Theta$ in a neighbourhood of the affine jet (the affine tetrad
+is nondegenerate, so $\mathring\omega(e)$ is smooth there), and it contains
+no undifferentiated $\Theta$ ($V\equiv0$; the scheme replaces $D_\mu$ by
+$\partial_\mu$ in the defining jet).  The Euler--Lagrange derivative is
+\[
+  \mathcal E
+  =\frac{\partial L}{\partial\Theta}
+  -\partial_\mu\frac{\partial L}{\partial(\partial_\mu\Theta)}
+  +\partial_\mu\partial_\nu
+   \frac{\partial L}{\partial(\partial_\mu\partial_\nu\Theta)} .
+\]
+At the affine configuration the $2$-jet is constant in $x$, so both momenta
+are constant matrices and their derivatives vanish; the first term vanishes
+because $L$ has no undifferentiated $\Theta$.  Hence $\mathcal E=0$.
+
+Concretely, the three pieces vanish for transparent reasons: the kinetic and
+$\Lambda$ terms are volume-type functionals of the induced metric, and their
+first variation at the constant background is
+$\propto\int\eta^{\mu\nu}\langle\bar E_\mu,\partial_\nu\delta\Theta\rangle_\sharp
+=-\int\langle\partial_\nu\bar E^\nu,\delta\Theta\rangle_\sharp=0$;
+the Einstein term satisfies $R(\mathring\omega(\bar e))=0$ and
+$\delta\!\int\!\epsilon\,e\,e\,R
+ =\int\!\epsilon\,e\,e\,\mathrm d(\delta\mathring\omega)
+ =\int\!\mathrm d(\epsilon\,e\,e\,\delta\mathring\omega)=0$
+since $\mathrm d e=0$ for the constant background tetrad.
+Both integral statements are verified exactly (SymPy, polynomial
+boundary-vanishing variations with linear and quadratic coefficients,
+linearised Levi--Civita connection) in
+\texttt{tools/verify\_canonical\_spin\_current.py}, check C7.
+\end{proof}
+
+\begin{corollary}[Scheme inequivalence at the flat point]
+The effective Palatini scheme excludes every flat affine representer
+(\texttt{GAP-10T-FLAT-NOGO}), while the gradient-composite scheme admits it
+for all coefficients.  The two variational schemes of the same minimal
+action are dynamically inequivalent, and the surviving minimal continuation
+of canonical UBT is the composite one.
+\end{corollary}
+
+\begin{tcolorbox}[colback=orange!6!white,colframe=orange!70!black,title=Scope
+and non-claims]
+Proved for the gradient-composite torsion-free scheme with $V\equiv0$ and
+Lorentz-real variations.  Not proved: the self-consistent $D$-composite
+variation, stationarity on curved backgrounds, uniqueness or stability of
+the flat point, any derivation of $S_{\rm HP}$ or its coefficients.
+\texttt{GAP-10T-DYN} and \texttt{GAP-10D} remain NARROWED.  Note the
+$\Lambda$-independence of flat stationarity: the composite scheme imposes
+only divergence-type conditions on covariantly constant metric-sector
+mismatches, a unimodular-like feature that must be treated explicitly in
+the curved dynamical analysis.
+\end{tcolorbox}
+
+\end{document}

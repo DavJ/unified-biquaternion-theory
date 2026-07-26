@@ -82,6 +82,12 @@ The tensor $K(T)$ is the contorsion determined by the specified torsion.
   pairing is unique up to scale among real symmetric Lorentz-invariant slice
   pairings; the $\ddagger$ Hilbert--Schmidt form fails boost invariance, so
   pairing selection alone cannot remove the affine obstruction.
+- **GAP-10T-COMPOSITE-FLAT — CLOSED [L1]:** in the gradient-composite
+  torsion-free scheme the flat affine representer is a stationary point of
+  the full minimal action for all $\Lambda$, $\kappa$, $\mathcal N_0$;
+  the effective-Palatini flat no-go does not transfer, so the two
+  variational schemes are dynamically inequivalent at the flat point
+  (`canonical/gr_closure/gap_10t_composite_flat_admissibility.tex`).
 - **GAP-10L-SYM — CLOSED CONDITIONALLY [L1]:** the Lorentz slice is the fixed
   set of \(\mathcal JX=-\overline{X^\sharp}\) and is preserved by every unique
   equivariant evolution with fixed data and sources.
@@ -622,6 +628,7 @@ sequencing are maintained in `ROADMAP.md` under
 | GAP-10T-SPIN — direct fixed-background matter current | CLOSED CONDITIONALLY [L1] |
 | GAP-10T-FLAT-NOGO — minimal affine torsion-free branch | CLOSED AS NO-GO [L1] |
 | GAP-10T-PAIRING-NOGO — Lorentz-invariant pairing escape route | CLOSED AS NO-GO [L1] |
+| GAP-10T-COMPOSITE-FLAT — gradient-composite flat admissibility | CLOSED [L1] |
 | GAP-10T-DYN — full composite variation and canonical torsion completion | NARROWED |
 | GAP-10I-PAIR-KIN — no-new-field Lorentz reduction | CLOSED [L1] |
 | GAP-10I-PAIR-GR — torsion-free GR under the pure Lorentz pair | CLOSED AS TORSION-FREE NO-GO [L1] |

@@ -290,6 +290,127 @@ def check_lorentz_invariant_pairings() -> dict[str, bool]:
     }
 
 
+def check_composite_flat_admissibility(fast: bool = False) -> dict[str, bool]:
+    """C7: gradient-composite scheme admits the flat affine representer.
+
+    In the gradient-composite torsion-free scheme (tetrad defined from the
+    slice coordinates of d Theta, V == 0, Lorentz-real variations) the first
+    variation of every action term vanishes identically at the affine
+    background, for all Lambda, kappa, N0:
+
+      * S_kin + Lambda term are volume functionals of the induced metric;
+        their first variation is a total divergence against the constant
+        background jet (verified by exact box integration of a polynomial
+        boundary-vanishing variation);
+      * the Einstein term first variation is eps e e d(delta omega) with
+        constant e, hence exact (verified by exact box integration of the
+        linearised Levi-Civita spin connection unless fast=True).
+
+    Hence the effective-Palatini flat no-go (C5) does not transfer to the
+    gradient-composite scheme: the two variational schemes are dynamically
+    inequivalent at the flat point.  The self-consistent D-composite scheme
+    remains open (GAP-10T-DYN).
+    """
+    x = sp.symbols("x0:4", real=True)
+    eta_m = sp.diag(-1, 1, 1, 1)
+    bump = sp.prod([(1 - x[m] ** 2) ** 2 for m in range(4)])
+    # deterministic polynomial slice-valued variation (linear + quadratic)
+    coeffs = [
+        1 + x[0] - 2 * x[1] + x[2] * x[3],
+        -1 + 2 * x[2] + x[0] * x[1],
+        x[3] - x[0] + x[1] ** 2,
+        2 - x[1] + x[0] * x[2],
+    ]
+    d_theta = sp.expand(bump * msum(coeffs[a] * E[a] for a in range(4)))
+
+    def pair_sharp(a_m, b_m):
+        return sp.re(sp.expand(sp.Rational(1, 2) * sp.trace(sharp(a_m) * b_m)))
+
+    d_vol = sp.S(0)
+    for m in range(4):
+        for n in range(4):
+            dh = pair_sharp(sp.sqrt(N0) * E[m], sp.diff(d_theta, x[n])) + pair_sharp(
+                sp.diff(d_theta, x[m]), sp.sqrt(N0) * E[n]
+            )
+            d_vol += sp.Rational(1, 2) * eta_m[m, n] * dh / N0
+    box = [(x[m], -1, 1) for m in range(4)]
+    vol_ok = sp.simplify(sp.integrate(sp.expand(d_vol), *box)) == 0
+
+    out = {"volume_terms_first_variation_vanishes": vol_ok}
+    if fast:
+        return out
+
+    # linearised Levi-Civita spin connection of the varied tetrad
+    de = [[sp.S(0)] * 4 for _ in range(4)]
+    for mu in range(4):
+        c = slice_coordinates(sp.diff(d_theta, x[mu]))
+        for a in range(4):
+            de[mu][a] = c[a]
+
+    def dif(mu, expr):
+        return sp.diff(expr, x[mu])
+
+    om1 = [[[sp.S(0)] * 4 for _ in range(4)] for _ in range(4)]
+    for mu in range(4):
+        for a in range(4):
+            for b in range(4):
+                t1 = sum(
+                    eta_m[a, nu] * (dif(mu, de[nu][b]) - dif(nu, de[mu][b]))
+                    for nu in range(4)
+                ) / 2
+                t2 = sum(
+                    eta_m[b, nu] * (dif(mu, de[nu][a]) - dif(nu, de[mu][a]))
+                    for nu in range(4)
+                ) / 2
+                t3 = sum(
+                    eta_m[r, a]
+                    * eta_m[s, b]
+                    * (
+                        dif(r, sum(eta_m[s, c] * de[c][mu] for c in range(4)))
+                        - dif(s, sum(eta_m[r, c] * de[c][mu] for c in range(4)))
+                    )
+                    for r in range(4)
+                    for s in range(4)
+                ) / 2
+                om1[mu][a][b] = sp.expand(t1 - t2 - t3)
+
+    def lc4(i, j, k, l):
+        p = [i, j, k, l]
+        if len(set(p)) < 4:
+            return 0
+        sign = 1
+        for ii in range(4):
+            for jj in range(3 - ii):
+                if p[jj] > p[jj + 1]:
+                    p[jj], p[jj + 1] = p[jj + 1], p[jj]
+                    sign = -sign
+        return sign
+
+    d_eh = sp.S(0)
+    for a in range(4):
+        for b in range(4):
+            for c in range(4):
+                for e_idx in range(4):
+                    eabcd = lc4(a, b, c, e_idx)
+                    if eabcd == 0:
+                        continue
+                    mu, nu = a, b  # background tetrad is the identity
+                    for r in range(4):
+                        for s in range(4):
+                            emnrs = lc4(mu, nu, r, s)
+                            if emnrs == 0:
+                                continue
+                            omcd = sum(
+                                eta_m[c, p] * eta_m[e_idx, q] * om1[s][p][q]
+                                for p in range(4)
+                                for q in range(4)
+                            )
+                            d_eh += eabcd * emnrs * dif(r, omcd)
+    eh_ok = sp.simplify(sp.integrate(sp.expand(d_eh), *box)) == 0
+    out["einstein_term_first_variation_vanishes"] = eh_ok
+    return out
+
+
 def main() -> int:
     ok = True
     print("Canonical spin-current and pairing audit verifier")
@@ -301,6 +422,7 @@ def main() -> int:
         ("C4 pointwise rigidity", check_pointwise_rigidity()),
         ("C5 flat affine no-go", check_flat_affine_no_go()),
         ("C6 Lorentz-invariant pairings", check_lorentz_invariant_pairings()),
+        ("C7 composite flat admissibility", check_composite_flat_admissibility()),
     ):
         for key, val in res.items():
             status = "PASS" if val is True else ("FAIL" if val is False else val)

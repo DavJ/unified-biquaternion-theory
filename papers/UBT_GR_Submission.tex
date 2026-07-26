@@ -63,7 +63,15 @@ an explicit metric-compatible composite contortion and a Lorentz-real
 single-$\Theta$ field satisfying
 $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ for an arbitrary smooth tetrad.  Thus
 local curved representability is closed without independent $A_\mu,B_\mu$
-fields.  Canonical action selection, physical torsion constraints, global
+fields.  At the dynamical level we derive the exact fixed-background spin
+current of the paired kinetic term and prove two complementary statements:
+the effective Palatini variation of the minimal first-order branch excludes
+every flat affine representer, for every symmetric Lorentz-invariant slice
+pairing (which is unique up to scale), while the gradient-composite
+$\Theta$-only variation of the same action admits the flat affine
+representer for all coefficients.  The two variational schemes are therefore
+dynamically inequivalent, and the surviving minimal continuation is
+composite.  Canonical action selection, physical torsion constraints, global
 continuation, and Einstein dynamics remain open.
 \end{abstract}
 
@@ -165,7 +173,16 @@ of the Einstein equations.
        excluding the non-flat Schwarzschild vacuum exterior with nonzero mass;
  \item an explicit local torsionful single-$\Theta$ representer for every
        smooth Lorentzian tetrad, with composite metric-compatible contortion
-       and no independent $A_\mu,B_\mu$ fields.
+       and no independent $A_\mu,B_\mu$ fields;
+ \item the exact fixed-background spin current of the paired kinetic term and
+       a flat affine no-go for the effective Palatini variation of the minimal
+       first-order branch;
+ \item uniqueness (up to scale) of the symmetric Lorentz-invariant slice
+       pairing, so pairing selection cannot remove that obstruction;
+ \item composite flat admissibility: the gradient-composite $\Theta$-only
+       variation of the same minimal action admits the flat affine representer
+       for all coefficients, so the two variational schemes are dynamically
+       inequivalent.
 \end{itemize}
 \end{tcolorbox}
 
@@ -739,13 +756,22 @@ the minimal Hilbert--Palatini plus kinetic branch does not admit the flat
 inertial torsion-free solution.  Moreover, the $\sharp$/Minkowski pairing is
 unique up to scale among real symmetric Lorentz-invariant slice pairings; the
 $\ddagger$ Hilbert--Schmidt pairing fails boost invariance.  Hence pairing
-selection alone cannot remove the obstruction.  The full composite
-$\Theta$-only variation, the origin of the Hilbert--Palatini term and its
-normalization, and possible non-minimal torsion cancellation remain open;
+selection alone cannot remove the obstruction.  In contrast, the
+gradient-composite $\Theta$-only variation of the same minimal action, with
+the tetrad defined as the slice coordinate map of
+$\partial_\mu\Theta/\sqrt{\mathcal N_0}$, admits the flat affine representer
+as a stationary point for all values of $\Lambda$, $\kappa$, and
+$\mathcal N_0$: every momentum is constant on the affine jet and the
+Lagrangian contains no undifferentiated $\Theta$.  The two variational
+schemes are therefore dynamically inequivalent at the flat point, and the
+surviving minimal continuation is composite.  The self-consistent
+$D$-composite variation, the origin of the Hilbert--Palatini term and its
+normalization, and the curved dynamics of the composite branch remain open;
 therefore GAP-10T-DYN is narrowed rather than fully closed.  The proofs and
 exact verifiers are in
 \path{canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex},
 \path{canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex},
+\path{canonical/gr_closure/gap_10t_composite_flat_admissibility.tex},
 \path{tools/verify_remaining_gr_subclosures.py}, and
 \path{tools/verify_canonical_spin_current.py}.
 
@@ -860,7 +886,8 @@ GAP-10$\Omega$-GR & \textbf{CLOSED}: the torsion-free branch is the unique Levi-
 GAP-10T-PALATINI & \textbf{CLOSED CONDITIONALLY}: minimal first-order variation gives an invertible algebraic Cartan torsion equation.\\
 GAP-10T-SPIN / FLAT-NOGO & \textbf{CLOSED CONDITIONALLY / CLOSED AS NO-GO}: direct fixed-background current derived; minimal affine torsion-free branch excluded.\\
 GAP-10T-PAIRING-NOGO & \textbf{CLOSED AS NO-GO}: the $\sharp$/Minkowski form is the unique nonzero symmetric Lorentz-invariant slice pairing up to scale, so pairing selection cannot cure the affine obstruction.\\
-GAP-10T-DYN & \textbf{NARROWED}: compute the full composite $\Theta$ variation and derive a non-minimal torsion cancellation or translational/relative completion; derive normalization and the selected branch.\\
+GAP-10T-COMPOSITE-FLAT & \textbf{CLOSED}: the gradient-composite $\Theta$-only variation admits the flat affine representer for all coefficients; the two variational schemes are dynamically inequivalent at the flat point.\\
+GAP-10T-DYN & \textbf{NARROWED}: compute the self-consistent composite variation and curved dynamics of the surviving composite branch; derive torsion selection, nonpropagation, and coefficient origin.\\
 GAP-10L-CONN & \textbf{CLOSED}: metric-compatible Lorentz transport preserves $\eta$ and the Lorentz slice.\\
 GAP-10L-SYM & \textbf{CLOSED CONDITIONALLY}: unique $\mathcal J$-equivariant evolution preserves the Lorentz fixed set.\\
 GAP-10L-DYN & \textbf{NARROWED}: verify equivariance and well-posed uniqueness for the complete UBT dynamics.\\
@@ -904,11 +931,14 @@ Lorentz-compatible pair is reduced to the existing spin connection.  Its
 $K=0$ branch is ruled out for the non-flat Schwarzschild vacuum exterior by
 the concurrent-vector theorem, but an explicit composite contortion provides
 a local single-$\Theta$ right inverse for every smooth tetrad.  The decisive
-remaining work is therefore dynamical rather than local kinematic: derive from
-the single UBT action whether this composite torsionful branch or an optional
-torsion-free relative bimodule branch is selected, establish algebraic
-nonpropagation and physical torsion bounds, derive the minimal first-order/
-low-energy assumptions and spin current, prove global continuation, establish
+remaining work is therefore dynamical rather than local kinematic: the
+fixed-background spin current is now derived and the effective Palatini
+scheme of the minimal branch is excluded at the flat point for every
+admissible pairing, while the gradient-composite scheme admits the flat
+representer; the decisive tasks are to compute the self-consistent composite
+variation and curved dynamics of that surviving branch, establish algebraic
+nonpropagation and physical torsion bounds, derive the low-energy
+coefficients, prove global continuation, establish
 well-posed symmetry propagation, and generate observed geometries on shell.
 
 \begin{thebibliography}{9}

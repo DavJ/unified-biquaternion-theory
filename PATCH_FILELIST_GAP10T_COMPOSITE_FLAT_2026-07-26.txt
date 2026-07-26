@@ -1,0 +1,16 @@
+Differential overlay file list
+Base commit marker: 205395cc364df6358afa7a542ee0bbb3bb53beca
+
+PATCH_FILELIST_GAP10T_COMPOSITE_FLAT_2026-07-26.txt
+PATCH_NOTES_GAP10T_COMPOSITE_FLAT_2026-07-26.md
+CLAIMS.yaml
+CLAIMS_MATRIX.md
+STATUS.md
+STATUS_OF_UBT.md
+WHAT_IS_PROVED.md
+canonical/gr_closure/gap_10t_composite_flat_admissibility.tex
+docs/pdfs/UBT_GR_Submission.pdf
+docs/pdfs/gap_10t_composite_flat_admissibility.pdf
+papers/UBT_GR_Submission.tex
+tests/test_canonical_spin_current.py
+tools/verify_canonical_spin_current.py
