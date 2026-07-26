@@ -1,0 +1,13 @@
+Differential overlay file list
+Base: overlay_gap10t_dcomposite_linearized_2026-07-26 on commit 940f7c3
+
+PATCH_FILELIST_GAP10T_DCOMP_AUDIT_CORRECTIONS_2026-07-26.txt
+PATCH_NOTES_GAP10T_DCOMP_AUDIT_CORRECTIONS_2026-07-26.md
+CLAIMS.yaml
+STATUS.md
+STATUS_OF_UBT.md
+WHAT_IS_PROVED.md
+canonical/gr_closure/gap_10t_dcomposite_linearized.tex
+docs/pdfs/gap_10t_dcomposite_linearized.pdf
+tests/test_dcomposite_linearized.py
+tools/verify_dcomposite_linearized.py

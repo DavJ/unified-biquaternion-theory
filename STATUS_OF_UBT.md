@@ -630,9 +630,9 @@ sequencing are maintained in `ROADMAP.md` under
 | GAP-10T-SPIN — direct fixed-background matter current | CLOSED CONDITIONALLY [L1] |
 | GAP-10T-FLAT-NOGO — minimal affine torsion-free branch | CLOSED AS NO-GO [L1] |
 | GAP-10T-PAIRING-NOGO — Lorentz-invariant pairing escape route | CLOSED AS NO-GO [L1] |
-| GAP-10T-DCOMP-SECTOR — Lorentz-real D-composite sector constraint | CLOSED [L0] |
+| GAP-10T-DCOMP-WL-SECTOR — Lorentz-real W_L subsector | CLOSED CONDITIONALLY [L0] |
 | GAP-10T-DCOMP-LIN-OFFRES — linearized off-resonance flatness | CLOSED CONDITIONALLY [L1] |
-| GAP-10T-DCOMP-RES — six-dimensional resonant sector | OPEN |
+| GAP-10T-DCOMP-RES — six-dimensional exponential symbol sector | OPEN |
 | GAP-10T-GRADIENT-FLATNESS — exact-gradient composite branch | CLOSED AS NO-GO [L1] |
 | GAP-10T-DYN — canonical self-consistent D-composite variation and torsion completion | NARROWED |
 | GAP-10I-PAIR-KIN — no-new-field Lorentz reduction | CLOSED [L1] |

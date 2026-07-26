@@ -6,8 +6,12 @@ Linearized self-consistent D-composite audit verifier (GAP-10T-DYN).
 
 Exact checks for canonical/gr_closure/gap_10t_dcomposite_linearized.tex:
 
-  L0  Sector lemma: the Lorentz-real D-composite sector requires
-      Theta in W_L (Hermitian part must vanish; solved exactly).
+  L0  W_L subsector lemma: imposing Theta in W_L defines a consistent
+      Lorentz-real subsector (Hermitian part forced to zero when W_L
+      preservation is demanded for EVERY independently chosen connection).
+      Necessity for self-consistent solutions is NOT proved: the constant
+      Hermitian shift Theta_aff + H at a constant tetrad (Omega[E] = 0)
+      is an explicit counterexample, verified in check L0b.
   D1  Corrected linearized Levi-Civita spin connection annihilates every
       exact-gradient tetrad perturbation (regression test for the
       delta-e index transposition bug caught on 2026-07-26).
@@ -22,12 +26,17 @@ Exact checks for canonical/gr_closure/gap_10t_dcomposite_linearized.tex:
       (= dim so(1,3)); every resonant mode is anholonomic and their curls
       are linearly independent (rank 6).
 
-Scope (do not overclaim): frozen-coefficient (microlocal) analysis of the
-linearization at the affine point.  Not a solution theory for the
-variable-coefficient system; the assembly of resonant modes across the
-moving resonance hyperplane (x0 + theta0) . s = 1, the quadratic action on
-the resonant sector, on-shell torsion, and the chain-rule spin current
-remain open inside GAP-10T-DYN.
+Scope (do not overclaim): frozen-coefficient analysis of the linearization
+at the affine point, in the W_L subsector, using the real-exponential
+(Laplace-type) symbol d_mu -> s_mu with REAL s.  For real Fourier modes
+d_mu -> i k_mu the invariant is q = i lambda.k, so q = 1 has no real-k
+solution: the six-dimensional sector consists of exponential/evanescent
+symbol modes, and its relation to real-frequency propagation is open.
+What is proved is modewise invertibility of the frozen full symbol for
+q != 1, not local or global uniqueness for the variable-coefficient PDE.
+The assembly across the moving surface (x0 + theta0) . s = 1, the
+quadratic action on the sector, gauge counting, ghost analysis, on-shell
+torsion, and the chain-rule spin current remain open inside GAP-10T-DYN.
 """
 from __future__ import annotations
 
@@ -63,6 +72,8 @@ def coords(x):
 
 
 def check_sector_lemma():
+    """L0: W_L closure under EVERY connection forces H = 0 (subsector
+    consistency).  L0b: necessity fails - explicit counterexample."""
     h = sp.symbols("h0:4", real=True)
     herm = sp.Matrix([[h[0], h[1] + sp.I * h[2]], [h[1] - sp.I * h[2], h[3]]])
     eqs = []
@@ -71,7 +82,19 @@ def check_sector_lemma():
         sym = sp.expand(r + dag(r))
         eqs += [sym[i, j] for i in range(2) for j in range(2)]
     sol = sp.solve(eqs, h, dict=True)
-    return {"hermitian_part_forced_zero": sol == [{v: 0 for v in h}]}
+    # L0b: constant Hermitian shift at constant tetrad keeps D Theta in W_L
+    x = sp.symbols("x0:4", real=True)
+    n0 = sp.symbols("N0", positive=True)
+    theta = herm + sp.sqrt(n0) * sum((E[a] * x[a] for a in range(4)), sp.zeros(2, 2))
+    d_in_wl = all(
+        sp.simplify(sp.diff(theta, x[mu]).conjugate().T + sp.diff(theta, x[mu]))
+        == sp.zeros(2, 2)
+        for mu in range(4)
+    )
+    return {
+        "hermitian_part_forced_zero_under_all_connections": sol == [{v: 0 for v in h}],
+        "necessity_counterexample_D_in_WL_with_Theta_not_in_WL": d_in_wl,
+    }
 
 
 def _rep_generators():
@@ -270,6 +293,80 @@ def check_resonant_sector(a_mat):
     }
 
 
+def check_trace_theorem(a_mat):
+    """D2b: tr A^k = 6 q^k for k = 1,2,3 symbolically.  With the minimal
+    polynomial dividing t^2 (t - q) this pins char poly = t^10 (t - q)^6,
+    hence det(I - A) = (1 - q)^6 as a theorem, not a sampled fact."""
+    a2 = sp.expand(a_mat * a_mat)
+    a3 = sp.expand(a_mat * a2)
+    t1 = sp.simplify(sp.trace(a_mat) - 6 * Q_SYM)
+    t2 = sp.simplify(sp.trace(a2) - 6 * Q_SYM ** 2)
+    t3 = sp.simplify(sp.trace(a3) - 6 * Q_SYM ** 3)
+    return {"traces_6qk_symbolic": (t1 == 0) and (t2 == 0) and (t3 == 0)}
+
+
+def _resonant_points():
+    return [
+        {
+            L_SYM[0]: sp.Rational(1, 2), L_SYM[1]: sp.Rational(1, 3),
+            L_SYM[2]: sp.Rational(-1, 4), L_SYM[3]: sp.Rational(1, 5),
+            S_SYM[0]: 1, S_SYM[1]: 1, S_SYM[2]: 1, S_SYM[3]: sp.Rational(25, 12),
+        },
+        {
+            L_SYM[0]: 1, L_SYM[1]: 0, L_SYM[2]: 0, L_SYM[3]: 0,
+            S_SYM[0]: 1, S_SYM[1]: sp.Rational(1, 2), S_SYM[2]: 0, S_SYM[3]: 0,
+        },
+        {
+            L_SYM[0]: sp.Rational(-1, 3), L_SYM[1]: sp.Rational(2, 3),
+            L_SYM[2]: sp.Rational(1, 2), L_SYM[3]: 1,
+            S_SYM[0]: 0, S_SYM[1]: 1, S_SYM[2]: sp.Rational(2, 3), S_SYM[3]: 0,
+        },
+    ]
+
+
+def check_resonant_multipoint(a_mat):
+    """D5b: dim 6 and full curl rank at several exact resonant points."""
+    ok_dim, ok_rank = True, True
+    for sub in _resonant_points():
+        assert Q_SYM.subs(sub) == 1
+        an = a_mat.subs(sub)
+        sv = [sub[S_SYM[m]] for m in range(4)]
+        eig = (an - sp.eye(16)).nullspace()
+        if len(eig) != 6:
+            ok_dim = False
+            continue
+        rows = []
+        for v in eig:
+            rows.append([
+                sp.simplify(v[4 * mu + a] * sv[nu] - v[4 * nu + a] * sv[mu])
+                for a in range(4) for mu in range(4) for nu in range(mu + 1, 4)
+            ])
+        if sp.Matrix(rows).rank() != 6:
+            ok_rank = False
+    return {"dim6_at_all_points": ok_dim, "curl_rank6_at_all_points": ok_rank}
+
+
+def check_resonant_riemann_image(a_mat):
+    """D5c: resonant modes have nonzero linearized curvature image
+    R^1_{mu nu}{}^{ab} = s_mu om^1_nu{}^{ab} - s_nu om^1_mu{}^{ab}."""
+    sub = _resonant_points()[0]
+    an = a_mat.subs(sub)
+    sv = [sub[S_SYM[m]] for m in range(4)]
+    eig = (an - sp.eye(16)).nullspace()
+    nonzero_modes = 0
+    for v in eig:
+        f = [[v[4 * mu + a] for a in range(4)] for mu in range(4)]
+        om = linearized_spin_connection(f, sv)
+        nz = any(
+            sp.simplify(sv[mu] * om[nu][a][b] - sv[nu] * om[mu][a][b]) != 0
+            for mu in range(4) for nu in range(mu + 1, 4)
+            for a in range(4) for b in range(4)
+        )
+        if nz:
+            nonzero_modes += 1
+    return {"all_resonant_modes_have_nonzero_linear_riemann": nonzero_modes == 6}
+
+
 def main() -> int:
     ok = True
     print("Linearized D-composite audit verifier")
@@ -279,9 +376,12 @@ def main() -> int:
         ("L0 sector lemma", check_sector_lemma()),
         ("D1 gradient annihilation", check_gradient_annihilation(a_mat)),
         ("D2 operator identity", check_operator_identity(a_mat)),
+        ("D2b trace theorem", check_trace_theorem(a_mat)),
         ("D3 generic ranks", check_generic_ranks(a_mat)),
         ("D4 off-resonance flatness", check_off_resonance_flatness(a_mat)),
         ("D5 resonant sector", check_resonant_sector(a_mat)),
+        ("D5b resonant multipoint", check_resonant_multipoint(a_mat)),
+        ("D5c resonant Riemann image", check_resonant_riemann_image(a_mat)),
     ):
         for key, val in res.items():
             if val is not True:
@@ -290,12 +390,13 @@ def main() -> int:
     print()
     if ok:
         print("All exact checks passed.")
-        print("Off the resonance hyperplane q = lambda.s = 1 the linearized")
-        print("D-composite system is uniquely solvable and exactly holonomic")
-        print("(pullback-flat).  All linearized anholonomy lives in the")
-        print("six-dimensional resonant sector at q = 1.")
-        print("Open: variable-coefficient resonant assembly, quadratic action")
-        print("on the resonant sector, on-shell torsion, chain-rule current.")
+        print("In the frozen W_L subsector with the real-exponential symbol,")
+        print("driven modes off q = 1 are exactly holonomic (pullback-flat).")
+        print("All linearized anholonomy lives in the six-dimensional")
+        print("exponential symbol sector at q = 1, whose modes carry nonzero")
+        print("linearized Riemann image.  Relation to real-frequency")
+        print("propagation, gauge/ghost content, quadratic action, on-shell")
+        print("torsion, and variable-coefficient assembly remain open.")
     return 0 if ok else 1
 
 

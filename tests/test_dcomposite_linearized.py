@@ -25,8 +25,10 @@ def symbol_matrix():
     return dcomp.assemble_symbol()
 
 
-def test_sector_lemma_hermitian_part_zero():
-    assert dcomp.check_sector_lemma()["hermitian_part_forced_zero"]
+def test_wl_subsector_lemma_and_counterexample():
+    res = dcomp.check_sector_lemma()
+    assert res["hermitian_part_forced_zero_under_all_connections"]
+    assert res["necessity_counterexample_D_in_WL_with_Theta_not_in_WL"]
 
 
 def test_gradient_annihilation_regression(symbol_matrix):
@@ -58,3 +60,19 @@ def test_resonant_sector(symbol_matrix):
 @pytest.mark.slow
 def test_operator_identity_symbolic(symbol_matrix):
     assert dcomp.check_operator_identity(symbol_matrix)["A3_equals_qA2_symbolic"]
+
+
+def test_resonant_multipoint(symbol_matrix):
+    res = dcomp.check_resonant_multipoint(symbol_matrix)
+    assert res["dim6_at_all_points"]
+    assert res["curl_rank6_at_all_points"]
+
+
+def test_resonant_riemann_image(symbol_matrix):
+    res = dcomp.check_resonant_riemann_image(symbol_matrix)
+    assert res["all_resonant_modes_have_nonzero_linear_riemann"]
+
+
+@pytest.mark.slow
+def test_trace_theorem_symbolic(symbol_matrix):
+    assert dcomp.check_trace_theorem(symbol_matrix)["traces_6qk_symbolic"]

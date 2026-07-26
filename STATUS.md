@@ -65,9 +65,9 @@ global self-consistent dynamics.
 | Minimal Palatini torsion equation | ✅ Conditional algebraic closure; Cartan map rank 24/24 [L1] |
 | Direct fixed-background matter current | ✅ Conditional derivation; affine torsion-free branch excluded [L1] |
 | `GAP-10T-PAIRING-NOGO` Lorentz-invariant pairing escape route | ⛔ No-go: only sharp/Minkowski pairing up to scale [L1] |
-| `GAP-10T-DCOMP-SECTOR` Lorentz-real D-composite sector | ✅ Closed: Theta forced into W_L [L0] |
-| `GAP-10T-DCOMP-LIN-OFFRES` linearized off-resonance flatness | ✅ Closed conditionally: A³=qA², driven solutions exactly holonomic off q=1 [L1] |
-| `GAP-10T-DCOMP-RES` resonant sector (6-dim, anholonomic) | 🔶 Open: variable-coefficient assembly, quadratic action, on-shell torsion |
+| `GAP-10T-DCOMP-WL-SECTOR` Lorentz-real W_L subsector | ✅ Closed conditionally: consistent subsector; necessity disproved by counterexample [L0] |
+| `GAP-10T-DCOMP-LIN-OFFRES` linearized off-resonance flatness | ✅ Closed conditionally: A³=qA² (+trace theorem); driven modes exactly holonomic off q=1 in the frozen W_L exponential-symbol scheme [L1] |
+| `GAP-10T-DCOMP-RES` exponential symbol sector (6-dim, nonzero linear Riemann) | 🔶 Open: real-frequency propagation, gauge/ghost count, quadratic action, assembly, on-shell torsion |
 | `GAP-10T-GRADIENT-FLATNESS` exact-gradient composite branch | ⛔ Closed as no-go: every nondegenerate `e^a=N₀^{-1/2}dY^a` metric is locally flat; affine stationarity is only a Jacobian/null-Lagrangian corollary [L1] |
 | Torsion selected by fundamental UBT action | 🟠 canonical self-consistent `D`-composite `GAP-10T-DYN` NARROWED |
 | Prescribed curved coefficients | ✅ Exact augmented-holonomy criterion [L1] |

@@ -22,8 +22,9 @@ We begin the audit of the last unanalyzed variational scheme of the minimal
 branch: the self-consistent $D$-composite system in which the connection
 sits inside the defining jet.  Four exact results are proved at the
 linearized, frozen-coefficient level around the affine point.
-(i) The Lorentz-real sector requires $\Theta\in W_L$ identically; the
-Hermitian freedom of the Palatini analysis does not exist here.
+(i) Imposing $\Theta\in W_L$ defines a consistent Lorentz-real
+subsector; necessity for self-consistent solutions is \emph{not} proved
+(a constant Hermitian shift at a constant tetrad is a counterexample).
 (ii) The frozen symbol $A(s,\lambda)$ of the linearized implicit system
 satisfies the exact operator identity $A^3=(\lambda\!\cdot\!s)\,A^2$; its
 spectrum is $\{0^{10},\,q^{6}\}$ with $q=\lambda\!\cdot\!s$, with three
@@ -55,10 +56,16 @@ connection of the tetrad defined by the slice coordinates of $E_\mu$
 (torsion-free branch first; anholonomy, not torsion, is the requirement
 for curvature).
 
-\begin{lemma}[Sector constraint]\label{lem:sector}
-$E_\mu\in W_L$ for all connection values forces the Hermitian part of
-$\Theta$ to vanish identically: the Lorentz-real $D$-composite sector is
-$\Theta(x)\in W_L$.  (Exact solve; check L0.)
+\begin{lemma}[$W_L$ subsector]\label{lem:sector}
+Demanding $E_\mu\in W_L$ for \emph{every} independently chosen Lorentz
+connection forces the Hermitian part of $\Theta$ to vanish; hence
+$\Theta\in W_L$ defines a consistent Lorentz-real subsector (exact
+solve; check L0).  This does \emph{not} prove necessity for
+self-consistent solutions, where only $\Omega=\Omega[E]$ occurs:
+$\Theta=\Theta_{\rm aff}+H$ with constant Hermitian $H$ has
+$\Omega[E]=0$ and $D_\mu\Theta\in W_L$ although $\Theta\notin W_L$
+(check L0b).  All results below are statements about the $W_L$
+subsector.
 \end{lemma}
 
 \section{Linearization and the frozen symbol}
@@ -67,7 +74,10 @@ E_\nu x^\nu$ with $\Theta_0\in W_L$ is an exact solution of
 \eqref{eq:selfcons} with $\Omega=0$.  Linearize
 $\Theta=\Theta_{\rm aff}+\varepsilon\theta$,
 $E=\bar E+\varepsilon F$, freeze coefficients at $x_0$, and pass to the
-plane-wave symbol $\partial_\nu\to s_\nu$.  The system becomes
+real-exponential (Laplace-type) symbol $\partial_\nu\to s_\nu$ with
+real $s$; for real Fourier modes $\partial_\nu\to ik_\nu$ the invariant
+is $q=i\lambda\!\cdot\!k$, so $q=1$ has no real-$k$ solution and the
+sector below consists of exponential/evanescent symbol modes.  The system becomes
 \begin{equation}
   (I-A(s,\lambda))\,F=\partial\theta',\qquad
   \lambda^a=\text{slice coords of }\Theta_{\rm aff}(x_0)/\sqrt{\mathcal N_0}
@@ -84,8 +94,9 @@ $A^3=q\,A^2$ holds as a polynomial identity in all eight variables
 (check D2, symbolic).  Generically $\operatorname{rank}A=9$,
 $\operatorname{rank}A^2=6$; hence the characteristic polynomial is
 $t^{10}(t-q)^6$, the minimal polynomial $t^2(t-q)$, and
-$\det(I-A)=(1-q)^6$ (check D3).  The linearized system is uniquely
-solvable iff $q\neq1$.
+$\det(I-A)=(1-q)^6$ (check D3).  The frozen full symbol is modewise
+invertible iff $q\neq1$; local or global uniqueness for the
+variable-coefficient PDE does not follow from this alone.
 \end{theorem}
 
 \begin{theorem}[Off-resonance flatness]\label{thm:offres}
@@ -108,15 +119,17 @@ is confined to this sector.
 \begin{corollary}[Where linearized curvature can live]
 Since curvature at linear order requires anholonomy, any linearized
 gravitational content of the $D$-composite scheme must be assembled from
-resonant modes on the moving hyperplane
-$(x_0+\theta_0)\!\cdot\!s=1$.  Off it, the scheme is flat at linear
+the exponential symbol modes on the moving surface
+$(x_0+\theta_0)\!\cdot\!s=1$; each such mode carries a nonzero
+linearized Riemann image (check D5c), but their relation to
+real-frequency propagation is open.  Off it, the scheme is flat at linear
 order --- but, unlike the exact-gradient restriction, not identically:
 the resonant sector is a genuine nontrivial remainder.
 \end{corollary}
 
 \section{Answers to the six audit questions at this level}
-(1)~Local uniqueness of $E[\Theta]$: yes iff $q\neq1$, with a single
-resonance hyperplane of multiplicity six.
+(1)~Modewise invertibility of the frozen full symbol: yes iff
+$q\neq1$; PDE-level uniqueness open.
 (2)~Anholonomy: driven solutions are exactly holonomic; anholonomy
 exists only in the resonant sector.
 (3)~$R\neq0$ without inserting curvature by hand: at linear order only

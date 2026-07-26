@@ -172,9 +172,9 @@ they are rederived in this route.
 | GAP-10T-SPIN | **CLOSED CONDITIONALLY [L1]:** direct fixed-background pure-pair matter current derived |
 | GAP-10T-FLAT-NOGO | **CLOSED AS NO-GO [L1]:** minimal affine torsion-free branch excluded |
 | GAP-10T-PAIRING-NOGO | **CLOSED AS NO-GO [L1]:** no nonzero nondegenerate symmetric Lorentz-invariant pairing cure |
-| GAP-10T-DCOMP-SECTOR | **CLOSED [L0]:** Lorentz-real D-composite sector forces Theta into W_L |
+| GAP-10T-DCOMP-WL-SECTOR | **CLOSED CONDITIONALLY [L0]:** Theta in W_L is a consistent subsector; necessity disproved (constant Hermitian shift counterexample) |
 | GAP-10T-DCOMP-LIN-OFFRES | **CLOSED CONDITIONALLY [L1]:** frozen-coefficient symbol identity A³=qA²; off q=1 driven solutions exactly holonomic (pullback-flat) |
-| GAP-10T-DCOMP-RES | **OPEN:** all linearized anholonomy confined to the 6-dim resonant sector at q=1 |
+| GAP-10T-DCOMP-RES | **OPEN:** all linearized anholonomy confined to the 6-dim exponential symbol sector at q=1 (nonzero linear Riemann image; real-frequency relation open) |
 | GAP-10T-GRADIENT-FLATNESS | **CLOSED AS NO-GO [L1]:** every nondegenerate exact-gradient tetrad `e^a=N₀^{-1/2}dY^a` is locally a pullback of Minkowski space; curvature and the Hilbert-Palatini term vanish identically, while affine stationarity is only a Jacobian/null-Lagrangian corollary |
 | GAP-10T-DYN | **NARROWED:** the canonical self-consistent `D`-composite variation and any non-minimal or translational/relative torsion completion remain |
 | GAP-10L-CONN | **CLOSED [L1]:** compatible Lorentz transport preserves the Lorentz slice |
