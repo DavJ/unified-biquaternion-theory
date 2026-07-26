@@ -1,3 +1,21 @@
+## [2026-07-27] — Canonical relation generalized-Dirac consolidation
+
+### Changed
+- Locked the active geometry to one chain: `Theta -> E_mu=D_mu Theta/sqrt(N0) -> metric and Clifford lift`.
+- Added an exact injective block lift `C(E)` and proved the curved Clifford relation from the canonical central metric identity.
+- Added an exact fifth/grading channel compatible algebraically with the complex-time `psi` direction.
+- Archived the alternative spinor-current tetrad branch without deleting its calculations.
+
+### Added
+- `canonical/geometry/biquaternion_dirac_lift.tex` and mirrored architecture copy.
+- `research_tracks/canonical_relation_generalized_dirac/` proof/status package.
+- `tools/verify_canonical_relation_dirac_lift.py` and targeted pytest coverage.
+
+### Proof status
+- Exact algebraic lift: closed `[L0]`.
+- Tetrad-to-metric rank 10 and Lorentz kernel 6: closed `[L1]`.
+- Full generalized-Dirac action, curved implicit existence and on-shell rank: open.
+
 ## [2026-07-26] - Pytest import-path hygiene
 
 ### Corrected

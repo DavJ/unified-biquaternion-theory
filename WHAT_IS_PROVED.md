@@ -1,3 +1,16 @@
+## 2026-07-27 update — canonical generalized-Dirac lift
+
+| # | Claim | Level | Source |
+|---|---|---|---|
+| GR-D1 | The canonical Lorentz-slice relation has an injective block lift `C(E)` satisfying `1/2{C(E),C(F)}=H_L(E,F)I_4` | [L0] | `canonical/geometry/biquaternion_dirac_lift.tex`; `tools/verify_canonical_relation_dirac_lift.py` |
+| GR-D2 | With `Gamma_mu=C(E_mu)`, the canonical metric identity is exactly equivalent to the curved Clifford relation `1/2{Gamma_mu,Gamma_nu}=g_mu_nu I_4` | [L0] | same |
+| GR-D3 | For every nondegenerate tetrad, `D_e g` is surjective of rank 10; its complete kernel is the six-dimensional Lorentz Lie algebra | [L1] | same; `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` |
+| GR-D4 | `Gamma_*=diag(I_2,-I_2)` anticommutes with every lifted `Gamma_mu`; `Gamma_*` and `i_c Gamma_*` give exact fifth channels of square `+I` and `-I` | [L0] | same |
+| GR-D5 | Full generalized-Dirac dynamics from one UBT action, curved implicit existence, Lorentz-slice preservation and on-shell rank 10 | [OPEN] | `research_tracks/canonical_relation_generalized_dirac/PROOF_STATUS.md` |
+
+The historical spinor-current tetrad rank calculations are valid only for that
+alternative map and are not part of canonical UBT closure.
+
 ## 2026-07-26 GR endgame update — auxiliary jet and induced coefficient
 
 - **GAP-10T-JET-AUX — CLOSED [L1]:** the split-jet multiplier action enforces the right-inverse constraint; variation of the Lorentz jet tensor and relative-central one-form forces the multiplier to vanish on every non-null patch. The jet sector is algebraic, nonpropagating, and has no on-shell metric or spin source.

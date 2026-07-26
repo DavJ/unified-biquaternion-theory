@@ -1,3 +1,20 @@
+## Immediate programme update — 2026-07-27
+
+The active GR/quantum bridge is the canonical-relation generalized-Dirac route.
+No second spinor-current tetrad is to be developed as a competing metric.
+
+| Order | Proof target | Exit criterion |
+|---|---|---|
+| 1 | Derive the generalized-Dirac operator from one UBT action over `tau=t+i psi` | First-order Euler--Lagrange equation with all coefficients and involutions fixed; no independent metric/tetrad/connection inserted |
+| 2 | Close the implicit local system `Theta -> E -> Gamma -> omega(E) -> D Theta` | Local existence theorem on a stated non-null/nondegenerate class, or a precise no-go theorem |
+| 3 | Prove Lorentz-slice preservation and nondegeneracy | Constraint propagation theorem under the derived evolution |
+| 4 | Prove on-shell rank 10 | Rank of admissible metric variations after equations, gauge and complex-time constraints is exactly 10 (or six physical directions modulo diffeomorphisms, with constraints handled explicitly) |
+| 5 | Derive low-energy GR and quantum limits | Einstein branch and Dirac/Schrodinger limits obtained from the same action with assumptions isolated |
+
+The exact kinematic Clifford lift, rank-ten tetrad theorem and fifth grading
+channel are already closed.  The archived current-tetrad branch is historical
+evidence only.
+
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # ROADMAP.md — UBT Development Roadmap

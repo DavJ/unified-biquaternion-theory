@@ -1,0 +1,160 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Canonical-relation Clifford/Dirac lift, 2026-07-27.
+\section{Clifford and generalized-Dirac lift of the canonical relation}
+\label{sec:canonical:biquaternion_dirac_lift}
+
+\subsection{Scope: no second tetrad}
+The starting point remains the canonical UBT tetrad
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta\in W_L
+\end{equation}
+and the central metric identity
+\begin{equation}
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ =g_{\mu\nu}\mathbf1.
+ \label{eq:canonical:metric-before-dirac-lift}
+\end{equation}
+The construction below introduces no independent vielbein and no spinor-current
+replacement for $E_\mu$.  It is an injective operator lift of the same four
+biquaternionic covectors.
+
+\subsection{Exact block lift}
+Use the Pauli representation
+\begin{equation}
+ \mathbf e_k=-i_{\rm c}\sigma_k,
+ \qquad
+ E=i_{\rm c}e^0\mathbf1+e^k\mathbf e_k,
+ \qquad e^a\in\mathbb R,
+\end{equation}
+where $i_{\rm c}$ is the commuting complex unit.  Regard $E$ as a
+$2\times2$ complex matrix and define
+\begin{equation}
+ \boxed{
+ \mathcal C(E):=
+ \begin{pmatrix}
+ 0&E\\ E^\sharp&0
+ \end{pmatrix}\in\operatorname{Mat}(4,\mathbb C).}
+ \label{eq:canonical:block-clifford-lift}
+\end{equation}
+The map $\mathcal C:W_L\to\operatorname{Mat}(4,\mathbb C)$ is real-linear and
+injective.
+
+\paragraph{Theorem (canonical relation implies the curved Clifford relation).}
+For all $E,F\in W_L$,
+\begin{equation}
+ \frac12\{\mathcal C(E),\mathcal C(F)\}
+ =H_L(E,F)I_4,
+ \label{eq:canonical:block-clifford-identity}
+\end{equation}
+where
+\begin{equation}
+ H_L(E,F)\mathbf1
+ =\frac12(E^\sharp F+F^\sharp E).
+\end{equation}
+Consequently, with
+\begin{equation}
+ \Gamma_\mu:=\mathcal C(E_\mu),
+\end{equation}
+Eq.~\eqref{eq:canonical:metric-before-dirac-lift} is equivalent to
+\begin{equation}
+ \boxed{\frac12\{\Gamma_\mu,\Gamma_\nu\}=g_{\mu\nu}I_4.}
+ \label{eq:canonical:curved-clifford-relation}
+\end{equation}
+
+\begin{proof}
+Direct block multiplication gives
+\begin{equation}
+ \frac12\{\mathcal C(E),\mathcal C(F)\}
+ =\frac12
+ \begin{pmatrix}
+ EF^\sharp+FE^\sharp&0\\
+ 0&E^\sharp F+F^\sharp E
+ \end{pmatrix}.
+\end{equation}
+For Lorentz paravectors both diagonal expressions equal
+$2H_L(E,F)\mathbf1$.  Hence the block matrix is
+$H_L(E,F)I_4$.  Injectivity follows because either off-diagonal block recovers
+$E$.
+\end{proof}
+
+\subsection{Rank is inherited, not manufactured}
+The operator lift adds no geometric degrees of freedom.  The metric is still
+that of the tetrad coefficients $e_\mu{}^a$,
+\begin{equation}
+ g=e\eta e^T,
+ \qquad \eta=\operatorname{diag}(-1,1,1,1).
+\end{equation}
+At every invertible tetrad, the differential
+$\delta e\mapsto\delta g$ is surjective onto symmetric $4\times4$ matrices.
+Indeed, for an arbitrary symmetric $h$, the choice
+\begin{equation}
+ \delta e=\frac12h\,g^{-1}e
+ \label{eq:canonical:tetrad-right-inverse}
+\end{equation}
+obeys $\delta g=h$.  The kernel consists precisely of
+\begin{equation}
+ \delta e=eX,
+ \qquad X\eta+\eta X^T=0,
+\end{equation}
+which is the six-dimensional Lorentz Lie algebra.  Therefore
+\begin{equation}
+ \boxed{\operatorname{rank}D_e g=10,\qquad\dim\ker D_e g=6.}
+\end{equation}
+Because $\mathcal C$ is injective, the same rank statement holds when the four
+$E_\mu$ are represented by the four $\Gamma_\mu$.
+
+This theorem concerns the map $E\mapsto g$.  The stronger on-shell statement
+that the complete UBT equation admits enough solutions of
+$E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ remains a separate dynamical theorem.
+
+\subsection{Complex-time / fifth operator channel}
+Define the grading matrix
+\begin{equation}
+ \Gamma_*:=
+ \begin{pmatrix}I_2&0\\0&-I_2\end{pmatrix}.
+\end{equation}
+Every matrix $\mathcal C(E)$ is off diagonal, so
+\begin{equation}
+ \{\Gamma_*,\mathcal C(E)\}=0,
+ \qquad \Gamma_*^2=I_4.
+ \label{eq:canonical:grading-anticommutation}
+\end{equation}
+Thus one may form either
+\begin{equation}
+ \Gamma_\psi=\Gamma_*,\qquad \Gamma_\psi^2=+I_4,
+\end{equation}
+or
+\begin{equation}
+ \Gamma_\psi=i_{\rm c}\Gamma_*,\qquad \Gamma_\psi^2=-I_4,
+\end{equation}
+according to the signature assigned to the $\psi$ channel.  This establishes
+an exact algebraic fifth channel compatible with the four operators derived
+from $E_\mu$; it does not by itself decide whether $\psi$ is a physical fifth
+coordinate, a compact fibre, or an internal complex-time direction.
+
+The corresponding generalized first-order operator has the candidate form
+\begin{equation}
+ \boxed{
+ \mathcal D_{\rm UBT}[\Theta]
+ =i_{\rm c}\Gamma^\mu[D\Theta]\nabla_\mu
+  +i_{\rm c}\Gamma_\psi D_\psi
+  -\mathcal M[\Theta,D\Theta].}
+ \label{eq:canonical:generalized-dirac-candidate}
+\end{equation}
+Equation~\eqref{eq:canonical:generalized-dirac-candidate} is an architectural
+candidate until it is derived from the UBT action.  The proved statement is
+the Clifford lift and its compatibility with the central metric relation.
+
+\subsection{Remaining proof gates}
+A complete closure requires:
+\begin{enumerate}
+ \item derivation of $\mathcal D_{\rm UBT}$ and $\mathcal M$ from one covariant
+       UBT action over $\tau=t+i_{\rm c}\psi$;
+ \item proof that the implicit cycle
+       $\Theta\to E\to\Gamma\to\omega(E)\to D\Theta$ has local solutions;
+ \item preservation of the Lorentz slice and nondegeneracy under evolution;
+ \item rank ten after all equations of motion, gauge conditions and
+       complex-time constraints are imposed;
+ \item derivation of the Einstein low-energy dynamics and the quantum limits.
+\end{enumerate}
+The historical spinor-current tetrad is not used in these gates.

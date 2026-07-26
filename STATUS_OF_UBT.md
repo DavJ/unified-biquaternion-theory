@@ -1,3 +1,33 @@
+## Update 2026-07-27: one canonical relation, exact Dirac lift
+
+The active geometric route is now explicitly single-path:
+
+\[
+\Theta\to E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta
+\to
+\begin{cases}
+\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1,\\
+\Gamma_\mu=\mathcal C(E_\mu),\quad
+\tfrac12\{\Gamma_\mu,\Gamma_\nu\}=g_{\mu\nu}I_4.
+\end{cases}
+\]
+
+The block Clifford lift is injective and exact; it adds no independent tetrad.
+The metric differential has rank 10 at every nondegenerate tetrad, with the
+six-dimensional Lorentz algebra as its complete kernel.  The grading matrix
+`Gamma_* = diag(I_2,-I_2)` anticommutes exactly with all lifted `Gamma_mu`,
+providing an algebraic fifth/complex-time channel with selectable square `+I`
+or `-I`.
+
+**Proved:** canonical relation -> curved Clifford relation; rank 10 and kernel
+6; exact fifth-channel anticommutation.  
+**Open:** derivation of the full generalized-Dirac operator from the UBT action,
+self-consistent curved existence, Lorentz-slice preservation and rank 10 on
+shell, and Einstein/quantum dynamics.
+
+The former spinor-current tetrad branch is retained only in
+`research_tracks/history/legacy_spinor_current_tetrad_2026-07-26/`.
+
 ## Update 2026-07-26: GR endgame boundary
 
 The local split-jet construction now has an action-level auxiliary completion. `GAP-10T-JET-AUX` is **CLOSED [L1]** and `GAP-10T-JET-CONSTRAINT-SELECTION` is **CLOSED AS NO-GO [L1]**: the jet variables are nonpropagating and decouple on shell, but universal representability means that the pure constraint cannot choose a tetrad. The corrected proper-time/Kaluza-Klein calculation closes `GAP-10D-A2-FORM` and `GAP-10D-SPECTRAL-IR` conditionally, while `GAP-10D-UNDERDETERMINATION` is closed as a no-go. UBT therefore has a **complete conditional effective GR branch**, but not an unconditional single-Theta prediction of Newton's constant; `N_B`, `xi`, the UV scale and the constrained measure remain to be derived.
