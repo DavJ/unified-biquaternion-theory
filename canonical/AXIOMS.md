@@ -90,6 +90,8 @@ is the antisymmetric algebraic part of the same product.  It may carry oriented-
 
 **Rank theorem**: At every nondegenerate tetrad, the map $e_\mu{}^a\mapsto g_{\mu\nu}$ has rank ten and a six-dimensional kernel consisting of local Lorentz rotations/boosts.  The former comparison $\dim_\mathbb R\mathbb B=8<10$ is not a local metric-rank obstruction because the metric is built from four covariant derivatives, not from the value of $\Theta$ alone.  See `canonical/gr_closure/covariant_tetrad_rank_theorem.tex`.
 
+**Constrained-rank theorem (no extra fields)**: for a finalized real eight-component equation `F(Psi,e)=0`, with `Psi=vec(Theta)` the value of the same original field, the admissible tetrad tangent space is `A={de: F_e de in im F_Psi}`. If `K=ker D_e g`, then `rank(D_e g|A)=dim(A+K)-6`; full rank ten is equivalent to `A+K=R^16`. In particular, invertible `F_Psi` preserves pointwise first-jet rank ten without any added field. This is a theorem about rank; the canonical action must still derive the required transversality/zero-order block and local PDE existence.
+
 **Complex-time dependence**: $\Theta$ may depend on $\tau=t+i\psi$.  The local metric formula is pointwise and does not average over $\psi$.  The classical GR sector must have a real, nondegenerate metric and, when required for ordinary four-dimensional observations, a dynamically stable $\psi$-independent metric.  Deriving that stability is open.
 
 **CRITICAL LOCK RULES**:

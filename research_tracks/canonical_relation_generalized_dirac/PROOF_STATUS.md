@@ -128,44 +128,7 @@ reduce the rank-ten map `E -> g`.
 It is not yet the canonical holomorphic on-shell theorem, because strict
 holomorphy in `tau=t+i psi` relates the `t` and `psi` derivatives.
 
-
-## Theorem G — exact constrained-rank projection criterion
-
-Let `e in R^16` be the tetrad coefficients, let `z` collect all nonmetric
-first-jet variables, and let `F(e,z)=0` be the real equation system.  At a
-solution define
-
-\[
-\mathcal A=\{\delta e:F_e\delta e\in\operatorname{im}F_z\}.
-\]
-
-Then the metric rank on the equation manifold is exactly
-
-\[
-\operatorname{rank}(D_e g|_{\mathcal A}).
-\]
-
-If `F_z` is surjective, every tetrad variation lifts to a tangent variation of
-the equation manifold and the metric rank remains ten.  The complementary
-**rank-budget obstruction** is: if instead `r`
-independent real constraints act only on the tetrad variables, the restricted
-rank is at most `min(10,16-r)`; in particular eight such constraints imply
-rank at most eight.
-
-**Status:** proved by finite-dimensional linear algebra `[L0]`; exact block
-verifier included.  This theorem gives the test for the holomorphic on-shell
-system but does not supply its still-unknown action-derived Jacobian.
-
-Under strict covariant holomorphy,
-
-\[
-D_\psi\Psi=i_{\rm c}D_t\Psi,
-\]
-
-so `D_psi Psi` is not an independent auxiliary slot.  The actual residual
-nonmetric block must therefore be derived from the complete equation.
-
-## Open theorem H — canonical generalized-Dirac dynamics
+## Open theorem G — canonical generalized-Dirac dynamics
 
 Derive from one UBT action an operator of the form
 
@@ -180,10 +143,94 @@ with no independent metric, tetrad or arbitrary connection.
 
 **Status:** open.
 
-## Open theorem I — holomorphic on-shell rank and existence
+## Theorem H — holomorphic constrained-rank criterion and remaining existence problem
 
-Prove that solutions of the complete implicit field equations retain a
-nondegenerate Lorentz tetrad and enough admissible variations for metric rank
-ten after gauge and complex-time constraints.
+The exact pointwise rank question is solved by Theorem I below: the admissible
+tetrad tangent space must satisfy `A+K=R^16`, and invertible `F_Psi` is an
+explicit no-extra-field sufficient condition, including after strict
+holomorphy.
 
-**Status:** open; this is the decisive next rank theorem.
+**Status:** pointwise first-jet rank criterion proved `[L1]`; derivation of the
+required transversality from the canonical action and local existence of
+solutions of the complete implicit PDE remain open.
+
+## Theorem I — exact no-extra-variable constrained rank
+
+Let the real form of the four-complex-component generalized-Dirac equation be
+
+\[
+F(\Psi,e)=0\in\mathbb R^8,
+\]
+
+where `Psi=vec(Theta)` is the value of the original UBT field and
+`e=(e_mu^a)` is its Lorentz first jet.  Define
+
+\[
+\mathcal A=\{\delta e:\ F_e\delta e\in\operatorname{im}F_\Psi\},
+\qquad
+K=\ker D_eg.
+\]
+
+Then
+
+\[
+\boxed{\operatorname{rank}(D_eg|_{\mathcal A})
+=\dim(\mathcal A+K)-6.}
+\]
+
+Hence full metric rank ten is retained exactly when
+
+\[
+\boxed{\mathcal A+K=\mathbb R^{16}.}
+\]
+
+**Status:** proved exactly `[L1]`; no auxiliary or additional field is used.
+
+## Corollary I.1 — original-field absorption
+
+If the real Jacobian `F_Psi` is invertible, every tetrad variation can be
+cancelled by a variation of the value of the same original field,
+
+\[
+\delta\Psi=-F_\Psi^{-1}F_e\delta e.
+\]
+
+Therefore the constrained pointwise first-jet metric rank is ten.
+
+For the strictly holomorphic generalized-Dirac candidate, a nonzero scalar
+zero-order block `M=m I_4` gives `det_C M=m^4` and real rank eight.  More
+generally,
+
+\[
+M=m_sI_4+i m_p\Gamma_*,
+\qquad
+\det_C M=(m_s^2+m_p^2)^2,
+\]
+
+so rank ten is retained whenever `(m_s,m_p)!=(0,0)`.
+
+**Status:** proved conditionally `[L1-C]` on the finalized UBT equation having
+such an invertible original-field Jacobian.  This condition introduces no new
+variable; deriving the zero-order block from the canonical action remains
+open.
+
+## Corollary I.2 — first-order eight-constraint no-go
+
+If `F_Psi=0` and the equation imposes eight independent real constraints only
+on the tetrad, then the admissible tetrad tangent space has dimension eight
+and the metric rank is at most eight.
+
+**Status:** proved `[L1]`.
+
+## Revised decisive open task
+
+The rank count itself is no longer vague.  The canonical action must now prove
+one of the following without extra fields:
+
+1. the finalized holomorphic generalized-Dirac equation has invertible
+   `F_Psi`; or
+2. its admissible tetrad tangent space satisfies
+   `A + K = R^16` by a more special gauge-transverse mechanism.
+
+Local existence and integrability of the resulting implicit PDE remain
+separate from this pointwise first-jet rank theorem.

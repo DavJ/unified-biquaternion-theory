@@ -8,7 +8,11 @@
 | GR-D4 | `Gamma_*=diag(I_2,-I_2)` anticommutes with every lifted `Gamma_mu`; `Gamma_*` and `i_c Gamma_*` give exact fifth channels of square `+I` and `-I` | [L0] | same |
 | GR-D5 | The four-channel principal symbol squares to `g^{mu nu} xi_mu xi_nu I_4`, its determinant is the square of the metric quadratic form, and the fifth channel gives the exact extension `g^{-1}(xi,xi)+epsilon xi_psi^2` | [L0] | same; exact verifier |
 | GR-D6 | If the generalized equation is in an independent `psi`-normal form, the invertible fifth channel uniquely solves for `D_psi Psi`, so the pointwise equation does not restrict the four spacetime tetrad slots and preserves rank 10 | [L0-C] | same; conditional on independent `D_psi` |
-| GR-D7 | Compatibility of that normal-form theorem with strict holomorphy, full generalized-Dirac dynamics from one UBT action, curved implicit existence, Lorentz-slice preservation and holomorphic on-shell rank 10 | [OPEN] | `research_tracks/canonical_relation_generalized_dirac/PROOF_STATUS.md` |
+| GR-D7 | For a real eight-component constraint `F(Psi,e)=0`, the exact constrained metric rank is `dim(A+K)-6`, where `A={de:F_e de in im F_Psi}` and `K=ker D_e g`; full rank ten is equivalent to `A+K=R^16` | [L1] | `canonical/geometry/biquaternion_dirac_lift.tex`; `research_tracks/canonical_relation_generalized_dirac/no_extra_variable_rank_theorem.tex`; `tools/verify_no_extra_variable_rank.py` |
+| GR-D8 | If the equation Jacobian with respect to the value of the original field, `F_Psi`, is invertible, every tetrad variation is admissible and the pointwise first-jet metric rank remains ten without any added field | [L1-C] | same |
+| GR-D9 | A nonzero scalar block `M=mI_4`, or scalar-pseudoscalar block `M=m_sI_4+i m_p Gamma_*` with `(m_s,m_p)!=(0,0)`, is an explicit sufficient realization of invertible `F_Psi`, including after strict holomorphy | [L1-C] | same; derivation from the canonical action remains open |
+| GR-D10 | If `F_Psi=0` and the first-order equation imposes eight independent real constraints only on the tetrad, the constrained metric rank is at most eight | [L1] | same |
+| GR-D11 | Derivation of the required zero-order block/transversality from one UBT action, local PDE existence/integrability, Lorentz-slice preservation and Einstein/quantum dynamics | [OPEN] | `research_tracks/canonical_relation_generalized_dirac/PROOF_STATUS.md` |
 
 The historical spinor-current tetrad rank calculations are valid only for that
 alternative map and are not part of canonical UBT closure.

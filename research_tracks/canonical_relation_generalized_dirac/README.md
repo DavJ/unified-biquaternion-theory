@@ -36,30 +36,32 @@ construction.
   Dirac characteristic cone equals the canonical UBT metric null cone;
 - a conditional first-jet theorem: when the field equation is in an independent
   `psi`-normal form, the fifth channel can be solved uniquely and does not
-  reduce the rank-ten spacetime tetrad data;
-- an exact constrained-rank projection theorem: the on-shell rank is the rank
-  of `D_e g` on tetrad variations whose equation residual can be absorbed by
-  nonmetric variables; a surjective nonmetric block preserves rank 10;
-- a rank-budget no-go: eight independent real constraints acting only on the
-  16 tetrad coefficients leave metric rank at most eight.
+  reduce the rank-ten spacetime tetrad data.
+- the exact no-extra-field constrained-rank formula
+  `rank(Dg|A)=dim(A+K)-6`, with full rank iff `A+K=R^16`;
+- invertible dependence of the equation on the value `Psi=vec(Theta)` of the
+  original field preserves pointwise first-jet rank ten, and nonzero scalar or
+  scalar-pseudoscalar zero-order blocks realize this condition explicitly;
+- eight independent real first-order constraints acting only on the tetrad
+  reduce the metric rank to at most eight.
 
 Run:
 
 ```bash
 python tools/verify_canonical_relation_dirac_lift.py
-pytest -q tests/test_canonical_relation_dirac_lift.py
+python tools/verify_no_extra_variable_rank.py
+pytest -q tests/test_canonical_relation_dirac_lift.py tests/test_no_extra_variable_rank.py
 ```
 
 ## Still open
 
 - derivation of the full generalized-Dirac operator from the UBT action;
 - the precise physical role and signature of the complex-time `psi` channel;
-- local existence of the self-consistent implicit system
-  `Theta -> E -> Gamma -> omega(E) -> D Theta`;
-- derivation of the real holomorphic constraint Jacobian `(F_e, F_z)` from
-  the action and verification of the exact projection criterion;
-- preservation of the Lorentz slice and rank 10 for the fully constrained
-  holomorphic on-shell system;
+- derivation from the canonical action of an invertible original-field
+  Jacobian `F_Psi`, or another mechanism satisfying the exact transversality
+  condition `A+K=R^16`;
+- local existence/integrability of the resulting implicit holomorphic PDE and
+  preservation of the Lorentz slice;
 - Einstein and quantum low-energy limits from the same action.
 
 ## Historical branch

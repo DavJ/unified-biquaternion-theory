@@ -181,6 +181,8 @@ The left-hand side is already a real central element of the biquaternion algebra
 
 At every nondegenerate tetrad the differential `e_μ^a -> g_μν` has rank ten.  Its six-dimensional kernel is the infinitesimal local Lorentz freedom.  Thus the old comparison “Θ has eight real components but g has ten” is not a local kinematic obstruction: the metric is built from four covariant first derivatives, not from the value of Θ alone.
 
+For a pointwise first-order equation `F(Psi,e)=0`, no additional variable is needed to formulate the constrained rank. With `K=ker D_e g` and `A={de: F_e de in im F_Psi}`, the exact formula is `rank(D_e g|A)=dim(A+K)-6`. If the Jacobian with respect to the value `Psi=vec(Theta)` of the original field is invertible, all tetrad variations remain admissible and the rank stays ten. A nonzero generalized-Dirac scalar or scalar-pseudoscalar zero-order block is a sufficient conditional realization; deriving it from the canonical action remains open.
+
 The local rank theorem does **not** by itself prove that every required curved
 tetrad is generated dynamically on shell by one $\Theta$.  The connection and
 integrability results refine this statement substantially.  Imposing the pure

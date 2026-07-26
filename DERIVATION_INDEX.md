@@ -36,6 +36,7 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 
 **Covariant-tetrad GR revision (2026-07-16):**
 - `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` — central anticommutator metric and exact rank-ten theorem.
+- `canonical/geometry/biquaternion_dirac_lift.tex` and `research_tracks/canonical_relation_generalized_dirac/no_extra_variable_rank_theorem.tex` — exact constrained-rank formula, no-extra-field transversality criterion, invertible original-field absorption, and the eight-constraint no-go.
 - `canonical/gr_closure/gap_10omega_connection_elimination.tex` — unique reconstruction of every metric-compatible connection from tetrad and specified torsion; Levi-Civita torsion-free corollary.
 - `canonical/gr_closure/gap_10i_integrability_selection.tex` — explicit affine Minkowski/constant-tetrad representers; one-sided invertible curved no-go; exact two-sided curvature identity.
 - `canonical/gr_closure/gap_10i_paired_connection_audit.tex` — exact reduction of a Lorentz-compatible pair to one spin connection and concurrent-vector no-go for its torsion-free branch.

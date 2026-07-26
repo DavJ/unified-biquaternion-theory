@@ -20,10 +20,15 @@ providing an algebraic fifth/complex-time channel with selectable square `+I`
 or `-I`.
 
 **Proved:** canonical relation -> curved Clifford relation; rank 10 and kernel
-6; exact fifth-channel anticommutation.  
-**Open:** derivation of the full generalized-Dirac operator from the UBT action,
-self-consistent curved existence, Lorentz-slice preservation and rank 10 on
-shell, and Einstein/quantum dynamics.
+6; exact fifth-channel anticommutation; the exact constrained-rank formula
+`rank(Dg|A)=dim(A+K)-6`; and the no-extra-field result that an invertible
+Jacobian with respect to the value of the original `Theta` preserves pointwise
+first-jet rank ten.  A nonzero scalar or scalar-pseudoscalar Dirac zero-order
+block is an explicit sufficient realization.  Eight independent real
+constraints acting only on the tetrad give rank at most eight.  
+**Open:** derivation of the required zero-order block or another exact
+transversality mechanism from the UBT action, self-consistent local PDE
+existence, Lorentz-slice preservation, and Einstein/quantum dynamics.
 
 The former spinor-current tetrad branch is retained only in
 `research_tracks/history/legacy_spinor_current_tetrad_2026-07-26/`.

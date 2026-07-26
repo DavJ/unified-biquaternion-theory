@@ -1,0 +1,168 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\title{No-Extra-Variable Rank Theorem for the Canonical UBT Generalized-Dirac Relation}
+\author{Ing. David Jaro\v{s}}
+\date{27 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The canonical UBT metric is built from the single master field through
+$E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ and
+$g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}$.  The unconstrained tetrad-to-metric
+map has rank ten and a six-dimensional Lorentz kernel.  This note proves the
+exact rank formula after imposing four complex generalized-Dirac equations,
+without introducing any auxiliary variable or second field.  Full metric rank
+is retained exactly when the admissible tetrad tangent space is transverse to
+the Lorentz kernel.  In particular, an invertible Jacobian of the equation
+with respect to the value of the original field makes all tetrad variations
+admissible.  A nonzero scalar or scalar--pseudoscalar zero-order Dirac block
+provides an explicit sufficient realization, including under strict complex-
+time holomorphy.  Conversely, eight independent real constraints acting only
+on the tetrad reduce the metric rank to at most eight.
+\end{abstract}
+
+\section{Canonical variables}
+The only field is
+\[
+ \Theta(q,\tau)\in\mathbb C\otimes\mathbb H,
+ \qquad \tau=t+i_{\rm c}\psi,
+\]
+written equivalently as $\Psi=\operatorname{vec}(\Theta)\in\mathbb C^4$.
+On the Lorentz slice,
+\[
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta
+ =i_{\rm c}e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+\]
+so $e=(e_\mu{}^a)\in\mathbb R^{16}$ and
+\[
+ g=e\eta e^T,
+ \qquad \eta=\operatorname{diag}(-1,1,1,1).
+\]
+At every nondegenerate tetrad,
+\[
+ \operatorname{rank}D_eg=10,
+ \qquad K:=\ker D_eg,\quad\dim K=6.
+\]
+
+\section{Exact constrained-rank formula}
+Let the real form of the four-complex-component field equation be
+\[
+ F(\Psi,e)=0\in\mathbb R^8.
+\]
+At a solution denote its Jacobian blocks by $F_\Psi$ and $F_e$.  A tetrad
+variation is compatible with the linearized equation precisely when its
+change can be cancelled by a variation of the value of the same original
+field.  Thus
+\[
+ \mathcal A:=\{\delta e:\ F_e\delta e\in\operatorname{im}F_\Psi\}.
+\]
+
+\begin{theorem}[Constrained metric rank]
+For every nondegenerate tetrad,
+\[
+ \boxed{
+ \operatorname{rank}(D_eg|_{\mathcal A})
+ =\dim(\mathcal A+K)-6.}
+\]
+Consequently the constrained metric rank is ten if and only if
+\[
+ \boxed{\mathcal A+K=\mathbb R^{16}.}
+\]
+\end{theorem}
+
+\begin{proof}
+Since $D_eg$ is surjective with kernel $K$, it identifies
+$\mathbb R^{16}/K$ with the ten-dimensional metric tangent space.  The image
+of $\mathcal A$ is therefore isomorphic to $(\mathcal A+K)/K$.  Taking
+dimensions proves the formula and the equivalence.
+\end{proof}
+
+\begin{corollary}[Original-field absorption]
+If $F_\Psi$ is invertible as an $8\times8$ real matrix, then
+$\mathcal A=\mathbb R^{16}$ and
+\[
+ \operatorname{rank}(D_eg|_{F=0})=10.
+\]
+For every $\delta e$, the unique compatible variation is
+\[
+ \delta\Psi=-F_\Psi^{-1}F_e\delta e.
+\]
+\end{corollary}
+
+This uses no added variable: $\delta\Psi$ is the variation of the value of the
+same UBT master field whose first derivative supplies the tetrad.
+
+\begin{corollary}[Eight-constraint no-go]
+If $F_\Psi=0$ and $F_e$ has real rank eight, then
+$\dim\mathcal A=8$ and
+\[
+ \operatorname{rank}(D_eg|_{\mathcal A})\le8.
+\]
+Thus four independent complex equations cannot act only on the tetrad and
+still retain generic metric rank ten.
+\end{corollary}
+
+\begin{remark}
+Constraints need not lower the metric rank when they remove only Lorentz-frame
+directions.  The exact condition is transversality $\mathcal A+K=\mathbb R^{16}$,
+not merely a count of equations.
+\end{remark}
+
+\section{Holomorphic generalized-Dirac application}
+The canonical Clifford lift gives
+\[
+ \Gamma_\mu=\mathcal C(E_\mu),
+ \qquad \tfrac12\{\Gamma_\mu,\Gamma_\nu\}=g_{\mu\nu}I_4,
+\]
+and an anticommuting fifth channel $\Gamma_\psi$.  Consider
+\[
+ i_{\rm c}\Gamma^\mu D_\mu\Psi
+ +i_{\rm c}\Gamma_\psi D_\psi\Psi
+ -\mathcal M\Psi=0.
+\]
+Strict covariant holomorphy gives $D_\psi\Psi=i_{\rm c}D_0\Psi$, while
+$D_\mu\Psi=\sqrt{\mathcal N_0}\operatorname{vec}(E_\mu)$.  Therefore
+\[
+ \mathcal M\Psi
+ =\sqrt{\mathcal N_0}\left[
+ i_{\rm c}\Gamma^\mu(e)\operatorname{vec}(E_\mu)
+ -\Gamma_\psi\operatorname{vec}(E_0)
+ \right].
+\]
+For $\mathcal M=mI_4$, $m\ne0$, this equation uniquely determines $\Psi$ for
+every admissible tetrad.  Its complex determinant is $m^4$, hence its real
+Jacobian has rank eight.  The preceding corollary proves pointwise metric rank
+ten on the first-jet equation manifold.
+
+For
+\[
+ \mathcal M=m_sI_4+i_{\rm c}m_p\Gamma_*,
+ \qquad \Gamma_*^2=I_4,
+\]
+\[
+ \mathcal M^{-1}
+ =\frac{m_sI_4-i_{\rm c}m_p\Gamma_*}{m_s^2+m_p^2},
+ \qquad
+ \det_{\mathbb C}\mathcal M=(m_s^2+m_p^2)^2.
+\]
+The realified determinant is $(m_s^2+m_p^2)^4$, so the same conclusion holds
+whenever $(m_s,m_p)\ne(0,0)$.
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=Exact verdict]
+The rank problem has an exact no-extra-variable solution at the pointwise
+first-jet level: the finalized equation must satisfy
+$\mathcal A+K=\mathbb R^{16}$.  An invertible equation Jacobian with respect
+to the original field value is a sufficient condition and a nonzero Dirac
+zero-order block realizes it explicitly.  The remaining task is dynamical,
+not a rank count: derive that block from the canonical UBT action and prove
+local existence/integrability of the resulting implicit holomorphic PDE.
+\end{tcolorbox}
+
+\end{document}

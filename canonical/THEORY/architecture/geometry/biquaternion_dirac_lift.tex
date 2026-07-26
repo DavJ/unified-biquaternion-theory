@@ -257,88 +257,161 @@ normal form after holomorphy is imposed, or directly that its constrained jet
 projection onto the ten metric directions remains surjective.
 
 
-
-\subsection{Exact constrained-rank projection criterion}
-The remaining holomorphic on-shell question is a constrained-map problem, not
-another component count.  Let $e\in\mathbb R^{16}$ denote the real tetrad
-coefficients, let $z\in\mathbb R^m$ collect all other first-jet variables that
-do not enter the metric directly, and let
+\subsection{No-extra-field constrained-rank theorem}
+Strict holomorphy removes the independent $D_\psi\Psi$ slot, but it does not
+remove the value of the original field itself.  The correct pointwise rank
+problem therefore uses only the original UBT variables
 \begin{equation}
- \mathcal F(e,z)=0\in\mathbb R^r
- \label{eq:canonical:constraint-system}
+ \Psi=\operatorname{vec}(\Theta)\in\mathbb C^4,
+ \qquad
+ e=(e_\mu{}^a)\in\mathbb R^{16},
 \end{equation}
-be the real form of the generalized-Dirac, holomorphy and auxiliary equations
-at a solution $(e_0,z_0)$.  Write
+and no additional field.
+
+Let the real form of the four-complex-component generalized-Dirac equation be
 \begin{equation}
- F_e:=D_e\mathcal F(e_0,z_0),\qquad
- F_z:=D_z\mathcal F(e_0,z_0),\qquad
- G_e:=D_e g(e_0).
+ F(\Psi,e)=0\in\mathbb R^8.
+ \label{eq:canonical:no-extra-constraint}
+\end{equation}
+At a solution, write its Jacobian blocks as
+\begin{equation}
+ F_\Psi:\mathbb R^8\to\mathbb R^8,
+ \qquad
+ F_e:\mathbb R^{16}\to\mathbb R^8.
 \end{equation}
 The admissible tetrad variations are exactly
 \begin{equation}
- \boxed{
  \mathcal A
- =\{\delta e\in\mathbb R^{16}:F_e\delta e\in\operatorname{im}F_z\}.}
- \label{eq:canonical:admissible-tetrad-variations}
+ :=\left\{\delta e\in\mathbb R^{16}:\;
+ F_e\delta e\in\operatorname{im}F_\Psi\right\}.
+ \label{eq:canonical:admissible-tetrad-space}
 \end{equation}
-Indeed, $(\delta e,\delta z)$ is tangent to the equation manifold precisely
-when
+Let
 \begin{equation}
- F_e\delta e+F_z\delta z=0.
+ K:=\ker D_e g,
+ \qquad \dim K=6,
 \end{equation}
-Consequently the constrained metric rank is
+be the Lorentz-frame kernel proved above.
+
+\paragraph{Theorem (exact constrained metric rank).}
+For every nondegenerate tetrad and every smooth constraint
+\eqref{eq:canonical:no-extra-constraint},
 \begin{equation}
  \boxed{
- \operatorname{rank}\bigl(G_e|_{\mathcal A}\bigr).}
- \label{eq:canonical:constrained-metric-rank}
+ \operatorname{rank}\left(D_e g\big|_{\mathcal A}\right)
+ =\dim(\mathcal A+K)-6.}
+ \label{eq:canonical:constrained-rank-formula}
 \end{equation}
-This formula is exact and supplies the correct test for the complete UBT
-system.
-
-\paragraph{Corollary (surjective nonmetric block preserves rank ten).}
-If $F_z$ is surjective, then $\mathcal A=\mathbb R^{16}$.  For every
-$\delta e$ one can solve
+Consequently the full metric rank ten is retained if and only if
 \begin{equation}
- F_z\delta z=-F_e\delta e,
+ \boxed{\mathcal A+K=\mathbb R^{16}.}
+ \label{eq:canonical:rank-ten-transversality}
 \end{equation}
-so the projection of the equation manifold onto tetrad space is a submersion.
-The constrained metric rank is therefore the already proved value ten.
-This is the general form of the earlier independent-$D_\psi\Psi$ normal-form
-theorem.
 
-\paragraph{Corollary (rank-budget obstruction).}
-If there are no nonmetric variables capable of absorbing the constraints and
-$F_e$ has real rank $r$, then
+\begin{proof}
+The map $D_e g$ has kernel $K$ and induces an isomorphism from
+$\mathbb R^{16}/K$ onto the ten-dimensional space of symmetric metric
+variations.  The image of $\mathcal A$ is therefore isomorphic to
+$(\mathcal A+K)/K$.  Its dimension is
+$\dim(\mathcal A+K)-\dim K$, which gives
+\eqref{eq:canonical:constrained-rank-formula}.
+\end{proof}
+
+\paragraph{Corollary (original-field absorption).}
+If
 \begin{equation}
- \dim\mathcal A=16-r,
+ \operatorname{rank}_{\mathbb R}F_\Psi=8,
+ \label{eq:canonical:field-jacobian-invertible}
+\end{equation}
+then $\operatorname{im}F_\Psi=\mathbb R^8$, so
+$\mathcal A=\mathbb R^{16}$.  For every tetrad variation there is a unique
+field-value variation
+\begin{equation}
+ \delta\Psi=-F_\Psi^{-1}F_e\delta e
+\end{equation}
+that remains tangent to the equation manifold.  Hence
+\begin{equation}
+ \boxed{
+ \operatorname{rank}\left(D_e g\big|_{F=0}\right)=10.}
+ \label{eq:canonical:no-extra-rank-ten}
+\end{equation}
+No compensator, auxiliary field, second biquaternion, fibre average, or split
+jet has been introduced: the eight real directions used here are the value of
+the original $\Theta$ field.
+
+\paragraph{No-go without field-value absorption.}
+If $F_\Psi=0$ and $F_e$ has eight independent real rows, then
+$\dim\mathcal A=8$, and therefore
+\begin{equation}
+ \operatorname{rank}\left(D_e g\big|_{\mathcal A}\right)\leq8.
+ \label{eq:canonical:eight-constraint-no-go}
+\end{equation}
+Thus four independent complex first-order equations acting only on the sixteen
+tetrad components cannot generically retain metric rank ten.  They can avoid
+this conclusion only if their real rank is at most six or if the removed
+directions are transverse only to Lorentz gauge, as expressed exactly by
+\eqref{eq:canonical:rank-ten-transversality}.
+
+\subsection{Application to the holomorphic generalized-Dirac equation}
+Use the covariant complex-time condition
+\begin{equation}
+ D_\psi\Psi=i_{\rm c}D_0\Psi
+\end{equation}
+and the canonical identification
+\begin{equation}
+ D_\mu\Psi
+ =\sqrt{\mathcal N_0}\,\operatorname{vec}(E_\mu).
+\end{equation}
+Then the candidate first-order equation
+\begin{equation}
+ i_{\rm c}\Gamma^\mu(e)D_\mu\Psi
+ +i_{\rm c}\Gamma_\psi D_\psi\Psi
+ -\mathcal M\Psi=0
+\end{equation}
+becomes the pointwise constraint
+\begin{equation}
+ \mathcal M\Psi
+ =\sqrt{\mathcal N_0}\left[
+ i_{\rm c}\Gamma^\mu(e)\operatorname{vec}(E_\mu)
+ -\Gamma_\psi\operatorname{vec}(E_0)
+ \right].
+ \label{eq:canonical:holomorphic-dirac-graph}
+\end{equation}
+The right-hand side depends on the tetrad first jet, while the left-hand side
+uses the value of the same master field.
+
+If $\mathcal M=mI_4$ with $m\neq0$, then the complex determinant is $m^4$ and
+the real Jacobian has rank eight.  Equation
+\eqref{eq:canonical:holomorphic-dirac-graph} uniquely determines $\Psi$ for
+every Lorentz-admissible tetrad, so the equation manifold is locally a graph
+over all sixteen tetrad slots and the metric rank is ten.
+
+More generally, for the scalar--pseudoscalar block
+\begin{equation}
+ \mathcal M=m_sI_4+i_{\rm c}m_p\Gamma_*,
+\end{equation}
+one has
+\begin{equation}
+ \mathcal M^{-1}
+ =\frac{m_sI_4-i_{\rm c}m_p\Gamma_*}{m_s^2+m_p^2},
  \qquad
- \operatorname{rank}\bigl(G_e|_{\mathcal A}\bigr)
- \le \min(10,16-r).
- \label{eq:canonical:rank-budget-bound}
+ \det_{\mathbb C}\mathcal M=(m_s^2+m_p^2)^2,
 \end{equation}
-Thus eight independent real equations imposed solely on the tetrad slots can
-have constrained metric rank at most eight.  A four-complex-component Dirac
-equation therefore cannot be treated as eight independent real conditions on
-$e$ alone while simultaneously claiming rank ten.  At least part of the
-equation must instead be solvable in nonmetric variables, be dependent, or act
-only in gauge directions.
+so the realified determinant is $(m_s^2+m_p^2)^4$.  It therefore preserves
+rank ten whenever $(m_s,m_p)\neq(0,0)$.
 
-\paragraph{Strict holomorphy.}
-For the convention $\tau=t+i_{\rm c}\psi$, covariant holomorphy has the local
-Cauchy--Riemann form
-\begin{equation}
- D_\psi\Psi=i_{\rm c}D_t\Psi
- \label{eq:canonical:covariant-cr}
-\end{equation}
-when the connection is compatible with the complex-time structure.  After
-Eq.~\eqref{eq:canonical:covariant-cr} is substituted, $D_\psi\Psi$ is no
-longer an independent nonmetric slot, so the previous $\psi$-normal argument
-cannot be invoked by itself.  The next canonical calculation is therefore
-unambiguous: form the real Jacobian $(F_e\;F_z)$ of the actual action-derived
-holomorphic equation and evaluate
-Eq.~\eqref{eq:canonical:constrained-metric-rank}.  Rank ten is proved if
-$F_z$ is surjective, or more generally if $G_e|_{\mathcal A}$ has rank ten.
-Until that Jacobian is derived, holomorphic on-shell rank remains open.
+\paragraph{Status and limitation.}
+Equations~\eqref{eq:canonical:constrained-rank-formula}--
+\eqref{eq:canonical:no-extra-rank-ten} are unconditional finite-dimensional
+rank theorems.  Their application to
+\eqref{eq:canonical:holomorphic-dirac-graph} is conditional only on the
+finalized UBT equation having an invertible original-field Jacobian
+$F_\Psi$; a nonzero scalar or scalar--pseudoscalar zero-order block is an
+explicit sufficient realization.  Deriving that block and its normalization
+from the canonical UBT action, and proving local solutions of the resulting
+implicit first-order PDE, remain dynamical tasks.  The rank obstruction itself
+is thereby reduced to the exact transversality condition
+\eqref{eq:canonical:rank-ten-transversality}, without adding variables.
 
 \subsection{Remaining proof gates}
 A complete closure requires:
@@ -348,8 +421,13 @@ A complete closure requires:
  \item proof that the implicit cycle
        $\Theta\to E\to\Gamma\to\omega(E)\to D\Theta$ has local solutions;
  \item preservation of the Lorentz slice and nondegeneracy under evolution;
- \item rank ten after all equations of motion, gauge conditions and
-       complex-time constraints are imposed;
+ \item derivation from the canonical action of a generalized-Dirac
+       zero-order block whose original-field Jacobian $F_\Psi$ is invertible,
+       or an alternative proof of the exact transversality condition
+       $\mathcal A+K=\mathbb R^{16}$;
+ \item local existence and integrability of the resulting implicit
+       holomorphic first-order PDE (the pointwise constrained rank is proved
+       under the preceding transversality condition);
  \item derivation of the Einstein low-energy dynamics and the quantum limits.
 \end{enumerate}
 The historical spinor-current tetrad is not used in these gates.
