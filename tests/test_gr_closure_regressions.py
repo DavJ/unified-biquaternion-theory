@@ -50,10 +50,21 @@ def test_claim_ledger_contains_covariant_tetrad_gaps() -> None:
     assert "compact-psi fiber average is the canonical UBT metric" in claims
 
 
-def test_fiber_files_are_explicitly_exploratory() -> None:
-    for rel in (
-        "canonical/gr_closure/pure_ubt_fiber_closure.tex",
-        "canonical/gr_closure/linearised_fiber_closure.tex",
-    ):
-        text = read(rel)
-        assert text.startswith("% STATUS NOTICE (2026-07-15): EXPLORATORY")
+def test_fiber_files_are_explicitly_noncanonical() -> None:
+    expected_status = {
+        "canonical/gr_closure/pure_ubt_fiber_closure.tex": (
+            "noncanonical completion candidate",
+            "not the currently locked canonical metric",
+            "axiom c",
+        ),
+        "canonical/gr_closure/linearised_fiber_closure.tex": (
+            "exploratory candidate completion",
+            "no longer the canonical ubt metric",
+            "retained for mathematical comparison and audit history only",
+        ),
+    }
+    for rel, required_phrases in expected_status.items():
+        header = "\n".join(read(rel).splitlines()[:8]).lower()
+        assert header.startswith("% status notice")
+        for phrase in required_phrases:
+            assert phrase in header
