@@ -1,32 +1,44 @@
-# Historical status of the compact-fiber route
+# Candidate status of the compact-fiber route
 
-The compact-`psi` fiber route is retained as a mathematically meaningful
-historical and exploratory branch. It was **not** abandoned because of a
-contradiction or because its local rank construction was false.
+**Updated:** 31 July 2026
 
-The branch established, within its own metric and variation framework:
+The compact-`psi` profile route is retained as a mathematically meaningful
+candidate completion. It was **not** abandoned because of a contradiction or
+because its local rank construction was false.
+
+The branch establishes, within its own metric and variation framework:
 
 - a fixed-section rank obstruction;
 - a fiber-free local closure construction using multiple profile modes;
-- conditional linearised closure results for the composed Einstein-Hilbert
+- exact local vacuum Einstein closure on the free branch;
+- a local representability theorem obtained by lifting a free isometric
+  embedding in `R^(13,1)` to fourteen orthonormal profiles of the same field
+  `Theta(x,psi)`;
+- conditional linearised closure results for the composite Einstein-Hilbert
   branch.
 
-The route is noncanonical for a different reason: its large representer space
-has weak physical selectivity. Adding sufficiently many profile directions can
-make a broad class of metrics representable, but representability alone does
-not explain why the UBT dynamics selects one physical tetrad. The canonical
-covariant-tetrad route therefore returns to one field and its four covariant
-first derivatives.
+The new completion note is:
 
-An external audit has reported an explicit smooth fiber-free Schwarzschild
-representer with a verifier. That source and verifier are not included in this
-repository snapshot, so the repository does not yet promote the reported
-construction to a reproduced theorem. If merged later, it must be archived
-here as evidence of mathematical consistency and representer redundancy, not
-as the canonical GR mechanism.
+- `research_tracks/T1_GR/free_fiber_completion/gap_10r_free_fiber_embedding_completion.tex`
 
-The historical lesson is methodological:
+Its exact status is **local vacuum completion candidate**, not merely a broad
+representability trick. Once the profile metric and the pure-`Theta` Gauss
+action are adopted, free rank ten removes the extra Regge-Teitelboim solutions
+and yields the complete Einstein-Lambda equation.
 
-> A correct obstruction in one formulation must not be treated as a no-go
-> theorem for another architecture. Before adding modes or structure, first
-> test whether the obstruction is an artefact of the chosen formulation.
+The route remains noncanonical because the currently locked Axiom C forbids a
+compact-`psi` average and instead chooses the pointwise central tetrad metric.
+Promotion therefore requires an explicit author-approved major axiom revision.
+The unresolved physical questions are the origin of the profile readout and of
+`kappa`/`Lambda` from the older UBT master action, dynamic profile selection,
+`psi` stability, stronger holomorphic/Jacobi restrictions, matter separation,
+and global continuation.
+
+The pointwise torsion-free branch and the profile branch must not be conflated:
+
+- the pointwise pure Lorentz pair has a concurrent-vector no-go for non-flat
+  Schwarzschild;
+- the full profile metric has exact local free-embedding closure.
+
+The next step is therefore an architectural decision, not another ad hoc
+connection ansatz.

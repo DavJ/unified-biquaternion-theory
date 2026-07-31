@@ -113,11 +113,16 @@ The current canonical route is:
 - `GAP-10psi-KIN`: CLOSED; `GAP-10psi-SYM`: CLOSED CONDITIONALLY;
   `GAP-10psi`: NARROWED.
 
-## Noncanonical exploratory branch
+## Noncanonical profile-completion candidate
 
-The former compact-ψ fiber-average closure files remain in this directory for
-comparison and audit history. See `HISTORICAL_FIBER_ROUTE_STATUS.md`. The
-branch was not disproved; it was demoted because its large representer space
-has weak canonical selection. They must be labelled `EXPLORATORY CANDIDATE
-COMPLETION` and must not override the central anticommutator metric or the
-covariant-tetrad connection route.
+The compact-ψ profile files remain noncanonical because the locked Axiom C
+forbids fiber averaging. They are no longer described only as a weakly
+selective historical route. The 31 July 2026 completion note
+`research_tracks/T1_GR/free_fiber_completion/gap_10r_free_fiber_embedding_completion.tex` proves that a local free
+isometric embedding in `R^(13,1)` lifts to one `Theta(x,psi)`, gives closure
+rank ten, and makes the pure-Theta Gauss action exactly equivalent to local
+vacuum Einstein-Lambda dynamics on the free branch.
+
+See `HISTORICAL_FIBER_ROUTE_STATUS.md` for the decision boundary. Promotion
+requires an explicit author-approved axiom revision; until then the candidate
+must not silently override the pointwise central-anticommutator metric.

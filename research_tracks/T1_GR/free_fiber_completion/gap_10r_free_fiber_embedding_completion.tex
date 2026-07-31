@@ -1,0 +1,317 @@
+% STATUS NOTICE (2026-07-31): CANDIDATE COMPLETION, NOT YET CANONICAL.
+% This note reopens the compact-psi profile route after the torsion-free
+% single-section no-go.  Promoting it requires an author-approved amendment of
+% AXIOM C, because the present canonical lock forbids compact-fiber averaging.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.35cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,array,tabularx}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\newcommand{\B}{\mathbb B}
+\newcommand{\Nzero}{\mathcal N_0}
+\newcommand{\avg}[1]{\left\langle #1\right\rangle_\psi}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\one}{\mathbf 1}
+
+\title{Candidate Local GR Completion from the Existing Complex-Time Profile\\
+\large Free-embedding lift, pure-$\Theta$ Gauss action, and exact vacuum closure}
+\author{Ing. David Jaro\v{s}}
+\date{31 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The torsion-free single-section construction
+$E_\mu=\Nzero^{-1/2}D_\mu\Theta\in W_L$ obeys a concurrent-vector no-go and
+cannot generate a generic non-flat vacuum geometry.  This note proves a
+precise alternative using no new fundamental field: retain the already
+postulated periodic complex-time profile $\psi\mapsto\Theta(x,\psi)$ and read
+the four-dimensional metric from the normalized Haar average of the central
+Lorentz product.  A local free isometric embedding of any Lorentzian
+four-metric into $\mathbb E^{13,1}$ lifts isometrically to fourteen orthonormal
+$W_L$-valued profile modes of the same $\Theta$.  The ten normal
+second-derivative profiles are then independent, so variation of the
+pure-$\Theta$ Gauss action is exactly equivalent to the vacuum
+Einstein--$\Lambda$ equations on that branch.  This closes local
+representability and local vacuum closure for the profile metric.  It does not
+derive $\kappa$, $\Lambda$, profile selection, or the profile readout from the
+previous canonical master action; promotion therefore requires a deliberate
+canonical decision rather than a silent status change.
+\end{abstract}
+
+\begin{tcolorbox}[colback=yellow!5,colframe=yellow!55!black,title=Canonical impact]
+The construction below is mathematically compatible with one fundamental
+field $\Theta(q,\tau)$ and adds no independent connection or tetrad.  It is
+nevertheless \emph{not compatible with the current wording of AXIOM C}, which
+forbids compact-$\psi$ averaging as the canonical metric readout.  The result
+is therefore a candidate completion until the repository maintainer either
+promotes it by a major axiom revision or rejects the profile readout.
+\end{tcolorbox}
+
+\section{Central profile pairing}
+
+Let
+\[
+ W_L=\{ix^0\one+x^k\mathbf e_k\mid x^a\in\mathbb R\}\subset\B
+\]
+be the canonical Lorentz slice.  For $U,V:S^1_{R_\psi}\to W_L$ define the
+real symmetric profile pairing by the central identity
+\begin{equation}
+ \avg{U,V}\,\one
+ :=\frac1{L_\psi}\int_0^{L_\psi}
+ \frac12\bigl(U^\sharp V+V^\sharp U\bigr)\,\dd\psi,
+ \qquad L_\psi=2\pi R_\psi.
+ \label{eq:profilepair}
+\end{equation}
+It is the orthogonal direct sum of countably many copies of the Lorentz form
+on $W_L$ and therefore has infinitely many positive and negative directions.
+
+\begin{definition}[Candidate profile metric]
+For a smooth periodic field $\Theta:U\times S^1_{R_\psi}\to W_L$ set
+\begin{equation}
+ E_\mu:=\partial_\mu\Theta,
+ \qquad
+ \boxed{\quad g_{\mu\nu}[\Theta]
+ =\frac1{\Nzero}\avg{E_\mu,E_\nu}.\quad}
+ \label{eq:profilemetric}
+\end{equation}
+Equivalently, $g_{\mu\nu}\one$ is the normalized Haar average of the
+pointwise central anticommutator.  No trace or real-part projection is used.
+\end{definition}
+
+\begin{proposition}[Finite Lorentz ambient block inside one profile]
+There exist fourteen smooth periodic profiles $F_A:S^1\to W_L$,
+$A=0,\ldots,13$, satisfying
+\begin{equation}
+ \avg{F_A,F_B}=\eta_{AB},
+ \qquad \eta_{AB}=\operatorname{diag}(-1,+1,\ldots,+1).
+ \label{eq:profilebasis}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Take a unit timelike constant profile for $F_0$.  For the positive directions
+use normalized sine/cosine profiles in the three spacelike quaternion
+basis directions, with distinct pairs (Fourier number, algebra direction).
+Fourier orthogonality makes different choices orthogonal, while the Lorentz
+slice identity fixes every norm to $+1$.  There are arbitrarily many such
+positive profiles, so thirteen can be selected.
+\end{proof}
+
+Let $\iota:\mathbb R^{13,1}\to\mathscr V_\psi$ denote the isometric linear map
+\[
+ \iota(v):=v^A F_A,
+ \qquad
+ \avg{\iota(v),\iota(w)}=\eta_{AB}v^Aw^B.
+\]
+
+\section{Free-embedding lift}
+
+\begin{definition}[Free isometric embedding]
+A local isometric embedding $Y:U\to\mathbb E^{13,1}$ is free when the fourteen
+ambient vectors
+\begin{equation}
+ \{Y_{,\mu},Y_{;\mu\nu}\},
+ \qquad \mu=0,\ldots,3,\quad \mu\le\nu,
+ \label{eq:freevectors}
+\end{equation}
+are linearly independent.  The ten $Y_{;\mu\nu}$ are normal to the four
+$Y_{,\mu}$.
+\end{definition}
+
+\begin{theorem}[Profile lift of a free embedding]
+Let $Y:U\to\mathbb E^{13,1}$ be a local free isometric embedding of a
+Lorentzian metric $g$.  Define one biquaternionic profile field
+\begin{equation}
+ \boxed{\quad
+ \Theta_Y(x,\psi):=\sqrt{\Nzero}\,Y^A(x)F_A(\psi).
+ \quad}
+ \label{eq:thetalift}
+\end{equation}
+Then:
+\begin{enumerate}
+ \item $g_{\mu\nu}[\Theta_Y]=g_{\mu\nu}$ exactly;
+ \item the normal profile second derivatives are
+ \begin{equation}
+  B_{\mu\nu}
+  :=P_\perp(\nabla_\mu E_\nu)
+  =\sqrt{\Nzero}\,\iota(Y_{;\mu\nu});
+  \label{eq:Btransfer}
+ \end{equation}
+ \item the closure map
+ \begin{equation}
+  \mathcal K(X)=X^{\mu\nu}B_{\mu\nu}
+  \label{eq:Kmap}
+ \end{equation}
+ is injective.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Differentiating Eq.~\eqref{eq:thetalift} gives
+$E_\mu=\sqrt{\Nzero}\,\iota(Y_{,\mu})$.  The isometry of $\iota$ yields
+\[
+ \Nzero^{-1}\avg{E_\mu,E_\nu}
+ =\eta_{AB}Y^A{}_{,\mu}Y^B{}_{,\nu}=g_{\mu\nu}.
+\]
+Because $\iota$ is constant and isometric, it commutes with spacetime
+covariant differentiation and with orthogonal decomposition relative to the
+tangent span.  Hence Eq.~\eqref{eq:Btransfer} holds.  Freeness makes the ten
+normal vectors $Y_{;\mu\nu}$ linearly independent, and the injectivity of
+$\iota$ preserves that independence.  Therefore $\mathcal K(X)=0$ implies
+$X^{\mu\nu}=0$.
+\end{proof}
+
+\begin{theorem}[Local representability]
+Every four-dimensional Lorentzian manifold of the regularity covered by the
+local free-embedding theorem admits, near each point, a field of the form
+Eq.~\eqref{eq:thetalift} that reproduces its metric and is fiber-free.
+\end{theorem}
+
+\begin{proof}
+The local free-isometric-embedding theorem gives a free isometric embedding
+$Y:U\to\mathbb E^{13,1}$.  Apply the profile-lift theorem.
+\end{proof}
+
+\begin{corollary}[Local Schwarzschild and general Einstein patches]
+Every regular coordinate patch of Schwarzschild, Kerr, FLRW, or any other
+smooth Lorentzian Einstein solution has a local fiber-free $\Theta_Y$
+representer in the candidate profile metric.  This is an existence theorem;
+it does not supply a preferred or global closed-form representer.
+\end{corollary}
+
+\section{Gauss identity and a direct pure-$\Theta$ action}
+
+The target profile space has a fixed flat pairing.  Its Gauss equation gives
+\begin{equation}
+ R_{\mu\nu\rho\sigma}
+ =\frac1{\Nzero}\left(
+   \avg{B_{\mu\rho},B_{\nu\sigma}}
+  -\avg{B_{\mu\sigma},B_{\nu\rho}}
+ \right).
+ \label{eq:Gauss}
+\end{equation}
+Consequently
+\begin{equation}
+ R[g[\Theta]]
+ =\frac1{\Nzero}\left(
+  \avg{B^\mu{}_{\mu},B^\nu{}_{\nu}}
+  -\avg{B_{\mu\nu},B^{\mu\nu}}
+ \right).
+ \label{eq:scalarGauss}
+\end{equation}
+
+\begin{definition}[Pure-$\Theta$ Gauss action]
+On the regular profile branch define
+\begin{equation}
+ \boxed{
+ S_{\rm G}[\Theta]
+ =\frac1{2\kappa}\int_U\sqrt{-g[\Theta]}\left[
+ \frac1{\Nzero}\left(
+  \avg{B^\mu{}_{\mu},B^\nu{}_{\nu}}
+  -\avg{B_{\mu\nu},B^{\mu\nu}}
+ \right)-2\Lambda\right]\dd^4x .}
+ \label{eq:Gaussaction}
+\end{equation}
+The usual composite boundary term is understood, or variations are taken with
+compact support.
+\end{definition}
+
+\begin{proposition}[No independent metric or connection]
+On every regular profile configuration, Eq.~\eqref{eq:Gaussaction} equals the
+Einstein--Hilbert--$\Lambda$ functional of the composite metric
+$g[\Theta]$.  All objects in Eq.~\eqref{eq:Gaussaction} are built from one
+$\Theta$, the fixed profile pairing, and spacetime derivatives.
+\end{proposition}
+
+\begin{theorem}[Exact local vacuum GR closure]
+Let $\Theta$ be a regular fiber-free stationary point of
+$S_{\rm G}[\Theta]$.  Then
+\begin{equation}
+ \boxed{G_{\mu\nu}+\Lambda g_{\mu\nu}=0.}
+ \label{eq:Einstein}
+\end{equation}
+Conversely, every local free profile lift of an Einstein--$\Lambda$ metric is
+a stationary point under compactly supported profile variations.
+\end{theorem}
+
+\begin{proof}
+The metric variation is
+\[
+ \delta g_{\mu\nu}
+ =\frac2{\Nzero}\avg{E_{(\mu},\partial_{\nu)}\delta\Theta}.
+\]
+Varying the composite Einstein--Hilbert functional, integrating by parts, and
+using the contracted Bianchi identity gives the normal Euler--Lagrange
+equation
+\begin{equation}
+ (G^{\mu\nu}+\Lambda g^{\mu\nu})B_{\mu\nu}=0.
+ \label{eq:RTfree}
+\end{equation}
+Fiber-freeness makes the ten $B_{\mu\nu}$ independent, so
+Eq.~\eqref{eq:RTfree} implies Eq.~\eqref{eq:Einstein}.  The converse follows
+immediately because the Einstein residual vanishes before contraction with
+$B_{\mu\nu}$.
+\end{proof}
+
+\section{What is closed and what remains}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth}
+                              >{\raggedright\arraybackslash}p{0.20\textwidth}
+                              >{\raggedright\arraybackslash}X}
+\hline
+Item & Status & Scope \\
+\hline
+Local metric representability & Closed (profile metric) & Follows from local free embedding in $\mathbb E^{13,1}$ and the profile lift. \\
+Fiber-free non-vacuity on GR geometries & Closed locally & Every locally free embedded GR patch lifts to one $\Theta$. \\
+Vacuum Einstein--$\Lambda$ equation & Closed (free branch) & Direct variation of the pure-$\Theta$ Gauss action. \\
+Independent tetrad/connection fields & None introduced & $g$, $B$, and the Levi--Civita objects are composites of $\Theta$. \\
+Canonical metric choice & Axiom decision & Current AXIOM C explicitly forbids compact-$\psi$ averaging. \\
+Origin of $\kappa$ and $\Lambda$ & Open & The Gauss action fixes the form, not their values from the older master equation. \\
+Dynamic profile selection/stability & Open & Must show the UBT dynamics selects and preserves the free, $\psi$-stable branch. \\
+Holomorphic/Jacobi restriction & Open & The lift is smooth periodic; any stronger analytic restriction must be checked separately. \\
+Global representability & Open & The theorem is local; topology and horizons require patching/global analysis. \\
+Matter and gauge separation & Open & Vacuum needs no separate $\mathcal F_\Theta$ term; unified matter requires a projection/separation theorem. \\
+\hline
+\end{tabularx}
+\end{center}
+
+\section{Decision}
+
+The candidate profile completion is not merely a right inverse for a prescribed
+tetrad.  Once the profile metric and the Gauss action are adopted, the field
+$\Theta$ is the embedding variable, its stationary equation is
+Eq.~\eqref{eq:RTfree}, and freeness converts that equation to the complete ten
+Einstein equations.  The construction therefore supplies an exact local
+vacuum GR sector from one $\Theta$.
+
+The remaining obstacle is conceptual and canonical rather than a missing
+rank calculation: decide whether the classical metric is a pointwise tetrad
+readout or the translation-invariant readout of the full already-existing
+complex-time profile.  The former has the proved torsion-free concurrent-vector
+no-go; the latter has the exact local closure proved above.
+
+\begin{thebibliography}{9}
+\bibitem{Bustamante2005}
+M. D. Bustamante, P. Debbasch, and M. E. Brachet,
+``Classical Gravitation as Free Membrane Dynamics,''
+\emph{Class. Quantum Grav.} 23 (2006), arXiv:gr-qc/0509090.
+
+\bibitem{Willison2013}
+S. Willison,
+``A Re-examination of the Isometric Embedding Approach to General Relativity,''
+arXiv:1311.6203.
+\end{thebibliography}
+
+\end{document}

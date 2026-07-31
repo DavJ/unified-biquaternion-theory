@@ -1,0 +1,10 @@
+DERIVATION_INDEX.md
+OVERLAY_APPLY_GR_FREE_FIBER_CANDIDATE_2026-07-31.md
+canonical/gr_closure/HISTORICAL_FIBER_ROUTE_STATUS.md
+canonical/gr_closure/README.md
+canonical/gr_closure/pure_ubt_fiber_closure.tex
+docs/GR_COMPLETION_DECISION.md
+docs/pdfs/gap_10r_free_fiber_embedding_completion.pdf
+research_tracks/T1_GR/free_fiber_completion/gap_10r_free_fiber_embedding_completion.tex
+tests/test_free_fiber_completion.py
+tools/verify_free_fiber_completion.py

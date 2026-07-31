@@ -1,51 +1,70 @@
-# GR completion decision after the minimal one-connection no-go
+# GR completion architecture decision
 
-## Decision
+**Updated:** 31 July 2026
 
-The current minimal interpretation is not retained as the exact-GR endpoint.
-The same Lorentz connection cannot simultaneously:
+## Pointwise covariant-tetrad route
 
-1. sit inside `DTheta` and locally represent arbitrary tetrads through a
-   composite contortion, and
-2. be the torsion-free physical Levi-Civita connection of generic GR.
+The pointwise definition
 
-This is now an exact architecture-level no-go, not an open numerical question.
+```text
+E_mu = N0^(-1/2) D_mu Theta,
+g_mu_nu 1 = {E_mu,E_nu}_sharp / 2
+```
 
-## Preferred exact-GR completion
+remains the current canonical metric readout. Its local metric algebra,
+rank-ten theorem, connection reconstruction, and torsion bookkeeping are
+valid. However, the minimal torsion-free one-connection realization has an
+exact concurrent-vector no-go and cannot be the generic curved-GR endpoint.
 
-Use two roles, not two freely propagating gauge fields:
+The split-jet construction is retained only as a local representation theorem.
+Because its auxiliary jet can absorb every prescribed tetrad, it does not
+select a physical `E[Theta]` and is not a completion of GR dynamics.
 
-- **physical connection**: `Omega_phys = Omega_LC(E)`, used for physical
-  curvature and ordinary matter transport;
-- **jet connection**: `Omega_hat = Omega_LC(E) + K_J[E,Theta]`, used only in
-  `E_mu = N0^(-1/2) D_mu^{Omega_hat} Theta`.
+## Compact-psi profile candidate
 
-`K_J` and the required relative central jet one-form now have an explicit
-local covariant right-inverse formula for every non-null Lorentz-real `X`; see
-`canonical/gr_closure/gap_10t_split_jet_right_inverse.tex`. This closes
-representability, but the formula uses the prescribed tetrad and therefore does
-not dynamically select `E[Theta]` or follow from the canonical action.
+A distinct noncanonical candidate now has a local closure theorem:
 
-## Alternative completion
+- source:
+  `research_tracks/T1_GR/free_fiber_completion/gap_10r_free_fiber_embedding_completion.tex`;
+- generated review PDF:
+  `docs/pdfs/gap_10r_free_fiber_embedding_completion.pdf`.
 
-Keep one connection and accept physical torsion. Then the endpoint is an
-Einstein-Cartan/modified-gravity theory rather than exact ordinary GR. This
-route needs a canonical torsion action, matter coupling, propagation analysis,
-and observational bounds.
+It uses the full periodic profile of the same field `Theta(x,psi)` and defines
+the metric by the normalized translation-invariant profile pairing. Fourteen
+orthonormal Lorentz-slice profiles realize `R^(13,1)`. A local free isometric
+embedding therefore lifts to one `Theta(x,psi)`, while free rank ten turns the
+Regge--Teitelboim stationarity equation into the complete local vacuum
+Einstein--Lambda equation.
 
-## Exact remaining proof obligations
+This closes local smooth representability and local vacuum closure **within the
+profile-metric architecture**. It adds no independent tetrad or connection.
 
-1. **Jet dynamics lemma** — derive action-level selection of the explicit
-   split-jet representative and of `E[Theta]`, and prove that its extra jet
-   components do not propagate.
-2. **Curvature-action lemma** — derive the Hilbert-Palatini term, sign, and
-   Newton coefficient from canonical UBT. The locked quadratic kinetic term is
-   only a volume term and cannot generate curvature dynamics.
-3. **Constraint/degree-of-freedom audit** — prove that the jet completion adds
-   no ghost or physical propagating mode.
-4. **On-shell solution theorem** — prove that Schwarzschild/Kerr/FRW tetrads
-   solve the final equations and that perturbations reduce to two graviton
-   polarizations.
+## Canonical boundary
 
-Only after all four items are proved may the repository say that GR is derived
-unconditionally from UBT.
+The profile route is not canonical under the current wording of Axiom C,
+which selects the pointwise central-anticommutator metric and forbids compact
+`psi` averaging. Therefore:
+
+1. the candidate stays under `research_tracks/T1_GR/`;
+2. canonical files may describe and audit it, but must not silently present it
+   as the active metric axiom;
+3. promotion requires an explicit author-approved revision of Axiom C and a
+   coordinated update of the canonical action, status files, and GR paper.
+
+## Remaining obligations after possible promotion
+
+1. Derive the profile readout and the coefficients `kappa` and `Lambda` from the
+   older UBT master action rather than inserting an Einstein-equivalent action.
+2. Prove dynamic selection and stability of a free profile sector.
+3. Establish compatibility with the required holomorphic/Jacobi restrictions.
+4. Separate the gravitational and internal/matter equations from one unified
+   stationarity condition.
+5. Treat null patches, global continuation, topology, and explicit global
+   black-hole/cosmological representatives.
+
+## Current decision
+
+Do not develop the split-jet construction as the final exact-GR mechanism.
+Keep the pointwise route as the audited canonical baseline and the compact-psi
+free-fiber construction as the leading noncanonical completion candidate until
+the metric-axiom decision is made.

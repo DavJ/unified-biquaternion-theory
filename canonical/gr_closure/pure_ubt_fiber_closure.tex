@@ -1,8 +1,8 @@
-% STATUS NOTICE (2026-07-15): EXPLORATORY CANDIDATE COMPLETION.
-% The compact-psi fiber-average metric is no longer the canonical UBT metric.
-% The canonical route is E_mu=D_mu Theta and the central anticommutator; see
-% canonical/gr_closure/covariant_tetrad_rank_theorem.tex.  Results below are
-% retained for mathematical comparison and audit history only.
+% STATUS NOTICE (updated 2026-07-31): NONCANONICAL COMPLETION CANDIDATE.
+% The compact-psi profile metric is not the currently locked canonical metric.
+% The companion file gap_10r_free_fiber_embedding_completion.tex now closes
+% local smooth representability and exact local vacuum GR on the free branch.
+% Promotion still requires an explicit author-approved revision of AXIOM C.
 
 % © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 % Pure UBT derivation: no independent metric, no imported embedding equations.
@@ -29,10 +29,10 @@
 \newcommand{\Nzero}{\mathcal N_0}
 \newcommand{\dd}{\mathrm d}
 
-\title{Pure-UBT GR Closure from the Complex-Time Fiber\\
+\title{Candidate Pure-$\Theta$ GR Closure from the Complex-Time Fiber\\
 \large Exact first variation, rank theorem, and the remaining single-action gap}
 \author{Ing. David Jaroš}
-\date{14 July 2026}
+\date{Revised 31 July 2026}
 
 \begin{document}
 \maketitle
@@ -47,10 +47,11 @@ not biquaternion-valued; the full raw quadratic tensor and its scalar projection
 must therefore be distinguished.  Second, a metric obtained from a single
 $\psi$-section of a genuinely biquaternion-valued field has a rigorous local rank
 obstruction: its eight-real-dimensional value space supplies at most four normal
-closure equations.  Third, UBT already contains an intrinsic resolution of this
-kinematic obstruction: treating the existing compact complex-time fiber as part
-of the same field, and taking the classical metric as its normalized fiber
-average, makes the metric-generating space infinite-dimensional.  On the
+closure equations.  Third, the existing UBT field content admits a candidate resolution of this
+kinematic obstruction: treat the compact complex-time profile as part of the
+same field and revise the classical metric readout to its normalized fiber
+average.  This makes the metric-generating space infinite-dimensional, but the
+readout is not canonical under the current AXIOM C.  On the
 \emph{fiber-free} sector, where ten normal second-derivative vectors are linearly
 independent, the pure-$\Theta$ gravitational variation implies the complete
 Einstein equation.  The fiber-free condition is nonempty and open dense in every sufficiently rich finite-mode holomorphic two-jet truncation.  For the full unified action, exact GR recovery also
@@ -60,9 +61,11 @@ precisely and is not silently assumed.
 \end{abstract}
 
 \begin{tcolorbox}[colback=blue!4,colframe=blue!65!black,title=Epistemic status]
-All algebraic and variational statements below are proved from the stated UBT
-definitions.  The local vacuum closure theorem is unconditional on its explicitly
-defined fiber-free sector.  The matter/gauge closure theorem is conditional on
+All algebraic and variational statements below are proved from the stated
+profile-metric definitions.  Those definitions are a noncanonical candidate
+until AXIOM C is explicitly revised.  Conditional on adopting that readout, the
+local vacuum closure theorem is unconditional on its explicitly defined
+fiber-free sector.  The matter/gauge closure theorem is conditional on
 the canonical internal $\Theta$ equation (equivalently, vanishing of the direct
 fixed-metric Euler--Lagrange term).  No claim is made that a single standard
 Jacobi theta constant automatically satisfies the fiber-free condition; that is
@@ -506,12 +509,13 @@ in the zero set of a nonzero polynomial minor).
 
 \begin{proof}
 Choose ten fixed continuous normal test functionals and form the corresponding
-$10\times10$ closure minor.  In a finite Fourier--Galerkin jet space its entries
-are polynomial functions of the jet coefficients.  The explicit construction
-above makes this determinant nonzero, so the polynomial is not identically
-zero.  Its nonzero set is open and dense in the ordinary finite-dimensional
-topology.  Intersecting with the open regular-Lorentzian first-jet locus gives
-the claim.
+$10\times10$ closure minor.  On the regular locus its entries are rational
+functions of the jet coefficients because $P_\perp$ contains the inverse
+tangent Gram matrix.  After multiplication by a sufficient power of the
+nonzero Gram determinant, the minor becomes polynomial.  The explicit
+construction above makes the resulting polynomial nonzero, so its nonzero set
+is open and dense in the ordinary finite-dimensional topology.  Intersecting
+with the open regular-Lorentzian first-jet locus gives the claim.
 \end{proof}
 
 \begin{remark}[What this genericity theorem does and does not prove]
@@ -539,15 +543,16 @@ profiles by the corresponding linear combinations gives the required Gram
 matrix.  Constant Fourier profiles already suffice for this pointwise claim.
 \end{proof}
 
-\begin{remark}[Local integrability gap]
-Pointwise Gram representability does not prove that an arbitrary prescribed
-metric field on a neighbourhood can be written with
-$E_\mu=\partial_\mu\Theta$ while simultaneously satisfying mixed-derivative
-integrability, holomorphy in $\tau$, boundary conditions and the UBT field
-equation.  This is recorded as GAP-10R and remains open.  Consequently the
-closure theorem proves that fiber-free stationary UBT configurations obey the
-Einstein equation; it does not yet prove that every local or global Einstein
-geometry occurs in the dynamically selected UBT solution space.
+\begin{remark}[Local representability update]
+Pointwise Gram representability alone does not prove neighbourhood
+integrability.  The companion note
+\path{research_tracks/T1_GR/free_fiber_completion/gap_10r_free_fiber_embedding_completion.tex} supplies the
+missing local smooth result: a local free isometric embedding in
+$\mathbb E^{13,1}$ lifts to fourteen orthonormal profiles of the same
+$\Theta(x,\psi)$ and reproduces the prescribed metric with closure rank ten.
+Thus smooth local GAP-10R is closed for the profile metric.  Stronger
+holomorphic/Jacobi restrictions, boundary conditions, global continuation and
+dynamical selection by the older UBT master equation remain open.
 \end{remark}
 
 \section{Adjugates and rank-deficient physical branches}
@@ -590,7 +595,7 @@ Fiber-free nonempty and finite-mode generic & PROVED & Open dense in every suffi
 Matter/gauge GR closure & PROVED CONDITIONALLY & Requires the canonical fixed-metric internal equation $\F_\Theta=0$. \\
 Single unified-action term separation & OPEN & Must derive $\F_\Theta=0$ and metric closure from one stationarity equation without imposing separate on-shell conditions. \\
 Specific Jacobi ansatz is fiber-free & OPEN & Must be checked for the canonical selected theta kernel/solution family. \\
-Local representation of arbitrary GR metric fields & OPEN & Pointwise Gram representation is proved; integrable on-shell neighbourhood/global representation is GAP-10R. \\
+Local representation of arbitrary GR metric fields & PROVED LOCALLY & Smooth local profile representation follows from the free-embedding lift; holomorphic/Jacobi, global and dynamically selected versions remain open. \\
 Global closure and topology & OPEN & Local theorem does not establish a global free immersion or global existence. \\
 \hline
 \end{tabular}
@@ -604,14 +609,18 @@ full field already postulated by UBT:
 \begin{equation}
   \Theta(x,\psi)=\Theta(q_{\rm GR}(x),x^0+i\psi),
 \end{equation}
-and to define the classical metric by the same compact-fiber averaging already
-allowed in the UBT classical limit.  A single section is too small; the full
+and to define the classical metric by a translation-invariant compact-fiber
+average.  This is an explicit candidate revision of the present pointwise
+metric axiom, not a result already licensed by the current canonical lock.  A single section is too small; the full
 $\psi$ profile has enough independent normal modes.  The exact variation then
 gives the closure operator $\mathcal K_x$, and its injectivity yields the
 Einstein equations without an independent metric.
 
-What remains is sharply bounded: prove local integrable representation of the desired GR metric class (GAP-10R), prove that the dynamically selected Jacobi sector is fiber-free, and derive the internal/matrix equation and metric equation as separate projections of one canonical UBT action.  Those are the remaining
-pure-UBT bridges; no external gravitational formalism is required to state or
-test them.
+What remains is sharply bounded: decide whether the profile metric is promoted
+canonically, derive its coupling coefficients and profile-selection mechanism
+from the older UBT master action, test any stronger holomorphic/Jacobi
+restriction, and derive the internal/matrix and metric equations as separate
+projections in the unified matter sector.  Smooth local vacuum
+representability itself is closed by the free-embedding lift.
 
 \end{document}
