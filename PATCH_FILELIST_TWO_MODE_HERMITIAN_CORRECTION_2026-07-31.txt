@@ -1,0 +1,11 @@
+OVERLAY_APPLY_TWO_MODE_HERMITIAN_CORRECTION_2026-07-31.md
+canonical/appendices/appendix_predictions.tex
+canonical/geometry/biquaternionic_vacuum_solutions.tex
+canonical/geometry/phi_gauge_vs_physical.tex
+docs/DERIVATION_INDEX.md
+docs/PHI_UNIVERSE_PARAMETER.md
+docs/THEORY_MAP_FROM_DERIVATION_INDEX.md
+tests/test_phi_physicality_diagnostic.py
+tests/test_two_mode_hermitian_metric_correction.py
+tools/compute_dalpha_dphi.py
+tools/compute_h_munu_vacuum.py

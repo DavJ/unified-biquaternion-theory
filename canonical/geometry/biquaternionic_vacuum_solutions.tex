@@ -8,13 +8,13 @@
 % the integrity of the theoretical work during ongoing academic development.
 
 % =====================================================================
-% TASK 1 — Explicit Biquaternionic Vacuum with h_μν ≠ 0
+% TASK 1 — Hermitian winding-vacuum audit and Schwarzschild solution
 % Target: canonical/geometry/biquaternionic_vacuum_solutions.tex
-% Status: §1 [DERIVED], §2 [SKETCH], §3 [DERIVED]
+% Status: §1 [DERIVED — CORRECTED], §2 [SKETCH], §3 [DERIVED]
 % Layer: [L1] — biquaternionic geometry only (no SM input)
 % =====================================================================
 
-\section{Explicit Biquaternionic Vacuum with $h_{\mu\nu} \neq 0$}
+\section{Hermitian Winding-Vacuum Audit and Schwarzschild Solution}
 \label{sec:biq_vacuum_solutions}
 
 \noindent\textbf{Notation:} Throughout, $\varphi$ denotes the phase-frame parameter in
@@ -43,11 +43,12 @@ From \texttt{canonical/geometry/phi\_gauge\_vs\_physical.tex} (Gap 3, [DERIVED])
   \qquad r := \frac{|\mathcal{A}^I_\mu|}{|\mathcal{A}^R_\mu|}.
   \label{eq:dalpha_dphi_recap}
 \end{equation}
-$\varphi$ is a physical moduli parameter if and only if $r \neq 0$, which requires
-$h_{\mu\nu} \neq 0$.  The landscape interpretation of $\varphi$ (universe selector via
-prime attractors) therefore depends on finding an explicit UBT vacuum with $h_{\mu\nu} \neq 0$.
-
-This section constructs such a vacuum explicitly.
+The diagnostic can establish a physical phase modulus only after a nonzero
+imaginary sector has been derived from a well-defined UBT observable.  The
+Hermitian metric channel used below does not provide such a sector: the
+quantity $\mathrm{Sc}(E_\psi E_\psi^\dagger)$ is real for every field, not
+only for a single winding mode.  This section records the corrected no-go and
+keeps the separate Schwarzschild construction.
 
 ---
 
@@ -101,234 +102,137 @@ This is recorded explicitly to guide future attempts.
 
 ---
 
-\subsection{Two-Mode Winding: $h_{\mu\nu} \neq 0$}
+\subsection{Two-Mode Hermitian Channel: Correction}
 \label{sec:two_mode_vacuum}
+
+\noindent\textbf{Correction (31 July 2026).}
+The previous version claimed that two winding modes generate an imaginary
+component of $\mathcal G_{\psi\psi}=\mathrm{Sc}(E_\psi E_\psi^\dagger)$.
+That claim was algebraically false.  A Hermitian norm is real, and the two
+cross terms are complex conjugates.  Hence $h_{\psi\psi}=0$ identically in
+this channel.  The earlier conclusion that this example proves a physical
+$\varphi$ parameter is withdrawn.
 
 \subsubsection{Ansatz}
 
-Superpose two winding modes:
+Keep the two-mode profile
 \begin{equation}
-  \boxed{\Theta(x,\psi) = \Theta_0\,e^{i\psi/R_\psi} + \Theta_1\,e^{2i\psi/R_\psi}}
+  \Theta(x,\psi)=\Theta_0e^{i\psi/R_\psi}
+                 +\Theta_1e^{2i\psi/R_\psi},
   \label{eq:two_mode_ansatz}
-  \quad \textbf{[POSTULATE — two-mode ansatz]}
+  \qquad \Theta_0,\Theta_1\in\mathbb B.
 \end{equation}
-where $\Theta_0, \Theta_1 \in \mathbb{B}$ are constant biquaternions with
-generic complex coefficients, and $R_\psi > 0$ is the radius of the $\psi$-circle.
-
-\subsubsection{Tetrad and Cross-Term Derivation}
-
-The tetrad component [DERIVED from Eq.\,\eqref{eq:two_mode_ansatz}]:
+Then
 \begin{equation}
-  E_\psi = \frac{i}{R_\psi}\,\Theta_0\,e^{i\psi/R_\psi}
-           + \frac{2i}{R_\psi}\,\Theta_1\,e^{2i\psi/R_\psi}.
+  E_\psi=\frac{i}{R_\psi}\Theta_0e^{i\psi/R_\psi}
+        +\frac{2i}{R_\psi}\Theta_1e^{2i\psi/R_\psi}.
   \label{eq:two_mode_E_psi}
-  \quad \textbf{[DERIVED]}
 \end{equation}
-
-Write $A := (i/R_\psi)\Theta_0 e^{i\psi/R_\psi}$ and $B := (2i/R_\psi)\Theta_1 e^{2i\psi/R_\psi}$.
-Then:
-\begin{align}
-  \mathcal{G}_{\psi\psi} &= \mathrm{Sc}(E_\psi\,E_\psi^\dagger)
-    = \underbrace{\mathrm{Sc}(A\,A^\dagger)}_{\text{mode-0 norm}}
-    + \underbrace{\mathrm{Sc}(A\,B^\dagger) + \mathrm{Sc}(B\,A^\dagger)}_{\text{cross terms}}
-    + \underbrace{\mathrm{Sc}(B\,B^\dagger)}_{\text{mode-1 norm}}.
-\end{align}
-
-The norm terms are real [DERIVED — norm-squared is real]:
+Let
+\[
+ N_0:=\mathrm{Sc}(\Theta_0\Theta_0^\dagger),\qquad
+ N_1:=\mathrm{Sc}(\Theta_1\Theta_1^\dagger),\qquad
+ s_{01}:=\mathrm{Sc}(\Theta_0\Theta_1^\dagger).
+\]
+The two cross terms are
 \begin{equation}
-  \mathrm{Sc}(A\,A^\dagger) = \frac{|\Theta_0|^2}{R_\psi^2}, \qquad
-  \mathrm{Sc}(B\,B^\dagger) = \frac{4|\Theta_1|^2}{R_\psi^2}.
+ \frac{2}{R_\psi^2}\left(
+ e^{-i\psi/R_\psi}s_{01}
+ +e^{i\psi/R_\psi}\overline{s_{01}}
+ \right)
+ =\frac{4}{R_\psi^2}\left[
+ \cos\!\left(\frac{\psi}{R_\psi}\right)\mathrm{Re}(s_{01})
+ +\sin\!\left(\frac{\psi}{R_\psi}\right)\mathrm{Im}(s_{01})
+ \right]\in\mathbb R.
+ \label{eq:cross_sum}
 \end{equation}
-
-The cross terms involve $A^\dagger = -(i/R_\psi)\,e^{-i\psi/R_\psi}\,\Theta_0^\dagger$ and
-$B^\dagger = -(2i/R_\psi)\,e^{-2i\psi/R_\psi}\,\Theta_1^\dagger$:
-\begin{align}
-  \mathrm{Sc}(A\,B^\dagger)
-  &= \mathrm{Sc}\!\left(\frac{i}{R_\psi}\Theta_0 e^{i\psi/R_\psi}
-    \cdot\left(-\frac{2i}{R_\psi}\right) e^{-2i\psi/R_\psi}\,\Theta_1^\dagger\right) \notag\\
-  &= \frac{2}{R_\psi^2}\,e^{-i\psi/R_\psi}\,\mathrm{Sc}(\Theta_0\,\Theta_1^\dagger),
-  \label{eq:cross_AB}
-  \\[4pt]
-  \mathrm{Sc}(B\,A^\dagger)
-  &= \frac{2}{R_\psi^2}\,e^{+i\psi/R_\psi}\,\mathrm{Sc}(\Theta_1\,\Theta_0^\dagger)
-   = \frac{2}{R_\psi^2}\,e^{+i\psi/R_\psi}\,\overline{\mathrm{Sc}(\Theta_0\,\Theta_1^\dagger)}.
-  \label{eq:cross_BA}
-\end{align}
-[DERIVED — using $i \cdot (-2i) = 2$ and sesquilinearity of $\mathrm{Sc}(\cdot)$]
-
-Summing both cross terms:
-\begin{align}
-  \mathrm{Sc}(A\,B^\dagger) + \mathrm{Sc}(B\,A^\dagger)
-  &= \frac{2}{R_\psi^2}\left[e^{-i\psi/R_\psi}\,s_{01} + e^{+i\psi/R_\psi}\,\bar{s}_{01}\right],
-  \label{eq:cross_sum}
-\end{align}
-where $s_{01} := \mathrm{Sc}(\Theta_0\,\Theta_1^\dagger) = a_0\bar{a}_1 + b_0\bar{b}_1 + c_0\bar{c}_1 + d_0\bar{d}_1 \in \mathbb{C}$.
-
-\textbf{[DERIVED — biquaternion scalar inner product]}
-
-Decompose $s_{01} = \mathrm{Re}(s_{01}) + i\,\mathrm{Im}(s_{01})$ and
-$e^{\pm i\psi/R_\psi} = \cos(\psi/R_\psi) \pm i\sin(\psi/R_\psi)$.
-Writing $w = e^{+i\psi/R_\psi}$:
-\begin{align}
-  e^{-i\psi/R_\psi}\,s_{01} + e^{+i\psi/R_\psi}\,\bar{s}_{01}
-  &= \bar{w}\,s_{01} + w\,\bar{s}_{01}
-   = 2\,\mathrm{Re}(w\,\bar{s}_{01}) \notag\\
-  &= 2\cos\!\left(\frac{\psi}{R_\psi}\right)\mathrm{Re}(s_{01})
-   + 2\sin\!\left(\frac{\psi}{R_\psi}\right)\mathrm{Im}(s_{01}).
-  \label{eq:cross_sum_expanded}
-\end{align}
-
-Taking the imaginary part of the full $\mathcal{G}_{\psi\psi}$
-(the norm terms are real; from Eq.\,\eqref{eq:cross_sum_expanded} the cross terms
-contribute only real parts to $\mathcal{G}_{\psi\psi}$, except through the factor
-$\mathrm{Im}(s_{01})$, which enters the cross sum as a purely real coefficient of the
-real function $\sin(\psi/R_\psi)$ — this is multiplied by the complex unit hidden in
-the overall metric imaginary decomposition $\mathcal{G} = g + ih$):
+Therefore the complete Hermitian metric component is
 \begin{equation}
-  \boxed{h_{\psi\psi}(\psi) = \mathrm{Im}(\mathcal{G}_{\psi\psi})
-    = \frac{2}{R_\psi^2}\,\sin\!\left(\frac{\psi}{R_\psi}\right)
-      \cdot \mathrm{Im}\bigl[\mathrm{Sc}(\Theta_0\,\Theta_1^\dagger)\bigr]}
-  \label{eq:h_psipsi_result}
-  \quad \textbf{[DERIVED]}
+ \boxed{
+ \mathcal G_{\psi\psi}
+ =\frac1{R_\psi^2}\left[
+ N_0+4N_1
+ +4\cos\!\left(\frac{\psi}{R_\psi}\right)\mathrm{Re}(s_{01})
+ +4\sin\!\left(\frac{\psi}{R_\psi}\right)\mathrm{Im}(s_{01})
+ \right]\in\mathbb R,}
+ \label{eq:cross_sum_expanded}
 \end{equation}
-
-\subsubsection{Condition for $h_{\psi\psi} \neq 0$}
-
-Equation~\eqref{eq:h_psipsi_result} shows that $h_{\psi\psi} \neq 0$ if and only if
+and hence
 \begin{equation}
-  \mathrm{Im}\bigl[\mathrm{Sc}(\Theta_0\,\Theta_1^\dagger)\bigr]
-  = \mathrm{Im}(a_0\bar{a}_1 + b_0\bar{b}_1 + c_0\bar{c}_1 + d_0\bar{d}_1) \neq 0.
-  \label{eq:condition_h_nonzero}
-  \quad \textbf{[DERIVED]}
+ \boxed{h_{\psi\psi}=\mathrm{Im}(\mathcal G_{\psi\psi})=0.}
+ \label{eq:h_psipsi_result}
+ \qquad\textbf{[DERIVED --- CORRECTED]}
 \end{equation}
-This is the \emph{generically satisfied} condition: it vanishes only when all components
-$a_0, b_0, c_0, d_0$ of $\Theta_0$ have the same complex phase as the corresponding
-components of $\Theta_1$.
+The statement is stronger than a two-mode cancellation.  For any
+biquaternionic profile $E_\psi$, the scalar Hermitian norm
+$\mathrm{Sc}(E_\psi E_\psi^\dagger)$ is real.  Adding further winding modes
+cannot generate an imaginary component through this same metric definition.
 
-\subsubsection{Concrete Example}
+\subsubsection{Canonical numerical audit}
 
-\textbf{[POSTULATE — ansatz for explicit example]}
-
-Choose:
+For the former example
 \begin{equation}
-  \Theta_0 = (1+i_c)\cdot\mathbf{1}, \qquad
-  \Theta_1 = \mathbf{1} + i_c\,\mathbf{j},
-  \label{eq:canonical_theta_choice}
+ \Theta_0=(1+i_c)\mathbf 1,\qquad
+ \Theta_1=\mathbf 1+i_c\mathbf j,
+ \label{eq:canonical_theta_choice}
 \end{equation}
-i.e., $a_0 = 1+i_c$, $b_0 = c_0 = d_0 = 0$; $a_1 = 1$, $b_1 = d_1 = 0$, $c_1 = i_c$
-(where $i_c$ is the complex imaginary unit, $\mathbf{j}$ is the quaternionic $j$-basis element).
-
-Computation of $\mathrm{Sc}(\Theta_0\,\Theta_1^\dagger)$ [DERIVED]:
-\begin{align}
-  \mathrm{Sc}(\Theta_0\,\Theta_1^\dagger)
-  &= a_0\bar{a}_1 + b_0\bar{b}_1 + c_0\bar{c}_1 + d_0\bar{d}_1 \notag\\
-  &= (1+i_c)\cdot\bar{1} + 0 + 0\cdot\overline{(i_c)} + 0 \notag\\
-  &= 1 + i_c.
-\end{align}
-
-Therefore $\mathrm{Im}[\mathrm{Sc}(\Theta_0\,\Theta_1^\dagger)] = 1 \neq 0$, and [DERIVED]:
+we have $N_0=N_1=2$ and $s_{01}=1+i_c$, so
 \begin{equation}
-  \boxed{h_{\psi\psi}(\psi) = \frac{2}{R_\psi^2}\,\sin\!\left(\frac{\psi}{R_\psi}\right),
-  \qquad \max_\psi |h_{\psi\psi}| = \frac{2}{R_\psi^2}.}
-  \label{eq:h_psipsi_canonical}
-  \quad \textbf{[DERIVED]}
+ \mathcal G_{\psi\psi}
+ =\frac{10+4\cos(\psi/R_\psi)+4\sin(\psi/R_\psi)}{R_\psi^2},
+ \qquad h_{\psi\psi}=0.
+ \label{eq:h_psipsi_canonical}
 \end{equation}
-
-This is nonzero and oscillating — the UBT two-mode vacuum has $h_{\mu\nu} \neq 0$.
+The supporting script
+\texttt{tools/compute\_h\_munu\_vacuum.py} now verifies this identity directly.
 
 ---
 
-\subsection{Computation of $r$ and $\partial\alpha/\partial\varphi$}
+\subsection{Gauge-Potential Sketch and $\varphi$ Status}
 \label{sec:r_and_dalpha_dphi}
 
-\subsubsection{Gauge Potential}
-
-The U(1)$_\mathrm{EM}$ gauge potential for the two-mode background:
+The exploratory expression
 \begin{equation}
-  \mathcal{A}_\psi \approx \frac{\mathrm{Sc}(\Theta^\dagger\,\partial_\psi\Theta)}{|\Theta|^2}
-  \label{eq:gauge_potential_sketch}
-  \quad \textbf{[SKETCH — full derivation requires \texttt{canonical/interactions/qed.tex}]}
+ \mathcal A_\psi\approx
+ \frac{\mathrm{Sc}(\Theta^\dagger\partial_\psi\Theta)}{|\Theta|^2}
+ \label{eq:gauge_potential_sketch}
+ \qquad\textbf{[SKETCH]}
 \end{equation}
-
-From the supporting script \texttt{tools/compute\_h\_munu\_vacuum.py}, the numerical
-evaluation of $r$ and $\rho$ for the canonical example
-$\Theta_0 = (1+i_c)\mathbf{1}$, $\Theta_1 = \mathbf{1} + i_c\mathbf{j}$,
-$R_\psi = 1$:
-
+can still return a complex diagnostic.  The current script reports, for the
+canonical example and the normalization used there,
 \begin{align}
-  r &= \frac{|\mathcal{A}^I_\psi|}{|\mathcal{A}^R_\psi|} \approx 4.66,
-  \label{eq:r_numerical}
-  \quad \textbf{[DERIVED — numerical; gauge formula is SKETCH]}\\
-  \rho &\approx 0, \\
-  \frac{\partial\alpha}{\partial\varphi}\bigg|_{\varphi=0}
-  &= 2\rho\,r\,\alpha(0) \approx 0 \quad (\text{for this specific example}).
-  \label{eq:dalpha_dphi_numerical}
-  \quad \textbf{[DERIVED]}
+ r&=\frac{|\mathcal A^I_\psi|}{|\mathcal A^R_\psi|}\approx4.66,
+ \label{eq:r_numerical}\\
+ \rho&\approx0,\qquad
+ \frac{\partial\alpha}{\partial\varphi}\bigg|_{\varphi=0}
+ =2\rho r\alpha(0)\approx0.
+ \label{eq:dalpha_dphi_numerical}
 \end{align}
+This number is not a derivation of a physical imaginary metric sector.  The
+potential formula is only a sketch, its relation to the canonical QED sector
+has not been proved, and $r\neq0$ by itself does not imply
+$\partial\alpha/\partial\varphi\neq0$.  Consequently the example does not
+establish that $\varphi$ is physical.
 
-\noindent\textbf{Remarks:}
-\begin{enumerate}
-  \item $r \approx 4.66 \neq 0$: the gauge potential has a nonzero imaginary component.
-    This confirms $h_{\mu\nu} \neq 0$ for the two-mode vacuum.  \textbf{[DERIVED]}
-  \item The correlation $\rho \approx 0$ means $A^R_\psi$ and $A^I_\psi$ are uncorrelated
-    in this specific example.  For $\partial\alpha/\partial\varphi \neq 0$ we need
-    $\rho \neq 0$ as well.  Finding a vacuum with both $r \neq 0$ and $\rho \neq 0$
-    is straightforward (e.g., shift the winding by a global complex phase).
-  \item In any case, the decisive result is $r \neq 0$: the imaginary sector is \emph{present}
-    in this vacuum.  The vanishing of $\partial\alpha/\partial\varphi$ for this specific example
-    reflects the symmetry $A^R \perp A^I$ under $\psi$-averaging, not a fundamental zero.
-\end{enumerate}
-
-\subsubsection{$\varphi$-Universe Parameter: Status}
-
-Combining the results of this section with
-\texttt{canonical/geometry/phi\_gauge\_vs\_physical.tex}:
+\subsection{Corrected Status}
+\label{sec:biq_vacuum_summary}
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{p{0.30\linewidth}p{0.18\linewidth}p{0.42\linewidth}}
 \hline
-\textbf{UBT vacuum} & $h_{\mu\nu}$ & $r = |\mathcal{A}^I|/|\mathcal{A}^R|$ & \textbf{$\varphi$ status} \\
+Item & Status & Result \\
 \hline
-Single-mode winding & $= 0$ & $0$ & Pure gauge \\
-Two-mode winding (canonical) & $\neq 0$ & $\approx 4.66$ & \textbf{Physical} \\
+Single-mode Hermitian channel & Derived & $h_{\psi\psi}=0$. \\
+Two-mode Hermitian channel & Derived, corrected & $h_{\psi\psi}=0$; conjugate cross terms are real. \\
+Gauge diagnostic $r\approx4.66$ & Sketch only & Does not prove $h_{\mu\nu}\neq0$ or physical $\varphi$. \\
+Physical $\varphi$ vacuum & Open & Requires a separately derived non-Hermitian observable or another canonical imaginary sector with $\rho r\neq0$. \\
 \hline
 \end{tabular}
 \end{center}
 
-\noindent\textbf{Conclusion [DERIVED]:}\\
-``The UBT two-mode vacuum is an explicit biquaternionic vacuum with $h_{\mu\nu} \neq 0$.
-Combined with the result of \texttt{canonical/geometry/phi\_gauge\_vs\_physical.tex},
-the $\varphi$-universe parameter is \textbf{physical} (not a pure gauge redundancy) for
-this vacuum.  The prime-selected value $\varphi_{137} = 2\pi/137$ predicts a specific
-$\alpha(\varphi_{137})$ — see \texttt{docs/PHI\_UNIVERSE\_PARAMETER.md} §4 for the
-updated numerical value.''
-
-\noindent See \texttt{tools/compute\_h\_munu\_vacuum.py} for the full numerical computation.
-
----
-
-\subsection{Summary}
-\label{sec:biq_vacuum_summary}
-
-\begin{itemize}
-  \item \textbf{Single-mode ansatz:} $h_{\psi\psi} = 0$. [DERIVED — DEAD END]
-  \item \textbf{Two-mode ansatz} (Eq.~\eqref{eq:two_mode_ansatz}): $h_{\psi\psi} \neq 0$ when
-    $\mathrm{Im}[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)] \neq 0$. [DERIVED]
-  \item \textbf{Canonical example} (Eq.~\eqref{eq:canonical_theta_choice}):
-    $h_{\psi\psi}(\psi) = 2\sin(\psi/R_\psi)/R_\psi^2$,
-    $r \approx 4.66 \neq 0$. [DERIVED]
-  \item \textbf{$\varphi$ is physical} for the two-mode vacuum: $r \neq 0 \Rightarrow
-    \partial\alpha/\partial\varphi \neq 0$ (for $\rho \neq 0$). [DERIVED]
-\end{itemize}
-
-\noindent\textbf{Update} \texttt{DERIVATION\_INDEX.md}: new row
-``$h_{\mu\nu} \neq 0$ two-mode vacuum'' — Status: Proven [L1].
-
-\noindent\textbf{Update} \texttt{DERIVATION\_INDEX.md}: row
-``$\partial\alpha/\partial\varphi$'' — update with numerical $r \approx 4.66$.
-
-\noindent\textbf{Update} \texttt{docs/PHI\_UNIVERSE\_PARAMETER.md} §4: explicit $r$ value
-from two-mode vacuum added.
+The repository status must therefore be downgraded from ``proved physical'' to
+``open''.  No claim about the later Schwarzschild solution depends on the
+withdrawn two-mode argument.
 
 % =====================================================================
 % §3 — Full Schwarzschild Vacuum Solution [PROMOTED FROM RESEARCH_TRACKS v57]

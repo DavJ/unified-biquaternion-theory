@@ -1,0 +1,11 @@
+# Apply two-mode Hermitian correction overlay — 31 July 2026
+
+Apply this ZIP at the repository root. The archive contains repository-relative
+paths directly; it has no wrapper directory.
+
+## Scope
+
+This overlay only withdraws the false claim that a Hermitian two-mode winding
+ansatz produces nonzero `h_psi_psi`, and downgrades the associated phi
+physicality claim to open/conditional status. It contains no GR free-fiber
+architecture changes.

@@ -17,12 +17,15 @@ where:
     r   = |𝒜ᴵ_μ| / |𝒜ᴿ_μ|    (imaginary-to-real amplitude ratio)
     ρ   = correlation coefficient between 𝒜ᴿ and 𝒜ᴵ
 
-Decision:
-    r = 0  →  ∂α/∂φ = 0  →  φ is pure gauge   (flat vacuum)
-    r ≠ 0  →  ∂α/∂φ ≠ 0  →  φ is physical     (biquaternionic vacuum)
+Decision diagnostic:
+    ρ·r = 0  →  ∂α/∂φ|₀ = 0  → no local phase dependence at φ=0
+    ρ·r ≠ 0  →  ∂α/∂φ|₀ ≠ 0 → local phase dependence for the supplied gauge data
 
-Layer: [L1] — biquaternionic geometry
-Classification: [DERIVED] — see canonical/geometry/phi_gauge_vs_physical.tex
+The formula is derived, but a canonical UBT vacuum with proved ρ·r ≠ 0 is not
+currently established.  Nonzero r alone is insufficient.
+
+Layer: [L1] — conditional biquaternionic geometry
+Classification: [DERIVED FORMULA; PHYSICAL REALIZATION OPEN]
 """
 
 from __future__ import annotations
@@ -84,21 +87,22 @@ def dalpha_dphi_at_zero(
         ∂α/∂φ|_{φ=0} = 2ρ·r·α(0)
 
     Returns:
-        Scalar ∂α/∂φ at φ=0.  Zero if r=0 (φ is pure gauge).
+        Scalar ∂α/∂φ at φ=0.  It vanishes whenever ρ·r=0.
     """
     return 2.0 * rho * r * alpha_0
 
 
 def phi_status(r: float, rho: float) -> str:
     """
-    Return the status of φ: 'pure gauge' or 'physical (moduli)'.
+    Report the local diagnostic for the supplied (r, rho).
 
-    Classification: [DERIVED]
+    This does not certify that the inputs come from a canonical UBT vacuum.
+    Classification: [DERIVED FORMULA; REALIZATION OPEN]
     """
-    if abs(r) < 1e-12:
-        return "pure gauge  (∂α/∂φ = 0)"
-    else:
-        return f"physical  (∂α/∂φ|_{{φ=0}} = {dalpha_dphi_at_zero(r=r, rho=rho):.4e})"
+    derivative = dalpha_dphi_at_zero(r=r, rho=rho)
+    if abs(derivative) < 1e-12:
+        return "no local phase dependence at φ=0  (ρr = 0)"
+    return f"local phase dependence for supplied data  (∂α/∂φ|_{{φ=0}} = {derivative:.4e})"
 
 
 # ---------------------------------------------------------------------------
@@ -120,9 +124,9 @@ def ubt_flat_vacuum_params() -> Tuple[float, float]:
 
 def ubt_biquaternionic_vacuum_params(h_over_g: float = 0.1) -> Tuple[float, float]:
     """
-    Parameters for a generic biquaternionic vacuum with h_μν ≠ 0.
+    Toy parameters for exploring a hypothetical complex gauge branch.
 
-    For simplicity, assume:
+    This is not an extraction from a proved UBT vacuum.  For illustration, assume:
         𝒜ᴿ and 𝒜ᴵ are proportional: ρ = 1 (maximal positive correlation).
         r = |h_μν| / |g_μν| ≈ h_over_g.
 
@@ -245,7 +249,7 @@ def analyse_phi_parameter(
                         label=r"$\varphi_{137} = 2\pi/137$")
             ax2.set_xlabel(r"$\varphi$ (rad)")
             ax2.set_ylabel(r"$\alpha(\varphi)$")
-            flat_label = "flat (φ gauge)" if abs(r) < 1e-12 else "varies (φ physical)"
+            flat_label = "stationary at φ=0" if abs(rho * r) < 1e-12 else "locally varying at φ=0"
             ax2.set_title(fr"$\alpha(\varphi)$ — {flat_label}")
             ax2.legend()
             ax2.grid(True, alpha=0.3)
@@ -272,9 +276,9 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python compute_dalpha_dphi.py              # flat vacuum (r=0): φ is gauge
-  python compute_dalpha_dphi.py --r 0.1     # biquaternionic vacuum: φ is physical
-  python compute_dalpha_dphi.py --r 0.1 --rho 0.5 --plot
+  python compute_dalpha_dphi.py                         # ρr=0: zero local derivative
+  python compute_dalpha_dphi.py --r 0.1                  # still zero because ρ=0
+  python compute_dalpha_dphi.py --r 0.1 --rho 0.5 --plot # toy nonzero diagnostic
 """,
     )
     parser.add_argument("--r", type=float, default=0.0,
@@ -307,9 +311,8 @@ Examples:
         plot_path=args.plot_path,
     )
 
-    # Exit code: 0 if φ is pure gauge (∂α/∂φ = 0), 1 if physical (∂α/∂φ ≠ 0).
-    # Note: both are valid scientific outcomes — exit code 1 here means "φ is a
-    # genuine landscape parameter", not a program error.
+    # Exit code: 0 for a zero local derivative, 1 for a nonzero diagnostic.
+    # A nonzero code does not certify a canonical physical UBT branch.
     raise SystemExit(0 if abs(result["dalpha_dphi_at_0"]) < 1e-15 else 1)
 
 

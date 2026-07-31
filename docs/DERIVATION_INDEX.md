@@ -67,7 +67,7 @@
 | Quantum correction +0.036 from two-loop QED | [`consolidation_project/appendix_CT_two_loop_baseline.tex`](../consolidation_project/appendix_CT_two_loop_baseline.tex), [`alpha_core_repro/alpha_two_loop.py`](../alpha_core_repro/alpha_two_loop.py) | Proven (by QED) | Yes | 0 |
 | p-adic route to α⁻¹ | [`consolidation_project/appendix_ALPHA_padic_derivation.tex`](../consolidation_project/appendix_ALPHA_padic_derivation.tex), [`consolidation_project/appendix_H_alpha_padic_combined.tex`](../consolidation_project/appendix_H_alpha_padic_combined.tex) | Semi-empirical | Partial | 0 |
 | Hecke-Worlds: α⁻¹ = p + Δ_CT,p (p=137) | [`UBT_HeckeWorlds_theta_zeta_primes_appendix.tex`](../UBT_HeckeWorlds_theta_zeta_primes_appendix.tex) | Hypothesis | Yes | 0 |
-| ∂α/∂φ computation (is φ gauge or physical?) | [`canonical/geometry/phi_gauge_vs_physical.tex`](../canonical/geometry/phi_gauge_vs_physical.tex), [`tools/compute_dalpha_dphi.py`](../tools/compute_dalpha_dphi.py) | Proven (analytic; result depends on h_μν) | Yes | 0 |
+| ∂α/∂φ diagnostic | [`canonical/geometry/phi_gauge_vs_physical.tex`](../canonical/geometry/phi_gauge_vs_physical.tex), [`tools/compute_dalpha_dphi.py`](../tools/compute_dalpha_dphi.py) | Proven formula; canonical nonzero ρr realization open | Yes | 0 |
 
 ---
 
@@ -110,11 +110,11 @@
 | Claim | Location | Math Status | Numeric Repro | Free Parameters |
 |---|---|---|---|---|
 | h_ψψ = 0 for single-mode winding (dead end) | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.2` | Proven | Yes | 0 |
-| h_ψψ ≠ 0 two-mode winding vacuum | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` | Proven | Yes | 0 |
-| r ≈ 4.66 for canonical two-mode vacuum | `tools/compute_h_munu_vacuum.py` | Proven (numerical; gauge sketch) | Yes | 0 |
-| φ is physical (r ≠ 0) for two-mode vacuum | `docs/PHI_UNIVERSE_PARAMETER.md §4a` | Proven | Yes | 0 |
-| ψ↔φ are distinct operations, both prime-indexed | `docs/PHI_UNIVERSE_PARAMETER.md §5a` | Proven | No | 0 |
-| dim(ℳ_UBT) ≥ 1 (U(1) moduli) | `docs/PHI_UNIVERSE_PARAMETER.md §5b` | Proven | No | 0 |
+| h_ψψ = 0 for two-mode Hermitian winding channel | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` | Proven — corrected 2026-07-31 | Yes | 0 |
+| r ≈ 4.66 from exploratory two-mode gauge formula | `tools/compute_h_munu_vacuum.py` | Sketch diagnostic; not a physicality proof | Yes | 0 |
+| φ physicality for an explicit UBT vacuum | `docs/PHI_UNIVERSE_PARAMETER.md §4a` | Open; requires canonical ρr ≠ 0 | No | 0 |
+| ψ-shift and φ-projection are distinct operations | `docs/PHI_UNIVERSE_PARAMETER.md §5a` | Proven; physical prime correspondence open | No | 0 |
+| dim of U(1) projection family = 1 | `docs/PHI_UNIVERSE_PARAMETER.md §5b` | Proven kinematically; physical moduli open | No | 0 |
 | dim(ℳ_UBT) = 4 (U(1)×Sp(1)) | `docs/PHI_UNIVERSE_PARAMETER.md §5b` | Hypothesis | No | 0 |
 
 ---

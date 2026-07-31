@@ -173,14 +173,15 @@ speculative_extensions/alpha_139_mirror_sector/
 
 ## Topic 10 — φ-Universe Parameter and h_μν Vacuum
 
-**Status**: φ proved physical for two-mode vacuum [L1]
+**Status**: two-mode Hermitian claim corrected; physical φ remains open
 
 | Result | Status | Canonical file |
 |--------|--------|----------------|
 | φ-projection theorem | Proven [L1] | `canonical/geometry/phase_projection.tex` |
 | h_μν = 0 (single-mode) | Proven [L1] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.2` |
-| h_μν ≠ 0 (two-mode) | Proven [L1] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` |
-| r ≈ 4.66 for canonical two-mode vacuum | Proven [L1] | `tools/compute_h_munu_vacuum.py` |
+| h_ψψ = 0 (two-mode Hermitian channel) | Proven — corrected | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` |
+| r ≈ 4.66 from exploratory gauge formula | Sketch only | `tools/compute_h_munu_vacuum.py` |
+| Canonical ρr ≠ 0 vacuum / physical φ | Open | `canonical/geometry/phi_gauge_vs_physical.tex` |
 
 ---
 

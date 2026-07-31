@@ -1,7 +1,7 @@
 # φ-Parameter as Universe Selector in UBT
 ## The Phase-Frame Moduli Space
 
-**Status:** [DERIVED] for the moduli space definition; [CONJECTURE] for the landscape claim  
+**Status:** [CONDITIONAL] for phase-frame projections; [OPEN] for physical moduli and landscape selection  
 **Layer:** [L1] — biquaternionic geometry  
 **Task:** Task 3 — Formalize the φ-Parameter as Universe Selector  
 **Author:** Ing. David Jaroš  
@@ -22,8 +22,9 @@ recovers valid Einstein equations
 
 for **any** constant phase φ ∈ U(1).
 
-This means a single biquaternionic field contains a **continuous family** of GR universes
-indexed by the phase angle φ.
+This defines a continuous family of phase-frame projections indexed by φ.  Whether
+these projections are physically distinct universes is open and requires a canonical branch
+with nonzero `ρr`.
 
 ---
 
@@ -71,86 +72,81 @@ phase rotation of a single biquaternionic field 𝒢_μν.
 If ∂α/∂φ = 0: φ is a pure gauge redundancy (all φ give the same physics).  
 If ∂α/∂φ ≠ 0: φ is a "landscape parameter" — different φ give different physics.
 
-**Status [DERIVED — see canonical/geometry/phi_gauge_vs_physical.tex]:**
+**Status [CONDITIONAL — see `canonical/geometry/phi_gauge_vs_physical.tex`]:**
 
-From the phase-projection formula [DERIVED]:
+For a canonically derived complex gauge potential, the phase-projection formula gives
 
     α(φ) = α(0)·[cos²φ + 2ρ·r·cosφ·sinφ + r²·sin²φ]
 
     ∂α/∂φ|_{φ=0} = 2ρ·r·α(0)
 
 where:
-- r = |𝒜ᴵ_μ|/|𝒜ᴿ_μ|  (imaginary-to-real amplitude ratio of biquaternionic gauge potential)
-- ρ = correlation coefficient between real and imaginary gauge components
+- r = |𝒜ᴵ_μ|/|𝒜ᴿ_μ|;
+- ρ is the correlation coefficient between the real and imaginary gauge components.
 
-**Conclusion [DERIVED]:**
+The physicality criterion is therefore **ρr ≠ 0**, not merely `h_μν ≠ 0` and not
+merely `r ≠ 0`.  A relation between the imaginary metric sector and the gauge
+potential must itself be derived from the canonical UBT gauge construction; it cannot
+be inferred from a sketch diagnostic.
 
-| UBT vacuum | h_μν | ∂α/∂φ | φ status |
-|-----------|------|-------|---------|
-| Flat (Minkowski) | = 0 → r = 0 | 0 | Pure gauge |
-| Biquaternionic (h_μν ≠ 0) | ≠ 0 → r ≠ 0 | 2ρr·α(0) ≠ 0 | Physical (moduli) |
+| Available evidence | ∂α/∂φ | φ status |
+|-------------------|-------|----------|
+| Canonically derived ρr = 0 | 0 | Gauge/degenerate for that branch |
+| Canonically derived ρr ≠ 0 | 2ρr·α(0) ≠ 0 | Physical modulus for that branch |
+| Only a complex sketch potential | Undetermined | **Open** |
 
-- **If h_μν = 0 (flat vacuum):** r = 0 → ∂α/∂φ = 0 → "The φ-universe parameter is
-  a gauge redundancy for the UBT flat vacuum. Different φ-frames describe the same
-  physics. The landscape interpretation requires a solution with h_μν ≠ 0." [DERIVED]
+The current repository has not yet supplied an explicit canonical vacuum with a proved
+nonzero `ρr`.  The former two-mode Hermitian-metric claim is corrected below.
 
-- **If h_μν ≠ 0 (biquaternionic vacuum):** r ≠ 0 → ∂α/∂φ ≠ 0 → "φ is a genuine
-  moduli parameter. The prime-selected value φ₁₃₇ = 2π/137 predicts
-  α(φ₁₃₇) = α(0)·[cos²(2π/137) + 2ρr·cos(2π/137)sin(2π/137) + r²sin²(2π/137)]."
-  [DERIVED]
+### 4a. Two-Mode Hermitian Vacuum Audit — Corrected
 
-See `tools/compute_dalpha_dphi.py` for numerical computation and plots.
+The former claim that the two-mode profile closes the `h_μν ≠ 0` gap was
+algebraically incorrect.  For
 
-### 4a. Explicit Two-Mode Vacuum: r ≈ 4.66  [DERIVED]
+    Θ(ψ) = Θ₀e^{iψ/R_ψ} + Θ₁e^{2iψ/R_ψ},
 
-The gap in §4 above — finding an explicit vacuum with h_μν ≠ 0 — is now closed.
-See `canonical/geometry/biquaternionic_vacuum_solutions.tex` and
-`tools/compute_h_munu_vacuum.py` for the full derivation.
+let `N₀ = Sc(Θ₀Θ₀†)`, `N₁ = Sc(Θ₁Θ₁†)`, and
+`s = Sc(Θ₀Θ₁†)`.  Direct expansion gives
 
-**Two-mode ansatz [POSTULATE]:**
+    𝒢_ψψ = Sc(E_ψE_ψ†)
+           = [N₀ + 4N₁
+              + 4 cos(ψ/R_ψ) Re(s)
+              + 4 sin(ψ/R_ψ) Im(s)] / R_ψ²,
 
-    Θ(x, ψ) = Θ₀·e^{iψ/R_ψ} + Θ₁·e^{2iψ/R_ψ}
+which is real.  The cross terms are complex conjugates:
 
-**Key result [DERIVED — canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3]:**
+    e^{-iψ/R_ψ}s + e^{iψ/R_ψ}s̄ = 2 Re(e^{-iψ/R_ψ}s) ∈ ℝ.
 
-    h_ψψ(ψ) = Im[𝒢_ψψ] = (2/R_ψ²)·sin(ψ/R_ψ)·Im[Sc(Θ₀Θ₁†)]
+Therefore
 
-This is nonzero whenever Im[Sc(Θ₀Θ₁†)] ≠ 0 (generic condition).
+    h_ψψ = Im(𝒢_ψψ) = 0
 
-**Canonical example [POSTULATE — ansatz choice]:**
+for this ansatz.  In fact, `Sc(E_ψE_ψ†)` is a Hermitian norm and is real for
+any number of winding modes in this metric channel.
 
-    Θ₀ = (1+i_c)·1   (scalar biquaternion with complex amplitude)
-    Θ₁ = 1 + i_c·j   (mixed: real scalar + complex quaternionic component)
+For the former canonical example
 
-Then Im[Sc(Θ₀Θ₁†)] = 1 ≠ 0, and [DERIVED]:
+    Θ₀ = (1+i_c)·1,       Θ₁ = 1+i_c·j,
 
-    h_ψψ(ψ) = (2/R_ψ²)·sin(ψ/R_ψ)   ← nonzero, oscillating   [DERIVED]
+one obtains
 
-**Numerical values from `tools/compute_h_munu_vacuum.py` [DERIVED — SKETCH for gauge potential]:**
+    𝒢_ψψ = [10 + 4 cos(ψ/R_ψ) + 4 sin(ψ/R_ψ)] / R_ψ²,
+    h_ψψ = 0.
 
-| Quantity | Value | Label |
-|---------|-------|-------|
-| Im[Sc(Θ₀Θ₁†)] | 1.0 | [DERIVED] |
-| max\|h_ψψ\| | 2.0 / R_ψ² | [DERIVED] |
-| r = \|𝒜ᴵ_ψ\| / \|𝒜ᴿ_ψ\| | **≈ 4.66** | [DERIVED — SKETCH] |
-| ρ | ≈ 0 (for this example) | [DERIVED — SKETCH] |
-| ∂α/∂φ\|_{φ=0} = 2ρr·α(0) | ≈ 0 (for this example) | [DERIVED] |
+The exploratory gauge-potential formula in `tools/compute_h_munu_vacuum.py`
+still produces a numerical ratio `r ≈ 4.66`, with `ρ ≈ 0`, but this is a
+**sketch diagnostic only**.  It neither proves an imaginary metric component
+nor establishes a physical `φ` modulus.  The status is:
 
-**Remarks:**
-- r ≈ 4.66 ≠ 0: the imaginary gauge sector is present. φ is **physical** for this vacuum.
-- ρ ≈ 0 for the specific choice above (A_R and A_I are uncorrelated under ψ-averaging).
-  A nonzero ∂α/∂φ requires both r ≠ 0 AND ρ ≠ 0 simultaneously.
-  A simple way to achieve ρ ≠ 0 is to replace Θ₁ → e^{iδ}·Θ₁ for a global complex
-  phase δ ≠ 0, π: this shifts the relative phase between the two winding modes,
-  rotating A_R and A_I relative to each other so that their correlation ρ becomes nonzero.
-  (The imaginary metric component h_ψψ remains nonzero throughout, since it depends only
-  on Im[Sc(Θ₀Θ₁†)], which is phase-independent up to a sign.)
-- The decisive result is **r ≠ 0**: the two-mode vacuum is confirmed biquaternionic (h_μν ≠ 0).
+| Claim | Corrected status |
+|------|------------------|
+| Two-mode Hermitian metric has h_ψψ ≠ 0 | **False; withdrawn** |
+| Numerical sketch gives r ≈ 4.66 | Sketch only |
+| φ is physical for this vacuum | **Open** |
+| Need an explicit canonical branch with ρr ≠ 0 | Open |
 
-| UBT vacuum | h_μν | r | φ status |
-|-----------|------|---|---------|
-| Single-mode winding | = 0 | 0 | Pure gauge [DERIVED] |
-| Two-mode winding (canonical) | ≠ 0 | ≈ 4.66 | **Physical** [DERIVED] |
+See `canonical/geometry/biquaternionic_vacuum_solutions.tex` and the corrected
+`tools/compute_h_munu_vacuum.py`.
 
 ---
 
@@ -176,66 +172,30 @@ This is conjectured to select our observed universe.
 1. The Kaluza-Klein mode n = 137 in the ψ-expansion gives α⁻¹ ≈ 137 [CALIBRATED]
 2. This is the prime closest to the experimental value α⁻¹ = 137.036
 
-### 5a. ψ ↔ φ Correspondence: Derivation
+### 5a. ψ ↔ φ Correspondence: Corrected Status
 
-**Question:** Do the prime-selected imaginary-time values ψ_p = 2πk/p coincide with
-the phase-frame angles φ_p = 2π/p?
+The previous comparison used a nonexistent imaginary component of the
+Hermitian two-mode metric.  With the corrected result,
 
-**Setup [DERIVED — from two-mode vacuum §4a]:**
+    𝒢_ψψ(ψ) ∈ ℝ,       h_ψψ(ψ) = 0.
 
-For the two-mode ansatz Θ(ψ) = Θ₀e^{iψ/R_ψ} + Θ₁e^{2iψ/R_ψ}, the biquaternionic
-metric component is:
+A shift in the profile coordinate `ψ` changes the real interference term in
+`𝒢_ψψ(ψ)`.  A phase-frame rotation instead gives
 
-    𝒢_ψψ(ψ) = Re[𝒢_ψψ(ψ)] + i·h_ψψ(ψ)
+    P_φ[𝒢_ψψ] = Re(e^{-iφ}𝒢_ψψ) = cos(φ)𝒢_ψψ
 
-where:
-    Re[𝒢_ψψ(ψ)] = (1/R_ψ²)[N₀ + 4N₁ + 2cos(ψ/R_ψ)·Re(Sc(Θ₀Θ₁†))]
-    Im[𝒢_ψψ(ψ)] = (2/R_ψ²)·sin(ψ/R_ψ)·Im(Sc(Θ₀Θ₁†))
+for this real channel.  These operations are still distinct, but the old
+argument does **not** connect the prime-selected `ψ_p` values to physically
+distinct `φ_p` universes.
 
-The phase rotation P_φ[𝒢_ψψ(ψ)] = Re(e^{-iφ}·𝒢_ψψ(ψ)):
+The common notation `2π/p` is therefore only a proposed indexing relation at
+present.  A physical ψ↔φ correspondence requires both:
 
-    P_φ[𝒢_ψψ(ψ)] = cos(φ)·Re[𝒢_ψψ] + sin(φ)·Im[𝒢_ψψ]
+1. a canonical observable with a nonzero complex sector; and
+2. a derived dynamical map from the ψ attractor to the phase-frame parameter.
 
-**Test: Is P_{2π/p}[𝒢_ψψ(0)] = 𝒢_ψψ(2π/p)?**
-
-Left side (φ-rotation at ψ=0):
-    P_{2π/p}[𝒢_ψψ(0)] = cos(2π/p)·(N₀+4N₁)/R_ψ²
-    (since Im[𝒢_ψψ(0)] = 0 because sin(0)=0)
-
-Right side (ψ-shift to ψ=2π/p):
-    𝒢_ψψ(2π/p) ≡ Re[𝒢_ψψ(2π/p)] + i·Im[𝒢_ψψ(2π/p)]
-
-These are equal only if the imaginary part of 𝒢_ψψ(2π/p) vanishes AND the real parts
-match:
-    sin(2π/(p·R_ψ))·Im(Sc(Θ₀Θ₁†)) = 0   [needed for equality]
-
-For our canonical example Im(Sc) = 1 ≠ 0 and sin(2π/(p·R_ψ)) ≠ 0 (for finite R_ψ),
-so the imaginary part is generically nonzero at ψ = 2π/p.
-
-**Conclusion [DERIVED]:**
-
-    P_{2π/p}[𝒢_ψψ(0)] ≠ 𝒢_ψψ(2π/p)  (in general)
-
-The ψ-shift and φ-rotation are **not** the same operation on the two-mode vacuum.
-They produce different observables:
-- ψ-shift: translates in imaginary time → changes which cross-term phase appears
-- φ-rotation: mixes g_μν and h_μν → changes the projected GR metric
-
-**Interpretation [DERIVED]:**
-
-The prime-selected values ψ_p = 2π/p (from V_eff minimization) and φ_p = 2π/p
-(from moduli space) share the same **discrete index structure** (labeled by primes)
-but act on different geometric objects. They are not equivalent operations.
-
-This means the UBT landscape is richer than initially conjectured:
-- ψ-primes select stable imaginary-time configurations (dynamical attractor)
-- φ-primes select phase-frame projections (kinematic observer choice)
-
-Both label a universe by a prime, but via distinct geometric mechanisms.
-The coincidence ψ_p = φ_p = 2π/p is a structural feature of the KK expansion
-on the ψ-circle.
-
-**Label:** [DERIVED — ψ↔φ are distinct operations; both indexed by primes]
+**Status:** distinct operations [DERIVED]; prime-to-prime physical
+correspondence [CONJECTURE/OPEN].
 
 ### 5b. Moduli Space Dimension
 

@@ -125,48 +125,46 @@ Taking the derivative:
 
 \noindent \textbf{Therefore:}
 \begin{itemize}
-  \item If $h_{\mu\nu}=0$ (purely real $\mathcal{U}_{\mu\nu}$): $r=0 \Rightarrow \partial\alpha/\partial\varphi = 0$
-    $\Rightarrow$ $\varphi$ is \textbf{pure gauge}. [DERIVED]
-  \item If $h_{\mu\nu}\neq 0$: $r\neq 0$ generally $\Rightarrow \partial\alpha/\partial\varphi \neq 0$
-    $\Rightarrow$ $\varphi$ is \textbf{physical}. [DERIVED]
+  \item The analytic criterion is $\rho r=0$ versus $\rho r\neq0$.
+  \item A real metric component $h_{\mu\nu}=0$ does not by itself prove
+    $r=0$ for an independently defined gauge potential.
+  \item Conversely, $h_{\mu\nu}\neq0$ does not by itself prove either
+    $r\neq0$ or $\rho\neq0$.  The map from the metric sector to the
+    canonically normalized gauge potential must be derived separately.
 \end{itemize}
 
 ---
 
-\subsection{Step 4 — Evaluation for the UBT Vacuum}
+\subsection{Step 4 --- Evaluation for the UBT Vacuum}
 \label{sec:phi_step4}
 
-\subsubsection{UBT Flat Vacuum ($h_{\mu\nu} = 0$)}
+\subsubsection{Flat branch}
 
-The minimal UBT vacuum is the flat biquaternionic solution obtained by taking
-$\mathcal{U}_{\mu\nu} = \eta_{\mu\nu}$ (Minkowski) with no imaginary component
-($h_{\mu\nu} = 0$). Then:
-\begin{align}
-  r &= 0, \quad \rho = 0 \quad \Rightarrow \quad
-  \frac{\partial\alpha}{\partial\varphi} = 0.  \quad \textbf{[DERIVED]}
-\end{align}
+For a branch in which the canonical gauge potential is purely real,
+$r=0$ and hence
+\begin{equation}
+ \frac{\partial\alpha}{\partial\varphi}=0.
+\end{equation}
+This is a conditional statement about the gauge sector, not a consequence of
+$h_{\mu\nu}=0$ alone.
 
-\noindent\textbf{Conclusion (flat vacuum):}
-``The $\varphi$-universe parameter is a gauge redundancy for the UBT flat vacuum
-solution. Different $\varphi$-frames describe the same physics. The landscape
-interpretation requires a solution with $h_{\mu\nu} \neq 0$.'' [DERIVED]
+\subsubsection{Nontrivial biquaternionic branch}
 
-\subsubsection{UBT Biquaternionic Vacuum ($h_{\mu\nu} \neq 0$)}
+A physical phase modulus requires an explicit solution for which the
+canonically derived gauge components satisfy
+\begin{equation}
+ r\neq0,\qquad \rho\neq0.
+\end{equation}
+Then and only then does
+$\partial\alpha/\partial\varphi=2\rho r\alpha(0)$ establish local physical
+phase dependence.  The former two-mode Hermitian example does not provide
+such a solution: its metric component is real, its gauge-potential expression
+is only a sketch, and the reported correlation is $\rho\simeq0$.
 
-For a non-trivial biquaternionic solution with $h_{\mu\nu} \neq 0$ (e.g., the
-Schwarzschild-like biquaternionic solution or a phase-curvature vacuum):
-\begin{align}
-  r &= \frac{|\mathcal{A}^I_\mu|}{|\mathcal{A}^R_\mu|} \neq 0.
-\end{align}
-Then $\partial\alpha/\partial\varphi = 2\rho r\,\alpha(0) \neq 0$ generically.
-
-\noindent\textbf{Conclusion (biquaternionic vacuum):}
-``$\varphi$ is a genuine moduli parameter. The prime-selected value
-$\varphi_{137} = 2\pi/137$ predicts
-$\alpha(\varphi_{137}) = \alpha(0)[\cos^2(2\pi/137) + 2\rho r\cos(2\pi/137)\sin(2\pi/137)
-+ r^2\sin^2(2\pi/137)]$.'' [DERIVED]
-
-\noindent Numerical evaluation: see \texttt{tools/compute\_dalpha\_dphi.py}.
+\noindent\textbf{Current conclusion.}
+The analytic diagnostic is derived, but its nonzero realization in a
+canonical UBT vacuum remains open.  No prime-selected value of $\varphi$ is
+predicted by this calculation alone.
 
 ---
 
@@ -174,20 +172,21 @@ $\alpha(\varphi_{137}) = \alpha(0)[\cos^2(2\pi/137) + 2\rho r\cos(2\pi/137)\sin(
 \label{sec:phi_summary}
 
 \begin{center}
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{p{0.32\linewidth}p{0.24\linewidth}p{0.32\linewidth}}
 \hline
-\textbf{UBT vacuum} & $h_{\mu\nu}$ & $\partial\alpha/\partial\varphi$ & \textbf{$\varphi$ status} \\
+\textbf{Evidence} & $\partial\alpha/\partial\varphi$ & \textbf{$\varphi$ status} \\
 \hline
-Flat (Minkowski) & $= 0$ & $0$ & Pure gauge \\
-Biquaternionic (nontrivial) & $\neq 0$ & $2\rho r\,\alpha(0) \neq 0$ & Physical (moduli) \\
+Canonical $\rho r=0$ & $0$ & Gauge/degenerate on that branch \\
+Canonical $\rho r\neq0$ & $2\rho r\alpha(0)\neq0$ & Physical modulus on that branch \\
+Only $h_{\mu\nu}\neq0$ or sketch $r\neq0$ & Undetermined & Open \\
 \hline
 \end{tabular}
 \end{center}
 
-\noindent\textbf{Layer:} [L1] — biquaternionic geometry.
+\noindent\textbf{Layer:} [L1] --- conditional biquaternionic geometry.
 
-\noindent\textbf{Update} \texttt{docs/PHI\_UNIVERSE\_PARAMETER.md} §4: status updated from
-[CONJECTURE] to [DERIVED] (conditional on vacuum choice).
+\noindent\textbf{Repository correction (31 July 2026).}
+The formula for $\partial\alpha/\partial\varphi$ remains derived.  The previous
+claim that a two-mode Hermitian vacuum realizes a physical $\varphi$ has been
+withdrawn; the realization problem is open.
 
-\noindent\textbf{Update} \texttt{docs/DERIVATION\_INDEX.md}: new row ``$\partial\alpha/\partial\varphi$
-computation'' — Math Status: Proven (analytic); result depends on $h_{\mu\nu}$.
