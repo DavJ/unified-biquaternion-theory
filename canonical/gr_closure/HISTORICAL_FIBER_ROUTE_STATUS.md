@@ -4,7 +4,10 @@
 
 The compact-`psi` profile route is retained as a mathematically meaningful
 candidate completion. It was **not** abandoned because of a contradiction or
-because its local rank construction was false.
+because its local rank construction was false. Historically it was set aside
+because its dynamical selectivity was weak: the metric readout and the
+Einstein-equivalent action had not been derived from the older UBT master
+dynamics.
 
 The branch establishes, within its own metric and variation framework:
 
@@ -42,3 +45,18 @@ The pointwise torsion-free branch and the profile branch must not be conflated:
 
 The next step is therefore an architectural decision, not another ad hoc
 connection ansatz.
+
+
+A second candidate bridge now supplies profile-frame covariance:
+
+- `research_tracks/T1_GR/free_fiber_completion/gap_10s_covariant_profile_geometry.tex`
+
+It distinguishes a flat, pure-gauge ambient profile connection from the curved
+Levi--Civita connection induced on the four-dimensional tangent bundle.  In a
+local parallel ambient frame it reduces to the existing partial-derivative
+proof, so free rank and vacuum closure are frame invariant.  This conditionally
+closes the fixed-frame objection, but canonical promotion still requires the
+old pointwise spin-lift symbol `D_mu` to be split from the ambient derivative.
+The same note proves that the symmetric sharp channel may be central complex
+`g_mu_nu + i h_mu_nu`; quaternionic data remain in the antisymmetric bivector
+channel rather than the classical metric.

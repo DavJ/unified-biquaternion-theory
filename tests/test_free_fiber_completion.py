@@ -25,3 +25,20 @@ def test_gauss_scalar_and_riemann_symmetries() -> None:
     assert anti
     assert exchange
     assert bianchi
+
+def test_completion_note_keeps_conditional_status_and_open_bridges() -> None:
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    note = (
+        root
+        / "research_tracks/T1_GR/free_fiber_completion/"
+        "gap_10r_free_fiber_embedding_completion.tex"
+    ).read_text(encoding="utf-8").lower()
+    assert "conditional local vacuum equivalence" in note
+    assert "flat ambient profile connection" in note
+    assert "canonical pointwise spin-lift" in note
+    assert "fourteen-mode sector" in note
+    assert "not yet a" in note
+    assert "derivation from the older ubt master" in note
+

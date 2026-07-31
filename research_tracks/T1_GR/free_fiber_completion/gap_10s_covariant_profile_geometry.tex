@@ -1,0 +1,324 @@
+% STATUS NOTICE (2026-07-31): NONCANONICAL CANDIDATE BRIDGE.
+% This note closes the fixed-frame covariance objection inside the profile
+% architecture by distinguishing a flat ambient profile connection from the
+% curved induced Levi--Civita connection.  It does not by itself revise AXIOM C.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.35cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,array,tabularx}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\newcommand{\B}{\mathbb B}
+\newcommand{\V}{\mathscr V_\psi}
+\newcommand{\Nzero}{\mathcal N_0}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Db}{\mathbb D}
+\newcommand{\betaC}{\boldsymbol\beta}
+
+\title{Covariant Profile Geometry and the Central Complex Metric Channel\\
+\large Flat ambient transport, induced Levi--Civita curvature, and the status of quaternionic components}
+\author{Ing. David Jaro\v{s}}
+\date{31 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The free-profile GR candidate was initially written in a fixed profile frame
+with $E_\mu=\partial_\mu\Theta$.  This note supplies the corresponding
+frame-covariant formulation without introducing a propagating connection.
+The profile carrier is treated as a flat complex Krein bundle with a flat,
+pairing-compatible ambient connection $\Db$.  Its tangential projection is the
+curved Levi--Civita connection of the induced real metric, while its normal
+projection is the second fundamental form.  In a local parallel ambient frame
+$\Db=\partial$, so the existing free-embedding and rank-ten proofs apply
+unchanged; their statements are frame invariant.  The construction therefore
+does not reintroduce the single-section concurrent-vector obstruction.
+
+We also prove an algebraic strengthening relevant to the full UBT field: for
+arbitrary biquaternions the $\sharp$-symmetrised product is always central and
+complex-valued.  Thus the natural symmetric extension is a central complex
+metric $\gamma_{\mu\nu}=g_{\mu\nu}+ih_{\mu\nu}$.  A genuinely quaternion-valued
+component survives only in the antisymmetric bivector channel, not in the
+symmetric metric channel.  Exact classical GR is the real Lorentzian branch
+$h_{\mu\nu}=0$ (or a separately justified real readout).
+\end{abstract}
+
+\begin{tcolorbox}[colback=yellow!5,colframe=yellow!55!black,title=Canonical status]
+This closes the \emph{fixed ambient frame} objection inside the noncanonical
+profile architecture.  It does not identify the flat ambient connection
+$\Db$ with the currently canonical pointwise spin lift $D_\mu=\partial_\mu+
+\Omega_\mu(\cdot)+(\cdot)\Omega_\mu^\ddagger$.  Canonical promotion therefore
+requires an explicit three-way distinction:
+\begin{align*}
+ \Db_\mu&\quad\text{flat ambient/profile transport},\\
+ \nabla_\mu&\quad\text{induced Levi--Civita transport},\\
+ \Omega_\mu&\quad\text{spin lift of }\nabla_\mu.
+\end{align*}
+No new propagating field is required, because the ambient connection is flat
+and locally pure gauge.
+\end{tcolorbox}
+
+\section{The symmetric $\sharp$ channel is central on all of $\B$}
+
+Write arbitrary biquaternions as
+\[
+ q=z^0\one+z^k\mathbf e_k,\qquad
+ r=w^0\one+w^k\mathbf e_k,\qquad z^a,w^a\in\mathbb C,
+\]
+with quaternion conjugation
+$q^\sharp=z^0\one-z^k\mathbf e_k$.
+
+\begin{theorem}[Global centrality identity]
+For every $q,r\in\B=\mathbb C\otimes\mathbb H$,
+\begin{equation}
+ \boxed{
+ \frac12\bigl(q^\sharp r+r^\sharp q\bigr)
+ =\left(z^0w^0+\sum_{k=1}^3z^kw^k\right)\one\in\mathbb C\one.}
+ \label{eq:globalcentral}
+\end{equation}
+The centrality does not require the real Lorentz slice.  The Lorentz slice is
+needed to make the coefficient real with signature $(-,+,+,+)$.
+\end{theorem}
+
+\begin{proof}
+Using
+$(a,\mathbf u)(b,\mathbf v)=(ab-\mathbf u\!\cdot\!\mathbf v,
+ a\mathbf v+b\mathbf u+\mathbf u\!\times\!\mathbf v)$ and applying it to
+$q^\sharp=(z^0,-\mathbf z)$, the vector parts of $q^\sharp r$ and
+$r^\sharp q$ cancel in the sum, while both scalar parts equal
+$z^0w^0+\mathbf z\cdot\mathbf w$.
+\end{proof}
+
+\begin{corollary}[Real Lorentz slice]
+If
+$q=ix^0\one+x^k\mathbf e_k$ and
+$r=iy^0\one+y^k\mathbf e_k$ with real coefficients, then
+\[
+ \frac12(q^\sharp r+r^\sharp q)
+ =(-x^0y^0+x^ky^k)\one.
+\]
+Thus the active canonical metric is the real slice of a more general central
+complex bilinear.
+\end{corollary}
+
+\begin{definition}[Central complex profile metric]
+For arbitrary smooth $\B$-valued profiles let
+\begin{align}
+ \betaC(U,V)\one
+ &:=\frac1{L_\psi}\int_0^{L_\psi}
+ \frac12\bigl(U^\sharp V+V^\sharp U\bigr)\,\dd\psi,\\
+ \gamma_{\mu\nu}[\Theta]
+ &:=\frac1{\Nzero}\betaC(E_\mu,E_\nu)
+ =g_{\mu\nu}+ih_{\mu\nu}.
+ \label{eq:complexmetric}
+\end{align}
+Here $g_{\mu\nu}$ and $h_{\mu\nu}$ are real symmetric tensors.  The exact GR
+branch requires $g$ nondegenerate Lorentzian and $h=0$, unless a separate
+projection or dynamics for $h$ is derived.
+\end{definition}
+
+\begin{proposition}[Where the quaternionic information goes]
+The full averaged product decomposes uniquely as
+\begin{equation}
+ \frac1{\Nzero L_\psi}\int E_\mu^\sharp E_\nu\,\dd\psi
+ =\gamma_{\mu\nu}\one+\Sigma_{\mu\nu},
+ \qquad \Sigma_{\nu\mu}=-\Sigma_{\mu\nu}.
+ \label{eq:fullsplit}
+\end{equation}
+Therefore the $\sharp$ construction admits a central complex symmetric metric
+and a biquaternion-valued antisymmetric bivector, but no noncentral
+quaternion-valued symmetric metric.
+\end{proposition}
+
+\begin{remark}[Hermitian alternatives]
+A symmetrised product based on the full Hermitian involution $\ddagger$ can be
+Hermitian and noncentral.  Such an object may be useful as a generalized
+quadratic tensor, but it is not an ordinary spacetime metric: left/right
+inverses, determinant, index raising and Levi--Civita uniqueness become
+noncommutative questions.  It must not be inserted into the GR closure under
+the name $g_{\mu\nu}$ without a separate geometric theory.
+\end{remark}
+
+\section{Flat ambient profile bundle}
+
+Let $\mathcal V\to M$ be the profile bundle with fiber $\V$ and complex
+bilinear form $\betaC$.  The relevant covariance is covariance under changes
+of the ambient profile frame.
+
+\begin{definition}[Ambient profile connection]
+A connection $\Db$ on $\mathcal V$ is admissible when
+\begin{align}
+ \partial_\mu\betaC(U,V)
+ &=\betaC(\Db_\mu U,V)+\betaC(U,\Db_\mu V),
+ \label{eq:betacompat}\\
+ [\Db_\mu,\Db_\nu]&=0.
+ \label{eq:flatambient}
+\end{align}
+It is therefore pairing-compatible and flat.  Locally there is a parallel
+profile frame in which $\Db_\mu=\partial_\mu$.  In another frame it contains a
+pure-gauge connection one-form.
+\end{definition}
+
+Under a local profile-frame isometry $U(x)$,
+\[
+ \Theta\mapsto U\Theta,\qquad
+ \Db_\mu\mapsto U\Db_\mu U^{-1},\qquad
+ E_\mu:=\Db_\mu\Theta\mapsto UE_\mu.
+\]
+The pointwise real Lorentz/Spin action is a subgroup of these pairing
+isometries; no preferred ambient basis is physical.
+
+\begin{proposition}[Gauge invariance of the complex and real metrics]
+The tensors $\gamma_{\mu\nu}$, $g_{\mu\nu}=\operatorname{Re}\gamma_{\mu\nu}$
+and $h_{\mu\nu}=\operatorname{Im}\gamma_{\mu\nu}$ are invariant under every
+admissible local ambient frame change.
+\end{proposition}
+
+\begin{proof}
+Pairing compatibility gives
+$\betaC(UE_\mu,UE_\nu)=\betaC(E_\mu,E_\nu)$.  The spacetime indices are
+untouched, so the result follows componentwise.
+\end{proof}
+
+\section{The curved Levi--Civita connection is induced, not ambient}
+
+Restrict now to the real branch $h_{\mu\nu}=0$ with nondegenerate Lorentzian
+$g$.  Let
+\[
+ \mathscr T_x=\operatorname{span}_{\mathbb R}\{E_0,E_1,E_2,E_3\}
+ \subset\V
+\]
+and let $P_\top,P_\perp$ be the orthogonal projections with respect to
+$H=\operatorname{Re}\betaC$.
+
+\begin{theorem}[Gauss decomposition and induced Levi--Civita connection]
+There is a unique decomposition
+\begin{equation}
+ \boxed{
+ \Db_\mu E_\nu
+ =\Gamma^\rho{}_{\mu\nu}E_\rho+B_{\mu\nu},
+ \qquad B_{\mu\nu}\perp\mathscr T_x.}
+ \label{eq:Gaussdecomposition}
+\end{equation}
+For a flat ambient connection and $E_\mu=\Db_\mu\Theta$:
+\begin{enumerate}
+ \item $\Gamma^\rho{}_{\mu\nu}=\Gamma^\rho{}_{\nu\mu}$ and
+       $B_{\mu\nu}=B_{\nu\mu}$;
+ \item $\Gamma$ is metric compatible with $g$;
+ \item hence $\Gamma$ is exactly the Levi--Civita connection of $g$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Nondegeneracy of the tangent Gram matrix gives the unique tangent/normal
+splitting.  Flatness implies
+\[
+ \Db_\mu E_\nu-\Db_\nu E_\mu
+ =[\Db_\mu,\Db_\nu]\Theta=0,
+\]
+so the tangent and normal parts are separately symmetric.  Pairing
+compatibility and Eq.~\eqref{eq:Gaussdecomposition} give
+\[
+ \partial_\mu g_{\nu\lambda}
+ =\Gamma^\rho{}_{\mu\nu}g_{\rho\lambda}
+  +\Gamma^\rho{}_{\mu\lambda}g_{\nu\rho},
+\]
+because the $B$ terms are normal.  Thus $\Gamma$ is torsion free and metric
+compatible, which characterizes the Levi--Civita connection uniquely.
+\end{proof}
+
+\begin{corollary}[Gauss equation]
+Flatness of $\Db$ gives
+\begin{equation}
+ R_{\mu\nu\rho\sigma}[g]
+ =\frac1{\Nzero}\left(
+ H(B_{\mu\rho},B_{\nu\sigma})
+ -H(B_{\mu\sigma},B_{\nu\rho})\right).
+ \label{eq:Gauss}
+\end{equation}
+Thus a flat ambient/profile connection is fully compatible with a curved
+four-dimensional metric.
+\end{corollary}
+
+\section{Covariant free rank and the concurrent-vector no-go}
+
+\begin{theorem}[Covariant persistence of the free-profile completion]
+In a local parallel ambient frame, $\Db=\partial$ and the free-embedding lift
+of \texttt{gap\_10r\_free\_fiber\_embedding\_completion.tex} applies
+verbatim.  The induced metric, the ten normal vectors $B_{\mu\nu}$, their rank,
+and the Regge--Teitelboim stationarity equation are ambient-frame invariants.
+Therefore local representability and rank-ten vacuum closure persist in every
+admissible profile frame.
+\end{theorem}
+
+\begin{proof}
+Flatness supplies a local parallel frame.  In that frame all formulas reduce
+to the already proved fixed-frame construction.  An admissible frame change is
+an invertible isometry of the target fiber, so it preserves the tangent-normal
+split, linear independence of the ten $B_{\mu\nu}$, the induced metric and the
+Euler--Lagrange equation.  Hence the result is frame independent.
+\end{proof}
+
+\begin{proposition}[Why the pointwise no-go does not return]
+The concurrent-vector proof assumes that $E_\mu$ is a nondegenerate tetrad in
+a four-real-dimensional Lorentz carrier and that the same Levi--Civita spin
+connection acts on the field from which that tetrad is derived.  In the
+profile architecture:
+\begin{enumerate}
+ \item $E_\mu$ lies in an ambient profile space containing at least a
+       fourteen-dimensional free block;
+ \item $\Db$ is the flat ambient connection;
+ \item the curved Levi--Civita connection is only the tangential projection of
+       $\Db$ along the embedded four-manifold.
+\end{enumerate}
+There is therefore no profile-space inverse tetrad converting $\Theta$ into a
+single spacetime vector $V$ with $\nabla_\mu V^\nu=\delta_\mu{}^\nu$.
+\end{proposition}
+
+\section{Result and remaining obligations}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.31\textwidth}
+                              >{\raggedright\arraybackslash}p{0.20\textwidth}
+                              >{\raggedright\arraybackslash}X}
+\hline
+Item & Status & Meaning \\
+\hline
+Centrality of symmetric $\sharp$ product & Closed & Holds on all $\B$; coefficients may be complex. \\
+Classical real metric & Closed algebraically & Real Lorentz slice, or reality condition $h=0$. \\
+Quaternionic symmetric metric & Excluded in this channel & Noncentral information is the antisymmetric $\Sigma_{\mu\nu}$. \\
+Profile-frame covariance & Closed conditionally & Use a flat $\betaC$-compatible ambient connection $\Db$. \\
+Induced Levi--Civita geometry & Closed & Tangential projection of $\Db$; Gauss equation follows from ambient flatness. \\
+Free rank under covariantization & Closed conditionally & Equivalent to the fixed-frame proof in a local parallel gauge. \\
+Identification with old canonical $D_\mu$ & Open architectural revision & The old pointwise spin lift must not be conflated with $\Db$. \\
+Action origin and mode selection & Open & Unchanged by this note. \\
+\hline
+\end{tabularx}
+\end{center}
+
+The correct candidate architecture is therefore
+\begin{equation}
+ \boxed{
+ \Theta\xrightarrow{\ \Db\ }E_\mu
+ \xrightarrow{\ \betaC\ }\gamma_{\mu\nu}=g_{\mu\nu}+ih_{\mu\nu},
+ \qquad
+ \Db_\mu E_\nu=\Gamma^\rho{}_{\mu\nu}E_\rho+B_{\mu\nu}.}
+ \label{eq:architecture}
+\end{equation}
+Exact GR uses the real branch and the induced Levi--Civita connection.  The
+complex symmetric tensor $h_{\mu\nu}$ and the biquaternionic antisymmetric
+sector $\Sigma_{\mu\nu}$ may be retained as candidate non-GR sectors, but
+neither has a physical interpretation until its action, constraints and
+couplings are derived.
+
+\end{document}

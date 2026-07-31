@@ -40,22 +40,32 @@ the four-dimensional metric from the normalized Haar average of the central
 Lorentz product.  A local free isometric embedding of any Lorentzian
 four-metric into $\mathbb E^{13,1}$ lifts isometrically to fourteen orthonormal
 $W_L$-valued profile modes of the same $\Theta$.  The ten normal
-second-derivative profiles are then independent, so variation of the
-pure-$\Theta$ Gauss action is exactly equivalent to the vacuum
+second-derivative profiles are then independent, so variation of a
+Gauss functional algebraically identical to the composite
+Einstein--Hilbert--$\Lambda$ action is exactly equivalent to the vacuum
 Einstein--$\Lambda$ equations on that branch.  This closes local
-representability and local vacuum closure for the profile metric.  It does not
-derive $\kappa$, $\Lambda$, profile selection, or the profile readout from the
-previous canonical master action; promotion therefore requires a deliberate
-canonical decision rather than a silent status change.
+representability and establishes conditional local vacuum equivalence for the
+adopted profile metric and action.  It does not derive $\kappa$, $\Lambda$,
+profile selection or the profile readout from the previous canonical master
+action.  A companion note supplies a flat ambient profile connection whose
+tangential projection is the induced Levi--Civita connection, but identifying
+that ambient derivative with the presently overloaded canonical symbol
+$D_\mu$ still requires a deliberate architectural revision rather than a
+silent status change.
 \end{abstract}
 
 \begin{tcolorbox}[colback=yellow!5,colframe=yellow!55!black,title=Canonical impact]
-The construction below is mathematically compatible with one fundamental
-field $\Theta(q,\tau)$ and adds no independent connection or tetrad.  It is
-nevertheless \emph{not compatible with the current wording of AXIOM C}, which
-forbids compact-$\psi$ averaging as the canonical metric readout.  The result
-is therefore a candidate completion until the repository maintainer either
-promotes it by a major axiom revision or rejects the profile readout.
+The construction below uses one profile-valued field and adds no independent
+metric, connection, or tetrad.  It is nevertheless \emph{not compatible with
+the current wording of AXIOM C}, which forbids compact-$\psi$ averaging as the
+canonical metric readout.  The fixed-frame formulas can be made covariant by placing the profiles in a
+flat pairing-compatible ambient bundle and replacing $\partial_\mu$ by its
+flat ambient connection $\mathbb D_\mu$; the induced tangential connection is
+then Levi--Civita.  This is proved in
+\path{gap_10s_covariant_profile_geometry.tex}.  It does not,
+however, coincide with the currently canonical pointwise spin-lift
+interpretation of $D_\mu$.  The result is therefore a noncanonical conditional
+completion candidate, not yet a replacement axiom.
 \end{tcolorbox}
 
 \section{Central profile pairing}
@@ -179,7 +189,9 @@ Eq.~\eqref{eq:thetalift} that reproduces its metric and is fiber-free.
 \end{theorem}
 
 \begin{proof}
-The local free-isometric-embedding theorem gives a free isometric embedding
+For a four-dimensional Lorentzian metric of class $C^m$ with $m\ge3$, or
+$C^\infty$, Greene's local free-isometric-embedding theorem (as summarized in
+Ref.~\cite{Willison2013}) gives a free isometric embedding
 $Y:U\to\mathbb E^{13,1}$.  Apply the profile-lift theorem.
 \end{proof}
 
@@ -264,6 +276,39 @@ immediately because the Einstein residual vanishes before contraction with
 $B_{\mu\nu}$.
 \end{proof}
 
+
+\section{Compatibility conditions before canonical promotion}
+
+The closure theorem above is an exact statement inside the adopted embedding
+architecture, but three compatibility questions must be separated from it.
+
+\paragraph{Covariant ambient jet.}
+The companion note
+\path{gap_10s_covariant_profile_geometry.tex} places the profiles in
+a flat pairing-compatible ambient bundle with connection $\mathbb D_\mu$.
+In a local parallel frame $\mathbb D_\mu=\partial_\mu$, while in arbitrary
+profile frames the metric, normal bundle and free rank are gauge invariant.
+The tangential projection of $\mathbb D_\mu$ is exactly the induced
+Levi--Civita connection, and the pointwise concurrent-vector no-go does not
+apply.  What remains open is canonical symbol and action reconciliation: the
+old pointwise spin-lift derivative $D_\mu$ must be distinguished from the flat
+ambient derivative $\mathbb D_\mu$, not silently identified with it.
+
+\paragraph{Fourteen-mode sector.}
+The full profile space contains more directions, including additional
+timelike Fourier directions.  The proof embeds a finite
+$\mathbb E^{13,1}$ block inside that space.  A canonical theory must either
+derive a stable fourteen-mode sector, prove that the remaining directions are
+pure gauge/auxiliary, or perform a constraint analysis showing that they add
+no physical ghost or bending modes.
+
+\paragraph{Action origin.}
+The Gauss functional in Eq.~\eqref{eq:Gaussaction} is the
+Einstein--Hilbert--$\Lambda$ functional rewritten in profile variables.  Its
+variation proves equivalence after this action is adopted; this is not yet a
+derivation from the older UBT master functional.  Deriving that action is the
+remaining dynamical bridge.
+
 \section{What is closed and what remains}
 
 \begin{center}
@@ -275,9 +320,11 @@ Item & Status & Scope \\
 \hline
 Local metric representability & Closed (profile metric) & Follows from local free embedding in $\mathbb E^{13,1}$ and the profile lift. \\
 Fiber-free non-vacuity on GR geometries & Closed locally & Every locally free embedded GR patch lifts to one $\Theta$. \\
-Vacuum Einstein--$\Lambda$ equation & Closed (free branch) & Direct variation of the pure-$\Theta$ Gauss action. \\
-Independent tetrad/connection fields & None introduced & $g$, $B$, and the Levi--Civita objects are composites of $\Theta$. \\
-Canonical metric choice & Axiom decision & Current AXIOM C explicitly forbids compact-$\psi$ averaging. \\
+Vacuum Einstein--$\Lambda$ equation & Conditionally closed (free branch) & Exact after adopting the profile metric and the composite Gauss/EH action. \\
+Independent tetrad/connection fields & None introduced in this branch & $g$, $B$, and the Levi--Civita objects are composites of $\Theta$. \\
+Covariant profile-frame realization & Conditionally closed & A flat pairing-compatible ambient connection preserves the metric and free rank; canonical identification with the old pointwise $D_\mu$ remains open. \\
+Fourteen-mode selection / extra profiles & Open & Must derive a stable finite block or prove the remaining profile directions nonphysical. \\
+Canonical metric choice & Axiom and compatibility decision & Current AXIOM C explicitly forbids compact-$\psi$ averaging. \\
 Origin of $\kappa$ and $\Lambda$ & Open & The Gauss action fixes the form, not their values from the older master equation. \\
 Dynamic profile selection/stability & Open & Must show the UBT dynamics selects and preserves the free, $\psi$-stable branch. \\
 Holomorphic/Jacobi restriction & Open & The lift is smooth periodic; any stronger analytic restriction must be checked separately. \\
@@ -296,17 +343,26 @@ Eq.~\eqref{eq:RTfree}, and freeness converts that equation to the complete ten
 Einstein equations.  The construction therefore supplies an exact local
 vacuum GR sector from one $\Theta$.
 
-The remaining obstacle is conceptual and canonical rather than a missing
-rank calculation: decide whether the classical metric is a pointwise tetrad
-readout or the translation-invariant readout of the full already-existing
-complex-time profile.  The former has the proved torsion-free concurrent-vector
-no-go; the latter has the exact local closure proved above.
+The rank and local embedding calculation are no longer the principal
+obstacle.  The remaining decision is whether the profile architecture can be
+derived as a genuine UBT sector: its scalar-profile derivative must be
+distinguished from the canonical pointwise spin lift, the extra profile
+directions must be controlled, and the Gauss/EH functional must follow from
+the master dynamics.  Only after those bridges are supplied should AXIOM C be
+replaced.  The pointwise torsion-free route has the concurrent-vector no-go;
+the profile route has exact conditional local equivalence, not yet an
+unconditional master-action derivation.
 
 \begin{thebibliography}{9}
 \bibitem{Bustamante2005}
 M. D. Bustamante, P. Debbasch, and M. E. Brachet,
 ``Classical Gravitation as Free Membrane Dynamics,''
 \emph{Class. Quantum Grav.} 23 (2006), arXiv:gr-qc/0509090.
+
+\bibitem{Greene1970}
+R. E. Greene,
+\emph{Isometric Embeddings of Riemannian and Pseudo-Riemannian Manifolds},
+Memoirs of the American Mathematical Society, No.~97 (1970).
 
 \bibitem{Willison2013}
 S. Willison,
