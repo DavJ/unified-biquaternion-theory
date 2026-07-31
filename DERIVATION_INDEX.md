@@ -160,6 +160,11 @@ Speculative material is maintained under `speculative_extensions/`, including
 consciousness/psychons, ThetaComm-like narratives, afterlife/survival claims,
 and metaphysical/simulation-style interpretations.
 
+- `speculative_extensions/invisibility/SPHERICAL_TANGENTIAL_NULL_SHELL.md` —
+  noncanonical spherical candidate: `gamma_AB=0` on the inner angular
+  two-surface while `Sigma_theta_phi!=0`; on-shell action, patching, stability,
+  and zero exterior scattering remain open.
+
 ### GEM compact modes and Gödel-type kinematic target (2026-07-25)
 
 - `research_tracks/gem_compact_modes/gem_compact_modes.tex` —

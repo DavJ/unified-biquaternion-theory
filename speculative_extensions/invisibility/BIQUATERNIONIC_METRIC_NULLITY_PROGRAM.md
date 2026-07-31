@@ -237,7 +237,7 @@ witness, not yet a spacetime solution or physical object.
 ### 4.4 Pointwise rank obstruction
 
 The pointwise space `C tensor H` is four-dimensional over `C`, and the central
-bilinear `B` is nondegenerate and symmetric.  If a subspace `U` is totally
+bilinear `B` is nondegenerate and symmetric. If a subspace `U` is totally
 isotropic, then `U` is contained in its orthogonal complement `U^perp`.
 Nondegeneracy gives
 
@@ -248,73 +248,66 @@ Nondegeneracy gives
 and therefore
 
 \[
-oxed{\dim U\le 2.}
+\boxed{\dim U\le 2.}
 \]
 
 Consequently, if four pointwise jets satisfy
 
 \[
-B(E_\mu,E_
-u)=0\qquad\hbox{for every }\mu,
-u,
+B(E_\mu,E_\nu)=0\qquad\hbox{for every }\mu,\nu,
 \]
 
-their span has rank at most two.  A pointwise branch with
+their span has rank at most two. A pointwise branch with
 `gamma_mu_nu=0` therefore cannot simultaneously be an invertible ordinary
-four-dimensional tetrad.  It must be interpreted as a degenerate phase,
+four-dimensional tetrad. It must be interpreted as a degenerate phase,
 defect, boundary configuration, or lower-rank sector unless additional
 profile structure is retained.
 
 ### 4.5 UBT profile-space escape and a rank-four witness
 
 The obstruction above applies to one copy of `C tensor H` at a fixed `psi`.
-It does not apply to the full UBT profile space.  Let `psi` have period
+It does not apply to the full UBT profile space. Let `psi` have period
 `2 pi`, retain the null pair `q,r` above, and define
 
 \[
-egin{aligned}
+\begin{aligned}
 E_0(\psi)&=e^{ i\psi}q,&
-E_1(\psi)&=e^{-i\psi}r,\
+E_1(\psi)&=e^{-i\psi}r,\\
 E_2(\psi)&=e^{2i\psi}q,&
 E_3(\psi)&=e^{-2i\psi}r.
 \end{aligned}
 \]
 
-These four profiles are linearly independent as functions of `psi`.  With the
+These four profiles are linearly independent as functions of `psi`. With the
 translation-invariant profile average
 
 \[
-\langle fangle_\psi
-=rac1{2\pi}\int_0^{2\pi}f(\psi)\,d\psi,
+\langle f\rangle_\psi
+=\frac1{2\pi}\int_0^{2\pi}f(\psi)\,d\psi,
 \]
 
 the central profile metric vanishes:
 
 \[
-oxed{
-\gamma^{m prof}_{\mu
-u}\mathbf1
+\boxed{
+\gamma^{\rm prof}_{\mu\nu}\mathbf1
 =\left\langle
-rac12(E_\mu^\sharp E_
-u+E_
-u^\sharp E_\mu)
-ightangle_\psi=0.
+\frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+\right\rangle_\psi=0.
 }
 \]
 
-However, the averaged ordered tensor remains nonzero.  In particular,
+However, the averaged ordered tensor remains nonzero. In particular,
 
 \[
-\Sigma^{m prof}_{01}=q^\sharp r
-e0,
+\Sigma^{\rm prof}_{01}=q^\sharp r\ne0,
 \qquad
-\Sigma^{m prof}_{23}=q^\sharp r
-e0.
+\Sigma^{\rm prof}_{23}=q^\sharp r\ne0.
 \]
 
 Thus the full UBT profile space admits a rank-four family of jets that is
-central-metric-null but biquaternionically active.  This is an exact algebraic
-profile witness.  It still does not provide an inverse metric, a nonzero
+central-metric-null but biquaternionically active. This is an exact algebraic
+profile witness. It still does not provide an inverse metric, a nonzero
 standard four-volume, an on-shell solution, stability, or invisibility.
 
 The distinction is essential:
@@ -325,6 +318,65 @@ The distinction is essential:
 
 A detailed statement and verifier are recorded in
 `PROFILE_METRIC_NULL_WITNESS.md`.
+
+### 4.6 Spherical tangential-null shell candidate
+
+For a spherical invisibility candidate it is not necessary to make all four
+spacetime directions metric-null. A spatial sphere has a two-dimensional
+tangent plane, so the pointwise bound `dim U <= 2` is exactly large enough for
+its angular directions.
+
+In spherical coordinates let `A,B` range over `theta,phi`. The proposed inner
+boundary condition at `r=R_1` is
+
+\[
+\boxed{
+\gamma_{AB}\big|_{R_1}=0,
+\qquad
+\Sigma_{\theta\phi}\big|_{R_1}\ne0.
+}
+\]
+
+Thus the central induced area density vanishes while the full ordered
+biquaternionic geometry retains a nonzero oriented-area channel. For a static
+spherically symmetric central metric
+
+\[
+ds_\gamma^2=-A(r)dt^2+B(r)dr^2
++C(r)\left(d\theta^2+\sin^2\theta\,d\phi^2\right),
+\]
+
+the inner condition is `C(R_1)=0`. Then
+
+\[
+dA_\gamma=C(R_1)\sin\theta\,d\theta\,d\phi=0,
+\]
+
+and, when `A(R_1)` and `B(R_1)` remain finite,
+
+\[
+\det\gamma\big|_{R_1}
+=-A(R_1)B(R_1)C(R_1)^2\sin^2\theta=0.
+\]
+
+The shell `R_1<r<R_2` must interpolate to the ordinary exterior geometry and
+must satisfy at least
+
+\[
+C(R_2)=R_2^2,
+\qquad
+\Sigma_{\theta\phi}(R_2)=0,
+\]
+
+with the appropriate exterior values of `A` and `B`. These are only geometric
+boundary targets. Physical invisibility additionally requires vacuum exterior
+Maxwell/gravitational scattering data, finite action, stability, and absence
+of singular surface sources.
+
+Because `S^2` has no global nonsingular tangent frame, the angular null pair
+must be defined in at least two overlapping patches with a consistent
+transition law. The detailed candidate and its falsification gates are
+recorded in `SPHERICAL_TANGENTIAL_NULL_SHELL.md`.
 
 ## 5. Action and volume questions
 

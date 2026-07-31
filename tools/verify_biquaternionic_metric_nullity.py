@@ -146,6 +146,17 @@ def main() -> None:
     gamma = [[1j * value for value in row] for row in h]
     assert determinant_4x4(gamma) == determinant_4x4(h) == -1
 
+
+    # Static spherical central metric with a null angular block has zero area
+    # and, in the block-diagonal SO(3)-symmetric ansatz, zero 4D determinant.
+    angular_null_shell = [
+        [-2, 0, 0, 0],
+        [0, 3, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+    ]
+    assert determinant_4x4(angular_null_shell) == 0
+
     # A genuinely degenerate central channel has zero determinant.
     degenerate = [
         [0, 0, 0, 0],
@@ -162,6 +173,7 @@ def main() -> None:
     print("PASS: four independent psi profiles give gamma_profile=0 and Sigma_profile!=0")
     print("PASS: pure imaginary nondegenerate metric has nonzero 4D determinant")
     print("PASS: volume-null central metric requires genuine degeneracy")
+    print("PASS: spherical tangential-null block has zero central area/determinant")
 
 
 if __name__ == "__main__":
