@@ -81,6 +81,13 @@ Neither by itself proves physical invisibility. Operational invisibility also
 requires the visible-sector mixing and exterior scattering/back-reaction to
 vanish.
 
+A pointwise `gamma_mu_nu=0` jet in one copy of `C tensor H` has rank at most
+two, because the central complex bilinear has Witt index two.  The full
+`psi`-profile space escapes this finite-dimensional obstruction: four
+independent Fourier profiles can have zero averaged central metric while the
+averaged `Sigma` channel remains nonzero.  This profile witness is algebraic,
+not yet an on-shell spacetime or device.
+
 ## Files
 
 - `BIQUATERNIONIC_METRIC_NULLITY_PROGRAM.md` — current research statement,

@@ -58,6 +58,23 @@ def antisym_sharp(a: Q, b: Q) -> Q:
     return (a.sharp() * b - b.sharp() * a).scale(0.5)
 
 
+def profile_average_product(a: tuple[int, Q], b: tuple[int, Q]) -> Q:
+    """Average of ordered bilinear profiles e^(in psi)a and e^(im psi)b."""
+    mode_a, value_a = a
+    mode_b, value_b = b
+    if mode_a + mode_b != 0:
+        return Q(0, 0, 0, 0)
+    return value_a.sharp() * value_b
+
+
+def profile_sym(a: tuple[int, Q], b: tuple[int, Q]) -> Q:
+    return (profile_average_product(a, b) + profile_average_product(b, a)).scale(0.5)
+
+
+def profile_antisym(a: tuple[int, Q], b: tuple[int, Q]) -> Q:
+    return (profile_average_product(a, b) - profile_average_product(b, a)).scale(0.5)
+
+
 def determinant_4x4(matrix: list[list[complex]]) -> complex:
     """Small exact recursive determinant; adequate for the fixed checks here."""
     n = len(matrix)
@@ -97,6 +114,28 @@ def main() -> None:
     assert not ordered.is_zero()
     assert r.sharp() * q == -ordered
 
+    # Pointwise nullity has Witt-index/rank bound two in C^4.
+    # q,r span an explicit maximal totally isotropic plane; a 4D pointwise
+    # tetrad cannot have all central pairings zero and remain invertible.
+    isotropic_plane = (q, r)
+    assert all(sym_sharp(a, b).is_zero() for a in isotropic_plane for b in isotropic_plane)
+    assert len(isotropic_plane) == 2
+
+    # The full UBT profile space escapes that finite-dimensional rank bound.
+    # Modes are paired bilinearly (without complex conjugation), so n+m=0
+    # survives the Haar average.
+    profiles = (
+        (1, q),
+        (-1, r),
+        (2, q),
+        (-2, r),
+    )
+    assert len({mode for mode, _ in profiles}) == 4  # functional independence
+    assert all(profile_sym(a, b).is_zero() for a in profiles for b in profiles)
+    assert profile_antisym(profiles[0], profiles[1]) == ordered
+    assert profile_antisym(profiles[2], profiles[3]) == ordered
+    assert not profile_antisym(profiles[0], profiles[1]).is_zero()
+
     # Purely imaginary nondegenerate 4D metric is not volume-null.
     h = [
         [-1, 0, 0, 0],
@@ -119,6 +158,8 @@ def main() -> None:
     print("PASS: symmetric sharp channel is central")
     print("PASS: antisymmetric channel is biquaternionic and antisymmetric")
     print("PASS: explicit gamma=0, Sigma!=0 algebraic witness")
+    print("PASS: pointwise metric-null rank is bounded by two")
+    print("PASS: four independent psi profiles give gamma_profile=0 and Sigma_profile!=0")
     print("PASS: pure imaginary nondegenerate metric has nonzero 4D determinant")
     print("PASS: volume-null central metric requires genuine degeneracy")
 

@@ -15,6 +15,8 @@ def test_biquaternionic_metric_nullity_verifier() -> None:
         text=True,
     )
     assert "explicit gamma=0, Sigma!=0 algebraic witness" in result.stdout
+    assert "pointwise metric-null rank is bounded by two" in result.stdout
+    assert "four independent psi profiles give gamma_profile=0" in result.stdout
 
 
 def test_invisibility_track_is_explicitly_noncanonical() -> None:

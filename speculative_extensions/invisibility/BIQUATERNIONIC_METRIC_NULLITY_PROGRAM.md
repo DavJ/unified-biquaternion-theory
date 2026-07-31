@@ -234,6 +234,98 @@ Thus a two-direction jet can be metric-null in the central channel while its
 antisymmetric biquaternionic channel is nonzero. This is only an algebraic
 witness, not yet a spacetime solution or physical object.
 
+### 4.4 Pointwise rank obstruction
+
+The pointwise space `C tensor H` is four-dimensional over `C`, and the central
+bilinear `B` is nondegenerate and symmetric.  If a subspace `U` is totally
+isotropic, then `U` is contained in its orthogonal complement `U^perp`.
+Nondegeneracy gives
+
+\[
+\dim U+\dim U^\perp=4,
+\]
+
+and therefore
+
+\[
+oxed{\dim U\le 2.}
+\]
+
+Consequently, if four pointwise jets satisfy
+
+\[
+B(E_\mu,E_
+u)=0\qquad\hbox{for every }\mu,
+u,
+\]
+
+their span has rank at most two.  A pointwise branch with
+`gamma_mu_nu=0` therefore cannot simultaneously be an invertible ordinary
+four-dimensional tetrad.  It must be interpreted as a degenerate phase,
+defect, boundary configuration, or lower-rank sector unless additional
+profile structure is retained.
+
+### 4.5 UBT profile-space escape and a rank-four witness
+
+The obstruction above applies to one copy of `C tensor H` at a fixed `psi`.
+It does not apply to the full UBT profile space.  Let `psi` have period
+`2 pi`, retain the null pair `q,r` above, and define
+
+\[
+egin{aligned}
+E_0(\psi)&=e^{ i\psi}q,&
+E_1(\psi)&=e^{-i\psi}r,\
+E_2(\psi)&=e^{2i\psi}q,&
+E_3(\psi)&=e^{-2i\psi}r.
+\end{aligned}
+\]
+
+These four profiles are linearly independent as functions of `psi`.  With the
+translation-invariant profile average
+
+\[
+\langle fangle_\psi
+=rac1{2\pi}\int_0^{2\pi}f(\psi)\,d\psi,
+\]
+
+the central profile metric vanishes:
+
+\[
+oxed{
+\gamma^{m prof}_{\mu
+u}\mathbf1
+=\left\langle
+rac12(E_\mu^\sharp E_
+u+E_
+u^\sharp E_\mu)
+ightangle_\psi=0.
+}
+\]
+
+However, the averaged ordered tensor remains nonzero.  In particular,
+
+\[
+\Sigma^{m prof}_{01}=q^\sharp r
+e0,
+\qquad
+\Sigma^{m prof}_{23}=q^\sharp r
+e0.
+\]
+
+Thus the full UBT profile space admits a rank-four family of jets that is
+central-metric-null but biquaternionically active.  This is an exact algebraic
+profile witness.  It still does not provide an inverse metric, a nonzero
+standard four-volume, an on-shell solution, stability, or invisibility.
+
+The distinction is essential:
+
+- pointwise metric-null jets have rank at most two;
+- profile-valued metric-null jets may have functional rank four;
+- neither statement by itself supplies a regular physical spacetime action.
+
+A detailed statement and verifier are recorded in
+`PROFILE_METRIC_NULL_WITNESS.md`.
+
 ## 5. Action and volume questions
 
 The statement “zero volume implies zero action” is true only for action terms
