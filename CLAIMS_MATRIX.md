@@ -54,5 +54,6 @@ Unless a reproducible empirical protocol upgrades them, the following remain **S
 | survival of consciousness | SPECULATIVE | `speculative_extensions/` |
 | communication with deceased consciousness | SPECULATIVE | `speculative_extensions/` |
 | ThetaComm | SPECULATIVE | `speculative_extensions/thetacomm/` |
+| Biquaternionic metric-null / volume-null invisibility program | SPECULATIVE | `speculative_extensions/invisibility/` |
 | soul / immortality | SPECULATIVE | `speculative_extensions/` |
 | Matrix / simulation ontology | SPECULATIVE | `speculative_extensions/metaphysics/` (or equivalent speculative path) |

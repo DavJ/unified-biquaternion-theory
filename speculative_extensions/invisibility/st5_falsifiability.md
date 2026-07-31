@@ -1,3 +1,5 @@
+> **Status rebase (2026-08-01):** Historical speculative document. Read `README.md` and `STATUS_REBASE_2026-08-01.md` first; the older symmetric quaternion-component metric ansatz is not the current canonical metric.
+
 # ST-5: Falsifiability of Imaginary-Sector Invisibility in UBT
 
 **Status:** SPECULATIVE  

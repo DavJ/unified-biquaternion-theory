@@ -40,9 +40,13 @@ Spacetime geometry is **not postulated** — it emerges from Θ:
 g_{μν}(x) = Re[ (D_μ Θ)† D_ν Θ ]
 ```
 
-The underlying biquaternionic metric `𝒢_{μν} = (D_μ Θ)† D_ν Θ ∈ ℂ ⊗ ℍ` is the true fundamental object;
-the classical GR metric is the central coefficient of the covariant-tetrad anticommutator.  
-There is **no background metric**; all curvature is emergent.
+The full ordered biquaternionic geometric tensor
+`𝔊_{μν} = E_μ^♯ E_ν ∈ ℂ ⊗ ℍ` is retained. Its symmetric central channel is the
+classical/complex metric, while its antisymmetric channel `Σ_{μν}` carries the
+noncentral biquaternionic information. Historical notes may call `𝔊` the
+biquaternionic metric; canonical GR terminology reserves *metric* for the
+symmetric central channel. There is **no background metric**; all curvature is
+emergent.
 
 **References**:  
 - [`core/AXIOMS.md`](../core/AXIOMS.md) (Axiom C)  

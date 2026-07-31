@@ -86,6 +86,25 @@ programme are nevertheless part of its documented history.
   theorems did not yet exist in their present form, but the algebraic and metric
   intuition from which they later developed was already present.
 
+## 1 August 2026 — Revival of the biquaternionic invisibility program
+
+- The early invisibility hypothesis was restored as an explicit speculative
+  research track rather than left only as a historical remark.
+- The current covariant-tetrad algebra distinguishes the full ordered tensor
+  $\mathfrak G_{\mu\nu}=E_\mu^\sharp E_\nu$ from its symmetric central metric
+  channel and antisymmetric biquaternionic channel $\Sigma_{\mu\nu}$.
+- This clarified why the noncentral part appeared to disappear: for commuting
+  coordinate differentials it cancels from the ordinary quadratic line element,
+  although it remains present in the full ordered product and oriented-area
+  channel.
+- Three separate hypotheses are now tracked: curve-null configurations,
+  volume-null central metrics ($\det\gamma=0$), and metric-null but
+  biquaternionically active configurations ($\gamma=0$, $\Sigma\ne0$).
+- An explicit pointwise algebraic witness for the last class was recorded. No
+  on-shell invisible object, stable degenerate region, or engineering device is
+  claimed; action regularity, coupling decoupling, boundary matching, and
+  exterior scattering remain open.
+
 ## 18 March 2016 — Public biquaternion electroscalar formulation
 
 - A Google Sites post with the embedded date 18 March 2016 publicly documented

@@ -53,7 +53,18 @@ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
 \qquad e_\mu{}^a\in\mathbb R.
 \]
 
-## 3. Metric without projection
+## 3. Full biquaternionic tensor and metric without projection
+
+The ordered product
+
+\[
+\mathfrak G_{\mu\nu}:=E_\mu^\sharp E_\nu
+\]
+
+is the full biquaternionic geometric tensor. Historical documents may call it
+the biquaternionic metric. In the canonical GR architecture, the word metric is
+reserved for the symmetric central channel below; the antisymmetric
+biquaternionic channel remains part of the full geometry and is not deleted.
 
 With quaternion conjugation \(\sharp\),
 
