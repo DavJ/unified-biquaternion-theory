@@ -1,0 +1,1 @@
+# No source paths are deleted by this overlay.

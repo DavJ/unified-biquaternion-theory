@@ -9,10 +9,25 @@ License: MIT
 Copyright (c) 2025 Ing. David Jaroš
 """
 
+import json
+from pathlib import Path
+
 import pytest
 from tools.forensic_fingerprint.layer2.config_space import Layer2Config
-from tools.forensic_fingerprint.layer2.predictors import predict_constants
+from tools.forensic_fingerprint.layer2.predictors import get_experimental_values, predict_constants
 
+
+
+def test_experimental_values_are_loaded_from_provenance_file():
+    """Comparison values must match the canonical tracked JSON, not literals."""
+    root = Path(__file__).resolve().parents[1]
+    reference_path = root / "data" / "reference_constants" / "codata_reference.json"
+    reference = json.loads(reference_path.read_text(encoding="utf-8"))
+
+    assert get_experimental_values() == {
+        "alpha_inv": float(reference["alpha_inverse"]),
+        "electron_mass": float(reference["electron_mass_MeV"]),
+    }
 
 def test_placeholder_returns_values():
     """Test that placeholder mode returns predicted values."""

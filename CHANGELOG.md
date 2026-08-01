@@ -1,3 +1,16 @@
+## [2026-08-01] — CODATA provenance and checksum integrity hardening
+
+### Corrected
+- Moved Layer2 comparison constants from Python literals into the tracked
+  `data/reference_constants/codata_reference.json` source and its `DATA/` mirror.
+- Repaired the alpha hard-code regex so CODATA 2022 values are actually scanned.
+- Made directory exclusions repository-relative, preventing checkout paths such
+  as `/mnt/data/...` from silently disabling the full provenance scan.
+- Added exact, reviewable path exemptions for existing comparison-only alpha
+  occurrences instead of relying on the obsolete CODATA-2018 digit pattern.
+- Regenerated `SHA256SUMS.txt` and added a regression test plus regeneration tool
+  so release checksums cannot silently drift after later overlays.
+
 ## [2026-08-01] — GR split-jet status and PDF hygiene
 
 ### Corrected
