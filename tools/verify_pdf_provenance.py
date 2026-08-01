@@ -12,6 +12,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
+REVIEW_REGISTRY = ROOT / "PROVENANCE_REVIEW.yaml"
 
 
 def load_tool():
@@ -53,6 +54,12 @@ def main(argv: list[str] | None = None) -> int:
 
     tool = load_tool()
     config = yaml.safe_load((ROOT / "PROVENANCE_TIERS.yaml").read_text(encoding="utf-8"))
+    review_data = (
+        yaml.safe_load(REVIEW_REGISTRY.read_text(encoding="utf-8"))
+        if REVIEW_REGISTRY.exists()
+        else {"profiles": {}}
+    )
+    review_profiles = review_data.get("profiles", {}) if isinstance(review_data, dict) else {}
     failures: list[str] = []
     checked = 0
     for raw in args.map.read_text(encoding="utf-8").splitlines():
@@ -81,8 +88,31 @@ def main(argv: list[str] | None = None) -> int:
             out = Path(tmp) / "text.txt"
             run_text(["pdftotext", str(pdf), str(out)])
             text = out.read_text(encoding="utf-8", errors="replace")
-        if f"AI provenance — Tier {tier}" not in text and f"AI provenance - Tier {tier}" not in text:
+        normalized_text = " ".join(text.split())
+        if f"AI provenance — Tier {tier}" not in normalized_text and f"AI provenance - Tier {tier}" not in normalized_text:
             failures.append(f"{destination}: visible tier-{tier} notice not found")
+
+        review_profile = review_profiles.get(source_tex)
+        if isinstance(review_profile, dict):
+            labels = review_profile.get("publication_labels", {})
+            machine = str(labels.get("machine") or "")
+            human = str(labels.get("human") or "")
+            editorial = str(labels.get("editorial") or "")
+            for label, value in (("machine verification", machine), ("human review", human), ("editorial approval", editorial)):
+                if not value:
+                    failures.append(f"{source_tex}: missing publication label for {label}")
+                    continue
+                if f"{label}: {value}" not in subject.lower():
+                    failures.append(f"{destination}: missing {label} review metadata")
+            if "Review profile." not in normalized_text:
+                failures.append(f"{destination}: visible orthogonal review profile not found")
+            for phrase in (
+                f"Machine verification: {machine}",
+                f"human review: {human}",
+                f"editorial approval: {editorial}",
+            ):
+                if phrase not in normalized_text:
+                    failures.append(f"{destination}: visible review phrase not found: {phrase}")
         checked += 1
 
     print(f"Checked {checked} curated PDF(s).")

@@ -1,0 +1,59 @@
+# UBT orthogonal review-profile registry
+# SPDX-License-Identifier: MIT
+#
+# This registry supplements, but does not replace, PROVENANCE_TIERS.yaml.
+# A/B/C/D remains the stable release classification.  The fields below record
+# independent axes: machine-verification scope, human-review scope, and
+# editorial approval.  A profile MUST NOT be broadened by an AI agent without
+# an explicit human decision.
+
+version: 1
+schema: ubt-review-profile/v1
+
+allowed_values:
+  machine_verification:
+    - none
+    - partial
+    - comprehensive_for_named_claims
+    - comprehensive
+  human_review:
+    - none
+    - selected_claims
+    - substantial
+    - full
+  editorial_approval:
+    - draft
+    - approved
+
+profiles:
+  canonical/gr_closure/gap_10d_theta_hessian_principal_symbol.tex:
+    publication_labels:
+      machine: comprehensive for named claims
+      human: selected principal claims
+      editorial: author approved
+    machine_verification:
+      status: comprehensive_for_named_claims
+      evidence:
+        - tools/verify_theta_hessian_principal_symbol.py
+        - tests/test_theta_hessian_principal_symbol.py
+      scope:
+        - fixed-background scalar principal symbol
+        - metric-lock collapse of the canonical kinetic scalar to a volume term
+        - exact q=1 determinant, rank and nullspace checks at named rational samples
+        - nonconic radial-scaling check for the q=1 singular surface
+    human_review:
+      status: selected_claims
+      reviewed_by: "Ing. David Jaroš"
+      reviewed_on: 2026-08-01
+      claims:
+        - "rank(I-A)=10 on the 16-dimensional frozen q=1 system implies dim ker(I-A)=6"
+        - "the exponent six in det(I-A)=(1-q)^6 is algebraic multiplicity and does not by itself prove kernel dimension"
+        - "q=1 is a spectral resonance condition; exponential modes correspond to complex frequency or wave number and are not intrinsically unphysical"
+      not_claimed:
+        - full line-by-line human review of the document
+        - derivation of the full composite gauge-fixed Theta Hessian
+        - a demonstrated transition mechanism between UBT sectors
+    editorial_approval:
+      status: approved
+      responsible_person: "Ing. David Jaroš"
+      approved_on: 2026-08-01

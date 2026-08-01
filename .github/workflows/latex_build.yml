@@ -56,11 +56,13 @@ jobs:
       - name: Enforce signed provenance release gate
         run: |
           python3 tools/apply_provenance_headers.py --check
+          python3 tools/verify_provenance_review.py
           python3 -m pytest -q \
             tests/test_provenance_headers.py::test_tier_map_is_signed_off \
             tests/test_provenance_headers.py::test_tier_map_is_editorially_bounded \
             tests/test_provenance_headers.py::test_all_markable_sources_match_the_tier_map \
-            tests/test_provenance_headers.py::test_distributed_tex_roots_declare_matching_tiers
+            tests/test_provenance_headers.py::test_distributed_tex_roots_declare_matching_tiers \
+            tests/test_provenance_review.py
 
       - name: Compile every standalone TeX root
         shell: bash

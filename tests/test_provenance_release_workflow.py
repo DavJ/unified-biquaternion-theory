@@ -9,6 +9,8 @@ def test_latex_publication_requires_human_signoff() -> None:
     assert "Enforce signed provenance release gate" in text
     assert "test_tier_map_is_signed_off" in text
     assert "tools/apply_provenance_headers.py --check" in text
+    assert "tools/verify_provenance_review.py" in text
+    assert "tests/test_provenance_review.py" in text
     assert "poppler-utils" in text
 
 

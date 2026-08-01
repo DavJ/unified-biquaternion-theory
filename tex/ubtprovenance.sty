@@ -1,13 +1,18 @@
 %% UBT AI provenance notice and PDF metadata
 %% SPDX-License-Identifier: MIT
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ubtprovenance}[2026/08/01 v1.0 UBT AI provenance]
+\ProvidesPackage{ubtprovenance}[2026/08/01 v1.1 UBT AI provenance and review profile]
 \RequirePackage{xcolor}
 \makeatletter
 \def\UBT@tier{C}
 \def\UBT@notice{AI-assisted working material; exhaustive human review is not claimed.}
 \def\UBT@before{0.35em}
 \def\UBT@after{0.65em}
+\newif\ifUBT@reviewprofile
+\UBT@reviewprofilefalse
+\def\UBT@machine{not separately declared}
+\def\UBT@human{not separately declared}
+\def\UBT@editorial{not separately declared}
 \newcommand{\UBTProvenanceTight}{\def\UBT@before{-1.25em}\def\UBT@after{-0.75em}}
 \newif\ifUBT@noticeintitle
 \UBT@noticeintitlefalse
@@ -16,6 +21,12 @@
   \parbox{0.88\textwidth}{\centering\scriptsize\color{black!78}%
     \textbf{AI provenance --- Tier \UBT@tier.} \UBT@notice\space
     Details: \texttt{AI\_PROVENANCE.md}.}%
+}
+\newcommand{\UBTReviewProfile}[3]{%
+  \UBT@reviewprofiletrue
+  \def\UBT@machine{#1}%
+  \def\UBT@human{#2}%
+  \def\UBT@editorial{#3}%
 }
 \newcommand{\UBTTier}[1]{%
   \def\UBT@tier{#1}%
@@ -33,8 +44,8 @@
 \AtBeginDocument{%
   \@ifpackageloaded{hyperref}{%
     \hypersetup{%
-      pdfsubject={Unified Biquaternion Theory; AI-assisted content; provenance tier \UBT@tier},%
-      pdfkeywords={Unified Biquaternion Theory, AI provenance, AI-assisted research, provenance tier \UBT@tier}%
+      pdfsubject={Unified Biquaternion Theory; AI-assisted content; provenance tier \UBT@tier; machine verification: \UBT@machine; human review: \UBT@human; editorial approval: \UBT@editorial},%
+      pdfkeywords={Unified Biquaternion Theory, AI provenance, AI-assisted research, provenance tier \UBT@tier, machine verification \UBT@machine, human review \UBT@human, editorial approval \UBT@editorial}%
     }%
   }{%
     \PackageWarningNoLine{ubtprovenance}{hyperref not loaded; PDF metadata was not injected}%
@@ -47,6 +58,12 @@
     \begingroup\scriptsize\noindent\color{black!78}%
     \textbf{AI provenance --- Tier \UBT@tier.} \UBT@notice\space
     Details: \texttt{AI\_PROVENANCE.md}.%
+    \ifUBT@reviewprofile
+      \par\smallskip
+      \textbf{Review profile.} Machine verification: \UBT@machine;
+      human review: \UBT@human; editorial approval: \UBT@editorial.\space
+      Registry: \texttt{PROVENANCE\_REVIEW.yaml}.%
+    \fi
     \par\vspace{\UBT@after}\endgroup
   \fi
 }
