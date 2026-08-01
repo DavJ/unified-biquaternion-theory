@@ -1,6 +1,18 @@
 > **GR geometry update (16 July 2026):** The canonical metric is the central anticommutator of the covariant tetrad $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$. The local rank-ten map, connection reconstruction, affine Minkowski representer, and one-sided no-go are closed. New sharply scoped subclosures establish algebraic torsion selection in the minimal Palatini branch, exact augmented-holonomy integrability for prescribed coefficients, Lorentz/imaginary-time symmetry propagation, and the conditional Palatini/Lovelock Einstein--$\Lambda$ infrared endpoint. The fundamental action origin, self-consistent curved global solution, perturbation bridge, and on-shell Schwarzschild selection remain unresolved.
 
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Unified Biquaternion Theory (UBT)
 

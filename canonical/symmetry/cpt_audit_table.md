@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: B_machine_verified
+ai_assistance: disclosed
+human_review: machine-verification
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # CPT Audit Table — UBT Action Terms
 
 © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0

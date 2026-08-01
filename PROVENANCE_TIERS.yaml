@@ -1,0 +1,82 @@
+# PROVENANCE_TIERS.yaml
+# SPDX-License-Identifier: MIT
+#
+# Editorial tier map for AI-provenance marking.
+#
+# THIS FILE IS AN EDITORIAL DECISION, NOT AN IMPLEMENTATION DETAIL.
+# It is assigned by Ing. David Jaroš and MUST NOT be modified by an AI agent
+# without explicit per-entry instruction. Agents may add files to `unassigned`
+# reports; they may not assign a tier.
+#
+# Tiers:
+#   A  attested         — author has read the substance and holds editorial
+#                         responsibility. Keep this set small enough to be true.
+#   B  machine_verified — bound to a named source file and a passing verifier;
+#                         not individually human-read.
+#   C  working          — working material, risk-based review only,
+#                         not a source of record.
+#   D  historical       — predates AI tool use; preserved as-is, NOT marked.
+#
+# Matching: first rule that matches a repo-relative path wins, in the order
+# A, D, B, C. Patterns are glob (fnmatch) against the repo-relative POSIX path.
+
+version: 1
+signed_off_by: "PENDING — Ing. David Jaroš"
+signed_off_date: null
+
+# Rolling attestation. A-tier documents change; the signature must be
+# refreshed when they do. The test warns once this is older than 90 days.
+attested_as_of: null
+
+tiers:
+
+  A_attested:
+    # Deliberately narrow. Every path here is a personal warranty.
+    - "WHAT_IS_PROVED.md"
+    - "CLAIMS.yaml"
+    - "CLAIMS_MATRIX.md"
+    - "STATUS.md"
+    - "DERIVATION_INDEX.md"
+    - "papers/UBT_GR_Submission.tex"
+    - "AI_PROVENANCE.md"
+    - "PROVENANCE_TIERS.yaml"
+    # Author decision 2026-08-01: attested. Statuses are read directly.
+    - "STATUS_OF_UBT.md"
+    # OPEN DECISION — add the SU(3) paper path once its filename is fixed.
+
+  D_historical:
+    - "ARCHIVE/**"
+    - "**/archive_legacy/**"
+    - "**/legacy_variants/**"
+
+  B_machine_verified:
+    - "canonical/**"
+    - "tools/verify_*.py"
+    - "tools/check_*.py"
+    - "tests/**"
+    - "src/**"
+
+  C_working:
+    # Everything not matched above falls here by default; these entries are
+    # listed only for documentation.
+    - "research_tracks/**"
+    - "docs/**"
+    - "reports/**"
+    - "experiments/**"
+    - "speculative_extensions/**"
+    - "PATCH_NOTES_*.md"
+    - "OVERLAY_*.md"
+
+default_tier: C_working
+
+# Paths excluded from marking entirely (binary, generated, or third-party).
+exclude:
+  - "**/*.pdf"
+  - "**/*.png"
+  - "**/*.json"
+  - "**/*.csv"
+  - "**/*.sha256"
+  - "**/*.txt"
+  - "LICENSE.md"
+  - "CITATION.cff"
+  - ".github/**"

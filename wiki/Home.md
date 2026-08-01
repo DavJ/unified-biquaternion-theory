@@ -1,6 +1,18 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
 <!-- Auto-generated sections are marked with BEGIN/END GENERATED markers.
      Run tools/generate_wiki.py to refresh them. -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Unified Biquaternion Theory — Wiki Home
 
@@ -63,13 +75,13 @@ See the full architecture in [Overview](Overview).
 <!-- BEGIN GENERATED: status_summary -->
 | Area | ✅ Proved | ⚡ Supported | ⚠️ Semi-emp. | 💭 Conjecture | ❌ Open/Dead-end |
 |------|----------|------------|------------|-------------|----------------|
-| Gauge Structure | 17 | 1 | 1 | 0 | 3 |
-| Fine Structure Constant | 10 | 0 | 3 | 1 | 4 |
-| Three Generations | 5 | 2 | 5 | 5 | 8 |
-| Gravity / φ-Universe | 18 | 0 | 0 | 1 | 1 |
-| Mirror Sector | 2 | 3 | 0 | 3 | 0 |
-| Algebra | 21 | 0 | 0 | 0 | 3 |
-| **Total** | **73** | **6** | **9** | **10** | **19** |
+| Gauge Structure | 0 | 0 | 0 | 0 | 0 |
+| Fine Structure Constant | 0 | 0 | 0 | 0 | 0 |
+| Three Generations | 0 | 0 | 0 | 0 | 0 |
+| Gravity / φ-Universe | 0 | 0 | 0 | 0 | 0 |
+| Mirror Sector | 0 | 0 | 0 | 0 | 0 |
+| Algebra | 0 | 0 | 0 | 0 | 0 |
+| **Total** | **0** | **0** | **0** | **0** | **0** |
 *Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: status_summary -->
 
@@ -124,3 +136,10 @@ Launch them in the browser — no installation required:
 
 *This wiki summarises the theory — it does not duplicate derivations. All claims
 link to canonical source files in the repository.*
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

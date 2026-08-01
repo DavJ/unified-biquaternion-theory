@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # Patch notes: GAP-10I paired-connection audit
 
 > **Superseded scope note (19 July 2026):** the concurrent-vector no-go below is valid only for the torsion-free (`K=0`) generated-tetrad branch. The later `GAP-10I-TORSION-LOCAL` theorem constructs a local composite-contortion representer for every smooth Lorentzian tetrad, so a relative pair is not required for local kinematics.

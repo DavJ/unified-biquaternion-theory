@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Fundamental Objects
 
@@ -72,3 +84,10 @@ Status: **Proved [L0]**
 - [Biquaternion Algebra](Biquaternion_Algebra) — mathematical background
 - [Theta Field](Theta_Field) — the fundamental field built on this algebra
 - [Gauge Structure](Gauge_Structure) — gauge symmetries from algebra automorphisms
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

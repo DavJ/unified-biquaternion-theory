@@ -10,6 +10,18 @@
 > This file is retained for historical traceability and must not override the
 > current claim ledger. See `reviews/gauge_qm_honest_status_audit_2026-07-17.md`.
 
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: B_machine_verified
+ai_assistance: disclosed
+human_review: machine-verification
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # GAUGE_MASTER_STATUS.md — T2_GAUGE Canonical Master Status
 
 **Author**: Ing. David Jaroš  

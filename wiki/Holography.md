@@ -1,4 +1,16 @@
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Holography in UBT
 
@@ -62,3 +74,10 @@ present in the UBT framework.
 
 **Status: [O] Dead End [L2]** (v47 numerical investigation)
 See: `DERIVATION_INDEX.md` §Holography and de Sitter Structure
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Fine Structure Constant α
 
@@ -101,3 +113,10 @@ consistency check.
 | [`N_eff_derivation/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/ARCHIVE/archive_legacy/consolidation_project/N_eff_derivation) | Step-by-step N_eff derivation chain |
 | [`docs/PROOFKIT_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PROOFKIT_ALPHA.md) | Proof kit for α |
 | [`tools/verify_8pi_connection.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/tools/verify_8pi_connection.py) | Numerical verification of B₀ = 8π |
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Modular Forms in UBT
 
@@ -99,3 +111,10 @@ to the physical lepton mass ratios (μ error 0.02%, τ error 0.10%).
 - [Hecke / Modular Structure](Hecke_Modular_Structure) — derivation page
 - [Mirror Sector](Mirror_Sector) — Set B at p = 139
 - [Particle Spectrum](Particle_Spectrum) — lepton masses
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

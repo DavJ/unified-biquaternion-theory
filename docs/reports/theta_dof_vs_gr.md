@@ -1,5 +1,17 @@
 > **STATUS UPDATE (2026-07-15):** The 8-vs-10 component argument is superseded at the local kinematic level by the covariant-tetrad rank theorem.  Projection formulas below are historical.
 
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # UBT Degrees of Freedom vs. General Relativity
 
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->

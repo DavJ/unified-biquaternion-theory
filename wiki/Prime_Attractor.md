@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Prime Attractor Theorem
 
@@ -69,3 +81,10 @@ eigenvalue match for the lepton mass ratios. This is a non-trivial consistency.
 - [Fine Structure Constant α](Alpha_Constant) — n* = 137 → α⁻¹ = 137
 - [Hecke / Modular Structure](Hecke_Modular_Structure) — prime p = 137 in Hecke spectrum
 - [Mirror Sector](Mirror_Sector) — twin prime n** = 139
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

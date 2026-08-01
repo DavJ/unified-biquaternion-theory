@@ -1,3 +1,13 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
 \documentclass[11pt,oneside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -6,14 +16,18 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage[expansion=false]{microtype}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{ubtprovenance}
+\UBTTier{C}
+\UBTProvenanceEmbedInTitle
 \theoremstyle{definition}\newtheorem{definition}{Definition}[chapter]
 \theoremstyle{plain}\newtheorem{theorem}[definition]{Theorem}
 \theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
 \title{Covariant Biquaternionic Geometry of UBT\\\large Connections, Torsion, Rank, and Integrability for Students}
 \author{Ing. David Jaroš}
-\date{16 July 2026}
+\date{16 July 2026\\[1.2em]\UBTProvenanceTitleLine}
 \begin{document}
 \maketitle
+\UBTProvenanceNotice
 \tableofcontents
 \input{chapters/04_covariant_tetrad_geometry}
 \end{document}

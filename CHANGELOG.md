@@ -1,3 +1,39 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
+## [2026-08-01] — AI provenance and Article 50 transparency layer
+
+### Added
+- Added the author-controlled `PROVENANCE_TIERS.yaml` map with attested,
+  machine-verified, working, and unmarked historical tiers.
+- Added idempotent source headers, visible LaTeX notices, PDF Subject/Keywords
+  metadata, wiki provenance footers, a PDF verifier, and release regression
+  tests.
+- Added `AI_PROVENANCE.md` documenting AI assistance, human editorial
+  responsibility, figure handling, and the public-release procedure effective
+  for newly published material from 2 August 2026.
+
+### Changed
+- Rebuilt all fourteen curated PDFs with tier-matched visible notices and
+  machine-readable provenance metadata while preserving the 21-page GR paper.
+- Added AI-provenance keywords and an editorial-responsibility note to Zenodo
+  metadata and documented the non-delegable author sign-off in `AGENTS.md`.
+- Extended `SHA256SUMS.txt` to cover the policy, tier map, tooling, tests,
+  curated TeX roots, and their published PDFs.
+
+### Release gate
+- `PROVENANCE_TIERS.yaml` intentionally remains unsigned until Ing. David
+  Jaroš personally reviews the Tier-A set and enters the signer and dates.
+
 ## [2026-08-01] — CODATA provenance and checksum integrity hardening
 
 ### Corrected

@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # QED Reproducibility at φ = const
 
@@ -52,3 +64,10 @@ _No entries found in DERIVATION_INDEX.md for this section._
 - [Gauge Structure](Gauge_Structure) — U(1)_EM derivation
 - [Fine Structure Constant α](Alpha_Constant) — α derivation chain
 - [GR Recovery](GR_Recovery) — φ as physical field vs. gauge artifact
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

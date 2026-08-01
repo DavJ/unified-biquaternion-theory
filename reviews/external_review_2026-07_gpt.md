@@ -1,5 +1,17 @@
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 <!-- Licensed under CC BY-NC-ND 4.0. See LICENSE.md. -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # External Audit: T1_GR Paper — July 2026
 

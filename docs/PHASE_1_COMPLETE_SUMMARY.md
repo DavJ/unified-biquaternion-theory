@@ -1,5 +1,17 @@
 > **SUPERSEDED GEOMETRY NOTE (2026-07-15):** The former `Re Tr` metric formula is no longer canonical.  See `canonical/AXIOMS.md` and `docs/czech/UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md`.
 
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # Phase 1 Implementation - Complete Summary
 
 **Project**: Unified Biquaternion Theory Consolidation  

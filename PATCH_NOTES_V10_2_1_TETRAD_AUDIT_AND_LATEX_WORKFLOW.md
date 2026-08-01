@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # Patch notes — v10.2.1 tetrad audit and resilient LaTeX workflow
 
 **Baseline:** GitHub release `v10.2.0`, commit `89f225951444760e60e12ee0d8afc604605eb077`.

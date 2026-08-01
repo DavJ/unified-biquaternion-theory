@@ -1,6 +1,18 @@
 > **Status:** speculative / non-canonical. The twin-prime condition `F(139)=0` is preserved here as a research hypothesis, not as a canonical alpha derivation.
 
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # magic_certificate_function_proposal.md — UBT Magic Certificate Function Proposal
 

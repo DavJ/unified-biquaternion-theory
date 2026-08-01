@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # Instructions for Copilot: Higher-Order Alpha Corrections from UBT (No PDG, No Circular Reasoning)
 
 **Purpose:** Guide GitHub Copilot (and other AI coding tools) to implement higher-order quantum corrections to the fine-structure constant α from Unified Biquaternion Theory (UBT) **without** using experimental inputs (PDG/CODATA) and **without** circular reasoning.

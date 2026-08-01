@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # UBT Theory Architecture — Overview
 
@@ -105,3 +117,10 @@ The coupling amplitude B_base = 41.57 remains a motivated conjecture.
 | [`canonical/THEORY/topic_indexes/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical/THEORY/topic_indexes) | One canonical entry point per topic |
 | [`canonical/UBT_canonical_main.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex) | Main canonical LaTeX document |
 | [`docs/THEORY_MAP_FROM_DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/THEORY_MAP_FROM_DERIVATION_INDEX.md) | Full theory map derived from DERIVATION_INDEX |
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

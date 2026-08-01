@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # CERN Findings and UBT Analysis
 
 This directory contains comprehensive documentation and analysis tools for testing Unified Biquaternion Theory (UBT) predictions against recent CERN/LHC experimental results from 2023-2025.

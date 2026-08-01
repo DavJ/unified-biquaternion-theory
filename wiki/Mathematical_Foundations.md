@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Mathematical Foundations
 
@@ -38,3 +50,10 @@ This section covers the mathematical background underlying UBT.
 | [`canonical/algebra/algebra_summary_table.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/algebra/algebra_summary_table.tex) | Summary table |
 | [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/explanation_of_nabla.tex) | ∇ operator |
 | [`canonical/appendices/symbol_dictionary.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/appendices/symbol_dictionary.tex) | Symbol standardization |
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

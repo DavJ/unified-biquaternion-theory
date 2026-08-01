@@ -1,5 +1,17 @@
 > **Status rebase (2026-08-01):** Historical speculative document. Read `README.md` and `STATUS_REBASE_2026-08-01.md` first; the older symmetric quaternion-component metric ansatz is not the current canonical metric.
 
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # ST-5: Falsifiability of Imaginary-Sector Invisibility in UBT
 
 **Status:** SPECULATIVE  

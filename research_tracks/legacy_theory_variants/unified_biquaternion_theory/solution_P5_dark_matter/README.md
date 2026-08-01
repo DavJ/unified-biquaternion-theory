@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # Solution P5: Geometric and Topological Origin of Dark Matter
 
 This directory presents the proposed solution to the dark matter problem based on the Unified Biquaternion Theory (UBT). We model dark matter as topologically stable, electromagnetically neutral configurations of the field Θ(q, τ).

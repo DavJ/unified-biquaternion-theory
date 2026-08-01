@@ -3,6 +3,18 @@
 > This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
 > 4.0 International License (CC BY-NC-ND 4.0).
 
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # L0 / L1 / L2 — Code Analysis
 
 **Task**: `ubt_L0_L1_L2_full_audit`  

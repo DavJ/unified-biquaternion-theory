@@ -1,0 +1,59 @@
+%% UBT AI provenance notice and PDF metadata
+%% SPDX-License-Identifier: MIT
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ubtprovenance}[2026/08/01 v1.0 UBT AI provenance]
+\RequirePackage{xcolor}
+\makeatletter
+\def\UBT@tier{C}
+\def\UBT@notice{AI-assisted working material; exhaustive human review is not claimed.}
+\def\UBT@before{0.35em}
+\def\UBT@after{0.65em}
+\newcommand{\UBTProvenanceTight}{\def\UBT@before{-1.25em}\def\UBT@after{-0.75em}}
+\newif\ifUBT@noticeintitle
+\UBT@noticeintitlefalse
+\newcommand{\UBTProvenanceEmbedInTitle}{\UBT@noticeintitletrue}
+\newcommand{\UBTProvenanceTitleLine}{%
+  \parbox{0.88\textwidth}{\centering\scriptsize\color{black!78}%
+    \textbf{AI provenance --- Tier \UBT@tier.} \UBT@notice\space
+    Details: \texttt{AI\_PROVENANCE.md}.}%
+}
+\newcommand{\UBTTier}[1]{%
+  \def\UBT@tier{#1}%
+  \def\UBT@A{A}\def\UBT@B{B}\def\UBT@C{C}%
+  \ifx\UBT@tier\UBT@A
+    \def\UBT@notice{AI-assisted; substantively reviewed by the author, who accepts editorial responsibility.}%
+  \else\ifx\UBT@tier\UBT@B
+    \def\UBT@notice{AI-assisted; machine-verified against named sources or verifiers; individual attestation is not claimed.}%
+  \else\ifx\UBT@tier\UBT@C
+    \def\UBT@notice{AI-assisted working material; exhaustive human review is not claimed.}%
+  \else
+    \PackageError{ubtprovenance}{Unknown provenance tier `#1'}{Use A, B, or C.}%
+  \fi\fi\fi
+}
+\AtBeginDocument{%
+  \@ifpackageloaded{hyperref}{%
+    \hypersetup{%
+      pdfsubject={Unified Biquaternion Theory; AI-assisted content; provenance tier \UBT@tier},%
+      pdfkeywords={Unified Biquaternion Theory, AI provenance, AI-assisted research, provenance tier \UBT@tier}%
+    }%
+  }{%
+    \PackageWarningNoLine{ubtprovenance}{hyperref not loaded; PDF metadata was not injected}%
+  }%
+}
+\newcommand{\UBTProvenanceNotice}{%
+  \ifUBT@noticeintitle
+  \else
+    \par\vspace{\UBT@before}%
+    \begingroup\scriptsize\noindent\color{black!78}%
+    \textbf{AI provenance --- Tier \UBT@tier.} \UBT@notice\space
+    Details: \texttt{AI\_PROVENANCE.md}.%
+    \par\vspace{\UBT@after}\endgroup
+  \fi
+}
+\newcommand{\UBTFigureProvenance}[2]{%
+  \par\begingroup\footnotesize\itshape
+  Figure provenance: deterministic output of \texttt{#1} from \texttt{#2}; not AI-generated.
+  \par\endgroup
+}
+\makeatother
+\endinput

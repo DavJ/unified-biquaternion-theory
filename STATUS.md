@@ -3,6 +3,18 @@
 > **GR geometry update (19 July 2026):** Projection-free covariant-tetrad kinematics closes rank ten, connection reconstruction, the affine Minkowski representer, and local curved representability by an explicit composite metric-compatible contortion.  The concurrent-vector exclusion is only a torsion-free no-go.  Canonical action selection, physical torsion control, global continuation, and Einstein dynamics remain unresolved.
 
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: A_attested
+ai_assistance: disclosed
+human_review: substantive
+editorial_responsibility: Ing. David Jaroš
+policy: AI_PROVENANCE.md
+notice: The author has read the substance and accepts editorial responsibility.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # STATUS.md — Current Theory Status Dashboard
 

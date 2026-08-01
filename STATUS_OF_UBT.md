@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: A_attested
+ai_assistance: disclosed
+human_review: substantive
+editorial_responsibility: Ing. David Jaroš
+policy: AI_PROVENANCE.md
+notice: The author has read the substance and accepts editorial responsibility.
+UBT-AI-PROVENANCE-END
+-->
+
 ## Update 2026-07-27: one canonical relation, exact Dirac lift
 
 The active geometric route is now explicitly single-path:

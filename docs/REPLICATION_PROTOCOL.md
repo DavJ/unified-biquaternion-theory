@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # Independent Replication Protocol (UBT Alpha Baseline)
 
 This document provides a step-by-step protocol for independently replicating the UBT alpha baseline result: \(\mathcal R_{\mathrm{UBT}}=1\) at two loops under assumptions A1--A3.

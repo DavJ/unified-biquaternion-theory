@@ -19,7 +19,9 @@
     "Lorentzian geometry",
     "complex time",
     "Clifford algebra",
-    "mathematical physics"
+    "mathematical physics",
+    "AI provenance",
+    "AI-assisted research"
   ],
   "related_identifiers": [
     {
@@ -27,5 +29,6 @@
       "relation": "isSupplementTo",
       "scheme": "url"
     }
-  ]
+  ],
+  "notes": "AI-assisted research and software development. Tier-A materials are substantively reviewed under the editorial responsibility of Ing. David Jaroš; machine-verified and working materials are identified by PROVENANCE_TIERS.yaml and AI_PROVENANCE.md. This disclosure supports transparency and auditability and is not a legal certification."
 }

@@ -1,4 +1,16 @@
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: B_machine_verified
+ai_assistance: disclosed
+human_review: machine-verification
+editorial_responsibility: Ing. David Jaroš
+policy: ../../../AI_PROVENANCE.md
+notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # Fine Structure Constant (α) — Topic Index
 

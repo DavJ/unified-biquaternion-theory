@@ -1,6 +1,18 @@
 > **GEOMETRY REVISION (2026-07-15):** Any occurrence of `Γ = Re(Ω)` or a projected metric in the historical map is superseded by tetrad compatibility and the central anticommutator metric.
 
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # DERIVATION_MAP.md — UBT Mathematical Derivation Map
 

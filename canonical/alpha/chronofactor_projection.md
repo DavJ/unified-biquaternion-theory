@@ -1,6 +1,18 @@
 > **Geometry status (2026-07-15):** References to `phase_projection.tex` are historical/exploratory and do not define the canonical local metric.
 
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: B_machine_verified
+ai_assistance: disclosed
+human_review: machine-verification
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # chronofactor_projection.md — Mathematical Definition of the Chronofactor and Projection Map
 

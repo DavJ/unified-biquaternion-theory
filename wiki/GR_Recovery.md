@@ -1,4 +1,16 @@
 <!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 
 # GR Recovery
 
@@ -31,21 +43,7 @@ residual open problem at Step 6.
 ## Derivation Chain
 
 <!-- BEGIN GENERATED: gr_recovery_status -->
-| Result | Status | File |
-|--------|--------|------|
-| UBT generator closure → 15D Lie algebra | ✅ **Proved** | [`lie_audit.py`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/lie_audit.py) |
-| T_μν from Hilbert prescription | ✅ **Proved** | [`step3_einstein_with_matter.tex`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/canonical/t_munu/step3_einstein_with_matter.tex) |
-| Lorentzian signature (-,+,+,+) from AXIOM B | ✅ **Proved** | [🌐 `step3_signature_theorem.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/gr_closure/step3_signature_theorem.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/canonical/gr_closure/step3_signature_theorem.tex) |
-| Metric non-degeneracy for A_UBT class | ✅ **Proved** | [`step2_nondegeneracy.tex`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/canonical/gr_closure/step2_nondegeneracy.tex) |
-| Derivative-based ≡ tetrad-based metric formula | ✅ **Proved** | [`step1_metric_bridge.tex`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/canonical/gr_closure/step1_metric_bridge.tex) |
-| GR chain summary (Θ→g→Γ→R→Einstein) | ✅ **Proved** | [🌐 `GR_chain_summary.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/gr_closure/GR_chain_summary.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/canonical/gr_closure/GR_chain_summary.tex) |
-| N is scale-fixing, not signature-fixing | ✅ **Proved** | [🌐 `step3_signature_theorem.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/gr_closure/step3_signature_theorem.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/canonical/gr_closure/step3_signature_theorem.tex) |
-| Pure Θ-only closure (g substitution before variation, off-shell) | ✅ **Proved** | [`gr_offshell_rank_proof.tex`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/research_tracks/research/gr_offshell_rank_proof.tex) |
-| Metric uniqueness beyond A_UBT | ❌ **Open** |  |
-| Linearised GR recovery (perturbative) | ✅ **Proved** | [`gr_completion_attempt.tex`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/canonical/geometry/gr_completion_attempt.tex) |
-| Schwarzschild spatial metric from explicit Θ₀ | ✅ **Proved** | [`schwarzschild_from_theta.tex`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/research_tracks/research/schwarzschild_from_theta.tex) |
-| Full Schwarzschild metric from explicit Θ₀ (spatial + temporal) | ✅ **Proved** | [`schwarzschild_from_theta.tex`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/research_tracks/research/schwarzschild_from_theta.tex) |
-| Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | ✅ **Proved** |  |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: gr_recovery_status -->
 
 ### Steps (static summary)
@@ -104,3 +102,10 @@ This holds for:
 - [Emergent Spacetime](Emergent_Spacetime) — metric emergence from Θ
 - [Theta Field](Theta_Field) — ∇†∇Θ = κ𝒯 field equation
 - [Operator Formalism](Operator_Formalism) — structure of ∇
+
+<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->

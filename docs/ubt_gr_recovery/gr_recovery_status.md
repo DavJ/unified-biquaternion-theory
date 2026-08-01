@@ -1,5 +1,17 @@
 > **STATUS UPDATE (2026-07-15):** `Γ = Re(Ω)` is withdrawn.  Coordinate and frame connections are related by the tetrad postulate.
 
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: C_working
+ai_assistance: disclosed
+human_review: risk-based
+editorial_responsibility: Ing. David Jaroš
+policy: ../../AI_PROVENANCE.md
+notice: Working material; exhaustive human review is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # GR Recovery Status
 
 © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0

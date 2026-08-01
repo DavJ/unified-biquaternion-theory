@@ -1,3 +1,15 @@
+<!--
+UBT-AI-PROVENANCE-BEGIN
+schema: ubt-ai-provenance/v1
+tier: B_machine_verified
+ai_assistance: disclosed
+human_review: machine-verification
+editorial_responsibility: Ing. David Jaroš
+policy: ../AI_PROVENANCE.md
+notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+UBT-AI-PROVENANCE-END
+-->
+
 # Court-Grade Testing Infrastructure
 
 This document describes the court-grade testing infrastructure implemented for the UBT repository. The test suite has been hardened to catch bugs early, prevent circular dependencies, and enforce strict correctness standards suitable for production code review.

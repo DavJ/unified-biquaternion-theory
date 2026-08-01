@@ -620,6 +620,25 @@ _MARKER_RE = re.compile(
     re.DOTALL
 )
 
+_PROVENANCE_FOOTER_RE = re.compile(
+    r"<!-- BEGIN GENERATED: provenance_footer -->.*?"
+    r"<!-- END GENERATED: provenance_footer -->",
+    re.DOTALL,
+)
+_PROVENANCE_FOOTER = """<!-- BEGIN GENERATED: provenance_footer -->
+---
+> **AI provenance — Tier C (working):** AI assistance may have been used in
+> drafting or maintenance. Exhaustive human review is not claimed. See the
+> [repository provenance policy](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/AI_PROVENANCE.md).
+<!-- END GENERATED: provenance_footer -->"""
+
+
+def inject_provenance_footer(content: str) -> str:
+    """Insert or refresh the visible, idempotent wiki provenance footer."""
+    if _PROVENANCE_FOOTER_RE.search(content):
+        return _PROVENANCE_FOOTER_RE.sub(_PROVENANCE_FOOTER, content)
+    return content.rstrip() + "\n\n" + _PROVENANCE_FOOTER + "\n"
+
 
 def inject_section(content: str, section_id: str, new_body: str) -> str:
     """Replace the generated block for section_id with new_body."""
@@ -664,6 +683,8 @@ def update_wiki_file(filepath: str, sections_data: dict, dry_run: bool = False) 
 
         new_body = generator(sections_data)
         content = inject_section(content, section_id, new_body)
+
+    content = inject_provenance_footer(content)
 
     if content == original:
         return False
