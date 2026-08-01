@@ -414,6 +414,16 @@ more specific UBT construction is possible; they delimit what cannot be claimed
 solely from the existence of quaternionic notation or standard Lorentz
 transformations.
 
+### 2026-08-01 — Hermitian support Gram for the null-shell track
+
+The invisibility audit distinguished zero visible metric volume from zero
+field-space support.  For the global Whitney shell, the central sharp metric
+has a null angular block, while the scalar Hermitian Gram built with `ddagger`
+is smooth and positive definite on the same sphere.  This established an exact
+nonzero internal support area and a regular candidate support-volume action
+route.  The result remained noncanonical because a full Lorentz/gauge-covariant
+clock or compensator and a finite-radius stabilising dynamics were not derived.
+
 ## Current direction
 
 The current programme keeps the covariant-tetrad architecture fixed and focuses

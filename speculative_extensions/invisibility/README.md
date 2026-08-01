@@ -107,6 +107,9 @@ boundary while retaining a nonzero invariant area channel `mathcal B_{S^2}`.
 - `POLYNOMIAL_ACTION_REGULARITY_AUDIT.md` — exact proof that the simplest
   metric-free sharp-quartic action is regular but topological and cannot
   dynamically select the shell.
+- `HERMITIAN_SUPPORT_GRAM_ROUTE.md` — exact proof that the Whitney shell has
+  zero visible area but a smooth nonzero Hermitian support area; the associated
+  support-volume action route is noncanonical until its covariance is derived.
 - `STATUS_REBASE_2026-08-01.md` — relationship of the older ST-1--ST-5 files to
   the current central-anticommutator architecture.
 - `st1_...` through `st5_...` — historical speculative analyses retained for
@@ -118,8 +121,9 @@ Nothing in this directory may be promoted until all of the following are
 provided:
 
 - a covariant definition of the proposed full metric/volume object;
-- a non-topological action at degeneracy that selects the shell (mere
-  topological regularity is already known);
+- a Lorentz/gauge-covariant non-topological action at degeneracy that selects
+  the shell (topological regularity and a nondegenerate Hermitian support norm
+  are already known);
 - an explicit nontrivial on-shell solution;
 - a visible-sector coupling theorem;
 - exterior scattering and stability calculations;

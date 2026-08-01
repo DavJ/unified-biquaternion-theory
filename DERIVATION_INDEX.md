@@ -171,6 +171,10 @@ and metaphysical/simulation-style interpretations.
   exact structural audit: a metric-free pure-Theta quartic four-form is
   regular at degeneracy but is a boundary term; non-topological shell
   selection remains open.
+- `speculative_extensions/invisibility/HERMITIAN_SUPPORT_GRAM_ROUTE.md` —
+  exact noncanonical kinematic result: the central-null Whitney sphere has a
+  positive Hermitian support Gram and nonzero internal area/volume; covariant
+  action promotion and stabilisation remain open.
 
 ### GEM compact modes and Gödel-type kinematic target (2026-07-25)
 

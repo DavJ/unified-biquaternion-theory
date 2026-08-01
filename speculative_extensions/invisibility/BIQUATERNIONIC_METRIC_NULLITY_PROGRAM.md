@@ -437,6 +437,31 @@ S_{\rm mix}[\gamma,\Sigma,\Theta,\Psi_{\rm visible}]=0
 
 on the candidate branch, not merely `ds^2=0`.
 
+## 6.5 Hermitian support-volume route
+
+The central sharp metric can be null while the same profile jets remain
+nondegenerate under the full Hermitian scalar pairing.  Define the real support
+Gram
+
+\[
+\mathsf h_{\mu\nu}
+=\left\langle\operatorname{ReSc}
+(E_\mu^\ddagger E_\nu)\right\rangle_\psi.
+\]
+
+For the global Whitney sphere, `gamma_AB=0` but `mathsf h_AB` is smooth and
+positive definite.  Consequently the inner sphere has zero visible area and a
+nonzero internal support area.  The full support Gram is also nondegenerate at
+`R_1`, so a support-volume/Nambu--Goto-type functional can remain regular
+without using `gamma^{-1}`.
+
+This does not yet provide a canonical action.  The positive Hermitian pairing
+is invariant under a unitary profile-frame subgroup, not automatically under
+the full complex Lorentz/profile isometry used by the GR metric.  Promotion
+therefore requires a composite clock/compensator, a derived symmetry reduction,
+or an explicit constitutive interpretation.  See
+`HERMITIAN_SUPPORT_GRAM_ROUTE.md`.
+
 ## 7. Research stages
 
 ### I-0 — algebraic classification

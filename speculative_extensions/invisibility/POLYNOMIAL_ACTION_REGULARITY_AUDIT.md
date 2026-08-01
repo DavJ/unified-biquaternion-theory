@@ -175,6 +175,32 @@ A profile projector onto selected winding sectors followed by a Hermitian
 central norm is one candidate source of `Xi`, but its canonical status and
 translation properties are open.
 
+## 5.5 Nondegenerate Hermitian support route
+
+The topological obstruction concerns four-forms constructed solely from the
+constant sharp-bilinear target form.  It does not imply that every possible
+measure vanishes at `gamma_AB=0`.  The companion real Gram
+
+\[
+\mathsf h_{\mu\nu}
+=\left\langle\operatorname{ReSc}
+(E_\mu^\ddagger E_\nu)\right\rangle_\psi
+\]
+
+is nondegenerate on the Whitney shell.  Therefore a non-topological
+support-volume functional such as
+
+\[
+S_{\rm supp}=T_{\rm supp}\int d^4x\sqrt{\det\mathsf h}
+\]
+
+is regular at the visible-metric degeneracy.  This route avoids the
+constant-coefficient topological no-go but opens a different gap: the
+Hermitian norm is only manifestly invariant under the unitary profile-frame
+subgroup.  A Lorentz/gauge-covariant clock or compensator must be derived before
+`S_supp` can be promoted to a fundamental UBT action.  A pure volume term also
+does not by itself stabilise a finite shell radius.
+
 ## 6. Auxiliary first-order fallback
 
 A BF/Plebanski-type action using the composite two-form
@@ -193,12 +219,14 @@ Closed exactly:
 3. the constant sharp-quartic action is a boundary term and cannot select the
    shell;
 4. constant-coefficient first-jet four-forms are insufficient for local
-   dynamics.
+   dynamics;
+5. the Whitney shell nevertheless has a nondegenerate Hermitian support Gram,
+   so zero visible volume does not force every action measure to vanish.
 
 Still open:
 
-1. select an admissible nonconstant profile scalar/operator `Xi` or another
-   non-topological invariant;
+1. select an admissible nonconstant profile scalar/operator `Xi`, or
+   covariantise the nondegenerate Hermitian support-volume route;
 2. derive the full Euler--Lagrange equations;
 3. reduce them on the spherical ansatz to radial equations for `H`, `chi`, and
    the interior continuation;

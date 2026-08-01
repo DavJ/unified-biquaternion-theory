@@ -387,6 +387,39 @@ keeps the central angular channel null because every derivative remains in
 The interior completion is not unique and its dynamics are not fixed by the
 kinematic construction.
 
+## 7.5 Nonzero Hermitian support area
+
+The same null angular jets have a positive Hermitian Gram
+
+\[
+\mathsf h_{AB}
+=\left\langle\operatorname{ReSc}
+(E_A^\ddagger E_B)\right\rangle_\psi.
+\]
+
+For the unit-amplitude Whitney map, with `c=cos(theta)` and `s=sin(theta)`,
+
+\[
+\begin{aligned}
+\mathsf h_{\theta\theta}&=2(4c^4-3c^2+1),\\
+\mathsf h_{\theta\phi}&=0,\\
+\mathsf h_{\phi\phi}&=2(1+c^2)s^2.
+\end{aligned}
+\]
+
+Its invariant determinant factor is strictly positive.  At the inner shell,
+
+\[
+dA_\gamma=0,
+\qquad
+dA_{\mathsf h}>0,
+\]
+
+and the orthogonal time/radial profiles make the full `mathsf h_mu_nu`
+nondegenerate.  This supplies a possible internal support measure for an action,
+but its Lorentz/gauge-covariant promotion remains open.  The exact calculation
+and action caveats are recorded in `HERMITIAN_SUPPORT_GRAM_ROUTE.md`.
+
 ## 8. What is now closed and what remains open
 
 Closed exactly at the off-shell kinematic level:
@@ -396,11 +429,14 @@ Closed exactly at the off-shell kinematic level:
 3. zero central tangential metric;
 4. everywhere nonzero invariant biquaternionic area two-form;
 5. smooth radial matching to an exactly flat central exterior;
-6. a smooth extension through the centre exists.
+6. a smooth extension through the centre exists;
+7. the null sphere has a smooth positive Hermitian support Gram and nonzero
+   internal support area.
 
 Still open:
 
-1. derivation from a polynomial UBT action regular at `rho=0`;
+1. Lorentz/gauge-covariant promotion of the support Gram or another
+   non-topological UBT action regular at `rho=0`;
 2. an on-shell solution and finite conserved energy;
 3. stability against radial and nonspherical perturbations;
 4. visible-matter and Maxwell constitutive equations on the degenerate branch;
