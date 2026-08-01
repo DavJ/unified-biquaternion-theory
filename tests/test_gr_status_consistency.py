@@ -265,3 +265,33 @@ class TestCurrentJetStatusNames:
         text = _read_file(ROOT / "papers/UBT_GR_Submission.tex")
         assert "GAP-10T-JET-KIN" in text
         assert "GAP-10T-JET-DYN" in text
+
+
+class TestSplitJetAuxiliaryStatusSynchronization:
+    """Guard the post-auxiliary split-jet status across active documents."""
+
+    ACTIVE_FILES = [
+        "AGENTS.md",
+        "STATUS_OF_UBT.md",
+        "papers/UBT_GR_Submission.tex",
+        "canonical/gr_closure/gap_10t_minimal_one_connection_gr_no_go.tex",
+        "canonical/gr_closure/gap_10t_split_jet_right_inverse.tex",
+    ]
+
+    @pytest.mark.parametrize("rel_path", ACTIVE_FILES)
+    def test_jet_dynamics_is_narrowed_not_open(self, rel_path):
+        text = _read_file(ROOT / rel_path)
+        assert not re.search(
+            r"GAP-10T-JET-DYN\s*[:—-]+\s*(?:\\textbf\{)?OPEN",
+            text,
+            re.IGNORECASE,
+        ), f"Stale OPEN split-jet dynamics status remains in {rel_path}"
+        assert "GAP-10T-JET-DYN" in text and "NARROWED" in text.upper()
+
+    @pytest.mark.parametrize("rel_path", ACTIVE_FILES)
+    def test_auxiliary_nonpropagation_is_not_reopened(self, rel_path):
+        text = _read_file(ROOT / rel_path)
+        assert not re.search(r"prove\s+nonpropagation", text, re.IGNORECASE), (
+            f"Stale request to prove already-closed nonpropagation remains in {rel_path}"
+        )
+        assert "GAP-10T-JET-AUX" in text

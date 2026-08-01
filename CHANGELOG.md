@@ -1,3 +1,15 @@
+## [2026-08-01] — GR split-jet status and PDF hygiene
+
+### Corrected
+- Removed the remaining stale `GAP-10T-JET-DYN: OPEN` / "prove
+  nonpropagation" language from active GR status and theorem documents.
+- Locked `GAP-10T-JET-AUX` as closed, pure-constraint selection as a no-go,
+  and `GAP-10T-JET-DYN` as narrowed across the active publication chain.
+- Reflowed the GR submission gap ledger and conclusion equations to remove a
+  visible page-19 table overlap and restore normal page margins.
+- Added a regression test preventing the closed auxiliary theorem from being
+  reopened by stale status text.
+
 ## [2026-08-01] — GR submission/status synchronization
 
 ### Corrected

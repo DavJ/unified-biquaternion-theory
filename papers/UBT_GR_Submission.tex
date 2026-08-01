@@ -964,9 +964,12 @@ subsector, not proved necessary.  Combining the exact torsion-free no-go
 with the torsionful arbitrary-tetrad representer further closes the minimal
 same-physical-connection exact-GR architecture as a no-go.  GAP-10T-DYN is
 therefore narrowed at the dynamical level.  The split-jet local right inverse
-is explicit, but the action must still select a tetrad and the jet
-representative and prove nonpropagation; the alternative is a selected and
-tested physical torsionful branch.  The proofs and
+and its multiplier completion now prove local auxiliary nonpropagation and
+on-shell decoupling.  What remains is for the canonical action to select the
+physical tetrad and representative, or to derive a separate non-surjective
+metric effective law, together with null-patch/global continuation and the
+constrained mode measure; the alternative is a selected and tested physical
+torsionful branch.  The proofs and
 exact verifiers are in
 \path{canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex},
 \path{canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex},
@@ -1108,7 +1111,7 @@ GAP-10I-2S & \textbf{NOT REQUIRED FOR LOCAL KINEMATICS}: optional torsion-free c
 GAP-10I-PRESCRIBED & \textbf{CLOSED}: exact augmented-holonomy criterion for specified $(E,A,B)$.\\
 GAP-10I-CURVED & \textbf{LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL NARROWED}: canonical selection, physical torsion constraints, regularity, and global continuation remain.\\
 GAP-10D-PALATINI / UNIQUENESS & \textbf{CLOSED CONDITIONALLY}: minimal first-order dynamics and Lovelock infrared uniqueness.\\
-GAP-10D-UNDERDETERMINATION & \textbf{CLOSED AS NO-GO [L1]}: present kinematic axioms cannot fix the coefficient of $\int\sqrt gR$.\\
+{\scriptsize\shortstack[l]{GAP-10D-\\UNDER-\\DETERMINATION}} & \textbf{CLOSED AS NO-GO [L1]}: present kinematic axioms cannot fix the coefficient of $\int\sqrt gR$.\\
 GAP-10D-A2-FORM / SPECTRAL-IR & \textbf{CLOSED CONDITIONALLY [L1]}: a specified gauge-fixed Laplace-type $\Theta$ Hessian gives the exact induced Newton coefficient and Einstein--Lambda infrared action.\\
 GAP-10D & \textbf{NARROWED}: derive $N_B$, $\xi$, the cutoff/scale identification and constrained measure without fitting $G$.\\
 GAP-10$\psi$-KIN / SYM & \textbf{CLOSED / CLOSED CONDITIONALLY}: Lorentz-gauge flow or translation symmetry protects the metric.\\
@@ -1121,14 +1124,17 @@ GAP-U2$\Theta$ & \textbf{OPEN}: canonical dynamical generation of the full Schwa
 The clean local UBT geometry is
 \[
  \boxed{
- \Theta\ \longrightarrow\ E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}
- \ \longrightarrow\
- \begin{cases}
- \frac12\{E_\mu,E_\nu\}_\sharp=g_{\mu\nu}\mathbf1,\\
- \frac12[E_\mu,E_\nu]_\sharp=\Sigma_{\mu\nu},\\
- [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}
- \quad\hbox{in the general two-sided branch}.
- \end{cases}}
+ \begin{aligned}
+ \Theta &\longrightarrow E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}
+ \longrightarrow (g_{\mu\nu},\Sigma_{\mu\nu}),\\
+ g_{\mu\nu}\mathbf1&=\tfrac12\{E_\mu,E_\nu\}_\sharp,
+ \qquad
+ \Sigma_{\mu\nu}=\tfrac12[E_\mu,E_\nu]_\sharp.
+ \end{aligned}}
+\]
+In the general two-sided branch the curvature identity is
+\[
+ [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
 \]
 This structure resolves the local rank objection without auxiliary maps,
 metric projections, or fiber averaging.  The connection is also no longer an

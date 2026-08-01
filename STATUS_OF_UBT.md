@@ -110,9 +110,16 @@ kernel.
   part fixes a composite relative central one-form, and its orthogonal part
   fixes a composite Lorentz jet tensor. Their jet action gives
   `Dhat_mu X=s E_mu` identically while physical curvature remains Levi-Civita.
-- **GAP-10T-JET-DYN — OPEN:** the right inverse is kinematic. It does not
-  select a tetrad from `Theta`, derive the representative from the action, or
-  prove nonpropagation and global continuation through null patches.
+- **GAP-10T-JET-AUX — CLOSED [L1]:** an explicit multiplier action makes the
+  split-jet variables algebraic and nonpropagating; the multiplier and the
+  auxiliary metric/spin sources vanish on shell on every non-null patch.
+- **GAP-10T-JET-CONSTRAINT-SELECTION — CLOSED AS NO-GO [L1]:** because the
+  right inverse is surjective for every tetrad, the pure split-jet constraint
+  cannot select a physical tetrad from `Theta`.
+- **GAP-10T-JET-DYN — NARROWED:** nonpropagation and on-shell decoupling are
+  closed. The canonical action must still select the physical tetrad and jet
+  representative, or derive a separate non-surjective metric effective law;
+  null-patch/global continuation and the constrained mode measure also remain.
 - **GAP-10I-2S — NOT REQUIRED FOR LOCAL KINEMATIC REPRESENTABILITY:** the
   general two-sided derivative remains useful, and a nontrivial relative
   left/right component is still a possible torsion-free completion. If used,

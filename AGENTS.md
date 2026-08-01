@@ -325,5 +325,11 @@ separate statements.
   an explicit composite Lorentz plus relative-central jet right inverse on
   non-null Lorentz-real patches. Do not turn this kinematic identity into a
   claim that the action selects `E[Theta]`.
-- `GAP-10T-JET-DYN: OPEN`: action-level selection, nonpropagation, null-patch
-  continuation, and uniqueness remain unresolved.
+- `GAP-10T-JET-AUX: CLOSED [L1]`: the multiplier completion makes the jet
+  variables algebraic and nonpropagating and removes their on-shell metric and
+  physical-spin backreaction on every non-null patch.
+- `GAP-10T-JET-CONSTRAINT-SELECTION: CLOSED AS NO-GO [L1]`: universal
+  surjectivity means that the pure constraint cannot select a tetrad.
+- `GAP-10T-JET-DYN: NARROWED`: action-level tetrad/representative selection (or
+  a separate non-surjective metric effective law), null-patch/global
+  continuation, and the constrained mode measure remain unresolved.

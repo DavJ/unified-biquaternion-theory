@@ -49,10 +49,6 @@ data/alpha_two_loop_grid.csv
 tex/snippets_generated.tex
 reports/*.json
 
-data/alpha_two_loop_grid.csv
-tex/snippets_generated.tex
-reports/*.json
-
 # Forensic fingerprint output directory
 forensic_fingerprint/out/
 # But keep VERDICT files for court-grade results
@@ -70,8 +66,7 @@ scans/layer2/
 research_front/cmb_2d_fft/out/
 
 # virtual python
-.venv
-.venv
+.venv/
 
 # UBT Experimental Channel Selection - ignore test results
 EXPERIMENTS/channel_selection/test_results/

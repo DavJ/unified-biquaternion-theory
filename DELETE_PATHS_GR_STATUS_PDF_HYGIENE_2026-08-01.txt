@@ -1,0 +1,5 @@
+.pytest_cache/
+**/__pycache__/
+**/*.pyc
+data/alpha_two_loop_grid.csv
+reports/audit_computed_not_reference.json
