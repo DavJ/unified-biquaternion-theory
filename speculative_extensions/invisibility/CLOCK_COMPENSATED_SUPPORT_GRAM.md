@@ -274,9 +274,13 @@ E_{\rm supp}^{\rm clk}
 \sqrt{\det\mathsf h^{\rm clk}_{ij}}.
 \]
 
-These expressions remain regular at the visible-metric-null sphere.  They do
-not yet select a finite radius; a pure positive volume/tension term generally
-favours contraction.
+These expressions remain regular at the visible-metric-null sphere.  A pure
+positive volume/tension term favours contraction.  The smallest reduced
+mechanism currently known to oppose it is the conserved relative phase charge
+of the Whitney `psi=+/-1` block, derived in
+`PHASE_CHARGE_FINITE_SCALE_STABILIZATION.md`.  That mechanism stabilises the
+internal support scale exactly in the reduced model, but does not yet derive
+the physical shell radius from the master action.
 
 ## 7. Exact closure and remaining limitations
 
@@ -300,9 +304,11 @@ Still open:
 3. compatibility with the full paired left/right UBT connection rather than
    only the standard paravector congruence sector;
 4. a non-topological action whose Euler--Lagrange equations select the shell;
-5. finite-radius stability, conserved energy, visible-sector decoupling, and
-   zero exterior scattering.
+5. master-action derivation of the reduced conserved phase charge and a
+   dynamical lock between the finite support scale and the exterior radius;
+6. full perturbative stability, visible-sector decoupling, and zero exterior
+   scattering.
 
 The covariance obstruction of the raw Hermitian Gram is therefore narrowed to
 clock-mode selection and full bimodule covariance.  It is not eliminated at the
-canonical theory level.
+canonical theory level, and zero exterior scattering remains unproved.

@@ -114,6 +114,11 @@ boundary while retaining a nonzero invariant area channel `mathcal B_{S^2}`.
   `Theta`-only clock compensator, locally `SL(2,C)`-invariant positive support
   Gram, scalar clock, and regular Lorentzian internal support tensor for the
   explicit shell; clock-mode uniqueness and full bimodule covariance remain open.
+- `PHASE_CHARGE_FINITE_SCALE_STABILIZATION.md` — exact theorem in a
+  noncanonical reduced model: a conserved common phase of the Whitney null
+  profile block is invisible to the central metric but has positive support
+  inertia and stabilises a finite internal scale; physical-radius locking and
+  the fundamental action remain open.
 - `STATUS_REBASE_2026-08-01.md` — relationship of the older ST-1--ST-5 files to
   the current central-anticommutator architecture.
 - `st1_...` through `st5_...` — historical speculative analyses retained for
@@ -130,5 +135,8 @@ provided:
   are already known);
 - an explicit nontrivial on-shell solution;
 - a visible-sector coupling theorem;
-- exterior scattering and stability calculations;
+- derivation of the reduced phase-charge stabiliser from the master action,
+  locking of its finite support scale to an externally measured radius, and a
+  full fluctuation analysis;
+- exterior scattering calculations;
 - a falsifiable laboratory or astronomical signature.

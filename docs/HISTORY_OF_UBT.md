@@ -436,6 +436,20 @@ tensor.  The result remained conditional and noncanonical because the clock
 mode was selected by the shell ansatz rather than uniquely derived from the
 master action, and full paired left/right covariance was still open.
 
+
+### 2026-08-01 — Reduced phase-charge stabilisation of the null shell
+
+A common time-dependent phase of the Whitney `psi=+/-1` profile block was
+identified as a collective coordinate of the existing `Theta`, not a new
+field.  The phase leaves the central visible metric exactly null because the
+block remains inside the sharp-isotropic plane, while the clock-compensated
+Hermitian support Gram gives it positive inertia.  At fixed conserved relative
+phase charge, the reduced support energy was proved to have one strict finite
+minimum.  The result stabilised the internal support scale in a noncanonical
+reduced model; derivation from the master action, locking to the externally
+measured shell radius, full perturbative stability, and zero scattering
+remained open.
+
 ## Current direction
 
 The current programme keeps the covariant-tetrad architecture fixed and focuses

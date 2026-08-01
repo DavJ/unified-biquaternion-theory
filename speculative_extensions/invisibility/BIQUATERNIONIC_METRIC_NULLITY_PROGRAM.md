@@ -463,6 +463,30 @@ or an explicit constitutive interpretation.  See
 `HERMITIAN_SUPPORT_GRAM_ROUTE.md`.
 A model-specific `Theta`-only clock compensator and locally Lorentz-congruence-invariant support Gram are derived in `CLOCK_COMPENSATED_SUPPORT_GRAM.md`; uniqueness of the clock projector and full bimodule covariance remain open.
 
+## 6.6 Conserved relative-phase stabilisation
+
+The Whitney `psi=+/-1` block admits a common collective phase
+
+\[
+\Theta_W\mapsto e^{i\alpha(t)}\Theta_W.
+\]
+
+Because the whole block lies in a totally sharp-null plane, this motion leaves
+the central visible metric null.  The clock-compensated Hermitian support Gram,
+however, assigns it positive inertia.  In the minimal reduced model, fixed
+relative-phase charge produces
+
+\[
+E_Q(\chi)=\sigma a_W\chi^2+
+\frac{Q_\alpha^2}{2\kappa_\alpha i_W\chi^4},
+\]
+
+with a unique strict finite minimum.  This closes a reduced support-scale
+stabilisation theorem, not the full shell dynamics.  The master-action origin
+of the phase symmetry and a dynamical relation between the support amplitude
+and the exterior shell radius remain open.  See
+`PHASE_CHARGE_FINITE_SCALE_STABILIZATION.md`.
+
 ## 7. Research stages
 
 ### I-0 — algebraic classification
@@ -484,7 +508,10 @@ A model-specific `Theta`-only clock compensator and locally Lorentz-congruence-i
 - classify admissible non-topological profile-weighted or auxiliary
   first-order actions;
 - derive equations of motion and constraints;
-- prove nontrivial finite-energy solutions and stability.
+- derive the reduced phase-charge term from the master action and determine
+  whether its exact conserved charge survives full profile mixing;
+- lock the finite support scale to the exterior shell radius;
+- prove nontrivial finite-energy solutions and full stability.
 
 ### I-3 — coupling and visibility theorem
 
@@ -531,7 +558,7 @@ What is currently established:
 What is not established:
 
 - an on-shell invisible object;
-- a stable degenerate spacetime region;
+- a fully stable degenerate spacetime region beyond the reduced charged-scale mode;
 - a full biquaternionic determinant or volume;
 - electromagnetic or gravitational decoupling;
 - an invisibility machine or engineering design.

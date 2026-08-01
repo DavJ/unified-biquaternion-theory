@@ -180,6 +180,11 @@ and metaphysical/simulation-style interpretations.
   the positive support Gram invariant under standard local `SL(2,C)`
   congruence and yields `T_Theta=t`; projector uniqueness, full bimodule
   covariance, action selection, and stability remain open.
+- `speculative_extensions/invisibility/PHASE_CHARGE_FINITE_SCALE_STABILIZATION.md` —
+  exact reduced-model theorem: a conserved relative phase charge of the
+  Whitney `psi=+/-1` block leaves the visible central metric null and gives a
+  strict finite minimum of the internal support scale; master-action origin,
+  radius locking, full stability, and zero scattering remain open.
 
 ### GEM compact modes and Gödel-type kinematic target (2026-07-25)
 
