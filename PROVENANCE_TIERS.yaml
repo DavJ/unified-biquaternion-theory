@@ -21,8 +21,8 @@
 # A, D, B, C. Patterns are glob (fnmatch) against the repo-relative POSIX path.
 
 version: 1
-signed_off_by: "PENDING — Ing. David Jaroš"
-signed_off_date: null
+signed_off_by: "Ing. David Jaroš"
+signed_off_date: August 1st 2026 
 
 # Rolling attestation. A-tier documents change; the signature must be
 # refreshed when they do. The test warns once this is older than 90 days.
