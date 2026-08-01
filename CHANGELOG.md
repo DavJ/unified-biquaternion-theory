@@ -10,6 +10,17 @@ notice: Working material; exhaustive human review is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
+## [2026-08-01] — Signed provenance release gate and macOS portability
+
+### Corrected
+- Recorded the completed Tier-A attestation without duplicate YAML keys and
+  added strict duplicate-key rejection to the provenance regression tests.
+- Prevented curated Tier-A PDFs and checksum updates from being published or
+  committed when the human provenance gate fails.
+- Replaced GNU-only local checksum commands with repository Python tooling, so
+  the provenance apply path works unchanged on macOS after Poppler is installed.
+- Refreshed `SHA256SUMS.txt` after the signed `PROVENANCE_TIERS.yaml` change.
+
 ## [2026-08-01] — AI provenance and Article 50 transparency layer
 
 ### Added
@@ -31,8 +42,9 @@ UBT-AI-PROVENANCE-END
   curated TeX roots, and their published PDFs.
 
 ### Release gate
-- `PROVENANCE_TIERS.yaml` intentionally remains unsigned until Ing. David
-  Jaroš personally reviews the Tier-A set and enters the signer and dates.
+- Tier-A was signed by Ing. David Jaroš on 2026-08-01 after substantive review.
+- Automated publication now requires the signed tier map and provenance checks
+  to pass before curated PDFs or checksum changes may be committed.
 
 ## [2026-08-01] — CODATA provenance and checksum integrity hardening
 

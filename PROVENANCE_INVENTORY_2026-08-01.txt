@@ -1,1 +1,1 @@
-Provenance source inventory: A_attested=7, B_machine_verified=211, C_working=1085, D_historical=417, excluded=8
+Provenance source inventory: A_attested=7, B_machine_verified=211, C_working=1087, D_historical=417, excluded=8

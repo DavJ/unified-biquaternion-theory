@@ -17,6 +17,31 @@ TOOL_PATH = ROOT / "tools" / "apply_provenance_headers.py"
 MAX_ATTESTED_FILES = 10
 
 
+class UniqueKeyLoader(yaml.SafeLoader):
+    """YAML loader that rejects duplicate mapping keys instead of overwriting."""
+
+
+def _construct_unique_mapping(loader: UniqueKeyLoader, node, deep: bool = False):
+    mapping = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in mapping:
+            raise yaml.constructor.ConstructorError(
+                "while constructing a mapping",
+                node.start_mark,
+                f"found duplicate key {key!r}",
+                key_node.start_mark,
+            )
+        mapping[key] = loader.construct_object(value_node, deep=deep)
+    return mapping
+
+
+UniqueKeyLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+    _construct_unique_mapping,
+)
+
+
 def load_tool():
     spec = importlib.util.spec_from_file_location("ubt_provenance_tool", TOOL_PATH)
     assert spec and spec.loader
@@ -30,7 +55,7 @@ TOOL = load_tool()
 
 
 def config() -> dict:
-    return yaml.safe_load(MAP_PATH.read_text(encoding="utf-8"))
+    return yaml.load(MAP_PATH.read_text(encoding="utf-8"), Loader=UniqueKeyLoader)
 
 
 def test_tier_map_is_editorially_bounded() -> None:
