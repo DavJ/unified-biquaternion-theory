@@ -1,0 +1,284 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Status: B-tier machine-verified principal-symbol decision note.
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: B_machine_verified
+% ai_assistance: disclosed
+% human_review: machine-verification
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ubtprovenance}
+\UBTTier{B}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Hess}{\mathcal H}
+\newcommand{\Fcal}{\mathcal F}
+\title{GAP-10D $\Theta$-Hessian Principal-Symbol Decision:\\
+Fixed-Background Laplace Type, a Nonconic Resonance No-Go,\\
+and the Exact Composite Remainder}
+\author{Ing. David Jaro\v{s}}
+\date{1 August 2026}
+\begin{document}
+\maketitle
+\UBTProvenanceNotice
+
+\begin{abstract}
+We perform the cheapest decisive test proposed for the induced-gravity route,
+but distinguish the quadratic Hessian of an action from the frozen
+self-consistency symbol of the $D$-composite equation.  For the canonical
+$\Theta$ kinetic term with metric, connection and nondegenerate internal
+pairing held fixed, the raised quadratic Hessian has the scalar principal
+symbol
+\(
+ g^{\mu\nu}k_\mu k_\nu\mathbf1
+\).
+After Euclidean continuation it is a minimal Laplace-type operator, so the
+standard heat-kernel machinery applies to this fixed-background fluctuation
+problem.  By contrast, the six-dimensional $q=1$ sector of the frozen
+$D$-composite equation is a finite-scale singularity of the mixed-order full
+symbol $I-A(s,\lambda)$.  Its singular surface is not conic under radial
+rescaling of the covector, and the first-order principal symbol $-A$ is
+generically rank nine.  Therefore that six-dimensional resonance cannot be
+used directly as a Laplace bundle in a Gilkey calculation.  The remaining
+first-principles task is now stated exactly: derive, gauge-fix and classify the
+full composite $\Theta$-only Hessian including every chain-rule variation of
+$E[\Theta]$, $g[\Theta]$ and $\Omega[\Theta]$.  No Einstein coefficient,
+physical mode count or unconditional GR derivation is claimed here.  All
+symbolic statements are checked by
+\path{tools/verify_theta_hessian_principal_symbol.py}.
+\end{abstract}
+
+\section{Scope and the two operators that must not be conflated}
+The working internal action contains a kinetic term of the schematic form
+\begin{equation}
+ S_\Theta=\frac12\int d^4x\sqrt{|g|}\,
+ K_{AB}(D_\mu\Theta)^A(D^\mu\Theta)^B-\int d^4x\sqrt{|g|}\,V(\Theta),
+ \label{eq:kinetic}
+\end{equation}
+where $K_{AB}$ is a nondegenerate real pairing on the selected fluctuation
+space.  There are two inequivalent linear objects in the present repository:
+\begin{enumerate}
+ \item the Hessian $\Hess=\delta^2 S/\delta\Theta^2$ of an action;
+ \item the frozen self-consistency symbol
+ \((I-A(s,\lambda))F=\partial\theta'$ of the torsion-free
+ $D$-composite defining equation.
+\end{enumerate}
+Only the first object is an input to a one-loop determinant.  A singularity of
+the second object may identify a kinematic resonance, but it is not thereby a
+quadratic action or a Laplace-type Hessian.
+
+\section{Fixed-background Hessian}
+Hold $g_{\mu\nu}$, the background connection and the internal pairing fixed,
+and write $\Theta=\bar\Theta+\vartheta$.  Let
+$D_\mu=\partial_\mu+C_\mu$ on the real fluctuation bundle.  Up to boundary
+terms, the quadratic action has the form
+\begin{equation}
+ S^{(2)}_{\rm fixed}
+ =\frac12\int d^4x\sqrt{|g|}\left[
+ K_{AB}(D_\mu\vartheta)^A(D^\mu\vartheta)^B
+ +\vartheta^A U_{AB}\vartheta^B\right],
+ \label{eq:quadratic}
+\end{equation}
+where $U$ includes the potential Hessian and other derivative-free terms.
+
+\begin{theorem}[Fixed-background scalar principal symbol]
+\label{thm:fixed}
+If $K$ is nondegenerate, the lower-index Hessian of
+Eq.~\eqref{eq:quadratic} has
+\begin{equation}
+ \sigma_2(\Hess_{AB})(x,k)
+ =K_{AB}\,g^{\mu\nu}(x)k_\mu k_\nu.
+ \label{eq:lower-symbol}
+\end{equation}
+After raising one internal index with $K^{-1}$,
+\begin{equation}
+ \boxed{\sigma_2(\Hess^A{}_B)(x,k)
+ =g^{\mu\nu}(x)k_\mu k_\nu\,\delta^A{}_B.}
+ \label{eq:scalar-symbol}
+\end{equation}
+The background connection contributes only first- and zero-order terms, and
+$U$ contributes only zero order.
+\end{theorem}
+
+\begin{proof}
+In the highest-derivative part of Eq.~\eqref{eq:quadratic}, replace
+$D_\mu$ by $\partial_\mu$.  Every insertion of $C_\mu$ lowers the number of
+derivatives acting on $\vartheta$.  Integration by parts therefore gives
+$-K_{AB}g^{\mu\nu}\partial_\mu\partial_\nu$ plus terms of order at most one.
+The potential Hessian is derivative-free.  Replacing
+$\partial_\mu\mapsto ik_\mu$ and raising the internal index proves
+Eq.~\eqref{eq:scalar-symbol}.  The exact polynomial extraction is reproduced
+by the verifier.
+\end{proof}
+
+\begin{corollary}[Conditional heat-kernel admissibility]
+After a controlled Euclidean continuation, the fixed-background operator can
+be written in minimal Laplace form
+\begin{equation}
+ \Hess_E=-\bigl(g_E^{\mu\nu}\nabla_\mu\nabla_\nu+\mathcal E\bigr).
+\end{equation}
+Consequently the standard local heat-kernel coefficients apply to this
+specified fluctuation problem.  This proves the operator-class assumption
+used in the companion induced-gravity calculation; it does not prove that the
+same operator is the full composite gravitational Hessian.
+\end{corollary}
+
+\begin{proposition}[Metric-lock collapse of the same kinetic scalar]
+\label{prop:lock}
+If the metric is no longer fixed but is defined by the same covariant jet,
+\[
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+ \qquad
+ \langle E_\mu,E_\nu\rangle_\sharp=g_{\mu\nu},
+\]
+then in four dimensions the pointwise kinetic density obeys the exact identity
+\begin{equation}
+ \frac12\sqrt{|g|}\,g^{\mu\nu}
+ \langle D_\mu\Theta,D_\nu\Theta\rangle_\sharp
+ =2\mathcal N_0\sqrt{|g|}.
+ \label{eq:volume-collapse}
+\end{equation}
+Thus the fully metric-locked kinetic scalar is a volume term.  Its composite
+second variation must be computed as the Hessian of the volume functional
+with the implicit $D$-composite constraints; it is not obtained by silently
+reusing the fixed-background Hessian of Theorem~\ref{thm:fixed}.
+\end{proposition}
+
+\begin{proof}
+The metric lock gives
+$\langle D_\mu\Theta,D_\nu\Theta\rangle_\sharp
+=\mathcal N_0g_{\mu\nu}$.  Contracting with $g^{\mu\nu}$ gives
+$4\mathcal N_0$, and the prefactor one half yields
+Eq.~\eqref{eq:volume-collapse}.
+\end{proof}
+
+\section{Why the six-dimensional resonance is not the principal bundle}
+The frozen $D$-composite analysis gives a $16\times16$ matrix
+$A(s,\lambda)$ linear in $s$, with
+\begin{equation}
+ A^3=qA^2,\qquad q=\lambda\cdot s,\qquad
+ \det(I-A)=(1-q)^6.
+ \label{eq:dcomp}
+\end{equation}
+At $q=1$, $\ker(I-A)$ is six-dimensional and has an injective curl map.
+
+\begin{theorem}[Nonconic resonance no-go]
+\label{thm:nonconic}
+The singular set $q=1$ of the full mixed-order symbol $I-A$ is not conic in
+covector space.  In particular, if $(s,\lambda)$ obeys $q=1$, then under
+$s\mapsto cs$,
+\begin{equation}
+ \det\bigl(I-A(cs,\lambda)\bigr)=(1-c)^6,
+\end{equation}
+which is nonzero for generic $c\ne1$.  Therefore the $q=1$ eigenspace cannot,
+as it stands, be the characteristic bundle of a homogeneous principal symbol.
+The actual first-order principal symbol of the differential system
+$I-A(\partial,\lambda)$ is $-A(s,\lambda)$; at generic exact points it has
+rank nine rather than full rank sixteen.  It is neither a minimal scalar
+Laplace symbol nor an independently established six-component Laplace
+operator.
+\end{theorem}
+
+\begin{proof}
+Linearity gives $A(cs,\lambda)=cA(s,\lambda)$.  Substitution in the exact
+determinant identity yields the displayed radial dependence.  Characteristic
+sets of homogeneous principal symbols are invariant under nonzero radial
+rescaling, whereas $q=1$ is not.  The exact generic rank-nine statement is
+verified directly from the same corrected $A(s,\lambda)$ used by the existing
+$D$-composite audit.
+\end{proof}
+
+\begin{corollary}[Meaning of the $q=1$ sector]
+The six modes are a finite-scale real-exponential resonance of the frozen
+self-consistency equation.  They remain a potentially important clue to the
+connection/anholonomy sector, but they cannot be inserted directly as
+``six physical fields'' in the induced-gravity trace.  Their norm, statistics,
+gauge quotient and quadratic action must first be derived from the true
+Hessian.
+\end{corollary}
+
+\section{The exact remaining composite calculation}
+Let
+\begin{equation}
+ \Fcal[\Theta]=\bigl(E[\Theta],g[\Theta],\Omega[\Theta],\ldots\bigr)
+\end{equation}
+denote every composite object substituted into a candidate single-$\Theta$
+action.  Schematically, the second variation of
+$S(\Theta,\Fcal[\Theta])$ contains
+\begin{align}
+ \Hess_{\rm comp}
+ ={}&S_{\Theta\Theta}
+ +S_{\Theta\Fcal}\Fcal_\Theta
+ +\Fcal_\Theta^{\!*}S_{\Fcal\Theta}
+ +\Fcal_\Theta^{\!*}S_{\Fcal\Fcal}\Fcal_\Theta
+ +S_{\Fcal}\Fcal_{\Theta\Theta}.
+ \label{eq:chain}
+\end{align}
+Equation~\eqref{eq:chain} is schematic operator notation, but it records the
+terms that a fixed-background variation omits.  Since $E$ already contains a
+first derivative of $\Theta$ and a composite Levi--Civita connection contains
+derivatives of $E$, the differential order and degeneracy of
+$\Hess_{\rm comp}$ cannot be inferred from Theorem~\ref{thm:fixed}.
+
+The remaining decision procedure is now finite and explicit:
+\begin{enumerate}
+ \item choose one candidate single-$\Theta$ action without an imported
+ Hilbert--Palatini term;
+ \item compute Eq.~\eqref{eq:chain} at a declared vacuum;
+ \item identify diffeomorphism, Lorentz and any internal zero modes;
+ \item add a declared gauge fixing and its ghost operator;
+ \item eliminate only algebraic auxiliary modes;
+ \item determine the differential order and the full principal symbol on the
+ physical quotient;
+ \item if it is second-order and scalar Laplace type after Euclidean
+ continuation, compute $\mathcal E$, the supertrace mode count and the
+ $a_2$ coefficient.
+\end{enumerate}
+A failure at step 6 is a genuine architecture result, not a failed heat-kernel
+calculation: it would force a nonminimal/pseudodifferential treatment or a
+revision such as the explicitly separated profile-field candidate.
+
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,
+title=Machine-verified B-tier status]
+\textbf{GAP-10D-HESS-FIXED: CLOSED [L1].}
+The fixed-background quadratic $\Theta$ kinetic operator has the scalar
+principal symbol Eq.~\eqref{eq:scalar-symbol}; its Euclideanized operator is
+of minimal Laplace type under the assumptions stated above.
+
+\medskip
+\textbf{GAP-10D-RES-PRINCIPAL: CLOSED AS NO-GO [L1].}
+The $q=1$ six-dimensional $D$-composite resonance is not conic and cannot be
+identified directly with the principal-symbol bundle used in a Gilkey trace.
+
+\medskip
+\textbf{GAP-10D-HESS-COMP: NARROWED, not closed.}
+The exact remaining lemma is the complete gauge-fixed second variation
+Eq.~\eqref{eq:chain}, followed by the physical symbol, mode and ghost count.
+This note does not derive the Einstein coefficient, Newton's constant, or an
+unconditional GR equation from the canonical single-$\Theta$ action.
+
+\medskip
+These diagnostic subgap labels are B-tier machine-verified results.  They do
+not alter the signed A-tier claims ledger until the author performs substantive
+review and explicitly promotes the wording.
+\end{tcolorbox}
+
+\begin{thebibliography}{9}
+\bibitem{vassilevich2003}
+D.~V.~Vassilevich, ``Heat kernel expansion: user's manual,''
+\emph{Phys. Rept.} \textbf{388}, 279--360 (2003).
+\bibitem{gilkey1995}
+P.~B.~Gilkey, \emph{Invariance Theory, the Heat Equation and the
+Atiyah--Singer Index Theorem}, 2nd ed., CRC Press (1995).
+\end{thebibliography}
+\end{document}

@@ -59,6 +59,10 @@ The current canonical route is:
 - `gap_10d_induced_gravity_endgame.tex` — curvature-coefficient
   underdetermination theorem and corrected four-dimensional proper-time/KK
   induced-Einstein coefficient.
+- `gap_10d_theta_hessian_principal_symbol.tex` — proves the
+  fixed-background scalar Laplace principal symbol, excludes the nonconic
+  six-dimensional $q=1$ resonance as a direct Gilkey bundle, and isolates the
+  full composite Hessian as the remaining operator lemma.
 - `gap_10_gr_effective_completion.tex` — strongest complete result: the
   conditional local Einstein--Lambda effective branch and its exact boundary.
 - `gap_10l_psi_symmetry_propagation.tex` — Lorentz-slice and imaginary-time
@@ -88,6 +92,8 @@ The current canonical route is:
 - `../../tools/verify_gr_endgame_completion.py` — exact auxiliary multiplier
   rank, induced coefficient, compact-$\psi$ integral, and self-dual numerical
   checks.
+- `../../tools/verify_theta_hessian_principal_symbol.py` — exact
+  fixed-background scalar-symbol and nonconic-resonance checks.
 
 ## Locked status language
 
@@ -117,11 +123,20 @@ The current canonical route is:
 - `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS`: CLOSED CONDITIONALLY.
 - `GAP-10D-UNDERDETERMINATION`: CLOSED AS NO-GO; kinematics alone cannot fix
   a Newton coefficient.
+- `GAP-10D-HESS-FIXED`: CLOSED [L1] in the B-tier diagnostic note; the
+  fixed-background kinetic Hessian has scalar Laplace-type principal symbol.
+- `GAP-10D-RES-PRINCIPAL`: CLOSED AS NO-GO [L1] in the B-tier diagnostic note;
+  the six-dimensional $q=1$ resonance is nonconic and is not a direct Gilkey
+  principal bundle.
+- `GAP-10D-HESS-COMP`: NARROWED to the complete gauge-fixed composite
+  $\Theta$ Hessian and physical/ghost quotient.
 - `GAP-10D-A2-FORM` and `GAP-10D-SPECTRAL-IR`: CLOSED CONDITIONALLY for a
   specified gauge-fixed Hessian, mode count, curvature coupling, and UV
   prescription.
-- `GAP-10D`: NARROWED to derivation of the constrained measure and the
-  renormalized/UV matching data; the conditional GR effective branch is closed.
+- `GAP-10D`: NARROWED to derivation of the composite Hessian, constrained
+  measure and renormalized/UV matching data; the conditional GR effective
+  branch is closed.  These new diagnostic labels remain B-tier until explicit
+  author review promotes them into the signed A-tier ledger.
 - `GAP-10psi-KIN`: CLOSED; `GAP-10psi-SYM`: CLOSED CONDITIONALLY;
   `GAP-10psi`: NARROWED.
 

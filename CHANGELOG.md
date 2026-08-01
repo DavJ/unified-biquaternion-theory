@@ -10,6 +10,24 @@ notice: Working material; exhaustive human review is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
+## [2026-08-01] — Theta-Hessian principal-symbol decision
+
+### Proved
+- Proved that the fixed-background quadratic Theta kinetic Hessian has scalar
+  Laplace-type principal symbol after raising the nondegenerate internal
+  pairing index.
+- Proved that the six-dimensional `q=1` D-composite resonance is nonconic and
+  therefore cannot be used directly as a Gilkey principal-symbol bundle.
+- Restated the exact remaining GR operator lemma as the full gauge-fixed
+  composite Theta Hessian, including metric, tetrad, connection, gauge and
+  ghost chain-rule terms.
+
+### Preserved
+- Kept all new status language in B-tier machine-verified material; the signed
+  A-tier claims ledger was not modified or silently re-attested.
+- Added a curated Tier-B PDF with visible AI-provenance notice and
+  machine-readable PDF metadata.
+
 ## [2026-08-01] — Signed provenance release gate and macOS portability
 
 ### Corrected

@@ -1,0 +1,16 @@
+.github/latex_publish_map.tsv
+APPLY_GR_THETA_HESSIAN_PRINCIPAL_SYMBOL_2026-08-01.sh
+CHANGELOG.md
+OVERLAY_APPLY_GR_THETA_HESSIAN_PRINCIPAL_SYMBOL_2026-08-01.md
+OVERLAY_FILELIST_GR_THETA_HESSIAN_PRINCIPAL_SYMBOL_2026-08-01.txt
+OVERLAY_MANIFEST_GR_THETA_HESSIAN_PRINCIPAL_SYMBOL_2026-08-01.sha256
+PATCH_NOTES_GR_THETA_HESSIAN_PRINCIPAL_SYMBOL_2026-08-01.md
+PROVENANCE_INVENTORY_2026-08-01.txt
+SHA256SUMS.txt
+canonical/gr_closure/README.md
+canonical/gr_closure/gap_10d_induced_gravity_endgame.tex
+canonical/gr_closure/gap_10d_theta_hessian_principal_symbol.tex
+docs/pdfs/gap_10d_induced_gravity_endgame.pdf
+docs/pdfs/gap_10d_theta_hessian_principal_symbol.pdf
+tests/test_theta_hessian_principal_symbol.py
+tools/verify_theta_hessian_principal_symbol.py
