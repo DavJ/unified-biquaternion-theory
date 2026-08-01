@@ -168,6 +168,12 @@ The construction has one internal Whitney double point and zero integrated
 complex area flux.  These are not singularities of the field, but they remain
 relevant to the later stability analysis.
 
+The action regularity audit in
+`POLYNOMIAL_ACTION_REGULARITY_AUDIT.md` proves that a pure-Theta polynomial
+four-form can remain well-defined at the null surface.  The simplest
+sharp-quartic term is, however, topological and does not select the shell.  A
+non-topological action and its radial equations remain open.
+
 ## 6. What would count as invisibility
 
 Zero central area is a geometric prerequisite, not the final observable.
@@ -194,7 +200,9 @@ The target conditions are schematically
 1. **Closed off shell:** construct an integrable global field
    `Theta(t,r,theta,phi,psi)` realising the angular null pair and matching it to
    a flat exterior; see `WHITNEY_SPHERICAL_NULL_SHELL_THETA.md`.
-2. Derive a first-order or polynomial action regular at `C(R_1)=0`.
+2. **Regularity weakly closed / selection open:** the metric-free polynomial
+   action in `POLYNOMIAL_ACTION_REGULARITY_AUDIT.md` is regular but topological;
+   derive a non-topological action that selects the shell at `C(R_1)=0`.
 3. Prove finite energy and absence of singular surface stress/current.
 4. Determine the dynamics and stability of the nonzero invariant
    biquaternionic area channel.

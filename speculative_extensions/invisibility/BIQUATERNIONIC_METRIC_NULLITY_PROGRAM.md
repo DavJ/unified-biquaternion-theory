@@ -398,6 +398,21 @@ For a full noncommutative matrix `mathfrak G_mu_nu`, writing
 `det(mathfrak G)` is not innocent. The determinant prescription, ordering, and
 covariance must be specified and shown to reduce to `det(g)` in the GR sector.
 
+The exact audit `POLYNOMIAL_ACTION_REGULARITY_AUDIT.md` now closes one narrow
+subquestion.  The metric-free sharp-quartic four-form
+
+\[
+\mathcal K_\Theta=d_4\Theta^\sharp\wedge d_4\Theta,
+\qquad
+S_{\rm top}\propto\int\langle\ell(\mathcal K_\Theta\wedge\mathcal K_\Theta)\rangle_\psi
+\]
+
+is polynomial and regular at degeneracy, but it is an exact boundary term.
+Thus regularity alone is possible; dynamical selection is not obtained from a
+constant-coefficient first-jet four-form.  The next live class requires a
+field-dependent profile coefficient/operator or an auxiliary first-order
+structure.
+
 ## 6. Operational definition of invisibility
 
 A null or degenerate metric is not sufficient. A candidate configuration is
@@ -438,7 +453,10 @@ on the candidate branch, not merely `ds^2=0`.
 
 ### I-2 — regular action at degeneracy
 
-- identify a polynomial first-order action valid without `gamma^{-1}`;
+- **weak regularity closed:** a pure-Theta polynomial top form exists without
+  `gamma^{-1}`, but the simplest constant-coefficient term is topological;
+- classify admissible non-topological profile-weighted or auxiliary
+  first-order actions;
 - derive equations of motion and constraints;
 - prove nontrivial finite-energy solutions and stability.
 

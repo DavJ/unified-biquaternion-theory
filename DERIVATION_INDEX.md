@@ -167,6 +167,10 @@ and metaphysical/simulation-style interpretations.
   exact off-shell global `Theta` realiser and flat-exterior matching; the
   action, on-shell dynamics, stability, and zero exterior scattering remain
   open.
+- `speculative_extensions/invisibility/POLYNOMIAL_ACTION_REGULARITY_AUDIT.md` —
+  exact structural audit: a metric-free pure-Theta quartic four-form is
+  regular at degeneracy but is a boundary term; non-topological shell
+  selection remains open.
 
 ### GEM compact modes and Gödel-type kinematic target (2026-07-25)
 

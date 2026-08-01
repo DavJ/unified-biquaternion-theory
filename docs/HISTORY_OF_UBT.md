@@ -105,6 +105,11 @@ programme are nevertheless part of its documented history.
   integrable off-shell `Theta` with a null central angular metric, an everywhere
   nonzero invariant biquaternionic area two-form, and exact matching to a flat
   central exterior.
+- The first action-regularity audit then proved that the simplest metric-free
+  pure-`Theta` sharp-quartic four-form is regular at the null surface but exact
+  and topological.  It therefore admits the shell non-selectively and cannot
+  provide stability; a non-topological profile-weighted or auxiliary
+  first-order action remains the next action-level target.
 - No on-shell invisible object, stable degenerate region, or engineering device
   is claimed; action regularity, coupling decoupling, stability, and exterior
   scattering remain open.

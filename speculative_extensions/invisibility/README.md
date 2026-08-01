@@ -104,6 +104,9 @@ boundary while retaining a nonzero invariant area channel `mathcal B_{S^2}`.
 - `WHITNEY_SPHERICAL_NULL_SHELL_THETA.md` — exact global off-shell `Theta`
   realiser, null angular metric, nonzero invariant area channel, and flat
   exterior matching.
+- `POLYNOMIAL_ACTION_REGULARITY_AUDIT.md` — exact proof that the simplest
+  metric-free sharp-quartic action is regular but topological and cannot
+  dynamically select the shell.
 - `STATUS_REBASE_2026-08-01.md` — relationship of the older ST-1--ST-5 files to
   the current central-anticommutator architecture.
 - `st1_...` through `st5_...` — historical speculative analyses retained for
@@ -115,7 +118,8 @@ Nothing in this directory may be promoted until all of the following are
 provided:
 
 - a covariant definition of the proposed full metric/volume object;
-- a well-defined action at degeneracy;
+- a non-topological action at degeneracy that selects the shell (mere
+  topological regularity is already known);
 - an explicit nontrivial on-shell solution;
 - a visible-sector coupling theorem;
 - exterior scattering and stability calculations;
