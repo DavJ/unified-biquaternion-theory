@@ -1,0 +1,3 @@
+research_tracks/dual_sector_clifford5/dual_sector_cl5_rank_status.md
+tools/verify_dual_sector_cl5_rank.py
+tests/test_dual_sector_cl5_rank.py

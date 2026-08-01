@@ -128,6 +128,43 @@ reduce the rank-ten map `E -> g`.
 It is not yet the canonical holomorphic on-shell theorem, because strict
 holomorphy in `tau=t+i psi` relates the `t` and `psi` derivatives.
 
+## Holomorphic on-shell rank boundary and constrained-rank projection criterion
+
+The conditional psi-normal theorem must not be mistaken for a proof of
+**holomorphic on-shell rank**.  Under strict covariant holomorphy,
+
+\[
+D_\psi\Psi=i_{\rm c}D_t\Psi,
+\]
+
+so `D_psi Psi` is not an independent auxiliary first-jet slot.  The correct
+general pointwise question is therefore the following.  Let
+
+\[
+F(e,z)=0
+\]
+
+be the real action-derived constraints, where `e in R^16` denotes the Lorentz
+tetrad coefficients and `z` collects every genuinely nonmetric variable that
+remains independent after the holomorphy condition is imposed.  The admissible
+tetrad variations are
+
+\[
+\mathcal A=\{\delta e:\;F_e\delta e\in\operatorname{im}F_z\}.
+\]
+
+The exact **constrained-rank projection criterion** is that the metric rank on
+the equation manifold equals the rank of `D_e g` restricted to `A`.  If `F_z`
+is surjective, every tetrad variation lifts and metric rank ten is retained.
+If instead eight independent real equations act only on the sixteen tetrad
+coefficients, the **rank-budget** leaves an admissible tangent space of
+dimension eight and the metric rank is at most eight.
+
+**Status:** the projection criterion and rank-budget no-go are proved exactly
+`[L1]`.  The real Jacobian `(F_e,F_z)` of the finalized action-derived,
+strictly holomorphic UBT equation has not yet been computed.  Therefore the
+canonical holomorphic on-shell rank theorem remains open.
+
 ## Open theorem G — canonical generalized-Dirac dynamics
 
 Derive from one UBT action an operator of the form

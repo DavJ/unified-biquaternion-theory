@@ -1,3 +1,16 @@
+## [2026-08-01] — GR submission/status synchronization
+
+### Corrected
+- Synchronized the abstract and front-page proof-status boxes of
+  `papers/UBT_GR_Submission.tex` with the already present split-jet auxiliary
+  theorem, pure-constraint no-go, and conditional induced Einstein--Lambda
+  endpoint.
+- Restored the explicit holomorphic on-shell rank boundary and general
+  constrained-rank projection criterion in the active generalized-Dirac proof
+  status.
+- Removed accidentally reintroduced active copies of the historical
+  dual-sector/current-tetrad verifier; dated history copies remain intact.
+
 ## [2026-07-27] — Holomorphic on-shell rank criterion
 
 ### Proved

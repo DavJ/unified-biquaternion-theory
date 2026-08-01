@@ -1,5 +1,5 @@
 % © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
-% Research draft, paired-connection audit, torsionful local representer, and UBT introduction, 2026-07-20.
+% Research draft, GR endgame status synchronized through 2026-08-01.
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
@@ -18,7 +18,7 @@
 \title{\textbf{Covariant Biquaternionic Tetrads in UBT:\\
 Metric Rank, Connection Reconstruction, and Integrability}}
 \author{Ing. David Jaroš}
-\date{20 July 2026}
+\date{1 August 2026}
 \begin{document}\maketitle
 
 \begin{abstract}
@@ -72,9 +72,17 @@ restriction $e^a=\mathcal N_0^{-1/2}dY^a$ does admit the affine representer,
 but for a stronger and non-dynamical reason: every nondegenerate metric in
 that restriction is locally a pullback of Minkowski space, so its curvature
 and Hilbert--Palatini density vanish identically and the remaining action is
-a Jacobian null Lagrangian.  The canonical self-consistent
-$D$-composite variation, action selection, physical torsion constraints,
-global continuation, and Einstein dynamics remain open.
+ a Jacobian null Lagrangian.  A separate split-jet construction gives an exact
+local right inverse for arbitrary tetrads while keeping the physical
+connection Levi--Civita; an explicit multiplier action makes its extra jet
+variables algebraic, nonpropagating, and decoupled on shell.  Surjectivity also
+proves that this pure constraint cannot itself select a tetrad.  Finally, a
+specified gauge-fixed Laplace-type $\Theta$ Hessian yields an exact induced
+Einstein--$\Lambda$ effective action and Newton coefficient.  This is a
+complete conditional infrared branch, not an unconditional derivation:
+canonical selection, the physical mode count and curvature coupling, cutoff
+identification, constrained measure, global continuation, and on-shell
+generation of observed geometries remain open.
 \end{abstract}
 
 \tableofcontents
@@ -155,7 +163,7 @@ consistent with the original biquaternionic intuition of UBT and to identify
 exactly what remains to be proved.  We do not claim an unconditional derivation
 of the Einstein equations.
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!60!black,title=Proved in this draft]
+\begin{tcolorbox}[breakable,colback=green!5!white,colframe=green!60!black,title=Proved in this draft]
 \begin{itemize}
  \item a projection-free Lorentzian metric from a central biquaternionic
        anticommutator;
@@ -189,16 +197,28 @@ of the Einstein equations.
        $e^a=\mathcal N_0^{-1/2}dY^a$, every nondegenerate induced metric is
        locally flat; affine stationarity for all coefficients is only the
        resulting Jacobian/null-Lagrangian corollary, not a curved-GR branch.
+ \item an explicit local split-jet right inverse for every tetrad on a
+       non-null Lorentz-real patch while the physical connection remains
+       Levi--Civita;
+ \item an auxiliary multiplier action proving that the additional split-jet
+       variables are algebraic, nonpropagating, and decoupled on shell,
+       together with a no-go theorem showing that the surjective pure
+       constraint cannot dynamically select one tetrad;
+ \item a complete conditional Einstein--$\Lambda$ infrared branch for a
+       specified gauge-fixed Laplace-type $\Theta$ Hessian, with the induced
+       Newton coefficient written explicitly in terms of its mode count,
+       curvature coupling, and proper-time cutoff.
 \end{itemize}
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=yellow!7!white,colframe=orange!70!black,title=Open]
+\begin{tcolorbox}[breakable,colback=yellow!7!white,colframe=orange!70!black,title=Open]
 \begin{itemize}
  \item deriving vacuum torsion or spin-sourced torsion from the canonical UBT
        action;
- \item deriving from the canonical action the dynamical selection of the
-       explicit local split-jet right inverse and proving that its additional
-       jet components are nonpropagating;
+ \item deriving from the canonical UBT action a non-surjective selection law
+       or metric effective action that chooses the physical split-jet/tetrad
+       branch; auxiliary nonpropagation is proved only after that branch is
+       specified;
  \item alternatively, selecting a physical torsionful branch and proving its
        propagation, matter coupling, and observational admissibility;
  \item proving global existence and continuation of the curved-space system
