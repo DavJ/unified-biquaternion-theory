@@ -25,7 +25,6 @@ signed_off_by: "Ing. David Jaroš"
 signed_off_date: 2026-08-01
 attested_as_of: 2026-08-01
 
-
 # Rolling attestation. A-tier documents change; the signature must be
 # refreshed when they do. The test warns once this is older than 90 days.
 attested_as_of: null
