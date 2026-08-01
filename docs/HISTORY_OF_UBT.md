@@ -100,10 +100,14 @@ programme are nevertheless part of its documented history.
 - Three separate hypotheses are now tracked: curve-null configurations,
   volume-null central metrics ($\det\gamma=0$), and metric-null but
   biquaternionically active configurations ($\gamma=0$, $\Sigma\ne0$).
-- An explicit pointwise algebraic witness for the last class was recorded. No
-  on-shell invisible object, stable degenerate region, or engineering device is
-  claimed; action regularity, coupling decoupling, boundary matching, and
-  exterior scattering remain open.
+- An explicit pointwise algebraic witness for the last class was recorded.
+- A subsequent Whitney-type spherical construction supplied one global
+  integrable off-shell `Theta` with a null central angular metric, an everywhere
+  nonzero invariant biquaternionic area two-form, and exact matching to a flat
+  central exterior.
+- No on-shell invisible object, stable degenerate region, or engineering device
+  is claimed; action regularity, coupling decoupling, stability, and exterior
+  scattering remain open.
 
 ## 18 March 2016 — Public biquaternion electroscalar formulation
 

@@ -91,7 +91,7 @@ not yet an on-shell spacetime or device.
 For a spherical shell the two-direction pointwise limit is not an obstruction:
 the tangent plane of `S^2` is two-dimensional. The dedicated shell candidate
 therefore imposes `gamma_AB=0` only for `A,B in {theta,phi}` at the inner
-boundary while retaining `Sigma_theta_phi != 0`.
+boundary while retaining a nonzero invariant area channel `mathcal B_{S^2}`.
 
 ## Files
 
@@ -99,8 +99,11 @@ boundary while retaining `Sigma_theta_phi != 0`.
   algebraic witness, action questions, and falsification criteria.
 - `PROFILE_METRIC_NULL_WITNESS.md` — exact pointwise rank obstruction and
   rank-four profile-space algebraic witness.
-- `SPHERICAL_TANGENTIAL_NULL_SHELL.md` — explicit spherical candidate with
-  a central-metrically null angular surface and nonzero `Sigma_theta_phi`.
+- `SPHERICAL_TANGENTIAL_NULL_SHELL.md` — spherical target, status, and open
+  physical conditions.
+- `WHITNEY_SPHERICAL_NULL_SHELL_THETA.md` — exact global off-shell `Theta`
+  realiser, null angular metric, nonzero invariant area channel, and flat
+  exterior matching.
 - `STATUS_REBASE_2026-08-01.md` — relationship of the older ST-1--ST-5 files to
   the current central-anticommutator architecture.
 - `st1_...` through `st5_...` — historical speculative analyses retained for

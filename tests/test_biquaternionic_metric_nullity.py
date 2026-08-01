@@ -42,6 +42,6 @@ def test_spherical_tangential_null_shell_is_recorded_as_speculative() -> None:
     ).read_text()
     assert "SPECULATIVE / NON-CANONICAL" in shell
     assert "\\gamma_{AB}\\big|_{r=R_1}=0" in shell
-    assert "\\Sigma_{\\theta\\phi}\\big|_{r=R_1}\\ne0" in shell
+    assert "\\mathcal B_{S^2}\\big|_{r=R_1}\\ne0" in shell
     assert "zero exterior scattering" in shell
     assert "not an on-shell UBT solution" in shell

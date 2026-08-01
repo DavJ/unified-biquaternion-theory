@@ -333,7 +333,7 @@ boundary condition at `r=R_1` is
 \boxed{
 \gamma_{AB}\big|_{R_1}=0,
 \qquad
-\Sigma_{\theta\phi}\big|_{R_1}\ne0.
+\mathcal B_{S^2}\big|_{R_1}\ne0.
 }
 \]
 
@@ -365,7 +365,7 @@ must satisfy at least
 \[
 C(R_2)=R_2^2,
 \qquad
-\Sigma_{\theta\phi}(R_2)=0,
+\mathcal B_{S^2}(R_2)=0,
 \]
 
 with the appropriate exterior values of `A` and `B`. These are only geometric
@@ -373,10 +373,11 @@ boundary targets. Physical invisibility additionally requires vacuum exterior
 Maxwell/gravitational scattering data, finite action, stability, and absence
 of singular surface sources.
 
-Because `S^2` has no global nonsingular tangent frame, the angular null pair
-must be defined in at least two overlapping patches with a consistent
-transition law. The detailed candidate and its falsification gates are
-recorded in `SPHERICAL_TANGENTIAL_NULL_SHELL.md`.
+The coordinate tangent-frame obstruction does not require a patchwise `Theta`.
+The global Whitney-type construction in
+`WHITNEY_SPHERICAL_NULL_SHELL_THETA.md` uses Cartesian sphere functions and
+closes angular integrability off shell. The remaining action and scattering
+gates are recorded in `SPHERICAL_TANGENTIAL_NULL_SHELL.md`.
 
 ## 5. Action and volume questions
 

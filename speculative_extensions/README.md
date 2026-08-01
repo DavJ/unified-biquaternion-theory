@@ -40,9 +40,10 @@ This track preserves the 2013--2015 geometric-invisibility intuition and rebases
 it onto the current covariant-tetrad algebra. It distinguishes the full ordered
 biquaternionic tensor `𝔊_{μν}=E_μ^♯E_ν`, its central metric channel, and its
 antisymmetric bivector channel. It studies curve-null, volume-null, and
-metric-null-but-algebra-active phases. The explicit spherical candidate uses a
-two-dimensional tangential-null inner surface with nonzero biquaternionic
-`Sigma_theta_phi`. No invisible object or device is claimed.
+metric-null-but-algebra-active phases. The explicit spherical candidate uses a two-dimensional tangential-null inner
+surface with a nonzero invariant biquaternionic area channel.  Its global
+Whitney-type off-shell `Theta` and flat-exterior matching are now explicit, but
+no invisible object or device is claimed.
 
 See `invisibility/README.md` and
 `invisibility/BIQUATERNIONIC_METRIC_NULLITY_PROGRAM.md`.

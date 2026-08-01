@@ -1,6 +1,6 @@
 # Spherical tangential-null shell candidate
 
-**Status:** SPECULATIVE / NON-CANONICAL / GEOMETRIC TARGET ONLY  
+**Status:** SPECULATIVE / NON-CANONICAL; EXACT OFF-SHELL KINEMATIC REALISER AVAILABLE  
 **Recorded:** 2026-08-01  
 **Origin:** David Jaroš's proposed spherical invisibility geometry
 
@@ -28,7 +28,7 @@ At the inner spherical boundary the target is
 \boxed{
 \gamma_{AB}\big|_{r=R_1}=0,
 \qquad
-\Sigma_{\theta\phi}\big|_{r=R_1}\ne0,
+\mathcal B_{S^2}\big|_{r=R_1}\ne0,
 \qquad A,B\in\{\theta,\phi\}.
 }
 \]
@@ -135,35 +135,38 @@ C(R_2)=R_2^2,
 and
 
 \[
-\Sigma_{\theta\phi}(R_1)\ne0,
+\mathcal B_{S^2}(R_1)\ne0,
 \qquad
-\Sigma_{\theta\phi}(R_2)=0,
+\mathcal B_{S^2}(R_2)=0,
 \]
 
 with `A(R_2),B(R_2)` matching the chosen vacuum exterior. Smoothness order and
 junction conditions must be derived from the eventual polynomial UBT action;
 they cannot be imposed only by analogy with GR.
 
-## 5. Global patching on the sphere
+## 5. Global integrable realiser
 
-No smooth nonvanishing tangent frame exists globally on `S^2`. Therefore the
-pair `(E_theta,E_phi)` cannot be treated as one globally regular coordinate
-frame. A valid construction requires at least northern and southern patches,
-with overlap transformations preserving
-
-\[
-\gamma_{AB}=0
-\]
-
-and the covariant meaning of the two-form
+The off-shell kinematic construction is now explicit.  The coordinate-frame obstruction does not force a two-patch `Theta`.  The file
+`WHITNEY_SPHERICAL_NULL_SHELL_THETA.md` gives one global smooth angular
+potential built from the Cartesian sphere functions and a Whitney-type
+immersion into two complex coefficient channels.  Its off-shell kinematic
+construction is now explicit:
 
 \[
-\mathcal B_{S^2}
-=\Sigma_{\theta\phi}\,d\theta\wedge d\phi.
+\gamma_{AB}=0,
+\qquad
+\mathcal B_{S^2}=K(n_0)\,\omega_{S^2}\,Q\ne0
 \]
 
-The patch transition may carry topological information. It must not create an
-uncontrolled string singularity at either pole.
+everywhere on the inner sphere, while the same single `Theta` is radially
+matched to an exactly flat central exterior.  The apparent vanishing of the
+`theta-phi` coordinate component at the poles is only the coordinate
+degeneration of spherical coordinates; the invariant coefficient relative to
+the sphere area form is nonzero.
+
+The construction has one internal Whitney double point and zero integrated
+complex area flux.  These are not singularities of the field, but they remain
+relevant to the later stability analysis.
 
 ## 6. What would count as invisibility
 
@@ -188,12 +191,13 @@ The target conditions are schematically
 
 ## 7. Required proofs
 
-1. Construct an integrable field `Theta(t,r,theta,phi,psi)` realising the
-   angular null pair in two spherical patches.
+1. **Closed off shell:** construct an integrable global field
+   `Theta(t,r,theta,phi,psi)` realising the angular null pair and matching it to
+   a flat exterior; see `WHITNEY_SPHERICAL_NULL_SHELL_THETA.md`.
 2. Derive a first-order or polynomial action regular at `C(R_1)=0`.
 3. Prove finite energy and absence of singular surface stress/current.
-4. Determine the dynamics and stability of the nonzero
-   `Sigma_theta_phi` surface channel.
+4. Determine the dynamics and stability of the nonzero invariant
+   biquaternionic area channel.
 5. Solve Maxwell and gravitational matching across the shell.
 6. Show zero exterior scattering rather than merely zero induced area.
 
@@ -202,7 +206,7 @@ The target conditions are schematically
 This route fails if any of the following holds:
 
 - the angular null pair cannot be integrated to a global patched `Theta`;
-- every regular action forces `Sigma_theta_phi=0` when `C=0`;
+- every regular action forces the invariant area channel `mathcal B_{S^2}=0` when `C=0`;
 - the null boundary necessarily carries divergent energy or surface current;
 - matching to a regular exterior necessarily produces nonzero scattering;
 - the shell is unstable under arbitrarily small perturbations;
@@ -211,6 +215,8 @@ This route fails if any of the following holds:
 
 ## 9. Claim discipline
 
-Recorded here is a mathematically motivated spherical candidate geometry. It
-is not an on-shell UBT solution, a proof of invisibility, or an engineering
-blueprint.
+Recorded here is a mathematically motivated spherical candidate geometry. Its
+global integrability and flat-exterior matching are now closed at the exact
+off-shell kinematic level.  The action, stability, and zero-scattering problems
+remain open.  It is not an on-shell UBT solution, a proof of invisibility, or an
+engineering blueprint.

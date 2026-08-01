@@ -161,9 +161,12 @@ consciousness/psychons, ThetaComm-like narratives, afterlife/survival claims,
 and metaphysical/simulation-style interpretations.
 
 - `speculative_extensions/invisibility/SPHERICAL_TANGENTIAL_NULL_SHELL.md` —
-  noncanonical spherical candidate: `gamma_AB=0` on the inner angular
-  two-surface while `Sigma_theta_phi!=0`; on-shell action, patching, stability,
-  and zero exterior scattering remain open.
+  noncanonical spherical target: `gamma_AB=0` on the inner angular
+  two-surface with a nonzero invariant biquaternionic area channel.
+- `speculative_extensions/invisibility/WHITNEY_SPHERICAL_NULL_SHELL_THETA.md` —
+  exact off-shell global `Theta` realiser and flat-exterior matching; the
+  action, on-shell dynamics, stability, and zero exterior scattering remain
+  open.
 
 ### GEM compact modes and Gödel-type kinematic target (2026-07-25)
 
