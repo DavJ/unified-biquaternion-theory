@@ -102,6 +102,40 @@ def test_all_markable_sources_match_the_tier_map() -> None:
     assert not errors, "\n" + "\n".join(errors[:80])
 
 
+def test_provenance_inventory_matches_current_tree() -> None:
+    """The committed inventory must describe the current classified source tree."""
+    data = config()
+    counts = {
+        "A_attested": 0,
+        "B_machine_verified": 0,
+        "C_working": 0,
+        "D_historical": 0,
+        "excluded": 0,
+    }
+    for _path, _rel, tier in TOOL.iter_sources(ROOT, data):
+        counts[tier] += 1
+    expected = (
+        "Provenance source inventory: "
+        + ", ".join(
+            f"{key}={counts[key]}"
+            for key in (
+                "A_attested",
+                "B_machine_verified",
+                "C_working",
+                "D_historical",
+                "excluded",
+            )
+        )
+        + "\n"
+    )
+    inventory = ROOT / "PROVENANCE_INVENTORY_2026-08-01.txt"
+    assert inventory.read_text(encoding="utf-8") == expected, (
+        "PROVENANCE_INVENTORY_2026-08-01.txt is stale; run "
+        "python3 tools/apply_provenance_headers.py --report > "
+        "PROVENANCE_INVENTORY_2026-08-01.txt and regenerate SHA256SUMS.txt"
+    )
+
+
 def test_header_tool_check_mode_is_green() -> None:
     proc = subprocess.run(
         [sys.executable, str(TOOL_PATH), "--check"],
