@@ -175,6 +175,11 @@ and metaphysical/simulation-style interpretations.
   exact noncanonical kinematic result: the central-null Whitney sphere has a
   positive Hermitian support Gram and nonzero internal area/volume; covariant
   action promotion and stabilisation remain open.
+- `speculative_extensions/invisibility/CLOCK_COMPENSATED_SUPPORT_GRAM.md` —
+  exact conditional shell result: a `Theta`-only clock-mode compensator makes
+  the positive support Gram invariant under standard local `SL(2,C)`
+  congruence and yields `T_Theta=t`; projector uniqueness, full bimodule
+  covariance, action selection, and stability remain open.
 
 ### GEM compact modes and Gödel-type kinematic target (2026-07-25)
 

@@ -223,6 +223,30 @@ A possible covariant completion is to derive an `mathsf h`-unit one-form `u_mu[T
 
 which has Lorentzian signature if `u` is normalized.  The existence, uniqueness, and gauge transformation of such a composite clock remain open.
 
+## 6.5 Conditional clock-compensated completion
+
+The model-specific covariance obstruction is narrowed in
+`CLOCK_COMPENSATED_SUPPORT_GRAM.md`.  Projecting the same `Theta` onto its
+dedicated clock Fourier profile produces a positive Hermitian compensator
+`mathcal N_Theta`.  The weighted trace Gram
+
+\[
+\mathsf h^{\rm clk}_{\mu\nu}
+=\frac12\left\langle\operatorname{ReTr}
+\left(E_\mu^\ddagger\widehat{\mathcal N}_\Theta^{-1}
+E_\nu\widehat{\mathcal N}_\Theta^{-1}\right)
+\right\rangle_\psi
+\]
+
+is invariant under the standard local `SL(2,C)` paravector congruence.  On the
+explicit Whitney shell `mathcal N_Theta=1`, so this is exactly the support Gram
+computed above.  The same construction yields a scalar clock `T_Theta=t` and a
+regular Lorentzian internal support tensor.
+
+This is an exact conditional result for the selected shell clock mode, not a
+canonical derivation of a unique clock projector or full paired-connection
+covariance.
+
 ## 7. Updated ledger
 
 Closed exactly:

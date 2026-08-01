@@ -424,6 +424,18 @@ nonzero internal support area and a regular candidate support-volume action
 route.  The result remained noncanonical because a full Lorentz/gauge-covariant
 clock or compensator and a finite-radius stabilising dynamics were not derived.
 
+### 2026-08-01 — Conditional clock compensation of the shell support Gram
+
+The dedicated clock Fourier component of the explicit Whitney-shell field was
+used to construct a Hermitian matrix compensator from the same `Theta`.  A
+weighted trace Gram was proved invariant under the standard local `SL(2,C)`
+paravector congruence and reduced exactly to the previously computed positive
+support Gram on the shell.  The construction also produced an invariant scalar
+clock equal to `t` on the ansatz and a regular Lorentzian internal support
+tensor.  The result remained conditional and noncanonical because the clock
+mode was selected by the shell ansatz rather than uniquely derived from the
+master action, and full paired left/right covariance was still open.
+
 ## Current direction
 
 The current programme keeps the covariant-tetrad architecture fixed and focuses

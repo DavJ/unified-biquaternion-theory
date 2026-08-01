@@ -419,6 +419,7 @@ and the orthogonal time/radial profiles make the full `mathsf h_mu_nu`
 nondegenerate.  This supplies a possible internal support measure for an action,
 but its Lorentz/gauge-covariant promotion remains open.  The exact calculation
 and action caveats are recorded in `HERMITIAN_SUPPORT_GRAM_ROUTE.md`.
+A conditional clock-compensated covariant form that reduces exactly to this Gram on the shell is recorded in `CLOCK_COMPENSATED_SUPPORT_GRAM.md`.
 
 ## 8. What is now closed and what remains open
 
@@ -435,7 +436,8 @@ Closed exactly at the off-shell kinematic level:
 
 Still open:
 
-1. Lorentz/gauge-covariant promotion of the support Gram or another
+1. derivation of a unique clock-mode projector and full paired-connection
+   covariance for the conditionally compensated support Gram, together with a
    non-topological UBT action regular at `rho=0`;
 2. an on-shell solution and finite conserved energy;
 3. stability against radial and nonspherical perturbations;

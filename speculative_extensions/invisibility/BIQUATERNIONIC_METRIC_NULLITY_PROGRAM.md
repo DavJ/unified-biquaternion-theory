@@ -461,6 +461,7 @@ the full complex Lorentz/profile isometry used by the GR metric.  Promotion
 therefore requires a composite clock/compensator, a derived symmetry reduction,
 or an explicit constitutive interpretation.  See
 `HERMITIAN_SUPPORT_GRAM_ROUTE.md`.
+A model-specific `Theta`-only clock compensator and locally Lorentz-congruence-invariant support Gram are derived in `CLOCK_COMPENSATED_SUPPORT_GRAM.md`; uniqueness of the clock projector and full bimodule covariance remain open.
 
 ## 7. Research stages
 

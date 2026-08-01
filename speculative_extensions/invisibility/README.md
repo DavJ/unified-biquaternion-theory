@@ -110,6 +110,10 @@ boundary while retaining a nonzero invariant area channel `mathcal B_{S^2}`.
 - `HERMITIAN_SUPPORT_GRAM_ROUTE.md` — exact proof that the Whitney shell has
   zero visible area but a smooth nonzero Hermitian support area; the associated
   support-volume action route is noncanonical until its covariance is derived.
+- `CLOCK_COMPENSATED_SUPPORT_GRAM.md` — exact conditional construction of a
+  `Theta`-only clock compensator, locally `SL(2,C)`-invariant positive support
+  Gram, scalar clock, and regular Lorentzian internal support tensor for the
+  explicit shell; clock-mode uniqueness and full bimodule covariance remain open.
 - `STATUS_REBASE_2026-08-01.md` — relationship of the older ST-1--ST-5 files to
   the current central-anticommutator architecture.
 - `st1_...` through `st5_...` — historical speculative analyses retained for
