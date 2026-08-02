@@ -1,0 +1,79 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.15cm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={Indexy bez paniky: Christoffelovy symboly, torze, rot a antikomutator v UBT},pdfauthor={Ing. David Jaros}}
+\usepackage{ubtprovenance}
+\UBTTier{C}
+\UBTProvenanceEmbedInTitle
+
+\definecolor{ubtblue}{RGB}{30,84,145}
+\definecolor{ubtorange}{RGB}{176,92,22}
+\definecolor{ubtgreen}{RGB}{35,113,75}
+\newtcolorbox{memorybox}[1]{enhanced,breakable,colback=blue!3,colframe=ubtblue,
+  boxrule=0.7pt,arc=1.5mm,title={#1},fonttitle=\bfseries}
+\newtcolorbox{examplebox}[1]{enhanced,breakable,colback=orange!4,colframe=ubtorange,
+  boxrule=0.7pt,arc=1.5mm,title={#1},fonttitle=\bfseries}
+\newtcolorbox{cheatbox}{enhanced,breakable,colback=green!3,colframe=ubtgreen,
+  boxrule=1pt,arc=1.5mm,title={Tahák k vodě},fonttitle=\bfseries\large}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{UBT studentské texty}
+\rhead{Indexy, torze, rot a antikomutátor}
+\cfoot{\thepage}
+
+\title{Indexy bez paniky\\[0.25em]
+\Large Christoffelovy symboly, torze, operátor rot a antikomutátor v UBT}
+\author{Ing. David Jaroš\thanks{Text byl vytvořen s podstatnou pomocí generativní AI na základě odborné diskuse s autorem.}}
+\date{2. srpna 2026\\[1.0em]\UBTProvenanceTitleLine}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!8,colframe=black!55,boxrule=0.6pt,arc=1mm]
+\small
+\textbf{AI-generated educational draft -- Tier C (working).}
+Tento studentský text byl vytvořen s podstatnou pomocí generativní AI. Nebyl
+zatím autorem věcně přečten a atestován řádek po řádku. Slouží k výuce a
+uspořádání intuice; zdrojem rozhodujících vědeckých tvrzení zůstávají kanonické
+soubory a jejich verifikátory v repozitáři.
+\end{tcolorbox}
+
+\begin{abstract}
+Text vysvětluje indexovou notaci, Christoffelovy symboly, torzi, křivost,
+operátor rot, komutátor a antikomutátor tak, aby se podobně vypadající objekty
+nepletly. Zvláštní pozornost je věnována UBT rozkladu
+$E_\mu^\sharp E_\nu=\gamma_{\mu\nu}\mathbf1+\Sigma_{\mu\nu}$ a otázce, zda
+kandidát metrické nullity $\gamma=0$, $\Sigma\neq0$ vyžaduje torzi. Výsledek je
+záporný: torze může ovlivnit realizaci a dynamiku pole, ale není totožná s
+antisymetrickým biquaternionovým kanálem ani s mechanismem antikomutátorové
+projekce metriky.
+\end{abstract}
+
+\tableofcontents
+\newpage
+\input{student_papers/indices_torsion_anticommutator_rot_cs}
+\end{document}

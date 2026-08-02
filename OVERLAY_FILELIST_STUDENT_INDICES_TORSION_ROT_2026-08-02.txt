@@ -1,0 +1,10 @@
+APPLY_STUDENT_INDICES_TORSION_ROT_2026-08-02.sh
+VERIFY_STUDENT_INDICES_TORSION_ROT_2026-08-02.sh
+OVERLAY_APPLY_STUDENT_INDICES_TORSION_ROT_2026-08-02.md
+OVERLAY_FILELIST_STUDENT_INDICES_TORSION_ROT_2026-08-02.txt
+OVERLAY_MANIFEST_STUDENT_INDICES_TORSION_ROT_2026-08-02.sha256
+PATCH_NOTES_STUDENT_INDICES_TORSION_ANTICOMMUTATOR_ROT_2026-08-02.md
+docs/textbook/Makefile
+docs/textbook/indices_torsion_anticommutator_rot_student_paper_cs.tex
+docs/textbook/student_papers/indices_torsion_anticommutator_rot_cs.tex
+docs/pdfs/UBT_Studentske_texty_Indexy_torze_antikomutator_rot_2026-08-02.pdf
