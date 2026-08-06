@@ -10,6 +10,27 @@ notice: Working material; exhaustive human review is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
+## Active Milestone: M2H — Exact half-grid theta-sector factorization (2026-08-05)
+
+The progressive-growth project (`projects/progressive_growth/`) implements
+the half-grid theta-sector factorization architecture.
+
+**Key points:**
+
+- Ordinary neuron duplication is only a parameter-matched baseline; it is
+  not the intended Theta Grid architecture.
+- The intended architecture inserts different theta-sector frames at positions
+  `k + 1/2`; every original layer is decomposed through the half-grid frame.
+- Exact preservation depends on the frame column rank being ≥ numerical rank
+  of the original weight matrix.
+- Training-performance claims are out of scope until the factorization is
+  verified; M2H is algebraic and architectural only.
+
+See `projects/progressive_growth/STATUS.md` and
+`projects/progressive_growth/reports/HALF_GRID_FACTORIZATION.md`.
+
+---
+
 ## Immediate programme update — 2026-07-27
 
 The active GR/quantum bridge is the canonical-relation generalized-Dirac route.

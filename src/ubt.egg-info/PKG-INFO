@@ -4,4 +4,7 @@ Version: 0.1.0
 License-File: LICENSE.md
 Requires-Dist: numpy
 Requires-Dist: scipy
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: hypothesis; extra == "dev"
 Dynamic: license-file
