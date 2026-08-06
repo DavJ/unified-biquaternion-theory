@@ -221,14 +221,10 @@ def factor_matrix_through_frame(
 
     # --- build A and B ---
     sqrt_s = s_r.sqrt()
-    # Use conjugate transpose where required (handles complex case)
     sqrt_Sigma_Qh = sqrt_s.unsqueeze(-1) * Qh_r   # [r, in_dim]
 
-    A = Phi[:, :r] @ sqrt_Sigma_Qh      # [sector_width, in_dim]
-    B = P_r * sqrt_s.unsqueeze(0) @ Phi_pinv[:r, :]
-    # Equivalently: B = P_r @ diag(sqrt_s) @ Phi_pinv[:r,:]
-    # But let's be explicit:
-    B = (P_r * sqrt_s.unsqueeze(0)) @ Phi_pinv[:r, :]  # [out_dim, sector_width]
+    A = Phi[:, :r] @ sqrt_Sigma_Qh                        # [sector_width, in_dim]
+    B = (P_r * sqrt_s.unsqueeze(0)) @ Phi_pinv[:r, :]     # [out_dim, sector_width]
 
     # --- reconstruction error ---
     recon = B @ A

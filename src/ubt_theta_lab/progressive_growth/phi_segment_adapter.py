@@ -27,6 +27,7 @@ Notes
 """
 from __future__ import annotations
 
+import math
 from typing import Sequence
 
 import torch
@@ -49,7 +50,7 @@ def _phi_kernel_vector(
     N, M = torch.meshgrid(n_shift, m_shift, indexing="ij")
     r2 = N ** 2 + M ** 2                                   # [L, L]
     # Canonical phi kernel: G_phi(n,m) = exp(-2*pi*phi*r2(n,m))
-    kernel = torch.exp(-2.0 * torch.tensor(torch.pi, dtype=dtype) * phi * r2)
+    kernel = torch.exp(-2.0 * math.pi * phi * r2)
     vec = kernel.flatten()                                 # [L*L]
     if normalize:
         norm = vec.norm()

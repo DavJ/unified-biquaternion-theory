@@ -523,9 +523,13 @@ class TestPhiSegmentFrames:
         r_needed = len(phis)
 
         if tsf.rank < r_needed:
-            result = "SECTOR_INSUFFICIENT_FOR_EXACT_TRANSFER"
-            # Just verify we can detect and report it
-            assert result == "SECTOR_INSUFFICIENT_FOR_EXACT_TRANSFER"
+            # Verify that factor_matrix_through_frame raises an error
+            gen_w = torch.Generator().manual_seed(0)
+            U = torch.randn(lattice_size * lattice_size, r_needed, generator=gen_w, dtype=torch.float64)
+            V = torch.randn(r_needed, r_needed, generator=gen_w, dtype=torch.float64)
+            W_test = U @ V
+            with pytest.raises(ValueError, match="[Ff]rame"):
+                factor_matrix_through_frame(W_test, tsf.matrix)
             return
 
         # Use a matrix of the right shape
