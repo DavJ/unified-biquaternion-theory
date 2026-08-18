@@ -1,0 +1,542 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\chapter{Theta, Mellin, Zeta, Paths, and Prime Structure}
+\label{ch:theta-mellin-feynman}
+
+\section{Why this chapter exists}
+
+This chapter is deliberately broader than a canonical UBT claim document.  Its purpose is
+pedagogical: to place several classical mathematical structures next to the reduced UBT
+theta bridge so that their relations can be seen in one place.  A result does \emph{not}
+become a UBT theorem merely because it is useful inside UBT.
+
+We therefore use three status labels in the prose:
+\begin{itemize}
+  \item \textbf{Classical}: standard mathematics or standard quantum mechanics;
+  \item \textbf{Bridge}: an exact statement about the reduced theta model used to connect
+        standard mathematics to UBT notation;
+  \item \textbf{UBT open}: a statement that would have to be derived from the canonical
+        UBT field equations or action before it could become a physical UBT claim.
+\end{itemize}
+
+The central reduced object is
+\begin{equation}
+  S(t,\psi)
+  = \sum_{n\ge 1} a_n\,e^{-\pi\psi n^2}e^{i\pi t n^2}
+  = \sum_{n\ge1}a_n e^{-\pi(\psi-it)n^2}.
+  \label{eq:reduced-theta-amplitude}
+\end{equation}
+It is the same reduced complex-time kernel used in
+\path{canonical/bridges/theta_complex_time_bridge.tex}.  In this chapter it is a
+\textbf{bridge model}; the canonical UBT master field $\Theta(q,\tau)$ is not assumed to
+be a Jacobi theta function.
+
+\paragraph{Sign convention used in related RH notes.}
+Some earlier UBT/RH scratch work used a positive heat variable $y=-\psi$ and therefore
+wrote the theta parameter as $t-i\psi=t+iy$ with convergence on the corresponding
+$y>0$ half-line.  The present chapter writes the damping variable directly as $\psi>0$
+in Eq.~\eqref{eq:reduced-theta-amplitude}.  The transform identities are identical after
+the relabelling $y=-\psi$; the sign convention must be declared before a physical UBT
+interpretation is attached to either half-line.
+
+\section{One spectrum, several representations}
+
+\subsection{Mode orthogonality versus template non-orthogonality}
+
+For fixed $\psi$, the elementary time modes in Eq.~\eqref{eq:reduced-theta-amplitude} are
+\begin{equation}
+  e^{i\pi n^2 t}.
+\end{equation}
+On the interval $t\in[0,2]$ they are orthogonal:
+\begin{equation}
+ \int_0^2 e^{i\pi(n^2-m^2)t}\,dt
+ = 2\,\delta_{nm},
+ \qquad n,m\ge1.
+ \label{eq:quadratic-mode-orthogonality}
+\end{equation}
+The important distinction is that the \emph{complete templates}
+$S_\psi(t):=S(t,\psi)$ at different values of $\psi$ are generally not orthogonal.
+
+\begin{theorem}[Classical Gram kernel identity]
+For the inner product
+\begin{equation}
+  \langle f,g\rangle:=\frac12\int_0^2 f(t)\overline{g(t)}\,dt,
+\end{equation}
+and amplitudes $S_\psi$ of Eq.~\eqref{eq:reduced-theta-amplitude},
+\begin{equation}
+  G(\psi,\phi)
+  :=\langle S_\psi,S_\phi\rangle
+  =\sum_{n\ge1}|a_n|^2e^{-\pi(\psi+\phi)n^2}.
+  \label{eq:gram-general}
+\end{equation}
+For $a_n\equiv1$,
+\begin{equation}
+  G(\psi,\phi)
+  =\frac{\vartheta_3(0\mid i(\psi+\phi))-1}{2}.
+  \label{eq:gram-theta}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Insert the two sums in the inner product.  Equation~\eqref{eq:quadratic-mode-orthogonality}
+eliminates all $m\neq n$ cross terms, leaving
+\[
+  \sum_n |a_n|^2 e^{-\pi\psi n^2}e^{-\pi\phi n^2}.
+\]
+For unit weights, the standard identity
+$\vartheta_3(0\mid iu)=1+2\sum_{n\ge1}e^{-\pi u n^2}$ gives
+Eq.~\eqref{eq:gram-theta}.
+\end{proof}
+
+\paragraph{Practical consequence.}
+Template non-orthogonality is not an obstacle to detection.  If an observed signal is
+$f(t)$, a normalized matched-filter score is
+\begin{equation}
+  \rho(\psi,\Delta)
+  =\frac{\left|\int f(t)\overline{S(t-\Delta,\psi)}\,dt\right|^2}
+  {\|f\|^2\,\|S_\psi\|^2}.
+  \label{eq:theta-matched-filter}
+\end{equation}
+The best single template is obtained by maximizing $\rho$ over $(\psi,\Delta)$.
+Orthogonality becomes important when many templates are fitted simultaneously; then the
+Gram matrix must be inverted or regularized, for example through $G+\lambda I$.
+
+\subsection{Fourier transform in real time}
+
+Take the Fourier convention
+\begin{equation}
+  \widehat f(\omega)=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}\,dt.
+\end{equation}
+Formally, or distributionally,
+\begin{equation}
+  \widehat S(\omega,\psi)
+  =2\pi\sum_{n\ge1}a_n e^{-\pi\psi n^2}
+       \delta(\omega-\pi n^2).
+  \label{eq:fourier-delta-spectrum}
+\end{equation}
+Thus the quadratic mode spectrum is already a Dirac comb in real-time frequency; no
+mode-by-mode demodulation is needed to create the delta lines.
+
+\subsection{Laplace transform in imaginary time}
+
+For $\Re z$ sufficiently large,
+\begin{align}
+  \mathcal L_\psi[S](z;t)
+   &=\int_0^\infty e^{-z\psi}S(t,\psi)\,d\psi \\
+   &=\sum_{n\ge1}
+      \frac{a_n e^{i\pi t n^2}}{z+\pi n^2}.
+  \label{eq:laplace-resolvent}
+\end{align}
+The same eigenvalues that gave Fourier delta lines now appear as resolvent poles
+$z=-\pi n^2$.
+
+\subsection{Mellin transform in imaginary time}
+
+For $\Re s$ in the absolute-convergence half-plane,
+\begin{align}
+  \mathcal M_\psi[S](s;t)
+  &:=\int_0^\infty \psi^{s-1}S(t,\psi)\,d\psi \\
+  &=\Gamma(s)\pi^{-s}
+    \sum_{n\ge1}\frac{a_n e^{i\pi t n^2}}{n^{2s}}.
+  \label{eq:mellin-time-twisted}
+\end{align}
+The identity follows from
+\begin{equation}
+ \int_0^\infty \psi^{s-1}e^{-\pi n^2\psi}\,d\psi
+ =\Gamma(s)(\pi n^2)^{-s}.
+\end{equation}
+
+For the Gram kernel with $a_n\equiv1$ and $u=\psi+\phi$,
+\begin{equation}
+ \int_0^\infty u^{s-1}G(u)\,du
+ =\Gamma(s)\pi^{-s}\zeta(2s).
+ \label{eq:gram-mellin-zeta}
+\end{equation}
+This is classical theta--Mellin mathematics.  Its relevance here is organizational:
+the same reduced theta bank that causes non-orthogonal templates is also a heat trace
+whose Mellin representation is a spectral zeta function.
+
+\paragraph{The spectral triangle.}
+Equations~\eqref{eq:fourier-delta-spectrum}, \eqref{eq:laplace-resolvent}, and
+\eqref{eq:mellin-time-twisted} give three views of the same quadratic spectrum:
+\begin{equation}
+ \boxed{
+ \begin{array}{ccl}
+   \text{Fourier in }t   &\longrightarrow& \delta(\omega-\pi n^2),\\[2mm]
+   \text{Laplace in }\psi&\longrightarrow& (z+\pi n^2)^{-1},\\[2mm]
+   \text{Mellin in }\psi &\longrightarrow& \Gamma(s)\pi^{-s}n^{-2s}.
+ \end{array}}
+ \label{eq:spectral-triangle}
+\end{equation}
+
+\section{Mellin is Fourier in logarithmic coordinates}
+
+Let
+\begin{equation}
+  M_f(s)=\int_0^\infty f(x)x^{s-1}\,dx,
+  \qquad s=\sigma+i\omega.
+\end{equation}
+Set $x=e^u$, so $dx=e^u du$.  Then
+\begin{equation}
+  M_f(\sigma+i\omega)
+  =\int_{-\infty}^{\infty}
+   f(e^u)e^{\sigma u}e^{i\omega u}\,du.
+  \label{eq:mellin-log-fourier}
+\end{equation}
+Apart from the conventional sign of the Fourier phase, this is a Fourier transform in
+$u=\ln x$ of the weighted signal $f(e^u)e^{\sigma u}$.  Thus Mellin analysis is the
+natural harmonic analysis for multiplicative scaling, whereas ordinary Fourier analysis
+is natural for additive translation.
+
+This observation is especially useful when interpreting zeta functions: zeta's vertical
+variable $\Im s$ is a log-scale frequency.
+
+\section{The present slice and a time-twisted zeta family}
+\label{sec:time-twisted-zeta}
+
+\paragraph{UBT coordinate convention.}
+In the working complex-time interpretation used in this research thread, the present
+slice is chosen as $t=0$.  This is a UBT coordinate convention, not a statement that the
+Riemann zeta function intrinsically knows a physical ``present.''
+
+For unit weights $a_n\equiv1$, define the quadratic time twist
+\begin{equation}
+  Z_\Theta(s;t)
+  :=\sum_{n=1}^{\infty}
+    \frac{e^{i\pi t n^2}}{n^{2s}}.
+  \label{eq:time-twisted-zeta}
+\end{equation}
+Then Eq.~\eqref{eq:mellin-time-twisted} becomes
+\begin{equation}
+ \boxed{
+  \mathcal M_\psi[S](s;t)
+  =\Gamma(s)\pi^{-s}Z_\Theta(s;t).}
+ \label{eq:mellin-Ztheta}
+\end{equation}
+At the present slice,
+\begin{equation}
+ \boxed{Z_\Theta(s;0)=\zeta(2s).}
+ \label{eq:present-zeta}
+\end{equation}
+Thus ordinary zeta is one member---the $t=0$ member---of a natural family generated by
+the same reduced complex-time theta kernel.
+
+\begin{remark}
+The exponential factor in Eq.~\eqref{eq:time-twisted-zeta} is an \emph{additive quadratic
+twist}.  For generic $t$ the resulting Dirichlet series does not have the ordinary Euler
+product.  One must not infer prime-factor dynamics merely from the existence of the
+$t=0$ Euler product.
+\end{remark}
+
+\subsection{Simple special times}
+
+The family is periodic under $t\mapsto t+2$ because $n^2\in\mathbb Z$:
+\begin{equation}
+ Z_\Theta(s;t+2)=Z_\Theta(s;t).
+\end{equation}
+At $t=1$,
+\begin{align}
+ Z_\Theta(s;1)
+ &=\sum_{n\ge1}\frac{(-1)^{n^2}}{n^{2s}}
+ =\sum_{n\ge1}\frac{(-1)^n}{n^{2s}}\\
+ &=-\eta(2s)
+ =-\bigl(1-2^{1-2s}\bigr)\zeta(2s),
+ \label{eq:t1-eta}
+\end{align}
+where $\eta$ is the Dirichlet eta function.
+
+\subsection{Rational times: Hurwitz-zeta decomposition}
+
+Let $t=a/q$ with integers $a$ and $q>0$.  The coefficient
+\begin{equation}
+ c_n=e^{i\pi a n^2/q}
+\end{equation}
+is periodic with period $M=2q$ (sometimes the true period is smaller).  Splitting the
+Dirichlet series into residue classes gives the exact classical identity
+\begin{equation}
+ \boxed{
+ Z_\Theta\!\left(s;\frac aq\right)
+ =M^{-2s}\sum_{r=1}^{M}
+ e^{i\pi a r^2/q}
+ \zeta\!\left(2s,\frac rM\right),
+ \qquad M=2q,}
+ \label{eq:rational-hurwitz}
+\end{equation}
+where $\zeta(s,\alpha)$ is the Hurwitz zeta function.
+
+\begin{proof}
+Write every $n\ge1$ uniquely as $n=mM+r$ with $m\ge0$ and $1\le r\le M$.
+Periodicity gives $c_{mM+r}=c_r$, and
+\begin{align*}
+ Z_\Theta(s;a/q)
+ &=\sum_{r=1}^{M}c_r\sum_{m=0}^{\infty}(mM+r)^{-2s}\\
+ &=M^{-2s}\sum_{r=1}^{M}c_r
+   \zeta\!\left(2s,\frac rM\right).
+\end{align*}
+\end{proof}
+
+This makes the ``alternative zeta functions'' generated away from $t=0$ precise.  The
+ordinary zeta, eta, Hurwitz zeta combinations, and quadratic Gauss sums are not unrelated
+objects here: they are different slices or representations of one quadratic-phase family.
+
+\section{Rational-time revivals and quadratic Gauss sums}
+\label{sec:gauss-revivals}
+
+At rational $t=a/q$, the phase $e^{i\pi a n^2/q}$ depends only on a finite residue class.
+The corresponding finite quadratic sums are Gauss sums.  A common normalization is
+\begin{equation}
+ g(a,q)=\sum_{r=0}^{q-1}e^{2\pi i a r^2/q}.
+ \label{eq:gauss-sum}
+\end{equation}
+For coprime moduli $q_1,q_2$, the Chinese remainder theorem gives, with the
+normalization in Eq.~\eqref{eq:gauss-sum},
+\begin{equation}
+ g(a,q_1q_2)=g(aq_2,q_1)\,g(aq_1,q_2),
+ \qquad \gcd(q_1,q_2)=1.
+ \label{eq:gauss-crt}
+\end{equation}
+Thus composite denominators factor into coprime pieces, and prime powers are the
+irreducible arithmetic building blocks of rational-time revival structure.
+
+This is a more promising place to search for a \emph{dynamical} origin of UBT prime
+sectors than simply observing the Euler product of $\zeta(2s)$, because the Gauss-sum
+arithmetic is carried directly by the quadratic theta phase.
+
+\section{Theta mode sum and Feynman winding sum}
+\label{sec:theta-feynman}
+
+The theta/path relation is exact in a controlled textbook example: a free particle of
+mass $m$ moving on a circle of circumference $L$.
+
+The momentum eigenfunctions and energies are
+\begin{equation}
+ \phi_n(x)=L^{-1/2}e^{2\pi i n x/L},
+ \qquad
+ E_n=\frac{\hbar^2}{2m}\left(\frac{2\pi n}{L}\right)^2.
+\end{equation}
+Hence the real-time propagator is
+\begin{equation}
+ K(x,x';T)
+ =\frac1L\sum_{n\in\mathbb Z}
+ \exp\!\left(\frac{2\pi i n(x-x')}{L}
+             -\frac{iE_nT}{\hbar}\right).
+ \label{eq:circle-mode-propagator}
+\end{equation}
+This is a Jacobi-theta mode sum.  Poisson summation transforms it into
+\begin{equation}
+ \boxed{
+ K(x,x';T)
+ =\sqrt{\frac{m}{2\pi i\hbar T}}
+  \sum_{w\in\mathbb Z}
+  \exp\!\left[
+   \frac{i m(x-x'+wL)^2}{2\hbar T}
+  \right].}
+ \label{eq:circle-winding-propagator}
+\end{equation}
+The integer $w$ labels winding sectors.  The exponent is the classical free-particle
+action for the lifted path from $x'$ to $x+wL$:
+\begin{equation}
+ S_w^{\rm cl}=\frac{m(x-x'+wL)^2}{2T}.
+\end{equation}
+Therefore the same propagator admits two exact representations:
+\begin{equation}
+ \boxed{
+ \text{theta/momentum modes}
+ \quad\Longleftrightarrow\quad
+ \text{Feynman winding histories}}
+ \label{eq:mode-winding-duality}
+\end{equation}
+with Poisson/Jacobi transformation as the bridge.
+
+\paragraph{Important qualification.}
+The classical trajectory is selected by \emph{stationary} action,
+$\delta S=0$, not necessarily minimum action.  Several stationary paths are ordinary
+quantum mechanics; by themselves they do not imply a multiverse interpretation.
+
+\section{Where prime numbers do and do not enter}
+
+\subsection{The Euler product at the untwisted slice}
+
+At $t=0$ and unit weights,
+\begin{equation}
+ Z_\Theta(s;0)=\zeta(2s)
+ =\prod_{p}\left(1-p^{-2s}\right)^{-1},
+ \qquad \Re s>\frac12.
+ \label{eq:zeta-euler-product}
+\end{equation}
+This is a profound change of representation from an additive sum over all positive
+integers to a multiplicative product over primes.  It is nevertheless a classical
+property of the integers, not by itself evidence that UBT dynamics selects prime modes.
+For general weights $a_n$, the Dirichlet series
+$\sum |a_n|^2n^{-2s}$ has an Euler product only when the coefficients satisfy the
+appropriate multiplicativity conditions.
+
+\subsection{Local Euler-factor pole lattices}
+
+A single formal local factor
+\begin{equation}
+ L_p(s)=\left(1-p^{-2s}\right)^{-1}
+\end{equation}
+has poles when $p^{-2s}=1$.  Writing $s=\sigma+i\omega$ gives
+\begin{equation}
+ \sigma=0,
+ \qquad
+ \omega_{p,k}=\frac{\pi k}{\ln p},
+ \qquad k\in\mathbb Z.
+ \label{eq:local-prime-poles}
+\end{equation}
+For distinct primes $p\neq q$, nonzero pole frequencies cannot coincide.  If
+$k/\ln p=\ell/\ln q$ with nonzero integers $k,\ell$, then
+$q^k=p^\ell$, contradicting unique factorization.  All local factors share the trivial
+$k=0$ location.
+
+These are poles of the \emph{individual formal Euler factors}.  They lie outside the
+Euler-product convergence half-plane and must not be confused with poles of the
+analytically continued global $\zeta(2s)$, whose pole is at $s=1/2$.
+
+If $N(T;P)$ counts positive local-factor pole frequencies up to height $T$ for primes
+$p\le P$, then
+\begin{align}
+ N(T;P)
+ &=\sum_{p\le P}\left\lfloor\frac{T\ln p}{\pi}\right\rfloor\\
+ &=\frac{T}{\pi}\vartheta(P)+O(\pi(P)),
+ \label{eq:local-pole-count}
+\end{align}
+where
+\begin{equation}
+ \vartheta(P)=\sum_{p\le P}\ln p
+\end{equation}
+is Chebyshev's theta function.  The prime number theorem implies
+$\vartheta(P)\sim P$.
+
+\subsection{Vertical Fourier spectrum and prime powers}
+
+At fixed $\sigma>1/2$,
+\begin{equation}
+ \zeta\bigl(2(\sigma+i\omega)\bigr)
+ =\sum_{n\ge1}n^{-2\sigma}e^{-i(2\ln n)\omega}.
+ \label{eq:zeta-vertical-fourier}
+\end{equation}
+Thus Fourier transformation in $\omega$ produces spectral lines at
+\begin{equation}
+ \xi_n=2\ln n.
+\end{equation}
+To isolate primes and prime powers, use the logarithmic derivative:
+\begin{equation}
+ -\frac{\zeta'(z)}{\zeta(z)}
+ =\sum_{n\ge1}\frac{\Lambda(n)}{n^z}
+ =\sum_p\sum_{k\ge1}(\ln p)p^{-kz},
+ \qquad \Re z>1.
+ \label{eq:log-derivative-von-mangoldt}
+\end{equation}
+With $z=2(\sigma+i\omega)$,
+\begin{equation}
+ -\frac{\zeta'\!\left(2(\sigma+i\omega)\right)}
+        {\zeta\!\left(2(\sigma+i\omega)\right)}
+ =\sum_p\sum_{k\ge1}
+   (\ln p)p^{-2k\sigma}
+   e^{-i(2k\ln p)\omega}.
+ \label{eq:prime-power-fourier-comb}
+\end{equation}
+The prime-power frequency comb therefore sits at
+\begin{equation}
+ \boxed{\xi_{p,k}=2k\ln p.}
+ \label{eq:prime-power-frequencies}
+\end{equation}
+Distinct prime-power lines coincide only when the prime powers themselves are identical.
+
+\subsection{Prime counting and zeta-zero frequencies}
+
+The weighted prime-power counting function
+\begin{equation}
+ \psi_C(x)=\sum_{n\le x}\Lambda(n)
+\end{equation}
+is related by the classical explicit formula to the nontrivial zeros
+$\rho=\beta+i\gamma$ of $\zeta$.  Schematically,
+\begin{equation}
+ \psi_C(x)=x-\sum_\rho\frac{x^\rho}{\rho}+\text{elementary terms}.
+ \label{eq:explicit-formula-schematic}
+\end{equation}
+Writing $x=e^u$ turns each zero contribution into
+\begin{equation}
+ x^\rho=e^{\beta u}e^{i\gamma u}.
+\end{equation}
+Thus the imaginary parts $\gamma$ of zeta zeros act as oscillation frequencies in the
+logarithmic variable $u=\ln x$.  This is the classical primes--zeros spectral bridge.
+
+\section{What this means for UBT prime sectors}
+
+Two distinct mechanisms must not be conflated.
+
+\paragraph{Route A: trace/orbit route.}
+Trace-formula analogies suggest that primes should correspond to primitive periodic
+objects whose repeated traversals generate prime powers.  For the ordinary free particle
+on $S^1$, however, the primitive-orbit length spectrum is not $\{\ln p\}$.  Therefore
+\begin{quote}
+\textbf{GAP-THETA-PRIME-1:} derive from a genuine UBT operator a primitive-orbit or
+spectral structure whose natural primitive data are $\ln p$, or do not claim that the
+Euler product dynamically derives UBT prime sectors.
+\end{quote}
+
+\paragraph{Route B: rational-revival route.}
+The quadratic theta dynamics itself has arithmetic structure at rational times.  Gauss
+sums factor through coprime denominators, making prime powers natural building blocks.
+This motivates
+\begin{quote}
+\textbf{GAP-THETA-PRIME-2:} rewrite the existing UBT $\alpha$ prime-sector construction
+in revival/winding variables and test whether its distinguished primes arise from
+rational-time Gauss-sum structure rather than from a post-selected list.
+\end{quote}
+
+These routes are compatible as research directions but are not yet known to be the same
+mechanism.
+
+\section{The operator question behind the whole picture}
+
+Equation~\eqref{eq:reduced-theta-amplitude} can be written formally by introducing
+\begin{equation}
+ H_0|n\rangle=\pi n^2|n\rangle.
+\end{equation}
+Then its mode evolution is generated by
+\begin{equation}
+ U_0(t,\psi)=e^{-\psi H_0}e^{+itH_0}.
+ \label{eq:formal-complex-propagator}
+\end{equation}
+This makes the reduced theta amplitude genuinely propagator-like.  The decisive UBT
+question is stronger:
+\begin{quote}
+\textbf{GAP-THETA-PROP:} derive an operator $H_\Theta$ from the canonical UBT action or
+field equations such that an appropriate kernel or matrix element of
+$e^{-\psi H_\Theta}e^{\pm itH_\Theta}$ yields the theta structure used here.
+\end{quote}
+Until this gap is closed, the mode/winding, Mellin/zeta, and revival/prime relations are
+rigorous mathematics of the reduced bridge model, not a derivation of UBT dynamics.
+
+\section{Big-picture map}
+
+The useful synthesis is therefore
+\begin{equation}
+\boxed{
+\begin{array}{ccccc}
+ & \text{reduced theta kernel} & & &\\
+ & \displaystyle\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2} & & &\\[2mm]
+ \swarrow & \downarrow & \searrow & &\\[-1mm]
+ \text{Fourier/Laplace} & \text{Mellin} & \text{Poisson/Jacobi} & &\\
+ \delta\text{-lines/resolvent} & Z_\Theta(s;t) & \text{winding/path sum} & &\\
+ & \downarrow\ t=0 & \downarrow\ t\in\mathbb Q & &\\
+ & \zeta(2s) & \text{Gauss/revival arithmetic} & &\\
+ & \downarrow & & &\\
+ & \text{Euler product / prime powers / zeros} & & &
+\end{array}}
+\end{equation}
+The classical arrows are exact.  The research task is to determine which of them survive
+when the reduced kernel is replaced by a canonical UBT operator and whether either prime
+route explains the existing UBT $\alpha$ sectors.
