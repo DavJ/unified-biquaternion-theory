@@ -2,13 +2,13 @@ ROOT: research_tracks/alpha_spectral/hecke_equivariant_path_integral.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.89
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1 hecke_equivariant_path_integral.tex
+SECONDS: 5.26
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1 hecke_equivariant_path_integral.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1"  "hecke_equivariant_path_integral.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1"  "hecke_equivariant_path_integral.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./hecke_equivariant_path_integral.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
@@ -55,12 +55,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -84,12 +84,10 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)))
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-0.mdf))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -177,7 +175,13 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
@@ -191,24 +195,19 @@ tex)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
-Library (tcolorbox): 'tcbskins.code.tex' version '6.4.1'
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill-common.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.te
 x)) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
-Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.4.1'
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
-Library (tcolorbox): 'tcbbreakable.code.tex' version '6.4.1'
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/pdfcol/pdfcol.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
-(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral
-__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integr
-al.aux)
+(/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/buil
+d/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_inte
+gral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -218,220 +217,215 @@ al.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd)
-Overfull \hbox (8.77005pt too wide) in paragraph at lines 95--112
+Overfull \hbox (8.77005pt too wide) in paragraph at lines 105--122
 \OT1/cmr/m/n/10.95 of $[](2\OML/cmm/m/it/10.95 ; \U/msb/m/n/10.95 Z\OT1/cmr/m/n
 /10.95 )$ or Hecke cor-re-spon-dences on $\OMS/cmsy/m/n/10.95 H[]$\OT1/cmr/m/n/
 10.95 ; a quo-tient iden-ti-fi-ca-tion $^^@[](\OML/cmm/m/it/10.95 p\OT1/cmr/m/n
 /10.95 )\OMS/cmsy/m/n/10.95 n[]\OT1/cmr/m/n/10.95 (2\OML/cmm/m/it/10.95 ; \U/ms
 b/m/n/10.95 Z\OT1/cmr/m/n/10.95 ) []
 No file hecke_equivariant_path_integral.toc.
-
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `eq:Bansatz' on page 2 undefined on input line 151.
-
+LaTeX Warning: Reference `eq:Bansatz' on page 2 undefined on input line 161.
 
 [2]
 
-LaTeX Warning: Citation `Serre:1973' on page 3 undefined on input line 218.
+LaTeX Warning: Citation `Serre:1973' on page 3 undefined on input line 228.
 
 
-LaTeX Warning: Reference `lem:index' on page 3 undefined on input line 231.
+LaTeX Warning: Reference `lem:index' on page 3 undefined on input line 241.
 
 
-LaTeX Warning: Reference `lem:cosets' on page 3 undefined on input line 232.
+LaTeX Warning: Reference `lem:cosets' on page 3 undefined on input line 242.
 
 
-LaTeX Warning: Reference `cor:area' on page 3 undefined on input line 234.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 239.
+LaTeX Warning: Reference `cor:area' on page 3 undefined on input line 244.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 239.
+(hyperref)                removing `math shift' on input line 249.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 239.
+(hyperref)                removing `subscript' on input line 249.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 257.
+(hyperref)                removing `math shift' on input line 249.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\psi' on input line 257.
+(hyperref)                removing `math shift' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 257.
+(hyperref)                removing `\psi' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 285.
+(hyperref)                removing `math shift' on input line 267.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 285.
+(hyperref)                removing `math shift' on input line 295.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 285.
+(hyperref)                removing `math shift' on input line 295.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 285.
+(hyperref)                removing `math shift' on input line 295.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 285.
+(hyperref)                removing `subscript' on input line 295.
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 295.
 
 [3]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 310.
+(hyperref)                removing `math shift' on input line 320.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Theta' on input line 310.
+(hyperref)                removing `\Theta' on input line 320.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 310.
+(hyperref)                removing `math shift' on input line 320.
 
 
-LaTeX Warning: Reference `eq:action' on page 4 undefined on input line 314.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 347.
+LaTeX Warning: Reference `eq:action' on page 4 undefined on input line 324.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 347.
+(hyperref)                removing `math shift' on input line 357.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 347.
+(hyperref)                removing `\Gamma' on input line 357.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 347.
+(hyperref)                removing `subscript' on input line 357.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 347.
+(hyperref)                removing `math shift' on input line 357.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 347.
+(hyperref)                removing `math shift' on input line 357.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 347.
+(hyperref)                removing `subscript' on input line 357.
 
 
-Overfull \hbox (4.88377pt too wide) in paragraph at lines 359--361
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 357.
+
+
+Overfull \hbox (4.88377pt too wide) in paragraph at lines 369--371
 [][]\OT1/cmr/bx/n/12 Lemma 5.1 \OT1/cmr/m/n/12 (Arith-metic com-pat-i-bil-ity)\
 OT1/cmr/bx/n/12 . []\OT1/cmr/m/it/12 Con-di-tional on $[]\OT1/cmr/m/n/12 (2\OML
 /cmm/m/it/12 ; \U/msb/m/n/12 Z\OT1/cmr/m/n/12 )$ \OT1/cmr/m/it/12 act-ing on wi
 nd-ing modes,
-
 [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 374.
+(hyperref)                removing `math shift' on input line 384.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 374.
+(hyperref)                removing `math shift' on input line 384.
 
 
-LaTeX Warning: Reference `eq:winding' on page 5 undefined on input line 389.
+LaTeX Warning: Reference `eq:winding' on page 5 undefined on input line 399.
 
 
-LaTeX Warning: Reference `lem:arith' on page 5 undefined on input line 398.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 404.
+LaTeX Warning: Reference `lem:arith' on page 5 undefined on input line 408.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 404.
+(hyperref)                removing `math shift' on input line 414.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 404.
+(hyperref)                removing `superscript' on input line 414.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 404.
+(hyperref)                removing `subscript' on input line 414.
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 414.
 
 [5]
 
-LaTeX Warning: Reference `def:saddles' on page 6 undefined on input line 467.
+LaTeX Warning: Reference `def:saddles' on page 6 undefined on input line 477.
 
 
-LaTeX Warning: Reference `prop:equal' on page 6 undefined on input line 472.
+LaTeX Warning: Reference `prop:equal' on page 6 undefined on input line 482.
 
 
-LaTeX Warning: Reference `prop:O1' on page 6 undefined on input line 474.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 491.
+LaTeX Warning: Reference `prop:O1' on page 6 undefined on input line 484.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\ln' on input line 491.
+(hyperref)                removing `math shift' on input line 501.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 491.
+(hyperref)                removing `\ln' on input line 501.
 
 
-LaTeX Warning: Reference `eq:veff' on page 6 undefined on input line 505.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 501.
 
-./hecke_equivariant_path_integral.tex:516: Undefined control sequence.
+
+LaTeX Warning: Reference `eq:veff' on page 6 undefined on input line 515.
+
+./hecke_equivariant_path_integral.tex:526: Undefined control sequence.
 <recently read> \const 
                        
-l.516 ...p$ contributes a term of the form $\const
+l.526 ...p$ contributes a term of the form $\const
                                                   \cdot(p+1)\ln(p/\beta)$,
-./hecke_equivariant_path_integral.tex:516:  ==> Fatal error occurred, no output
+./hecke_equivariant_path_integral.tex:526:  ==> Fatal error occurred, no output
  PDF file produced!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
-racks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_eq
-uivariant_path_integral.log.
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log'
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_
+equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log.
 Latexmk: Missing input file 'hecke_equivariant_path_integral.toc' (or dependence on it) from following:
   No file hecke_equivariant_path_integral.toc.
-Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 11 reference(s)
-  Latex failed to resolve 1 citation(s)
 Latexmk: ====Undefined refs and citations with line #s in .tex file:
-  Reference `eq:Bansatz' on page 2 undefined on input line 151
-  Citation `Serre:1973' on page 3 undefined on input line 218
-  Reference `lem:index' on page 3 undefined on input line 231
-  Reference `lem:cosets' on page 3 undefined on input line 232
-  Reference `cor:area' on page 3 undefined on input line 234
-  Reference `eq:action' on page 4 undefined on input line 314
-  Reference `eq:winding' on page 5 undefined on input line 389
- And 5 more --- see log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log'
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log' and/or above output for details
-
+  Reference `eq:Bansatz' on page 2 undefined on input line 161
+  Citation `Serre:1973' on page 3 undefined on input line 228
+  Reference `lem:index' on page 3 undefined on input line 241
+  Reference `lem:cosets' on page 3 undefined on input line 242
+  Reference `cor:area' on page 3 undefined on input line 244
+  Reference `eq:action' on page 4 undefined on input line 324
+  Reference `eq:winding' on page 5 undefined on input line 399
+ And 5 more --- see log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log'
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 11 reference(s)
+  Latex failed to resolve 1 citation(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1/hecke_equivariant_path_integral.log' and/or above output for details
+

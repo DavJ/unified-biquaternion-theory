@@ -2,13 +2,13 @@ ROOT: research_tracks/hecke_bridge/motivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.42
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2 motivation.tex
+SECONDS: 5.13
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2 motivation.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2"  "motivation.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2"  "motivation.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./motivation.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
@@ -52,12 +52,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -79,12 +79,10 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)))
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-0.mdf))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -172,7 +170,13 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
@@ -186,21 +190,17 @@ tex)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
-Library (tcolorbox): 'tcbskins.code.tex' version '6.4.1'
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill-common.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.te
 x)) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
-Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.4.1'
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
-Library (tcolorbox): 'tcbbreakable.code.tex' version '6.4.1'
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/pdfcol/pdfcol.sty))
-(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__hecke_bridge__
-motivation.tex__43280cdcf2/motivation.aux)
+(/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/buil
+d/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/mo
+tivation.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -209,133 +209,131 @@ motivation.tex__43280cdcf2/motivation.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-Overfull \hbox (7.67815pt too wide) in paragraph at lines 62--63
+Overfull \hbox (7.67815pt too wide) in paragraph at lines 72--73
 []\OT1/cmr/bx/n/10.95 Status: [MO-TI-VATED CON-JEC-TURE --- al-ge-braic con-nec
 -tion OPEN] 
 
-LaTeX Warning: Reference `sec:open' on page 1 undefined on input line 74.
+LaTeX Warning: Reference `sec:open' on page 1 undefined on input line 84.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 89.
+(hyperref)                removing `math shift' on input line 99.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 89.
+(hyperref)                removing `math shift' on input line 99.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 89.
+(hyperref)                removing `math shift' on input line 99.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Theta' on input line 89.
+(hyperref)                removing `\Theta' on input line 99.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 89.
-
+(hyperref)                removing `math shift' on input line 99.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 120.
+(hyperref)                removing `math shift' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 120.
+(hyperref)                removing `math shift' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 120.
+(hyperref)                removing `math shift' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dim' on input line 120.
+(hyperref)                removing `\dim' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 120.
+(hyperref)                removing `subscript' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\otimes' on input line 120.
+(hyperref)                removing `\otimes' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 120.
+(hyperref)                removing `math shift' on input line 130.
 
 
 Package mdframed Warning: You got a bad break
 (mdframed)                because the last box will be empty
 (mdframed)                you have to change it manually
 (mdframed)                by changing the text, the space
-(mdframed)                or something else on input line 143.
+(mdframed)                or something else on input line 153.
 
-
-[2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+[2]
 
 Package mdframed Warning: You got a bad break
 (mdframed)                because the last split box is empty
-(mdframed)                You have to change the settings on input line 143.
+(mdframed)                You have to change the settings on input line 153.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 150.
+(hyperref)                removing `math shift' on input line 160.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 150.
+(hyperref)                removing `math shift' on input line 160.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 156.
+(hyperref)                removing `math shift' on input line 166.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\chi' on input line 156.
+(hyperref)                removing `\chi' on input line 166.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 156.
+(hyperref)                removing `math shift' on input line 166.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 156.
+(hyperref)                removing `math shift' on input line 166.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 156.
-
+(hyperref)                removing `math shift' on input line 166.
 
 [3]
-Overfull \hbox (2.44246pt too wide) in paragraph at lines 214--219
+Overfull \hbox (2.44246pt too wide) in paragraph at lines 224--229
 []\OT1/cmr/bx/n/12 Algebraic deriva-tion of the spe-cific forms\OT1/cmr/m/n/12 
 : The forms $76\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 :a:a$\OT1/cm
 r/m/n/12 , $7\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 4\OML/cmm/m/it/12 :a:a$\OT1/cmr/
 m/n/12 , $208\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 6\OML/cmm/m/it/12 :a:\OT1/cmr/m/
 n/12 ?$
-./motivation.tex:234: Undefined control sequence.
-l.234 \toprule
+./motivation.tex:244: Undefined control sequence.
+l.244 \toprule
               
-./motivation.tex:234:  ==> Fatal error occurred, no output PDF file produced!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
-racks__hecke_bridge__motivation.tex__43280cdcf2/motivation.log.
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.log'
-Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 1 reference(s)
+./motivation.tex:244:  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivati
+on.tex__43280cdcf2/motivation.log.
 Latexmk: ====Undefined refs and citations with line #s in .tex file:
-  Reference `sec:open' on page 1 undefined on input line 74
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.log' and/or above output for details
-
+  Reference `sec:open' on page 1 undefined on input line 84
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 1 reference(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2/motivation.log' and/or above output for details
+

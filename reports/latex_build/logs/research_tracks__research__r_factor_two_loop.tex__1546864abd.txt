@@ -2,13 +2,13 @@ ROOT: research_tracks/research/r_factor_two_loop.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.80
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd r_factor_two_loop.tex
+SECONDS: 2.53
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd r_factor_two_loop.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd"  "r_factor_two_loop.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd"  "r_factor_two_loop.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./r_factor_two_loop.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
@@ -50,12 +50,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -70,122 +70,121 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__r_fa
-ctor_two_loop.tex__1546864abd/r_factor_two_loop.aux)
+(/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/buil
+d/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd
+/r_factor_two_loop.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 51.
+(hyperref)                removing `math shift' on input line 61.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 51.
+(hyperref)                removing `math shift' on input line 61.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
+(hyperref)                removing `math shift' on input line 117.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\psi' on input line 107.
+(hyperref)                removing `\psi' on input line 117.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
+(hyperref)                removing `math shift' on input line 117.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
+(hyperref)                removing `math shift' on input line 150.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
+(hyperref)                removing `math shift' on input line 150.
 
 
-LaTeX Warning: Reference `conj:two_loop' on page 2 undefined on input line 165.
+LaTeX Warning: Reference `conj:two_loop' on page 2 undefined on input line 175.
 
 
-
-[2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-[3]
+[2] [3]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 322.
+(hyperref)                removing `math shift' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\beta' on input line 322.
+(hyperref)                removing `\beta' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 322.
+(hyperref)                removing `math shift' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 322.
+(hyperref)                removing `math shift' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 322.
+(hyperref)                removing `superscript' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\times' on input line 322.
+(hyperref)                removing `\times' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 322.
+(hyperref)                removing `superscript' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 322.
+(hyperref)                removing `math shift' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 330.
+(hyperref)                removing `math shift' on input line 340.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 330.
+(hyperref)                removing `superscript' on input line 340.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 330.
+(hyperref)                removing `math shift' on input line 340.
 
 
-./r_factor_two_loop.tex:338: LaTeX Error: Bad math environment delimiter.
+./r_factor_two_loop.tex:348: LaTeX Error: Bad math environment delimiter.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.338 \begin{equation}
+l.348 \begin{equation}
                       
-./r_factor_two_loop.tex:338:  ==> Fatal error occurred, no output PDF file prod
+./r_factor_two_loop.tex:348:  ==> Fatal error occurred, no output PDF file prod
 uced!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
-racks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.log.
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.log'
-Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 2 reference(s)
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two
+_loop.tex__1546864abd/r_factor_two_loop.log.
 Latexmk: ====Undefined refs and citations with line #s in .tex file:
-  Reference `conj:two_loop' on page 2 undefined on input line 165
-  Reference `conj:two_loop' on page 2 undefined on input line 165
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.log' and/or above output for details
-
+  Reference `conj:two_loop' on page 2 undefined on input line 175
+  Reference `conj:two_loop' on page 2 undefined on input line 175
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 2 reference(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd/r_factor_two_loop.log' and/or above output for details
+

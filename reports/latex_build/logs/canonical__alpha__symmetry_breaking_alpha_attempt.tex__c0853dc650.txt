@@ -2,13 +2,13 @@ ROOT: canonical/alpha/symmetry_breaking_alpha_attempt.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.73
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650 symmetry_breaking_alpha_attempt.tex
+SECONDS: 3.60
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650 symmetry_breaking_alpha_attempt.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650"  "symmetry_breaking_alpha_attempt.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650"  "symmetry_breaking_alpha_attempt.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./symmetry_breaking_alpha_attempt.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
@@ -55,12 +55,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -82,14 +82,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)))
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-0.mdf))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -177,25 +175,12 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 (/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
-(/mnt/data/ubt_next_work/build/latex-audit/work/canonical__alpha__symmetry_brea
-king_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.aux)
+(/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/buil
+d/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853
+dc650/symmetry_breaking_alpha_attempt.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -205,7 +190,7 @@ king_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 
-./symmetry_breaking_alpha_attempt.tex:80: LaTeX Error: Unicode character Θ (U+
+./symmetry_breaking_alpha_attempt.tex:90: LaTeX Error: Unicode character Θ (U+
 0398)
                not set up for use with LaTeX.
 
@@ -213,24 +198,24 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80   \item[\textbf{A2}] The Θ
+l.90   \item[\textbf{A2}] The Θ
                                 -field admits a non-zero vacuum expectation ...
-./symmetry_breaking_alpha_attempt.tex:80:  ==> Fatal error occurred, no output 
+./symmetry_breaking_alpha_attempt.tex:90:  ==> Fatal error occurred, no output 
 PDF file produced!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/canonical_
-_alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha
-_attempt.log.
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.log'
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.log' and/or above output for details
-
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alp
+ha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.log.
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.log'
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650/symmetry_breaking_alpha_attempt.log' and/or above output for details
+

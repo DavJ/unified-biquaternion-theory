@@ -46,8 +46,23 @@ canonical/fields/chronofactor_operator.tex
 canonical/geometry/Rpsi_dynamical_fix.tex
 canonical/gr_closure/covariant_tetrad_rank_theorem.tex
 canonical/gr_closure/frw_cosmological_solutions.tex
+canonical/gr_closure/gap_10_gr_effective_completion.tex
+canonical/gr_closure/gap_10d_induced_gravity_endgame.tex
+canonical/gr_closure/gap_10d_low_energy_uniqueness.tex
+canonical/gr_closure/gap_10d_theta_hessian_principal_symbol.tex
+canonical/gr_closure/gap_10i_augmented_holonomy.tex
 canonical/gr_closure/gap_10i_integrability_selection.tex
+canonical/gr_closure/gap_10i_paired_connection_audit.tex
+canonical/gr_closure/gap_10i_torsionful_local_representer.tex
+canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex
 canonical/gr_closure/gap_10omega_connection_elimination.tex
+canonical/gr_closure/gap_10t_composite_flat_admissibility.tex
+canonical/gr_closure/gap_10t_dcomposite_linearized.tex
+canonical/gr_closure/gap_10t_minimal_one_connection_gr_no_go.tex
+canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex
+canonical/gr_closure/gap_10t_split_jet_auxiliary_completion.tex
+canonical/gr_closure/gap_10t_split_jet_right_inverse.tex
+canonical/gr_closure/gap_10tdyn_10d_canonical_action_audit.tex
 canonical/gr_closure/GR_chain_summary.tex
 canonical/gr_closure/linearised_fiber_closure.tex
 canonical/gr_closure/linearised_gravity.tex
@@ -61,6 +76,7 @@ canonical/gr_closure/zerilli_derivation.tex
 canonical/gr_limit/GR_limit_of_UBT.tex
 canonical/interactions/B_base_derivation_complete.tex
 canonical/interactions/colour_charge_lattice.tex
+canonical/interactions/gap_su3_triqubit_qec.tex
 canonical/interactions/hypercharge_assignments.tex
 canonical/interactions/su3_qubit_encoding.tex
 canonical/n_eff/neff_reconciliation.tex
@@ -123,6 +139,7 @@ docs/publication/alpha_prime_attractor_paper.tex
 docs/publication/arxiv/main.tex
 docs/publication/ubt_gravity_paper.tex
 docs/textbook/covariant_tetrad_student_paper.tex
+docs/textbook/indices_torsion_anticommutator_rot_student_paper_cs.tex
 docs/textbook/main.tex
 docs/UBT_VERIFICATION_REPORT.tex
 experiments/research_tracks/fingerprints/UBT_coding_fingerprint.tex
@@ -161,6 +178,8 @@ research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A3_odd_winding_measure_attack_respons
 research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A4_su2_twist_uniqueness_theorem.tex
 research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A5_em_modular_normalisation_attack_response.tex
 research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/G137B_full_closure.tex
+research_tracks/canonical_relation_generalized_dirac/canonical_relation_dirac_proof.tex
+research_tracks/canonical_relation_generalized_dirac/no_extra_variable_rank_theorem.tex
 research_tracks/coupling_spectrum/multi_coupling_projection_hypothesis.tex
 research_tracks/coupling_spectrum/rg_prime_checkpoints.tex
 research_tracks/EW/anomaly_cancellation.tex
@@ -183,6 +202,7 @@ research_tracks/gap_u1/classification.tex
 research_tracks/gap_u1/examples.tex
 research_tracks/gap_u1/proof.tex
 research_tracks/gap_u2/derive_connection_equation.tex
+research_tracks/gem_compact_modes/gem_compact_modes.tex
 research_tracks/gray_transport_layer/gray_path_fingerprint.tex
 research_tracks/hecke_bridge/motivation.tex
 research_tracks/mirror_sector/vacuum_stability.tex
@@ -237,6 +257,8 @@ research_tracks/rg_nlogn/full_rg_derivation.tex
 research_tracks/rg_nlogn/loop_integrals_appendix.tex
 research_tracks/rh_operator/operator_definition.tex
 research_tracks/rh_operator/selfadjointness_attempt.tex
+research_tracks/T1_GR/free_fiber_completion/gap_10r_free_fiber_embedding_completion.tex
+research_tracks/T1_GR/free_fiber_completion/gap_10s_covariant_profile_geometry.tex
 research_tracks/T1_GR/GR_paper_v1.tex
 research_tracks/T1_GR/GR_theorem_result.tex
 research_tracks/T1_GR/theorem_chain.tex

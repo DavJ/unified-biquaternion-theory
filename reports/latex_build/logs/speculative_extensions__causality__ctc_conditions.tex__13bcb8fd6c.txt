@@ -2,13 +2,13 @@ ROOT: speculative_extensions/causality/ctc_conditions.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.02
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c ctc_conditions.tex
+SECONDS: 4.91
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c ctc_conditions.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c"  "ctc_conditions.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c"  "ctc_conditions.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./ctc_conditions.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
@@ -52,12 +52,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -70,7 +70,6 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -161,26 +160,13 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 (/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/mnt/data/ubt_next_work/build/latex-audit/work/speculative_extensions__causali
-ty__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.aux)
+(/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/buil
+d/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb
+8fd6c/ctc_conditions.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -189,92 +175,90 @@ ty__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-Overfull \hbox (83.27214pt too wide) in paragraph at lines 40--44
+Overfull \hbox (83.27214pt too wide) in paragraph at lines 50--54
 \OT1/cmtt/m/it/12 complex[]time[]causal[]structure.tex\OT1/cmr/m/it/12 , \OT1/c
 mtt/m/it/12 rotation[]complex[]time.tex\OT1/cmr/m/it/12 , \OT1/cmtt/m/it/12 chr
 onology[]protection[]ubt.tex\OT1/cmr/m/it/12 ,
 
-LaTeX Warning: Citation `Godel1949' on page 1 undefined on input line 69.
+LaTeX Warning: Citation `Godel1949' on page 1 undefined on input line 79.
 
 
-LaTeX Warning: Citation `Kerr1963' on page 1 undefined on input line 72.
+LaTeX Warning: Citation `Kerr1963' on page 1 undefined on input line 82.
 
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/en
-c/dvips/cm-super/cm-super-ts1.enc}]
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 106.
+(hyperref)                removing `math shift' on input line 116.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 106.
+(hyperref)                removing `subscript' on input line 116.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mu' on input line 106.
+(hyperref)                removing `\mu' on input line 116.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\nu' on input line 106.
+(hyperref)                removing `\nu' on input line 116.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 106.
+(hyperref)                removing `math shift' on input line 116.
 
 
-LaTeX Warning: Citation `Morris1988' on page 2 undefined on input line 130.
+LaTeX Warning: Citation `Morris1988' on page 2 undefined on input line 140.
 
 
-LaTeX Warning: Reference `conj:neg_energy' on page 2 undefined on input line 14
+LaTeX Warning: Reference `conj:neg_energy' on page 2 undefined on input line 15
 3.
-
 
 [2]
 
-LaTeX Warning: Reference `eq:ctc_gr' on page 3 undefined on input line 153.
+LaTeX Warning: Reference `eq:ctc_gr' on page 3 undefined on input line 163.
 
 
-LaTeX Warning: Reference `eq:einstein_eff' on page 3 undefined on input line 16
+LaTeX Warning: Reference `eq:einstein_eff' on page 3 undefined on input line 17
 3.
 
 
-LaTeX Warning: Reference `eq:godel' on page 3 undefined on input line 189.
+LaTeX Warning: Reference `eq:godel' on page 3 undefined on input line 199.
 
 
-LaTeX Warning: Command \" invalid in math mode on input line 192.
+LaTeX Warning: Command \" invalid in math mode on input line 202.
 
-./ctc_conditions.tex:192: Please use \mathaccent for accents in math mode.
+./ctc_conditions.tex:202: Please use \mathaccent for accents in math mode.
 \add@accent ... \let \ignorespaces \relax \accent 
                                                   #1 #2\egroup \ifmmode \els...
-l.192   \item Set $g_{\mu\nu}^{\mathrm{Gödel}
+l.202   \item Set $g_{\mu\nu}^{\mathrm{Gödel}
                                               }$ as the real projection.
-./ctc_conditions.tex:192:  ==> Fatal error occurred, no output PDF file produce
+./ctc_conditions.tex:202:  ==> Fatal error occurred, no output PDF file produce
 d!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/speculativ
-e_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.log.
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.log'
-Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 4 reference(s)
-  Latex failed to resolve 3 citation(s)
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_
+conditions.tex__13bcb8fd6c/ctc_conditions.log.
 Latexmk: ====Undefined refs and citations with line #s in .tex file:
-  Citation `Godel1949' on page 1 undefined on input line 69
-  Citation `Kerr1963' on page 1 undefined on input line 72
-  Citation `Morris1988' on page 2 undefined on input line 130
-  Reference `conj:neg_energy' on page 2 undefined on input line 143
-  Reference `eq:ctc_gr' on page 3 undefined on input line 153
-  Reference `eq:einstein_eff' on page 3 undefined on input line 163
-  Reference `eq:godel' on page 3 undefined on input line 189
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.log' and/or above output for details
-
+  Citation `Godel1949' on page 1 undefined on input line 79
+  Citation `Kerr1963' on page 1 undefined on input line 82
+  Citation `Morris1988' on page 2 undefined on input line 140
+  Reference `conj:neg_energy' on page 2 undefined on input line 153
+  Reference `eq:ctc_gr' on page 3 undefined on input line 163
+  Reference `eq:einstein_eff' on page 3 undefined on input line 173
+  Reference `eq:godel' on page 3 undefined on input line 199
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 4 reference(s)
+  Latex failed to resolve 3 citation(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c/ctc_conditions.log' and/or above output for details
+

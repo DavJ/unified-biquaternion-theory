@@ -2,13 +2,13 @@ ROOT: docs/papers/papers/generated/neff_biquaternion.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.26
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a neff_biquaternion.tex
+SECONDS: 2.46
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a neff_biquaternion.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a"  "neff_biquaternion.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a"  "neff_biquaternion.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./neff_biquaternion.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
@@ -55,12 +55,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -83,37 +83,36 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)))
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-0.mdf))
 (/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty)
 
-./neff_biquaternion.tex:35: LaTeX Error: Command \openbox already defined.
+./neff_biquaternion.tex:45: LaTeX Error: Command \openbox already defined.
                Or name \end... illegal, see p.192 of the manual.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.35 ...inecolor=orange, linewidth=1.5pt]{openbox}
+l.45 ...inecolor=orange, linewidth=1.5pt]{openbox}
                                                   
-./neff_biquaternion.tex:35:  ==> Fatal error occurred, no output PDF file produ
+./neff_biquaternion.tex:45:  ==> Fatal error occurred, no output PDF file produ
 ced!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/docs__pape
-rs__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.log.
-
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.log'
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.log' and/or above output for details
-
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_b
+iquaternion.tex__638216d52a/neff_biquaternion.log.
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.log'
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a/neff_biquaternion.log' and/or above output for details
+
