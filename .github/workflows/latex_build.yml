@@ -53,6 +53,13 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install pytest pyyaml
 
+      - name: Normalize generated audit provenance state
+        run: |
+          python3 tools/mark_latex_audit_report.py
+          python3 tools/apply_provenance_headers.py --report \
+            > PROVENANCE_INVENTORY_2026-08-01.txt
+          python3 tools/regenerate_sha256sums.py
+
       - name: Enforce signed provenance release gate
         run: |
           python3 tools/apply_provenance_headers.py --check
@@ -62,6 +69,7 @@ jobs:
             tests/test_provenance_headers.py::test_tier_map_is_editorially_bounded \
             tests/test_provenance_headers.py::test_all_markable_sources_match_the_tier_map \
             tests/test_provenance_headers.py::test_distributed_tex_roots_declare_matching_tiers \
+            tests/test_provenance_headers.py::test_provenance_inventory_matches_current_tree \
             tests/test_provenance_review.py
 
       - name: Compile every standalone TeX root
@@ -86,6 +94,13 @@ jobs:
           # remaining compilation queue. Infrastructure errors still fail here.
           python3 tools/latex_audit.py "${args[@]}"
 
+      - name: Normalize regenerated audit provenance state
+        if: success()
+        run: |
+          python3 tools/mark_latex_audit_report.py
+          python3 tools/apply_provenance_headers.py --report \
+            > PROVENANCE_INVENTORY_2026-08-01.txt
+
       - name: Publish curated canonical PDFs
         if: success()
         run: |
@@ -100,6 +115,10 @@ jobs:
           python3 tools/verify_pdf_provenance.py --require-all
           python3 tools/regenerate_sha256sums.py
           python3 tools/verify_sha256sums.py --quiet
+          python3 tools/apply_provenance_headers.py --check
+          python3 -m pytest -q \
+            tests/test_provenance_headers.py::test_provenance_inventory_matches_current_tree \
+            tests/test_sha256sums_integrity.py
 
       - name: Upload all successful PDFs
         if: always()
@@ -128,7 +147,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           # Never attach PDFs built from an older source tree to a newer human
-          # commit.  Artifacts and logs have already been uploaded above; when
+          # commit. Artifacts and logs have already been uploaded above; when
           # master advanced during this long build, the newer push will trigger
           # its own fresh audit.
           git fetch origin master
@@ -139,9 +158,9 @@ jobs:
           fi
 
           git add -f reports/latex_build
-          git add docs/pdfs SHA256SUMS.txt
+          git add docs/pdfs PROVENANCE_INVENTORY_2026-08-01.txt SHA256SUMS.txt
           if git diff --cached --quiet; then
-            echo "No report or PDF changes to commit"
+            echo "No report, provenance inventory, or PDF changes to commit"
             exit 0
           fi
           git commit -m "chore: refresh LaTeX audit and PDFs [skip ci]"
