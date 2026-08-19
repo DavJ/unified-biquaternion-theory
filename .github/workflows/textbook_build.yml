@@ -1,0 +1,134 @@
+name: Build textbook PDF
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'docs/textbook/**'
+      - 'canonical/**'
+      - 'tex/**'
+      - 'tools/latex_audit.py'
+      - 'tools/apply_provenance_headers.py'
+      - 'AI_PROVENANCE.md'
+      - 'PROVENANCE_TIERS.yaml'
+      - '.github/workflows/textbook_build.yml'
+  pull_request:
+    paths:
+      - 'docs/textbook/**'
+      - 'canonical/**'
+      - 'tex/**'
+      - 'tools/latex_audit.py'
+      - 'tools/apply_provenance_headers.py'
+      - 'AI_PROVENANCE.md'
+      - 'PROVENANCE_TIERS.yaml'
+      - '.github/workflows/textbook_build.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-textbook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            latexmk biber python3-pygments \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-science \
+            texlive-xetex texlive-luatex texlive-bibtex-extra
+
+      - name: Check AI provenance markers
+        run: python3 tools/apply_provenance_headers.py --check
+
+      - name: Audit standalone textbook roots
+        env:
+          TEXINPUTS: ${{ github.workspace }}/tex//:
+        run: |
+          python3 tools/latex_audit.py \
+            --include 'docs/textbook/*.tex' \
+            --include 'docs/textbook/**/*.tex' \
+            --jobs 2 --timeout 240 --strict
+
+      - name: Build official textbook PDF
+        run: make -C docs/textbook verify
+
+      - name: Publish official PDF into repository tree
+        run: make -C docs/textbook publish
+
+      - name: Upload textbook PDF and audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: UBT_Textbook-${{ github.run_id }}
+          path: |
+            build/textbook/public/UBT_Textbook.pdf
+            reports/latex_build/**
+          if-no-files-found: error
+
+      - name: Commit refreshed textbook PDF
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          if git diff --quiet -- docs/pdfs/UBT_Textbook.pdf; then
+            echo 'UBT_Textbook.pdf is unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/pdfs/UBT_Textbook.pdf
+          git commit -m 'docs: refresh UBT textbook PDF'
+          git push origin HEAD:master
+
+      - name: Validate textbook email secrets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          TEXTBOOK_EMAIL_TO: ${{ secrets.TEXTBOOK_EMAIL_TO }}
+          TEXTBOOK_SMTP_USERNAME: ${{ secrets.TEXTBOOK_SMTP_USERNAME }}
+          TEXTBOOK_SMTP_APP_PASSWORD: ${{ secrets.TEXTBOOK_SMTP_APP_PASSWORD }}
+        run: |
+          test -n "$TEXTBOOK_EMAIL_TO"
+          test -n "$TEXTBOOK_SMTP_USERNAME"
+          test -n "$TEXTBOOK_SMTP_APP_PASSWORD"
+
+      - name: Email official textbook PDF
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          TEXTBOOK_EMAIL_TO: ${{ secrets.TEXTBOOK_EMAIL_TO }}
+          TEXTBOOK_SMTP_USERNAME: ${{ secrets.TEXTBOOK_SMTP_USERNAME }}
+          TEXTBOOK_SMTP_APP_PASSWORD: ${{ secrets.TEXTBOOK_SMTP_APP_PASSWORD }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import smtplib
+          from email.message import EmailMessage
+          from pathlib import Path
+
+          pdf = Path('build/textbook/public/UBT_Textbook.pdf')
+          if not pdf.is_file() or pdf.stat().st_size == 0:
+              raise SystemExit('UBT_Textbook.pdf is missing or empty')
+
+          msg = EmailMessage()
+          msg['Subject'] = 'UBT Textbook PDF'
+          msg['From'] = os.environ['TEXTBOOK_SMTP_USERNAME']
+          msg['To'] = os.environ['TEXTBOOK_EMAIL_TO']
+          msg.set_content('Attached is the latest successfully built UBT textbook PDF.')
+          msg.add_attachment(
+              pdf.read_bytes(),
+              maintype='application',
+              subtype='pdf',
+              filename='UBT_Textbook.pdf',
+          )
+
+          with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=30) as smtp:
+              smtp.login(
+                  os.environ['TEXTBOOK_SMTP_USERNAME'],
+                  os.environ['TEXTBOOK_SMTP_APP_PASSWORD'],
+              )
+              smtp.send_message(msg)
+          PY
