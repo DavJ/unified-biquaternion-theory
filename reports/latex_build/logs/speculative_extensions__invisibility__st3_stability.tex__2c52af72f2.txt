@@ -2,7 +2,7 @@ ROOT: speculative_extensions/invisibility/st3_stability.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.96
+SECONDS: 4.93
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__invisibility__st3_stability.tex__2c52af72f2 st3_stability.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: speculative_extensions/UBT_HeckeWorlds_theta_zeta_primes_appendix.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.29
+SECONDS: 3.68
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__UBT_HeckeWorlds_theta_zeta_primes_appendix.tex__a4220eea4a UBT_HeckeWorlds_theta_zeta_primes_appendix.tex
 
 --- LATEXMK OUTPUT ---

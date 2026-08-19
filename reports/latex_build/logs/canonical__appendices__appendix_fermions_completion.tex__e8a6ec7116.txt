@@ -2,7 +2,7 @@ ROOT: canonical/appendices/appendix_fermions_completion.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.47
+SECONDS: 3.43
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__appendices__appendix_fermions_completion.tex__e8a6ec7116 appendix_fermions_completion.tex
 
 --- LATEXMK OUTPUT ---

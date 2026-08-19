@@ -2,7 +2,7 @@ ROOT: research_tracks/research/modular_dynamics.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.59
+SECONDS: 2.56
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__modular_dynamics.tex__ef47fd9f13 modular_dynamics.tex
 
 --- LATEXMK OUTPUT ---

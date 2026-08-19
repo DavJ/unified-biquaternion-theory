@@ -2,7 +2,7 @@ ROOT: docs/papers/papers/su3_triplet/main.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.82
+SECONDS: 1.86
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__su3_triplet__main.tex__3d050075d4 main.tex
 
 --- LATEXMK OUTPUT ---

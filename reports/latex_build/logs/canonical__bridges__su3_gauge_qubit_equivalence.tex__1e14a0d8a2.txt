@@ -2,7 +2,7 @@ ROOT: canonical/bridges/su3_gauge_qubit_equivalence.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.30
+SECONDS: 3.29
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__bridges__su3_gauge_qubit_equivalence.tex__1e14a0d8a2 su3_gauge_qubit_equivalence.tex
 
 --- LATEXMK OUTPUT ---

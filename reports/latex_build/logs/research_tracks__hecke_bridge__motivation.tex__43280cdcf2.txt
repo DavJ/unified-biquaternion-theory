@@ -2,7 +2,7 @@ ROOT: research_tracks/hecke_bridge/motivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.13
+SECONDS: 5.18
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__hecke_bridge__motivation.tex__43280cdcf2 motivation.tex
 
 --- LATEXMK OUTPUT ---

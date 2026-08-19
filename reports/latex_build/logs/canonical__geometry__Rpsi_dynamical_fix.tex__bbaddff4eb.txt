@@ -2,7 +2,7 @@ ROOT: canonical/geometry/Rpsi_dynamical_fix.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.47
+SECONDS: 3.43
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__geometry__Rpsi_dynamical_fix.tex__bbaddff4eb Rpsi_dynamical_fix.tex
 
 --- LATEXMK OUTPUT ---

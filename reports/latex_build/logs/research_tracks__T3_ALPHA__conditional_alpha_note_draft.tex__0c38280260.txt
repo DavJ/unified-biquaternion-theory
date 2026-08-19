@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/conditional_alpha_note_draft.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 6.60
+SECONDS: 6.55
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__conditional_alpha_note_draft.tex__0c38280260 conditional_alpha_note_draft.tex
 
 --- LATEXMK OUTPUT ---

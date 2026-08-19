@@ -2,7 +2,7 @@ ROOT: canonical/alpha/nlogn_origin_analysis.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.72
+SECONDS: 3.66
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__nlogn_origin_analysis.tex__95cd85ef37 nlogn_origin_analysis.tex
 
 --- LATEXMK OUTPUT ---

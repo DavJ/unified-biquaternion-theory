@@ -2,7 +2,7 @@ ROOT: canonical/alpha/veff_corrected.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.16
+SECONDS: 4.10
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__veff_corrected.tex__984f012719 veff_corrected.tex
 
 --- LATEXMK OUTPUT ---

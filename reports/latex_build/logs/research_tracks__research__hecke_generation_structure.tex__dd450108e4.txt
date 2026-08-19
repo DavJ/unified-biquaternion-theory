@@ -2,7 +2,7 @@ ROOT: research_tracks/research/hecke_generation_structure.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.56
+SECONDS: 2.57
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__hecke_generation_structure.tex__dd450108e4 hecke_generation_structure.tex
 
 --- LATEXMK OUTPUT ---

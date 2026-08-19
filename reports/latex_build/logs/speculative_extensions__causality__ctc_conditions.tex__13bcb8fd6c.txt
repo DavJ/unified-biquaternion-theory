@@ -2,7 +2,7 @@ ROOT: speculative_extensions/causality/ctc_conditions.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.91
+SECONDS: 4.90
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c ctc_conditions.tex
 
 --- LATEXMK OUTPUT ---

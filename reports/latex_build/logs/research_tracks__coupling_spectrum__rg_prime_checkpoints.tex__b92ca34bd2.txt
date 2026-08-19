@@ -2,7 +2,7 @@ ROOT: research_tracks/coupling_spectrum/rg_prime_checkpoints.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.52
+SECONDS: 3.49
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2 rg_prime_checkpoints.tex
 
 --- LATEXMK OUTPUT ---

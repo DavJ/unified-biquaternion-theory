@@ -2,7 +2,7 @@ ROOT: canonical/interactions/colour_charge_lattice.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.05
+SECONDS: 4.14
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__interactions__colour_charge_lattice.tex__b5e28d8b5e colour_charge_lattice.tex
 
 --- LATEXMK OUTPUT ---

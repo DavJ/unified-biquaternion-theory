@@ -2,7 +2,7 @@ ROOT: docs/publication/arxiv/main.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.07
+SECONDS: 2.09
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__publication__arxiv__main.tex__71916730bd main.tex
 
 --- LATEXMK OUTPUT ---

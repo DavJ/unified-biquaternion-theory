@@ -2,7 +2,7 @@ ROOT: canonical/symmetry/chirality_and_parity_breaking.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.03
+SECONDS: 3.08
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__symmetry__chirality_and_parity_breaking.tex__281a13f713 chirality_and_parity_breaking.tex
 
 --- LATEXMK OUTPUT ---

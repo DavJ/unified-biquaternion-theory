@@ -2,7 +2,7 @@ ROOT: canonical/qed_phi_const/step4_schwinger_term.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.56
+SECONDS: 2.58
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__qed_phi_const__step4_schwinger_term.tex__2618c9000a step4_schwinger_term.tex
 
 --- LATEXMK OUTPUT ---

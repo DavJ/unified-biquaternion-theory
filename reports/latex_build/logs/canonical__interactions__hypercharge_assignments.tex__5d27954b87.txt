@@ -2,7 +2,7 @@ ROOT: canonical/interactions/hypercharge_assignments.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.88
+SECONDS: 4.92
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__interactions__hypercharge_assignments.tex__5d27954b87 hypercharge_assignments.tex
 
 --- LATEXMK OUTPUT ---

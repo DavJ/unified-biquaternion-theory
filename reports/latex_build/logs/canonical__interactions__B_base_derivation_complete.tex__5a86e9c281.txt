@@ -2,7 +2,7 @@ ROOT: canonical/interactions/B_base_derivation_complete.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.56
+SECONDS: 3.62
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__interactions__B_base_derivation_complete.tex__5a86e9c281 B_base_derivation_complete.tex
 
 --- LATEXMK OUTPUT ---

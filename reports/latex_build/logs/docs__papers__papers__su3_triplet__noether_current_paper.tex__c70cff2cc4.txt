@@ -2,7 +2,7 @@ ROOT: docs/papers/papers/su3_triplet/noether_current_paper.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.88
+SECONDS: 1.86
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__su3_triplet__noether_current_paper.tex__c70cff2cc4 noether_current_paper.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: research_tracks/alpha_spectral/b_coefficient_gap_resolution.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.14
+SECONDS: 5.16
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__b_coefficient_gap_resolution.tex__5c40d893fd b_coefficient_gap_resolution.tex
 
 --- LATEXMK OUTPUT ---

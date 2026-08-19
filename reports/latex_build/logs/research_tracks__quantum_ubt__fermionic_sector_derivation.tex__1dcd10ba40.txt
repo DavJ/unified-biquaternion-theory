@@ -2,7 +2,7 @@ ROOT: research_tracks/quantum_ubt/fermionic_sector_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.59
+SECONDS: 3.52
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__quantum_ubt__fermionic_sector_derivation.tex__1dcd10ba40 fermionic_sector_derivation.tex
 
 --- LATEXMK OUTPUT ---

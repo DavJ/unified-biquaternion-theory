@@ -2,7 +2,7 @@ ROOT: research_tracks/qed_alpha_derivation/gauge_kinetic_normalization.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 0.97
+SECONDS: 1.00
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__qed_alpha_derivation__gauge_kinetic_normalization.tex__ac1f407fcf gauge_kinetic_normalization.tex
 
 --- LATEXMK OUTPUT ---

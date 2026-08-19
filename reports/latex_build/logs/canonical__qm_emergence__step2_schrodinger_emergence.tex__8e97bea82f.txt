@@ -2,7 +2,7 @@ ROOT: canonical/qm_emergence/step2_schrodinger_emergence.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.30
+SECONDS: 2.31
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__qm_emergence__step2_schrodinger_emergence.tex__8e97bea82f step2_schrodinger_emergence.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: docs/papers/papers/generated/ubt_cosmo_hecke_neff.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.93
+SECONDS: 2.00
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__ubt_cosmo_hecke_neff.tex__e8acfffd8a ubt_cosmo_hecke_neff.tex
 
 --- LATEXMK OUTPUT ---

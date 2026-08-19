@@ -2,7 +2,7 @@ ROOT: research_tracks/research/theta_fermion_emergence.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.62
+SECONDS: 2.61
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__theta_fermion_emergence.tex__5d21f51f63 theta_fermion_emergence.tex
 
 --- LATEXMK OUTPUT ---

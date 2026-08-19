@@ -2,7 +2,7 @@ ROOT: research_tracks/rg_B46/one_loop_rg_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.70
+SECONDS: 2.69
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__rg_B46__one_loop_rg_derivation.tex__bd1d8af477 one_loop_rg_derivation.tex
 
 --- LATEXMK OUTPUT ---

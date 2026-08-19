@@ -2,7 +2,7 @@ ROOT: canonical/alpha/alpha_equation_matrix.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.08
+SECONDS: 3.99
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__alpha_equation_matrix.tex__d87dd6c173 alpha_equation_matrix.tex
 
 --- LATEXMK OUTPUT ---
