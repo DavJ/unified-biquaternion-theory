@@ -1,0 +1,188 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\title{Action-Origin Obstruction for the Canonical UBT Generalized-Dirac Programme}
+\author{Ing. David Jaro\v{s}}
+\date{20 August 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The active UBT geometry uses one field only,
+$E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$, with the metric and curved Clifford
+matrices derived from the same $E_\mu$.  A previous exact theorem shows that a
+first-order generalized-Dirac constraint can preserve metric rank ten without
+extra variables when its Jacobian with respect to the original field value is
+invertible.  This note addresses the next logical gap: can such a first-order
+equation be the Euler--Lagrange equation of the currently documented canonical
+quadratic kinetic action?  The answer is no, unless a degeneracy or additional
+variational mechanism is derived.  This is an order-of-equations obstruction,
+not a rank obstruction.
+\end{abstract}
+
+\section{Setup}
+Let $\Phi^A$ denote the eight real components of the one biquaternionic field
+$\Theta$.  Consider a first-derivative Lagrangian density
+\[
+L(\Phi,\partial\Phi)=\frac12
+G^{MN}H_{AB}(\Phi)\,D_M\Phi^A D_N\Phi^B-V(\Phi),
+\]
+where $G^{MN}$ is nondegenerate on the chosen spacetime/fibre branch and
+$H_{AB}$ is the nondegenerate real field-space pairing induced by the canonical
+biquaternionic kinetic form.  Gauge and frame connections may contribute lower
+order terms; they do not change the principal derivative-order argument below.
+
+\section{Principal Euler--Lagrange order}
+\begin{theorem}[Nondegenerate quadratic kinetic term gives a second-order field equation]
+Assume the first-derivative Hessian
+\[
+W^{MN}{}_{AB}:=\frac{\partial^2L}
+{\partial(D_M\Phi^A)\,\partial(D_N\Phi^B)}
+=G^{MN}H_{AB}
+\]
+is nonzero, and in particular nondegenerate in the combined derivative/field
+indices on the branch under consideration.  Then the Euler--Lagrange equation
+has principal part
+\[
+-G^{MN}H_{AB}\,D_MD_N\Phi^B,
+\]
+and is genuinely second order.  It therefore cannot be identical, as a local
+differential equation on the same variables, to a genuinely first-order
+Dirac equation
+\[
+\mathcal D(\Phi,D\Phi)=0
+\]
+with nonvanishing first-order principal symbol.
+\end{theorem}
+
+\begin{proof}
+For a first-derivative Lagrangian the Euler--Lagrange operator is
+\[
+\mathcal E_A(L)=\frac{\partial L}{\partial\Phi^A}
+-D_M\left(\frac{\partial L}{\partial(D_M\Phi^A)}\right).
+\]
+Differentiating the momentum term once more, the coefficient of the second
+jet $D_MD_N\Phi^B$ is minus the velocity Hessian $W^{MN}{}_{AB}$.  Under the
+stated nondegeneracy this coefficient does not vanish, so the differential
+order cannot drop to one.  Connection and potential terms alter only lower
+order pieces.  A first-order equation has no independent second-jet principal
+coefficient, hence the two local differential operators cannot be identical.
+\end{proof}
+
+\begin{corollary}[Current canonical scalar kinetic action does not directly yield the generalized-Dirac equation]
+The quadratic kinetic action presently documented in the UBT action track,
+whose field equation is of $D^\dagger D\Theta=\partial V/\partial\Theta^\dagger$
+type, cannot directly have the canonical generalized-Dirac equation as its
+Euler--Lagrange equation while the kinetic pairing remains nondegenerate.
+\end{corollary}
+
+\section{Why factorisation alone is not enough}
+Suppose a second-order operator factorises schematically as
+\[
+\mathcal P=(\mathcal D-\mathcal M)(\mathcal D+\mathcal M).
+\]
+Even exact factorisation does not imply
+\[
+\mathcal P\Theta=0\quad\Longrightarrow\quad
+(\mathcal D+\mathcal M)\Theta=0.
+\]
+The elementary one-dimensional example
+\[
+(\partial_x-m)(\partial_x+m)f=0
+\]
+has both $e^{mx}$ and $e^{-mx}$ in its second-order solution space, whereas
+$(\partial_x+m)f=0$ selects only the $e^{-mx}$ branch.  Therefore selecting a
+Dirac square root requires an independently derived branch-selection
+principle, boundary/positivity theorem, or a genuinely first-order degenerate
+variational structure.  Merely writing a Clifford factorisation is not such a
+derivation.
+
+\section{Canonical Clifford matrices depend on the same first jet}
+In the active UBT route,
+\[
+E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+\qquad
+\Gamma_\mu=\mathcal C(E_\mu).
+\]
+Consequently a trial density of the schematic form
+\[
+L_D=\operatorname{Re}\bigl[\bar\Psi\,
+ i\Gamma^\mu(E[\Theta])D_\mu\Psi-\bar\Psi\mathcal M\Psi\bigr]
+\]
+is not the ordinary Dirac variational problem with externally prescribed
+$\Gamma^\mu$.  Because $\Gamma^\mu$ itself depends on $D\Theta$, variation of
+$L_D$ contains the chain-rule contribution
+\[
+\frac{\partial\Gamma^\mu}{\partial(D_\nu\Theta)}\,\delta(D_\nu\Theta).
+\]
+After integration by parts this generically produces second derivatives.
+Thus the usual textbook argument that a Dirac Lagrangian yields a first-order
+Euler--Lagrange equation cannot be imported without proving a cancellation or
+degeneracy specific to the UBT composite lift.
+
+\section{What would close the gap without extra fields}
+There are three logically clean no-extra-field possibilities:
+\begin{enumerate}
+\item \textbf{Degenerate first-order variational structure.} Derive from UBT a
+Lagrangian whose full first-jet Hessian has the precise null structure required
+to cancel all second-jet terms while retaining the canonical composite
+$\Gamma(E[\Theta])$.
+\item \textbf{Second-order action plus derived branch selection.} Keep the
+quadratic action, prove an exact factorisation, and derive from the same action,
+its boundary conditions, positivity, chirality, or complex-time analyticity a
+theorem selecting one Dirac factor.  Factorisation alone is insufficient.
+\item \textbf{Equivalent constrained variational principle using only
+$\Theta$.} Reformulate the action so that no independent auxiliary field is
+introduced and prove equivalence of its Euler--Lagrange solution set with the
+desired generalized-Dirac equation.  The equivalence, including the composite
+connection and holomorphy constraints, must be proved rather than assumed.
+\end{enumerate}
+
+If one of these routes yields a first-order equation
+$F(\Psi,e)=0$ with invertible $F_\Psi$, the already proved no-extra-variable
+rank theorem applies and preserves metric rank ten.  Hence the immediate open
+problem is now sharply separated into two pieces:
+\[
+\text{(A) variational origin of the first-order equation},
+\qquad
+\text{(B) rank transversality of that equation}.
+\]
+Piece (B) has a sufficient exact criterion; piece (A) is not yet closed.
+
+\section{Verification}
+\begin{center}
+\begin{tabular}{p{0.18\textwidth}p{0.72\textwidth}}
+Claim & Verification record \\ \hline
+Quadratic kinetic term has nonzero second-order principal coefficient & Analytic theorem above; exact SymPy checker `tools/verify_generalized_dirac_action_order.py`. \\
+Factorisation does not imply one first-order factor & Analytic counterexample above; exact SymPy substitution for $e^{\pm mx}$. \\
+Lean status & \textbf{LEAN-PENDING}.  The execution environment used for this patch has no `lean` or `lake` executable, and the repository currently exposes no `lean-toolchain`/`lakefile` through code search.  No generated Lean text is claimed as a formal proof.  Formalisation target: the finite-dimensional velocity-Hessian/order lemma and the factorisation counterexample. \\
+Scope limitation & The theorem proves an obstruction for the currently documented nondegenerate first-derivative kinetic form.  It does not prove that no special degenerate UBT action can yield the generalized-Dirac equation. \\
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[colback=yellow!7!white,colframe=yellow!55!black,title=Current verdict]
+The algebraic rank problem is not the present blocker.  The canonical
+nondegenerate quadratic $\Theta$ kinetic action gives a second-order
+Euler--Lagrange equation.  A first-order generalized-Dirac equation therefore
+requires a derived degeneracy/cancellation, or a rigorously selected factor of
+the second-order dynamics.  No new field is required in principle, but the
+selection mechanism is a genuine open gap and must not be hidden by treating
+$\Gamma(E[\Theta])$ as externally fixed.
+\end{tcolorbox}
+
+\end{document}
