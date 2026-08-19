@@ -8,39 +8,53 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter*{Preface (Read Me First)}
-\addcontentsline{toc}{chapter}{Preface}
+\chapter*{Předmluva: jak tuto učebnici číst}
+\addcontentsline{toc}{chapter}{Předmluva}
 
-This book is the working learning and reference text for the Unified Biquaternion Theory
-programme.  Its first job is to make the mathematics understandable enough that the
-connections between UBT branches can be reconstructed later without relying on memory.
-For that reason, classical mathematics is intentionally included when it is needed for
-the UBT big picture, even when the underlying theorem is old and well known.
+Tato kniha je pracovní učebnicový a referenční text programu Unified
+Biquaternion Theory (UBT). Jejím prvním úkolem je podat matematiku natolik
+srozumitelně a souvisle, aby bylo možné později znovu rekonstruovat vazby mezi
+jednotlivými větvemi UBT bez spoléhání na paměť nebo staré chaty. Proto jsou v
+textu záměrně odvozovány i klasické matematické výsledky, pokud jsou potřebné
+pro velký obraz UBT, přestože samotná matematika může být desítky či stovky let
+známá.
 
-The book distinguishes three layers rather than discarding the first one:
+Učebnice rozlišuje tři vrstvy:
 \begin{enumerate}
-  \item \textbf{classical foundations}: standard mathematics and physics, with enough
-        derivation to make the text self-contained;
-  \item \textbf{UBT bridges}: controlled mappings from those standard structures into
-        UBT notation or reduced models;
-  \item \textbf{UBT claims and open gaps}: statements that depend on the canonical UBT
-        field, action, dynamics, or empirical programme.
+  \item \textbf{klasické základy}: standardní matematika a fyzika s dostatečným
+        odvozením, aby byl text co nejvíce soběstačný;
+  \item \textbf{UBT mosty}: kontrolované převody těchto standardních struktur
+        do UBT notace, omezených modelů nebo konkrétních hypotéz;
+  \item \textbf{UBT tvrzení a otevřené gapy}: výroky závislé na kanonickém poli
+        UBT, jeho akci, dynamice nebo empirickém programu.
 \end{enumerate}
 
-A classical identity does not become novel because UBT uses it.  Conversely, the fact
-that an identity is classical is not a reason to omit it: the research value may lie in
-how several established structures are assembled and which new UBT question their
-combination makes precise.  Canonical claim documents remain conservative; this textbook
-is allowed to be expansive and didactic as long as status labels are explicit.
+Klasická identita se nestává novým výsledkem jen proto, že ji UBT používá.
+Stejně tak ale skutečnost, že jde o známou matematiku, není důvod ji z učebnice
+vyhodit: výzkumná hodnota může spočívat v tom, jak jsou známé struktury složeny
+dohromady a jakou novou otázku pro UBT jejich spojení přesně formuluje.
+Kanonické claim dokumenty proto zůstávají konzervativní, zatímco učebnice může
+být široká a didaktická, pokud jsou statusy tvrzení vždy zřetelné.
 
-The textbook must not import active theory from \texttt{ARCHIVE/}.  Current status is
-read first from the Tier-A ledgers (especially \texttt{STATUS.md},
-\texttt{WHAT\_IS\_PROVED.md}, and \texttt{CLAIMS.yaml}); active machine-verified
-mathematics may then be cited from \texttt{canonical/}.  Standard mathematics may be
-re-derived directly in the textbook.  Historical files are used only when the history of
-an idea is itself being discussed.  The migration table is maintained in
-\texttt{docs/textbook/SOURCE\_MAP.md}.
+Živá učebnice nesmí přebírat aktivní teorii z \texttt{ARCHIVE/}. Aktuální
+status se nejprve čte z autoritativních registrů, zejména \texttt{STATUS.md},
+\texttt{WHAT\_IS\_PROVED.md} a \texttt{CLAIMS.yaml}; teprve potom se používá
+aktivní matematika z \texttt{canonical/}. Standardní matematiku lze v učebnici
+odvodit přímo. Historické soubory slouží pouze při popisu historie myšlenky.
+Migrační mapa je v \texttt{docs/textbook/SOURCE\_MAP.md}.
 
-Every live source file also follows the repository's machine-readable AI-provenance
-policy.  This book is Tier C working material unless the human editor explicitly changes
-the tier in the authoritative provenance map; an AI agent does not promote or attest it.
+Primární studentská edice je česká. Anglická verze může být později vedena jako
+paralelní edice se stejnou matematickou strukturou a stejnými statusy tvrzení;
+nové kapitoly se nemají psát jako náhodná směs češtiny a angličtiny.
+
+Každý živý zdrojový soubor zároveň používá strojově čitelnou AI-provenance
+politiku repozitáře. Tato učebnice je pracovní materiál Tier C, dokud lidský
+editor výslovně nezmění tier v autoritativní provenance mapě; AI agent nesmí
+provádět vlastní povýšení nebo atestaci.
+
+Odvození v paperech a teorémově důležité části učebnice se mají nezávisle
+kontrolovat podle \texttt{docs/DERIVATION\_VERIFICATION\_POLICY.md}. Pro
+formalizovatelnou přesnou matematiku je preferovaný Lean; vedle něj se používají
+nezávislé CAS a numerické kontroly. Úspěšný výpočet v nástroji však ověřuje jen
+to, co bylo do nástroje skutečně zakódováno, a sám o sobě nemění fyzikální
+status UBT tvrzení.

@@ -8,35 +8,46 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\documentclass[11pt,oneside]{book}
+\documentclass[11pt,a4paper,oneside]{book}
 \usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage{lmodern}
-\usepackage{geometry}\geometry{margin=1in}
+\usepackage{geometry}\geometry{margin=2.5cm}
+\usepackage[czech]{babel}
 \usepackage{amsmath,amssymb,amsthm,mathtools,physics,siunitx}
 \usepackage{microtype,hyperref,graphicx}
 \usepackage{ubtprovenance}
 \UBTTier{C}
 \UBTProvenanceEmbedInTitle
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
-\theoremstyle{definition}\newtheorem{definition}{Definition}[chapter]
-\theoremstyle{plain}\newtheorem{theorem}[definition]{Theorem}
-\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
-\title{Unified Biquaternion Theory (UBT)\\\large Student Text and Engineer's Guide}
+\theoremstyle{definition}\newtheorem{definition}{Definice}[chapter]
+\theoremstyle{plain}\newtheorem{theorem}[definition]{Věta}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Poznámka}
+\title{Unified Biquaternion Theory (UBT)\\\large Učebnice a průvodce pro inženýry}
 \author{Ing. David Jaro\v{s}}\date{\today\\[1.0em]\UBTProvenanceTitleLine}
-\begin{document}\maketitle\UBTProvenanceNotice\tableofcontents
-% Preface
+\begin{document}
+\frontmatter
+\maketitle
+\UBTProvenanceNotice
+\tableofcontents
 \input{frontmatter/preface}
-% Core chapters (engineer track): self-contained pedagogy linked to live status/canonical sources
+
+\mainmatter
+\part{Základy a geometrie}
 \input{chapters/01_overview}
 \input{chapters/02_math_primer_biquaternions}
 \input{chapters/03_lorentz_in_HC}
 \input{chapters/04_covariant_tetrad_geometry}
+
+\part{Komplexní čas a spektrální struktura}
 \input{chapters/04_ct_scheme}
 \input{chapters/05_theta_mellin_feynman_big_picture}
+
+\part{Fenomenologie, verifikace a aplikace}
 \input{chapters/05_alpha_derivation}
 \input{chapters/06_tests_and_repro}
 \input{chapters/07_applications_predictions}
-% Appendices (formal / speculative clearly separated)
+
 \appendix
+\part{Referenční dodatky}
 \input{appendices/A_proofs}
 \input{appendices/B_faq}
 \input{appendices/C_speculative_extensions}

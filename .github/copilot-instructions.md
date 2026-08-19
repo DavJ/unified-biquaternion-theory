@@ -6,8 +6,9 @@
 
 This is a scientific theory repository, not a generic codebase. Read
 `AGENTS.md`, `canonical/AXIOMS.md`, `canonical/CANONICAL_DEFINITIONS.md`, and
-`STATUS_OF_UBT.md` before editing theory. Preserve proof levels and the
-canonical/research/speculative/historical separation.
+`STATUS_OF_UBT.md`, and `docs/DERIVATION_VERIFICATION_POLICY.md` before editing
+theory. Preserve proof levels and the canonical/research/speculative/historical
+separation.
 
 ## Locked canonical GR route
 
@@ -156,6 +157,24 @@ E_mu=N0^(-1/2)[partial_mu Theta+A_mu[E,T]Theta-Theta B_mu[E,T]].
 Call it an implicit nonlinear first-order PDE/fixed-point system. It may also
 be transcendental when a Jacobi-theta function class is imposed, but
 implicitness and transcendence are distinct properties.
+
+## Derivation verification: Lean first, CAS/numerics second
+
+For every active paper follow `docs/DERIVATION_VERIFICATION_POLICY.md`; legacy
+active papers are a migration queue, while every new or materially modified
+paper must comply in the same patch.  Do not accept a derivation solely
+because it looks algebraically plausible or because the TeX builds.
+
+- Prefer a compiled **Lean** proof for theorem-critical exact claims.  If Lean
+  formalization is absent, write `LEAN-PENDING` with the reason; never describe
+  generated but unchecked Lean code as a formal proof.
+- Cross-check with suitable independent tools: SymPy, Maxima, NumPy/SciPy, GNU
+  Octave, MATLAB, Mathcad, or another named verifier.
+- Main paper conclusions should normally have two independent verification
+  channels; the preferred pair is Lean + a separate CAS/numerical check.
+- Every paper must expose a verification record giving tool/version, artifact
+  path, result, assumptions, scope, limitations, and Lean status.
+- Tool output never upgrades a UBT proof/claim tier automatically.
 
 ## Variation and review guardrails
 

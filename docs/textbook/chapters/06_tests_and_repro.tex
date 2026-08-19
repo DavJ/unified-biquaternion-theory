@@ -8,41 +8,93 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter{Tests, Reproducibility, and CI}
+\chapter{Testy, reprodukovatelnost a formální ověřování}
 \label{ch:tests-repro}
 
-The live verification surface is the active repository, not
-\texttt{ARCHIVE/}.  Useful entry points include:
+Živou ověřovací vrstvou je aktivní repozitář, nikoli \texttt{ARCHIVE/}.
+Důležité vstupní body jsou:
 \begin{itemize}
- \item \texttt{tests/} for scientific, provenance, and architecture tests;
- \item \texttt{tools/apply\_provenance\_headers.py} for source marking;
- \item \texttt{tools/latex\_audit.py} for isolated LaTeX builds;
- \item \texttt{tools/check\_alpha\_claims.py} and the active alpha tests for
-       status-sensitive alpha checks;
- \item \texttt{research\_tracks/theta\_spectral/theta\_zeta\_probe.py} for
-       the theta/Mellin/Gauss-sum numerical controls introduced in this
-       textbook branch.
+ \item \texttt{tests/} pro vědecké, provenance a architektonické regresní testy;
+ \item \texttt{tools/apply\_provenance\_headers.py} pro značení AI provenance;
+ \item \texttt{tools/latex\_audit.py} pro izolované překlady LaTeX dokumentů;
+ \item \texttt{tools/check\_alpha\_claims.py} a aktivní alpha testy pro
+       kontrolu tvrzení citlivých na aktuální status;
+ \item \texttt{research\_tracks/theta\_spectral/theta\_zeta\_probe.py} pro
+       numerické kontroly theta/Mellin/Gaussovy větve;
+ \item \texttt{docs/DERIVATION\_VERIFICATION\_POLICY.md} jako závazná pravidla
+       kontroly odvození v paperech.
 \end{itemize}
 
-\section{Textbook CI}
-The focused workflow is \texttt{.github/workflows/textbook.yml}.  It runs on
-relevant pushes/pull requests as well as manually and invokes
-\texttt{tools/latex\_audit.py --strict}.  Therefore a failed textbook root makes
-the workflow fail instead of being hidden in a successful non-strict audit.
+\section{Čtyři různé druhy kontroly}
+Je důležité nezaměňovat různé úrovně ověření. Překlad LaTeXu pouze dokazuje,
+že je dokument syntakticky sestavitelný. Numerický test ověřuje konkrétní
+číselné důsledky v dané přesnosti. CAS nástroj, například SymPy nebo Maxima,
+ověřuje symbolickou identitu, kterou jsme mu skutečně zadali. Formální systém
+Lean kontroluje, zda formalizovaný závěr plyne z formalizovaných předpokladů.
+Ani jedna z těchto kontrol sama o sobě nedokazuje, že příslušné předpoklady jsou
+fyzikálně vybrány kanonickou UBT dynamikou.
 
-The uploaded GitHub Actions artifact is named
-\texttt{textbook-latex-\$\{run\_id\}} and contains the generated textbook PDFs
-plus the LaTeX audit report.  A local build and the CI artifact name are
-separate concepts; the textbook does not promise a nonexistent fixed artifact
-called \texttt{ubt\_textbook.pdf}.
+\section{Lean jako preferovaný formální kontrolor}
+Pro nová nebo podstatně změněná teorémová odvození je preferovaným nástrojem
+Lean. Pokud je tvrzení rozumně formalizovatelné, cílem je mít vedle analytického
+odvození také kompilující \texttt{.lean} důkaz. Jestliže formalizace ještě není
+hotová nebo v daném prostředí Lean není dostupný, musí být stav výslovně
+označen jako \texttt{LEAN-PENDING}; nesmí se napsat, že tvrzení je ``formálně
+dokázáno'' jen proto, že agent vygeneroval Lean syntaxi.
 
-\section{Minimum local checks before a textbook patch}
-A useful local sequence is:
+Lean nenahrazuje ostatní kontroly. U hlavního výsledku paperu je žádoucí druhý,
+nezávislý kanál: například SymPy/Maxima pro symbolickou algebru a
+NumPy/Octave/MATLAB/Mathcad pro numerickou reprodukci. Dvě implementace by měly
+pokud možno používat odlišnou formulaci, aby pouze neopakovaly stejnou chybu.
+
+\section{Povinný záznam verifikace paperu}
+Každý nový nebo podstatně změněný paper má obsahovat sekci \emph{Verification}
+nebo odkaz na doprovodný záznam. Pro hlavní tvrzení se zapisuje alespoň:
+\begin{itemize}
+ \item identifikátor tvrzení, rovnice nebo lemmatu;
+ \item analytický status a předpoklady;
+ \item použitý nástroj a jeho verze;
+ \item cesta k reprodukčnímu skriptu, testu, worksheetu nebo \texttt{.lean}
+       souboru;
+ \item výsledek a případná tolerance;
+ \item přesně co kontrola ověřuje a co naopak neověřuje;
+ \item stav Lean formalizace: \texttt{PROVED}, \texttt{PARTIAL},
+       \texttt{LEAN-PENDING} nebo \texttt{NOT-APPLICABLE}.
+\end{itemize}
+
+\section{CI učebnice}
+Zaměřený workflow je \texttt{.github/workflows/textbook.yml}. Spouští se při
+relevantním pushi/pull requestu i ručně a používá
+\texttt{tools/latex\_audit.py --strict}. Chyba kteréhokoli kořenového dokumentu
+učebnice tedy způsobí selhání workflow a neschová se v úspěšném non-strict
+auditu.
+
+Po strict auditu se volá stejný Makefile jako lokálně a vzniká stabilní sada
+PDF v \texttt{build/textbook/public/}:
+\begin{itemize}
+ \item \texttt{UBT\_Textbook.pdf} --- hlavní učebnice;
+ \item \texttt{UBT\_Textbook\_Supplement\_Covariant\_Tetrad.pdf};
+ \item \texttt{UBT\_Textbook\_Supplement\_Indexy\_Torze\_Rot\_CS.pdf}.
+\end{itemize}
+GitHub Actions artefakt se jmenuje
+\texttt{ubt-textbook-pdfs-\$\{run\_id\}} a obsahuje tato PDF i LaTeX audit.
+
+Pro lokální publikovanou kopii lze spustit
+\begin{verbatim}
+make -C docs/textbook publish
+\end{verbatim}
+což zkopíruje stejnou trojici do \texttt{docs/pdfs/}. Vygenerované PDF je pouze
+výstup; vědecký status zůstává řízen zdrojovým textem a provenance/status
+registry.
+
+\section{Minimální lokální kontrola před textbook patchem}
+Doporučená sekvence je:
 \begin{verbatim}
 python tools/apply_provenance_headers.py --apply
 python tools/apply_provenance_headers.py --check
 python tools/latex_audit.py --include 'docs/textbook/*.tex' \
   --include 'docs/textbook/**/*.tex' --jobs 2 --timeout 240 --strict
+make -C docs/textbook verify
 \end{verbatim}
-A passing build establishes syntactic/reproducibility properties only.  It does
-not promote a Tier-C scientific statement to a proved UBT claim.
+Úspěšný build potvrzuje syntaktické a reprodukční vlastnosti. Nezvyšuje sám od
+sebe Tier-C tvrzení na dokázaný výsledek UBT.

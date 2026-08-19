@@ -50,12 +50,14 @@ jobs:
             --include 'docs/textbook/*.tex' \
             --include 'docs/textbook/**/*.tex' \
             --jobs 2 --timeout 240 --strict
-      - name: Upload textbook PDFs and report
+      - name: Build stable textbook PDF set
+        run: make -C docs/textbook verify
+      - name: Upload textbook PDFs and audit report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: textbook-latex-${{ github.run_id }}
+          name: ubt-textbook-pdfs-${{ github.run_id }}
           path: |
-            build/latex-audit/pdfs/docs/textbook/**/*.pdf
+            build/textbook/public/*.pdf
             reports/latex_build/**
-          if-no-files-found: warn
+          if-no-files-found: error

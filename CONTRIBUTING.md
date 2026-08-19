@@ -14,6 +14,18 @@ UBT-AI-PROVENANCE-END
 
 Thank you for your interest in contributing to UBT! This document provides guidelines for contributing to the repository.
 
+## Derivation verification for papers
+
+All active papers are covered by
+[`docs/DERIVATION_VERIFICATION_POLICY.md`](docs/DERIVATION_VERIFICATION_POLICY.md);
+new or materially modified papers must comply in the same patch, while existing
+active papers are migrated progressively.
+The default is Lean-first for formalizable theorem-level claims, with independent
+CAS/numerical cross-checks (for example SymPy, Maxima, NumPy, Octave, MATLAB,
+or Mathcad).  Missing Lean formalization must be recorded as `LEAN-PENDING`;
+numerical or symbolic agreement must not be described as a formal proof.
+
+
 ## Ways to Contribute
 
 ### 1. Mathematical Rigor

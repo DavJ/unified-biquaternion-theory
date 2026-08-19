@@ -37,3 +37,13 @@ UBT-AI-PROVENANCE-END
     explicit human decision and comparative audit. Work on the current gaps.
 
 12. Treat the minimal Palatini torsion equation, symmetry propagation, augmented holonomy for prescribed coefficients, and Lovelock infrared uniqueness as conditional subclosures. `GAP-10I-TORSION-LOCAL` closes only local kinematic representability. These results narrow but do not replace `GAP-10T-DYN`, the dynamical/global part of `GAP-10I-CURVED`, or `GAP-10D`.
+
+13. **Derivation verification:** every active paper follows
+    `docs/DERIVATION_VERIFICATION_POLICY.md`; existing papers are migrated
+    progressively and every new/materially modified paper must comply in the same patch.  Prefer compiled Lean proofs for
+    theorem-critical exact claims and add independent CAS/numerical checks
+    (SymPy, Maxima, NumPy, Octave, MATLAB, Mathcad, etc.).
+14. If Lean is unavailable or incomplete, record `LEAN-PENDING` explicitly;
+    never describe uncompiled generated Lean code as a formal proof.
+15. Main paper conclusions should normally have two independent verification
+    channels, with tool/version/artifact/scope/limitations recorded.

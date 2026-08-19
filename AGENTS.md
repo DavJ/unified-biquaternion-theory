@@ -25,6 +25,7 @@ Read these before changing theory content:
 3. `STATUS_OF_UBT.md`
 4. `CLAIMS.yaml`
 5. `.github/copilot-instructions.md`
+6. `docs/DERIVATION_VERIFICATION_POLICY.md`
 
 Repository layers:
 
@@ -36,6 +37,15 @@ Repository layers:
 Do not create new top-level theory roots or duplicate the canonical tree.
 Scientific material is not deleted merely because it is superseded; mark it
 historical/noncanonical or move it to the existing archive workflow.
+
+### Student-text language policy
+
+The primary student textbook is Czech.  Keep Czech prose, headings, captions,
+and explanatory notes internally consistent within the Czech edition.  Do not
+mix an English chapter into the Czech book merely because an older source is
+English.  A future English edition should be maintained as a parallel edition
+with the same mathematical structure and claim/status labels, not as mixed
+bilingual prose inside one chapter.
 
 ## 2. Locked canonical GR route
 
@@ -284,7 +294,29 @@ first-principles derivation.
 Alpha is not derived from first principles. Consciousness, psychons, afterlife,
 or ThetaComm claims remain outside canonical physics.
 
-## 8. Change workflow
+## 8. Derivation verification policy
+
+All active papers must follow `docs/DERIVATION_VERIFICATION_POLICY.md`. Existing
+papers are migrated progressively; every new or materially modified paper must
+comply in the same patch.  Derivations are not accepted merely
+because the prose is plausible or the LaTeX compiles.
+
+- **Lean-first:** theorem-critical exact mathematics should be formalized in
+  Lean whenever reasonably possible.  If Lean is unavailable or the theorem is
+  not yet formalized, record `LEAN-PENDING` and the precise reason; never claim
+  formal verification without a successfully checked `.lean` proof.
+- Independently cross-check analytic derivations with appropriate tools such as
+  SymPy, Maxima, NumPy/SciPy, GNU Octave, MATLAB, or Mathcad.
+- A paper-critical derivation should normally have two independent verification
+  channels, preferably Lean plus an independent CAS/numerical implementation.
+- Record tool, version, artifact path, result, assumptions, scope, limitations,
+  and Lean status in the paper's `Verification` section or a companion record.
+- A symbolic checker verifies only the identity it encodes; a numerical check
+  does not prove an analytic theorem; Lean proves only the formalized statement
+  from the formalized assumptions.  None of these automatically upgrades a UBT
+  claim tier or closes a physical bridge gap.
+
+## 9. Change workflow
 
 For theory changes:
 

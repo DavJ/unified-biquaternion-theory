@@ -86,6 +86,17 @@ D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu,
 \]
 This narrows, but does not close, curved-space integrability.
 
+## Derivation verification
+
+For every active paper follow `docs/DERIVATION_VERIFICATION_POLICY.md`; existing
+active papers are a migration queue, and each new or materially modified paper
+must comply in the same patch.  Use Lean as the preferred formal
+verifier for theorem-critical exact mathematics and independently cross-check
+with an appropriate CAS or numerical tool (for example SymPy, Maxima, NumPy,
+Octave, MATLAB, or Mathcad).  If Lean has not actually compiled the theorem,
+record `LEAN-PENDING`; do not call it formally proved.  Tool checks verify only
+the encoded statement and do not automatically promote a UBT claim tier.
+
 ## Status guardrails
 
 Closed/narrowed: `GAP-10K`, `GAP-10Omega-KIN`, `GAP-10Omega-GR`,
