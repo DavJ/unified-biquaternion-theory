@@ -9,4 +9,40 @@
 % UBT-AI-PROVENANCE-END
 
 \chapter{Tests, Reproducibility, and CI}
-See repository tests under \texttt{consolidation\_project/alpha\_two\_loop/tests}. The textbook build is reproducible via CI (artifact: \texttt{ubt\_textbook.pdf}).
+\label{ch:tests-repro}
+
+The live verification surface is the active repository, not
+\texttt{ARCHIVE/}.  Useful entry points include:
+\begin{itemize}
+ \item \texttt{tests/} for scientific, provenance, and architecture tests;
+ \item \texttt{tools/apply\_provenance\_headers.py} for source marking;
+ \item \texttt{tools/latex\_audit.py} for isolated LaTeX builds;
+ \item \texttt{tools/check\_alpha\_claims.py} and the active alpha tests for
+       status-sensitive alpha checks;
+ \item \texttt{research\_tracks/theta\_spectral/theta\_zeta\_probe.py} for
+       the theta/Mellin/Gauss-sum numerical controls introduced in this
+       textbook branch.
+\end{itemize}
+
+\section{Textbook CI}
+The focused workflow is \texttt{.github/workflows/textbook.yml}.  It runs on
+relevant pushes/pull requests as well as manually and invokes
+\texttt{tools/latex\_audit.py --strict}.  Therefore a failed textbook root makes
+the workflow fail instead of being hidden in a successful non-strict audit.
+
+The uploaded GitHub Actions artifact is named
+\texttt{textbook-latex-\$\{run\_id\}} and contains the generated textbook PDFs
+plus the LaTeX audit report.  A local build and the CI artifact name are
+separate concepts; the textbook does not promise a nonexistent fixed artifact
+called \texttt{ubt\_textbook.pdf}.
+
+\section{Minimum local checks before a textbook patch}
+A useful local sequence is:
+\begin{verbatim}
+python tools/apply_provenance_headers.py --apply
+python tools/apply_provenance_headers.py --check
+python tools/latex_audit.py --include 'docs/textbook/*.tex' \
+  --include 'docs/textbook/**/*.tex' --jobs 2 --timeout 240 --strict
+\end{verbatim}
+A passing build establishes syntactic/reproducibility properties only.  It does
+not promote a Tier-C scientific statement to a proved UBT claim.

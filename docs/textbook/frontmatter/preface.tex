@@ -33,7 +33,14 @@ how several established structures are assembled and which new UBT question thei
 combination makes precise.  Canonical claim documents remain conservative; this textbook
 is allowed to be expansive and didactic as long as status labels are explicit.
 
-Where possible, core claim text is reused from the main repository through
-\texttt{\textbackslash input} to avoid divergence.  New textbook chapters may also give
-full derivations of standard tools and then point explicitly to the canonical theorem,
-bridge, research track, or open gap that uses them.
+The textbook must not import active theory from \texttt{ARCHIVE/}.  Current status is
+read first from the Tier-A ledgers (especially \texttt{STATUS.md},
+\texttt{WHAT\_IS\_PROVED.md}, and \texttt{CLAIMS.yaml}); active machine-verified
+mathematics may then be cited from \texttt{canonical/}.  Standard mathematics may be
+re-derived directly in the textbook.  Historical files are used only when the history of
+an idea is itself being discussed.  The migration table is maintained in
+\texttt{docs/textbook/SOURCE\_MAP.md}.
+
+Every live source file also follows the repository's machine-readable AI-provenance
+policy.  This book is Tier C working material unless the human editor explicitly changes
+the tier in the authoritative provenance map; an AI agent does not promote or attest it.

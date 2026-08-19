@@ -8,5 +8,106 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter{CT Scheme and Ward Identities (Engineer View)}
-\input{../../consolidation_project/alpha_two_loop/tex/ct_scheme_definition.tex}
+\chapter{Complex-Time Continuation and Ward Identities}
+\label{ch:ct-scheme}
+
+\section{Why this chapter remains in the textbook}
+Older alpha work used a ``CT scheme'' built around the analytic continuation
+\(\tau=t+i\psi\).  The archived implementation is not a current source of
+record, but the underlying mathematics---analytic continuation, gauge
+identities, and the real-time limit---is standard and useful.  This chapter
+therefore teaches those ingredients and then states exactly what they do and do
+not establish for UBT.
+
+\section{Complex time as a parameter}
+For an analytic quantity $F(\tau)$,
+\[
+ \tau=t+i\psi
+\]
+allows one to move between oscillatory and damped descriptions.  For an energy
+eigenmode, for example,
+\[
+ e^{-iE\tau/\hbar}=e^{-iEt/\hbar}e^{+E\psi/\hbar},
+\]
+with the sign of the damping determined by the convention for the imaginary
+direction.  In the theta convention used later,
+\[
+ e^{-\pi(\psi-it)n^2}
+ =e^{-\pi\psi n^2}e^{i\pi t n^2}.
+\]
+Nothing in this analytic identity by itself creates a new renormalisation
+constant or fixes a physical coupling.
+
+\section{Ward--Takahashi identity: the standard argument}
+In QED let $S(p)$ be the full fermion propagator and
+$\Gamma^\mu(p+q,p)$ the full electromagnetic vertex.  Gauge invariance gives
+the Ward--Takahashi identity
+\[
+ q_\mu\Gamma^\mu(p+q,p)
+ =S^{-1}(p+q)-S^{-1}(p).
+\]
+Taking the limit $q\to0$ yields
+\[
+ \Gamma^\mu(p,p)=\frac{\partial S^{-1}(p)}{\partial p_\mu}.
+\]
+At the level of renormalisation constants this enforces
+\[
+ \boxed{Z_1=Z_2,}
+\]
+provided the regulator and subtraction prescription preserve gauge symmetry.
+This is a standard gauge-theory result.  A complex-time continuation may use
+it only after demonstrating that its contour/regulator preserves the hypotheses
+required by the identity.
+
+\section{Transversality of the photon self-energy}
+The same gauge symmetry implies
+\[
+ q_\mu\Pi^{\mu\nu}(q)=0,
+\]
+so the vacuum polarisation has the form
+\[
+ \Pi^{\mu\nu}(q)
+ =\left(q^2g^{\mu\nu}-q^\mu q^\nu\right)\Pi(q^2)
+\]
+(up to convention).  This is why charge renormalisation can be expressed in
+terms of the transverse photon two-point function.  Again, this is a standard
+field-theory constraint, not a UBT-specific theorem.
+
+\section{The controlled UBT bridge}
+A UBT complex-time renormalisation construction would need to establish, for
+its actual action and contour:
+\begin{enumerate}
+ \item analyticity sufficient to continue between the chosen $\psi$ contour
+       and the real-time slice;
+ \item preservation of the relevant gauge/BRST identities;
+ \item a regulator and counterterm scheme compatible with those identities;
+ \item continuity to standard QED in the appropriate real-time limit;
+ \item an explicit calculation of any finite CT-specific remainder rather than
+       setting it by definition.
+\end{enumerate}
+Only after these steps could a CT-specific factor be promoted from a modelling
+choice to a derived quantity.
+
+\section{Why the archived \(\mathcal R_{\rm UBT}=1\) text is not imported}
+The historical alpha branch stated a two-loop baseline
+\(\mathcal R_{\rm UBT}=1\) under assumptions labelled A1--A3 and then called the
+resulting alpha baseline ``fit-free''.  Current Tier-A status documents no
+longer allow that wording to stand as a completed alpha derivation: the
+coefficient bridge G137-B is open and the effective multiplicity has an audit
+gap.  Therefore the live textbook keeps the Ward-identity mathematics but does
+not reuse the archived theorem as a current source of record.
+
+This is a useful example of a general rule: a correct conditional field-theory
+identity can survive even when a larger phenomenological interpretation built
+on top of it is downgraded.
+
+\section{Connection to the theta chapter}
+The reduced theta kernel
+\[
+ S(t,\psi)=\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2}
+\]
+provides a cleaner controlled laboratory for complex time than the old alpha
+renormalisation route.  The same parameter $\psi$ acts as a heat-time variable,
+while $t$ carries the oscillatory phase.  Fourier, Laplace, Mellin, and
+Poisson/Jacobi transforms can then be derived exactly before any physical UBT
+claim is attached to them.

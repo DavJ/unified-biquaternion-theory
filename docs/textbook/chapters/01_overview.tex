@@ -8,5 +8,130 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter{UBT in One Hour: Motivation and Map}
-\input{../../consolidation_project/ubt_2_main.tex}
+\chapter{UBT in One Hour: Motivation, Architecture, and Status}
+\label{ch:overview}
+
+\section{What this chapter is for}
+Unified Biquaternion Theory (UBT) asks whether spacetime geometry and internal
+field structure can be encoded in one complex-quaternion-valued master field,
+rather than introduced as unrelated fundamental objects.  The active starting
+notation is
+\[
+ \Theta(q,\tau)\in\mathbb B=\mathbb C\otimes\mathbb H,
+ \qquad \tau=t+i\psi .
+\]
+The notation is compact, but it hides several logically different questions:
+what is defined, what is kinematically representable, what follows from an
+action, and what is only a research hypothesis.  The textbook keeps those
+levels separate throughout.
+
+\section{The current local geometric chain}
+The clean local GR branch starts from the covariant derivative of the single
+field,
+\[
+ E_\mu:=\mathcal N_0^{-1/2}D_\mu\Theta .
+\]
+On the real Lorentz slice, write
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+ \qquad e_\mu{}^a\in\mathbb R.
+\]
+Quaternion conjugation is denoted by $\sharp$.  The symmetrised product is
+central and defines the metric,
+\[
+ \boxed{
+ \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+ =g_{\mu\nu}\mathbf1 .}
+\]
+Thus the minimal local metric construction does not require an observer
+projection, a compact-fibre average, or an embedding map.  This replaces an
+older architectural picture preserved in the historical archive.
+
+The same first derivative behaves as a tetrad.  For a nondegenerate tetrad the
+map $e_\mu{}^a\mapsto g_{\mu\nu}$ has the familiar counting
+\[
+ 16-6=10,
+\]
+because six local Lorentz changes leave the ten metric components invariant.
+This resolves the local rank problem at the kinematic level.
+
+\section{Connection, curvature, and what is still dynamical}
+A local Lorentz/biquaternionic connection enters $D_\mu$.  In a torsion-free GR
+branch the compatible spin connection is the Levi--Civita spin connection
+computed from the tetrad.  With torsion,
+\[
+ \omega=\mathring\omega(e)+K(T),
+\]
+so specifying the tetrad and torsion determines the metric-compatible
+connection.  Curvature belongs to the commutator of covariant derivatives,
+not to the algebraic commutator of the tetrad legs:
+\[
+ [D_\mu,D_\nu]\quad\hbox{contains curvature.}
+\]
+
+The present GR work closes important local representability questions, but it
+does not yet derive all Einstein dynamics from the original UBT master action.
+In particular, action selection, physical torsion constraints, the full
+perturbation bridge, and global continuation remain status-controlled open
+problems.  The authoritative wording is maintained in
+\texttt{STATUS.md} and \texttt{WHAT\_IS\_PROVED.md}.
+
+\section{Complex time and the theta/spectral branch}
+The canonical notation retains
+\[
+ \tau=t+i\psi,
+\]
+with $\psi$ interpreted in the active complex-time branch as an internal phase
+coordinate rather than a second macroscopic clock.  Reduced theta models then
+naturally contain factors of the form
+\[
+ S(t,\psi)=\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2}.
+\]
+This one expression admits several standard representations: Fourier in $t$,
+Laplace or Mellin in $\psi$, Jacobi/Poisson duality, and, in controlled
+quadratic examples, a relation between mode sums and path/winding sums.  Those
+classical tools are developed explicitly later because they organise several
+otherwise disconnected UBT research tracks.
+
+\section{Gauge and particle sectors}
+The algebra $\mathbb C\otimes\mathbb H\cong M_2(\mathbb C)$ naturally supports
+left and right actions, spinorial Lorentz transformations, and internal
+symmetry constructions.  Some gauge-sector statements are proved or
+conditional at stated levels; others, including parts of hypercharge,
+generation selection, and dynamical symmetry breaking, remain open.  This
+textbook therefore never infers a full Standard Model derivation merely from
+the existence of the biquaternion algebra.
+
+\section{Fine-structure constant: current safe statement}
+The alpha programme contains a reproducible structural mechanism selecting the
+integer $137$ under stated assumptions, including a prime-stability result.
+However the overall track is currently not a first-principles derivation of the
+physical fine-structure constant.  Two blockers are especially important:
+\begin{enumerate}
+ \item the effective coefficient required by the winding potential has not been
+       derived uniquely from the UBT action (Gap G137-B);
+ \item the audited loop multiplicity and the twist-sector multiplicity are not
+       yet identified by a proved bridge.
+\end{enumerate}
+Consequently neither the phrase ``fit-free alpha derivation'' nor the numerical
+value $137.036\ldots$ should be presented here as a closed UBT prediction.
+Chapter~\ref{ch:alpha} derives the conditional mathematics and states the gaps
+at every step.
+
+\section{How to read status labels}
+The repository uses two independent bookkeeping systems that must not be
+confused.
+
+First, scientific claim levels distinguish standard identities, proved UBT
+lemmas, conditional results, motivated conjectures, observations, and open
+gaps.  Second, AI provenance tiers record editorial/review status of files.
+The latter are defined by \texttt{PROVENANCE\_TIERS.yaml}:
+Tier A is author-attested, Tier B machine-verified, Tier C working, and Tier D
+historical.  This textbook is Tier C working material.  Its role is to explain
+and connect the mathematics, not to silently promote a claim to Tier A.
+
+\section{Source-of-record rule for the textbook}
+The source map in \texttt{docs/textbook/SOURCE\_MAP.md} records where each
+chapter gets its live status.  Historical material in \texttt{ARCHIVE/} can be
+valuable for understanding how an idea evolved, but it is never silently
+\texttt{\textbackslash input} as the current theory.

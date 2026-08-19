@@ -13,16 +13,19 @@
 \usepackage{geometry}\geometry{margin=1in}
 \usepackage{amsmath,amssymb,amsthm,mathtools,physics,siunitx}
 \usepackage{microtype,hyperref,graphicx}
+\usepackage{ubtprovenance}
+\UBTTier{C}
+\UBTProvenanceEmbedInTitle
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 \theoremstyle{definition}\newtheorem{definition}{Definition}[chapter]
 \theoremstyle{plain}\newtheorem{theorem}[definition]{Theorem}
 \theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
 \title{Unified Biquaternion Theory (UBT)\\\large Student Text and Engineer's Guide}
-\author{UBT Team}\date{\today}
-\begin{document}\maketitle\tableofcontents
+\author{Ing. David Jaro\v{s}}\date{\today\\[1.0em]\UBTProvenanceTitleLine}
+\begin{document}\maketitle\UBTProvenanceNotice\tableofcontents
 % Preface
 \input{frontmatter/preface}
-% Core chapters (engineer track) – light wrappers that re-use main repo .tex
+% Core chapters (engineer track): self-contained pedagogy linked to live status/canonical sources
 \input{chapters/01_overview}
 \input{chapters/02_math_primer_biquaternions}
 \input{chapters/03_lorentz_in_HC}

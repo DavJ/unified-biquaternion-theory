@@ -8,5 +8,136 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter{Lorentz on the Hermitian Slice of \(\mathbb H_{\mathbb C}\)}
-\input{../../consolidation_project/appendix_P6_lorentz_in_HC.tex}
+\chapter{Lorentz Geometry on the Hermitian Slice of \(\mathbb H_{\mathbb C}\)}
+\label{ch:lorentz-hc}
+
+\section{Classical foundation: \(\mathrm{Herm}(2,\mathbb C)\)}
+This section is standard spinor/Lorentz mathematics.  It is included because
+UBT uses the same algebra through the isomorphism
+\[
+ \mathbb B=\mathbb C\otimes\mathbb H\cong M_2(\mathbb C).
+\]
+Let $\sigma_i$ be the Pauli matrices and associate a real four-vector
+$x=(x^0,x^1,x^2,x^3)$ with the Hermitian matrix
+\[
+ X=x^0 I_2+x^i\sigma_i
+ =\begin{pmatrix}
+ x^0+x^3 & x^1-i x^2\\
+ x^1+i x^2 & x^0-x^3
+ \end{pmatrix}.
+\]
+A direct determinant calculation gives
+\[
+ \boxed{\det X=(x^0)^2-(x^1)^2-(x^2)^2-(x^3)^2.}
+\]
+Thus the determinant on the Hermitian slice is exactly the Minkowski quadratic
+form with signature $(+---)$.
+
+\section{The \(SL(2,\mathbb C)\) action}
+For $A\in SL(2,\mathbb C)$ define
+\[
+ X\longmapsto X'=A X A^\dagger .
+\]
+Hermiticity is preserved because
+\[
+ (A X A^\dagger)^\dagger=A X A^\dagger.
+\]
+The determinant is also preserved:
+\[
+ \det X'=\det A\,\det X\,\det A^\dagger
+ =\det X,
+\]
+since $\det A=1$ and $\det A^\dagger=\overline{\det A}=1$.
+Therefore the induced real linear transformation of the four coefficients
+preserves the Minkowski norm.  Restricting continuously to the identity gives a
+homomorphism
+\[
+ SL(2,\mathbb C)\longrightarrow SO^+(1,3).
+\]
+Both $A$ and $-A$ act identically on $X$, so the kernel contains
+$\{\pm I_2\}$.  The standard result is the double cover
+\[
+ \boxed{SL(2,\mathbb C)/\{\pm I_2\}\cong SO^+(1,3).}
+\]
+No split-quaternion algebra is required for this construction.
+
+\section{Translation into biquaternion notation}
+Use the canonical matrix representation
+\[
+ \mathbf e_i\longmapsto i\sigma_i.
+\]
+Then $\sigma_i\leftrightarrow -i\mathbf e_i$, and the Hermitian matrix above
+corresponds to the biquaternion
+\[
+ X_{\mathbb B}=x^0\mathbf1-i x^i\mathbf e_i.
+\]
+This is simply another coordinate description of the same
+$\mathrm{Herm}(2,\mathbb C)$ slice.
+
+UBT's current tetrad convention often uses instead the Lorentz-real basis
+\[
+ \mathbf u_0=i\mathbf1,
+ \qquad \mathbf u_k=\mathbf e_k,
+\]
+so a tetrad leg is
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k.
+\]
+With quaternion conjugation $\sharp$,
+\[
+ E_\mu^\sharp=i e_\mu{}^0\mathbf1-e_\mu{}^k\mathbf e_k.
+\]
+Using $\mathbf e_j\mathbf e_k+\mathbf e_k\mathbf e_j=-2\delta_{jk}$,
+one obtains
+\begin{align*}
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ &=\left(-e_\mu{}^0e_\nu{}^0+e_\mu{}^k e_\nu{}^k\right)\mathbf1\\
+ &=g_{\mu\nu}\mathbf1.
+\end{align*}
+This is the same Lorentz geometry with the opposite overall signature
+convention $(-+++)$.  A signature convention is bookkeeping; it is not a new
+physical degree of freedom.
+
+\section{Why this matters for UBT}
+The classical result establishes three useful facts before any UBT dynamics is
+introduced:
+\begin{enumerate}
+ \item complexified quaternions already carry the spinorial Lorentz action;
+ \item a four-dimensional Lorentzian quadratic form can be read internally from
+       the algebra;
+ \item left/right multiplication matters, because the Lorentz action is
+       naturally two-sided in matrix language.
+\end{enumerate}
+
+What this classical construction does \emph{not} prove is equally important.
+It does not prove that the UBT master field dynamically generates every desired
+tetrad, it does not derive Einstein's equations, and it does not select the
+physical connection.  Those are UBT-specific bridge problems addressed in the
+covariant-tetrad chapter and the canonical GR closure ledger.
+
+\section{A concrete boost as a check}
+Take a boost of rapidity $\chi$ along the third spatial axis,
+\[
+ A=\exp\left(\frac{\chi}{2}\sigma_3\right)
+ =\begin{pmatrix}e^{\chi/2}&0\\0&e^{-\chi/2}\end{pmatrix}.
+\]
+Applying $X'=AXA^\dagger$ and comparing coefficients gives
+\[
+ \begin{pmatrix}x'^0\\x'^3\end{pmatrix}
+ =\begin{pmatrix}\cosh\chi&\sinh\chi\\
+                  \sinh\chi&\cosh\chi\end{pmatrix}
+  \begin{pmatrix}x^0\\x^3\end{pmatrix},
+ \qquad x'^1=x^1,\quad x'^2=x^2.
+\]
+Then
+\[
+ (x'^0)^2-(x'^3)^2=(x^0)^2-(x^3)^2,
+\]
+which is the ordinary Lorentz boost written as an internal algebra action.
+
+\section{Live sources and historical note}
+The algebra convention is kept in
+\texttt{canonical/algebra/biquaternion\_algebra.tex}; current GR use of the
+Lorentz-real tetrad is documented in the active GR track.  The former
+\texttt{appendix\_P6\_lorentz\_in\_HC.tex} survives in the historical archive,
+but the live textbook no longer imports it.

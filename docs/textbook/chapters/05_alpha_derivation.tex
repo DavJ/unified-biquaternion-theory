@@ -8,8 +8,143 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter{Deriving the Fine-Structure Constant}
-% pipeline and baseline (fit-free)
-\input{../../consolidation_project/alpha_two_loop/tex/R_UBT_extraction.tex}
-\input{../../consolidation_project/appendix_CT_two_loop_baseline.tex}
-\input{../../consolidation_project/alpha_two_loop/tex/geometric_inputs_proof.tex}
+\chapter{Fine-Structure Constant Programme: What Is Derived and What Is Not}
+\label{ch:alpha}
+
+\section{Status before algebra}
+The authoritative repository status is deliberately stronger than any elegant
+formula in this chapter:
+\begin{quote}
+The physical fine-structure constant is not yet derived from first principles
+in UBT.  The integer-$137$ route is structural/conditional, while the bridge
+fixing the required effective coefficient from the UBT action remains open.
+\end{quote}
+The live sources of status are \texttt{STATUS.md},
+\texttt{WHAT\_IS\_PROVED.md}, and
+\texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}.  Historical texts using the
+phrase ``fit-free alpha derivation'' do not override these ledgers.
+
+\section{The conditional winding potential}
+A central reduced model studies
+\[
+ \boxed{V_{\rm eff}(n)=n^2-Bn\ln n,\qquad n>0.}
+\]
+Treating $n$ temporarily as a continuous variable,
+\[
+ \frac{dV_{\rm eff}}{dn}
+ =2n-B(\ln n+1).
+\]
+A stationary point therefore satisfies
+\[
+ \boxed{B=\frac{2n}{\ln n+1}.}
+\]
+If one asks for a stationary point at $n=137$, the required coefficient is
+\[
+ B_{137}=\frac{274}{\ln137+1}\approx46.284.
+\]
+This equation is an exact property of the reduced potential.  It does
+\emph{not} explain why the UBT action must generate that value of $B$.
+
+The second derivative is
+\[
+ \frac{d^2V_{\rm eff}}{dn^2}=2-\frac{B}{n}.
+\]
+At a stationary point this becomes
+\[
+ 2-\frac{2}{\ln n+1}
+ =\frac{2\ln n}{\ln n+1}>0
+ \qquad(n>1),
+\]
+so the continuous stationary point is a local minimum.  Integer and
+prime-sector restrictions can then be studied as an additional discrete
+selection problem.
+
+\section{What ``prime stability'' can and cannot mean}
+The repository contains a structural prime-stability analysis in which the
+integer sector around $137$ is examined under a specified selection rule.  A
+prime-labelled minimum can be a reproducible result of that reduced model.
+However:
+\begin{itemize}
+ \item the primality of $137$ is standard number theory;
+ \item selection of a prime sector does not by itself identify
+       $\alpha^{-1}$ with that sector;
+ \item the physical correction from $137$ to $137.036\ldots$ needs a separate
+       derivation;
+ \item the coefficient $B$ must still be obtained from the UBT dynamics rather
+       than inferred from the target value.
+\end{itemize}
+The theta/Mellin/Feynman chapter develops possible mechanisms for understanding
+where multiplicative prime structure could enter, but those mechanisms are
+research bridges, not completed alpha proofs.
+
+\section{The \(N_{\rm eff}\) audit: two counts must not be conflated}
+A previous derivation used
+\[
+ N_{\rm eff}=3\times2\times2=12.
+\]
+The current audit distinguishes at least two objects:
+\begin{align*}
+ N_{\rm eff}^{\rm twist}&=12,
+ &&\text{in the SU(2)-twist construction},\\
+ N_{\rm eff}^{\rm loop}&=3,
+ &&\text{in the direct audited scalar-action loop count}.
+\end{align*}
+The identification
+\[
+ N_{\rm eff}^{\rm loop}=N_{\rm eff}^{\rm twist}
+\]
+is not presently a proved theorem.  Therefore a formula that inserts $12$ into
+a loop coefficient must name the twist assumptions; it cannot be described as
+a unique consequence of $\mathbb C\otimes\mathbb H$ alone.
+
+Correspondingly, the repository records two baseline coefficients in different
+routes,
+\[
+ B_0^{\rm loop}=2\pi,
+ \qquad
+ B_0^{\rm twist}=8\pi,
+\]
+with the bridge from either baseline to the phenomenologically required
+$B\approx46.284$ still open.
+
+\section{Gap G137-B}
+The decisive alpha problem can be stated without rhetoric:
+\begin{quote}
+Starting from the canonical UBT action and its justified field content, derive
+the effective reduced coefficient multiplying $n\ln n$, including all
+normalisations and multiplicities, and show that the derivation is independent
+of the measured value of $\alpha$.
+\end{quote}
+This is Gap G137-B.  Several historical and research-track routes have produced
+interesting modular, eta, Gamma, determinant, and winding structures, but the
+current master status records the required insertion into the physical
+coefficient as open.
+
+\section{Why the theta/Mellin route is still worth studying}
+The failure of the naive chain
+\[
+ \Theta\to\text{Mellin}\to\zeta\to\text{Euler product}
+ \to\text{prime sectors}
+\]
+to \emph{dynamically} select primes is itself useful.  The Euler product of a
+standard theta Mellin transform reflects multiplicative arithmetic already
+present in the integer index set.  A stronger mechanism would have to identify
+primitive sectors dynamically.
+
+Rational-time theta revivals are one candidate because quadratic Gauss sums
+factor over coprime denominators.  In that setting prime powers are genuinely
+irreducible building blocks of the revival arithmetic.  Whether the alpha
+prime-sector construction can be rewritten in those variables is an explicit
+open question, not an established result.
+
+\section{Safe summary}
+The statements to remember are:
+\begin{enumerate}
+ \item the reduced stationary equation and its stability calculus are exact;
+ \item the integer/prime structural selection can be studied reproducibly;
+ \item $B$ is not yet derived from the UBT action at the required value;
+ \item the relevant multiplicity bookkeeping is not fully reconciled;
+ \item $\alpha^{-1}=137.036\ldots$ is not a first-principles UBT result today.
+\end{enumerate}
+This is intentionally less dramatic than older archive text and more useful for
+future work, because it tells us exactly which equation must be closed next.

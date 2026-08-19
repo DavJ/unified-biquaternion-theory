@@ -1,11 +1,28 @@
-name: Build textbook PDFs (compatibility wrapper)
-
-# The repository-wide LaTeX workflow already compiles these roots on every
-# master push. This manual wrapper exists for focused textbook iteration and
-# uses the same non-fail-fast compiler and report format.
+name: Build textbook PDFs
 
 on:
   workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'docs/textbook/**'
+      - 'canonical/**'
+      - 'tex/**'
+      - 'tools/latex_audit.py'
+      - 'tools/apply_provenance_headers.py'
+      - 'AI_PROVENANCE.md'
+      - 'PROVENANCE_TIERS.yaml'
+      - '.github/workflows/textbook.yml'
+  pull_request:
+    paths:
+      - 'docs/textbook/**'
+      - 'canonical/**'
+      - 'tex/**'
+      - 'tools/latex_audit.py'
+      - 'tools/apply_provenance_headers.py'
+      - 'AI_PROVENANCE.md'
+      - 'PROVENANCE_TIERS.yaml'
+      - '.github/workflows/textbook.yml'
 
 permissions:
   contents: read
@@ -23,12 +40,16 @@ jobs:
             texlive-latex-base texlive-latex-recommended texlive-latex-extra \
             texlive-fonts-recommended texlive-science \
             texlive-xetex texlive-luatex texlive-bibtex-extra
-      - name: Build every standalone textbook root
+      - name: Check AI provenance markers
+        run: python3 tools/apply_provenance_headers.py --check
+      - name: Build every standalone textbook root (strict)
+        env:
+          TEXINPUTS: ${{ github.workspace }}/tex//:
         run: |
           python3 tools/latex_audit.py \
             --include 'docs/textbook/*.tex' \
             --include 'docs/textbook/**/*.tex' \
-            --jobs 2 --timeout 240
+            --jobs 2 --timeout 240 --strict
       - name: Upload textbook PDFs and report
         if: always()
         uses: actions/upload-artifact@v4

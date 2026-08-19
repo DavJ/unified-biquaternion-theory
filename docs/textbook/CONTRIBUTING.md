@@ -24,8 +24,11 @@ The textbook is a working learning/reference text, not merely a compressed publi
 4. **Never promote by association.** A standard identity used in a UBT argument is not itself a UBT theorem.
 5. **Preserve negative results and objections.** A blocked route belongs in the research record if it clarifies what a future derivation must supply.
 6. **Keep canonical claim files conservative.** Expansive synthesis, alternative representations, and exploratory connections belong here or in `research_tracks/` until their UBT-specific bridge is closed.
-7. Reuse canonical source with `\input{../../...}` when exact claim text must stay synchronized.
-8. Include a build/reproduction check for new mathematics when practical.
+7. **Never `\input` live textbook content from `ARCHIVE/**`.** Historical material may be quoted or discussed with an explicit historical label, but it is not a source of record.
+8. Reuse active canonical source with `\input{../../...}` only when the target is include-safe and exact claim text must stay synchronized; otherwise cite the canonical path and write a self-contained textbook derivation.
+9. Status wording comes from Tier-A ledgers before Tier-B derivation files if the two differ.
+10. Include a build/reproduction check for new mathematics when practical.
+11. Preserve the exact AI-provenance nomenclature from `AI_PROVENANCE.md` / `PROVENANCE_TIERS.yaml`; agents may apply headers but may not assign or elevate tiers on their own.
 
 ## Style
 
