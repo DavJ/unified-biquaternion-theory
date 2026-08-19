@@ -2,13 +2,13 @@ ROOT: research_tracks/coupling_spectrum/rg_prime_checkpoints.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.41
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2 rg_prime_checkpoints.tex
+SECONDS: 3.52
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2 rg_prime_checkpoints.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2"  "rg_prime_checkpoints.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2"  "rg_prime_checkpoints.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./rg_prime_checkpoints.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
@@ -55,12 +55,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -84,12 +84,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
 (/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)))
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-0.mdf))
-(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__coupling_spect
-rum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.aux)
+(/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/buil
+d/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex
+__b92ca34bd2/rg_prime_checkpoints.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -103,53 +103,51 @@ rum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 No file rg_prime_checkpoints.toc.
-
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `eq:beta_inv' on page 2 undefined on input line 142.
+LaTeX Warning: Reference `eq:beta_inv' on page 2 undefined on input line 152.
 
-
-[2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (27.20967pt too wide) in paragraph at lines 186--186
+[2]
+Overfull \hbox (27.20967pt too wide) in paragraph at lines 196--196
 []\OT1/cmr/bx/n/17.28 Trajectory Val-ues and Com-par-i-son with Sta-ble Primes 
 
 
-LaTeX Warning: Reference `eq:rg_solution' on page 3 undefined on input line 190
+LaTeX Warning: Reference `eq:rg_solution' on page 3 undefined on input line 200
 .
 
 
-./rg_prime_checkpoints.tex:205: LaTeX Error: Unicode character − (U+2212)
+./rg_prime_checkpoints.tex:215: LaTeX Error: Unicode character − (U+2212)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.205 The difference (137.036 −
+l.215 The difference (137.036 −
                                   127.9 = 9.14) is accounted for by muon, tau,
-./rg_prime_checkpoints.tex:205:  ==> Fatal error occurred, no output PDF file p
+./rg_prime_checkpoints.tex:215:  ==> Fatal error occurred, no output PDF file p
 roduced!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
-racks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpo
-ints.log.
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.log'
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_
+prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.log.
 Latexmk: Missing input file 'rg_prime_checkpoints.toc' (or dependence on it) from following:
   No file rg_prime_checkpoints.toc.
-Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 2 reference(s)
 Latexmk: ====Undefined refs and citations with line #s in .tex file:
-  Reference `eq:beta_inv' on page 2 undefined on input line 142
-  Reference `eq:rg_solution' on page 3 undefined on input line 190
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.log' and/or above output for details
-
+  Reference `eq:beta_inv' on page 2 undefined on input line 152
+  Reference `eq:rg_solution' on page 3 undefined on input line 200
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 2 reference(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2/rg_prime_checkpoints.log' and/or above output for details
+

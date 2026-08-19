@@ -2,13 +2,13 @@ ROOT: research_tracks/T2_GAUGE/gauge_paper_draft.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.69
-COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6 gauge_paper_draft.tex
+SECONDS: 5.50
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6 gauge_paper_draft.tex
 
 --- LATEXMK OUTPUT ---
 Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
 No existing .aux file, so I'll make a simple one, and require run of *latex.
 Latexmk: applying rule 'pdflatex'...
 Rule 'pdflatex':  Reasons for rerun
@@ -20,16 +20,16 @@ Category 'other':
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6"  "gauge_paper_draft.tex"'
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6"  "gauge_paper_draft.tex"'
 ------------
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./gauge_paper_draft.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
@@ -52,12 +52,12 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
 (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
@@ -70,7 +70,6 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -161,7 +160,13 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+.sty)) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
@@ -175,24 +180,20 @@ tex)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
-Library (tcolorbox): 'tcbskins.code.tex' version '6.4.1'
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzfill-common.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.te
 x)) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
-Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.4.1'
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
-Library (tcolorbox): 'tcbbreakable.code.tex' version '6.4.1'
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.2.0'
 (/usr/share/texlive/texmf-dist/tex/latex/pdfcol/pdfcol.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gaug
-e_paper_draft.tex__c4329718e6/gauge_paper_draft.aux)
+(/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/buil
+d/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6
+/gauge_paper_draft.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -203,158 +204,156 @@ e_paper_draft.tex__c4329718e6/gauge_paper_draft.aux)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 
 LaTeX Warning: Reference `thm:su3_involutions' on page 1 undefined on input lin
-e 69.
+e 79.
 
 
-LaTeX Warning: Reference `thm:su3_qubit' on page 1 undefined on input line 70.
+LaTeX Warning: Reference `thm:su3_qubit' on page 1 undefined on input line 80.
 
 
-LaTeX Warning: Reference `thm:su2' on page 1 undefined on input line 72.
+LaTeX Warning: Reference `thm:su2' on page 1 undefined on input line 82.
 
 
-LaTeX Warning: Reference `thm:u1' on page 1 undefined on input line 74.
+LaTeX Warning: Reference `thm:u1' on page 1 undefined on input line 84.
 
 
-LaTeX Warning: Reference `thm:decoupling' on page 1 undefined on input line 77.
+LaTeX Warning: Reference `thm:decoupling' on page 1 undefined on input line 87.
 
 
 
-LaTeX Warning: Reference `thm:generations' on page 1 undefined on input line 80
+LaTeX Warning: Reference `thm:generations' on page 1 undefined on input line 90
 .
 
 
-LaTeX Warning: Reference `sec:open' on page 1 undefined on input line 83.
+LaTeX Warning: Reference `sec:open' on page 1 undefined on input line 93.
 
 No file gauge_paper_draft.toc.
-
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `sec:algebra' on page 2 undefined on input line 125.
+LaTeX Warning: Reference `sec:algebra' on page 2 undefined on input line 135.
 
 
-LaTeX Warning: Reference `sec:su3' on page 2 undefined on input line 126.
+LaTeX Warning: Reference `sec:su3' on page 2 undefined on input line 136.
 
 
-LaTeX Warning: Reference `sec:generations' on page 2 undefined on input line 12
+LaTeX Warning: Reference `sec:generations' on page 2 undefined on input line 13
 6.
 
 
-LaTeX Warning: Reference `sec:open' on page 2 undefined on input line 127.
+LaTeX Warning: Reference `sec:open' on page 2 undefined on input line 137.
 
 
-LaTeX Warning: Reference `sec:conclusion' on page 2 undefined on input line 128
+LaTeX Warning: Reference `sec:conclusion' on page 2 undefined on input line 138
 .
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 158.
+(hyperref)                removing `math shift' on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 158.
+(hyperref)                removing `subscript' on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 158.
+(hyperref)                removing `superscript' on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 158.
+(hyperref)                removing `math shift' on input line 168.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd)
-Overfull \hbox (99.84396pt too wide) in paragraph at lines 185--191
+Overfull \hbox (99.84396pt too wide) in paragraph at lines 195--201
 \OT1/cmr/m/n/12 (2) $\OML/cmm/m/it/12 G$\OT1/cmr/m/n/12 -equivariance of each g
 en-er-a-tor. Full proof in \OT1/cmtt/m/n/12 canonical/su3[]derivation/su3[]from
 []involutions.tex\OT1/cmr/m/n/12 ,
-
 [2]
-Overfull \hbox (4.86678pt too wide) in paragraph at lines 195--198
+Overfull \hbox (4.86678pt too wide) in paragraph at lines 205--208
 [][]\OT1/cmr/bx/n/12 Theorem 3.3 \OT1/cmr/m/n/12 (Fun-da-men-tal rep-re-sen-ta-
 tion $\OT1/cmr/bx/n/12 3$\OT1/cmr/m/n/12 , \OT1/cmr/bx/n/12 [Proved]\OT1/cmr/m/
 n/12 )\OT1/cmr/bx/n/12 . []\OT1/cmr/m/it/12 The fun-da-men-tal 3-dimensional
 
 LaTeX Warning: Reference `thm:su3_involutions' on page 3 undefined on input lin
-e 224.
+e 234.
 
 
-Overfull \hbox (181.71674pt too wide) in paragraph at lines 226--228
+Overfull \hbox (181.71674pt too wide) in paragraph at lines 236--238
 []\OT1/cmr/m/it/12 Ref: \OT1/cmtt/m/it/12 canonical/interactions/su3[]qubit[]en
 coding.tex\OT1/cmr/m/it/12 ; \OT1/cmtt/m/it/12 canonical/bridges/su3[]gauge[]qu
 bit[]equivalence.tex\OT1/cmr/m/it/12 . 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 239.
+(hyperref)                removing `math shift' on input line 249.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 239.
+(hyperref)                removing `subscript' on input line 249.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 239.
+(hyperref)                removing `math shift' on input line 249.
 
 
-Overfull \hbox (79.33565pt too wide) in paragraph at lines 258--264
+Overfull \hbox (79.33565pt too wide) in paragraph at lines 268--274
 \OT1/cmr/m/n/12 tion from the UBT ac-tion $\OML/cmm/m/it/12 S\OT1/cmr/m/n/12 [^
 ^B]$ is iden-ti-fied as gap C1 in \OT1/cmtt/m/n/12 research[]tracks/T2[]GAUGE/m
 issing[]axioms.md
-
 [3]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 267.
+(hyperref)                removing `math shift' on input line 277.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 267.
+(hyperref)                removing `subscript' on input line 277.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 267.
+(hyperref)                removing `math shift' on input line 277.
 
 
-Overfull \hbox (8.39581pt too wide) in paragraph at lines 280--282
+Overfull \hbox (8.39581pt too wide) in paragraph at lines 290--292
 []\OT1/cmr/m/it/12 Ref: \OT1/cmtt/m/it/12 canonical/interactions/sm[]gauge.tex\
 OT1/cmr/m/it/12 ; \OT1/cmtt/m/it/12 DERIVATION[]INDEX.md\OT1/cmr/m/it/12 : ``\O
 T1/cmtt/m/it/12 U(1)[]Y \OT1/cmr/m/it/12 from
 
-./gauge_paper_draft.tex:308: LaTeX Error: Unicode character ψ (U+03C8)
+./gauge_paper_draft.tex:318: LaTeX Error: Unicode character ψ (U+03C8)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.308 Three independent ψ
+l.318 Three independent ψ
                           -winding modes on the imaginary-time circle $S^1_\...
-./gauge_paper_draft.tex:308:  ==> Fatal error occurred, no output PDF file prod
+./gauge_paper_draft.tex:318:  ==> Fatal error occurred, no output PDF file prod
 uced!
-Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
-racks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log.
-Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.fls'
-Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log'
+Transcript written on /home/runner/work/unified-biquaternion-theory/unified-biq
+uaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_
+draft.tex__c4329718e6/gauge_paper_draft.log.
 Latexmk: Missing input file 'gauge_paper_draft.toc' (or dependence on it) from following:
   No file gauge_paper_draft.toc.
-Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 14 reference(s)
 Latexmk: ====Undefined refs and citations with line #s in .tex file:
-  Reference `thm:su3_involutions' on page 1 undefined on input line 69
-  Reference `thm:su3_qubit' on page 1 undefined on input line 70
-  Reference `thm:su2' on page 1 undefined on input line 72
-  Reference `thm:u1' on page 1 undefined on input line 74
-  Reference `thm:decoupling' on page 1 undefined on input line 77
-  Reference `thm:decoupling' on page 1 undefined on input line 77
-  Reference `thm:generations' on page 1 undefined on input line 80
- And 7 more --- see log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log'
-Latexmk: Errors, so I did not complete making targets
-Collected error summary (may duplicate other messages):
-  pdflatex: Command for 'pdflatex' gave return code 1
-      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log' and/or above output for details
-
+  Reference `thm:su3_involutions' on page 1 undefined on input line 79
+  Reference `thm:su3_qubit' on page 1 undefined on input line 80
+  Reference `thm:su2' on page 1 undefined on input line 82
+  Reference `thm:u1' on page 1 undefined on input line 84
+  Reference `thm:decoupling' on page 1 undefined on input line 87
+  Reference `thm:decoupling' on page 1 undefined on input line 87
+  Reference `thm:generations' on page 1 undefined on input line 90
+ And 7 more --- see log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log'
 Latexmk: Sometimes, the -f option can be used to get latexmk
   to try to force complete processing.
   But normally, you will need to correct the file(s) that caused the
   error, and then rerun latexmk.
   In some cases, it is best to clean out generated files before rerunning
   latexmk after you've corrected the files.
+Latexmk: Getting log file '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.fls'
+Latexmk: Examining '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log'
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 14 reference(s)
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6/gauge_paper_draft.log' and/or above output for details
+
