@@ -10,6 +10,16 @@ This is a scientific theory repository, not a generic codebase. Read
 theory. Preserve proof levels and the canonical/research/speculative/historical
 separation.
 
+## Repository delivery workflow
+
+Prefer authenticated branch + Pull Request delivery for repository changes.
+When GitHub write/PR tooling is unavailable or fails, use an offline
+differential artifact as the fallback (git patch/diff preferred; differential
+ZIP or snapshot ZIP when necessary).  Base any fallback on the author's exact
+current snapshot and keep it free of secrets, caches, nested repositories, and
+unrelated generated files.  Never report a PR, push, merge, or GitHub check as
+completed unless it actually completed and was observed.
+
 ## Locked canonical GR route
 
 ### Architecture diagnosis before repair

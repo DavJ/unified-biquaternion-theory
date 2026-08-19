@@ -47,6 +47,24 @@ English.  A future English edition should be maintained as a parallel edition
 with the same mathematical structure and claim/status labels, not as mixed
 bilingual prose inside one chapter.
 
+### Delivery workflow: PR first, artifact fallback
+
+For repository changes, AI agents should prefer a normal Git branch and Pull
+Request whenever authenticated GitHub write/PR tooling is actually available.
+The PR must contain the source changes, verification artifacts, status/provenance
+updates, and an honest summary of checks performed.
+
+If GitHub write or PR tooling is unavailable, fails, or the author explicitly
+requests an offline snapshot, fall back to a differential artifact (preferably
+a git patch/diff; a differential-root ZIP or full snapshot ZIP may be used when
+needed).  Fallback artifacts must be based on the exact repository snapshot
+provided by the author and must not contain recursively nested repositories,
+build caches, secrets, or unrelated generated files.
+
+Never claim that a branch was pushed, a PR was opened, checks ran on GitHub, or
+a change was merged unless that action actually completed and its result was
+observed.  A locally prepared patch is not a PR.
+
 ## 2. Locked canonical GR route
 
 ### Architecture-before-repair rule

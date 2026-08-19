@@ -58,6 +58,14 @@ numerical or symbolic agreement must not be described as a formal proof.
 - **Suggest improvements**: Propose better approaches
 - **Honest assessment**: Provide constructive criticism
 
+## Delivery workflow
+
+For AI-assisted repository maintenance, the preferred delivery path is a branch
+and Pull Request when authenticated GitHub write/PR tooling is available.  If
+that path is unavailable or fails, use a differential offline artifact as the
+fallback (git patch/diff preferred; a differential-root or snapshot ZIP may be
+used when necessary).  Offline fallback artifacts do not count as submitted PRs.
+
 ## How to Contribute
 
 ### For Minor Changes (Typos, Small Fixes)

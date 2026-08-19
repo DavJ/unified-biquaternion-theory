@@ -47,3 +47,8 @@ UBT-AI-PROVENANCE-END
     never describe uncompiled generated Lean code as a formal proof.
 15. Main paper conclusions should normally have two independent verification
     channels, with tool/version/artifact/scope/limitations recorded.
+16. **Delivery workflow:** prefer authenticated branch + Pull Request delivery.
+    If GitHub write/PR tooling is unavailable or fails, fall back to a
+    differential offline artifact (git patch/diff preferred; ZIP snapshot only
+    when needed).  Never claim a push, PR, merge, or GitHub check that did not
+    actually complete.
