@@ -15,6 +15,15 @@ UBT-AI-PROVENANCE-END
 This reference supersedes older AI notes that treated projection/fiber metrics
 or fitted constants as established results.
 
+## Delivery workflow
+
+Use a Git branch and Pull Request as the primary delivery mechanism whenever
+authenticated GitHub write/PR tooling is available.  If it is unavailable or
+fails, provide a differential offline artifact (prefer a git patch/diff; use a
+differential-root or snapshot ZIP only when useful).  Never describe a locally
+prepared change as pushed, merged, or opened as a PR unless the corresponding
+GitHub action actually succeeded.
+
 
 ## Architecture-before-repair and v10.x freeze
 
