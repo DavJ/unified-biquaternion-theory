@@ -12,7 +12,7 @@ UBT-AI-PROVENANCE-END
 
 # Canonical-relation generalized-Dirac programme
 
-**Active research direction — 2026-07-27**
+**Active research direction — updated 20 August 2026**
 
 This track continues one geometric construction only:
 
@@ -48,33 +48,76 @@ construction.
   Dirac characteristic cone equals the canonical UBT metric null cone;
 - a conditional first-jet theorem: when the field equation is in an independent
   `psi`-normal form, the fifth channel can be solved uniquely and does not
-  reduce the rank-ten spacetime tetrad data.
+  reduce the rank-ten spacetime tetrad data;
 - the exact no-extra-field constrained-rank formula
   `rank(Dg|A)=dim(A+K)-6`, with full rank iff `A+K=R^16`;
 - invertible dependence of the equation on the value `Psi=vec(Theta)` of the
   original field preserves pointwise first-jet rank ten, and nonzero scalar or
   scalar-pseudoscalar zero-order blocks realize this condition explicitly;
 - eight independent real first-order constraints acting only on the tetrad
-  reduce the metric rank to at most eight.
+  reduce the metric rank to at most eight;
+- **action-order obstruction:** the presently documented nondegenerate
+  quadratic first-derivative `Theta` kinetic action has a genuinely second-order
+  Euler--Lagrange principal part, so it cannot directly yield a genuinely
+  first-order generalized-Dirac equation on the same field;
+- exact factorisation of that second-order operator is not by itself enough to
+  select one first-order Dirac factor.
+
+The last two items are proved analytically in
+`action_origin_obstruction.tex` and independently checked by an exact SymPy
+script and a separate no-SymPy exact-arithmetic checker.
 
 Run:
 
 ```bash
 python tools/verify_canonical_relation_dirac_lift.py
 python tools/verify_no_extra_variable_rank.py
-pytest -q tests/test_canonical_relation_dirac_lift.py tests/test_no_extra_variable_rank.py
+python tools/verify_generalized_dirac_action_order.py
+python tools/verify_generalized_dirac_action_order_independent.py
+pytest -q \
+  tests/test_canonical_relation_dirac_lift.py \
+  tests/test_no_extra_variable_rank.py \
+  tests/test_generalized_dirac_action_order.py
 ```
+
+## Current closure target
+
+The rank count is no longer the main blocker.  The immediate theorem-level
+problem is to derive, without additional physical fields, one of the following
+from canonical UBT:
+
+1. a degenerate first-order variational structure whose chain-rule terms cancel
+   the second-jet principal part even though `Gamma=Gamma(DTheta)`;
+2. an exact factorisation of the second-order master operator plus an independently
+   derived boundary/positivity/holomorphy/chirality principle that selects one
+   generalized-Dirac factor; or
+3. an equivalent `Theta`-only constrained variational principle with a proved
+   one-to-one equivalence of solution sets.
+
+Only after that step is established does the no-extra-field rank theorem decide
+whether the resulting on-shell equation preserves rank ten through the exact
+transversality condition `A+K=R^16`.
 
 ## Still open
 
-- derivation of the full generalized-Dirac operator from the UBT action;
+- derivation of the full generalized-Dirac equation from the UBT action in one
+  of the three precise senses above;
+- proof that the selected equation has invertible original-field Jacobian
+  `F_Psi`, or otherwise satisfies `A+K=R^16`;
 - the precise physical role and signature of the complex-time `psi` channel;
-- derivation from the canonical action of an invertible original-field
-  Jacobian `F_Psi`, or another mechanism satisfying the exact transversality
-  condition `A+K=R^16`;
 - local existence/integrability of the resulting implicit holomorphic PDE and
   preservation of the Lorentz slice;
 - Einstein and quantum low-energy limits from the same action.
+
+## Verification status
+
+`docs/DERIVATION_VERIFICATION_POLICY.md` is binding for this track.  For the
+new action-order theorem, two executable exact checks are provided.  Lean is
+**LEAN-PENDING** for this patch because the execution environment used by the
+agent contains neither `lean` nor `lake`, and no repository Lean toolchain was
+available through code search.  No uncompiled Lean-looking source is presented
+as a formal proof.  The formalisation target is recorded in
+`verification/generalized_dirac_action_origin.md`.
 
 ## Historical branch
 
