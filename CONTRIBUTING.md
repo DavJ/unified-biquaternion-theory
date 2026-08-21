@@ -296,7 +296,7 @@ updates to all status surfaces.
   be delivered in both English and Czech.
 - Both editions must carry identical scientific content and must be updated in
   the same pull request.
-- Follow `BILINGUAL_CONTENT_POLICY.md` for pairing, structural identity,
+- Follow `BILINGUAL_CONTENT_POLICY.en.md` and `BILINGUAL_CONTENT_POLICY.cs.md` for pairing, structural identity,
   exceptions, and review requirements.
 - Other-language translations are welcome, but do not replace either required
   English or Czech edition.
