@@ -56,7 +56,7 @@ jobs:
 
       - name: Audit standalone textbook roots
         env:
-          TEXINPUTS: ${{ github.workspace }}/tex//:
+          TEXINPUTS: "${{ github.workspace }}/tex//:"
         run: |
           python3 tools/latex_audit.py \
             --include 'docs/textbook/*.tex' \
