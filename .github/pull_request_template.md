@@ -44,5 +44,13 @@
       `CLAIMS_MATRIX.md`, and `DERIVATION_INDEX.md` are synchronized.
 - [ ] Student and AI-agent instructions were updated when concepts changed.
 
+## Bilingual content gate
+<!-- Required for active scientific, publication, explanatory, or student-facing prose. -->
+- [ ] English and Czech editions are included in this PR, or the change is outside the scope defined in `BILINGUAL_CONTENT_POLICY.md`.
+- [ ] Stable content-unit IDs, structure, equations, symbols, figures, tables, citations, cross-references, claim/status labels, caveats, and provenance match.
+- [ ] Both editions build or render successfully and each rendered edition is monolingual.
+- [ ] Translation source: <!-- EN / CS / not applicable -->
+- [ ] Human reviewer: I explicitly confirm semantic equivalence of the English and Czech editions.
+
 ## Protected paths / audit
 - [ ] Protected paths are touched and the required reviewer/label is present.
