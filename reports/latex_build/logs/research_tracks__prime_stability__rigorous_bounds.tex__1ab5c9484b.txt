@@ -2,7 +2,7 @@ ROOT: research_tracks/prime_stability/rigorous_bounds.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.60
+SECONDS: 2.64
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__prime_stability__rigorous_bounds.tex__1ab5c9484b rigorous_bounds.tex
 
 --- LATEXMK OUTPUT ---

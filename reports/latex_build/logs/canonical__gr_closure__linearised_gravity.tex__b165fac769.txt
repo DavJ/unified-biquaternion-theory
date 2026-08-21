@@ -2,7 +2,7 @@ ROOT: canonical/gr_closure/linearised_gravity.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.54
+SECONDS: 2.59
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__gr_closure__linearised_gravity.tex__b165fac769 linearised_gravity.tex
 
 --- LATEXMK OUTPUT ---

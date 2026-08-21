@@ -2,7 +2,7 @@ ROOT: research_tracks/quantum_ubt/frw_from_ubt.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.07
+SECONDS: 5.13
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__quantum_ubt__frw_from_ubt.tex__0a417648ba frw_from_ubt.tex
 
 --- LATEXMK OUTPUT ---

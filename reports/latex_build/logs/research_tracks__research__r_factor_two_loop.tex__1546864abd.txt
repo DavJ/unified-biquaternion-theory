@@ -2,7 +2,7 @@ ROOT: research_tracks/research/r_factor_two_loop.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.52
+SECONDS: 2.55
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__r_factor_two_loop.tex__1546864abd r_factor_two_loop.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: ALPHA_BEST_ROUTE.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.84
+SECONDS: 3.96
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/ALPHA_BEST_ROUTE.tex__589d4d0ee6 ALPHA_BEST_ROUTE.tex
 
 --- LATEXMK OUTPUT ---

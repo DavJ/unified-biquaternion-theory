@@ -2,7 +2,7 @@ ROOT: experiments/research_tracks/three_generations/st2_obstruction.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.91
+SECONDS: 1.93
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/experiments__research_tracks__three_generations__st2_obstruction.tex__2b502b6b7f st2_obstruction.tex
 
 --- LATEXMK OUTPUT ---

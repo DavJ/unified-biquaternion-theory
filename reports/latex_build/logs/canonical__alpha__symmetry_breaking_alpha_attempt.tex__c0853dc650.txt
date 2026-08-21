@@ -2,7 +2,7 @@ ROOT: canonical/alpha/symmetry_breaking_alpha_attempt.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.57
+SECONDS: 3.69
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650 symmetry_breaking_alpha_attempt.tex
 
 --- LATEXMK OUTPUT ---

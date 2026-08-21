@@ -2,7 +2,7 @@ ROOT: research_tracks/T1_GR/ubt_gr_flagship.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.83
+SECONDS: 4.90
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T1_GR__ubt_gr_flagship.tex__30191ff889 ubt_gr_flagship.tex
 
 --- LATEXMK OUTPUT ---

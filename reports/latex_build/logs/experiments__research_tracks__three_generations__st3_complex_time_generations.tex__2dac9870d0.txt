@@ -2,7 +2,7 @@ ROOT: experiments/research_tracks/three_generations/st3_complex_time_generations
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.93
+SECONDS: 1.91
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/experiments__research_tracks__three_generations__st3_complex_time_generations.tex__2dac9870d0 st3_complex_time_generations.tex
 
 --- LATEXMK OUTPUT ---

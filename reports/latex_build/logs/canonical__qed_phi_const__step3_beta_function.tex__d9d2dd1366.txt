@@ -2,7 +2,7 @@ ROOT: canonical/qed_phi_const/step3_beta_function.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.59
+SECONDS: 2.63
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__qed_phi_const__step3_beta_function.tex__d9d2dd1366 step3_beta_function.tex
 
 --- LATEXMK OUTPUT ---

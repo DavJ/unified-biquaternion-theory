@@ -2,7 +2,7 @@ ROOT: canonical/n_eff/step2_vacuum_polarization.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.80
+SECONDS: 2.79
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__n_eff__step2_vacuum_polarization.tex__f6eda8948e step2_vacuum_polarization.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: canonical/chirality/step2_chirality_result.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.75
+SECONDS: 2.80
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__chirality__step2_chirality_result.tex__4a0e39e37d step2_chirality_result.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: docs/phase/ubt_planck_constant_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.55
+SECONDS: 2.51
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__phase__ubt_planck_constant_derivation.tex__18c65eca65 ubt_planck_constant_derivation.tex
 
 --- LATEXMK OUTPUT ---

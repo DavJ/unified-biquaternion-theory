@@ -2,7 +2,7 @@ ROOT: speculative_extensions/emergent_alpha_executive_summary.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.76
+SECONDS: 3.82
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/speculative_extensions__emergent_alpha_executive_summary.tex__9d8226c955 emergent_alpha_executive_summary.tex
 
 --- LATEXMK OUTPUT ---

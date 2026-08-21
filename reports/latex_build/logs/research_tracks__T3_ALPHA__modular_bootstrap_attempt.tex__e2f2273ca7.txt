@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/modular_bootstrap_attempt.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.72
+SECONDS: 5.79
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__modular_bootstrap_attempt.tex__e2f2273ca7 modular_bootstrap_attempt.tex
 
 --- LATEXMK OUTPUT ---

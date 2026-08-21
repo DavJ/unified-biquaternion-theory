@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/zeta_regularisation_B.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.86
+SECONDS: 5.88
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__zeta_regularisation_B.tex__88ae2672b0 zeta_regularisation_B.tex
 
 --- LATEXMK OUTPUT ---

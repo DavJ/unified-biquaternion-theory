@@ -2,7 +2,7 @@ ROOT: canonical/n_eff/step1_mode_decomposition.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.75
+SECONDS: 2.87
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__n_eff__step1_mode_decomposition.tex__be7bf7f62d step1_mode_decomposition.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: docs/UBT_VERIFICATION_REPORT.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.37
+SECONDS: 2.34
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__UBT_VERIFICATION_REPORT.tex__a095ac677d UBT_VERIFICATION_REPORT.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: canonical/chirality/step4_no_wr_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.78
+SECONDS: 2.83
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__chirality__step4_no_wr_derivation.tex__57a2667714 step4_no_wr_derivation.tex
 
 --- LATEXMK OUTPUT ---

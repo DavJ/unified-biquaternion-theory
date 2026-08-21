@@ -2,7 +2,7 @@ ROOT: research_tracks/alpha_spectral/self_dual_torus_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.30
+SECONDS: 3.34
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__alpha_spectral__self_dual_torus_derivation.tex__a6cef2356a self_dual_torus_derivation.tex
 
 --- LATEXMK OUTPUT ---

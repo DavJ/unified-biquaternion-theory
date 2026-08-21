@@ -2,7 +2,7 @@ ROOT: research_tracks/quantum_ubt/ncg_spectral_triple.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.43
+SECONDS: 2.44
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__quantum_ubt__ncg_spectral_triple.tex__146a712ade ncg_spectral_triple.tex
 
 --- LATEXMK OUTPUT ---
