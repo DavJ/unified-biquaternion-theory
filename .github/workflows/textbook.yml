@@ -81,7 +81,7 @@ jobs:
       - name: Upload official textbook PDF
         uses: actions/upload-artifact@v4
         with:
-          name: UBT_Textbook-${{ github.run_id }}
+          name: UBT_Textbook
           path: build/textbook/public/UBT_Textbook.pdf
           if-no-files-found: error
       - name: Commit refreshed textbook PDF
