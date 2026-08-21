@@ -38,14 +38,32 @@ Do not create new top-level theory roots or duplicate the canonical tree.
 Scientific material is not deleted merely because it is superseded; mark it
 historical/noncanonical or move it to the existing archive workflow.
 
-### Student-text language policy
+### Mandatory bilingual-document policy
 
-The primary student textbook is Czech.  Keep Czech prose, headings, captions,
-and explanatory notes internally consistent within the Czech edition.  Do not
-mix an English chapter into the Czech book merely because an older source is
-English.  A future English edition should be maintained as a parallel edition
-with the same mathematical structure and claim/status labels, not as mixed
-bilingual prose inside one chapter.
+Read and follow `BILINGUAL_CONTENT_POLICY.md` before adding or materially
+changing active scientific, publication, explanatory, or student-facing prose.
+
+English and Czech are equal, mandatory editions of active prose.  A change is
+not complete unless both editions are changed in the same pull request.  The
+editions must have identical scientific content: the same section structure,
+stable content-unit identifiers, equations, symbols, definitions, theorem and
+proof boundaries, figures, tables, citations, cross-references, claim/status
+labels, caveats, and provenance tier.  Only natural-language expression may
+differ.  Neither language is allowed to contain an extra claim, explanation,
+qualification, example, or omission.
+
+Keep each edition monolingual.  Do not mix English prose into a Czech edition
+or Czech prose into an English edition.  Shared language-neutral sources are
+preferred for equations and other formal material so that they cannot drift.
+
+Machine checks establish pairing and structural identity; they do not prove
+translation equivalence.  Every bilingual content change therefore also needs
+an explicit human semantic-equivalence review before merge.  Existing
+single-language documents are migration debt, not precedent.  They may remain
+unchanged temporarily, but any material edit must either migrate the document
+or record a narrowly scoped exception according to the policy.  Generated
+files, source code, historical snapshots under `ARCHIVE/`, and verbatim primary
+sources are outside the bilingual prose rule.
 
 ### Delivery workflow: PR first, artifact fallback
 
