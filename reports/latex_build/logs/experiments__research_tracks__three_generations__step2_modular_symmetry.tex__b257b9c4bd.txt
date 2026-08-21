@@ -2,7 +2,7 @@ ROOT: experiments/research_tracks/three_generations/step2_modular_symmetry.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.92
+SECONDS: 1.94
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/experiments__research_tracks__three_generations__step2_modular_symmetry.tex__b257b9c4bd step2_modular_symmetry.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: docs/papers/papers/generated/ubt_action_and_alpha.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.98
+SECONDS: 1.73
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__ubt_action_and_alpha.tex__9e6e532aae ubt_action_and_alpha.tex
 
 --- LATEXMK OUTPUT ---

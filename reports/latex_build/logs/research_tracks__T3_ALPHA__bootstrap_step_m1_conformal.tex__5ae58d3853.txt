@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/bootstrap_step_m1_conformal.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.17
+SECONDS: 5.27
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__bootstrap_step_m1_conformal.tex__5ae58d3853 bootstrap_step_m1_conformal.tex
 
 --- LATEXMK OUTPUT ---

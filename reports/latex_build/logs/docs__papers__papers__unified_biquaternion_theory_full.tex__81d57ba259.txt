@@ -2,7 +2,7 @@ ROOT: docs/papers/papers/unified_biquaternion_theory_full.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.00
+SECONDS: 3.88
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__unified_biquaternion_theory_full.tex__81d57ba259 unified_biquaternion_theory_full.tex
 
 --- LATEXMK OUTPUT ---

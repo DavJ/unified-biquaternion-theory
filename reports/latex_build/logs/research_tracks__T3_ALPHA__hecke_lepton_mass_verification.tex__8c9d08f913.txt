@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/hecke_lepton_mass_verification.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.00
+SECONDS: 2.01
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__hecke_lepton_mass_verification.tex__8c9d08f913 hecke_lepton_mass_verification.tex
 
 --- LATEXMK OUTPUT ---

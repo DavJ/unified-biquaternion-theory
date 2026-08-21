@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/vcw_exact_minimum.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 6.17
+SECONDS: 6.29
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__vcw_exact_minimum.tex__67ed15f7f9 vcw_exact_minimum.tex
 
 --- LATEXMK OUTPUT ---

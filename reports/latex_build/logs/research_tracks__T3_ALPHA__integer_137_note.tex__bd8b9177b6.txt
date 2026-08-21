@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/integer_137_note.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.93
+SECONDS: 5.03
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__integer_137_note.tex__bd8b9177b6 integer_137_note.tex
 
 --- LATEXMK OUTPUT ---

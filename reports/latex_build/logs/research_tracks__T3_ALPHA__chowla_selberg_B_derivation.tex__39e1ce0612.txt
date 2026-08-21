@@ -2,7 +2,7 @@ ROOT: research_tracks/T3_ALPHA/chowla_selberg_B_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.87
+SECONDS: 3.90
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T3_ALPHA__chowla_selberg_B_derivation.tex__39e1ce0612 chowla_selberg_B_derivation.tex
 
 --- LATEXMK OUTPUT ---

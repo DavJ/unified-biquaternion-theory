@@ -2,7 +2,7 @@ ROOT: canonical/appendices/appendix_alpha_geometry.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.69
+SECONDS: 3.70
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__appendices__appendix_alpha_geometry.tex__189a47cb2e appendix_alpha_geometry.tex
 
 --- LATEXMK OUTPUT ---

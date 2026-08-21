@@ -2,7 +2,7 @@ ROOT: docs/papers/papers/generated/neff_biquaternion.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.59
+SECONDS: 2.50
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a neff_biquaternion.tex
 
 --- LATEXMK OUTPUT ---

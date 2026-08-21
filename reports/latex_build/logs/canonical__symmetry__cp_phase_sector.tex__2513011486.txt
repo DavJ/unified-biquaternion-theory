@@ -2,7 +2,7 @@ ROOT: canonical/symmetry/cp_phase_sector.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.11
+SECONDS: 3.17
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__symmetry__cp_phase_sector.tex__2513011486 cp_phase_sector.tex
 
 --- LATEXMK OUTPUT ---

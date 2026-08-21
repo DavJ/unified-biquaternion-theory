@@ -2,7 +2,7 @@ ROOT: canonical/n_eff/nhelicity_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.21
+SECONDS: 4.27
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__n_eff__nhelicity_derivation.tex__7be98f5b41 nhelicity_derivation.tex
 
 --- LATEXMK OUTPUT ---

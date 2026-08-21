@@ -2,7 +2,7 @@ ROOT: research_tracks/canonical_relation_generalized_dirac/action_origin_obstruc
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.25
+SECONDS: 4.23
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__canonical_relation_generalized_dirac__action_origin_obstruction.tex__9780545432 action_origin_obstruction.tex
 
 --- LATEXMK OUTPUT ---

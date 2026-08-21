@@ -2,7 +2,7 @@ ROOT: docs/textbook/indices_torsion_anticommutator_rot_student_paper_cs.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 0.70
+SECONDS: 0.71
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/docs__textbook__indices_torsion_anticommutator_rot_student_paper_cs.tex__aedfa21ad1 indices_torsion_anticommutator_rot_student_paper_cs.tex
 
 --- LATEXMK OUTPUT ---

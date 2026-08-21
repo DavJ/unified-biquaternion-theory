@@ -2,7 +2,7 @@ ROOT: research_tracks/research/B_base_spectral_determinant.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.62
+SECONDS: 2.65
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7 B_base_spectral_determinant.tex
 
 --- LATEXMK OUTPUT ---

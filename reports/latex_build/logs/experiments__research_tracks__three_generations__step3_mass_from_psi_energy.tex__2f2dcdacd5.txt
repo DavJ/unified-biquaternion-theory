@@ -2,7 +2,7 @@ ROOT: experiments/research_tracks/three_generations/step3_mass_from_psi_energy.t
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.93
+SECONDS: 1.94
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/experiments__research_tracks__three_generations__step3_mass_from_psi_energy.tex__2f2dcdacd5 step3_mass_from_psi_energy.tex
 
 --- LATEXMK OUTPUT ---

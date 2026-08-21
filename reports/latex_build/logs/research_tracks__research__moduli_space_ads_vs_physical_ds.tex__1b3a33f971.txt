@@ -2,7 +2,7 @@ ROOT: research_tracks/research/moduli_space_ads_vs_physical_ds.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.53
+SECONDS: 2.56
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__moduli_space_ads_vs_physical_ds.tex__1b3a33f971 moduli_space_ads_vs_physical_ds.tex
 
 --- LATEXMK OUTPUT ---

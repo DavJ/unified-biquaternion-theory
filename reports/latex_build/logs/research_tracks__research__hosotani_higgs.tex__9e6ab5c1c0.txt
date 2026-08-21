@@ -2,7 +2,7 @@ ROOT: research_tracks/research/hosotani_higgs.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.76
+SECONDS: 2.81
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0 hosotani_higgs.tex
 
 --- LATEXMK OUTPUT ---

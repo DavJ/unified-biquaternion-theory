@@ -2,7 +2,7 @@ ROOT: research_tracks/T2_GAUGE/gauge_paper_draft.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.53
+SECONDS: 5.61
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6 gauge_paper_draft.tex
 
 --- LATEXMK OUTPUT ---

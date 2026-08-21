@@ -2,7 +2,7 @@ ROOT: canonical/gr_closure/frw_cosmological_solutions.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 2.70
+SECONDS: 2.75
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__gr_closure__frw_cosmological_solutions.tex__a2130dbf85 frw_cosmological_solutions.tex
 
 --- LATEXMK OUTPUT ---

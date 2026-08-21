@@ -2,7 +2,7 @@ ROOT: experiments/research_tracks/three_generations/step1_fourier_vs_taylor.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 1.89
+SECONDS: 1.92
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/experiments__research_tracks__three_generations__step1_fourier_vs_taylor.tex__0dbb253395 step1_fourier_vs_taylor.tex
 
 --- LATEXMK OUTPUT ---

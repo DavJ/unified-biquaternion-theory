@@ -2,7 +2,7 @@ ROOT: canonical/THEORY/canonical/canonical_projection_rules.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 0.75
+SECONDS: 0.74
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__THEORY__canonical__canonical_projection_rules.tex__fd5e8e13be canonical_projection_rules.tex
 
 --- LATEXMK OUTPUT ---

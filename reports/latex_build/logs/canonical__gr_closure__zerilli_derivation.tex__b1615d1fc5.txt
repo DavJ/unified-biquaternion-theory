@@ -2,7 +2,7 @@ ROOT: canonical/gr_closure/zerilli_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 5.02
+SECONDS: 4.97
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__gr_closure__zerilli_derivation.tex__b1615d1fc5 zerilli_derivation.tex
 
 --- LATEXMK OUTPUT ---

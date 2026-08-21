@@ -2,7 +2,7 @@ ROOT: canonical/n_eff/neff_reconciliation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 4.24
+SECONDS: 4.28
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__n_eff__neff_reconciliation.tex__c370756446 neff_reconciliation.tex
 
 --- LATEXMK OUTPUT ---

@@ -2,7 +2,7 @@ ROOT: canonical/alpha/best_candidate_derivation.tex
 ENGINE: pdflatex
 STATUS: failed
 RETURN_CODE: 12
-SECONDS: 3.81
+SECONDS: 3.78
 COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/build/latex-audit/work/canonical__alpha__best_candidate_derivation.tex__960f2b529e best_candidate_derivation.tex
 
 --- LATEXMK OUTPUT ---
