@@ -43,7 +43,7 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             latexmk biber python3-pygments \
             texlive-latex-base texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended texlive-science \
+            texlive-fonts-recommended texlive-science texlive-lang-czechslovak \
             texlive-xetex texlive-luatex texlive-bibtex-extra
           python3 -m pip install --upgrade pip
           python3 -m pip install pyyaml
@@ -73,16 +73,17 @@ jobs:
       - name: Publish official PDF into repository tree
         run: make -C docs/textbook publish
 
-      - name: Upload textbook PDF and audit report
-        if: always()
+      - name: Verify official textbook PDF
+        run: |
+          test -s build/textbook/public/UBT_Textbook.pdf
+          test "$(find build/textbook/public -maxdepth 1 -type f -name '*.pdf' | wc -l)" -eq 1
+
+      - name: Upload official textbook PDF
         uses: actions/upload-artifact@v4
         with:
           name: UBT_Textbook-${{ github.run_id }}
-          path: |
-            build/textbook/public/UBT_Textbook.pdf
-            reports/latex_build/**
+          path: build/textbook/public/UBT_Textbook.pdf
           if-no-files-found: error
-
       - name: Commit refreshed textbook PDF
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
