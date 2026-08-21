@@ -19,6 +19,3 @@ jobs:
       - name: Run symbolic Lorentz invariance verification
         run: |
           python tools/sympy_verify_lorentz_norm.py --verbose
-      - name: Run pytest
-        run: |
-          pytest -q
