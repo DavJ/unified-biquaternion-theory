@@ -40,8 +40,9 @@ historical/noncanonical or move it to the existing archive workflow.
 
 ### Mandatory bilingual-document policy
 
-Read and follow `BILINGUAL_CONTENT_POLICY.en.md` and `BILINGUAL_CONTENT_POLICY.cs.md` before adding or materially
-changing active scientific, publication, explanatory, or student-facing prose.
+Read and follow `BILINGUAL_CONTENT_POLICY.en.md` and
+`BILINGUAL_CONTENT_POLICY.cs.md` before adding or materially changing active
+scientific, publication, explanatory, or student-facing prose.
 
 English and Czech are equal, mandatory editions of active prose.  A change is
 not complete unless both editions are changed in the same pull request.  The
