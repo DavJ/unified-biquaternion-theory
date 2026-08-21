@@ -37,6 +37,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Sync master checkout for push reruns
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: git pull --ff-only origin master
+
       - name: Install LaTeX toolchain
         run: |
           sudo apt-get update -qq
