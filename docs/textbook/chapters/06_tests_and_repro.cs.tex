@@ -48,7 +48,7 @@ NumPy/Octave/MATLAB/Mathcad pro numerickou reprodukci. Dvě implementace by měl
 pokud možno používat odlišnou formulaci, aby pouze neopakovaly stejnou chybu.
 
 \section{Povinný záznam verifikace paperu}
-Každý nový nebo podstatně změněný paper má obsahovat sekci \emph{Verification}
+Každý nový nebo podstatně změněný paper má obsahovat sekci\emph{Verification}
 nebo odkaz na doprovodný záznam. Pro hlavní tvrzení se zapisuje alespoň:
 \begin{itemize}
  \item identifikátor tvrzení, rovnice nebo lemmatu;
@@ -58,34 +58,34 @@ nebo odkaz na doprovodný záznam. Pro hlavní tvrzení se zapisuje alespoň:
        souboru;
  \item výsledek a případná tolerance;
  \item přesně co kontrola ověřuje a co naopak neověřuje;
- \item stav Lean formalizace: \texttt{PROVED}, \texttt{PARTIAL},
+ \item stav Lean formalizace:\texttt{PROVED},\texttt{PARTIAL},
        \texttt{LEAN-PENDING} nebo \texttt{NOT-APPLICABLE}.
 \end{itemize}
 
 \section{CI učebnice}
-Zaměřený workflow je \texttt{.github/workflows/textbook.yml}. Spouští se při
-relevantním pushi/pull requestu i ručně a používá
-\texttt{tools/latex\_audit.py --strict}. Chyba kteréhokoli kořenového dokumentu
-učebnice tedy způsobí selhání workflow a neschová se v úspěšném non-strict
-auditu.
+Vyhrazený workflow je \texttt{.github/workflows/textbook.yml}. Spouští se při
+relevantních pushích a pull requestech a lze jej spustit také ručně. Nejprve
+kontroluje shodu jazykových verzí a poté používá
+\texttt{tools/latex\_audit.py --strict}. Chyba kteréhokoli samostatného
+dokumentu učebnice proto způsobí selhání workflow.
 
-Po strict auditu se volá stejný Makefile jako lokálně a vzniká stabilní sada
-PDF v \texttt{build/textbook/public/}:
+Po strict auditu workflow volá stejný Makefile jako při lokálním sestavení a
+vytvoří přesně dvě oficiální PDF v \texttt{build/textbook/public/}:
 \begin{itemize}
- \item \texttt{UBT\_Textbook.pdf} --- hlavní učebnice;
- \item \texttt{UBT\_Textbook\_Supplement\_Covariant\_Tetrad.pdf};
- \item \texttt{UBT\_Textbook\_Supplement\_Indexy\_Torze\_Rot\_CS.pdf}.
+ \item \texttt{UBT\_Textbook\_EN.pdf} --- anglická edice;
+ \item \texttt{UBT\_Textbook\_CS.pdf} --- česká edice.
 \end{itemize}
-GitHub Actions artefakt se jmenuje
-\texttt{ubt-textbook-pdfs-\$\{run\_id\}} a obsahuje tato PDF i LaTeX audit.
+Každé PDF se nahraje jako samostatně pojmenovaný GitHub Actions artefakt.
+E-mailová distribuce přikládá obě edice a je povolena pouze po úspěšném pushi
+do \texttt{master}; pull request ani ruční spuštění e-mail nikdy neodesílají.
 
 Pro lokální publikovanou kopii lze spustit
 \begin{verbatim}
 make -C docs/textbook publish
 \end{verbatim}
-což zkopíruje stejnou trojici do \texttt{docs/pdfs/}. Vygenerované PDF je pouze
-výstup; vědecký status zůstává řízen zdrojovým textem a provenance/status
-registry.
+což zkopíruje stejnou dvojici do \texttt{docs/pdfs/}. Vygenerovaná PDF jsou
+pouze publikační výstupy; vědecký status zůstává řízen zdrojovým textem a
+provenance/status registrem.
 
 \section{Minimální lokální kontrola před textbook patchem}
 Doporučená sekvence je:
@@ -94,7 +94,7 @@ python tools/apply_provenance_headers.py --apply
 python tools/apply_provenance_headers.py --check
 python tools/latex_audit.py --include 'docs/textbook/*.tex' \
   --include 'docs/textbook/**/*.tex' --jobs 2 --timeout 240 --strict
-make -C docs/textbook verify
+provést ověření dokumentů/učebnic -C
 \end{verbatim}
 Úspěšný build potvrzuje syntaktické a reprodukční vlastnosti. Nezvyšuje sám od
 sebe Tier-C tvrzení na dokázaný výsledek UBT.

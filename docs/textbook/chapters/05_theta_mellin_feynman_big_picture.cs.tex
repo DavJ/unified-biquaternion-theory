@@ -1,0 +1,545 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\chapter{Theta, Mellin, zeta, cesty a prvočíselná struktura}
+\label{ch:theta-mellin-feynman}
+
+\section{Proč tato kapitola existuje}
+
+Tato kapitola je záměrně širší než kanonický dokument o nároku na UBT.  Jeho účelem je
+pedagogický: vedle redukovaného UBT umístit několik klasických matematických struktur
+theta most, aby jejich vztahy byly vidět na jednom místě.  Výsledkem je\emph{ne}
+stát se teorémem UBT pouze proto, že je užitečný uvnitř UBT.
+
+V próze proto používáme tři stavové štítky:
+\begin{itemize}
+  \item\textbf{Classical}: standardní matematika nebo standardní kvantová mechanika;
+  \item\textbf{Bridge}: přesné prohlášení o zmenšeném modelu theta používaném k připojení
+        standardní matematika k zápisu UBT;
+  \item\textbf{UBT open}: příkaz, který by musel být odvozen z kanonického
+        Rovnice nebo akce pole UBT, než by se mohly stát fyzickým tvrzením UBT.
+\end{itemize}
+
+Centrální zmenšený objekt je
+\begin{equation}
+  S(t,\psi)
+  = \sum_{n\ge 1} a_n\,e^{-\pi\psi n^2}e^{i\pi t n^2}
+  = \sum_{n\ge1}a_n e^{-\pi(\psi-it)n^2}.
+  \label{eq:reduced-theta-amplitude}
+\end{equation}
+Je to stejné jádro s redukovaným komplexním časem, jaké se používá v
+\path{canonical/bridges/theta_complex_time_bridge.tex}. V této kapitole jde o
+\textbf{model mostu}; nepředpokládá se, že kanonické hlavní pole UBT
+$\Theta(q,\tau)$ je Jacobiho theta funkcí.
+
+\paragraph{Znaménková konvence použitá v souvisejících poznámkách k RH.}
+Některé dřívější škrábací práce UBT/RH používaly kladnou tepelnou proměnnou $y=-\psi$, a proto
+napsal theta parametr jako $t-i\psi=t+iy$ s konvergencí na odpovídající
+Poločára $y>0$.  Tato kapitola zapisuje proměnnou tlumení přímo jako $\psi>0$
+v Eq.~\eqref{eq:reduced-theta-amplitude}.  Identity transformace jsou poté identické
+přeznačení $y=-\psi$; znaková konvence musí být deklarována před fyzickým UBT
+výklad je připojen k jedné polopřímce.
+
+\section{Jedno spektrum, několik reprezentací}
+
+\subsection{Ortogonalita módů versus neortogonalita theta šablon}
+
+Pro pevné $\psi$ jsou základní časové režimy v rovnici ~\eqref{eq:reduced-theta-amplitude}
+\begin{equation}
+  e^{i\pi n^2 t}.
+\end{equation}
+Na intervalu $t\in[0,2]$ jsou ortogonální:
+\begin{equation}
+ \int_0^2 e^{i\pi(n^2-m^2)t}\,dt
+ = 2\,\delta_{nm},
+ \qquad n,m\ge1.
+ \label{eq:quadratic-mode-orthogonality}
+\end{equation}
+Důležitým rozdílem je, že\emph{kompletní šablony}
+$S_\psi(t):=S(t,\psi)$ při různých hodnotách $\psi$ obecně nejsou ortogonální.
+
+\begin{theorem}[Classical Gram kernel identity]
+Pro vnitřní produkt
+\begin{equation}
+  \langle f,g\rangle:=\frac12\int_0^2 f(t)\overline{g(t)}\,dt,
+\end{equation}
+a amplitudy $S_\psi$ z Eq.~\eqref{eq:reduced-theta-amplitude},
+\begin{equation}
+  G(\psi,\phi)
+  :=\langle S_\psi,S_\phi\rangle
+  =\sum_{n\ge1}|a_n|^2e^{-\pi(\psi+\phi)n^2}.
+  \label{eq:gram-general}
+\end{equation}
+Pro $a_n\equiv1$,
+\begin{equation}
+  G(\psi,\phi)
+  =\frac{\vartheta_3(0\mid i(\psi+\phi))-1}{2}.
+  \label{eq:gram-theta}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Vložte dva součty do vnitřního součinu.  Rovnice~\eqref{eq:quadratic-mode-orthogonality}
+eliminuje všechny křížové termíny $m\neq n$ a opouští
+\[
+  \sum_n |a_n|^2 e^{-\pi\psi n^2}e^{-\pi\phi n^2}.
+\]
+U jednotkových vah standardní identita
+$\vartheta_3(0\mid iu)=1+2\sum_{n\ge1}e^{-\pi u n^2}$ dává
+Eq. ~\eqref{eq:gram-theta}.
+\end{proof}
+
+\paragraph{Practical consequence.}
+Neortogonalita šablon není překážkou detekce.  Pokud je pozorovaný signál
+$f(t)$, normalizované skóre shodného filtru je
+\begin{equation}
+  \rho(\psi,\Delta)
+  =\frac{\left|\int f(t)\overline{S(t-\Delta,\psi)}\,dt\right|^2}
+  {\|f\|^2\,\|S_\psi\|^2}.
+  \label{eq:theta-matched-filter}
+\end{equation}
+Nejlepší samostatná šablona se získá maximalizací $\rho$ oproti $(\psi,\Delta)$.
+Ortogonalita se stává důležitou, když je namontováno mnoho šablon současně; pak
+Gramova matice musí být invertována nebo regularizována, například pomocí $G+\lambda I$.
+
+\subsection{Fourierova transformace v reálném čase}
+
+Vezměte Fourierovu konvenci
+\begin{equation}
+  \widehat f(\omega)=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}\,dt.
+\end{equation}
+Formálně nebo distribučně,
+\begin{equation}
+  \widehat S(\omega,\psi)
+  =2\pi\sum_{n\ge1}a_n e^{-\pi\psi n^2}
+       \delta(\omega-\pi n^2).
+  \label{eq:fourier-delta-spectrum}
+\end{equation}
+Spektrum kvadratického módu je tedy již Diracovým hřebenem ve frekvenci v reálném čase; žádný
+K vytvoření delta čar je zapotřebí demodulace režim po režimu.
+
+\subsection{Laplaceova transformace v imaginárním čase}
+
+Pro $\Re z$ dostatečně velký,
+\begin{align}
+  \mathcal L_\psi[S](z;t)
+   &=\int_0^\infty e^{-z\psi}S(t,\psi)\,d\psi \\
+   &=\sum_{n\ge1}
+      \frac{a_n e^{i\pi t n^2}}{z+\pi n^2}.
+  \label{eq:laplace-resolvent}
+\end{align}
+Stejná vlastní čísla, která dala Fourierovy delta čáry, se nyní objevují jako solventní póly
+$z=-\pi n^2$.
+
+\subsection{Mellinova transformace v imaginárním čase}
+
+Pro $\Re s$ v polorovině absolutní konvergence,
+\begin{align}
+  \mathcal M_\psi[S](s;t)
+  &:=\int_0^\infty \psi^{s-1}S(t,\psi)\,d\psi \\
+  &=\Gamma(s)\pi^{-s}
+    \sum_{n\ge1}\frac{a_n e^{i\pi t n^2}}{n^{2s}}.
+  \label{eq:mellin-time-twisted}
+\end{align}
+Identita vyplývá z
+\begin{equation}
+ \int_0^\infty \psi^{s-1}e^{-\pi n^2\psi}\,d\psi
+ =\Gamma(s)(\pi n^2)^{-s}.
+\end{equation}
+
+Pro jádro Gram s $a_n\equiv1$ a $u=\psi+\phi$,
+\begin{equation}
+ \int_0^\infty u^{s-1}G(u)\,du
+ =\Gamma(s)\pi^{-s}\zeta(2s).
+ \label{eq:gram-mellin-zeta}
+\end{equation}
+Toto je klasická theta - Mellinova matematika.  Jeho význam je zde organizační:
+stejná redukovaná theta banka, která způsobuje neortogonální šablony, je také tepelná stopa
+jehož Mellinova reprezentace je spektrální zeta funkce.
+
+\paragraph{Spektrální trojúhelník.}
+Rovnice~\eqref{eq:fourier-delta-spectrum},\eqref{eq:laplace-resolvent} a
+\eqref{eq:mellin-time-twisted} poskytují tři pohledy na stejné kvadratické spektrum:
+\begin{equation}
+ \boxed{
+ \begin{array}{ccl}
+   \text{Fourier in }t   &\longrightarrow& \delta(\omega-\pi n^2),\\[2mm]
+   \text{Laplace in }\psi&\longrightarrow& (z+\pi n^2)^{-1},\\[2mm]
+   \text{Mellin in }\psi &\longrightarrow& \Gamma(s)\pi^{-s}n^{-2s}.
+ \end{array}}
+ \label{eq:spectral-triangle}
+\end{equation}
+
+\section{Mellin je Fourierova transformace v logaritmické souřadnici}
+
+Nechat
+\begin{equation}
+  M_f(s)=\int_0^\infty f(x)x^{s-1}\,dx,
+  \qquad s=\sigma+i\omega.
+\end{equation}
+Nastavte $x=e^u$, tedy $dx=e^u du$.  Pak
+\begin{equation}
+  M_f(\sigma+i\omega)
+  =\int_{-\infty}^{\infty}
+   f(e^u)e^{\sigma u}e^{i\omega u}\,du.
+  \label{eq:mellin-log-fourier}
+\end{equation}
+Kromě konvenčního znaku Fourierovy fáze se jedná o Fourierovu transformaci
+$u=\ln x$ váženého signálu $f(e^u)e^{\sigma u}$.  Mellinova analýza je tedy
+přirozená harmonická analýza pro multiplikativní škálování, zatímco běžná Fourierova analýza
+je přirozené pro aditivní překlad.
+
+Toto pozorování je zvláště užitečné při interpretaci zeta funkcí: zeta vertikály
+proměnná $\Im s$ je logaritmická frekvence.
+
+\section{Současný řez a časově fázovaná rodina zeta funkcí}
+\label{sec:time-twisted-zeta}
+
+\paragraph{UBT coordinate convention.}
+V pracovním komplexním časovém výkladu použitém v tomto výzkumném vláknu je současnost
+řez je vybrán jako $t=0$.  Toto je konvence souřadnic UBT, nikoli prohlášení, že
+Riemannova funkce zeta vnitřně zná fyzickou ,,přítomnost''.
+
+Pro jednotkové váhy $a_n\equiv1$ definujte kvadratický časový twist
+\begin{equation}
+  Z_\Theta(s;t)
+  :=\sum_{n=1}^{\infty}
+    \frac{e^{i\pi t n^2}}{n^{2s}}.
+  \label{eq:time-twisted-zeta}
+\end{equation}
+Pak se stane Eq.~\eqref{eq:mellin-time-twisted}
+\begin{equation}
+ \boxed{
+  \mathcal M_\psi[S](s;t)
+  =\Gamma(s)\pi^{-s}Z_\Theta(s;t).}
+ \label{eq:mellin-Ztheta}
+\end{equation}
+Na současném plátku,
+\begin{equation}
+ \boxed{Z_\Theta(s;0)=\zeta(2s).}
+ \label{eq:present-zeta}
+\end{equation}
+Obyčejná zeta je tedy jedním členem ---členem $t=0$--- přirozené rodiny vytvořené
+stejné jádro theta s redukovaným komplexním časem.
+
+\begin{remark}
+Exponenciální faktor v rovnici ~\eqref{eq:time-twisted-zeta} je\emph{aditivní kvadratický
+kroutit}.  Pro generický $t$ výsledná řada Dirichlet nemá obyčejný Euler
+produkt.  Dynamiku primárního faktoru nelze odvozovat pouze z existence
+$t=0$ produkt Euler.
+\end{remark}
+
+\subsection{Jednoduché speciální časy}
+
+Rodina je pod $t\mapsto t+2$ periodická, protože $n^2\in\mathbb Z$:
+\begin{equation}
+ Z_\Theta(s;t+2)=Z_\Theta(s;t).
+\end{equation}
+V $t=1$,
+\begin{align}
+ Z_\Theta(s;1)
+ &=\sum_{n\ge1}\frac{(-1)^{n^2}}{n^{2s}}
+ =\sum_{n\ge1}\frac{(-1)^n}{n^{2s}}\\
+ &=-\eta(2s)
+ =-\bigl(1-2^{1-2s}\bigr)\zeta(2s),
+ \label{eq:t1-eta}
+\end{align}
+kde $\eta$ je funkce Dirichlet eta.
+
+\subsection{Racionální časy: rozklad pomocí Hurwitzovy zeta funkce}
+
+Nechte $t=a/q$ s celými čísly $a$ a $q>0$.  Koeficient
+\begin{equation}
+ c_n=e^{i\pi a n^2/q}
+\end{equation}
+je periodický s periodou $M=2q$(někdy je skutečná perioda menší).  Rozdělení
+Dirichletova řada do tříd zbytků dává přesnou klasickou identitu
+\begin{equation}
+ \boxed{
+ Z_\Theta\!\left(s;\frac aq\right)
+ =M^{-2s}\sum_{r=1}^{M}
+ e^{i\pi a r^2/q}
+ \zeta\!\left(2s,\frac rM\right),
+ \qquad M=2q,}
+ \label{eq:rational-hurwitz}
+\end{equation}
+kde $\zeta(s,\alpha)$ je funkce Hurwitz zeta.
+
+\begin{proof}
+Zapište každý $n\ge1$ jedinečně jako $n=mM+r$ s $m\ge0$ a $1\le r\le M$.
+Periodicita dává $c_{mM+r}=c_r$ a
+\begin{align*}
+ Z_\Theta(s;a/q)
+ &=\sum_{r=1}^{M}c_r\sum_{m=0}^{\infty}(mM+r)^{-2s}\\
+ &=M^{-2s}\sum_{r=1}^{M}c_r
+   \zeta\!\left(2s,\frac rM\right).
+\end{align*}
+\end{proof}
+
+Díky tomu jsou „alternativní funkce zeta“ generované mimo $t=0$ přesně určené.
+Běžná zeta, eta, Hurwitzova zeta a kvadratické Gaussovy součty zde nejsou
+nesouvisející objekty: jsou to různé řezy nebo reprezentace jedné rodiny
+kvadratických fází.
+
+\section{Racionální revivaly a kvadratické Gaussovy součty}
+\label{sec:gauss-revivals}
+
+U racionálního $t=a/q$ závisí fáze $e^{i\pi a n^2/q}$ pouze na třídě konečných zbytků.
+Odpovídající konečné kvadratické součty jsou Gaussovy součty.  Běžná normalizace je
+\begin{equation}
+ g(a,q)=\sum_{r=0}^{q-1}e^{2\pi i a r^2/q}.
+ \label{eq:gauss-sum}
+\end{equation}
+Pro koprime moduly $q_1,q_2$ dává čínská věta o zbytku, s
+normalizace v Eq.~\eqref{eq:gauss-sum},
+\begin{equation}
+ g(a,q_1q_2)=g(aq_2,q_1)\,g(aq_1,q_2),
+ \qquad \gcd(q_1,q_2)=1.
+ \label{eq:gauss-crt}
+\end{equation}
+Složené jmenovatele se tedy započítávají do částí coprime a hlavní mocniny jsou
+neredukovatelné aritmetické stavební kameny racionálně-časové oživovací struktury.
+
+Toto je slibnější místo pro hledání {dynamického} původu UBT prvočísla\emph
+sektorů než pouhé pozorování Eulerova součinu $\zeta(2s)$, protože Gaussův součet
+aritmetiku nese přímo kvadratická theta fáze.
+
+\section{Součet theta módů a Feynmanův součet windingů}
+\label{sec:theta-feynman}
+
+Vztah theta/cesta je v řízeném učebnicovém příkladu přesný: volná částice
+hmota $m$ pohybující se po kružnici o obvodu $L$.
+
+Vlastní funkce a energie hybnosti jsou
+\begin{equation}
+ \phi_n(x)=L^{-1/2}e^{2\pi i n x/L},
+ \qquad
+ E_n=\frac{\hbar^2}{2m}\left(\frac{2\pi n}{L}\right)^2.
+\end{equation}
+Proto je propagátor v reálném čase
+\begin{equation}
+ K(x,x';T)
+ =\frac1L\sum_{n\in\mathbb Z}
+ \exp\!\left(\frac{2\pi i n(x-x')}{L}
+             -\frac{iE_nT}{\hbar}\right).
+ \label{eq:circle-mode-propagator}
+\end{equation}
+Toto je součet režimu Jacobi-theta.  Poissonova sumace jej transformuje na
+\begin{equation}
+ \boxed{
+ K(x,x';T)
+ =\sqrt{\frac{m}{2\pi i\hbar T}}
+  \sum_{w\in\mathbb Z}
+  \exp\!\left[
+   \frac{i m(x-x'+wL)^2}{2\hbar T}
+  \right].}
+ \label{eq:circle-winding-propagator}
+\end{equation}
+Celé číslo $w$ označuje vinuté sektory.  Exponent je klasická volná částice
+akce pro zvednutou cestu z $x'$ do $x+wL$:
+\begin{equation}
+ S_w^{\rm cl}=\frac{m(x-x'+wL)^2}{2T}.
+\end{equation}
+Proto stejný šiřitel připouští dvě přesné reprezentace:
+\begin{equation}
+ \boxed{
+ \text{theta/momentum modes}
+ \quad\Longleftrightarrow\quad
+ \text{Feynman winding histories}}
+ \label{eq:mode-winding-duality}
+\end{equation}
+s Poissonovou/Jacobiho transformací jako mostem.
+
+\paragraph{Important qualification.}
+Klasická trajektorie je vybrána akcí\emph{stacionární},
+$\delta S=0$, ne nutně minimální akce.  Několik stacionárních cest je běžných
+kvantová mechanika; samy o sobě neimplikují multivesmírný výklad.
+
+\section{Kde prvočísla vstupují a kde nevstupují}
+
+\subsection{Eulerův součin na nefázovaném řezu}
+
+Při $t=0$ a jednotkových hmotnostech,
+\begin{equation}
+ Z_\Theta(s;0)=\zeta(2s)
+ =\prod_{p}\left(1-p^{-2s}\right)^{-1},
+ \qquad \Re s>\frac12.
+ \label{eq:zeta-euler-product}
+\end{equation}
+Toto je hluboká změna reprezentace od aditivního součtu přes všechny pozitivní
+celá čísla na multiplikativní součin nad prvočísly.  Přesto je to klasika
+vlastnost celých čísel, sama o sobě není důkazem toho, že dynamika UBT vybírá prvočísla.
+Pro obecné závaží $a_n$, série Dirichlet
+$\sum |a_n|^2n^{-2s}$ má Eulerův součin pouze tehdy, když koeficienty splňují
+vhodné podmínky multiplikace.
+
+\subsection{Mřížky pólů lokálních Eulerových faktorů}
+
+Jediný formální místní faktor
+\begin{equation}
+ L_p(s)=\left(1-p^{-2s}\right)^{-1}
+\end{equation}
+má póly, když $p^{-2s}=1$.  Zápis $s=\sigma+i\omega$ dává
+\begin{equation}
+ \sigma=0,
+ \qquad
+ \omega_{p,k}=\frac{\pi k}{\ln p},
+ \qquad k\in\mathbb Z.
+ \label{eq:local-prime-poles}
+\end{equation}
+Pro odlišná prvočísla $p\neq q$ se nenulové pólové frekvence nemohou shodovat.  Li
+$k/\ln p=\ell/\ln q$ s nenulovými celými čísly $k,\ell$, pak
+$q^k=p^\ell$, což je v rozporu s jedinečnou faktorizací.  Všechny místní faktory sdílejí triviální
+Umístění $k=0$.
+
+Toto jsou póly\emph{individuální formální Eulerovy faktory}.  Leží mimo
+Eulerův součin konvergence v polorovině a nesmí být zaměňován s póly
+analyticky pokračuje globální $\zeta(2s)$, jehož pól je na $s=1/2$.
+
+Pokud $N(T;P)$ počítá kladné pólové frekvence lokálního faktoru až do výšky $T$ pro prvočísla
+$p\le P$ tedy
+\begin{align}
+ N(T;P)
+ &=\sum_{p\le P}\left\lfloor\frac{T\ln p}{\pi}\right\rfloor\\
+ &=\frac{T}{\pi}\vartheta(P)+O(\pi(P)),
+ \label{eq:local-pole-count}
+\end{align}
+kde
+\begin{equation}
+ \vartheta(P)=\sum_{p\le P}\ln p
+\end{equation}
+je Čebyševova funkce theta.  Věta o prvočíslech vyplývá
+$\vartheta(P)\sim P$.
+
+\subsection{Vertikální Fourierovo spektrum a mocniny prvočísel}
+
+Při pevném $\sigma>1/2$,
+\begin{equation}
+ \zeta\bigl(2(\sigma+i\omega)\bigr)
+ =\sum_{n\ge1}n^{-2\sigma}e^{-i(2\ln n)\omega}.
+ \label{eq:zeta-vertical-fourier}
+\end{equation}
+Fourierova transformace v $\omega$ tedy vytváří spektrální čáry at
+\begin{equation}
+ \xi_n=2\ln n.
+\end{equation}
+Chcete-li izolovat prvočísla a prvočísla, použijte logaritmickou derivaci:
+\begin{equation}
+ -\frac{\zeta'(z)}{\zeta(z)}
+ =\sum_{n\ge1}\frac{\Lambda(n)}{n^z}
+ =\sum_p\sum_{k\ge1}(\ln p)p^{-kz},
+ \qquad \Re z>1.
+ \label{eq:log-derivative-von-mangoldt}
+\end{equation}
+S $z=2(\sigma+i\omega)$,
+\begin{equation}
+ -\frac{\zeta'\!\left(2(\sigma+i\omega)\right)}
+        {\zeta\!\left(2(\sigma+i\omega)\right)}
+ =\sum_p\sum_{k\ge1}
+   (\ln p)p^{-2k\sigma}
+   e^{-i(2k\ln p)\omega}.
+ \label{eq:prime-power-fourier-comb}
+\end{equation}
+Hřeben primárního výkonu tedy sedí na
+\begin{equation}
+ \boxed{\xi_{p,k}=2k\ln p.}
+ \label{eq:prime-power-frequencies}
+\end{equation}
+Odlišné čáry primárních sil se shodují pouze tehdy, když jsou samy hlavní síly totožné.
+
+\subsection{Počítání prvočísel a frekvence nul zeta funkce}
+
+Funkce počítání váženého primárního výkonu
+\begin{equation}
+ \psi_C(x)=\sum_{n\le x}\Lambda(n)
+\end{equation}
+souvisí klasickým explicitním vzorcem s netriviálními nulami
+$\rho=\beta+i\gamma$ z $\zeta$.  schematicky,
+\begin{equation}
+ \psi_C(x)=x-\sum_\rho\frac{x^\rho}{\rho}+\text{elementary terms}.
+ \label{eq:explicit-formula-schematic}
+\end{equation}
+Zápis $x=e^u$ změní každý nulový příspěvek na
+\begin{equation}
+ x^\rho=e^{\beta u}e^{i\gamma u}.
+\end{equation}
+Tedy imaginární části $\gamma$ zeta nul působí jako kmitací frekvence v
+logaritmická proměnná $u=\ln x$.  Toto je klasická prvočísla--nulový spektrální most.
+
+\section{Co to znamená pro prvočíselné sektory UBT}
+
+Nesmí se spojovat dva odlišné mechanismy.
+
+\paragraph{Cesta A: stopová/orbitální cesta.}
+Analogie stopových vzorců naznačují, že prvočísla by měla odpovídat primitivnímu periodiku
+objekty, jejichž opakované průchody generují primární mocniny.  Pro obyčejnou volnou částici
+na $S^1$ však spektrum primitivních orbitálních délek není $\{\ln p\}$.  Proto
+\begin{quote}
+\textbf{GAP-THETA-PRIME-1:} odvodit ze skutečného operátoru UBT primitivní
+orbitální či spektrální strukturu, jejíž přirozená primitivní data jsou
+$\ln p$; jinak netvrdit, že Eulerův součin dynamicky odvozuje prvočíselné
+sektory UBT.
+\end{quote}
+
+\paragraph{Cesta B: cesta racionálních revivalů.}
+Samotná kvadratická theta dynamika má v racionálních časech aritmetickou strukturu.  Gauss
+součtový faktor prostřednictvím společných jmenovatelů, díky čemuž jsou hlavní síly přirozenými stavebními kameny.
+Toto motivuje
+\begin{quote}
+\textbf{GAP-THETA-PRIME-2:} přepsat existující konstrukci prvočíselných sektorů
+UBT $\alpha$ do proměnných revivalu/vinutí a ověřit, zda její rozlišená
+prvočísla vycházejí z racionální časové struktury Gaussových součtů, a nikoli
+z dodatečně vybraného seznamu.
+\end{quote}
+
+Tyto cesty jsou kompatibilní jako směry výzkumu, ale ještě není známo, že jsou stejné
+mechanismus.
+
+\section{Operátorová otázka za celým obrazem}
+
+Rovnice~\eqref{eq:reduced-theta-amplitude} může být zapsána formálně zavedením
+\begin{equation}
+ H_0|n\rangle=\pi n^2|n\rangle.
+\end{equation}
+Pak je generován jeho evoluce režimu
+\begin{equation}
+ U_0(t,\psi)=e^{-\psi H_0}e^{+itH_0}.
+ \label{eq:formal-complex-propagator}
+\end{equation}
+Díky tomu je snížená amplituda theta skutečně podobná propagátoru.  Rozhodující UBT
+otázka je silnější:
+\begin{quote}
+\textbf{GAP-THETA-PROP:} odvodit operátor $H_\Theta$ z kanonické akce UBT nebo
+rovnic pole tak, aby příslušné jádro či maticový prvek
+$e^{-\psi H_\Theta}e^{\pm itH_\Theta}$ poskytuje zde použitou theta strukturu.
+\end{quote}
+Dokud se tato mezera neuzavře, vztahy mód/vinutí, Mellin/zeta a obrození/primární vztahy jsou
+rigorózní matematika modelu redukovaného mostu, nikoli odvození dynamiky UBT.
+
+\section{Mapa velkého obrazu}
+
+Užitečná syntéza je tedy
+\begin{equation}
+\boxed{
+\begin{array}{ccccc}
+ & \text{reduced theta kernel} & & &\\
+ & \displaystyle\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2} & & &\\[2mm]
+ \swarrow & \downarrow & \searrow & &\\[-1mm]
+ \text{Fourier/Laplace} & \text{Mellin} & \text{Poisson/Jacobi} & &\\
+ \delta\text{-lines/resolvent} & Z_\Theta(s;t) & \text{winding/path sum} & &\\
+ & \downarrow\ t=0 & \downarrow\ t\in\mathbb Q & &\\
+ & \zeta(2s) & \text{Gauss/revival arithmetic} & &\\
+ & \downarrow & & &\\
+ & \text{Euler product / prime powers / zeros} & & &
+\end{array}}
+\end{equation}
+Klasické šipky jsou přesné.  Výzkumným úkolem je určit, kdo z nich přežije
+kdy je redukované jádro nahrazeno kanonickým operátorem UBT a zda je buď primární
+cesta vysvětluje existující sektory UBT $\alpha$.

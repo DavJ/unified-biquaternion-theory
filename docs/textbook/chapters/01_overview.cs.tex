@@ -1,0 +1,137 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\chapter{UBT za hodinu: motivace, architektura a současný stav}
+\label{ch:overview}
+
+\section{K čemu tato kapitola slouží}
+Unified Biquaternion Theory (UBT) se ptá, zda geometrie prostoročasu a vnitřní
+Struktura pole může být zakódována do jednoho komplexního hlavního pole s kvaternionovou hodnotou,
+spíše než představeny jako nesouvisející základní objekty.  Aktivní spouštění
+zápis je
+\[
+ \Theta(q,\tau)\in\mathbb B=\mathbb C\otimes\mathbb H,
+ \qquad \tau=t+i\psi .
+\]
+Zápis je kompaktní, ale skrývá několik logicky odlišných otázek:
+co je definováno, co je kinematicky reprezentovatelné, co vyplývá z an
+akce a co je pouze výzkumná hypotéza.  Učebnice je uchovává
+úrovně jsou v celém rozsahu odděleny.
+
+\section{Současný lokální geometrický řetězec}
+Čistá místní větev GR začíná od kovariančního derivátu singlu
+pole,
+\[
+ E_\mu:=\mathcal N_0^{-1/2}D_\mu\Theta .
+\]
+Napište na skutečný Lorentzův plátek
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+ \qquad e_\mu{}^a\in\mathbb R.
+\]
+Kvaternionová konjugace je označena $\sharp$.  Symetrický produkt je
+centrální a definuje metriku,
+\[
+ \boxed{
+ \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+ =g_{\mu\nu}\mathbf1 .}
+\]
+Minimální místní metrická konstrukce tedy nevyžaduje pozorovatele
+projekce, průměr z kompaktních vláken nebo mapa pro vkládání.  Toto nahrazuje an
+starší architektonický snímek dochovaný v historickém archivu.
+
+Stejná první derivace se chová jako tetráda.  Pro nedegenerovanou tetrádu
+mapa $e_\mu{}^a\mapsto g_{\mu\nu}$ má známé počítání
+\[
+ 16-6=10,
+\]
+protože šest lokálních Lorentzových změn ponechává deset metrických komponent neměnných.
+To řeší problém místního pořadí na kinematické úrovni.
+
+\section{Konexe, křivost a co je stále dynamické}
+Místní Lorentz/bikvaternionické spojení vstupuje do $D_\mu$.  V nekrouceném GR
+Odbočte kompatibilní spinové připojení je Levi--Civita spinové připojení
+počítáno z tetrády.  S kroucením,
+\[
+ \omega=\mathring\omega(e)+K(T),
+\]
+takže zadání tetrády a torze určuje metricky kompatibilní
+spojení.  Zakřivení patří ke komutátoru kovariančních derivátů,
+ne na algebraický komutátor nohou tetrády:
+\[
+ [D_\mu,D_\nu]\quad\hbox{contains curvature.}
+\]
+
+Současná GR práce uzavírá důležité otázky místní reprezentativnosti, ale je
+ještě neodvozuje veškerou Einsteinovu dynamiku z původní mistrovské akce UBT.
+Zejména výběr akce, omezení fyzického kroucení, plný
+poruchový můstek a globální pokračování zůstávají stavově řízené otevřené
+problémy.  Směrodatné znění je zachováno v
+\texttt{STATUS.md} a \texttt{WHAT\_IS\_PROVED.md}.
+
+\section{Komplexní čas a theta/spektrální větev}
+Kanonický zápis zůstává zachován
+\[
+ \tau=t+i\psi,
+\]
+s $\psi$ interpretovaným v aktivní komplexní časové větvi jako vnitřní fáze
+spíše než druhé makroskopické hodiny.  Pak zmenšené theta modely
+přirozeně obsahují faktory formy
+\[
+ S(t,\psi)=\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2}.
+\]
+Tento jeden výraz připouští několik standardních reprezentací: Fourier v $t$,
+Laplace nebo Mellin v $\psi$, Jacobi/Poisson dualitě a v řízeném
+kvadratické příklady, vztah mezi součty režimů a součty dráhy/vinutí.  Tito
+klasické nástroje jsou vyvinuty výslovně později, protože organizují několik
+jinak odpojené výzkumné dráhy UBT.
+
+\section{Kalibrační a částicové sektory}
+Algebru $\mathbb C\otimes\mathbb H\cong M_2(\mathbb C)$ přirozeně podporuje
+levé a pravé akce, spinorální Lorentzovy transformace a vnitřní
+symetrické konstrukce.  Některá měřidla-sektorová tvrzení jsou prokázána popř
+podmíněné na uvedených úrovních; ostatní, včetně částí hypercharge,
+výběr generací a dynamické narušení symetrie zůstávají otevřené.  Tento
+učebnice proto nikdy neodvozuje úplné odvození standardního modelu pouze z
+existence biquaternionové algebry.
+
+\section{Konstanta jemné struktury: současné bezpečné tvrzení}
+Program alfa obsahuje reprodukovatelný strukturální mechanismus, který vybírá
+celé číslo $137$ za uvedených předpokladů, včetně výsledku prvočísla stability.
+Celková trať však v současné době není odvozením prvních principů
+fyzikální konstanta jemné struktury.  Zvláště důležité jsou dva blokátory:
+\begin{enumerate}
+ \item efektivní koeficient požadovaný potenciálem vinutí nebyl splněn
+       odvozeno jedinečně z působení UBT (Gap G137-B);
+ \item multiplicita auditované smyčky a multiplicita twist-sektoru nejsou
+       přesto identifikovaný prokázaným mostem.
+\end{enumerate}
+V důsledku toho ani fráze ``odvození alfa bez fit'' ani numerické
+hodnota $137.036\ldots$ by zde měla být prezentována jako uzavřená predikce UBT.
+Kapitola~\ref{ch:alpha} odvozuje podmíněnou matematiku a uvádí mezery
+na každém kroku.
+
+\section{Jak číst statusové značky}
+Úložiště používá dva nezávislé účetní systémy, které nesmí být
+zmatený.
+
+Za prvé, úrovně vědeckých tvrzení rozlišují standardní identity, prokázané UBT
+lemmata, podmíněné výsledky, motivované dohady, pozorování a otevřené
+mezery.  Za druhé, úrovně původu AI zaznamenávají stav redakce/revize souborů.
+Ty jsou definovány \texttt{PROVENANCE\_TIERS.yaml}:
+Úroveň A je ověřena autory, úroveň B strojově ověřená, úroveň C funkční a úroveň D
+historický.  Tato učebnice je pracovním materiálem úrovně C.  Jeho úlohou je vysvětlovat
+a propojit matematiku, ne tiše prosazovat nárok na úroveň A.
+
+\section{Pravidlo autoritativního zdroje pro učebnici}
+Zdrojová mapa v \texttt{docs/textbook/SOURCE\_MAP.md} zaznamenává, kde každý
+kapitola získá svůj živý stav.  Historický materiál v \texttt{ARCHIV/} může být
+cenné pro pochopení toho, jak se nápad vyvíjel, ale nikdy není tichý
+\texttt{\textbackslash input} jako součást aktuální teorie.

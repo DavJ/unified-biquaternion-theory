@@ -1,0 +1,534 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\chapter{Kovariantní derivace, konexe a čistá geometrie UBT}
+\label{ch:covariant-tetrad}
+
+Tato kapitola vysvětluje geometrické jádro UBT ve formě nejbližší
+původní intuice teorie:
+\[
+ \Theta\quad\longrightarrow\quad E_\mu:=D_\mu\Theta
+ \quad\longrightarrow\quad
+ \{E_\mu,E_\nu\}\ \hbox{and}\ [D_\mu,D_\nu].
+\]
+Antikomutátor nese metriku, zatímco komutátor kovariance
+deriváty mají zakřivení.  Žádná vkládací mapa, kompaktní vlákno průměr, popř
+Projekce pozorovatele je nutná v minimální místní konstrukci.
+
+\section{Obyčejná, parciální a kovariantní derivace}
+Pro běžnou skalární funkci $f(x)$ derivace $df/dx$ měří, jak
+číslo $f$ se změní, když se změní $x$.  Pro pole na časoprostoru používáme částečné
+deriváty,
+\[
+ \partial_\mu\Theta:=\frac{\partial\Theta}{\partial x^\mu},
+ \qquad \mu=0,1,2,3.
+\]
+Částečná derivace porovnává komponenty zapsané na pevné bázi.  Tohle je
+dostačující, lze-li všude použít stejný základ.  Geometrie se stává jemnější
+když se samotný lokální snímek otáčí nebo zesiluje z bodu do bodu.
+
+Jednoduchá analogie je vektor zapsaný v rotujícím souřadnicovém rámci.  Dokonce a
+fyzikálně konstantní vektor získává měnící se složky, protože základ je
+měnící se.  Kovariantní derivát koriguje tuto základní změnu:
+\[
+ D_\mu\Theta=\partial_\mu\Theta+\rho_*(\Omega_\mu)\Theta.
+\]
+Zde je $\Omega_\mu$ spojení a $\rho_*$ nám říká, jak spojení
+vystupuje v zastoupení $\Theta$.  Pro biquaterniony levá akce, a
+správná akce a oboustranná akce jsou skutečně odlišné a nesmí být
+tiše vyměněny.
+
+\section{Co je konexe?}
+Spojení není silou samo o sobě.  Je to pravidlo pro porovnávání lokálních snímků
+v sousedních bodech.  Symbol $\Omega_\mu$ je interní nebo UBT
+bikvaternionické spojení rámu.
+
+symboly Christophera,
+\[
+ \Gamma^\rho{}_{\mu\nu},
+\]
+spolu úzce souvisejí, ale působí na souřadnicové indexy.  Například,
+\[
+ \nabla_\mu V^\rho=\partial_\mu V^\rho
+ +\Gamma^\rho{}_{\mu\sigma}V^\sigma.
+\]
+Tedy:
+\begin{itemize}
+ \item $\Gamma^\rho{}_{\mu\nu}$ nám říká, jak se mění souřadnicová báze;
+ \item $\omega_\mu{}^a{}_b$ a jeho spin/bikvaternionový výtah $\Omega_\mu$,
+       řekněte nám, jak se mění místní Lorentzův rámec.
+\end{itemize}
+Jsou spojeny identitou kompatibility tetrád
+\[
+ \partial_\mu e_\nu{}^a-\Gamma^\rho{}_{\mu\nu}e_\rho{}^a
+ +\omega_\mu{}^a{}_b e_\nu{}^b=0.
+\]
+Jsou to tedy dva popisy stejného geometrického transportu, nikoli
+stejné koeficienty.  Zejména $\Gamma=\operatorname{Re}\Omega$ není a
+platnou identifikaci.
+
+\section{Proč klasická konexe není další volné pole}
+Pro nedegenerovanou tetrádu určují metrická kompatibilita a nulová torze a
+unikátní Lorentzovo spojení:
+\[
+ \boxed{
+ \mathring\omega_\mu{}^a{}_b
+ =e_b{}^\nu\left(\mathring\Gamma^\rho{}_{\mu\nu}(g)e_\rho{}^a
+ -\partial_\mu e_\nu{}^a\right).}
+\]
+Kruh označuje spojení Levi--Civita bez torze.  Tedy v
+obyčejná bezkrutná odbočka GR, spojení rámu se vypočítává z
+tetráda, stejně jako se Christoffelovy symboly počítají z metriky.  Místní
+Lorentzova rotace mění číselné koeficienty tetrády a tetrády
+spojení, ale nemění geometrii.
+
+\subsection{Trať a počítadlo}
+Torzní dvoutvar je
+\[
+ T^a=de^a+\omega^a{}_b\wedge e^b.
+\]
+Lze zapsat obecné metricky kompatibilní spojení
+\[
+ \boxed{\omega=\mathring\omega(e)+K(T),}
+\]
+kde $K$ je zkroucení.  S
+$T^a=\tfrac12T^a{}_{bc}e^b\wedge e^c$ a výše uvedená konvence,
+\[
+ \boxed{
+ K_{abc}=\frac12\left(T_{cab}-T_{abc}-T_{bca}\right).}
+\]
+Tento vzorec má důležitý koncepční důsledek: jednou tetráda a
+jsou specifikovány kroucení, metricky kompatibilní spojení je jedinečné.  Otevřené
+otázka full-UBT tedy není libovolným zbytkem $\Omega_\mu$; to je
+dynamický zákon pro výběr $T$.
+
+Pokud rovnice vakua UBT implikují $T=0$, spojení se redukuje na
+Levi--Civita spin připojení.  Pokud se vytvoří spin nebo jiný bikvaternionový zdroj
+kroucení, stejná věta rekonstruuje spojení z tohoto kroucení.
+
+\section{Plochý prostor a explicitní UBT reprezentant}
+V plochém Minkowského prostoročasu pomocí inerciálních kartézských souřadnic a konstanty
+místní rám, lze si vybrat
+\[
+ \Gamma^\rho{}_{\mu\nu}=0,
+ \qquad \Omega_\mu=0,
+ \qquad D_\mu=\partial_\mu.
+\]
+Toto tvrzení lze posílit z výběru měřidla na explicitní
+jednopolní reprezentovat.  Snadný
+\[
+ \boxed{
+ \Theta_{\mathrm{SR}}(x)=\Theta_0+\sqrt{\mathcal N_0}
+ \left(i x^0\mathbf1+x^k\mathbf e_k\right).}
+\]
+Pak
+\[
+ \mathcal N_0^{-1/2}\partial_0\Theta_{\mathrm{SR}}=i\mathbf1,
+ \qquad
+ \mathcal N_0^{-1/2}\partial_k\Theta_{\mathrm{SR}}=\mathbf e_k.
+\]
+Centrálním antikomutátorem těchto čtyř konstantních směrů je Minkowski
+metrický.  Každá druhá časoprostorová derivace $\Theta_{\mathrm{SR}}$ zmizí,
+takže řeší i standardní bezzdrojový konstantní koeficient druhého řádu
+hlavní operátor v této ploché větvi.
+
+Obecněji řečeno, pro jakoukoli konstantní Lorentzovu tetrádu $\bar E_\mu$,
+\[
+ \Theta_{\mathrm{aff}}(x)=\Theta_0+
+ \sqrt{\mathcal N_0}\,\bar E_\mu x^\mu
+\]
+generuje přesně tu tetrádu.  Tím se uzavírá speciální relativismus
+reprezentativní problém, ačkoli to nedokazuje jedinečnost nebo zakřivený prostor
+existence.
+
+V polárních souřadnicích nebo v urychlujícím snímku mohou $\Gamma$ a $\Omega$
+být nenulový, i když je časoprostor plochý.  Invariantní prohlášení o plochosti
+je mizivé zakřivení, nikoli mizející koeficienty spojení v každém snímku.
+
+\section{Čtyři kovariantní gradienty jako tetráda}
+Definovat
+\[
+ E_\mu:=\frac{1}{\sqrt{\mathcal N_0}}D_\mu\Theta.
+\]
+Čtyři objekty $E_0,E_1,E_2,E_3$ jsou místní pravítka UBT a směr hodin.
+Nejsou to čtyři extra hmotná pole; jsou to první kovariantní deriváty
+jediného základního pole $\Theta$.
+
+Nechť $i$ je běžná komplexní jednotka pro dojíždění a
+$\mathbf e_1,\mathbf e_2,\mathbf e_3$ kvaternionové jednotky.  V klasickém
+Lorentz sektor napsat
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+ \qquad e_\mu{}^a\in\mathbb R.
+\]
+Konjugace kvaternionů mění znaky tří kvaternionových jednotek, ale
+ponechává komplexní skalární koeficient nedotčený:
+\[
+ E_\mu^\sharp=i e_\mu{}^0\mathbf1-e_\mu{}^k\mathbf e_k.
+\]
+
+\section{Proč je antikomutátor metrikou}
+Kvaternionové násobení obsahuje skalární součin a křížový součin.  V
+symetrický součin, který křížové produkty ruší:
+\[
+ \boxed{
+ \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+ =g_{\mu\nu}\mathbf1.}
+\]
+Pravá strana obsahuje $\mathbf1$, jednotku biquaternion.  celý
+levá strana je již centrální: obyčejné reálné číslo vynásobené
+jednotka algebry.  Žádná stopa, mapa skutečných částí, fázová projekce nebo průměr vlákna
+požadovaný.
+
+Rozšíření koeficientů dává
+\[
+ g_{\mu\nu}
+ =-e_\mu{}^0e_\nu{}^0+
+  e_\mu{}^1e_\nu{}^1+
+  e_\mu{}^2e_\nu{}^2+
+  e_\mu{}^3e_\nu{}^3,
+\]
+což je přesně
+\[
+ g_{\mu\nu}=e_\mu{}^a e_\nu{}^b\eta_{ab},
+ \qquad \eta_{ab}=\operatorname{diag}(-1,1,1,1).
+\]
+Minusové znaménko času pochází z $i^2=-1$.
+
+\section{Co dělá druhá polovina součinu?}
+Antisymetrická algebraická část je
+\[
+ \Sigma_{\mu\nu}
+ =\frac12\left(E_\mu^\sharp E_\nu-E_\nu^\sharp E_\mu\right).
+\]
+Popisuje orientovanou rovinu nebo bivektor a je přirozeným nosičem pro místní
+informace o rotaci, zesílení a rotaci.  To samo o sobě není zakřivení.
+
+Tři výrazy musí být odděleny:
+\begin{align*}
+ \{E_\mu,E_\nu\}_\sharp
+ &\longrightarrow \text{metric},\\
+ [E_\mu,E_\nu]_\sharp
+ &\longrightarrow \text{algebraic bivector/spin structure},\\
+ [D_\mu,D_\nu]
+ &\longrightarrow \text{connection curvature or gauge field strength}.
+\end{align*}
+
+\section{Křivost z nekomutujících derivací}
+Pro jednostranné spojení má zakřivení známý tvar
+\[
+ \mathcal R_{\mu\nu}
+ =\partial_\mu\Omega_\nu-\partial_\nu\Omega_\mu
+  +[\Omega_\mu,\Omega_\nu].
+\]
+Koncový komutátor je nezbytný, protože biquaternionové násobení je
+nekomutativní.  Geometricky, zakřivení měří, jak se rám poté změní
+přepravovat kolem malé uzavřené smyčky.
+
+Rovnice $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ vytváří další
+stav integrovatelnosti.  Toto je bod, ve kterém je reprezentace
+spojení se stává rozhodujícím.
+
+\section{Proč starý problém s hodností lokálně mizí}
+Symetrická metrika $4\times4$ má deset nezávislých složek.  Při pohledu pouze na
+jedna hodnota $\Theta\in\mathbb B\simeq\mathbb R^8$ naznačuje zavádějící
+srovnání $8<10$.
+
+Metrika není postavena pouze na hodnotě $\Theta$.  Staví se ze čtyř
+kovariantní deriváty $E_\mu$.  V sektoru Lorentz tyto tvoří skutečný
+Tetrada $4\times4$$e_\mu{}^a$ se šestnácti součástkami.  Šest změn je lokálních
+rotace a zesílení, které ponechávají metriku beze změny.  Proto
+\[
+ 16-6=10.
+\]
+Přesněji řečeno, každá malá symetrická metrická variace $h_{\mu\nu}$ je
+produkoval
+\[
+ \delta e_\mu{}^a=\frac12 h_{\mu\rho}e^{\rho a}.
+\]
+Mapa tetrad-to-metric má proto pořadí deset u každé nedegenerované tetrády.
+Tím je vyřešena otázka místního kinematického pořadí.  Zatím to neprokazuje
+každá zakřivená tetráda je generována polem UBT na skořápce.
+
+\subsection{Správný výpočet může odpovědět na špatně položenou architektonickou otázku}
+Dřívější jednodílná hodnostní obstrukce byla matematicky správná v an
+indukovaný metrický rámec, kde měly být obnoveny pouze Einsteinovy rovnice
+z normálních variant jedné sekce podobné vkládání.  Nepředstavovalo a
+no-go teorém pro kovariantní tetrádu $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$.
+Konstrukce z kompaktních vláken opravila dřívější složení přidáním
+směry profilu, ale formulace tetrád ukazuje, že tato oprava nebyla
+vyžaduje původní architektura.
+
+Toto rozlišení motivuje obecné pravidlo výzkumu:
+
+\begin{quote}
+Před přidáním polí, režimů, kót, projekcí, průměrů nebo pomocných prvků
+struktury k vyřešení překážky, nejprve otestujte, zda se jedná o překážku
+artefakt formulace, ze které byl odvozen.
+\end{quote}
+
+Trasa vlákna zůstává matematicky konzistentní ve svém vlastním rámci.  Jeho
+problém je slabý výběr a redundance zástupce, nikoli algebraika
+rozpor.
+
+\section{Problém integrability}
+Jakmile je klasické spojení rekonstruováno z tetrády a torze,
+definující rovnice se stává schematickou
+\[
+ E_\mu=\mathcal N_0^{-1/2}
+ \left(\partial_\mu\Theta+\rho_*(\Omega_\mu[E,T])\Theta\right).
+\]
+Neznámý $E$ se vyskytuje na obou stranách.  Toto je implicitní nelineární první řád
+PDE nebo systém pevných bodů.  Kinematická eliminace $\Omega$ neprobíhá
+sám dokazuje existenci nebo jedinečnost páru $(\Theta,E)$.
+
+\subsection{Jednostranná překážka vedoucí k plochosti}
+Předpokládejme, že spojení funguje pouze zleva,
+\[
+ D^L_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta,
+\]
+aby
+\[
+ [D^L_\mu,D^L_\nu]\Theta=F^L_{\mu\nu}\Theta.
+\]
+Ve větvi bez torzní kompatibilní tetrády, antisymetrizující kovariant
+Hessian dává
+\[
+ F^L_{\mu\nu}\Theta=0.
+\]
+Pokud je $\Theta$ invertibilní jako biquaternion, pak
+\[
+ F^L_{\mu\nu}=0.
+\]
+Naivní jednostrannou regulérní reprezentaci tedy nelze obecně podporovat
+zakřivený GR při zachování invertibilního $\Theta$ a torzní tetrády
+kompatibilita.  Konfigurace neinvertovatelného stabilizátoru se mohou tomuto výsledku vyhnout,
+nelze však předpokládat, že představují libovolné geometrie.
+
+\subsection{Přirozená oboustranná bikvaternionová derivace}
+Biquaterniony přirozeně připouštějí levé i pravé násobení.  Zvážit
+\[
+ \boxed{
+ D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu.}
+\]
+Přímé rozšíření dává
+\[
+ \boxed{
+ [D_\mu,D_\nu]\Theta
+ =F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.}
+\]
+Proto je nutná kompatibilita bez kroucení
+\[
+ F^A_{\mu\nu}\Theta=\Theta F^B_{\mu\nu}.
+\]
+Pro invertibilní $\Theta$,
+\[
+ \boxed{
+ F^A_{\mu\nu}=\Theta F^B_{\mu\nu}\Theta^{-1}.}
+\]
+Na rozdíl od jednostranného pouzdra nesmí zmizet ani zakřivení.  Pole $\Theta$
+proplétá levou a pravou reprezentaci zakřivení.  Tohle je opravdový
+strukturální zúžení GAP-10I: oboustranný/bimodulový derivát je
+minimální algebraně-nativní trasa, která se vyhýbá obecné překážce plochosti.
+
+\subsection{Redukce bez nového pole, bez-torzní no-go a lokální pravá inverze s torzí}
+Na Lorentzově plátku $W_L=\{X\mid X^\ddagger=-X\}$, konzervace plátku
+a jeho kvadratické formy redukuje čistý pár, modulo společný centrální
+jeden formulář, který ruší, do
+\[
+ \boxed{A_\mu=\Omega_\mu,\qquad B_\mu=-\Omega_\mu^\ddagger.}
+\]
+$A_\mu$ a $B_\mu$ tedy v tomto nejsou nezávislá gravitační pole
+větev.  Jsou to dvě modulové akce připojení s jedním spinem.
+
+S nulovou torzí vytváří stejná involučně kompatibilní derivace a
+nedegenerované řešení $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ implikovat
+\[
+ \boxed{\mathring\nabla_\mu V^\nu=\delta_\mu{}^\nu,}
+ \qquad \mathcal L_Vg=2g.
+\]
+Neplochý Schwarzschildův vakuový exteriér s nenulovou hmotností nic takového nemá
+stejnorodost.  Čistý pár je tedy uzavřen kinematicky a jeho $K=0$
+větev je uzavřena jako beztorzní no-go.
+
+Na kvalifikaci záleží.  Na dostatečně malém nenulovém Gaussově políčku
+zvolte $\rho\ne0$ s
+$g^{\mu\nu}\partial_\mu\rho\partial_\nu\rho=\varepsilon=\pm1$ a sada
+\[
+ V^\mu=\varepsilon\rho\nabla^\mu\rho,
+ \qquad
+ W_{\mu\nu}=g_{\mu\nu}-\mathring\nabla_\mu V_\nu,
+\]
+\[
+ \boxed{K_{\nu\mu\rho}
+ =\frac{W_{\mu\nu}V_\rho-V_\nu W_{\mu\rho}}{V^2}.}
+\]
+Poté $K_{\nu\mu\rho}=-K_{\rho\mu\nu}$ a
+$\nabla^{(\mathring\Gamma+K)}_\mu V^\nu=\delta_\mu{}^\nu$.  Proto
+\[
+ \Theta=\sqrt{\mathcal N_0}V^a\mathbf u_a
+\]
+poslouchá $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$.  Každá hladká tetráda má takový
+lokální zástupce s kompozitním metrickým kompatibilním zkreslením a ne
+nezávislá pole $A_\mu,B_\mu$.
+
+Relativní výraz $P_\mu X-XQ_\mu$ již není pro lokální kinematiku vyžadován
+existence.  Zůstává možné bez torzní kompletace a je-li použito, musí být
+kompozitní nebo pomocné spíše než nové pole šíření.  Společná centrála
+konstantní neodstraní překážku bez torze, protože se ruší.
+
+\section{Podmíněná dynamická dílčí uzavření}
+\subsection{Algebraická Cartanova rovnice torze}
+V minimální větvi Hilbert-Palatini prvního řádu, nezávislá variace
+spojení Lorentz dává
+\[
+ \epsilon_{abcd}T^a\wedge e^b=\kappa\tau_{cd}.
+\]
+Pro nedegenerovanou tetrádu je to $24\times24$ bodová lineární mapa hodnosti
+24. Tedy nulový spinový proud dává $T=0$, zatímco specifikovaný spinový proud dává a
+jedinečná torze a zkroucení. To uzavře torzní algebru uvnitř
+minimální větev, nikoli odvození této větve od fundamentálního UBT.
+
+\subsection{Propagace Lorentzova řezu jako množiny pevných bodů}
+Antilineární involuce
+\[
+ \mathcal JX=-\overline{X^\sharp}
+\]
+má fyzický Lorentz modul jako pevnou sadu. Pokud je dobře nasazený unikát
+Cauchy evolution je $\mathcal J$-ekvivariantní a jeho data a zdroje jsou pevné
+od $\mathcal J$, jedinečnost znamená, že řešení zůstává v Lorentz
+plátek. Konečná akce UBT musí být ještě porovnána s těmito hypotézami.
+
+\subsection{Stabilita metriky v imaginárním čase}
+Vertikální tok
+\[
+ \partial_\psi e_\mu{}^a=\Lambda_\psi{}^a{}_b e_\mu{}^b,
+ \qquad \Lambda_{\psi ab}=-\Lambda_{\psi ba},
+\]
+je tečnou k místní orbitě Lorentzova měřidla a vyhovuje
+$\partial_\psi g_{\mu\nu}=0$ identicky. Druhým dostatečným mechanismem je a
+unikátní $\psi$-překlad-invariantní evoluce s $\psi$-nezávislá iniciála
+data. Výběr fyzického mechanismu a vyloučení nestabilních neměřicích režimů
+zůstává dynamickým úkolem.
+
+\subsection{Rozšířená holonomie pro předepsané zakřivené koeficienty}
+Pro předepsaný $E_\mu,A_\mu,B_\mu$, nehomogenní systém
+\[
+ \partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu
+ =\sqrt{\mathcal N_0}E_\mu
+\]
+se stává homogenním paralelním transportem pro $Y=(\Theta,1)^T$ v rozšířeném
+svazek. Jednohodnotové řešení s počáteční hodnotou $Y_0$ existuje přesně kdy
+rozšířená holonomie opravuje $Y_0$; ploché rozšířené zakřivení stačí na
+jednoduše připojená doména. Tím se uzavře integrovatelnost předepsaného koeficientu,
+nekonzistentní výběr koeficientů UBT.
+
+\subsection{Podmíněný Einsteinův--Lambda koncový bod}
+Minimální Palatiniho větev s nulovými výtěžky spinového proudu
+\[
+ G_{\mu\nu}+\Lambda g_{\mu\nu}=\kappa T_{\mu\nu}.
+\]
+Podle běžných čtyřrozměrných Lovelockových předpokladů je každý místní přirozený
+metrická rovnice druhého řádu bez divergence bez extra lehké geometrie
+pole má gravitační část $aG_{\mu\nu}+bg_{\mu\nu}$. Proto
+podmíněný nízkoenergetický koncový bod je jedinečný. UBT je musí stále odvodit
+předpoklady, koeficienty a hmotné členy z jeho kanonické akce.
+
+\section{Implicitní versus transcendentní rovnice}
+Slova\emph{implicitní} a\emph{transcendentální} popisují různé
+vlastnosti.
+
+Rovnice je implicitní, když se neznámá vyskytuje uvnitř předpokládané mapy
+určit to:
+\[
+ E=\mathcal F(E,\Theta).
+\]
+Rovnice je transcendentální, když obsahuje nealgebraické funkce jako např
+exponenciální, logaritmická, trigonometrická funkce nebo funkce Jacobi theta:
+\[
+ E=e^{-E}.
+\]
+Tetradová rovnice UBT je již implicitní a diferenciální.  Pokud je povoleno
+pole $\Theta(q,\tau)$ je omezeno na Jacobi-theta nebo jinou transcendentální hodnotu
+třídy funkcí, pak může být celý systém jak implicitní, tak i
+transcendentální.  Tyto vlastnosti by měly být uvedeny ve formálním dokumentu
+odděleně, i když intuitivně oba ``zapletou neznámo
+sám.''
+
+\section{Derivace versus variace}
+Derivát jako $D_\mu\Theta$ popisuje, jak se změní konfigurace jednoho pole
+přes časoprostor.  Varianta porovnává možné konfigurace v okolí:
+\[
+ \Theta_\varepsilon=\Theta+\varepsilon\,\delta\Theta.
+\]
+Variace je
+\[
+ \delta\Theta=
+ \left.\frac{d\Theta_\varepsilon}{d\varepsilon}\right|_{0}.
+\]
+Při odvozování rovnic pole z akce jsou zapotřebí variace.  jsou
+nikoli náhrady za časoprostorové deriváty.  Když připojení závisí na
+pole,
+\[
+ \delta(D_\mu\Theta)
+ =D_\mu(\delta\Theta)+\rho_*(\delta\Omega_\mu)\Theta
+\]
+a musí být zahrnuta variace indukovaného připojení.
+
+\section{Co je uzavřeno a co zůstává otevřené}
+Následující výsledky jsou uzavřeny na uvedených úrovních:
+\begin{enumerate}
+ \item centrální antikomutátorová metrika a rank-ten tetrad mapa;
+ \item GAP-10$\Omega$-KIN/GR: rekonstrukce kompatibilního připojení a
+       její Levi--Civita bez torzní větve;
+ \item GAP-10T-PALATINI (podmíněné): minimální Cartanova torzní rovnice je
+       algebraické a invertibilní;
+ \item GAP-10L-CONN a GAP-10L-SYM (podmíněné): kompatibilní přepravní a
+       jedinečná ekvivariantní evoluce zachovat Lorentzovu výseč;
+ \item GAP-10I-SR a GAP-10I-PRESCRIBED: afinní plochý zástupce a
+       přesné kritérium rozšířené holonomie pro předepsané zakřivené koeficienty;
+ \item GAP-10I-1S: naivní jednostranná invertibilní zakřivená trasa je podmínkou
+       ne-jít;
+ \item GAP-10I-PAIR-KIN: čistý kompatibilní pár se redukuje na jedno otočení
+       spojení;
+ \item GAP-10I-PAIR-GR: čistý pár $K=0$ je nepřetržitý souběžný vektor
+       pro neplochý Schwarzschildův vakuový exteriér s nenulovou hmotností;
+ \item GAP-10I-TORSION-LOCAL: každá hladká tetráda má lokální jedno-$\Theta$
+       zástupce s explicitním složeným metrickým kompatibilním zkreslením;
+ \item GAP-10D-PALATINI/UNIQUENESS (podmíněné): minimální první řád
+       větev a Lovelockovy hypotézy vybrat Einstein--$\Lambda$;
+ \item GAP-10$\psi$-KIN/SYM: Lorentzova průtoková nebo translační symetrie
+       chrání klasickou metriku podle uvedených hypotéz.
+\end{enumerate}
+
+Nerozdělené mezery plné teorie jsou spíše zúženy než plně uzavřeny:
+\begin{enumerate}
+ \item GAP-10T-SPIN je podmíněně uzavřen pro přímé pevné pozadí
+       Palatiniho variace, zatímco GAP-10T-FLAT-NOGO a
+       GAP-10T-PAIRING-NOGO jsou uzavřeny jako no-go výsledky;
+ \item GAP-10T-DYN: vypočítejte plnou složenou variaci $\Theta$ a odvoďte
+       vybranou větev I. řádu, kanonické torzní zrušení popř
+       translační/relativní dokončení a normalizace z kanonické UBT;
+ \item GAP-10I-CURVED: místní kinematika je uzavřena; odvodit kanonický
+       výběr na úrovni akce a fyzická přípustnost kompozitu
+       torzní větev nebo volitelná nekroucená relativní bimodulová větev,
+       a zavést pravidelnost a globální pokračování
+       $(\Theta,E,A,B,T)$;
+ \item GAP-10L-DYN: dokažte rovnocennost a dobře prezentovanou jedinečnost pro finále
+       úplná dynamika;
+ \item GAP-10D: odvodit nízkoenergetické předpoklady Palatini/Lovelock, spojky
+       a působení hmoty ze základní teorie;
+ \item GAP-10$\psi$: vyberte mechanismus stability a vylučte fyzické
+       nestabilní neměřicí režimy.
+\end{enumerate}
+GAP-B-MASTER a GAP-U2$\Theta$ zůstávají otevřené. Dřívější kompaktní vlákno $\psi$
+uzavření zůstává matematicky konzistentním historickým kandidátským dokončením,
+ale jeho slabý výběr a redundance zástupců jej udržují mimo minimum
+kanonická cesta.

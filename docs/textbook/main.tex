@@ -8,47 +8,82 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\documentclass[11pt,a4paper,oneside]{book}
+\providecommand{\UBTLanguage}{cs}
 \usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage{lmodern}
 \usepackage{geometry}\geometry{margin=2.5cm}
-\usepackage[czech]{babel}
+\usepackage[czech,english]{babel}
+\usepackage{ifthen}
+\ifthenelse{\equal{\UBTLanguage}{cs}}{\selectlanguage{czech}}{\selectlanguage{english}}
 \usepackage{amsmath,amssymb,amsthm,mathtools,physics,siunitx}
 \usepackage{microtype,hyperref,graphicx}
 \usepackage{ubtprovenance}
 \UBTTier{C}
 \UBTProvenanceEmbedInTitle
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
-\theoremstyle{definition}\newtheorem{definition}{Definice}[chapter]
-\theoremstyle{plain}\newtheorem{theorem}[definition]{Věta}
-\theoremstyle{remark}\newtheorem{remark}[definition]{Poznámka}
-\title{Unified Biquaternion Theory (UBT)\\\large Učebnice a průvodce pro inženýry}
+\ifthenelse{\equal{\UBTLanguage}{cs}}{%
+  \newcommand{\UBTDefinition}{Definice}%
+  \newcommand{\UBTTheorem}{Věta}%
+  \newcommand{\UBTRemark}{Poznámka}%
+  \newcommand{\UBTSubtitle}{Učebnice a průvodce pro inženýry}%
+  \newcommand{\UBTPartFoundations}{Základy a geometrie}%
+  \newcommand{\UBTPartSpectral}{Komplexní čas a spektrální struktura}%
+  \newcommand{\UBTPartApplications}{Fenomenologie, verifikace a aplikace}%
+  \newcommand{\UBTPartAppendices}{Referenční dodatky}%
+  \newcommand{\UBTPartLabel}{Část}%
+  \newcommand{\UBTAppendixLabel}{Dodatek}%
+  \newcommand{\UBTContentsLabel}{Obsah}%
+  \newcommand{\UBTChapterLabel}{Kapitola}%
+}{%
+  \newcommand{\UBTDefinition}{Definition}%
+  \newcommand{\UBTTheorem}{Theorem}%
+  \newcommand{\UBTRemark}{Remark}%
+  \newcommand{\UBTSubtitle}{Textbook and guide for engineers}%
+  \newcommand{\UBTPartFoundations}{Foundations and geometry}%
+  \newcommand{\UBTPartSpectral}{Complex time and spectral structure}%
+  \newcommand{\UBTPartApplications}{Phenomenology, verification and applications}%
+  \newcommand{\UBTPartAppendices}{Reference appendices}%
+  \newcommand{\UBTPartLabel}{Part}%
+  \newcommand{\UBTAppendixLabel}{Appendix}%
+  \newcommand{\UBTContentsLabel}{Contents}%
+  \newcommand{\UBTChapterLabel}{Chapter}%
+}
+\theoremstyle{definition}\newtheorem{definition}{\UBTDefinition}[chapter]
+\theoremstyle{plain}\newtheorem{theorem}[definition]{\UBTTheorem}
+\theoremstyle{remark}\newtheorem{remark}[definition]{\UBTRemark}
+\title{Unified Biquaternion Theory (UBT)\\\large \UBTSubtitle}
 \author{Ing. David Jaro\v{s}}\date{\today\\[1.0em]\UBTProvenanceTitleLine}
 \begin{document}
+\ifthenelse{\equal{\UBTLanguage}{cs}}{\selectlanguage{czech}}{\selectlanguage{english}}
+\renewcommand{\partname}{\UBTPartLabel}
+\renewcommand{\appendixname}{\UBTAppendixLabel}
+\renewcommand{\contentsname}{\UBTContentsLabel}
+\renewcommand{\chaptername}{\UBTChapterLabel}
+\pagestyle{plain}
 \frontmatter
 \maketitle
 \UBTProvenanceNotice
 \tableofcontents
-\input{frontmatter/preface}
+\input{frontmatter/preface.\UBTLanguage}
 
 \mainmatter
-\part{Základy a geometrie}
-\input{chapters/01_overview}
-\input{chapters/02_math_primer_biquaternions}
-\input{chapters/03_lorentz_in_HC}
-\input{chapters/04_covariant_tetrad_geometry}
+\part{\UBTPartFoundations}
+\input{chapters/01_overview.\UBTLanguage}
+\input{chapters/02_math_primer_biquaternions.\UBTLanguage}
+\input{chapters/03_lorentz_in_HC.\UBTLanguage}
+\input{chapters/04_covariant_tetrad_geometry.\UBTLanguage}
 
-\part{Komplexní čas a spektrální struktura}
-\input{chapters/04_ct_scheme}
-\input{chapters/05_theta_mellin_feynman_big_picture}
+\part{\UBTPartSpectral}
+\input{chapters/04_ct_scheme.\UBTLanguage}
+\input{chapters/05_theta_mellin_feynman_big_picture.\UBTLanguage}
 
-\part{Fenomenologie, verifikace a aplikace}
-\input{chapters/05_alpha_derivation}
-\input{chapters/06_tests_and_repro}
-\input{chapters/07_applications_predictions}
+\part{\UBTPartApplications}
+\input{chapters/05_alpha_derivation.\UBTLanguage}
+\input{chapters/06_tests_and_repro.\UBTLanguage}
+\input{chapters/07_applications_predictions.\UBTLanguage}
 
 \appendix
-\part{Referenční dodatky}
-\input{appendices/A_proofs}
-\input{appendices/B_faq}
-\input{appendices/C_speculative_extensions}
+\part{\UBTPartAppendices}
+\input{appendices/A_proofs.\UBTLanguage}
+\input{appendices/B_faq.\UBTLanguage}
+\input{appendices/C_speculative_extensions.\UBTLanguage}
 \end{document}

@@ -8,10 +8,10 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter{Lorentzova geometrie na hermitovském řezu \(\mathbb H_{\mathbb C}\)}
+\chapter{Lorentz geometry on the Hermitian section \(\mathbb H_{\mathbb C}\)}
 \label{ch:lorentz-hc}
 
-\section{Klasický základ: \(\mathrm{Herm}(2,\mathbb C)\)}
+\section{Classic basis: \(\mathrm{Herm}(2,\mathbb C)\)}
 This section is standard spinor/Lorentz mathematics.  It is included because
 UBT uses the same algebra through the isomorphism
 \[
@@ -33,7 +33,7 @@ A direct determinant calculation gives
 Thus the determinant on the Hermitian slice is exactly the Minkowski quadratic
 form with signature $(+---)$.
 
-\section{Akce \(SL(2,\mathbb C)\)}
+\section{Action \(SL(2,\mathbb C)\)}
 For $A\in SL(2,\mathbb C)$ define
 \[
  X\longmapsto X'=A X A^\dagger .
@@ -61,7 +61,7 @@ $\{\pm I_2\}$.  The standard result is the double cover
 \]
 No split-quaternion algebra is required for this construction.
 
-\section{Převod do bikvaternionové notace}
+\section{Conversion to biquaternion notation}
 Use the canonical matrix representation
 \[
  \mathbf e_i\longmapsto i\sigma_i.
@@ -98,7 +98,7 @@ This is the same Lorentz geometry with the opposite overall signature
 convention $(-+++)$.  A signature convention is bookkeeping; it is not a new
 physical degree of freedom.
 
-\section{Proč je to důležité pro UBT}
+\section{Why it matters to UBT}
 The classical result establishes three useful facts before any UBT dynamics is
 introduced:
 \begin{enumerate}
@@ -109,13 +109,13 @@ introduced:
        naturally two-sided in matrix language.
 \end{enumerate}
 
-What this classical construction does \emph{not} prove is equally important.
+What this classical construction does\emph{not} prove is equally important.
 It does not prove that the UBT master field dynamically generates every desired
 tetrad, it does not derive Einstein's equations, and it does not select the
 physical connection.  Those are UBT-specific bridge problems addressed in the
 covariant-tetrad chapter and the canonical GR closure ledger.
 
-\section{Konkrétní boost jako kontrolní příklad}
+\section{Specific boost as a control example}
 Take a boost of rapidity $\chi$ along the third spatial axis,
 \[
  A=\exp\left(\frac{\chi}{2}\sigma_3\right)
@@ -135,7 +135,7 @@ Then
 \]
 which is the ordinary Lorentz boost written as an internal algebra action.
 
-\section{Živé zdroje a historická poznámka}
+\section{Living sources and historical note}
 The algebra convention is kept in
 \texttt{canonical/algebra/biquaternion\_algebra.tex}; current GR use of the
 Lorentz-real tetrad is documented in the active GR track.  The former
