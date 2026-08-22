@@ -1,0 +1,99 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\chapter{Tests, reproducibility and formal verification}
+\label{ch:tests-repro}
+
+The live verification layer is the active repository, not \texttt{ARCHIVE/}.
+Important entry points are:
+\begin{itemize}
+ \item \texttt{tests/} for scientific, provenance and architectural regression tests;
+ \item \texttt{tools/apply\_provenance\_headers.py} for AI provenance marking;
+ \item \texttt{tools/latex\_audit.py} for isolated translations of LaTeX documents;
+ \item \texttt{tools/check\_alpha\_claims.py} and active alpha tests for
+       review of claims sensitive to current status;
+ \item \texttt{research\_tracks/theta\_spectral/theta\_zeta\_probe.py} for
+       numerical checks of theta/Mellin/Gaussian branches;
+ \item \texttt{docs/DERIVATION\_VERIFICATION\_POLICY.md} as binding rules
+       derivation checks in papers.
+\end{itemize}
+
+\section{Four different types of control}
+It is important not to confuse the different levels of verification. LaTeX translation only proves
+that the document is syntactically composable. The numerical test verifies the specific
+numerical consequences in a given accuracy. A CAS tool, such as SymPy or Maxima,
+it verifies the token identity we actually gave it. Formal system
+Lean checks whether a formalized conclusion follows from formalized assumptions.
+Neither of these checks alone proves that the relevant assumptions are
+physically selected by canonical UBT dynamics.
+
+\section{Lean as the preferred formal controller}
+It is the preferred tool for new or substantially changed theorem derivations
+Lean. If the statement is reasonably formalizable, the goal is to have alongside the analytic
+derivation also compiling \texttt{.lean} proof. If there is no formalization yet
+done or is not available in a given Lean environment, the status must be explicit
+marked as \texttt{LEAN-PENDING}; one must not write that the statement is ``formally
+proven'' just because the agent generated the Lean syntax.
+
+Lean does not replace other controls. For the main result of the paper, the second is desirable,
+independent pipeline: for example SymPy/Maxima for symbolic algebra and
+NumPy/Octave/MATLAB/Mathcad for numerical reproduction. Two implementations should
+if possible use different wording so as not to repeat the same mistake.
+
+\section{Mandatory record of paper verification}
+Each new or substantially changed paper should contain a section\emph{Verification}
+or a link to an accompanying record. For the main statement, at least:
+\begin{itemize}
+ \item statement, equation, or lemma identifier;
+ \item analytical status and assumptions;
+ \item used tool and its version;
+ \item path to reproduction script, test, worksheet or \texttt{.lean}
+       file;
+ \item result and possible tolerance;
+ \item exactly what the check verifies and what it does not;
+ \item Lean formalization status: \texttt{PROVED}, \texttt{PARTIAL},
+       \texttt{LEAN-PENDING}, or \texttt{NOT-APPLICABLE}.
+\end{itemize}
+
+\section{CI textbook}
+The dedicated workflow is \texttt{.github/workflows/textbook.yml}. It runs on
+relevant pushes and pull requests and can also be started manually. It first
+checks bilingual parity and then uses \texttt{tools/latex\_audit.py --strict}.
+A failure in any standalone textbook document therefore fails the workflow.
+
+After the strict audit, the workflow calls the same Makefile used locally and
+creates exactly two official PDFs in \texttt{build/textbook/public/}:
+\begin{itemize}
+ \item \texttt{UBT\_Textbook\_EN.pdf} --- English edition;
+ \item \texttt{UBT\_Textbook\_CS.pdf} --- Czech edition.
+\end{itemize}
+Each PDF is uploaded as a separately named GitHub Actions artifact. Email
+delivery attaches both editions and is allowed only after a successful push
+to \texttt{master}; pull requests and manual runs never send email.
+
+For local published copy can be run
+\begin{verbatim}
+make -C docs/textbook publish
+\end{verbatim}
+which copies the same pair into \texttt{docs/pdfs/}. Generated PDFs are only
+publication outputs; scholarly status remains governed by source text and the
+provenance/status registry.
+
+\section{Minimal local check before textbook patch}
+The recommended sequence is:
+\begin{verbatim}
+python tools/apply_provenance_headers.py --apply
+python tools/apply_provenance_headers.py --check
+python tools/latex_audit.py --include 'docs/textbook/*.tex' \
+  --include 'docs/textbook/**/*.tex' --jobs 2 --timeout 240 --strict
+make -C docs/textbook verify
+\end{verbatim}
+A successful build confirms syntactic and reproduction properties. It does not increase itself from
+self-Tier-C claims on proven UBT result.

@@ -1,0 +1,143 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\chapter{Lorentzova geometrie na hermitovském řezu \(\mathbb H_{\mathbb C}\)}
+\label{ch:lorentz-hc}
+
+\section{Klasický základ: \(\mathrm{Herm}(2,\mathbb C)\)}
+Tato sekce je standardní spinor/Lorentz matematika.  Je součástí, protože
+UBT používá stejnou algebru prostřednictvím izomorfismu
+\[
+ \mathbb B=\mathbb C\otimes\mathbb H\cong M_2(\mathbb C).
+\]
+Nechť $\sigma_i$ jsou Pauliho matice a spojují skutečný čtyřvektor
+$x=(x^0,x^1,x^2,x^3)$ s hermitovskou maticí
+\[
+ X=x^0 I_2+x^i\sigma_i
+ =\begin{pmatrix}
+ x^0+x^3 & x^1-i x^2\\
+ x^1+i x^2 & x^0-x^3
+ \end{pmatrix}.
+\]
+Výpočet přímé determinanty dává
+\[
+ \boxed{\det X=(x^0)^2-(x^1)^2-(x^2)^2-(x^3)^2.}
+\]
+Takže determinant na hermitovském řezu je přesně Minkowského kvadratika
+formulář s podpisem $(+---)$.
+
+\section{Akce \(SL(2,\mathbb C)\)}
+Pro $A\in SL(2,\mathbb C)$ definujte
+\[
+ X\longmapsto X'=A X A^\dagger .
+\]
+Poustevnost je zachována, protože
+\[
+ (A X A^\dagger)^\dagger=A X A^\dagger.
+\]
+Zachován je také determinant:
+\[
+ \det X'=\det A\,\det X\,\det A^\dagger
+ =\det X,
+\]
+od $\det A=1$ a $\det A^\dagger=\overline{\det A}=1$.
+Proto indukovaná reálná lineární transformace čtyř koeficientů
+zachovává Minkowského normu.  Nepřetržité omezování na identitu dává a
+homomorfismus
+\[
+ SL(2,\mathbb C)\longrightarrow SO^+(1,3).
+\]
+$A$ i $-A$ působí identicky na $X$, takže jádro obsahuje
+$\{\pm I_2\}$.  Standardním výsledkem je dvojitý kryt
+\[
+ \boxed{SL(2,\mathbb C)/\{\pm I_2\}\cong SO^+(1,3).}
+\]
+Pro tuto konstrukci není vyžadována žádná algebra dělené čtveřice.
+
+\section{Převod do bikvaternionové notace}
+Použijte kanonickou maticovou reprezentaci
+\[
+ \mathbf e_i\longmapsto i\sigma_i.
+\]
+Pak $\sigma_i\leftrightarrow -i\mathbf e_i$ a hermitovská matice výše
+odpovídá biquaternionu
+\[
+ X_{\mathbb B}=x^0\mathbf1-i x^i\mathbf e_i.
+\]
+Toto je prostě další popis souřadnic téhož
+Plátek $\mathrm{Herm}(2,\mathbb C)$.
+
+Současná tetradská konvence UBT místo toho často používá Lorentzův reálný základ
+\[
+ \mathbf u_0=i\mathbf1,
+ \qquad \mathbf u_k=\mathbf e_k,
+\]
+tak je noha tetrády
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k.
+\]
+S kvaternionovou konjugací $\sharp$,
+\[
+ E_\mu^\sharp=i e_\mu{}^0\mathbf1-e_\mu{}^k\mathbf e_k.
+\]
+Pomocí $\mathbf e_j\mathbf e_k+\mathbf e_k\mathbf e_j=-2\delta_{jk}$,
+člověk získá
+\begin{align*}
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ &=\left(-e_\mu{}^0e_\nu{}^0+e_\mu{}^k e_\nu{}^k\right)\mathbf1\\
+ &=g_{\mu\nu}\mathbf1.
+\end{align*}
+Toto je stejná Lorentzova geometrie s opačným celkovým podpisem
+konvence $(-+++)$.  Podpisová konvence je vedení účetnictví; není to novinka
+fyzický stupeň svobody.
+
+\section{Proč je to důležité pro UBT}
+Klasický výsledek stanoví tři užitečná fakta před jakoukoli dynamikou UBT
+představil:
+\begin{enumerate}
+ \item Komplexní kvaterniony již nesou spinorální Lorentzovu akci;
+ \item ze čtyřrozměrné Lorentzovy kvadratické formy lze číst interně
+       algebra;
+ \item levé/pravé násobení záleží, protože Lorentzova akce ano
+       přirozeně oboustranné v maticovém jazyce.
+\end{enumerate}
+
+To, co tato klasická konstrukce\emph{není} dokazuje, je stejně důležité.
+Nedokazuje to, že hlavní pole UBT dynamicky generuje každé přání
+tetráda, neodvozuje Einsteinovy rovnice a nevybírá
+fyzické spojení.  Toto jsou problémy s mosty specifické pro UBT, které jsou řešeny v
+kovariantní tetrádová kapitola a kanonická závěrečná kniha GR.
+
+\section{Konkrétní boost jako kontrolní příklad}
+Zvyšte rychlost $\chi$ podél třetí prostorové osy,
+\[
+ A=\exp\left(\frac{\chi}{2}\sigma_3\right)
+ =\begin{pmatrix}e^{\chi/2}&0\\0&e^{-\chi/2}\end{pmatrix}.
+\]
+Použití $X'=AXA^\dagger$ a porovnání koeficientů dává
+\[
+ \begin{pmatrix}x'^0\\x'^3\end{pmatrix}
+ =\begin{pmatrix}\cosh\chi&\sinh\chi\\
+                  \sinh\chi&\cosh\chi\end{pmatrix}
+  \begin{pmatrix}x^0\\x^3\end{pmatrix},
+ \qquad x'^1=x^1,\quad x'^2=x^2.
+\]
+Pak
+\[
+ (x'^0)^2-(x'^3)^2=(x^0)^2-(x^3)^2,
+\]
+což je obyčejná Lorentzova podpora napsaná jako akce vnitřní algebry.
+
+\section{Živé zdroje a historická poznámka}
+Konvence algebry je zachována
+\texttt{canonical/algebra/biquaternion\_algebra.tex}; současné použití
+Lorentz-real tetrad je zdokumentován v aktivní GR stopě.  Bývalý
+\texttt{appendix\_P6\_lorentz\_in\_HC.tex} v GR zůstává v historickém archivu,
+ale živá učebnice ji již neimportuje.

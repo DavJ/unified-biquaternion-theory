@@ -1,0 +1,150 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\chapter{Program konstanty jemné struktury: co je odvozeno a co není}
+\label{ch:alpha}
+
+\section{Status před algebrou}
+Autoritativní stav úložiště je záměrně silnější než jakýkoli elegantní
+vzorec v této kapitole:
+\begin{quote}
+Fyzikální konstanta jemné struktury ještě není odvozena z prvních principů
+v UBT.  Cesta integer-$137$ je strukturální/podmíněná, zatímco most
+stanovení požadovaného efektivního koeficientu z akce UBT zůstává otevřené.
+\end{quote}
+Živé zdroje stavu jsou \texttt{STATUS.md},
+\texttt{WHAT\_IS\_PROVED.md} a
+\texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}. Historické texty používající
+fráze ``odvození alfa bez přizpůsobení'' nepřepisují tyto účetní knihy.
+
+\section{Podmíněný winding potenciál}
+Centrální redukované modelové studie
+\[
+ \boxed{V_{\rm eff}(n)=n^2-Bn\ln n,\qquad n>0.}
+\]
+Dočasné zacházení s $n$ jako s kontinuální proměnnou,
+\[
+ \frac{dV_{\rm eff}}{dn}
+ =2n-B(\ln n+1).
+\]
+Stacionární bod tedy vyhovuje
+\[
+ \boxed{B=\frac{2n}{\ln n+1}.}
+\]
+Pokud někdo požádá o stacionární bod na $n=137$, požadovaný koeficient je
+\[
+ B_{137}=\frac{274}{\ln137+1}\approx46.284.
+\]
+Tato rovnice je přesnou vlastností redukovaného potenciálu. \emph{Nevysvětluje},
+proč musí akce UBT generovat právě tuto hodnotu $B$.
+
+Druhá derivace je
+\[
+ \frac{d^2V_{\rm eff}}{dn^2}=2-\frac{B}{n}.
+\]
+Ve stacionárním bodě se to stane
+\[
+ 2-\frac{2}{\ln n+1}
+ =\frac{2\ln n}{\ln n+1}>0
+ \qquad(n>1),
+\]
+takže spojitý stacionární bod je lokální minimum.  Celé číslo a
+omezení primárního sektoru pak lze studovat jako další diskrétní
+problém s výběrem.
+
+\section{Co může a nemůže znamenat ``prvočíselná stabilita''}
+Úložiště obsahuje strukturální analýzu primární stability, ve které
+celočíselný sektor kolem $137$ je zkoumán podle specifikovaného pravidla výběru.  A
+prvotřídně označené minimum může být reprodukovatelným výsledkem tohoto zmenšeného modelu.
+Však:
+\begin{itemize}
+ \item Základem $137$ je standardní teorie čísel;
+ \item výběr primárního sektoru sám o sobě neidentifikuje
+       $\alpha^{-1}$ s tímto sektorem;
+ \item fyzická oprava z $137$ na $137.036\ldots$ vyžaduje samostatnou
+       derivace;
+ \item Koeficient $B$ je stále třeba získat spíše z dynamiky UBT
+       než je odvozeno z cílové hodnoty.
+\end{itemize}
+Kapitola theta/Mellin/Feynman rozvíjí možné mechanismy porozumění
+kam by mohla vstoupit multiplikativní primární struktura, ale tyto mechanismy jsou
+výzkumné mosty, nedokončené alfa důkazy.
+
+\section{Audit \(N_{\rm eff}\): dvě různá počítání se nesmějí zaměňovat}
+Použitá předchozí derivace
+\[
+ N_{\rm eff}=3\times2\times2=12.
+\]
+Současný audit rozlišuje alespoň dva objekty:
+\begin{align*}
+ N_{\rm eff}^{\rm twist}&=12,
+ &&\text{in the SU(2)-twist construction},\\
+ N_{\rm eff}^{\rm loop}&=3,
+ &&\text{in the direct audited scalar-action loop count}.
+\end{align*}
+Identifikace
+\[
+ N_{\rm eff}^{\rm loop}=N_{\rm eff}^{\rm twist}
+\]
+není v současné době dokázaná věta.  Proto vzorec, který vkládá $12$ do
+koeficient smyčky musí pojmenovat předpoklady zkroucení; nelze to popsat jako
+jedinečný důsledek samotného $\mathbb C\otimes\mathbb H$.
+
+V souladu s tím úložiště zaznamenává dva různé koeficienty základní linie
+trasy,
+\[
+ B_0^{\rm loop}=2\pi,
+ \qquad
+ B_0^{\rm twist}=8\pi,
+\]
+s můstkem z obou základních linií k fenomenologicky požadovanému
+$B\approx46.284$ stále otevřený.
+
+\section{Mezera G137-B}
+Rozhodující alfa problém lze říci bez rétoriky:
+\begin{quote}
+Vycházejte z kanonické akce UBT a jejího oprávněného obsahu pole
+efektivní redukovaný koeficient násobící $n\ln n$, včetně všech
+normalizace a multiplicity a ukazují, že odvození je nezávislé
+naměřené hodnoty $\alpha$.
+\end{quote}
+Toto je Gap G137-B.  Vzniklo několik historických a výzkumných tras
+zajímavé modulární, eta, gama, determinantové a vinuté struktury, ale
+aktuální master status zaznamenává požadované vložení do fyzického
+koeficient jako otevřený.
+
+\section{Proč má stále smysl studovat theta/Mellinovu větev}
+Selhání naivního řetězce
+\[
+ \Theta\to\text{Mellin}\to\zeta\to\text{Euler product}
+ \to\text{prime sectors}
+\]
+do\emph{dynamicky} vybrat prvočísla je samo o sobě užitečné.  Produkt Euler společnosti a
+standardní theta Mellinova transformace již odráží multiplikativní aritmetiku
+přítomný v sadě celočíselných indexů.  Musel by se identifikovat silnější mechanismus
+primitivní sektory dynamicky.
+
+Racionální-časové theta oživení jsou jedním z kandidátů, protože kvadratické Gaussovy součty
+faktor nad coprime jmenovatele.  V tomto nastavení jsou hlavní síly skutečně
+neredukovatelné stavební kameny aritmetiky obrození.  Ať už alfa
+konstrukce primárního sektoru může být přepsána v těchto proměnných je explicitní
+otevřená otázka, nikoli stanovený výsledek.
+
+\section{Bezpečné shrnutí}
+Výroky k zapamatování jsou:
+\begin{enumerate}
+ \item redukovaná stacionární rovnice a její výpočet stability jsou přesné;
+ \item strukturní výběr celé číslo/prvočíslo lze studovat reprodukovatelně;
+ \item $B$ ještě není odvozen z akce UBT na požadované hodnotě;
+ \item příslušné multiplicitní účetnictví není plně odsouhlaseno;
+ \item $\alpha^{-1}=137.036\ldots$ dnes není výsledkem prvního principu UBT.
+\end{enumerate}
+To je záměrně méně dramatické než starší archivní text a užitečnější pro
+budoucí práci, protože nám přesně říká, která rovnice musí být uzavřena jako další.

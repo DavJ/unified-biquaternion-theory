@@ -58,6 +58,9 @@ jobs:
       - name: Check AI provenance markers
         run: python3 tools/apply_provenance_headers.py --check
 
+      - name: Check bilingual document parity
+        run: python3 tools/check_bilingual_pairs.py --root .
+
       - name: Audit standalone textbook roots
         env:
           TEXINPUTS: "${{ github.workspace }}/tex//:"
@@ -77,28 +80,36 @@ jobs:
       - name: Publish official PDF into repository tree
         run: make -C docs/textbook publish
 
-      - name: Verify official textbook PDF
+      - name: Verify official textbook PDFs
         run: |
-          test -s build/textbook/public/UBT_Textbook.pdf
-          test "$(find build/textbook/public -maxdepth 1 -type f -name '*.pdf' | wc -l)" -eq 1
+          test -s build/textbook/public/UBT_Textbook_CS.pdf
+          test -s build/textbook/public/UBT_Textbook_EN.pdf
+          test "$(find build/textbook/public -maxdepth 1 -type f -name 'UBT_Textbook_*.pdf' | wc -l)" -eq 2
 
-      - name: Upload official textbook PDF
+      - name: Upload official Czech textbook PDF
         uses: actions/upload-artifact@v4
         with:
-          name: UBT_Textbook
-          path: build/textbook/public/UBT_Textbook.pdf
+          name: UBT_Textbook_CS
+          path: build/textbook/public/UBT_Textbook_CS.pdf
+          if-no-files-found: error
+
+      - name: Upload official English textbook PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: UBT_Textbook_EN
+          path: build/textbook/public/UBT_Textbook_EN.pdf
           if-no-files-found: error
       - name: Commit refreshed textbook PDF
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
-          if git diff --quiet -- docs/pdfs/UBT_Textbook.pdf; then
-            echo 'UBT_Textbook.pdf is unchanged.'
+          if git diff --quiet -- docs/pdfs/UBT_Textbook_CS.pdf docs/pdfs/UBT_Textbook_EN.pdf; then
+            echo 'Bilingual textbook PDFs are unchanged.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add docs/pdfs/UBT_Textbook.pdf
-          git commit -m 'docs: refresh UBT textbook PDF [skip ci]'
+          git add docs/pdfs/UBT_Textbook_CS.pdf docs/pdfs/UBT_Textbook_EN.pdf
+          git commit -m 'docs: refresh bilingual UBT textbook PDFs [skip ci]'
           git push origin HEAD:master
 
       - name: Validate textbook email secrets
@@ -112,7 +123,7 @@ jobs:
           test -n "$TEXTBOOK_SMTP_USERNAME"
           test -n "$TEXTBOOK_SMTP_APP_PASSWORD"
 
-      - name: Email official textbook PDF
+      - name: Email official textbook PDFs
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         env:
           TEXTBOOK_EMAIL_TO: ${{ secrets.TEXTBOOK_EMAIL_TO }}
@@ -125,21 +136,17 @@ jobs:
           from email.message import EmailMessage
           from pathlib import Path
 
-          pdf = Path('build/textbook/public/UBT_Textbook.pdf')
-          if not pdf.is_file() or pdf.stat().st_size == 0:
-              raise SystemExit('UBT_Textbook.pdf is missing or empty')
+          pdfs = [Path('build/textbook/public/UBT_Textbook_CS.pdf'), Path('build/textbook/public/UBT_Textbook_EN.pdf')]
+          if any(not pdf.is_file() or pdf.stat().st_size == 0 for pdf in pdfs):
+              raise SystemExit('One or more bilingual textbook PDFs are missing or empty')
 
           msg = EmailMessage()
-          msg['Subject'] = 'UBT Textbook PDF'
+          msg['Subject'] = 'UBT Textbooks (CS + EN)'
           msg['From'] = os.environ['TEXTBOOK_SMTP_USERNAME']
           msg['To'] = os.environ['TEXTBOOK_EMAIL_TO']
-          msg.set_content('Attached is the latest successfully built UBT textbook PDF.')
-          msg.add_attachment(
-              pdf.read_bytes(),
-              maintype='application',
-              subtype='pdf',
-              filename='UBT_Textbook.pdf',
-          )
+          msg.set_content('Attached are the latest successfully built Czech and English UBT textbook PDFs.')
+          for pdf in pdfs:
+              msg.add_attachment(pdf.read_bytes(), maintype='application', subtype='pdf', filename=pdf.name)
 
           with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=30) as smtp:
               smtp.login(

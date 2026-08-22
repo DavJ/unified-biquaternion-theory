@@ -1,0 +1,36 @@
+name: Bilingual document parity
+
+on:
+  pull_request:
+    paths:
+      - '**.md'
+      - '**.tex'
+      - '**.rst'
+      - 'tools/check_bilingual_pairs.py'
+      - '.github/workflows/bilingual_docs.yml'
+  push:
+    branches: [master]
+    paths:
+      - '**.md'
+      - '**.tex'
+      - '**.rst'
+      - 'tools/check_bilingual_pairs.py'
+      - '.github/workflows/bilingual_docs.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check all registered language pairs
+        run: python3 tools/check_bilingual_pairs.py --root .
+      - name: Require pairs for changed governed prose
+        if: github.event_name == 'pull_request'
+        run: >-
+          python3 tools/check_bilingual_pairs.py --root .
+          --changed-base '${{ github.event.pull_request.base.sha }}'
