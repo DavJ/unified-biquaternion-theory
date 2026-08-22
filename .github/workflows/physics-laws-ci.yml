@@ -107,7 +107,7 @@ jobs:
           print('✓ Minkowski metric recovered from biquaternionic tetrad')
           "
 
-      - name: Schwarzschild spatial metric from UBT ansatz
+      - name: Legacy Schwarzschild spatial identity and canonical-boundary guard
         run: |
           python tools/verify_schwarzschild_theta.py --tolerance 1e-8
 

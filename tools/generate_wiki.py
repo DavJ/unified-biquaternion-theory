@@ -256,8 +256,6 @@ _PAGES_HTML_MAP: dict = {
     # Geometry
     "canonical/geometry/Rpsi_dynamical_fix.tex":
         "canonical/geometry/Rpsi_dynamical_fix.html",
-    "canonical/geometry/biquaternionic_vacuum_solutions.tex":
-        "canonical/geometry/biquaternionic_vacuum_solutions.html",
     # Interactions
     "canonical/interactions/B_base_derivation_complete.tex":
         "canonical/interactions/B_base_derivation_complete.html",

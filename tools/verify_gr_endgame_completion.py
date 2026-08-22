@@ -55,8 +55,27 @@ def analytic_prefactor_check() -> bool:
 
 def cpsi_integral(dps: int = 50) -> mp.mpf:
     mp.mp.dps = dps
-    f = lambda u: u ** -2 * mp.jtheta(3, 0, mp.e ** (-u))
-    return mp.quad(f, [1, mp.inf])
+
+    # Integrating directly to ``mp.inf`` makes some mpmath releases evaluate
+    # jtheta at an astronomically tiny nome and overflow while converting that
+    # nome to fixed-point form.  The exact substitution t=1/u removes the
+    # infinite interval and the u^-2 Jacobian:
+    #
+    #   int_1^inf u^-2 theta_3(0,e^-u) du
+    #     = int_0^1 theta_3(0,e^(-1/t)) dt.
+    #
+    # The endpoint value is the continuous limit theta_3(0,0)=1.
+    def transformed_integrand(t: mp.mpf) -> mp.mpf:
+        if not t:
+            return mp.mpf(1)
+        # Directly sum theta_3=1+2*sum(exp(-n^2/t)).  On 0<t<=1 the
+        # omitted tail after n=20 is below 2*exp(-441), far beneath the
+        # working precision, and avoids the tiny-nome jtheta overflow.
+        return mp.mpf(1) + 2 * mp.fsum(
+            mp.e ** (-(n * n) / t) for n in range(1, 21)
+        )
+
+    return mp.quad(transformed_integrand, [0, 1])
 
 
 def cpsi_series(nmax: int = 40, dps: int = 50) -> mp.mpf:

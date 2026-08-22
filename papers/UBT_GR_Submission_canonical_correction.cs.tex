@@ -1,0 +1,132 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ubtprovenance}
+\UBTTier{C}
+\newtheorem{proposition}{Tvrzení}
+\title{Kanonická oprava GR článku UBT:\\
+hranice platnosti staršího Schwarzschildova ansatzu}
+\author{Ing. David Jaro\v{s}}
+\date{22. srpna 2026}
+
+\begin{document}
+\maketitle
+\UBTProvenanceNotice
+
+% BILINGUAL-UNIT: correction.scope
+\section{Rozsah a závazný status}
+Tato doprovodná oprava je závazná pro odstavec o Schwarzschildově statusu v
+\path{papers/UBT_GR_Submission.tex}.  Nemění dokázané lokální věty o tetrádě,
+konexi, kontorzi ani děleném jetu.  Opravuje status staršího ansatzu v
+\path{canonical/geometry/biquaternionic_vacuum_solutions.tex} a skriptu
+\path{tools/verify_schwarzschild_theta.py}.
+
+Autoritativní status zůstává
+\[
+ \boxed{\texttt{GAP-U2Theta: OPEN}.}
+\]
+Kanonické on-shell vytvoření úplné Schwarzschildovy tetrády a lapse dosud
+odvozeno nebylo.
+
+% BILINGUAL-UNIT: correction.psi
+\section{Chybějící závislost na imaginárním čase}
+Historický zdroj zapisuje
+\begin{equation}
+ \Theta_0(r,\tau)=e^{i\alpha(r)}X(r).
+ \label{eq:legacy-ansatz}
+\end{equation}
+Rovnice~\eqref{eq:legacy-ansatz} neobsahuje žádnou zobrazenou závislost na
+$\psi$. Proto
+\begin{equation}
+ \partial_\psi\Theta_0=0,
+ \label{eq:psi-zero}
+\end{equation}
+nikoli $\partial_\psi\Theta_0=i\alpha(r)\Theta_0$. Pouhé prohlášení
+$\tau=t+i\psi$ chybějící závislost nevytvoří. Historický krok
+$g_{tt}=-\alpha(r)^2$ tedy z tohoto ansatzu neplyne.
+
+% BILINGUAL-UNIT: correction.phase
+\section{Vynechaná derivace radiální fáze}
+Pro nekonstantní radiální fázi dává přímá derivace
+\begin{equation}
+ \partial_i\Theta_0=e^{i\alpha(r)}\left[
+ \partial_iX+i\alpha'(r)\frac{x_i}{r}X\right].
+ \label{eq:phase-derivative}
+\end{equation}
+Druhý člen v rovnici~\eqref{eq:phase-derivative} byl v tvrzeném zrušení
+prostorové fáze vynechán. Výpočet prostorové části bez fáze proto nelze
+současně použít s radiálně proměnnou fází bez nového výpočtu metriky a
+smíšených členů.
+
+% BILINGUAL-UNIT: correction.slice
+\section{Překážka kanonického Lorentzova řezu}
+Numerický skript kontroluje pole bez fáze s reálnými kvaterniony
+\begin{equation}
+ \Theta_0(r)=f(r)\mathbf1+g(r)\mathbf e_r,
+ \qquad
+ g(r)=r\left(1+\frac{M}{2r}\right)^2,
+ \qquad
+ f'(r)=\left(1+\frac{M}{2r}\right)\sqrt{\frac{2M}{r}}.
+ \label{eq:legacy-spatial}
+\end{equation}
+Pro $M=1$, $r=2M$ a na kladné ose $x$ je skalární koeficient
+$\partial_x\Theta_0$ roven
+\begin{equation}
+ f'(2M)=\frac54.
+ \label{eq:slice-witness}
+\end{equation}
+Je reálný a nenulový. Kanonický Lorentzův řez naproti tomu vyžaduje skalární
+koeficient ve tvaru $i e^0$ s $e^0\in\mathbb R$. Derivace používané starším
+prostorovým ověřovačem jsou proto obecně mimo kanonický Lorentzův řez $W_L$.
+
+Tentýž přesný bod také vyvrací starší pomocný předpoklad $|X|=1$, protože
+\begin{equation}
+ g(2M)=\frac{25}{8},
+ \qquad |X|^2=f^2+g^2\geq\frac{625}{64}>1.
+ \label{eq:norm-witness}
+\end{equation}
+
+% BILINGUAL-UNIT: correction.verdict
+\section{Opravený závěr}
+Identita
+\begin{equation}
+ f'(r)^2+g'(r)^2=\left(1+\frac{M}{2r}\right)^4
+ \label{eq:spatial-identity}
+\end{equation}
+platí a starší skript reprodukuje kladnou prostorovou kvadratickou formu
+$g_{ij}=\Psi^4\delta_{ij}$. Tato omezená identita není kanonickým
+Schwarzschildovým řešením z jediného $\Theta$, neurčuje lapse a není on-shell
+výsledkem.
+
+Dva pozdější výsledky zůstávají platné ve svém uvedeném rozsahu: věta o
+kompozitní kontorzi lokálně reprezentuje předepsanou Schwarzschildovu tetrádu,
+obecně však s kompozitní torzí, zatímco věta o děleném jetu zachovává fyzickou
+Levi--Civitovu konexi, ale její surjektivní pomocná vazba tetrádu nedokáže
+vybrat. Ani jeden výsledek neuzavírá \texttt{GAP-U2Theta}.
+
+% BILINGUAL-UNIT: correction.verification
+\section{Záznam ověření}
+Analytickou opravu nezávisle kontrolují
+\path{tools/verify_schwarzschild_theta.py} a nativní SageMath v
+\path{tools/verify_gr_core_sage.py}. Úplný strojově čitelný záznam je v
+\path{papers/UBT_GR_Submission.verification.yaml}.
+
+\textbf{Status Lean: LEAN-PENDING.} Lean a \texttt{lake} nebyly v prostředí
+auditu dostupné a žádný existující zdroj Lean tyto GR výroky neformalizuje.
+Kontroly CAS ověřují pouze výše zapsané rovnice. Nedokazují dynamický výběr,
+dobrou položenost PDE, globální pokračování ani fyzickou pravdivost UBT.
+
+\end{document}

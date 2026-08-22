@@ -1,0 +1,137 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ubtprovenance}
+\UBTTier{C}
+\newtheorem{proposition}{Proposition}
+\title{Canonical correction to the UBT GR submission:\\
+the boundary of the legacy Schwarzschild ansatz}
+\author{Ing. David Jaro\v{s}}
+\date{22 August 2026}
+
+\begin{document}
+\maketitle
+\UBTProvenanceNotice
+
+% BILINGUAL-UNIT: correction.scope
+\section{Scope and normative status}
+This companion correction is normative for the Schwarzschild-status paragraph
+of \path{papers/UBT_GR_Submission.tex}.  It does not change the proved local
+tetrad, connection, contortion, or split-jet theorems.  It corrects the status
+of the older ansatz in
+\path{canonical/geometry/biquaternionic_vacuum_solutions.tex} and of
+\path{tools/verify_schwarzschild_theta.py}.
+
+The authoritative status remains
+\[
+ \boxed{\texttt{GAP-U2Theta: OPEN}.}
+\]
+Canonical on-shell generation of the complete Schwarzschild tetrad and lapse
+has not been derived.
+
+% BILINGUAL-UNIT: correction.psi
+\section{The missing imaginary-time dependence}
+The historical source writes
+\begin{equation}
+ \Theta_0(r,\tau)=e^{i\alpha(r)}X(r).
+ \label{eq:legacy-ansatz}
+\end{equation}
+Equation~\eqref{eq:legacy-ansatz} has no displayed dependence on $\psi$.
+Therefore
+\begin{equation}
+ \partial_\psi\Theta_0=0,
+ \label{eq:psi-zero}
+\end{equation}
+not $\partial_\psi\Theta_0=i\alpha(r)\Theta_0$.  Merely declaring
+$\tau=t+i\psi$ does not supply the missing dependence.  Consequently the
+historical step $g_{tt}=-\alpha(r)^2$ does not follow from that ansatz.
+
+% BILINGUAL-UNIT: correction.phase
+\section{The omitted radial-phase derivative}
+For a nonconstant radial phase, direct differentiation gives
+\begin{equation}
+ \partial_i\Theta_0=e^{i\alpha(r)}\left[
+ \partial_iX+i\alpha'(r)\frac{x_i}{r}X\right].
+ \label{eq:phase-derivative}
+\end{equation}
+The second term in Eq.~\eqref{eq:phase-derivative} was omitted by the claimed
+spatial phase cancellation.  Hence the phase-free spatial calculation cannot
+simultaneously be used with a radially varying phase without redoing the
+metric and cross-term calculation.
+
+% BILINGUAL-UNIT: correction.slice
+\section{Canonical Lorentz-slice obstruction}
+The numerical script checks the phase-free real-quaternion field
+\begin{equation}
+ \Theta_0(r)=f(r)\mathbf1+g(r)\mathbf e_r,
+ \qquad
+ g(r)=r\left(1+\frac{M}{2r}\right)^2,
+ \qquad
+ f'(r)=\left(1+\frac{M}{2r}\right)\sqrt{\frac{2M}{r}}.
+ \label{eq:legacy-spatial}
+\end{equation}
+At $M=1$, $r=2M$, and on the positive $x$ axis, the scalar coefficient of
+$\partial_x\Theta_0$ equals
+\begin{equation}
+ f'(2M)=\frac54.
+ \label{eq:slice-witness}
+\end{equation}
+It is real and nonzero.  The canonical Lorentz slice instead requires the
+scalar coefficient to have the form $i e^0$ with $e^0\in\mathbb R$.
+Therefore the derivatives used by the legacy spatial checker are generically
+outside the canonical Lorentz slice $W_L$.
+
+The same exact point also contradicts the historical auxiliary assertion
+$|X|=1$, because
+\begin{equation}
+ g(2M)=\frac{25}{8},
+ \qquad |X|^2=f^2+g^2\geq\frac{625}{64}>1.
+ \label{eq:norm-witness}
+\end{equation}
+
+% BILINGUAL-UNIT: correction.verdict
+\section{Corrected verdict}
+The identity
+\begin{equation}
+ f'(r)^2+g'(r)^2=\left(1+\frac{M}{2r}\right)^4
+ \label{eq:spatial-identity}
+\end{equation}
+is valid and the legacy script reproduces the positive spatial quadratic form
+$g_{ij}=\Psi^4\delta_{ij}$.  This limited identity is not a canonical
+single-$\Theta$ Schwarzschild solution, does not determine the lapse, and is
+not an on-shell result.
+
+Two later results remain valid within their stated scope: the
+composite-contortion theorem represents a prescribed Schwarzschild tetrad
+locally but generally with composite torsion, while the split-jet theorem
+keeps the physical connection Levi--Civita but its surjective auxiliary
+constraint cannot select the tetrad.  Neither result closes
+\texttt{GAP-U2Theta}.
+
+% BILINGUAL-UNIT: correction.verification
+\section{Verification record}
+The analytic correction is checked independently by
+\path{tools/verify_schwarzschild_theta.py} and native SageMath in
+\path{tools/verify_gr_core_sage.py}.  The complete machine-readable record
+is \path{papers/UBT_GR_Submission.verification.yaml}.
+
+\textbf{Lean status: LEAN-PENDING.}  Lean and \texttt{lake} were unavailable
+in the audit environment, and no existing Lean source formalizes these GR
+statements.  The CAS checks verify only the equations encoded above.  They do
+not prove action selection, PDE well-posedness, global continuation, or the
+physical truth of UBT.
+
+\end{document}
