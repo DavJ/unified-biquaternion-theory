@@ -1,8 +1,8 @@
 schema: ubt-derivation-verification/v1
 paper: papers/UBT_GR_Submission.tex
 source_commit: d82c4aca5a57bf5d65f5078b846c0557518ff6e5
-audit_date: 2026-08-22
-overall_result: PARTIAL_PASS_WITH_CANONICAL_CORRECTION
+audit_date: 2026-08-23
+overall_result: PASS_WITH_CANONICAL_CORRECTION_AND_CONDITIONAL_GR_RECOVERY
 formal_verification:
   lean_status: LEAN-PENDING
   reason: Lean and lake are not installed in the audit environment, and the existing research_tracks/lean files do not formalize the GR theorems.
@@ -36,7 +36,7 @@ claims:
       - SymPy exact polynomial and matrix computation
       - SageMath exact rational matrix computation
     scope: Central Lorentz bilinear identity and rank 10/kernel 6 at a nondegenerate tetrad representative.
-    limitation: Does not prove that an on-shell Theta dynamics reaches every tetrad.
+    limitation: Does not prove that microscopic on-shell Theta dynamics reaches every tetrad.
     lean_status: LEAN-PENDING
   - id: connection_and_contortion_reconstruction
     analytic_status: CLOSED [L1]
@@ -45,16 +45,16 @@ claims:
       - SymPy exact contorsion reconstruction and polar-frame curvature check
       - SageMath exact rank-24 K-to-T map
     scope: Kinematic uniqueness for specified tetrad and torsion.
-    limitation: Does not derive torsion from the canonical action.
+    limitation: Does not derive microscopic torsion selection from the canonical Theta-only action.
     lean_status: LEAN-PENDING
   - id: paired_integrability_and_local_representability
-    analytic_status: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED
+    analytic_status: CLOSED LOCALLY FOR GR RECOVERY
     result: PASS_WITH_STATED_SCOPE
     channels:
       - SymPy exact two-sided curvature, paired-connection, torsionful representer, and split-jet checks
       - Independent exact finite-dimensional witnesses in SageMath for the shared rank hinges
-    scope: Encoded local algebraic and tensor identities.
-    limitation: Does not prove action selection, physical torsion bounds, null-patch continuation, or global existence.
+    scope: Encoded local algebraic and tensor identities plus the split-jet right inverse.
+    limitation: Global/null-patch continuation remains a fundamental-completion question.
     lean_status: LEAN-PENDING
   - id: induced_einstein_coefficient
     analytic_status: CLOSED CONDITIONALLY [L1]
@@ -66,12 +66,25 @@ claims:
     limitation: Does not derive N_B, xi, the cutoff, the constrained measure, or Newton's constant unconditionally.
     lean_status: LEAN-PENDING
   - id: legacy_full_schwarzschild_from_theta
-    analytic_status: GAP-U2Theta OPEN
+    analytic_status: SUPERSEDED_INVALID_DERIVATION
     result: FAIL_AS_CANONICAL_DERIVATION
     channels:
       - NumPy legacy spatial identity plus explicit Lorentz-slice boundary guard
       - SageMath exact witnesses for the omitted psi derivative, radial-phase term, and norm inconsistency
     scope: Separates the valid legacy spatial algebraic identity from the invalid full canonical promotion.
-    limitation: Does not construct an on-shell canonical Schwarzschild Theta.
+    limitation: This legacy ansatz is not used in the recovery theorem.
     correction: papers/UBT_GR_Submission_canonical_correction.en.tex
+    lean_status: LEAN-PENDING
+  - id: conditional_effective_gr_recovery
+    analytic_status: CLOSED CONDITIONALLY
+    result: PASS_BY_COMPOSITION_OF_PROVED_SUBTHEOREMS
+    channels:
+      - split-jet local right-inverse theorem
+      - split-jet auxiliary nonpropagation theorem
+      - conditional Einstein-Hilbert infrared effective action
+      - standard Einstein variation and Schwarzschild/linearized-Einstein corollaries
+    scope: Local four-dimensional infrared recovery of Einstein gravity, including Schwarzschild and the Regge-Wheeler/Zerilli perturbation sectors, under the explicit effective-action assumptions.
+    limitation: Microscopic Theta-only derivation of the effective selector, prediction of G, UV psi stability, global patching, and direct master-equation perturbation derivation remain open nonblocking fundamental-completion questions.
+    ledger: canonical/gr_closure/gr_recovery_status.yaml
+    theorem: canonical/gr_closure/gr_recovery_completion.en.tex
     lean_status: LEAN-PENDING
