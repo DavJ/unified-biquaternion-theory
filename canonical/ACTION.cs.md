@@ -34,7 +34,7 @@ registru je proto:
 fundamental_action_family: S_Theta
 source: canonical/THEORY/canonical/canonical_action.tex:46
 status: DEFINED_FAMILY_NOT_FINALIZED
-blocking_gap: UBT-FUND-ACTION
+related_open_gap: UBT-FUND-GR-ACTION
 ```
 
 Dokud nebude dokončena finalizace, není holý odkaz na „kanonickou akci“
@@ -91,9 +91,9 @@ klasifikace a jejích podmínek reality.
 <!-- BILINGUAL-UNIT: single-action.falsification -->
 ## Předem stanovené falzifikační kritérium
 
-Minimální program jediné akce selhává, jestliže každý přípustný kandidát v
-deklarované jednoparametrické rodině selže alespoň v jednom z těchto současně
-požadovaných testů:
+Jakmile bude explicitně deklarována konečněrozměrná rodina kandidátů, minimální
+program jediné akce selhává, jestliže každý její přípustný člen selže alespoň
+v jednom z těchto současně požadovaných testů:
 
 - nenulový konečný koeficient Einsteinova–Hilbertova členu se dvěma derivacemi
   v infračerveném limitu;
@@ -118,8 +118,8 @@ nejistotu, experimentální pozorovatelnou veličinu a všechny vstupy.
 <!-- BILINGUAL-UNIT: single-action.priority -->
 ## Priorita programu a zmrazení rozsahu
 
-Dokud nebude vyřešen `UBT-FUND-ACTION`, nové spekulativní sektory se nepočítají
-jako pokrok kanonické teorie a nesmějí zavádět další fundamentální členy.
+Dokud nebude fundamentální akce finalizována, nové spekulativní sektory se
+nepočítají jako pokrok kanonické teorie a nesmějí zavádět další fundamentální členy.
 Pořadí práce na kanonické fyzice je:
 
 1. finalizovat již definovanou rodinu jediné akce;

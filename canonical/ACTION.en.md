@@ -35,7 +35,7 @@ The current registry value is therefore:
 fundamental_action_family: S_Theta
 source: canonical/THEORY/canonical/canonical_action.tex:46
 status: DEFINED_FAMILY_NOT_FINALIZED
-blocking_gap: UBT-FUND-ACTION
+related_open_gap: UBT-FUND-GR-ACTION
 ```
 
 Until finalization is complete, a bare reference to “the canonical action” is
@@ -94,9 +94,9 @@ its reality conditions are checked.
 <!-- BILINGUAL-UNIT: single-action.falsification -->
 ## Precommitted falsification criterion
 
-The minimal single-action programme fails if every admissible candidate in the
-declared one-parameter family fails at least one of the following simultaneous
-tests:
+Once a finite-dimensional candidate family has been explicitly declared, the
+minimal single-action programme fails if every admissible member fails at
+least one of the following simultaneous tests:
 
 - a nonzero, finite two-derivative Einstein–Hilbert coefficient in the infrared;
 - stable physical fluctuations with no unremoved ghost or unstable `psi` mode;
@@ -119,9 +119,9 @@ observable, and all inputs before comparison with data.
 <!-- BILINGUAL-UNIT: single-action.priority -->
 ## Programme priority and scope freeze
 
-Until `UBT-FUND-ACTION` is resolved, new speculative sectors do not count as
-progress on the canonical theory and must not introduce further fundamental
-terms. The canonical physics order is:
+Until the fundamental action is finalized, new speculative sectors do not
+count as progress on the canonical theory and must not introduce further
+fundamental terms. The canonical physics order is:
 
 1. finalize the already defined single action family;
 2. vary it without fitting the result to a desired endpoint;
