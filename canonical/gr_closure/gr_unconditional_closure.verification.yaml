@@ -16,6 +16,7 @@ formal_verification:
     - four-dimensional composite kinetic contraction from the explicit Gram and inverse-metric premises
     - impossibility of deriving a nonzero curvature coefficient from kinematic predicates that admit a zero-coefficient model
   limitations:
+    - compatibility of the zero-coefficient model with UBT kinematics is assumed, not proved in Lean
     - does not derive compatibility of a microscopic Theta action with every formal premise
     - does not derive the composite gauge-fixed Hessian or constrained measure
     - does not prove physical psi-sector stability
@@ -24,4 +25,4 @@ independent_exact_verification:
   version: 3.13.9
   artifact: tools/verify_gr_unconditional_closure.py
   result: PASS
-lean_status: PROVED
+lean_status: CHECKED_IMPLICATIONS_FROM_EXPLICIT_PREMISES_ONLY

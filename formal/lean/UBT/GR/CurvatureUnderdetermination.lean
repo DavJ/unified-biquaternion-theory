@@ -24,18 +24,4 @@ theorem kinematicsDoNotForceNonzeroCurvatureCoefficient
   intro hForced
   exact hForced zeroModel hKinematics hZero
 
-structure CurvatureExtension (R : Type*) where
-  coefficient : R
-
-def CurvatureExtension.kinematics
-    {R : Type*} (_ : CurvatureExtension R) (kinematicStatement : Prop) : Prop :=
-  kinematicStatement
-
-theorem curvatureExtensionPreservesKinematics
-    {R : Type*}
-    (kinematicStatement : Prop)
-    (c₁ c₂ : CurvatureExtension R) :
-    c₁.kinematics kinematicStatement ↔ c₂.kinematics kinematicStatement := by
-  rfl
-
 end UBT.GR
