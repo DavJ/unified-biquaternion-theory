@@ -25,5 +25,6 @@ jobs:
           build: true
           build-args: --wfail
           leanchecker: true
+          leanchecker-args: UBT
           axiom-audit: true
           axiom-audit-root: UBT
