@@ -65,6 +65,10 @@ The current canonical route is:
   full composite Hessian as the remaining operator lemma.
 - `gap_10_gr_effective_completion.tex` — strongest complete result: the
   conditional local Einstein--Lambda effective branch and its exact boundary.
+- `gr_unconditional_closure_audit.en.tex` and
+  `gr_unconditional_closure_audit.cs.tex` — bilingual decision audit proving
+  that the current inputs do not justify upgrading local GR recovery from
+  `CLOSED_CONDITIONALLY` to unconditional `CLOSED`.
 - `gap_10l_psi_symmetry_propagation.tex` — Lorentz-slice and imaginary-time
   symmetry propagation theorems.
 - `gap_10i_augmented_holonomy.tex` — exact prescribed-connection integrability
@@ -94,6 +98,9 @@ The current canonical route is:
   checks.
 - `../../tools/verify_theta_hessian_principal_symbol.py` — exact
   fixed-background scalar-symbol and nonconic-resonance checks.
+- `../../tools/verify_gr_unconditional_closure.py` — exact rational checks of
+  the composite first-jet volume collapse and curvature-coefficient
+  underdetermination used by the status-upgrade audit.
 
 ## Locked status language
 

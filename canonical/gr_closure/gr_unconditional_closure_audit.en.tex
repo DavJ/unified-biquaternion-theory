@@ -1,0 +1,127 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: B_machine_verified
+% ai_assistance: disclosed
+% human_review: machine-verification
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ubtprovenance}
+\UBTTier{B}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Audit of Unconditional GR Recovery in Canonical UBT}
+\author{Ing. David Jaro\v{s}}
+\date{23 August 2026}
+\begin{document}\maketitle
+\UBTProvenanceNotice
+
+% BILINGUAL-UNIT: unconditional.question
+\section{Decision question}
+This audit asks whether the local four-dimensional infrared GR-recovery status
+can be upgraded from \texttt{CLOSED\_CONDITIONALLY} to \texttt{CLOSED} using
+the current canonical axioms and proved repository results.  It tests the
+microscopic single-$\Theta$ selector, the Einstein--Hilbert coefficient and
+measure, the composite Hessian, physical $\psi$-sector stability, and the
+logical relevance of global patching to a local claim.
+
+% BILINGUAL-UNIT: unconditional.selector
+\section{Exact selector obstruction}
+On the Lorentz-real branch let
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+ \qquad \langle E_\mu,E_\nu\rangle_\sharp=g_{\mu\nu}.
+\end{equation}
+Then the most direct covariant quadratic first-jet candidate obeys
+\begin{equation}\label{eq:collapse}
+ g^{\mu\nu}\langle D_\mu\Theta,D_\nu\Theta\rangle_\sharp
+ =\mathcal N_0 g^{\mu\nu}g_{\mu\nu}=4\mathcal N_0.
+\end{equation}
+Thus its action is a cosmological volume functional.  It is not an independent
+kinetic selector and cannot derive the Einstein--Hilbert term.
+
+\begin{theorem}[Unconditional closure is not derivable from the current inputs]
+Let $\mathcal K$ be the current set of kinematic inputs: the covariant-tetrad
+definition, central metric identity, local Lorentz and diffeomorphism
+symmetries, connection reconstruction, and local split-jet right inverse.
+For every real $c$ the functional
+\begin{equation}\label{eq:family}
+ S_c[\Theta]=S_0[\Theta]+c\int d^4x\sqrt{-g[\Theta]}
+ R[g[\Theta]]
+\end{equation}
+has the same inputs $\mathcal K$.  Different $c$ give different Newton
+coefficients, including $c=0$.  Consequently $\mathcal K$ neither selects the
+Einstein--Hilbert term nor fixes a finite positive coefficient.  Equation
+\eqref{eq:collapse} does not remove this freedom.  Therefore the assumptions
+of the conditional recovery theorem are not consequences of the presently
+finalized microscopic single-$\Theta$ theory.
+\end{theorem}
+\begin{proof}
+Every member of Eq.~\eqref{eq:family} has the same field-to-tetrad map and the
+same kinematic identities.  The added term is separately diffeomorphism and
+local-Lorentz invariant for every $c$, while its metric variation and Newton
+coefficient depend on $c$.  Hence the common inputs cannot imply one value of
+$c$ or exclude $c=0$.  Equation~\eqref{eq:collapse} shows that the displayed
+quadratic first-jet candidate adds only a volume term, so it supplies no
+missing selection premise.
+\end{proof}
+
+% BILINGUAL-UNIT: unconditional.hessian
+\section{Hessian, measure, and $\psi$ sector}
+The induced-gravity calculation is exact only after assuming a gauge-fixed
+Laplace-type physical Hessian, mode count $N_B$, curvature coupling $\xi$,
+cutoff identification, regulator, and constrained fluctuation measure.  The
+fixed-background principal symbol does not equal the full composite Hessian:
+varying $\Theta$ also varies $E[\Theta]$, $g[\Theta]$, and the reconstructed
+connection.  None of the current theorems derives those missing data.
+
+Likewise, a four-dimensional zero-mode truncation is physically selected only
+if the finalized microscopic evolution preserves it and unwanted $\psi$ modes
+are stable or decouple.  The existing symmetry-propagation theorem is
+conditional on equivariance and unique evolution; those hypotheses have not
+been proved for a finalized microscopic action.  Hence $\psi$ stability is
+not needed to vary an already assumed four-dimensional effective action, but
+it is needed to derive that physical branch unconditionally from UBT.
+
+% BILINGUAL-UNIT: unconditional.global
+\section{Local versus global scope}
+Global, horizon, null-patch, and topological continuation is not a premise of
+the stated \emph{local} GR-recovery theorem.  It therefore cannot block a
+local status upgrade by itself.  It remains necessary for a global
+Schwarzschild representative or a claim covering all GR spacetimes.  This
+scope separation does not cure the local action-selection obstruction above.
+
+% BILINGUAL-UNIT: unconditional.verification
+\section{Verification record}
+The exact rational checker
+\texttt{tools/verify\_gr\_unconditional\_closure.py} independently verifies
+Eq.~\eqref{eq:collapse} for several nondegenerate rational tetrads and verifies
+that the curvature coefficient remains a free parameter under all encoded
+kinematic predicates.  It tests the stated algebraic implication only; it
+does not derive a path-integral measure or prove spectral stability.
+
+\textbf{LEAN-PENDING.}  The repository has isolated experimental Lean source
+files but no Lean toolchain, project manifest, or CI target in this checkout.
+The theorem is therefore not claimed as Lean-verified.  A future formalization
+must encode the independence of the kinematic predicates from the action
+coefficient and the nondegenerate four-dimensional contraction.
+
+% BILINGUAL-UNIT: unconditional.verdict
+\section{Verdict}
+\begin{tcolorbox}[colback=yellow!7!white,colframe=yellow!55!black,title=Status decision]
+\textbf{Do not upgrade the status.}  The strongest justified verdict remains
+\textbf{GR recovery: CLOSED CONDITIONALLY} for local four-dimensional
+infrared Einstein gravity.  Unconditional \texttt{CLOSED} requires a derived
+microscopic selector that fixes a finite positive Einstein--Hilbert
+coefficient and a controlled composite Hessian/measure, plus physical
+$\psi$-sector selection.  Global patching is outside this local decision.
+\end{tcolorbox}
+
+\end{document}

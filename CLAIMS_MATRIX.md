@@ -2,12 +2,12 @@
 <!--
 UBT-AI-PROVENANCE-BEGIN
 schema: ubt-ai-provenance/v1
-tier: C_working
+tier: A_attested
 ai_assistance: disclosed
-human_review: risk-based
+human_review: substantive
 editorial_responsibility: Ing. David Jaroš
 policy: AI_PROVENANCE.md
-notice: Language-neutral navigation index; governed content lives in the paired editions.
+notice: The author has read the substance and accepts editorial responsibility.
 UBT-AI-PROVENANCE-END
 -->
 

@@ -9,6 +9,16 @@ primary_sources:
   - canonical/gr_closure/gap_10d_induced_gravity_endgame.tex
   - canonical/gr_closure/gr_recovery_completion.en.tex
   - canonical/gr_closure/gr_recovery_completion.cs.tex
+  - canonical/gr_closure/gr_unconditional_closure_audit.en.tex
+  - canonical/gr_closure/gr_unconditional_closure_audit.cs.tex
+status_upgrade_audit:
+  requested_target: CLOSED
+  decision: RETAIN_CLOSED_CONDITIONALLY
+  reason: Current kinematic axioms admit an arbitrary Einstein-Hilbert coefficient, including zero; the direct quadratic composite-Theta first-jet scalar collapses to a volume term and supplies no selector.
+  theorem_critical_verification:
+    exact_checker: tools/verify_gr_unconditional_closure.py
+    lean_status: LEAN_PENDING
+    lean_reason: No Lean toolchain, project manifest, or CI target exists in this checkout.
 assumptions:
   - The infrared effective action contains a finite positive renormalized Einstein-Hilbert coefficient and the stated matter sector.
   - The split-jet construction is used only on regular non-null local patches and its auxiliary multiplier is eliminated on shell.

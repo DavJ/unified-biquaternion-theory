@@ -136,6 +136,10 @@ jobs:
         run: |
           python tools/sympy_verify_lorentz_norm.py --verbose
 
+      - name: GR unconditional-closure decision audit
+        run: |
+          python tools/verify_gr_unconditional_closure.py
+
   # -----------------------------------------------------------------------
   # 5. Property-based tests (Hypothesis)
   # -----------------------------------------------------------------------
