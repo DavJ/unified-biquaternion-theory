@@ -25,6 +25,15 @@ S_{\rm comp}[\Theta]
 \qquad c\ne0.
 \]
 
+Rovnice výše je přesnou definicí zde zkoumaného kandidáta pro lokální čistě
+gravitační GR sektor: v $S_{\rm comp}$ nejsou žádné další členy. Není to však
+důkaz, že úplná mikroskopická akce UBT neobsahuje členy s vyššími derivacemi,
+$\psi$-sektor ani hmotu. Přidání dalšího členu zachová přesnou Einsteinovu--
+$\Lambda$ rovnici jen tehdy, když jeho první variace v tomto sektoru zmizí
+(například jde o hraniční či topologický člen), nebo když se výslovně pracuje
+jen s aproximačním infračerveným limitem, v němž je potlačen. Odvození právě
+této selekce z mikroskopické dynamiky proto zůstává samostatnou podmínkou.
+
 Po provedení kompozice neobsahuje žádné nezávislé metrické pole:
 $g[\Theta]$ je centrální Gramova metrika kovariantní tetrády. Jako
 dynamický selector je nesurjektivní, protože jeho stacionární konfigurace

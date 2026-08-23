@@ -24,6 +24,16 @@ S_{\rm comp}[\Theta]
 \qquad c\ne0.
 \]
 
+The displayed equation is the exact definition of the candidate considered
+here for the local pure-gravity GR sector: $S_{\rm comp}$ contains no further
+terms. This is not, however, a proof that the complete microscopic UBT action
+contains no higher-derivative, $\psi$-sector, or matter terms. An additional
+term preserves the exact Einstein--$\Lambda$ equation only if its first
+variation vanishes in this sector (for example, if it is a boundary or
+topological term), or if one explicitly works only in an approximate infrared
+limit in which that term is suppressed. Deriving precisely this selection
+from the microscopic dynamics therefore remains a separate condition.
+
 This contains no independent metric field after composition: $g[\Theta]$ is
 the central Gram metric of the covariant tetrad. It is non-surjective as a
 dynamical selector because its stationary configurations must satisfy a metric

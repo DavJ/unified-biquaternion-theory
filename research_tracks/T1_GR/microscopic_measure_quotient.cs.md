@@ -25,7 +25,7 @@ $x^0=t$ patří do $M^4$ a $\psi$ je periodická vnitřní souřadnice. Tedy
  \qquad \Theta(x,\psi+2\pi R_\psi)=\Theta(x,\psi).
 \]
 
-Na konečném regulátoru s $N$ body je nevázaný prostor hodnot pole
+Na konečném regulátoru s $N$ body je prostor hodnot pole před uložením vazeb
 $\mathcal C_N=(\mathbb R^8)^N$. Hladká nedegenerovaná pozadí s Lorentzovsky
 reálnou tetrádou tvoří klasický GR sektor. Podmínka
 $D_\mu\Theta\in W_L$ se bez dalšího neuvaluje na každou kvantovou fluktuaci;

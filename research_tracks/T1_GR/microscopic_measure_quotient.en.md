@@ -25,9 +25,9 @@ $x^0=t$ belongs to $M^4$ and $psi$ is the periodic internal coordinate. Thus
  \qquad \Theta(x,\psi+2\pi R_\psi)=\Theta(x,\psi).
 \]
 
-On a finite regulator with $N$ sites the unconstrained field-value space is
-$\mathcal C_N=(\mathbb R^8)^N$. Smooth nondegenerate Lorentz-real tetrad
-backgrounds form the classical GR sector. The condition
+On a finite regulator with $N$ sites, the field-value space before imposing
+constraints is $\mathcal C_N=(\mathbb R^8)^N$. Smooth nondegenerate
+Lorentz-real tetrad backgrounds form the classical GR sector. The condition
 $D_\mu\Theta\in W_L$ is not silently imposed on every quantum fluctuation;
 doing so would require a declared constraint determinant.
 
