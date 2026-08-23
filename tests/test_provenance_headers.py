@@ -105,15 +105,7 @@ def test_all_markable_sources_match_the_tier_map() -> None:
 def test_provenance_inventory_matches_current_tree() -> None:
     """The committed inventory must describe the current classified source tree."""
     data = config()
-    counts = {
-        "A_attested": 0,
-        "B_machine_verified": 0,
-        "C_working": 0,
-        "D_historical": 0,
-        "excluded": 0,
-    }
-    for _path, _rel, tier in TOOL.iter_sources(ROOT, data):
-        counts[tier] += 1
+    counts = TOOL.inventory_counts(ROOT, data)
     expected = (
         "Provenance source inventory: "
         + ", ".join(
