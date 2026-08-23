@@ -1,0 +1,129 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: B_machine_verified
+% ai_assistance: disclosed
+% human_review: machine-verification
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{ubtprovenance}
+\UBTTier{C}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Completion Theorem for Conditional Effective GR Recovery in UBT}
+\author{Ing. David Jaro\v{s}}
+\date{23 August 2026}
+\begin{document}\maketitle
+\UBTProvenanceNotice
+
+% BILINGUAL-UNIT: recovery.scope
+\section{Scope}
+This note closes the \emph{GR-recovery} question at the level already supported
+by the repository: four-dimensional local infrared Einstein gravity under the
+explicit effective-action assumptions documented in
+\texttt{gap\_10\_gr\_effective\_completion.tex}.  It does not claim a complete
+microscopic single-$\Theta$ derivation of that effective action or a
+first-principles numerical prediction of Newton's constant.
+
+% BILINGUAL-UNIT: recovery.inputs
+\section{Inputs already established}
+We use four existing results.
+\begin{enumerate}
+\item On every regular non-null local patch, the split-jet map has an explicit
+right inverse for every smooth tetrad while the physical spacetime connection
+remains Levi--Civita.
+\item The split-jet multiplier action has vanishing multiplier on shell; its
+jet variables are algebraic, nonpropagating, and contribute no on-shell stress
+or physical spin source.
+\item Under the stated spectral/Hessian assumptions, the two-derivative
+infrared effective action is Einstein--$\Lambda$ with a finite renormalized
+coefficient $G_{\rm R}$ (or the conditional induced coefficient
+$G_{\rm ind}$).
+\item The standard Regge--Wheeler and Zerilli equations are reductions of the
+linearized Einstein system about Schwarzschild.
+\end{enumerate}
+
+% BILINGUAL-UNIT: recovery.theorem
+\section{Recovery theorem}
+\begin{theorem}[Conditional effective GR recovery]
+Assume the infrared effective action on a regular non-null patch is
+\begin{equation}
+\Gamma_{\rm IR}[e,\text{aux}]
+=-\frac{1}{16\pi G_{\rm R}}\int d^4x\sqrt{-g}\,(R-2\Lambda_{\rm R})
++S_{\rm aux}+S_{\rm matter}+O(\nabla^4/\Lambda^2),
+\end{equation}
+with $0<G_{\rm R}<\infty$, and let $S_{\rm aux}$ be the proved split-jet
+multiplier action.  Then, through two derivatives:
+\begin{enumerate}
+\item the auxiliary Euler--Lagrange equations enforce the split-jet relation
+and imply that the multiplier vanishes on shell;
+\item all auxiliary contributions to the tetrad and physical-connection field
+equations vanish on shell;
+\item the physical connection is Levi--Civita;
+\item the remaining metric equation is
+\begin{equation}
+G_{\mu\nu}+\Lambda_{\rm R}g_{\mu\nu}
+=8\pi G_{\rm R}T_{\mu\nu};
+\end{equation}
+\item because the split-jet map is a local right inverse for every tetrad,
+every local solution of this Einstein equation admits an effective UBT
+representative without adding a propagating gravitational degree of freedom.
+\end{enumerate}
+Therefore local four-dimensional GR recovery is closed conditionally at the
+infrared effective level.
+\end{theorem}
+
+\begin{proof}
+Items 1--2 are exactly the split-jet auxiliary theorem.  With the auxiliary
+on-shell sources equal to zero, variation of the remaining two-derivative
+functional is the standard Einstein--Hilbert variation, giving item 4 with the
+Levi--Civita connection of item 3.  The split-jet right-inverse theorem then
+lifts every resulting smooth local tetrad to the effective UBT variables,
+proving item 5.  No value of $G_{\rm R}$ is fitted or derived in this argument;
+only its finite positive renormalized existence is required for GR recovery.
+\end{proof}
+
+% BILINGUAL-UNIT: recovery.schwarzschild
+\section{Schwarzschild and perturbative corollaries}
+\begin{corollary}[Schwarzschild recovery]
+For $\Lambda_{\rm R}=0$ and vacuum matter, the complete Schwarzschild tetrad,
+including its lapse, is an Einstein solution.  Hence every regular local
+Schwarzschild patch has a split-jet effective UBT representative.  This closes
+\texttt{GAP-U2Theta} \emph{for conditional GR recovery}.  It does not restore
+the invalid historical single-$\Theta$ Schwarzschild ansatz; that ansatz
+remains superseded by the canonical correction.
+\end{corollary}
+
+\begin{corollary}[Linear graviton recovery]
+Linearization of the same recovered effective branch about Schwarzschild is the
+standard linearized Einstein system.  Its odd- and even-parity gauge-invariant
+reductions are the Regge--Wheeler and Zerilli equations already documented in
+the repository.  Thus \texttt{GAP-B-MASTER} is closed for perturbations of the
+recovered effective GR branch, while direct derivation of the same operator
+from the microscopic master equation remains a stronger nonblocking
+fundamental-completion problem.
+\end{corollary}
+
+% BILINGUAL-UNIT: recovery.boundary
+\section{Closure boundary}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Exact verdict]
+\textbf{GR recovery: CLOSED CONDITIONALLY.}  There are no remaining open gaps
+for local four-dimensional infrared recovery of Einstein gravity within the
+explicit effective-action assumptions above.
+
+\medskip
+\textbf{Still open but no longer GR-recovery blockers:} microscopic derivation
+of the full effective selector from a finalized $\Theta$-only action; the
+composite gauge-fixed Hessian and constrained measure; first-principles
+prediction of $G$; UV $\psi$ stability; global/null-patch continuation; and a
+direct microscopic derivation of the perturbation operator.
+\end{tcolorbox}
+
+\end{document}

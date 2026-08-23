@@ -64,7 +64,6 @@ jobs:
         run: |
           for f in \
             canonical/geometry/Rpsi_dynamical_fix.tex \
-            canonical/geometry/biquaternionic_vacuum_solutions.tex \
             canonical/interactions/B_base_derivation_complete.tex \
             canonical/bridges/QED_limit_bridge.tex \
             canonical/bridges/GR_chain_bridge.tex \

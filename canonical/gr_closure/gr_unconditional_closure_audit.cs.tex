@@ -1,0 +1,128 @@
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: B_machine_verified
+% ai_assistance: disclosed
+% human_review: machine-verification
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
+% UBT-AI-PROVENANCE-END
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ubtprovenance}
+\UBTTier{B}
+\newtheorem{theorem}{Věta}
+\newtheorem{corollary}[theorem]{Důsledek}
+\title{Audit nepodmíněné reprodukce GR v kanonické UBT}
+\author{Ing. David Jaro\v{s}}
+\date{23. srpna 2026}
+\begin{document}\maketitle
+\UBTProvenanceNotice
+
+% BILINGUAL-UNIT: unconditional.question
+\section{Rozhodovací otázka}
+Tento audit zkoumá, zda lze status lokální čtyřrozměrné infračervené
+reprodukce GR změnit z \texttt{CLOSED\_CONDITIONALLY} na \texttt{CLOSED} při
+použití současných kanonických axiomů a dokázaných výsledků repozitáře. Testuje
+mikroskopický jedno-$\Theta$ selector, koeficient Einsteinova--Hilbertova členu
+a míru, kompozitní Hessián, fyzikální stabilitu $\psi$-sektoru a logickou
+relevanci globálního slepování pro lokální tvrzení.
+
+% BILINGUAL-UNIT: unconditional.selector
+\section{Přesná překážka selektoru}
+Na Lorentzově reálné větvi nechť
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+ \qquad \langle E_\mu,E_\nu\rangle_\sharp=g_{\mu\nu}.
+\end{equation}
+Potom nejpřímější kovariantní kvadratický kandidát z prvního jetu splňuje
+\begin{equation}\label{eq:collapse}
+ g^{\mu\nu}\langle D_\mu\Theta,D_\nu\Theta\rangle_\sharp
+ =\mathcal N_0 g^{\mu\nu}g_{\mu\nu}=4\mathcal N_0.
+\end{equation}
+Jeho akce je tedy kosmologickým objemovým funkcionálem. Není nezávislým
+kinetickým selektorem a nemůže odvodit Einsteinův--Hilbertův člen.
+
+\begin{theorem}[Nepodmíněné uzavření nelze odvodit ze současných vstupů]
+Nechť $\mathcal K$ je současná množina kinematických vstupů: definice
+kovariantního tetrádu, centrální metrická identita, lokální Lorentzova a
+difeomorfní symetrie, rekonstrukce konexe a lokální split-jet right inverse.
+Pro každé reálné $c$ má funkcionál
+\begin{equation}\label{eq:family}
+ S_c[\Theta]=S_0[\Theta]+c\int d^4x\sqrt{-g[\Theta]}
+ R[g[\Theta]]
+\end{equation}
+stejné vstupy $\mathcal K$. Různá $c$ dávají různé Newtonovy koeficienty,
+včetně $c=0$. Proto $\mathcal K$ nevybírá Einsteinův--Hilbertův člen ani
+neurčuje konečný kladný koeficient. Rovnice~\eqref{eq:collapse} tuto volnost
+neodstraňuje. Předpoklady podmíněné věty o reprodukci tedy nejsou důsledky
+aktuálně finalizované mikroskopické jedno-$\Theta$ teorie.
+\end{theorem}
+\begin{proof}
+Každý člen rodiny v rovnici~\eqref{eq:family} má stejnou mapu pole na tetrád a
+stejné kinematické identity. Přidaný člen je samostatně difeomorfně a lokálně
+Lorentzovsky invariantní pro každé $c$, zatímco jeho metrická variace a
+Newtonův koeficient závisejí na $c$. Společné vstupy proto nemohou implikovat
+jednu hodnotu $c$ ani vyloučit $c=0$. Rovnice~\eqref{eq:collapse} ukazuje, že
+uvedený kvadratický kandidát z prvního jetu přidává pouze objemový člen, a
+nedodává tedy chybějící selekční premisu.
+\end{proof}
+
+% BILINGUAL-UNIT: unconditional.hessian
+\section{Hessián, míra a $\psi$-sektor}
+Výpočet indukované gravitace je přesný pouze po předpokladu kalibračně
+fixovaného fyzikálního Hessiánu Laplaceova typu, počtu módů $N_B$, křivostní
+vazby $\xi$, identifikace cutoffu, regulátoru a omezené fluktuační míry.
+Hlavní symbol na fixovaném pozadí není úplný kompozitní Hessián: variace
+$\Theta$ mění také $E[\Theta]$, $g[\Theta]$ a rekonstruovanou konexi. Žádná ze
+současných vět tato chybějící data neodvozuje.
+
+Stejně tak je čtyřrozměrná truncace na nulový mód fyzikálně vybrána pouze
+tehdy, když ji finalizovaný mikroskopický vývoj zachovává a nežádoucí
+$\psi$-módy jsou stabilní nebo se oddělují. Existující věta o propagaci
+symetrie je podmíněna ekvivariancí a jednoznačným vývojem; tyto hypotézy nebyly
+dokázány pro finalizovanou mikroskopickou akci. Stabilita $\psi$ tedy není
+nutná k variaci již předpokládané čtyřrozměrné efektivní akce, je však nutná k
+nepodmíněnému odvození této fyzikální větve z UBT.
+
+% BILINGUAL-UNIT: unconditional.global
+\section{Lokální versus globální rozsah}
+Globální pokračování přes horizonty a nulové patche ani topologické
+pokračování není premisou uvedené \emph{lokální} věty o reprodukci GR. Samo
+proto nemůže blokovat lokální změnu statusu. Zůstává nutné pro globálního
+Schwarzschildova reprezentanta nebo tvrzení pokrývající všechny prostoročasy
+GR. Toto oddělení rozsahů neodstraňuje výše uvedenou lokální překážku výběru
+akce.
+
+% BILINGUAL-UNIT: unconditional.verification
+\section{Záznam ověření}
+Přesný racionální checker
+\texttt{tools/verify\_gr\_unconditional\_closure.py} nezávisle ověřuje
+rovnici~\eqref{eq:collapse} pro několik nedegenerovaných racionálních tetrádů
+a ověřuje, že koeficient křivosti zůstává volným parametrem při všech
+zakódovaných kinematických predikátech. Testuje pouze uvedenou algebraickou
+implikaci; neodvozuje dráhovou míru ani nedokazuje spektrální stabilitu.
+
+\textbf{LEAN-PENDING.} Repozitář obsahuje izolované experimentální Lean
+zdrojové soubory, ale v tomto checkoutu nemá Lean toolchain, manifest projektu
+ani cíl CI. Věta proto není označena jako ověřená v Leanu. Budoucí formalizace
+musí zakódovat nezávislost kinematických predikátů na koeficientu akce a
+nedegenerovanou čtyřrozměrnou kontrakci.
+
+% BILINGUAL-UNIT: unconditional.verdict
+\section{Verdikt}
+\begin{tcolorbox}[colback=yellow!7!white,colframe=yellow!55!black,title=Rozhodnutí o statusu]
+\textbf{Status neměnit na vyšší.} Nejsilnějším oprávněným verdiktem zůstává
+\textbf{reprodukce GR: CLOSED CONDITIONALLY} pro lokální čtyřrozměrnou
+infračervenou Einsteinovu gravitaci. Nepodmíněné \texttt{CLOSED} vyžaduje
+odvozený mikroskopický selector, který určí konečný kladný
+Einsteinův--Hilbertův koeficient a kontrolovaný kompozitní Hessián/míru, spolu
+s fyzikálním výběrem $\psi$-sektoru. Globální slepování leží mimo toto lokální
+rozhodnutí.
+\end{tcolorbox}
+
+\end{document}

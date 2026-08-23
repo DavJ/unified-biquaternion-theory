@@ -107,7 +107,7 @@ jobs:
           print('✓ Minkowski metric recovered from biquaternionic tetrad')
           "
 
-      - name: Schwarzschild spatial metric from UBT ansatz
+      - name: Legacy Schwarzschild spatial identity and canonical-boundary guard
         run: |
           python tools/verify_schwarzschild_theta.py --tolerance 1e-8
 
@@ -135,6 +135,10 @@ jobs:
       - name: Lorentz invariance (symbolic)
         run: |
           python tools/sympy_verify_lorentz_norm.py --verbose
+
+      - name: GR unconditional-closure decision audit
+        run: |
+          python tools/verify_gr_unconditional_closure.py
 
   # -----------------------------------------------------------------------
   # 5. Property-based tests (Hypothesis)

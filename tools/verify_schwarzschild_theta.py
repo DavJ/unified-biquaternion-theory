@@ -3,12 +3,13 @@
 # Licensed under the MIT License
 # See LICENSE file in the repository root for full license text
 """
-verify_schwarzschild_theta.py — Numerical verification of the Schwarzschild
-metric from the UBT biquaternionic ansatz.
+verify_schwarzschild_theta.py — Legacy spatial-identity audit with a mandatory
+canonical-boundary check.
 
 PURPOSE
 -------
-This script verifies numerically that the biquaternionic field
+This script verifies the limited algebraic fact that the legacy real-
+quaternion ansatz
 
     Theta_0(r) = f(r) * 1 + g(r) * e_r
 
@@ -16,31 +17,37 @@ where
     g(r)  = r * (1 + M/(2r))^2                  [explicit solution]
     f'(r) = (1 + M/(2r)) * sqrt(2M/r)            [derived from ODE condition]
 
-produces the spatial Schwarzschild metric in isotropic coordinates:
+reproduces the positive-definite spatial isotropic Schwarzschild quadratic
+form under the legacy scalar/Hermitian readout:
 
     g_ij(Theta_0) = Psi(r)^4 * delta_ij,   Psi(r) = 1 + M/(2r)
 
-The computation uses the quaternion-valued tetrad formula:
+The computation uses the legacy quaternion-valued formula:
 
     g_munu = Sc( (d_mu Theta_0)^dagger * (d_nu Theta_0) )
 
-where Sc extracts the real scalar part (coefficient of 1 in H) and
-dagger is the quaternion conjugate (real scalar part preserved, imaginary
-parts negated).
+where Sc extracts the scalar coefficient and dagger is quaternion conjugation.
 
-KEY RESULT
-----------
+This is NOT a verification of the active canonical UBT Schwarzschild claim.
+At generic points the spatial derivatives have a nonzero real scalar
+coefficient, whereas the canonical Lorentz slice requires the scalar
+coefficient to be purely imaginary.  Moreover the static ansatz used here has
+no time or psi dependence.  It therefore neither supplies the canonical
+Lorentz tetrad nor the Schwarzschild lapse.
+
+LIMITED RESULT
+--------------
 All spatial components g_ij = Psi^4 * delta_ij are verified exactly
 (to floating-point precision) at every radius r > M/2.
 
-LIMITATION — TEMPORAL COMPONENT
----------------------------------
-The static ansatz has d_t Theta_0 = 0, giving g_tt = 0 (not the
-Schwarzschild value -Phi^2). The Lorentzian signature (-,+,+,+) of
-the Schwarzschild metric requires the complex time structure (tau = t + i psi)
-of UBT, as derived in canonical/gr_closure/step3_signature_theorem.tex.
-The temporal component is a known open item documented in
-research_tracks/research/schwarzschild_from_theta.tex Section 3.
+CANONICAL VERDICT
+-----------------
+The full canonical claim remains GAP-U2Theta: OPEN.  Merely declaring complex
+time does not turn a field with no psi dependence into one satisfying
+partial_psi Theta = i Phi Theta.  The historical phase argument also omitted
+the derivative of a radial phase.  See
+``canonical/geometry/schwarzschild_claim_status.yaml`` and the paired GR-paper
+correction for the exact boundary.
 
 USAGE
 -----
@@ -48,9 +55,10 @@ USAGE
 
 HONEST ACCOUNTING
 -----------------
-  - Spatial components g_ij = Psi^4 * delta_ij: VERIFIED (exact formulae)
-  - Off-diagonal g_i0 = 0: VERIFIED (static, spherically symmetric ansatz)
-  - Temporal component g_tt = -Phi^2: OPEN (requires complex time treatment)
+  - Legacy spatial scalar identity: VERIFIED.
+  - Membership of those derivatives in the canonical Lorentz slice: FAILS
+    generically, as expected and explicitly checked here.
+  - Temporal component and on-shell canonical selection: OPEN.
 
 REFERENCES
 ----------
@@ -95,7 +103,7 @@ def Sc(q: np.ndarray) -> float:
 def quat_metric_component(E_mu: np.ndarray, E_nu: np.ndarray) -> float:
     """
     Compute g_munu = Sc(E_mu^dagger * E_nu) = Sc(conj(E_mu) * E_nu).
-    This is the UBT emergent metric formula for real-quaternion tetrads.
+    This is the legacy positive scalar readout for real-quaternion vectors.
     """
     return Sc(quat_product(quat_conj(E_mu), E_nu))
 
@@ -226,7 +234,7 @@ def verify_schwarzschild(M: float = 1.0,
     ]
 
     print("=" * 70)
-    print(f"Schwarzschild Θ₀ Spatial Metric Verification (M = {M})")
+    print(f"Legacy Schwarzschild spatial-identity audit (M = {M})")
     print("=" * 70)
     print("Verifying: g_ij[Θ₀] = Psi(r)^4 * delta_ij")
     print("  where g(r) = r*Psi^2, f'(r) = Psi*sqrt(2M/r)")
@@ -280,19 +288,48 @@ def verify_schwarzschild(M: float = 1.0,
               f"{g_zz:>10.6f}  {g_off:>12.2e}  {status:>8}")
 
     print()
-    print("Temporal component status:")
+    print("Canonical status:")
     print("  g_tt = 0 for static ansatz (d_t Theta_0 = 0).")
-    print("  Schwarzschild g_tt = -Phi^2 requires complex time tau=t+i*psi.")
-    print("  Status: OPEN — see schwarzschild_from_theta.tex Section 3.")
+    print("  The spatial derivatives are generically outside the Lorentz slice W_L.")
+    print("  Status: GAP-U2Theta OPEN; this is not a canonical Schwarzschild derivation.")
     print()
     print("=" * 70)
     if all_pass:
-        print("SPATIAL METRIC RESULT: [VERIFIED] — g_ij = Psi^4*delta_ij "
-              "at all test points.")
+        print("LEGACY SPATIAL IDENTITY: [VERIFIED] — g_ij = Psi^4*delta_ij "
+              "under the noncanonical real-quaternion readout.")
     else:
         print("SPATIAL METRIC RESULT: [DISCREPANCY] — See above for details.")
     print("=" * 70)
     return all_pass
+
+
+def verify_canonical_boundary(M: float = 1.0) -> bool:
+    """Confirm that the legacy ansatz does not satisfy the canonical claim.
+
+    At the exact sample r=2M on the positive x-axis, the scalar coefficient of
+    partial_x Theta is f'(2M)=5/4 for M>0.  A canonical Lorentz-slice element
+    has scalar coefficient i e^0 with real e^0, so a nonzero real scalar
+    coefficient is outside W_L.  The implemented ansatz is also independent
+    of both t and psi, hence it cannot generate a nonzero lapse.
+    """
+    if M <= 0:
+        raise ValueError("M must be positive for the Schwarzschild boundary audit")
+
+    r = 2.0 * M
+    spatial_derivative = d_Theta_spatial(r, M, r, 0.0, 0.0, 1)
+    real_scalar_nonzero = abs(spatial_derivative[0] - 1.25) < 1e-12
+    outside_lorentz_slice = abs(spatial_derivative[0]) > 1e-12
+    temporal_derivative_zero = True  # Theta_0(r) in this script has no t or psi argument.
+    detected = real_scalar_nonzero and outside_lorentz_slice and temporal_derivative_zero
+
+    print()
+    print("Canonical-boundary guard:")
+    print(f"  scalar(partial_x Theta) at r=2M, x=r: {spatial_derivative[0]:.12g}")
+    print("  required by W_L: purely imaginary scalar coefficient")
+    print(f"  outside W_L detected: {'YES' if outside_lorentz_slice else 'NO'}")
+    print(f"  missing t/psi dependence detected: {'YES' if temporal_derivative_zero else 'NO'}")
+    print("  canonical full-Schwarzschild status: GAP-U2Theta OPEN")
+    return detected
 
 
 # ---------------------------------------------------------------------------
@@ -326,7 +363,7 @@ def verify_ode_condition(M: float = 1.0,
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Verify spatial Schwarzschild metric from UBT ansatz."
+        description="Audit a legacy spatial identity and its canonical boundary."
     )
     parser.add_argument("--mass", type=float, default=1.0,
                         help="Schwarzschild mass M (default: 1.0)")
@@ -343,6 +380,9 @@ if __name__ == "__main__":
         r_vals = [float(x) * M for x in args.r_values.split(",")]
 
     verify_ode_condition(M=M, r_values=r_vals)
-    success = verify_schwarzschild(M=M, r_values=r_vals,
-                                    tolerance=args.tolerance)
+    spatial_success = verify_schwarzschild(
+        M=M, r_values=r_vals, tolerance=args.tolerance
+    )
+    boundary_success = verify_canonical_boundary(M=M)
+    success = spatial_success and boundary_success
     raise SystemExit(0 if success else 1)

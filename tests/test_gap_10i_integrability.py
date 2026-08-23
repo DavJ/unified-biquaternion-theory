@@ -35,14 +35,17 @@ def test_gap_10i_status_is_split_honestly():
 
 def test_student_material_contains_implicit_and_transcendental_distinction():
     cz = (ROOT / "docs" / "czech" / "UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md").read_text(encoding="utf-8")
-    chapter = (ROOT / "docs" / "textbook" / "chapters" / "04_covariant_tetrad_geometry.tex").read_text(encoding="utf-8")
-    for text in (cz, chapter):
+    chapter_en = (ROOT / "docs" / "textbook" / "chapters" / "04_covariant_tetrad_geometry.en.tex").read_text(encoding="utf-8")
+    chapter_cs = (ROOT / "docs" / "textbook" / "chapters" / "04_covariant_tetrad_geometry.cs.tex").read_text(encoding="utf-8")
+    for text in (cz, chapter_en, chapter_cs):
         low = text.lower()
         assert "implicit" in low
         assert "transcendent" in low
-        assert "kontorz" in low or "contors" in low
         assert "two-sided" in low or "oboustrann" in low
         assert "christoff" in low
+    assert "kontorz" in cz.lower()
+    assert "contors" in chapter_en.lower()
+    assert "torz" in chapter_cs.lower()
 
 
 def test_canonical_theta_field_uses_two_sided_curved_candidate():
