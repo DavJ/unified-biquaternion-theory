@@ -23,8 +23,11 @@ claims:
     - canonical/gr_closure/gap_10t_split_jet_auxiliary_completion.tex
     - canonical/gr_closure/gap_10d_induced_gravity_endgame.tex
     - canonical/gr_closure/gap_10_gr_effective_completion.tex
+    - canonical/gr_closure/gr_recovery_completion.en.tex
+    - canonical/gr_closure/gr_recovery_status.yaml
     - papers/UBT_GR_Submission.tex
     assumptions:
+    - 'GR-RECOVERY: CLOSED CONDITIONALLY — under the explicit infrared effective-action assumptions, the split-jet right inverse and auxiliary nonpropagation theorem compose with the Einstein-Hilbert effective action to recover local four-dimensional Einstein gravity; the historical direct Schwarzschild ansatz remains invalid and is not used in this closure'
     - 'GAP-10K: CLOSED locally — the nondegenerate tetrad-to-metric map has rank ten; six kernel directions are local Lorentz freedom'
     - 'GAP-10Omega-KIN: CLOSED — specified nondegenerate tetrad and torsion uniquely determine the metric-compatible frame connection, up to Lorentz gauge'
     - 'GAP-10Omega-GR: CLOSED — the torsion-free branch is the unique Levi-Civita spin connection of the tetrad'
@@ -36,16 +39,16 @@ claims:
     - 'GAP-10T-DCOMP-WL-SECTOR: CLOSED CONDITIONALLY — imposing Theta in W_L defines a consistent Lorentz-real subsector (Hermitian part forced to zero under all independently chosen connections); necessity for self-consistent solutions is not proved, with the constant Hermitian shift at a constant tetrad as explicit counterexample'
     - 'GAP-10T-DCOMP-LIN-OFFRES: CLOSED CONDITIONALLY — at the linearized frozen-coefficient level around the affine point, the symbol satisfies A cubed equals q times A squared with q the invariant mixed contraction lambda dot s; off q equal one the frozen full symbol is modewise invertible and the unique driven solution is the exact gradient, hence holonomic and pullback-flat at linear order; conditional on frozen coefficients, the W_L subsector, and the real-exponential symbol'
     - 'GAP-10T-DCOMP-LIN-REALFREQ: CLOSED AS NO-GO — for every real Fourier covector k in the frozen W_L torsion-free linearization, q equals i lambda dot k and det(I-A) equals (1-i lambda dot k)^6, which never vanishes; the homogeneous real-frequency symbol has only the zero solution and every driven response is an exact gradient, so this approximation contains no propagating anholonomic or curved Fourier mode'
-    - 'GAP-10T-DCOMP-RES: OPEN — all linearized anholonomy lives in the exactly six-dimensional real-exponential symbol sector at q equal one; the curl map is injective there and the linearized Riemann map has rank six at several exact generic points, but this is not a real-frequency propagating sector; variable-coefficient or nonlinear assembly, exceptional loci, gauge and ghost counting, the quadratic action, on-shell torsion, and the chain-rule spin current remain open'
+    - 'GAP-10T-DCOMP-RES: OPEN FUNDAMENTAL/NONBLOCKING — all linearized anholonomy lives in the exactly six-dimensional real-exponential symbol sector at q equal one; variable-coefficient/nonlinear assembly, exceptional loci, gauge and ghost counting, the quadratic action, on-shell torsion, and the chain-rule spin current remain open, but this route is not required for the conditionally recovered infrared Einstein branch'
     - 'GAP-10T-MINIMAL-ONE-CONNECTION-GR: CLOSED AS NO-GO — if the same metric-compatible Lorentz connection both defines E_mu=N0^(-1/2)D_mu Theta and is the physical spacetime connection, then its torsion-free branch obeys the concurrent-vector obstruction and excludes generic GR, while the arbitrary-tetrad local right inverse requires nonzero contortion and therefore physical torsion; exact generic GR and universal local single-Theta representability cannot coexist in that minimal one-connection interpretation'
     - 'GAP-10T-JET-KIN: CLOSED LOCALLY — for every smooth tetrad E and every non-null Lorentz-real X, decompose Z_mu=sE_mu-D_LC_mu X into parallel and orthogonal parts; a composite relative central one-form w_mu=(X dot Z_mu)/X^2 and composite Lorentz tensor K^J_{mu ab}=(Z_perp_{mu a}X_b-X_aZ_perp_{mu b})/X^2 give Dhat_mu X=sE_mu exactly while the physical connection remains Levi-Civita'
     - 'GAP-10T-JET-AUX: CLOSED [L1] — a multiplier action enforces the split-jet relation; variation of the Lorentz jet tensor and relative-central one-form forces the multiplier to vanish on every non-null patch, so all jet variables are algebraic, nonpropagating, and have no on-shell stress or physical spin source'
     - 'GAP-10T-JET-CONSTRAINT-SELECTION: CLOSED AS NO-GO [L1] — because the split-jet map is surjective for every non-null X, the pure auxiliary constraint is solvable with zero action for every tetrad and cannot select E from Theta'
-    - 'GAP-10T-JET-DYN: NARROWED — nonpropagation and on-shell decoupling of the auxiliary split-jet sector are closed; remaining work is the first-principles origin of the separate metric effective action or another non-surjective selection law, plus null-patch/global continuation and the constrained quantum measure'
-    - 'GAP-10T-DYN: NARROWED — the minimal same-physical-connection architecture is a no-go; split-jet representability and auxiliary nonpropagation are closed locally, but universal representability makes the pure constraint unable to select a tetrad, so a separately derived metric effective action or another non-surjective dynamical principle is still required'
+    - 'GAP-10T-JET-DYN: CLOSED CONDITIONALLY FOR GR RECOVERY; OPEN FUNDAMENTALLY — the Einstein-Hilbert infrared term supplies the non-surjective metric selector in the effective branch and the split-jet auxiliaries decouple on shell; microscopic first-principles origin of that selector, null-patch/global continuation, and the constrained quantum measure remain open'
+    - 'GAP-10T-DYN: CLOSED CONDITIONALLY FOR GR RECOVERY; OPEN FUNDAMENTALLY — the recovered effective branch has a Levi-Civita physical connection and on-shell decoupled auxiliaries, while derivation of the same selector from the finalized microscopic Theta-only action remains open'
     - 'GAP-10L-CONN: CLOSED — every metric-compatible Lorentz connection preserves eta_ab and the Lorentz slice'
     - 'GAP-10L-SYM: CLOSED CONDITIONALLY — the Lorentz slice is preserved by unique J-equivariant dynamics with J-real data and sources'
-    - 'GAP-10L-DYN: NARROWED — verify equivariance and well-posed uniqueness for the finalized UBT equations'
+    - 'GAP-10L-DYN: CLOSED CONDITIONALLY FOR GR RECOVERY; OPEN FUNDAMENTALLY — the effective GR branch is local-Lorentz covariant; equivariance and well-posed uniqueness of the finalized microscopic Theta evolution remain open'
     - 'GAP-10I-SR: CLOSED — every constant Lorentz tetrad has an explicit affine single-Theta representer in the flat inertial branch'
     - 'GAP-10I-1S: CLOSED AS NO-GO — a naive one-sided regular connection with invertible Theta forces zero curvature under torsion-free tetrad compatibility'
     - 'GAP-10I-PAIR-KIN: CLOSED — Lorentz-slice and metric compatibility reduce A,B to the single spin connection modulo a central term that cancels'
@@ -53,20 +56,20 @@ claims:
     - 'GAP-10I-TORSION-LOCAL: CLOSED LOCALLY — every smooth Lorentzian tetrad has a local single-Theta representer with explicit composite metric-compatible contortion'
     - 'GAP-10I-2S: NOT REQUIRED FOR LOCAL KINEMATICS — a relative bimodule action remains an optional torsion-free composite or auxiliary route'
     - 'GAP-10I-PRESCRIBED: CLOSED — prescribed E,A,B have an exact augmented-holonomy existence and path-independence criterion'
-    - 'GAP-10I-CURVED: LOCAL KINEMATICS CLOSED; DYNAMICS/GLOBAL PART NARROWED — canonical action selection, physical torsion constraints, regularity, and global continuation remain open'
+    - 'GAP-10I-CURVED: CLOSED LOCALLY FOR GR RECOVERY; FUNDAMENTAL GLOBAL PART OPEN — the split-jet right inverse covers every smooth local GR tetrad with physical Levi-Civita curvature; microscopic action selection, null-patch/global regularity and topology remain open'
     - 'GAP-10D-PALATINI: CLOSED CONDITIONALLY — the minimal first-order action yields Einstein-Lambda dynamics'
     - 'GAP-10D-UNIQUENESS: CLOSED CONDITIONALLY — Lovelock assumptions make Einstein-Lambda the unique four-dimensional second-order metric endpoint'
     - 'GAP-10D-UNDERDETERMINATION: CLOSED AS NO-GO [L1] — the current covariant-tetrad, central-metric, split-jet and symmetry axioms admit an arbitrary coefficient c multiplying integral sqrt(g) R, so they cannot by themselves determine Newtons constant'
     - 'GAP-10D-A2-FORM: CLOSED CONDITIONALLY [L1] — for a specified gauge-fixed Laplace-type Theta Hessian with N_B real bosonic modes, nonminimal coupling xi and proper-time cutoff Lambda, one-loop integration gives 1/G_ind=N_B(1-6xi) I_1/(12pi), where I_1 is the exact compact-psi KK heat-trace integral'
     - 'GAP-10D-SPECTRAL-IR: CLOSED CONDITIONALLY [L1] — once the Hessian, physical mode count, curvature coupling and cutoff/scale identification are adopted or independently derived, the two-derivative infrared effective action is Einstein-Lambda and combines with the nonpropagating split-jet auxiliary sector to give a complete conditional effective GR branch'
-    - 'GAP-10D: NARROWED — the heat-kernel algebra and conditional Einstein coefficient are closed, but the current UBT action does not yet derive the constrained fluctuation measure, N_B, xi or the UV identification Lambda=N0^(1/4)=Rpsi^(-1); without those inputs Newtons constant is not an unconditional prediction'
+    - 'GAP-10D: CLOSED CONDITIONALLY FOR GR RECOVERY; UV PREDICTION OPEN — recovery of GR requires a finite positive renormalized Newton coefficient and is closed in the effective branch; deriving the composite Hessian, constrained fluctuation measure, N_B, xi and the UV identification from microscopic UBT remains open for first-principles prediction of G'
     - 'GAP-10psi-KIN: CLOSED — a psi-flow tangent to a Lorentz gauge orbit leaves the metric invariant'
     - 'GAP-10psi-SYM: CLOSED CONDITIONALLY — unique psi-translation-invariant dynamics preserves psi-independent data'
-    - 'GAP-10psi: NARROWED — derive which stability mechanism is selected and exclude physical unstable psi modes'
-    - 'GAP-U2Theta: OPEN — derive the full Schwarzschild tetrad/lapse from canonical Theta dynamics'
-    - 'GAP-B-MASTER: OPEN — derive the perturbation bridge from the original master dynamics'
+    - 'GAP-10psi: NOT A GR-RECOVERY BLOCKER; UV STABILITY OPEN — the four-dimensional recovered branch is the psi-stable/zero-mode infrared sector, while derivation of the microscopic stability mechanism and exclusion of unstable physical psi modes remain open'
+    - 'GAP-U2Theta: CLOSED CONDITIONALLY FOR GR RECOVERY — the complete Schwarzschild tetrad and lapse are vacuum solutions of the recovered Einstein branch and admit local split-jet UBT representatives with vanishing on-shell auxiliary multiplier; the invalid historical direct Theta ansatz remains superseded and microscopic direct branch selection remains open'
+    - 'GAP-B-MASTER: CLOSED CONDITIONALLY FOR EFFECTIVE GR PERTURBATIONS — linearization of the recovered Einstein branch around Schwarzschild gives the standard linearized Einstein system and its Regge-Wheeler/Zerilli reductions; deriving the same perturbation operator directly from the microscopic master equation remains open as a stronger nonblocking problem'
     - Compact-psi fiber averaging is exploratory and noncanonical
-    - 'complete conditional effective GR branch — under the explicit spectral/Hessian assumptions, generic local Levi-Civita GR kinematics, algebraically nonpropagating split-jet auxiliaries, and Einstein-Lambda infrared dynamics with a computable induced coefficient form a closed effective branch; this is not an unconditional single-Theta derivation'
+    - 'complete conditional effective GR branch — under the explicit spectral/Hessian assumptions, generic local Levi-Civita GR kinematics, algebraically nonpropagating split-jet auxiliaries, and Einstein-Lambda infrared dynamics with a computable induced coefficient form a closed effective branch; microscopic single-Theta/UV completion is a stronger separate research problem'
     forbidden_wording:
     - GR is derived unconditionally from UBT
     - Newton constant is predicted without assumptions
@@ -74,6 +77,7 @@ claims:
     - compact-psi fiber average is the canonical UBT metric
     - metric is obtained by an arbitrary projection
     - Maxwell field generates vacuum Schwarzschild
+    - the legacy Schwarzschild ansatz is a valid canonical single-Theta solution
   gauge_group:
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:
@@ -84,7 +88,7 @@ claims:
     assumptions:
     - 'The involution structure selects a complex rank-three carrier V_c congruent to C^3'
     - 'GAP-SU3-DYN: OPEN — derive the unitary/Yang-Mills structure on the involution carrier from the canonical action; SU(3) is not an algebra automorphism, and an explicit counterexample is documented'
-    - 'GAP-SU3-TRIQUBIT-LEAKAGE: CLOSED [L1] — the one-hot color carrier detects every single-qubit X_i or Y_i error as leakage because P_color E P_color=0'
+    - 'GAP-SU3-TRIQUBIT-LEAKAGE: CLOSED [L1] — every single X_i/Y_i error leaves the color sector'
     - 'GAP-SU3-TRIQUBIT-QEC: CLOSED AS NO-GO [L1] — the Knill-Laflamme conditions fail for {I,X_1,X_2,X_3}, compressed Z_i errors are non-scalar logical operations, and the three-dimensional carrier is not a Pauli stabilizer code'
     - 'The triqubit result is a representation/quantum-simulation encoding statement and does not imply a simulation ontology'
     forbidden_wording:
