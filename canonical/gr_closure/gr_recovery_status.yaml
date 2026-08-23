@@ -17,8 +17,13 @@ status_upgrade_audit:
   reason: Current kinematic axioms admit an arbitrary Einstein-Hilbert coefficient, including zero; the direct quadratic composite-Theta first-jet scalar collapses to a volume term and supplies no selector.
   theorem_critical_verification:
     exact_checker: tools/verify_gr_unconditional_closure.py
-    lean_status: LEAN_PENDING
-    lean_reason: No Lean toolchain, project manifest, or CI target exists in this checkout.
+    lean_status: PROVED_FOR_ENCODED_ALGEBRAIC_CORE
+    lean_version: 4.33.1
+    mathlib_version: 4.33.1
+    lean_artifacts:
+      - formal/lean/UBT/GR/CompositeKinetic.lean
+      - formal/lean/UBT/GR/CurvatureUnderdetermination.lean
+    limitation: The formal proofs establish the contraction and logical underdetermination implications from explicit premises; they do not derive the microscopic selector, composite Hessian, constrained measure, or psi stability.
 assumptions:
   - The infrared effective action contains a finite positive renormalized Einstein-Hilbert coefficient and the stated matter sector.
   - The split-jet construction is used only on regular non-null local patches and its auxiliary multiplier is eliminated on shell.

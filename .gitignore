@@ -81,3 +81,5 @@ EXPERIMENTS/channel_selection/results/
 
 # Test/build caches anywhere in the tree
 .pytest_cache/
+# Lean/Lake build cache (dependencies are locked by formal/lean/lake-manifest.json)
+formal/lean/.lake/
