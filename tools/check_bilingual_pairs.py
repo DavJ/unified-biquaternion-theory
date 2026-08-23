@@ -28,6 +28,7 @@ GOVERNANCE_FILES = {
     ".github/pull_request_template.md",
 }
 SHARED_LANGUAGE_NEUTRAL_FILES = {
+    "CLAIMS_MATRIX.md",
     "docs/textbook/main.tex",
     "docs/textbook/chapters/04_covariant_tetrad_geometry.tex",
 }
