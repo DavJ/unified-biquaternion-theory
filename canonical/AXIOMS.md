@@ -25,6 +25,14 @@ This document defines the **canonical axioms** of the Unified Biquaternion Theor
 
 **CRITICAL**: These axioms are LOCKED against modification. Verification, formalization, and derivation of consequences are permitted, but redefinition is forbidden.
 
+**Single-action authority**: UBT has exactly one fundamental action. Its
+authoritative registry and current finalization status are maintained in
+[`ACTION.en.md`](ACTION.en.md) and [`ACTION.cs.md`](ACTION.cs.md). Until that
+registry changes from `DEFINED_FAMILY_NOT_FINALIZED` through an explicit reviewed decision,
+sector-specific functionals are candidates, reductions, effective actions, or
+auxiliary actions; none is an admissible substitute for a derived canonical
+action.
+
 ---
 
 ## AXIOM A: Fundamental Field Object
