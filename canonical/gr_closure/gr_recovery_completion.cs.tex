@@ -1,0 +1,128 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% UBT-AI-PROVENANCE-BEGIN
+% schema: ubt-ai-provenance/v1
+% tier: C_working
+% ai_assistance: disclosed
+% human_review: risk-based
+% editorial_responsibility: Ing. David Jaroš
+% policy: ../../AI_PROVENANCE.md
+% notice: Working material; exhaustive human review is not claimed.
+% UBT-AI-PROVENANCE-END
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{ubtprovenance}
+\UBTTier{C}
+\newtheorem{theorem}{Věta}
+\newtheorem{corollary}[theorem]{Důsledek}
+\title{Věta o dokončení podmíněné efektivní obnovy GR v UBT}
+\author{Ing. David Jaro\v{s}}
+\date{23. srpna 2026}
+\begin{document}\maketitle
+\UBTProvenanceNotice
+
+% BILINGUAL-UNIT: recovery.scope
+\section{Rozsah}
+Tato poznámka uzavírá otázku \emph{obnovy GR} na úrovni, kterou již repozitář
+podporuje: čtyřrozměrnou lokální infračervenou Einsteinovu gravitaci za
+explicitních předpokladů efektivní akce dokumentovaných v
+\texttt{gap\_10\_gr\_effective\_completion.tex}.  Netvrdí úplné mikroskopické
+odvození této efektivní akce z jediného $\Theta$ ani prvoprincipový numerický
+výpočet Newtonovy konstanty.
+
+% BILINGUAL-UNIT: recovery.inputs
+\section{Již ustavené vstupy}
+Používáme čtyři existující výsledky.
+\begin{enumerate}
+\item Na každém regulárním nenulovém lokálním patchi má split-jet mapa
+explicitní pravou inverzi pro libovolnou hladkou tetrádu, zatímco fyzická
+prostoročasová konexe zůstává Levi--Civitova.
+\item Split-jet multiplikátorová akce má na slupce nulový multiplikátor; její
+jetové proměnné jsou algebraické, nepropagující a nepřispívají k on-shell
+stresu ani fyzickému spinovému zdroji.
+\item Za uvedených spektrálních/Hessiánových předpokladů je dvouderivační
+infračervená efektivní akce Einstein--$\Lambda$ s konečným renormalizovaným
+koeficientem $G_{\rm R}$ (nebo podmíněným indukovaným koeficientem
+$G_{\rm ind}$).
+\item Standardní Regge--Wheelerova a Zerilliho rovnice jsou redukcemi
+linearizovaného Einsteinova systému kolem Schwarzschildova řešení.
+\end{enumerate}
+
+% BILINGUAL-UNIT: recovery.theorem
+\section{Věta o obnově}
+\begin{theorem}[Podmíněná efektivní obnova GR]
+Předpokládejme, že infračervená efektivní akce na regulárním nenulovém patchi je
+\begin{equation}
+\Gamma_{\rm IR}[e,\text{aux}]
+=-\frac{1}{16\pi G_{\rm R}}\int d^4x\sqrt{-g}\,(R-2\Lambda_{\rm R})
++S_{\rm aux}+S_{\rm matter}+O(\nabla^4/\Lambda^2),
+\end{equation}
+kde $0<G_{\rm R}<\infty$, a nechť $S_{\rm aux}$ je dokázaná split-jet
+multiplikátorová akce.  Potom až do dvou derivací platí:
+\begin{enumerate}
+\item pomocné Eulerovy--Lagrangeovy rovnice vynutí split-jet vztah a implikují,
+že multiplikátor je na slupce nulový;
+\item všechny pomocné příspěvky do rovnic tetrády a fyzické konexe na slupce
+zaniknou;
+\item fyzická konexe je Levi--Civitova;
+\item zbývající metrická rovnice je
+\begin{equation}
+G_{\mu\nu}+\Lambda_{\rm R}g_{\mu\nu}
+=8\pi G_{\rm R}T_{\mu\nu};
+\end{equation}
+\item protože split-jet mapa je lokální pravá inverze pro každou tetrádu,
+každé lokální řešení této Einsteinovy rovnice má efektivní UBT reprezentaci
+bez přidání propagujícího gravitačního stupně volnosti.
+\end{enumerate}
+Tím je lokální čtyřrozměrná obnova GR podmíněně uzavřena na infračervené
+efektivní úrovni.
+\end{theorem}
+
+\begin{proof}
+Body 1--2 jsou přesně větou o split-jet pomocné akci.  Po vynulování pomocných
+on-shell zdrojů je variace zbývajícího dvouderivačního funkcionálu standardní
+variací Einsteinovy--Hilbertovy akce a dává bod 4 s Levi--Civitovou konexí z
+bodu 3.  Věta o split-jet pravé inverzi potom zvedne každou výslednou hladkou
+lokální tetrádu do efektivních UBT proměnných a dokazuje bod 5.  V tomto
+argumentu se hodnota $G_{\rm R}$ ani nefituje ani neodvozuje; pro obnovu GR se
+vyžaduje pouze její konečná kladná renormalizovaná existence.
+\end{proof}
+
+% BILINGUAL-UNIT: recovery.schwarzschild
+\section{Schwarzschildovy a poruchové důsledky}
+\begin{corollary}[Obnova Schwarzschildova řešení]
+Pro $\Lambda_{\rm R}=0$ a vakuovou hmotu je úplná Schwarzschildova tetráda
+včetně lapse Einsteinovým řešením.  Každý regulární lokální Schwarzschildův
+patch proto má split-jet efektivní UBT reprezentaci.  Tím se
+\texttt{GAP-U2Theta} uzavírá \emph{pro podmíněnou obnovu GR}.  Neobnovuje se tím
+neplatný historický Schwarzschildův ansatz z jediného $\Theta$; ten zůstává
+nahrazen kanonickou opravou.
+\end{corollary}
+
+\begin{corollary}[Obnova lineárních gravitonů]
+Linearizace stejné obnovené efektivní větve kolem Schwarzschildova řešení je
+standardní linearizovaný Einsteinův systém.  Jeho liché a sudé
+paritně-invariantní redukce jsou Regge--Wheelerova a Zerilliho rovnice již
+dokumentované v repozitáři.  \texttt{GAP-B-MASTER} je tedy uzavřen pro poruchy
+obnovené efektivní GR větve, zatímco přímé odvození stejného operátoru z
+mikroskopické master rovnice zůstává silnějším, neblokujícím problémem
+fundamentálního dokončení.
+\end{corollary}
+
+% BILINGUAL-UNIT: recovery.boundary
+\section{Hranice uzavření}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Přesný závěr]
+\textbf{Obnova GR: PODMÍNĚNĚ UZAVŘENA.}  V rámci výše uvedených explicitních
+předpokladů efektivní akce nezůstává žádný otevřený gap pro lokální
+čtyřrozměrnou infračervenou obnovu Einsteinovy gravitace.
+
+\medskip
+\textbf{Stále otevřeno, ale již neblokuje obnovu GR:} mikroskopické odvození
+úplného efektivního selektoru z finalizované akce pouze pro $\Theta$; kompozitní
+gauge-fixed Hessián a omezená míra; prvoprincipová predikce $G$; UV stabilita
+$\psi$; globální pokračování přes nulové patche; a přímé mikroskopické odvození
+poruchového operátoru.
+\end{tcolorbox}
+
+\end{document}
