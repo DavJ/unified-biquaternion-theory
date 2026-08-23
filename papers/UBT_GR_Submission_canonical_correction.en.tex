@@ -20,7 +20,7 @@
 \title{Canonical correction to the UBT GR submission:\\
 the boundary of the legacy Schwarzschild ansatz}
 \author{Ing. David Jaro\v{s}}
-\date{22 August 2026}
+\date{23 August 2026}
 
 \begin{document}
 \maketitle
@@ -35,12 +35,16 @@ of the older ansatz in
 \path{canonical/geometry/biquaternionic_vacuum_solutions.tex} and of
 \path{tools/verify_schwarzschild_theta.py}.
 
-The authoritative status remains
+The historical direct ansatz is invalid as a canonical derivation.  Separately,
+the later effective-action and split-jet theorems give the authoritative
+recovery status
 \[
- \boxed{\texttt{GAP-U2Theta: OPEN}.}
+ \boxed{\texttt{GAP-U2Theta: CLOSED CONDITIONALLY FOR GR RECOVERY}.}
 \]
-Canonical on-shell generation of the complete Schwarzschild tetrad and lapse
-has not been derived.
+This means that the complete Schwarzschild tetrad and lapse occur on shell in
+the recovered Einstein infrared branch and admit a local effective UBT
+representative.  It does not mean that the historical ansatz has been repaired
+or that the microscopic $\Theta$-only action has already selected that branch.
 
 % BILINGUAL-UNIT: correction.psi
 \section{The missing imaginary-time dependence}
@@ -114,24 +118,36 @@ $g_{ij}=\Psi^4\delta_{ij}$.  This limited identity is not a canonical
 single-$\Theta$ Schwarzschild solution, does not determine the lapse, and is
 not an on-shell result.
 
-Two later results remain valid within their stated scope: the
-composite-contortion theorem represents a prescribed Schwarzschild tetrad
-locally but generally with composite torsion, while the split-jet theorem
-keeps the physical connection Levi--Civita but its surjective auxiliary
-constraint cannot select the tetrad.  Neither result closes
-\texttt{GAP-U2Theta}.
+The actual recovery closure uses different, later results.  The conditional
+infrared effective action yields the Einstein--$\Lambda$ equation.  For
+$\Lambda=0$ the full Schwarzschild tetrad including its lapse is a vacuum
+Einstein solution.  The split-jet right-inverse theorem represents every
+regular local tetrad while retaining the physical Levi--Civita connection, and
+the split-jet multiplier vanishes on shell.  Therefore the Schwarzschild
+solution is present in the conditional effective UBT GR branch without using
+the invalid historical ansatz.  This composition is proved explicitly in
+\path{canonical/gr_closure/gr_recovery_completion.en.tex} and recorded in
+\path{canonical/gr_closure/gr_recovery_status.yaml}.
+
+The stronger microscopic problem---deriving the complete effective metric
+selector directly from the finalized $\Theta$-only action and extending its
+representation globally through all null/horizon patches---remains open as a
+fundamental-completion problem, not as a blocker of conditional local GR
+recovery.
 
 % BILINGUAL-UNIT: correction.verification
 \section{Verification record}
 The analytic correction is checked independently by
 \path{tools/verify_schwarzschild_theta.py} and native SageMath in
-\path{tools/verify_gr_core_sage.py}.  The complete machine-readable record
-is \path{papers/UBT_GR_Submission.verification.yaml}.
+\path{tools/verify_gr_core_sage.py}.  The recovery closure composes previously
+proved split-jet and effective-Einstein theorems.  The complete
+machine-readable record is
+\path{papers/UBT_GR_Submission.verification.yaml}.
 
 \textbf{Lean status: LEAN-PENDING.}  Lean and \texttt{lake} were unavailable
 in the audit environment, and no existing Lean source formalizes these GR
 statements.  The CAS checks verify only the equations encoded above.  They do
-not prove action selection, PDE well-posedness, global continuation, or the
-physical truth of UBT.
+not prove the microscopic action origin, global continuation, or the physical
+truth of UBT.
 
 \end{document}
