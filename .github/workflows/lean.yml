@@ -20,6 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
+        # leanchecker loads a full import environment per worker.  Mathlib's
+        # environment exceeds hosted-runner memory when checked in parallel.
+        env:
+          LEAN_NUM_THREADS: "1"
         with:
           lake-package-directory: formal/lean
           build: true
