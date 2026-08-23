@@ -17,7 +17,7 @@ UBT-AI-PROVENANCE-END
 
 Tato změna audituje algebraické kroky důležité pro věty v kanonické vrstvě a
 `papers/UBT_GR_Submission.tex`. Zdrojovým jazykem této párové poznámky a párové
-opravy článku je angličtina. Automatická shoda struktury a statusů prochází;
+opravy článku je angličtina. Automatická shoda struktury a statusů musí projít;
 před merge je povinná lidská kontrola sémantické ekvivalence.
 
 <!-- BILINGUAL-UNIT: audit.result -->
@@ -27,12 +27,18 @@ Kontroly centrální metriky a hodnosti, konexe a kontorze, lokální
 integrability, děleného jetu, hlavního symbolu a podmíněného indukovaného
 Einsteinova koeficientu procházejí v rámci zaznamenaných předpokladů. Starší
 povýšení prostorové Schwarzschildovy identity na úplné kanonické řešení z
-jediného Theta selhává. Autoritativní status zůstává `GAP-U2Theta: OPEN`.
+jediného Theta selhává a zůstává `SUPERSEDED_INVALID_DERIVATION`.
+
+Oddělené složení již ustavené split-jet pravé inverze, nepropagující pomocné
+akce a podmíněné Einsteinovy--Hilbertovy infračervené efektivní větve uzavírá
+vymezenou otázku obnovy jako `GR-RECOVERY: CLOSED CONDITIONALLY`. Proto platí
+`GAP-U2Theta: CLOSED CONDITIONALLY FOR GR RECOVERY` a
+`GAP-B-MASTER: CLOSED CONDITIONALLY FOR EFFECTIVE GR PERTURBATIONS`, aniž by
+se obnovoval neplatný historický ansatz.
 
 Neplatné povýšení bylo odstraněno z publikované kanonické sady Pages a
 nahrazeno strojově čitelným záznamem statusu a párovou opravou článku.
-Historický zdroj zůstává zachován kvůli dohledatelnosti a před přepsáním nebo
-odstraněním vyžaduje samostatnou dvojjazyčnou archivní migraci.
+Historický zdroj zůstává zachován kvůli dohledatelnosti.
 
 <!-- BILINGUAL-UNIT: audit.fixes -->
 ## Opravy
@@ -47,22 +53,30 @@ odstraněním vyžaduje samostatnou dvojjazyčnou archivní migraci.
 - Přidány regresní testy a strojově čitelný záznam ověření.
 - Přidány párové anglické/české opravné dokumenty se shodnými rovnicemi,
   statusy tvrzení a omezeními.
+- Přidána párová věta o dokončení obnovy GR a vymezený ledger obnovy.
 
 <!-- BILINGUAL-UNIT: audit.assumptions -->
 ## Předpoklady a omezení
 
 Kontroly počítačovou algebrou dokazují pouze zakódované konečně rozměrné
-identity a podmíněnou kvadraturu. Nedokazují dynamický výběr, dobrou položenost
-PDE, globální pokračování, preferovaný řez imaginárního času ani fyzickou
-pravdivost UBT. Indukovaný Einsteinův koeficient zůstává podmíněn uvedenými
-předpoklady o hessiánu Laplaceova typu, míře, cutoffu, počtu módů a
-regularizátoru.
+identity a podmíněnou kvadraturu. Podmíněná obnova GR předpokládá konečný kladný
+renormalizovaný Einsteinův--Hilbertův koeficient, dokázanou lokální split-jet
+konstrukci na regulárních nenulových patchích, fyzickou Levi--Civitovu konexi a
+potlačení vyšších derivací v tvrzeném infračerveném řádu. Výsledek neodvozuje
+úplný mikroskopický metrický selektor pouze z Theta, omezenou kvantovou míru,
+prvoprincipovou numerickou hodnotu Newtonovy konstanty, UV stabilitu psi ani
+globální pokračování přes nulové patche.
 
 <!-- BILINGUAL-UNIT: audit.remaining -->
-## Zbývající mezery
+## Zbývající fundamentální otázky
 
-- `GAP-U2Theta: OPEN`: kanonické on-shell vytvoření úplné Schwarzschildovy
-  tetrády a lapse.
+- `UBT-FUND-GR-ACTION: OPEN`: odvodit úplný efektivní selektor z finalizované
+  mikroskopické akce pouze pro Theta.
+- `UBT-UV-G-PREDICTION: OPEN`: odvodit kompozitní Hessián, počet módů, vazbu,
+  identifikaci cutoffu a omezenou míru potřebné k predikci Newtonovy konstanty,
+  nikoli pouze k obnově GR s renormalizovaným koeficientem.
+- `UBT-FUND-GLOBAL: OPEN`: dokázat globální pokračování přes nulové a
+  horizontové patche.
 - `LEAN-PENDING`: žádný současný zdroj Lean neformalizuje auditovaná GR
   tvrzení.
 - Před merge je povinná lidská kontrola sémantické ekvivalence anglické/české
