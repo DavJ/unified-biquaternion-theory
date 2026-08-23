@@ -107,11 +107,15 @@ that the curvature coefficient remains a free parameter under all encoded
 kinematic predicates.  It tests the stated algebraic implication only; it
 does not derive a path-integral measure or prove spectral stability.
 
-\textbf{LEAN-PENDING.}  The repository has isolated experimental Lean source
-files but no Lean toolchain, project manifest, or CI target in this checkout.
-The theorem is therefore not claimed as Lean-verified.  A future formalization
-must encode the independence of the kinematic predicates from the action
-coefficient and the nondegenerate four-dimensional contraction.
+\textbf{LEAN-PROVED FOR THE ENCODED ALGEBRAIC CORE.}  Lean 4.33.1 with
+Mathlib 4.33.1 kernel-checks the nondegenerate four-dimensional contraction in
+\texttt{formal/lean/UBT/GR/CompositeKinetic.lean} and the logical
+curvature-coefficient underdetermination implication in
+\texttt{formal/lean/UBT/GR/CurvatureUnderdetermination.lean}.  The pinned Lake
+manifest and CI target make the result reproducible.  These theorems prove
+only consequences of their explicit formal premises; they do not formalize or
+derive the microscopic path-integral measure, composite Hessian, or physical
+$\psi$ stability.
 
 % BILINGUAL-UNIT: unconditional.verdict
 \section{Verdict}

@@ -1,0 +1,29 @@
+name: Lean theorem verification
+
+on:
+  pull_request:
+    paths:
+      - 'formal/lean/**'
+      - '.github/workflows/lean.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'formal/lean/**'
+      - '.github/workflows/lean.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formal/lean
+          build: true
+          build-args: --wfail
+          leanchecker: true
+          axiom-audit: true
+          axiom-audit-root: UBT

@@ -1,0 +1,27 @@
+schema: ubt-derivation-verification/v1
+claim: unconditional GR recovery is not derivable from current kinematic inputs
+analytic_sources:
+  - canonical/gr_closure/gr_unconditional_closure_audit.en.tex
+  - canonical/gr_closure/gr_unconditional_closure_audit.cs.tex
+formal_verification:
+  tool: Lean
+  lean_version: 4.33.1
+  mathlib_version: 4.33.1
+  command: lake build
+  result: PASS
+  artifacts:
+    - formal/lean/UBT/GR/CompositeKinetic.lean
+    - formal/lean/UBT/GR/CurvatureUnderdetermination.lean
+  scope:
+    - four-dimensional composite kinetic contraction from the explicit Gram and inverse-metric premises
+    - impossibility of deriving a nonzero curvature coefficient from kinematic predicates that admit a zero-coefficient model
+  limitations:
+    - does not derive compatibility of a microscopic Theta action with every formal premise
+    - does not derive the composite gauge-fixed Hessian or constrained measure
+    - does not prove physical psi-sector stability
+independent_exact_verification:
+  tool: Python exact rational arithmetic
+  version: 3.13.9
+  artifact: tools/verify_gr_unconditional_closure.py
+  result: PASS
+lean_status: PROVED
