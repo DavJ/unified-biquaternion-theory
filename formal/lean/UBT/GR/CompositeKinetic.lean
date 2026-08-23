@@ -22,8 +22,9 @@ theorem compositeKineticCollapse
     (hInverse : ∑ μ, ∑ ν, gInv μ ν * g μ ν = 4) :
     ∑ μ, ∑ ν, gInv μ ν * jetGram μ ν = 4 * N₀ := by
   simp_rw [hGram]
+  simp_rw [mul_left_comm (gInv _ _) N₀]
   rw [← Finset.mul_sum]
-  rw [← Finset.sum_mul]
+  rw [← Finset.mul_sum]
   rw [hInverse]
   ring
 
