@@ -26,7 +26,7 @@ def test_legacy_spatial_identity_is_kept_but_bounded():
     assert verifier.verify_canonical_boundary(M=1.0)
 
 
-def test_authoritative_status_keeps_full_schwarzschild_open():
+def test_authoritative_status_keeps_microscopic_schwarzschild_selection_open():
     claims = (ROOT / "CLAIMS.yaml").read_text(encoding="utf-8")
     proved = (ROOT / "WHAT_IS_PROVED.md").read_text(encoding="utf-8")
     correction = (
@@ -35,6 +35,8 @@ def test_authoritative_status_keeps_full_schwarzschild_open():
     for text in (claims, proved, correction):
         assert "GAP-U2Theta" in text
         assert "OPEN" in text
+    assert "status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY" in correction
+    assert "microscopic_direct_selection_status: OPEN" in correction
     assert "INVALID_AS_CANONICAL_DERIVATION" in correction
 
 

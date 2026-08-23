@@ -78,15 +78,24 @@ důkaz výběru. Akce je vybrána teprve tehdy, když je její nevázaná variac
 definována a tvrzené sektorové akce z ní plynou, místo aby byly vloženy jako
 další fundamentální členy.
 
-Prvním kritickým teoretickým úkolem je klasifikovat reálné lokální polynomiální
-invarianty přípustné ve `V[Theta]` skutečně deklarovaným Lorentzovým působením
-a involucemi. Existující próza tuto klasifikaci nedokončuje. V maticové
-realizaci `2 x 2` je algebraickým kandidátem determinant, invariantní vůči
-deklarovanému spinovému liftu `SL(2,C)`, zatímco kladná hermitovská veličina
-`Tr(Theta^ddagger Theta)` nesmí být označena za Lorentzovsky invariantní bez
-důkazu pro přesné působení na pole. Žádný hmotový, kvartický, pseudoskalární
-ani chirální člen se nepřijímá do finalizovaného potenciálu před kontrolou této
-klasifikace a jejích podmínek reality.
+První kritický teoretický úkol má nyní exaktní výsledek pro přesně vymezený
+ansatz. Pro obecné `X=rho(Theta)` v `Mat(2,C)` při působení
+`X -> exp(i alpha) S X S^dagger`, kde `S` náleží `SL(2,C)`, má každý reálný
+lokální polynomiální potenciál stupně nejvýše čtyři tvar
+
+\[
+ V(X)=V_0+m^2H(X)+\lambda_1H(X)^2+\lambda_2|\det X|^2,
+ \qquad H(X)=\operatorname{Tr}(X^\sharp X^\dagger).
+\]
+
+Prostor kvadratických invariantů má rozměr `1` a prostor kvartických invariantů
+má rozměr `2`. Exaktní důkaz hodnosti a nezávislá racionální kontrola jsou
+zaznamenány v
+`research_tracks/action_selection/theta_potential_invariants.cs.md`. Kladná
+hermitovská veličina `Tr(X^dagger X)` je vyloučena explicitním protipříkladem
+s neunitárním boostem. Tato klasifikace určuje invariantní bázi, nikoli reálné
+koeficienty. Další působení na vnitřní nosič, diskrétní involuce, omezenost zdola
+a stabilita mohou rodinu dále zúžit.
 
 <!-- BILINGUAL-UNIT: single-action.falsification -->
 ## Předem stanovené falzifikační kritérium

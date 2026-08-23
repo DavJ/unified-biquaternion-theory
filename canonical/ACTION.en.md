@@ -81,15 +81,24 @@ selection proof. The action is selected only if its unconstrained variation is
 well defined and the claimed sector actions follow from it rather than being
 inserted as additional fundamental terms.
 
-The first theorem-critical subtask is to classify the real local polynomial
-invariants allowed in `V[Theta]` by the actually declared Lorentz action and
-involutions. Existing prose does not complete this classification. In the
-`2 x 2` matrix realization, determinant invariance under the declared
-`SL(2,C)` spin lift is an algebraic candidate, whereas the positive Hermitian
-quantity `Tr(Theta^ddagger Theta)` must not be called Lorentz invariant without
-a proof for the precise field action. No mass, quartic, pseudoscalar, or chiral
-term is admitted into the finalized potential until this classification and
-its reality conditions are checked.
+The first theorem-critical subtask now has an exact result for a sharply stated
+ansatz. For a generic `X=rho(Theta)` in `Mat(2,C)`, under
+`X -> exp(i alpha) S X S^dagger` with `S` in `SL(2,C)`, every real local
+polynomial potential of degree at most four is
+
+\[
+ V(X)=V_0+m^2H(X)+\lambda_1H(X)^2+\lambda_2|\det X|^2,
+ \qquad H(X)=\operatorname{Tr}(X^\sharp X^\dagger).
+\]
+
+The quadratic invariant space has dimension `1` and the quartic invariant
+space has dimension `2`. The exact rank proof and an independent rational
+checker are recorded in
+`research_tracks/action_selection/theta_potential_invariants.en.md`. The
+positive Hermitian quantity `Tr(X^dagger X)` is excluded by an explicit
+nonunitary boost counterexample. This classification fixes the invariant basis,
+not the real coefficients. Additional internal-carrier actions, discrete
+involutions, boundedness, and stability may reduce the family further.
 
 <!-- BILINGUAL-UNIT: single-action.falsification -->
 ## Precommitted falsification criterion

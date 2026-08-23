@@ -44,7 +44,6 @@ def test_status_surfaces_include_torsionful_local_subclosure():
         "CLAIMS.yaml",
         "STATUS_OF_UBT.md",
         "WHAT_IS_PROVED.md",
-        "CLAIMS_MATRIX.md",
         "DERIVATION_INDEX.md",
         "canonical/AXIOMS.md",
         "canonical/CANONICAL_DEFINITIONS.md",

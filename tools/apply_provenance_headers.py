@@ -19,7 +19,15 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_MAP = ROOT / "PROVENANCE_TIERS.yaml"
 SUPPORTED_SUFFIXES = {".md", ".tex"}
-INTERNAL_SKIP_DIRS = {".git", ".pytest_cache", "__pycache__", "build", ".venv", "venv"}
+INTERNAL_SKIP_DIRS = {
+    ".git",
+    ".lake",
+    ".pytest_cache",
+    "__pycache__",
+    "build",
+    ".venv",
+    "venv",
+}
 BEGIN = "UBT-AI-PROVENANCE-BEGIN"
 END = "UBT-AI-PROVENANCE-END"
 SCHEMA = "ubt-ai-provenance/v1"
