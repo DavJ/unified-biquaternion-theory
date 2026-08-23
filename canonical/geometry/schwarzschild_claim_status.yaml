@@ -1,11 +1,11 @@
 schema: ubt-claim-correction/v1
-recorded: 2026-08-22
+recorded: 2026-08-23
 claim_id: GAP-U2Theta
-status: OPEN
+status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
 authority:
   - CLAIMS.yaml
-  - STATUS_OF_UBT.md
-  - WHAT_IS_PROVED.md
+  - CLAIMS_MATRIX.md
+  - canonical/gr_closure/gr_recovery_status.yaml
 superseded_claim:
   path: canonical/geometry/biquaternionic_vacuum_solutions.tex
   section: Full Schwarzschild Vacuum Solution
@@ -18,14 +18,23 @@ reasons:
   - The asserted unit norm is incompatible with g(r)=r*(1+M/(2r))^2; at M=1 and r=2, g(r)=25/8 and hence the real-quaternion norm cannot equal one.
 valid_scope:
   - The phase-free legacy ansatz satisfies the Euclidean spatial identity g_ij=Psi^4*delta_ij under its stated scalar readout.
-  - The composite-contortion theorem supplies local kinematic representability of a prescribed Schwarzschild tetrad, but generally with nonzero composite torsion and without action-level selection.
-  - The split-jet theorem supplies local representability while physical curvature remains Levi-Civita, but its surjective auxiliary constraint cannot select the tetrad.
-not_proved:
-  - canonical on-shell generation of the complete Schwarzschild tetrad and lapse
-  - a preferred psi section or phase prescription
-  - global or horizon continuation
+  - The split-jet theorem supplies a local right inverse for every smooth tetrad while the physical spacetime connection remains Levi-Civita.
+  - The split-jet auxiliary multiplier vanishes on shell, so the auxiliary variables do not source the recovered metric dynamics.
+  - Under the explicit infrared effective-action assumptions, variation yields the Einstein-Lambda equations with a finite positive renormalized Newton coefficient.
+  - Therefore every regular local Schwarzschild tetrad, including the lapse, is represented in the conditional effective UBT GR branch as an Einstein vacuum solution.
+recovery_closure:
+  theorem: canonical/gr_closure/gr_recovery_completion.en.tex
+  ledger: canonical/gr_closure/gr_recovery_status.yaml
+  verdict: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
+open_fundamental_nonblocking:
+  - microscopic derivation of the complete metric selector from a finalized Theta-only action
+  - first-principles prediction of Newton's constant from the composite Hessian and constrained measure
+  - a preferred physical psi-sector stability mechanism
+  - global and horizon-spanning Theta/auxiliary patching
 verification:
   - tools/verify_schwarzschild_theta.py
   - tools/verify_gr_core_sage.py
   - papers/UBT_GR_Submission_canonical_correction.en.tex
   - papers/UBT_GR_Submission_canonical_correction.cs.tex
+  - canonical/gr_closure/gr_recovery_completion.en.tex
+  - canonical/gr_closure/gr_recovery_completion.cs.tex
