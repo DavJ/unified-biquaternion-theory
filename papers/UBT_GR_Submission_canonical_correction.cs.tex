@@ -20,7 +20,7 @@
 \title{Kanonická oprava GR článku UBT:\\
 hranice platnosti staršího Schwarzschildova ansatzu}
 \author{Ing. David Jaro\v{s}}
-\date{22. srpna 2026}
+\date{23. srpna 2026}
 
 \begin{document}
 \maketitle
@@ -29,17 +29,20 @@ hranice platnosti staršího Schwarzschildova ansatzu}
 % BILINGUAL-UNIT: correction.scope
 \section{Rozsah a závazný status}
 Tato doprovodná oprava je závazná pro odstavec o Schwarzschildově statusu v
-\path{papers/UBT_GR_Submission.tex}.  Nemění dokázané lokální věty o tetrádě,
-konexi, kontorzi ani děleném jetu.  Opravuje status staršího ansatzu v
+\path{papers/UBT_GR_Submission.tex}. Nemění dokázané lokální věty o tetrádě,
+konexi, kontorzi ani děleném jetu. Opravuje status staršího ansatzu v
 \path{canonical/geometry/biquaternionic_vacuum_solutions.tex} a skriptu
 \path{tools/verify_schwarzschild_theta.py}.
 
-Autoritativní status zůstává
+Historický přímý ansatz je jako kanonické odvození neplatný. Odděleně od něj
+dávají pozdější věty o efektivní akci a split-jetu závazný status obnovy
 \[
- \boxed{\texttt{GAP-U2Theta: OPEN}.}
+ \boxed{\texttt{GAP-U2Theta: CLOSED CONDITIONALLY FOR GR RECOVERY}.}
 \]
-Kanonické on-shell vytvoření úplné Schwarzschildovy tetrády a lapse dosud
-odvozeno nebylo.
+To znamená, že úplná Schwarzschildova tetráda i lapse jsou on shell v obnovené
+Einsteinově infračervené větvi a mají lokální efektivní UBT reprezentaci.
+Neznamená to opravu historického ansatzu ani již hotový mikroskopický výběr této
+větve akcí pouze pro $\Theta$.
 
 % BILINGUAL-UNIT: correction.psi
 \section{Chybějící závislost na imaginárním čase}
@@ -111,22 +114,33 @@ $g_{ij}=\Psi^4\delta_{ij}$. Tato omezená identita není kanonickým
 Schwarzschildovým řešením z jediného $\Theta$, neurčuje lapse a není on-shell
 výsledkem.
 
-Dva pozdější výsledky zůstávají platné ve svém uvedeném rozsahu: věta o
-kompozitní kontorzi lokálně reprezentuje předepsanou Schwarzschildovu tetrádu,
-obecně však s kompozitní torzí, zatímco věta o děleném jetu zachovává fyzickou
-Levi--Civitovu konexi, ale její surjektivní pomocná vazba tetrádu nedokáže
-vybrat. Ani jeden výsledek neuzavírá \texttt{GAP-U2Theta}.
+Skutečné uzavření obnovy používá jiné, pozdější výsledky. Podmíněná
+infračervená efektivní akce dává Einsteinovu--$\Lambda$ rovnici. Pro
+$\Lambda=0$ je úplná Schwarzschildova tetráda včetně lapse vakuovým
+Einsteinovým řešením. Věta o split-jet pravé inverzi reprezentuje každou
+regulární lokální tetrádu při zachování fyzické Levi--Civitovy konexe a
+split-jet multiplikátor je na slupce nulový. Schwarzschildovo řešení tedy patří
+do podmíněné efektivní UBT GR větve bez použití neplatného historického ansatzu.
+Tato kompozice je explicitně dokázána v
+\path{canonical/gr_closure/gr_recovery_completion.cs.tex} a zaznamenána v
+\path{canonical/gr_closure/gr_recovery_status.yaml}.
+
+Silnější mikroskopický problém---odvodit úplný efektivní metrický selektor
+přímo z finalizované akce pouze pro $\Theta$ a globálně pokračovat reprezentaci
+přes všechny nulové/horizontové patche---zůstává otevřeným problémem
+fundamentálního dokončení, nikoli blokátorem podmíněné lokální obnovy GR.
 
 % BILINGUAL-UNIT: correction.verification
 \section{Záznam ověření}
 Analytickou opravu nezávisle kontrolují
 \path{tools/verify_schwarzschild_theta.py} a nativní SageMath v
-\path{tools/verify_gr_core_sage.py}. Úplný strojově čitelný záznam je v
+\path{tools/verify_gr_core_sage.py}. Uzavření obnovy skládá dříve dokázané věty
+o split-jetu a efektivní Einsteinově větvi. Úplný strojově čitelný záznam je v
 \path{papers/UBT_GR_Submission.verification.yaml}.
 
 \textbf{Status Lean: LEAN-PENDING.} Lean a \texttt{lake} nebyly v prostředí
 auditu dostupné a žádný existující zdroj Lean tyto GR výroky neformalizuje.
-Kontroly CAS ověřují pouze výše zapsané rovnice. Nedokazují dynamický výběr,
-dobrou položenost PDE, globální pokračování ani fyzickou pravdivost UBT.
+Kontroly CAS ověřují pouze výše zapsané rovnice. Nedokazují mikroskopický původ
+akce, globální pokračování ani fyzickou pravdivost UBT.
 
 \end{document}
