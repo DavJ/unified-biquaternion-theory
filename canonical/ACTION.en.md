@@ -97,8 +97,26 @@ checker are recorded in
 `research_tracks/action_selection/theta_potential_invariants.en.md`. The
 positive Hermitian quantity `Tr(X^dagger X)` is excluded by an explicit
 nonunitary boost counterexample. This classification fixes the invariant basis,
-not the real coefficients. Additional internal-carrier actions, discrete
-involutions, boundedness, and stability may reduce the family further.
+not the real coefficients.
+
+The boundedness problem for this complete quartic family is also exact. It is
+bounded below precisely in the following coefficient regions: `lambda1 > 0`
+with `lambda2 >= 0` and arbitrary `m^2`; or `lambda1 = 0`, `lambda2 > 0`,
+`m^2 <= 0`; or the constant case `lambda1 = lambda2 = m^2 = 0`. More
+importantly, every coefficient choice has the noncompact ray
+
+\[
+ X_t=t\begin{pmatrix}1&0\\0&0\end{pmatrix},
+ \qquad H(X_t)=|\det X_t|^2=0,
+\]
+
+on which `V(X_t)=V0`. Therefore potential tuning alone cannot make the generic
+field-space potential coercive or select an isolated vacuum. The exact proof,
+witness rays, and CI checker are recorded in
+`research_tracks/action_selection/theta_potential_stability.en.md`. The next
+selector must therefore come from the derivative, gauge-quotient, or constraint
+structure of the same single action rather than from another choice of these
+potential coefficients.
 
 <!-- BILINGUAL-UNIT: single-action.falsification -->
 ## Precommitted falsification criterion
