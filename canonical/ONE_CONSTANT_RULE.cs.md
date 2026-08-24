@@ -17,8 +17,8 @@ UBT-AI-PROVENANCE-END
 ## Závazné pravidlo ekonomie po přijetí
 
 Dokončená Unified Biquaternion Theory smí mít **nejvýše jednu nezávislou
-spojitou fyzikální vstupní konstantu**. V současném návrhu kanonizace je touto
-konstantou gravitační odezvová škála
+spojitou fyzikální vstupní vazbu**. V současném návrhu kanonizace je touto
+vazbou gravitační odezvová škála
 
 \[
 \boxed{\kappa>0.}
@@ -31,12 +31,16 @@ Zamčená normalizace `N0` je konvence volby jednotek a nepočítá se jako nez�
 fyzikální coupling. Diskrétní volby jako orientace, signatura a větev
 reprezentace nejsou spojité konstanty.
 
-<!-- BILINGUAL-UNIT: one-constant-rule.forbidden -->
-## Žádné nezávislé sektorové konstanty
+Od vazeb akce se odlišují také parametry řešení a integrační konstanty. Hmotnost,
+moment hybnosti nebo kosmologická integrační konstanta mohou označovat klasické
+řešení, aniž by se staly druhou fundamentální konstantou teorie.
 
-Žádný finalizovaný sektor nesmí zavést další volně fitovaný spojitý
-fundamentální parametr. Zejména následující veličiny musí být odvozeny z jediné
-UBT akce, z diskrétních algebraických/topologických dat, ze stavu nebo hraniční
+<!-- BILINGUAL-UNIT: one-constant-rule.forbidden -->
+## Žádné nezávislé sektorové vazby
+
+Žádný finalizovaný sektor nesmí zavést další volně fitovanou spojitou
+fundamentální vazbu. Zejména následující veličiny musí být odvozeny z jediné UBT
+akce, z diskrétních algebraických/topologických dat, ze stavu nebo hraniční
 podmínky, případně z jediné povolené škály `kappa`:
 
 - gauge couplingy a směšovací parametry;
@@ -44,16 +48,18 @@ podmínky, případně z jediné povolené škály `kappa`:
 - koeficienty potenciálu `Theta`;
 - kompaktifikační nebo komplexně-časové délkové škály, pokud jsou fyzikálně
   pozorovatelné;
-- efektivní kosmologický/temně-energetický člen;
 - normalizační konstanty hmotových, kvantových nebo statistických redukcí.
 
-Lokální gravitační větev fixuje
+Lokální gravitační větev **nepokládá kosmologickou konstantu za nulu**. Místo
+toho z unimodulárních pomocných rovnic plyne
 
 \[
-\boxed{\Lambda_{\rm bare}=0.}
+\boxed{d\Lambda=0,\qquad\Lambda=\Lambda_0}
 \]
 
-Nenulový efektivní kosmologický člen tedy není druhou fundamentální konstantou.
+a `Lambda_0` je integrační konstanta, nikoli druhá vazba akce. Pozdější
+kosmologická teorie se může pokusit předpovědět její pozorovanou hodnotu z
+globálních/stavových/topologických dat.
 
 <!-- BILINGUAL-UNIT: one-constant-rule.units -->
 ## Rozměrové jednotky nezvyšují počet parametrů
@@ -61,35 +67,32 @@ Nenulový efektivní kosmologický člen tedy není druhou fundamentální konst
 Rozměrová teorie potřebuje konvenci jednotek. Změna jednotek může přesouvat
 mocniny `kappa`, `N0`, `c` nebo `hbar` mezi vzorci, aniž by vytvářela novou
 nezávislou bezrozměrnou informaci. Počet parametrů se týká nezávislých
-fyzikálních vstupů po zafixování konvencí jednotek.
-
-Budoucí formulace proto může jedinou referenční škálu v přirozených jednotkách
-položit rovnu jedné a později ji rozměrově obnovit. Taková volba jednotek však
-neudělá ze samostatně fitovaného bezrozměrného couplingu odvozenou veličinu.
+fyzikálních vstupů v akci po zafixování konvencí jednotek.
 
 <!-- BILINGUAL-UNIT: one-constant-rule.falsification -->
 ## Předem stanovené falzifikační kritérium
 
 Jednokonstantní program UBT selhává, pokud lze fenomenologicky nutný sektor
-učinit konzistentním pouze přidáním druhého nezávislého spojitého vstupu, který
+učinit konzistentním pouze přidáním druhé nezávislé spojité vazby akce, kterou
 nelze odstranit volbou jednotek a nelze odvodit z jediné akce nebo z
 diskrétních/stavových dat.
 
-Fit s více nezávislými spojitými konstantami může stále definovat efektivní
-model, ale nesmí být prezentován jako finalizovaná jednokonstantní UBT.
+Libovolně fitovaný člen `Lambda` vložený přímo do akce by toto pravidlo porušil.
+Integrační konstanta vybraná rovnicemi pole a hraničními nebo stavovými daty jej
+neporušuje.
 
 <!-- BILINGUAL-UNIT: one-constant-rule.status -->
 ## Status
 
 ```yaml
-maximum_independent_continuous_physical_constants: 1
+maximum_independent_continuous_action_couplings: 1
 current_constant: kappa
 N0: unit_setting_only
-Lambda_bare: 0
-other_sector_constants: MUST_BE_DERIVED
+Lambda: INTEGRATION_CONSTANT_NOT_ACTION_COUPLING
+other_sector_couplings: MUST_BE_DERIVED
 full_derivation_of_other_sectors: OPEN
 ```
 
 Merge tohoto dokumentu a párové anglické edice přijímá pravidlo rozpočtu
-konstant. Sám o sobě neuzavírá gapy redukce Standardního modelu, kvantového ani
-kosmologického sektoru.
+konstant. Sám o sobě neuzavírá gapy Standardního modelu, kvantového ani
+numerického kosmologického výběru.
