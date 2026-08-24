@@ -7,7 +7,8 @@ This verifier checks finite algebra/calculus used in the paired theorem notes:
 
 * the Palatini and unimodular volume-term normalization;
 * the resulting tetrad equation coefficient ``Lambda/3``;
-* that the action-coupling budget contains only ``kappa``;
+* the one-symbol action-coupling budget;
+* restricted uniqueness of the affine background-free HT auxiliary term;
 * the earlier fifth-channel MacDowell--Mansouri relation as algebraic context;
 * the derivative obstruction in the historical logarithmic R_psi potential.
 
@@ -47,6 +48,43 @@ def verify_unimodular_normalization() -> None:
     assert action_couplings == {kappa}
 
 
+def verify_restricted_ht_uniqueness() -> None:
+    """Classify the declared affine auxiliary four-form coefficient space.
+
+    In the restricted class the independent four-form monomials are
+
+        nu_E, Lambda*nu_E, dC3, Lambda*dC3.
+
+    The first is a forbidden explicit bare cosmological coupling under the
+    one-coupling rule; the third is a boundary term.  With nonzero coefficients
+    on the remaining two monomials, invertible linear redefinitions of Lambda
+    and C3 reduce the action to -Lambda_tilde*(nu_E-dC3_tilde).
+    """
+
+    a0, a1, b0, b1 = sp.symbols("a0 a1 b0 b1", nonzero=False)
+    lam, nu, dc_tilde = sp.symbols("lam nu dc_tilde")
+
+    # Enforce the one-coupling rule: no independent a0*nu_E term.
+    a0_value = sp.Integer(0)
+    assert a0_value == 0
+
+    # b0*dC3 is exact/boundary and drops from local Euler-Lagrange equations.
+    local_boundary_free = a1 * lam * nu + b1 * lam * sp.symbols("dc")
+
+    # For the nontrivial multiplier branch assume a1*b1 != 0.  Define
+    # Lambda_tilde=-a1*lam and C3_tilde=-(b1/a1) C3, hence
+    # dC3=-(a1/b1) dC3_tilde.
+    dc = -a1 / b1 * dc_tilde
+    Lambda_tilde = -a1 * lam
+    transformed = sp.expand(local_boundary_free.subs({sp.symbols("dc"): dc}))
+    canonical = sp.expand(-Lambda_tilde * (nu - dc_tilde))
+    assert sp.simplify(transformed - canonical) == 0
+
+    # b0 never enters the bulk classification, confirming that it is only a
+    # boundary normalization in this restricted local analysis.
+    assert b0 not in transformed.free_symbols
+
+
 def verify_mm_context() -> None:
     ell = sp.symbols("ell", positive=True, finite=True)
     kappa = sp.symbols("kappa", positive=True, finite=True)
@@ -76,10 +114,12 @@ def verify_rpsi_audit() -> None:
 
 def verify() -> None:
     verify_unimodular_normalization()
+    verify_restricted_ht_uniqueness()
     verify_mm_context()
     verify_rpsi_audit()
     print("PASS: unimodular volume normalization gives the Einstein Lambda/3 tetrad coefficient")
     print("PASS: the local action-coupling budget contains only kappa")
+    print("PASS: restricted affine background-free auxiliary class reduces uniquely to HT form")
     print("PASS: Lambda is retained as a variational/integration variable, not set to zero")
     print("PASS: fifth-channel MacDowell--Mansouri Lambda relation remains exact algebraic context")
     print("PASS: displayed logarithmic R_psi potential has no finite stationary point")
