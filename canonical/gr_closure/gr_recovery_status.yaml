@@ -1,18 +1,19 @@
-schema: ubt-gr-recovery-status/v2
+schema: ubt-gr-recovery-status/v3
 recorded: 2026-08-24
-scope: four-dimensional local classical gravity-sector GR recovery on regular non-null split-jet patches
+scope: four-dimensional local classical gravity-sector Einstein-Lambda recovery on regular non-null split-jet patches
 overall_status: CLOSED
 activation: This status becomes canonical when the paired gravity_dynamical_postulate EN/CZ documents are merged.
-continuous_gravity_constants: 1
+independent_continuous_action_couplings: 1
 gravity_constant: kappa
-bare_cosmological_constant: 0
+Lambda_role: INTEGRATION_CONSTANT
+Lambda_allowed_signs: [POSITIVE, ZERO, NEGATIVE]
 fundamental_physical_field: Theta
 independent_tetrad: false
 primary_sources:
   - canonical/gr_closure/gravity_dynamical_postulate.en.md
   - canonical/gr_closure/gravity_dynamical_postulate.cs.md
-  - research_tracks/action_selection/poincare_one_constant_gr_closure.en.md
-  - research_tracks/action_selection/poincare_one_constant_gr_closure.cs.md
+  - research_tracks/action_selection/unimodular_one_constant_gr_closure.en.md
+  - research_tracks/action_selection/unimodular_one_constant_gr_closure.cs.md
   - research_tracks/action_selection/single_theta_macdowell_mansouri_candidate.en.md
   - research_tracks/action_selection/single_theta_macdowell_mansouri_candidate.cs.md
   - canonical/gr_closure/gap_10t_split_jet_right_inverse.tex
@@ -21,20 +22,21 @@ primary_sources:
   - canonical/gr_closure/gr_recovery_completion.en.tex
   - canonical/gr_closure/gr_recovery_completion.cs.tex
 postulate:
-  id: POINCARE_CONTRACTED_FIFTH_CHANNEL_SPLIT_JET_PALATINI
+  id: ONE_COUPLING_UNIMODULAR_SPLIT_JET_PALATINI
   status: CANONICAL_ON_MERGE
-  action: S_G=(1/(4*kappa))*int epsilon_abcd E^a wedge E^b wedge R^cd(omega)
-  origin: finite local/topologically-subtracted ell->infinity contraction of the fifth-channel graded curvature-square candidate
-  parameter_rule: kappa is the sole continuous gravitational coupling; N0 is unit-setting only; no independent bare Lambda is allowed
-  prediction: Lambda_bare=0
+  action: S_G=(1/(4*kappa))*int epsilon_abcd E^a wedge E^b wedge R^cd(omega) -(1/kappa)*int Lambda*(nu_E-dC3)
+  parameter_rule: kappa is the sole independent continuous action coupling; N0 is unit-setting only; Lambda is an on-shell integration constant rather than a Lagrangian coupling
+  cosmological_equation: dLambda=0
+  volume_constraint: nu_E=dC3
 closure_chain:
-  - The canonical fifth Clifford channel gives the graded epsilon_abcd trace and the de Sitter/anti-de Sitter curvature-square parent candidate.
-  - Subtracting the Euler density changes no local bulk equations on fixed topology.
-  - The Poincare contraction ell->infinity removes the cosmological E^4 coefficient and leaves the Hilbert-Palatini EER term with one coefficient kappa.
-  - The split-jet auxiliary variation is surjective onto all four tetrad directions and therefore imposes the complete Palatini tetrad equation rather than an adjoint projection.
+  - The split-jet composite tetrad has no independent tetrad field and its algebraic variation map is surjective onto all tetrad directions on every regular non-null patch.
+  - Variation of C3 gives dLambda=0, so Lambda=Lambda0 is constant on each connected local patch.
+  - Variation of Lambda gives the covariant volume constraint nu_E=dC3 without introducing a fixed background volume form.
+  - Surjective split-jet variation imposes the complete Palatini tetrad equation epsilon_abcd E^b wedge (R^cd-(Lambda/3)E^c wedge E^d)=0.
   - On that tetrad equation, the chain-rule contribution in the physical connection variation vanishes and the remaining Cartan equation has an invertible torsion map.
   - In spinless vacuum T=0 and omega is the Levi-Civita spin connection.
-  - The Theta variation is a differential consequence of the complete tetrad equation, and every regular local Palatini solution has an explicit split-jet lift.
+  - The resulting metric equation is G_munu+Lambda0*g_munu=0.
+  - Every regular local Einstein solution with any constant Lambda0 has an explicit split-jet lift; on a contractible four-dimensional patch its volume four-form is locally exact and admits C3 with dC3=nu_E.
 recovery_gaps:
   GAP-10K:
     status: CLOSED
@@ -44,7 +46,7 @@ recovery_gaps:
     reason: Specified tetrad and torsion uniquely determine the metric-compatible frame connection.
   GAP-10Omega-GR:
     status: CLOSED
-    reason: Vacuum Cartan dynamics of the adopted gravity postulate gives zero torsion and the unique Levi-Civita connection.
+    reason: Vacuum Cartan dynamics gives zero torsion and the unique Levi-Civita connection.
   GAP-10T-PALATINI:
     status: CLOSED
     reason: The adopted gravity law contains the Palatini connection variation and the 24-component Cartan map is pointwise invertible.
@@ -56,10 +58,10 @@ recovery_gaps:
     reason: The jet variables are algebraic/nonpropagating and the variation map to the tetrad is rank four.
   GAP-10T-JET-DYN:
     status: CLOSED_FOR_LOCAL_GRAVITY
-    reason: In the adopted action the split-jet variables occur inside the gravitational functional; their surjective variation enforces the entire tetrad Einstein equation.
+    reason: In the adopted action the split-jet variables occur inside the gravitational functional; their surjective variation enforces the entire Einstein-Lambda tetrad equation.
   GAP-10T-DYN:
     status: CLOSED_FOR_LOCAL_VACUUM_GRAVITY
-    reason: The physical connection equation reduces to the Cartan equation after the tetrad equation and selects Levi-Civita in vacuum.
+    reason: The physical connection equation reduces to the Cartan equation after the tetrad equation and selects Levi-Civita in spinless vacuum.
   GAP-10L-CONN:
     status: CLOSED
     reason: The adopted connection is Lorentz-valued and preserves the Lorentz metric/slice.
@@ -68,25 +70,25 @@ recovery_gaps:
     reason: The gravity postulate is locally Lorentz covariant on the declared Lorentz-real classical sector; UV evolution away from that sector is a stronger full-theory question.
   GAP-10I-CURVED:
     status: CLOSED_LOCALLY_FOR_GRAVITY
-    reason: Every regular local GR tetrad has a single-Theta split-jet representative while physical curvature remains Levi-Civita on shell.
+    reason: Every regular local Einstein-Lambda tetrad has a single-Theta split-jet representative while physical curvature remains Levi-Civita on shell.
   GAP-10D-PALATINI:
     status: CLOSED
-    reason: The gravitational dynamical postulate is the one-constant Hilbert-Palatini law, obtained as the local Poincare contraction of the fifth-channel parent candidate.
+    reason: The adopted one-coupling action gives the Hilbert-Palatini tetrad and Cartan equations with Lambda generated as integration data.
   GAP-10D-UNIQUENESS:
     status: CLOSED_FOR_THE_ADOPTED_BRANCH
-    reason: The branch is not selected by kinematics; it is the declared dynamical law of the gravity sector. No second local two-derivative gravity coupling is admitted.
+    reason: The branch is the declared dynamical law of the gravity sector; no second continuous action coupling is admitted.
   GAP-10D:
-    status: CLOSED_AS_ONE_CONSTANT_GRAVITY
-    reason: Newton response is represented by the sole allowed continuous gravity constant kappa. A fundamental theory is not required to derive the numerical value of its one permitted constant from kinematics.
+    status: CLOSED_AS_ONE_COUPLING_GRAVITY
+    reason: Newton response is represented by the sole allowed continuous action coupling kappa; Lambda0 is integration/state data rather than a second coupling.
   GAP-10psi:
     status: NOT_A_LOCAL_GRAVITY_BLOCKER
     reason: The local classical theorem is a declared Lorentz-real GR sector. UV psi stability belongs to full-theory completion.
   GAP-U2Theta:
     status: CLOSED_LOCALLY
-    reason: Schwarzschild and every other regular local zero-bare-Lambda GR solution lift through the split-jet solution-set equivalence; the invalid legacy direct ansatz remains superseded.
+    reason: Schwarzschild, de Sitter, Schwarzschild-de Sitter and every other regular local Einstein-Lambda solution lift through the split-jet solution-set equivalence; the invalid legacy direct ansatz remains superseded.
   GAP-B-MASTER:
     status: CLOSED_FOR_CLASSICAL_GR_PERTURBATIONS
-    reason: Linearization of the adopted Einstein branch gives the standard local linearized Einstein system and existing Regge-Wheeler/Zerilli reductions.
+    reason: Linearization of the adopted Einstein-Lambda branch gives the standard local linearized Einstein system on the chosen GR background and the corresponding classical perturbation reductions.
 nonblocking_full_theory_questions:
   UBT-FULL-ACTION:
     status: OPEN
@@ -94,9 +96,9 @@ nonblocking_full_theory_questions:
   UBT-SOURCE-REDUCTION:
     status: OPEN
     scope: Derive the microscopic source/matter stress tensor from the same unique UBT action; kappa must remain the sole gravitational response coupling.
-  UBT-EFFECTIVE-DARK-ENERGY:
-    status: OPEN
-    scope: Derive any observed nonzero effective cosmological term from the Theta vacuum/quantum/boundary sector; the adopted gravity postulate has Lambda_bare=0 and no free Lambda.
+  UBT-LAMBDA-NUMERICAL-SELECTION:
+    status: OPEN_COSMOLOGY
+    scope: Derive or select the observed tiny positive value of the integration constant Lambda0 from global, topological, vacuum or quantum state data. The first-pass UBT zeta vacuum-energy estimate does not supply the required 120-order suppression.
   UBT-FUND-GLOBAL:
     status: OPEN
     scope: Establish a regular atlas through X^2=0 patches, horizons/caustics and nontrivial global topology.
@@ -109,8 +111,9 @@ nonblocking_full_theory_questions:
 forbidden_wording:
   - the older kinematic axioms alone uniquely forced the gravitational action
   - Newton constant is predicted numerically with zero input constants
-  - a nonzero observed cosmological constant has already been derived
+  - the observed numerical cosmological constant has already been predicted
+  - Lambda is fixed to zero by the closed GR branch
   - the legacy Schwarzschild ansatz is a valid canonical single-Theta solution
   - the full Standard Model and quantum UBT action are already closed
 allowed_summary:
-  - After adoption of the one-constant Poincare-contracted gravity dynamical postulate, local classical single-Theta GR recovery is CLOSED on regular non-null patches with kappa as the sole continuous gravitational constant and Lambda_bare=0.
+  - After adoption of the one-coupling unimodular split-jet Palatini dynamical postulate, local classical single-Theta Einstein-Lambda recovery is CLOSED on regular non-null patches with kappa as the sole independent continuous action coupling and Lambda0 as an integration constant.
