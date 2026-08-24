@@ -131,6 +131,19 @@ Variace `Lambda` dává
 `Lambda_0` tedy označuje řešení, ale není v seznamu vazeb akce. Jde o standardní
 unimodulární/Henneaux--Teitelboimův mechanismus.
 
+<!-- BILINGUAL-UNIT: unimodular-one-constant.auxiliary-dof -->
+## Pomocný charakter a lokální stupně volnosti
+
+Dvojice `(Lambda,C_3)` v této akci nezavádí další lokálně propagující fyzikální
+pole. `C_3` vstupuje pouze přes svou vnější derivaci a má gauge redundanci
+`C_3 -> C_3 + dB_2`; její Eulerova--Lagrangeova rovnice je first-order omezení
+`dLambda=0`, nikoli vlnová rovnice. Naopak `Lambda` nemá derivační člen a její
+rovnice je algebraické/diferenciální objemové omezení `nu_E=dC_3`. Lokálně tedy
+dvojice nese pouze omezení, integrační a globální/topologická data. Toto tvrzení
+se omezuje na výše zapsaný lineární HT pomocný sektor; přidání kinetických nebo
+vyšších derivačních členů by změnilo počet stupňů volnosti a je mimo přijatý
+postulát.
+
 <!-- BILINGUAL-UNIT: unimodular-one-constant.einstein -->
 ## Úplná Einsteinova rovnice ze split-jet variace
 
@@ -217,6 +230,9 @@ UNIMODULAR COMPLETION.**
 **AFFINE BACKGROUND-FREE FIRST-ORDER AUXILIARY COMPLETION: UNIQUE UP TO
 INVERTIBLE LINEAR AUXILIARY REDEFINITIONS, SIGN/ORIENTATION AND A BOUNDARY TERM
 WITHIN THE DECLARED CLASS.**
+
+**THE `(Lambda,C_3)` PAIR HAS NO LOCAL PROPAGATING MODE WITHIN THE ADOPTED LINEAR
+HT AUXILIARY SECTOR; IT CARRIES CONSTRAINT/INTEGRATION/GLOBAL DATA.**
 
 **`Lambda_0` AS AN INTEGRATION CONSTANT RATHER THAN A SECOND ACTION COUPLING:
 PROVED WITHIN THIS VARIATIONAL SYSTEM.**
