@@ -111,7 +111,7 @@ Proto je zobrazení
 \]
 
 bodově surjektivní na všechny čtyři tetrádové směry pro každé nenulové
-`X` s `X^2 != 0`. `tools/verify_split_jet_palatii_variational_lift.py`
+`X`. `tools/verify_split_jet_palatii_variational_lift.py`
 kontroluje konečné jádro hodnosti čtyři a explicitní pravou inverzi na
 exaktních racionálních svědcích.
 
@@ -199,7 +199,7 @@ Variace fundamentálního pole tedy nepřidává další lokální omezení, jak
 ## Obrácený lift každého lokálního Palatiniho řešení [L1]
 
 Naopak vezměme libovolné lokální Palatiniho řešení `(E,omega)` a zvolme
-libovolné hladké nenulové `X` s `X^2 != 0`. Definujme
+libovolné hladké nenulové `X`. Definujme
 
 \[
 Z^a=sE^a-(dX^a+\omega^a{}_bX^b),
@@ -248,7 +248,7 @@ multiplikátorovém no-go:
 Proto:
 
 **VARIAČNÍ EKVIVALENCE SINGLE-THETA SPLIT-JET ARCHITEKTURY K VYBRANÉMU
-PALATINIHO FUNKCIONÁLU: LOKÁLNĚ A PODMÍNĚNĚ DOKÁZÁNA [L1].**
+PALATINIHO FUNKCIONÁLU: PROVED LOCALLY AND CONDITIONALLY [L1].**
 
 To však **neodvozuje** Palatiniho curvature člen z původní kineticko-potenciálové
 akce UBT. Neurčuje ani `kappa` nebo `Lambda`. Fundamentální akce tedy zůstává
@@ -281,4 +281,4 @@ PATCHÍCH: CLOSED CONDITIONALLY [L1].**
 **PŮVOD A NORMALIZACE PALATINIHO CURVATURE ČLENU ZE ZAMČENÉ DYNAMIKY UBT:
 OPEN.**
 
-**NEPODMÍNĚNÁ GR REKONSTRUKCE: DOSUD NENÍ UZAVŘENA.**
+**NEPODMÍNĚNÁ GR REKONSTRUKCE: NOT YET CLOSED.**
