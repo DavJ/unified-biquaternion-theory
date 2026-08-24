@@ -11,20 +11,19 @@ notice: Machine-verified against named sources or verifiers; individual attestat
 UBT-AI-PROVENANCE-END
 -->
 
-# Dynamický postulát gravitačního sektoru UBT: jednokonstantní Poincarého větev
+# Dynamický postulát gravitačního sektoru UBT: jednovazbová Einsteinova-Lambda větev
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.role -->
 ## Role
 
 Zamčené axiomy UBT určují kinematiku pole, komplexního času a kovariantní
-tetrády, ale samotná kinematika neurčuje nenulovou gravitační akci. Audit
-výběru akce ukázal explicitní neurčenost: stejná kinematika je slučitelná s
-různými koeficienty křivosti včetně nuly.
+tetrády, ale samotná kinematika neurčuje nenulovou gravitační akci. Fyzikální
+teorie proto vedle kinematiky potřebuje jeden dynamický zákon.
 
-Fyzikální teorie proto vedle kinematiky potřebuje jeden dynamický zákon. Tento
-dokument stanoví minimální **dynamický postulát gravitačního sektoru** UBT.
-Nedefinuje znovu zamčené axiomy pole ani metriky a nezavádí druhé fundamentální
-fyzikální pole.
+Minimální gravitační zákon přijatý zde má právě jednu nezávislou spojitou vazbu
+akce, `kappa`. Kosmologická konstanta se nepokládá rovna nule ani se nezavádí
+jako druhá vazba: na slupce vzniká jako integrační konstanta pomocí
+difeomorfismově invariantního unimodulárního/Henneaux--Teitelboimova doplnění.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.field -->
 ## Kompozitní tetráda a pomocná geometrie
@@ -38,130 +37,145 @@ E^a=\frac1{\sqrt{N_0}}
 \qquad X^2\ne0.
 \]
 
-Zde:
+`Theta` zůstává jediným fundamentálním fyzikálním polem. `omega` je variační
+Lorentzova konexe a `K_J,w` jsou algebraické split-jet proměnné. Navíc zaveďme
+pomocný skalár `Lambda(x)` a pomocnou tříformu `C_3`. Ani jedna z těchto
+proměnných nemá v gravitačním sektoru lokální propagující stupeň volnosti.
+Neexistuje nezávisle variované tetrádové pole ani pevná pozaďová objemová forma.
 
-- `Theta` zůstává jediným fundamentálním fyzikálním polem;
-- `omega` je variační Lorentzova konexe;
-- `K_J` a `w` jsou algebraické split-jet proměnné bez derivačních členů;
-- neexistuje nezávisle variované tetrádové pole;
-- fyzická křivost je `R(omega)` a nepoužívá `K_J`.
-
-Split-jet variační zobrazení `(delta K_J, delta w) -> delta E` je bodově
-surjektivní na všechny čtyři tetrádové směry na uvedeném patchi.
+Split-jet variační zobrazení `(delta K_J,delta w) -> delta E` je bodově
+surjektivní na všechny tetrádové směry na uvedeném patchi.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.action -->
 ## Dynamický postulát
+
+Definujme
+
+\[
+\nu_E:=\frac1{24}\epsilon_{abcd}
+E^a\wedge E^b\wedge E^c\wedge E^d.
+\]
 
 Kanonický lokální klasický gravitační zákon je
 
 \[
 \boxed{
-S_G[\Theta,\omega,K_J,w;\kappa]
+S_G[\Theta,\omega,K_J,w,\Lambda,C_3;\kappa]
 =\frac1{4\kappa}\int_{M_4}
-\epsilon_{abcd}\,E^a\wedge E^b\wedge R^{cd}(\omega),
+\epsilon_{abcd}E^a\wedge E^b\wedge R^{cd}(\omega)
+-\frac1\kappa\int_{M_4}\Lambda(x)\left(\nu_E-dC_3\right),
 \qquad \kappa>0.}
 \]
 
-Jde o konečný lokální Poincarého kontrahovaný limit mergnutého kanonického
-pátokanálového graded curvature-square kandidáta po odečtení Eulerovy
-topologické hustoty. Ekvivalentně jde o větev `ell -> infinity`, pro kterou
+Akce obsahuje právě jednu nezávislou spojitou vazbu, `kappa`. `N0` je zamčená
+globální normalizace volby jednotek. `Lambda(x)` je pole Lagrangeova
+multiplikátoru, nikoli vazbová konstanta.
+
+Mergnutá pátokanálová MacDowell--Mansouriho konstrukce zůstává algebraickou
+motivací, proč Palatiniho a kosmologická struktura patří do stejného rozšířeného
+Cliffordova sektoru křivosti, ale dřívější volba `ell -> infinity` a
+`Lambda_bare=0` nejsou součástí tohoto postulátu.
+
+<!-- BILINGUAL-UNIT: gr-dynamical-postulate.lambda -->
+## Kosmologická konstanta jako integrační údaj [STD]
+
+Variace `C_3` a `Lambda` dává
 
 \[
-\boxed{\Lambda_{\rm bare}=0.}
+\boxed{d\Lambda=0,}
+\qquad
+\boxed{\nu_E=dC_3.}
 \]
 
-Akce má právě jednu spojitou gravitační konstantu, `kappa`. Zamčená `N0` je
-globální unit-setting normalizace a není druhým fyzikálním couplingem.
+Na každém souvislém lokálním patchi tedy
 
-V této větvi není dovolena nezávislá bare kosmologická konstanta. Nenulový
-efektivní kosmologický člen musí být odvozen z vakua/kvantového stavu `Theta`,
-hraničních dat nebo jiné redukce téže budoucí jediné UBT akce; není dalším
-gravitačním parametrem.
+\[
+\boxed{\Lambda(x)=\Lambda_0=\mathrm{constant}.}
+\]
+
+`Lambda_0` je integrační/stavová konstanta řešení, nikoli druhý parametr teorie.
+Povoleny jsou kladné, nulové i záporné větve.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.equations -->
-## Lokální Eulerův–Lagrangeův důsledek [L1]
+## Lokální Eulerův--Lagrangeův důsledek [L1]
 
-Nechť `E_a` značí běžnou Palatiniho tetrádovou Eulerovu tříformu. Variace
-`K_J,w` dává
-
-\[
-0=\int E_a\wedge\delta E^a.
-\]
-
-Surjektivita split-jet variace implikuje
+Tetrádová Eulerova rovnice je
 
 \[
-\boxed{E_a=0.}
+\boxed{
+\epsilon_{abcd}E^b\wedge
+\left(R^{cd}-\frac{\Lambda}{3}E^c\wedge E^d\right)=0.}
 \]
 
-Je tedy uložena úplná tetrádová Einsteinova rovnice, nikoli její adjungovaná
-projekce.
+Surjektivita split-jet variace implikuje, že variace `K_J,w` ukládá tuto úplnou
+tetrádovou rovnici, nikoli adjungovanou projekci.
 
-Variace konexe je standardní Palatiniho konexní variace plus řetězový člen
-úměrný `E_a`. Na jet rovnici tento člen mizí. Zbývající vakuová Cartanova
-rovnice má již ověřenou invertibilní 24-komponentní torzní mapu, takže
+Variace konexe je běžná Palatiniho konexní variace plus řetězový člen přes
+kompozitní tetrádu. Na tetrádové rovnici tento člen mizí. Zbývající vakuová
+Cartanova rovnice má již ověřenou invertibilní 24-komponentní torzní mapu, takže
 
 \[
 \boxed{T^a=0,\qquad\omega=\mathring\omega(E).}
 \]
 
-Variace `Theta` je diferenciálním důsledkem `E_a=0`. Naopak každé lokální
-Palatiniho řešení s nulovou bare `Lambda` má explicitní nenulový split-jet lift.
-Proto modulo algebraický jet stabilizátor a standardní hraniční/topologická data
-platí
+Metrická rovnice je tedy
+
+\[
+\boxed{G_{\mu\nu}+\Lambda_0g_{\mu\nu}=0.}
+\]
+
+Variace `Theta` je diferenciálním důsledkem úplné tetrádové rovnice. Naopak
+každé regulární lokální Einsteinovo řešení s libovolnou konstantou `Lambda_0`
+má existující nenulový split-jet lift. Na kontraktibilním čtyřrozměrném patchi
+je `nu_E` lokálně exaktní, takže existuje `C_3` splňující `dC_3=nu_E`. Proto
 
 \[
 \boxed{
 \operatorname{Sol}_{\rm loc}(S_G)/\operatorname{Stab}_{\rm jet}
 \longleftrightarrow
-\operatorname{Sol}_{\rm loc}(\mathrm{GR},\Lambda_{\rm bare}=0).}
+\bigcup_{\Lambda_0\in\mathbb R}
+\operatorname{Sol}_{\rm loc}(\mathrm{GR},\Lambda_0).}
 \]
 
-Schwarzschild, Kerr a linearizovaný gravitačně-vlnový sektor jsou zahrnuty přes
-běžnou lokální množinu řešení GR všude, kde je split-jet patch regulární.
+To zahrnuje lokální Schwarzschildovu, Kerrovu, de Sitterovu, anti-de Sitterovu
+a Schwarzschild--de Sitterovu/Kottlerovu větev a jejich běžné GR perturbace.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.source -->
-## Zdroje a význam jediné konstanty
+## Význam jediné konstanty
 
 V čistém vakuu se celkový faktor `1/kappa` z klasických rovnic vykrátí; `kappa`
-se stává měřitelnou gravitační odezvovou konstantou až relativně k normalizaci
-zdrojového sektoru.
+se stává gravitační odezvovou konstantou relativně k normalizaci zdrojového
+sektoru budoucí jediné UBT redukce hmoty/gauge sektoru.
 
-Pravidlo jediné UBT akce zakazuje přidat samostatně normalizovanou fundamentální
-hmotovou akci pouze za účelem definice tohoto poměru. Až bude finalizována
-gauge/hmotová redukce jediné UBT akce, její tenzor energie-hybnosti musí vstoupit
-do stejného variačního systému a `kappa` je jedinou přípustnou gravitační
-odezvovou konstantou. Odvození mikroskopické Standard-Model/hmotové redukce je
-negravitačním dokončovacím úkolem a tento postulát je nenahrazuje.
+`Lambda_0` se nepočítá jako fundamentální konstanta teorie, stejně jako hmotnost
+černé díry nebo moment hybnosti mohou označovat řešení, aniž by byly vazbou
+Lagrangiánu. Silnější budoucí kosmologie může zkusit vybrat nebo predikovat
+pozorovanou hodnotu `Lambda_0` z globálních, topologických, vakuových nebo
+kvantových stavových dat. Tato numerická selekce je problém kosmologie, nikoli
+gap lokální obnovy Einstein-`Lambda` GR.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.scope -->
 ## Rozsah statusu `CLOSED`
 
-Přijetí tohoto postulátu uzavírá **lokální klasický problém obnovy GR v
-gravitačním sektoru**. Netvrdí silnější výroky, že:
-
-- starší kineticko-potenciálová rodina vynutila tuto akci bez dynamického
-  postulátu;
-- pozorovaná efektivní hustota temné energie je již odvozena;
-- úplná gauge/hmotová/kvantová UBT akce je finalizována;
-- je dokončeno pokračování přes nulové patche a globální topologii;
-- je dokázána UV stabilita `psi`.
-
-To jsou samostatné problémy úplné teorie, kosmologie nebo globálního dokončení.
-Nesmějí být přeznačovány jako selhání lokálního Einsteinova gravitačního
-theorému.
+Přijetí tohoto postulátu uzavírá **lokální klasický problém obnovy GR včetně
+libovolné konstantní kosmologické konstanty**. Netvrdí, že již byla
+předpovězena pozorovaná numerická hodnota temné energie, že je finalizována
+úplná gauge/hmotová/kvantová UBT akce, že je dokončeno globální pokračování přes
+nulové patche nebo že je dokázána UV stabilita `psi`.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.status -->
 ## Kanonický status po přijetí
 
 ```yaml
-gravity_dynamical_postulate: POINCARE_CONTRACTED_FIFTH_CHANNEL_SPLIT_JET_PALATINI
-continuous_gravity_constants: 1
+gravity_dynamical_postulate: ONE_COUPLING_UNIMODULAR_SPLIT_JET_PALATINI
+independent_continuous_action_couplings: 1
 constant: kappa
-bare_cosmological_constant: 0
+Lambda_role: INTEGRATION_CONSTANT
+Lambda_allowed_signs: POSITIVE_ZERO_NEGATIVE
 fundamental_physical_field: Theta
 independent_tetrad: false
-local_gr_recovery: CLOSED
+local_Einstein_Lambda_recovery: CLOSED
+numerical_Lambda_prediction: OPEN_COSMOLOGY
 full_single_ubt_action: NOT_FINALIZED
 ```
 
