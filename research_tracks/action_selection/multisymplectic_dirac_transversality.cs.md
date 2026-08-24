@@ -130,8 +130,8 @@ systémem totožný ani po invertibilní rekombinaci rovnic:
    nerealizuje dosud dokázanou postačující podmínku invertibilního bloku pro
    hodnost deset.
 
-Třetí tvrzení nedokazuje selhání obecnější podmínky `A+K=R^16`; dokazuje,
-že snadná cesta přes invertibilní blok není dostupná. Ani bodová hodnost
+Třetí tvrzení nezakládá selhání obecnější podmínky `A+K=R^16`;
+zakládá pouze to, že snadná cesta přes invertibilní blok není dostupná. Ani bodová hodnost
 sama o sobě nezajišťuje lokální integrabilitu jetů. Křivost nebo kompozitní
 spojení mohou změnit rovnice nižšího řádu, ale pak důkaz pro pevné
 spojení/pullback již nezakládá ekvivalenci a úplná kompozitní variace je

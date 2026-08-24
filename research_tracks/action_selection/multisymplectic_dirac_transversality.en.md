@@ -128,8 +128,8 @@ system under an invertible recombination of equations:
 3. its field-value Jacobian is singular and therefore does not realize the
    currently proved invertible-block sufficient condition for rank ten.
 
-The third statement does not prove failure of the more general condition
-`A+K=R^16`; it proves that the easy invertible-block route is unavailable.
+The third statement does not establish failure of the more general condition
+`A+K=R^16`; it establishes only that the easy invertible-block route is unavailable.
 Nor does pointwise rank alone establish local jet integrability. Curvature or
 a composite connection may change the lower-order equations, but then the
 fixed-connection/pullback proof no longer establishes equivalence and the
