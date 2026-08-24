@@ -28,10 +28,12 @@ postulate:
   parameter_rule: kappa is the sole independent continuous action coupling; N0 is unit-setting only; Lambda is an on-shell integration constant rather than a Lagrangian coupling
   cosmological_equation: dLambda=0
   volume_constraint: nu_E=dC3
+  restricted_auxiliary_uniqueness: Within the affine background-free first-order class built only from Lambda, C3 and nu_E, with C3 gauge invariance, no dLambda and no second continuous coupling, the HT term is unique up to invertible linear auxiliary redefinitions, sign/orientation and a boundary term.
 closure_chain:
   - The split-jet composite tetrad has no independent tetrad field and its algebraic variation map is surjective onto all tetrad directions on every regular non-null patch.
   - Variation of C3 gives dLambda=0, so Lambda=Lambda0 is constant on each connected local patch.
   - Variation of Lambda gives the covariant volume constraint nu_E=dC3 without introducing a fixed background volume form.
+  - In the declared minimal affine background-free first-order auxiliary class, the most general nontrivial multiplier four-form reduces to the HT form by invertible linear auxiliary redefinitions after excluding an explicit bare cosmological coupling and a boundary term.
   - Surjective split-jet variation imposes the complete Palatini tetrad equation epsilon_abcd E^b wedge (R^cd-(Lambda/3)E^c wedge E^d)=0.
   - On that tetrad equation, the chain-rule contribution in the physical connection variation vanishes and the remaining Cartan equation has an invertible torsion map.
   - In spinless vacuum T=0 and omega is the Levi-Civita spin connection.
@@ -75,8 +77,8 @@ recovery_gaps:
     status: CLOSED
     reason: The adopted one-coupling action gives the Hilbert-Palatini tetrad and Cartan equations with Lambda generated as integration data.
   GAP-10D-UNIQUENESS:
-    status: CLOSED_FOR_THE_ADOPTED_BRANCH
-    reason: The branch is the declared dynamical law of the gravity sector; no second continuous action coupling is admitted.
+    status: CLOSED_WITHIN_DECLARED_MINIMAL_AUXILIARY_CLASS
+    reason: In the affine background-free first-order class built only from Lambda, C3 and nu_E, with C3 gauge invariance, no dLambda and no second continuous coupling, every nontrivial auxiliary four-form is equivalent to the HT completion up to invertible linear auxiliary redefinitions, sign/orientation and a boundary term. Uniqueness against nonlinear, higher-derivative or enlarged field classes is not claimed.
   GAP-10D:
     status: CLOSED_AS_ONE_COUPLING_GRAVITY
     reason: Newton response is represented by the sole allowed continuous action coupling kappa; Lambda0 is integration/state data rather than a second coupling.
@@ -113,7 +115,8 @@ forbidden_wording:
   - Newton constant is predicted numerically with zero input constants
   - the observed numerical cosmological constant has already been predicted
   - Lambda is fixed to zero by the closed GR branch
+  - the HT completion is uniquely forced among all conceivable auxiliary or higher-derivative theories
   - the legacy Schwarzschild ansatz is a valid canonical single-Theta solution
   - the full Standard Model and quantum UBT action are already closed
 allowed_summary:
-  - After adoption of the one-coupling unimodular split-jet Palatini dynamical postulate, local classical single-Theta Einstein-Lambda recovery is CLOSED on regular non-null patches with kappa as the sole independent continuous action coupling and Lambda0 as an integration constant.
+  - After adoption of the one-coupling unimodular split-jet Palatini dynamical postulate, local classical single-Theta Einstein-Lambda recovery is CLOSED on regular non-null patches with kappa as the sole independent continuous action coupling and Lambda0 as an integration constant; the HT auxiliary completion is unique only within the explicitly declared minimal affine background-free first-order class.
