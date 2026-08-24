@@ -76,6 +76,44 @@ motivací, proč Palatiniho a kosmologická struktura patří do stejného rozš
 Cliffordova sektoru křivosti, ale dřívější volba `ell -> infinity` a
 `Lambda_bare=0` nejsou součástí tohoto postulátu.
 
+<!-- BILINGUAL-UNIT: gr-dynamical-postulate.selection -->
+## Důvod výběru: minimální low-energy princip
+
+Postulát není vydáván za důsledek samotné kinematiky. Jeho tvar je ale výrazně
+užší než libovolná volba rovnic pole. Přijměme na regulární Lorentzovsky reálné
+větvi následující low-energy požadavky gravitačního sektoru:
+
+1. lokalitu a difeomorfismovou invarianci;
+2. lokální Lorentzovu invarianci tetrádového popisu;
+3. metrické rovnice nejvýše druhého diferenciálního řádu v klasickém low-energy
+   sektoru;
+4. žádné další lehké propagující geometrické pole nad stupně volnosti
+   kompozitní metriky;
+5. nejvýše jednu nezávislou spojitou vazbu akce.
+
+Existující čtyřrozměrný Lovelockův teorém zaznamenaný v
+`canonical/gr_closure/gap_10d_low_energy_uniqueness.tex` pak omezuje každý
+přirozený symetrický identicky bezdivergenční metrický tensor v této třídě na
+
+\[
+\boxed{\mathcal E_{\mu\nu}=aG_{\mu\nu}+bg_{\mu\nu}.}
+\]
+
+Metrickým endpointem je tedy Einstein-`Lambda` až na normalizaci; nejde o jednu
+libovolnou tensorovou rovnici mezi mnoha. Výše uvedený Palatiniho člen je
+minimálním first-order tetrádově/konexním reprezentantem tohoto endpointu,
+zatímco HT sektor realizuje kosmologický člen bez druhé vazby akce. V samostatně
+deklarované afinní, background-free, first-order pomocné třídě je toto HT
+doplnění jednoznačné až na invertibilní lineární redefinice pomocných polí,
+konvenci znaménka/orientace a hraniční člen.
+
+Toto zdůvodnění **nedokazuje**, že hlubší mikroskopická UBT jednoznačně vynucuje
+lokalitu, druhý řád nebo hypotézu bez dalších lehkých polí. Tyto požadavky jsou
+součástí přijatého klasického dynamického principu. Budoucí mikroskopické
+odvození je může vysvětlit, ale současné tvrzení je záměrně slabší a obhajitelné:
+jakmile jsou tyto minimální low-energy principy přijaty, Einsteinův-`Lambda`
+endpoint i jednovazbová pomocná realizace jsou silně omezené.
+
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.lambda -->
 ## Kosmologická konstanta jako integrační údaj [STD]
 
