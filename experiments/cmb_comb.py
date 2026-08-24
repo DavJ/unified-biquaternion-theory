@@ -1096,6 +1096,10 @@ def plot_results(results, output_dir):
         Output directory
     """
     try:
+        # The runner is a batch/CI entry point and must not initialize the
+        # macOS GUI backend when no window server is available.
+        import matplotlib
+        matplotlib.use("Agg")
         import matplotlib.pyplot as plt
     except ImportError:
         print("Matplotlib not available - skipping plots")

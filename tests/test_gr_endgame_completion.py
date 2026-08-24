@@ -22,7 +22,8 @@ def test_endgame_verifier_is_green():
 def test_new_gap_statuses_propagated():
     required = [
         ROOT / "CLAIMS.yaml",
-        ROOT / "CLAIMS_MATRIX.md",
+        ROOT / "CLAIMS_MATRIX.en.md",
+        ROOT / "CLAIMS_MATRIX.cs.md",
         ROOT / "STATUS.md",
         ROOT / "STATUS_OF_UBT.md",
         ROOT / "WHAT_IS_PROVED.md",
@@ -48,8 +49,11 @@ def test_unconditional_gr_is_not_overclaimed():
     payload = yaml.safe_load((ROOT / "CLAIMS.yaml").read_text(errors="ignore"))
     gr = payload["claims"]["gr_chain"]
     assumptions = "\n".join(gr["assumptions"])
-    assert "GAP-10D: NARROWED" in assumptions
-    assert "GAP-10T-JET-DYN: NARROWED" in assumptions
+    assert "GAP-10D: CLOSED CONDITIONALLY FOR GR RECOVERY; UV PREDICTION OPEN" in assumptions
+    assert (
+        "GAP-10T-JET-DYN: CLOSED CONDITIONALLY FOR GR RECOVERY; "
+        "OPEN FUNDAMENTALLY"
+    ) in assumptions
     assert "complete conditional effective GR branch" in assumptions
     forbidden = set(gr["forbidden_wording"])
     assert "GR is derived unconditionally from UBT" in forbidden

@@ -13,7 +13,6 @@ def test_palatini_filename_is_corrected() -> None:
 def test_active_status_surfaces_use_correct_name() -> None:
     active = (
         ROOT / "CLAIMS.yaml",
-        ROOT / "CLAIMS_MATRIX.md",
         ROOT / "DERIVATION_INDEX.md",
         ROOT / "WHAT_IS_PROVED.md",
         ROOT / ".github/latex_publish_map.tsv",

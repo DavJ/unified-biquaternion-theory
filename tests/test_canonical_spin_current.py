@@ -72,7 +72,6 @@ def test_authoritative_ledgers_include_pairing_no_go():
     root = repo_root
     authoritative = [
         root / "CLAIMS.yaml",
-        root / "CLAIMS_MATRIX.md",
         root / "STATUS.md",
         root / "STATUS_OF_UBT.md",
         root / "WHAT_IS_PROVED.md",

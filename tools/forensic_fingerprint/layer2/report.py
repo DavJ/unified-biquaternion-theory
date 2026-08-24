@@ -403,6 +403,11 @@ def save_figures(results: List[Dict[str, Any]], outdir: Path):
     outdir : Path
         Output directory for figures
     """
+    # The figures directory is part of the CLI output contract even when a
+    # tiny/debug sweep produces no plottable rows or matplotlib is absent.
+    fig_dir = outdir / "figures"
+    fig_dir.mkdir(parents=True, exist_ok=True)
+
     try:
         import matplotlib
         matplotlib.use('Agg')  # Non-interactive backend
@@ -413,10 +418,6 @@ def save_figures(results: List[Dict[str, Any]], outdir: Path):
     
     if not results:
         return
-    
-    # Create figures directory
-    fig_dir = outdir / "figures"
-    fig_dir.mkdir(parents=True, exist_ok=True)
     
     # Extract data
     scores = [r['combined_score'] for r in results]

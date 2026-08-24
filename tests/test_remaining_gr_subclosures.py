@@ -60,14 +60,14 @@ def test_claim_ledger_uses_conditional_and_narrowed_statuses() -> None:
     assumptions = "\n".join(claims["claims"]["gr_chain"]["assumptions"])
     for phrase in (
         "GAP-10T-PALATINI: CLOSED CONDITIONALLY",
-        "GAP-10T-DYN: NARROWED",
+        "GAP-10T-DYN: CLOSED CONDITIONALLY FOR GR RECOVERY; OPEN FUNDAMENTALLY",
         "GAP-10L-SYM: CLOSED CONDITIONALLY",
-        "GAP-10L-DYN: NARROWED",
+        "GAP-10L-DYN: CLOSED CONDITIONALLY FOR GR RECOVERY; OPEN FUNDAMENTALLY",
         "GAP-10I-PRESCRIBED: CLOSED",
-        "GAP-10I-CURVED: LOCAL KINEMATICS CLOSED",
+        "GAP-10I-CURVED: CLOSED LOCALLY FOR GR RECOVERY; FUNDAMENTAL GLOBAL PART OPEN",
         "GAP-10D-PALATINI: CLOSED CONDITIONALLY",
-        "GAP-10D: NARROWED",
-        "GAP-10psi: NARROWED",
+        "GAP-10D: CLOSED CONDITIONALLY FOR GR RECOVERY; UV PREDICTION OPEN",
+        "GAP-10psi: NOT A GR-RECOVERY BLOCKER; UV STABILITY OPEN",
     ):
         assert phrase in assumptions
 
@@ -75,7 +75,8 @@ def test_claim_ledger_uses_conditional_and_narrowed_statuses() -> None:
 def test_active_status_surfaces_do_not_overclaim_full_closure() -> None:
     files = (
         "AGENTS.md",
-        "CLAIMS_MATRIX.md",
+        "CLAIMS_MATRIX.en.md",
+        "CLAIMS_MATRIX.cs.md",
         "STATUS_OF_UBT.md",
         "WHAT_IS_PROVED.md",
         "canonical/AXIOMS.md",

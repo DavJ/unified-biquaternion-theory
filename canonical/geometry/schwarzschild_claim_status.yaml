@@ -2,6 +2,7 @@ schema: ubt-claim-correction/v1
 recorded: 2026-08-23
 claim_id: GAP-U2Theta
 status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
+microscopic_direct_selection_status: OPEN
 authority:
   - CLAIMS.yaml
   - CLAIMS_MATRIX.md

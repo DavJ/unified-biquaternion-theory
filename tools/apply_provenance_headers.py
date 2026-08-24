@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import subprocess
 import sys
 from dataclasses import dataclass
 from fnmatch import fnmatch
@@ -19,7 +20,15 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_MAP = ROOT / "PROVENANCE_TIERS.yaml"
 SUPPORTED_SUFFIXES = {".md", ".tex"}
-INTERNAL_SKIP_DIRS = {".git", ".pytest_cache", "__pycache__", "build", ".venv", "venv"}
+INTERNAL_SKIP_DIRS = {
+    ".git",
+    ".lake",
+    ".pytest_cache",
+    "__pycache__",
+    "build",
+    ".venv",
+    "venv",
+}
 BEGIN = "UBT-AI-PROVENANCE-BEGIN"
 END = "UBT-AI-PROVENANCE-END"
 SCHEMA = "ubt-ai-provenance/v1"
@@ -209,6 +218,46 @@ def iter_sources(root: Path, config: dict) -> Iterable[tuple[Path, str, str]]:
             yield path, rel, tier
 
 
+def inventory_counts(root: Path, config: dict) -> dict[str, int]:
+    """Count the canonical source inventory independently of filesystem case.
+
+    Git permits tracked paths that differ only by case, while the default
+    macOS filesystem collapses them.  Count the union of Git-index paths and
+    visible filesystem paths so the report is identical on macOS and Linux
+    and still includes newly created, not-yet-tracked sources.
+    """
+    relative_paths: set[str] = set()
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-z"],
+            check=True,
+            capture_output=True,
+        )
+        for raw in result.stdout.split(b"\0"):
+            if raw:
+                relative_paths.add(raw.decode("utf-8"))
+    except (FileNotFoundError, subprocess.CalledProcessError, UnicodeDecodeError):
+        pass
+
+    relative_paths.update(rel for _path, rel, _tier in iter_sources(root, config))
+    counts = {
+        "A_attested": 0,
+        "B_machine_verified": 0,
+        "C_working": 0,
+        "D_historical": 0,
+        "excluded": 0,
+    }
+    for rel in sorted(relative_paths):
+        path = Path(rel)
+        if any(part in INTERNAL_SKIP_DIRS for part in path.parts):
+            continue
+        if path.suffix.lower() not in SUPPORTED_SUFFIXES:
+            continue
+        tier = classify_path(rel, config)
+        counts[tier or "excluded"] += 1
+    return counts
+
+
 def check_one(path: Path, rel: str, tier: str) -> tuple[bool, str]:
     text = path.read_text(encoding="utf-8")
     if tier in {"excluded", "D_historical"}:
@@ -223,12 +272,10 @@ def check_one(path: Path, rel: str, tier: str) -> tuple[bool, str]:
 
 def run(root: Path, map_path: Path, apply: bool, report: bool) -> int:
     config = load_map(map_path)
-    counts = {"A_attested": 0, "B_machine_verified": 0, "C_working": 0,
-              "D_historical": 0, "excluded": 0}
+    counts = inventory_counts(root, config)
     changed = 0
     errors: list[str] = []
     for path, rel, tier in iter_sources(root, config):
-        counts[tier] = counts.get(tier, 0) + 1
         if tier in {"excluded", "D_historical"}:
             ok, message = check_one(path, rel, tier)
             if not ok:

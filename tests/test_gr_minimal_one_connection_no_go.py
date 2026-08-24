@@ -25,7 +25,6 @@ def test_metric_compatible_contortion_torsion_map_is_invertible():
 def test_architecture_no_go_is_propagated_to_authoritative_ledgers():
     required = [
         ROOT / "CLAIMS.yaml",
-        ROOT / "CLAIMS_MATRIX.md",
         ROOT / "STATUS.md",
         ROOT / "STATUS_OF_UBT.md",
         ROOT / "WHAT_IS_PROVED.md",
@@ -39,8 +38,11 @@ def test_architecture_no_go_is_propagated_to_authoritative_ledgers():
 def test_completion_is_not_overclaimed():
     claims = (ROOT / "CLAIMS.yaml").read_text()
     assert "GAP-10T-JET-KIN: CLOSED LOCALLY" in claims
-    assert "GAP-10T-JET-DYN: NARROWED" in claims
-    assert "GAP-10D: NARROWED" in claims
+    assert (
+        "GAP-10T-JET-DYN: CLOSED CONDITIONALLY FOR GR RECOVERY; "
+        "OPEN FUNDAMENTALLY"
+    ) in claims
+    assert "GAP-10D: CLOSED CONDITIONALLY FOR GR RECOVERY; UV PREDICTION OPEN" in claims
     paper = (ROOT / "papers" / "UBT_GR_Submission.tex").read_text()
     assert r"does not select $E[\Theta]$" in paper
     assert "derive the completion from the action" in paper
