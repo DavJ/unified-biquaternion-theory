@@ -11,21 +11,21 @@ notice: Machine-verified against named sources or verifiers; individual attestat
 UBT-AI-PROVENANCE-END
 -->
 
-# UBT gravity-sector dynamical postulate: one-constant Poincare branch
+# UBT gravity-sector dynamical postulate: one-coupling Einstein-Lambda branch
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.role -->
 ## Role
 
 The locked UBT axioms determine the field, complex-time and covariant-tetrad
 kinematics, but kinematics alone does not determine a nonzero gravitational
-action. The action-selection audit established an explicit underdetermination:
-the same kinematics is compatible with different curvature coefficients,
-including zero.
+action. A physical theory therefore needs one dynamical law in addition to its
+kinematics.
 
-A physical theory therefore needs one dynamical law in addition to its
-kinematics. This document states the minimal UBT **gravity-sector dynamical
-postulate**. It does not redefine the locked field or metric axioms and it does
-not introduce a second fundamental physical field.
+The minimal gravity law adopted here has exactly one independent continuous
+action coupling, `kappa`. The cosmological constant is not set to zero and is
+not introduced as a second coupling: it arises on shell as an integration
+constant by a diffeomorphism-invariant unimodular/Henneaux--Teitelboim
+completion.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.field -->
 ## Composite tetrad and auxiliary geometry
@@ -39,132 +39,148 @@ E^a=\frac1{\sqrt{N_0}}
 \qquad X^2\ne0.
 \]
 
-Here:
+`Theta` remains the only fundamental physical field. `omega` is the variational
+Lorentz connection and `K_J,w` are algebraic split-jet variables. Introduce in
+addition an auxiliary scalar `Lambda(x)` and an auxiliary three-form `C_3`.
+Neither has local propagating degrees of freedom in the gravity sector. There
+is no independently varied tetrad field and no fixed background volume form.
 
-- `Theta` remains the only fundamental physical field;
-- `omega` is the variational Lorentz connection;
-- `K_J` and `w` are algebraic split-jet variables with no derivative terms;
-- there is no independently varied tetrad field;
-- physical curvature is `R(omega)` and does not use `K_J`.
-
-The split-jet variation map `(delta K_J, delta w) -> delta E` is pointwise
-surjective onto all four tetrad directions on the stated patch.
+The split-jet variation map `(delta K_J,delta w) -> delta E` is pointwise
+surjective onto all tetrad directions on the stated patch.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.action -->
 ## Dynamical postulate
+
+Define
+
+\[
+\nu_E:=\frac1{24}\epsilon_{abcd}
+E^a\wedge E^b\wedge E^c\wedge E^d.
+\]
 
 The canonical local classical gravity law is
 
 \[
 \boxed{
-S_G[\Theta,\omega,K_J,w;\kappa]
+S_G[\Theta,\omega,K_J,w,\Lambda,C_3;\kappa]
 =\frac1{4\kappa}\int_{M_4}
-\epsilon_{abcd}\,E^a\wedge E^b\wedge R^{cd}(\omega),
+\epsilon_{abcd}E^a\wedge E^b\wedge R^{cd}(\omega)
+-\frac1\kappa\int_{M_4}\Lambda(x)\left(\nu_E-dC_3\right),
 \qquad \kappa>0.}
 \]
 
-This is the finite local Poincare-contracted limit of the merged canonical
-fifth-channel graded curvature-square candidate after removal of the Euler
-topological density. Equivalently it is the `ell -> infinity` branch for which
+The action contains exactly one independent continuous coupling, `kappa`.
+`N0` is the locked global unit-setting normalization. `Lambda(x)` is a
+Lagrange-multiplier field rather than a coupling constant.
+
+The merged fifth-channel MacDowell--Mansouri construction remains the algebraic
+motivation for why Palatini and cosmological structures belong to the same
+extended Clifford curvature sector, but the earlier `ell -> infinity` choice
+and `Lambda_bare=0` are not part of this postulate.
+
+<!-- BILINGUAL-UNIT: gr-dynamical-postulate.lambda -->
+## Cosmological constant as integration data [STD]
+
+Variation of `C_3` and `Lambda` gives
 
 \[
-\boxed{\Lambda_{\rm bare}=0.}
+\boxed{d\Lambda=0,}
+\qquad
+\boxed{\nu_E=dC_3.}
 \]
 
-The action has exactly one continuous gravitational constant, `kappa`. The
-locked `N0` is a global unit-setting normalization and is not a second physical
-coupling.
+Therefore on every connected local patch
 
-No independent bare cosmological constant is permitted in this branch. A
-nonzero effective cosmological term must be derived from the `Theta`
-vacuum/quantum state, boundary data, or another reduction of the same eventual
-single UBT action; it is not an additional gravity parameter.
+\[
+\boxed{\Lambda(x)=\Lambda_0=\mathrm{constant}.}
+\]
+
+`Lambda_0` is a solution/integration constant, not a second parameter of the
+theory. Positive, zero and negative branches are all allowed.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.equations -->
 ## Local Euler--Lagrange consequence [L1]
 
-Let `E_a` denote the ordinary Palatini tetrad Euler three-form. Variation of
-`K_J,w` gives
+The tetrad Euler equation is
 
 \[
-0=\int E_a\wedge\delta E^a.
+\boxed{
+\epsilon_{abcd}E^b\wedge
+\left(R^{cd}-\frac{\Lambda}{3}E^c\wedge E^d\right)=0.}
 \]
 
-Surjectivity of the split-jet variation implies
+Surjectivity of the split-jet variation implies that variation of `K_J,w`
+imposes this complete tetrad equation, not an adjoint projection.
 
-\[
-\boxed{E_a=0.}
-\]
-
-Thus the complete tetrad Einstein equation is imposed, not an adjoint
-projection.
-
-The connection variation is the standard Palatini connection variation plus a
-chain-rule term proportional to `E_a`. On the jet equation that term vanishes.
-The remaining vacuum Cartan equation has the already verified invertible
-24-component torsion map, hence
+The connection variation is the ordinary Palatini connection variation plus a
+chain-rule term through the composite tetrad. On the tetrad equation that term
+vanishes. The remaining vacuum Cartan equation has the already verified
+invertible 24-component torsion map, hence
 
 \[
 \boxed{T^a=0,\qquad\omega=\mathring\omega(E).}
 \]
 
-The `Theta` variation is a differential consequence of `E_a=0`. Conversely,
-every local zero-bare-`Lambda` Palatini solution admits the explicit non-null
-split-jet lift. Therefore, modulo the algebraic jet stabilizer and standard
-boundary/topology data,
+The metric equation is therefore
+
+\[
+\boxed{G_{\mu\nu}+\Lambda_0g_{\mu\nu}=0.}
+\]
+
+The `Theta` variation is a differential consequence of the complete tetrad
+equation. Conversely every regular local Einstein solution with any constant
+`Lambda_0` has the existing non-null split-jet lift. On a contractible
+four-dimensional patch `nu_E` is locally exact, so a `C_3` satisfying
+`dC_3=nu_E` exists. Thus
 
 \[
 \boxed{
 \operatorname{Sol}_{\rm loc}(S_G)/\operatorname{Stab}_{\rm jet}
 \longleftrightarrow
-\operatorname{Sol}_{\rm loc}(\mathrm{GR},\Lambda_{\rm bare}=0).}
+\bigcup_{\Lambda_0\in\mathbb R}
+\operatorname{Sol}_{\rm loc}(\mathrm{GR},\Lambda_0).}
 \]
 
-Schwarzschild, Kerr and the linearized gravitational-wave sector are included
-through the ordinary local GR solution set wherever the split-jet patch is
-regular.
+This includes the local Schwarzschild, Kerr, de Sitter, anti-de Sitter and
+Schwarzschild--de Sitter/Kottler branches and their ordinary GR perturbations.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.source -->
-## Sources and the meaning of the single constant
+## Meaning of the single constant
 
 In pure vacuum the overall factor `1/kappa` cancels from the classical field
-equations. `kappa` becomes the gravitational response constant only relative
-to a source normalization.
+equations. `kappa` becomes the gravitational response constant relative to the
+source normalization of the eventual unique UBT matter/gauge reduction.
 
-UBT's single-action rule forbids adding a separately normalized fundamental
-matter action merely to define that ratio. When the gauge/matter reduction of
-the unique UBT action is finalized, its stress tensor must enter the same
-variational system and `kappa` is the sole allowed gravitational response
-constant. Deriving the microscopic Standard-Model/matter reduction is a
-non-gravitational completion task and is not replaced by this postulate.
+`Lambda_0` is not counted as a fundamental constant of the theory, just as a
+black-hole mass or angular momentum can label a solution without being a
+Lagrangian coupling. A stronger future cosmological theory may select or
+predict the observed value of `Lambda_0` from global, topological, vacuum or
+quantum state data. That numerical selection is a cosmology problem, not a gap
+in local Einstein-`Lambda` recovery.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.scope -->
 ## Scope of `CLOSED`
 
 Adoption of this postulate closes the **local classical gravity-sector GR
-recovery problem**. It does not assert all of the following stronger statements:
-
-- that the older kinetic/potential family forced this action without a
-  dynamical postulate;
-- that an observed effective dark-energy density has already been derived;
-- that the full gauge/matter/quantum UBT action has been finalized;
-- that null-patch and global topological continuation is complete;
-- that UV `psi` stability has been proved.
-
-Those are separate full-theory, cosmological or global-completion problems.
-They must not be relabeled as failures of the local Einstein gravity theorem.
+recovery problem including arbitrary constant cosmological constant**. It does
+not assert that the observed numerical value of dark energy has already been
+predicted, that the full gauge/matter/quantum UBT action is finalized, that
+global null-patch continuation is complete, or that UV `psi` stability is
+proved.
 
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.status -->
 ## Canonical status after adoption
 
 ```yaml
-gravity_dynamical_postulate: POINCARE_CONTRACTED_FIFTH_CHANNEL_SPLIT_JET_PALATINI
-continuous_gravity_constants: 1
+gravity_dynamical_postulate: ONE_COUPLING_UNIMODULAR_SPLIT_JET_PALATINI
+independent_continuous_action_couplings: 1
 constant: kappa
-bare_cosmological_constant: 0
+Lambda_role: INTEGRATION_CONSTANT
+Lambda_allowed_signs: POSITIVE_ZERO_NEGATIVE
 fundamental_physical_field: Theta
 independent_tetrad: false
-local_gr_recovery: CLOSED
+local_Einstein_Lambda_recovery: CLOSED
+numerical_Lambda_prediction: OPEN_COSMOLOGY
 full_single_ubt_action: NOT_FINALIZED
 ```
 
