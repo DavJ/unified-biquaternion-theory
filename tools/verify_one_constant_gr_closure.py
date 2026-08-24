@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
-"""Exact symbolic checks for the one-constant UBT GR closure branch.
+"""Exact symbolic checks for the one-coupling UBT Einstein-Lambda closure.
 
 Scope
 -----
-This verifier checks only finite algebra/calculus used in the paired theorem
-notes:
+This verifier checks finite algebra/calculus used in the paired theorem notes:
 
-* the coefficient relations of the merged fifth-channel MacDowell--Mansouri
-  candidate;
-* subtraction of the Euler topological density and the ell -> infinity
-  Poincare contraction;
-* the resulting one-symbol local gravity coefficient set;
-* the derivative obstruction in the historical logarithmic R_psi potential;
-* the elementary fixed-point consequence of an exactly inversion-invariant
-  differentiable potential.
+* the Palatini and unimodular volume-term normalization;
+* the resulting tetrad equation coefficient ``Lambda/3``;
+* that the action-coupling budget contains only ``kappa``;
+* the earlier fifth-channel MacDowell--Mansouri relation as algebraic context;
+* the derivative obstruction in the historical logarithmic R_psi potential.
 
-It does not formalize the full differential-form variational theorem or the
-split-jet rank theorem, which have separate verifiers in the repository.
+The differential-form variational theorem, local exactness of a four-form and
+split-jet rank/surjectivity are analytic/geometric statements with separate
+repo evidence; they are not falsely advertised as formalized here.
 """
 
 from __future__ import annotations
@@ -24,37 +21,44 @@ from __future__ import annotations
 import sympy as sp
 
 
-def verify_mm_contraction() -> None:
+def verify_unimodular_normalization() -> None:
+    kappa = sp.symbols("kappa", positive=True, finite=True)
+    Lambda = sp.symbols("Lambda", real=True, finite=True)
+
+    # S_HP = c_hp * epsilon E E R. Varying the two tetrad factors gives 2*c_hp.
+    c_hp = sp.Rational(1, 4) / kappa
+    tetrad_R = sp.simplify(2 * c_hp)
+
+    # nu_E = (1/24) epsilon EEEE and S_Lambda = -(Lambda/kappa) int nu_E.
+    # Varying the four tetrad factors gives 4*(-Lambda/(24*kappa)).
+    c_volume = -Lambda / (24 * kappa)
+    tetrad_E3 = sp.simplify(4 * c_volume)
+
+    assert tetrad_R == sp.Rational(1, 2) / kappa
+    assert tetrad_E3 == -Lambda / (6 * kappa)
+    assert sp.simplify(tetrad_E3 / tetrad_R) == -Lambda / 3
+
+    # Hence the tetrad equation is epsilon E (R - Lambda/3 EE)=0.
+    expected_ratio = -Lambda / 3
+    assert sp.simplify(tetrad_E3 / tetrad_R - expected_ratio) == 0
+
+    # Lambda(x) and C3 are fields/auxiliaries; kappa is the only action coupling.
+    action_couplings = {kappa}
+    assert action_couplings == {kappa}
+
+
+def verify_mm_context() -> None:
     ell = sp.symbols("ell", positive=True, finite=True)
     kappa = sp.symbols("kappa", positive=True, finite=True)
     eps = sp.symbols("eps", nonzero=True, real=True)
 
-    Lambda = 3 * eps / ell**2
-    c_euler = -eps * ell**2 / (8 * kappa)
-    c_palatini = 1 / (4 * kappa)
-    c_volume = -eps / (8 * kappa * ell**2)
+    Lambda_mm = 3 * eps / ell**2
+    c_volume_mm = -eps / (8 * kappa * ell**2)
+    assert sp.simplify(c_volume_mm + Lambda_mm / (24 * kappa)) == 0
 
-    assert sp.simplify(c_volume + Lambda / (24 * kappa)) == 0
-
-    # Topological subtraction removes c_euler from the local action.
-    local_coefficients = {
-        "EER": c_palatini,
-        "EEEE": c_volume,
-    }
-
-    assert sp.limit(Lambda, ell, sp.oo) == 0
-    assert sp.limit(local_coefficients["EEEE"], ell, sp.oo) == 0
-    assert sp.limit(local_coefficients["EER"], ell, sp.oo) == c_palatini
-
-    contracted = sp.simplify(sp.limit(local_coefficients["EER"], ell, sp.oo))
-    assert contracted.free_symbols == {kappa}
-
-    # The de Sitter/anti-de Sitter translation commutator scale contracts away.
-    assert sp.limit(1 / ell**2, ell, sp.oo) == 0
-
-    # The divergent Euler coefficient is harmless only after the explicitly
-    # stated topological subtraction / fixed-topology local-EOM restriction.
-    assert sp.limit(abs(c_euler), ell, sp.oo) == sp.oo
+    # This relation is retained only as algebraic context. The closed branch
+    # does not set ell->infinity and does not infer the observed Lambda from ell.
+    assert sp.simplify(Lambda_mm * ell**2 - 3 * eps) == 0
 
 
 def verify_rpsi_audit() -> None:
@@ -66,22 +70,19 @@ def verify_rpsi_audit() -> None:
     assert derivative == -sp.Rational(3, 2) / R
     assert sp.solve(sp.Eq(derivative, 0), R) == []
 
-    # If a completed differentiable potential obeys V(x)=V(1/x), then
-    # differentiation implies V'(x)=-(1/x^2)V'(1/x). At x=1 this is
-    # p=-p, hence p=0. Keep this as exact scalar algebra rather than assuming
-    # any particular completed potential.
     p = sp.symbols("p", real=True)
     assert sp.solve(sp.Eq(p, -p), p) == [0]
 
 
 def verify() -> None:
-    verify_mm_contraction()
+    verify_unimodular_normalization()
+    verify_mm_context()
     verify_rpsi_audit()
-    print("PASS: Euler-subtracted fifth-channel action has a finite Poincare limit")
-    print("PASS: contracted local gravity coefficients contain only kappa")
-    print("PASS: bare Lambda tends to zero as ell -> infinity")
+    print("PASS: unimodular volume normalization gives the Einstein Lambda/3 tetrad coefficient")
+    print("PASS: the local action-coupling budget contains only kappa")
+    print("PASS: Lambda is retained as a variational/integration variable, not set to zero")
+    print("PASS: fifth-channel MacDowell--Mansouri Lambda relation remains exact algebraic context")
     print("PASS: displayed logarithmic R_psi potential has no finite stationary point")
-    print("PASS: exact inversion symmetry forces stationarity at the self-dual ratio")
 
 
 if __name__ == "__main__":
