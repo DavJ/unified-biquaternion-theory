@@ -133,7 +133,7 @@ covariant derivative appears through the curvature commutator
 equation is therefore genuinely first order in `Theta`.
 
 This is the locally gauge-covariant analogue of the double-antisymmetric
-first-jet Hessian criterion. It proves that local gauging itself does **not**
+first-jet Hessian criterion. This establishes that local gauging itself does **not**
 destroy the first-order cancellation.
 
 <!-- BILINGUAL-UNIT: theta-covariant-multisymplectic.auxiliary -->
