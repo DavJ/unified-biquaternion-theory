@@ -9,5 +9,65 @@
 % UBT-AI-PROVENANCE-END
 
 \chapter{Formal proofs and lemmas}
-% Sem patří rigorózní tvrzení (A1--A3), Wardovy identity a redukce CT→QED.
-% Živé sekce lze znovu použít, pokud tím nevznikne závislost na archivu.
+
+This appendix collects three short arguments used repeatedly in the textbook.
+They are included here so that the main chapters can remain readable without
+turning standard algebra into an external assumption.
+
+\section{Central anticommutator on the Lorentz slice}
+Let
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+ \qquad
+ E_\mu^\sharp=i e_\mu{}^0\mathbf1-e_\mu{}^k\mathbf e_k.
+\]
+Using
+\[
+ \mathbf e_j\mathbf e_k=-\delta_{jk}\mathbf1
+ +\epsilon_{jk\ell}\mathbf e_\ell
+\]
+the antisymmetric cross-product terms cancel after symmetrisation. Hence
+\[
+ \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+ =\left(-e_\mu{}^0e_\nu{}^0+\sum_{k=1}^3e_\mu{}^ke_\nu{}^k\right)\mathbf1.
+\]
+The coefficient is the tetrad metric
+$g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}$. No trace or real-part
+projection is required.
+
+\section{Rank of the tetrad-to-metric map}
+For
+\[
+ g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}
+\]
+the differential is
+\[
+ \delta g_{\mu\nu}
+ =\eta_{ab}\left(\delta e_\mu{}^a e_\nu{}^b
+ +e_\mu{}^a\delta e_\nu{}^b\right).
+\]
+At a nondegenerate tetrad, every symmetric tensor $h_{\mu\nu}$ is obtained by
+\[
+ \delta e_\mu{}^a=\frac12h_{\mu\rho}e^{\rho a}.
+\]
+The image therefore has dimension ten. The kernel consists of the six
+infinitesimal Lorentz transformations
+$\delta e_\mu{}^a=\lambda^a{}_b e_\mu{}^b$ with
+$\lambda_{ab}=-\lambda_{ba}$.
+
+\section{Why variations are not derivatives}
+A spacetime derivative and a field-space variation act in different
+directions:
+\[
+ D_\mu\Theta=\partial_\mu\Theta+\rho_*(\Omega_\mu)\Theta,
+ \qquad
+ \Theta_\varepsilon=\Theta+\varepsilon\,\delta\Theta.
+\]
+When the connection depends on the field, the chain rule gives
+\[
+ \delta(D_\mu\Theta)
+ =D_\mu(\delta\Theta)+\rho_*(\delta\Omega_\mu)\Theta.
+\]
+Omitting the second term changes the composite Euler--Lagrange system. This is
+why a fixed-connection calculation cannot automatically be reused after a
+composite connection has been substituted.

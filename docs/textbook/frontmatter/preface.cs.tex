@@ -23,9 +23,9 @@ Učebnice rozlišuje tři vrstvy:
 \begin{enumerate}
   \item\textbf{klasické základy}: standardní matematika a fyzika s dostatečným
         odvozením, aby byl text co nejvíce soběstačný;
-  \item\textbf{UBT mosty}: kontrolované převody těchto standardních struktur
+  \item\textbf{propojení s UBT}: kontrolované převody těchto standardních struktur
         do UBT notace, omezených modelů nebo konkrétních hypotéz;
-  \item\textbf{UBT tvrzení a otevřené gapy}: výroky závislé na kanonickém poli
+  \item\textbf{tvrzení UBT a otevřené mezery}: výroky závislé na kanonickém poli
         UBT, jeho akci, dynamice nebo empirickém programu.
 \end{enumerate}
 
@@ -33,11 +33,11 @@ Klasická identita se nestává novým výsledkem jen proto, že ji UBT použív
 Stejně tak ale skutečnost, že jde o známou matematiku, není důvod ji z učebnice
 vyhodit: výzkumná hodnota může spočívat v tom, jak jsou známé struktury složeny
 dohromady a jakou novou otázku pro UBT jejich spojení přesně formuluje.
-Kanonické claim dokumenty proto zůstávají konzervativní, zatímco učebnice může
-být široká a didaktická, pokud jsou statusy tvrzení vždy zřetelné.
+Kanonické dokumenty tvrzení proto zůstávají konzervativní, zatímco učebnice může
+být široká a didaktická, pokud jsou stavy tvrzení vždy zřetelné.
 
 Živá učebnice nesmí přebírat aktivní teorii z \texttt{ARCHIVE/}. Aktuální
-status se nejprve čte z autoritativních registrů, zejména \texttt{STATUS.md},
+stav se nejprve čte ze směrodatných registrů, zejména \texttt{STATUS.md},
 \texttt{WHAT\_IS\_PROVED.md} a \texttt{CLAIMS.yaml}; teprve potom se používá
 aktivní matematika z \texttt{canonical/}. Standardní matematiku lze v učebnici
 odvodit přímo. Historické soubory slouží pouze při popisu historie myšlenky.
@@ -47,14 +47,15 @@ Primární studentská edice je česká. Anglická verze může být později ve
 paralelní edice se stejnou matematickou strukturou a stejnými statusy tvrzení;
 nové kapitoly se nemají psát jako náhodná směs češtiny a angličtiny.
 
-Každý živý zdrojový soubor zároveň používá strojově čitelnou AI-provenance
-politiku repozitáře. Tato učebnice je pracovní materiál Tier C, dokud lidský
-editor výslovně nezmění tier v autoritativní provenance mapě; AI agent nesmí
+Každý aktuální zdrojový soubor zároveň používá strojově čitelná pravidla
+repozitáře pro provenienci AI. Tato učebnice je pracovním materiálem úrovně C,
+dokud lidský editor výslovně nezmění úroveň ve směrodatné mapě provenience;
+agent AI nesmí
 provádět vlastní povýšení nebo atestaci.
 
-Odvození v paperech a teorémově důležité části učebnice se mají nezávisle
+Odvození v článcích a části učebnice důležité pro teorémy se mají nezávisle
 kontrolovat podle \texttt{docs/DERIVATION\_VERIFICATION\_POLICY.md}. Pro
 formalizovatelnou přesnou matematiku je preferovaný Lean; vedle něj se používají
-nezávislé CAS a numerické kontroly. Úspěšný výpočet v nástroji však ověřuje jen
+nezávislé systémy počítačové algebry (CAS) a numerické kontroly. Úspěšný výpočet v nástroji však ověřuje jen
 to, co bylo do nástroje skutečně zakódováno, a sám o sobě nemění fyzikální
-status UBT tvrzení.
+stav tvrzení UBT.

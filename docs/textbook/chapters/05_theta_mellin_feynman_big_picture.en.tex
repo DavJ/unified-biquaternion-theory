@@ -170,9 +170,9 @@ Equations~\eqref{eq:fourier-delta-spectrum},\eqref{eq:laplace-resolvent}, and
 \begin{equation}
  \boxed{
  \begin{array}{ccl}
-   \text{Fourier in }t   &\longrightarrow& \delta(\omega-\pi n^2),\\[2mm]
-   \text{Laplace in }\psi&\longrightarrow& (z+\pi n^2)^{-1},\\[2mm]
-   \text{Mellin in }\psi &\longrightarrow& \Gamma(s)\pi^{-s}n^{-2s}.
+   \mathcal F_t   &\longrightarrow& \delta(\omega-\pi n^2),\\[2mm]
+   \mathcal L_\psi&\longrightarrow& (z+\pi n^2)^{-1},\\[2mm]
+   \mathcal M_\psi&\longrightarrow& \Gamma(s)\pi^{-s}n^{-2s}.
  \end{array}}
  \label{eq:spectral-triangle}
 \end{equation}
@@ -349,11 +349,13 @@ action for the lifted path from $x'$ to $x+wL$:
 Therefore the same propagator admits two exact representations:
 \begin{equation}
  \boxed{
- \text{theta/momentum modes}
+ K_\Sigma
  \quad\Longleftrightarrow\quad
- \text{Feynman winding histories}}
+ K_{\mathbb Z}}
  \label{eq:mode-winding-duality}
 \end{equation}
+Here $K_\Sigma$ denotes the spectral mode sum and $K_{\mathbb Z}$ the sum over
+winding sectors,
 with Poisson/Jacobi transformation as the bridge.
 
 \paragraph{Important qualification.}
@@ -462,7 +464,7 @@ The weighted prime-power counting function
 is related by the classical explicit formula to the nontrivial zeros
 $\rho=\beta+i\gamma$ of $\zeta$.  Schematically,
 \begin{equation}
- \psi_C(x)=x-\sum_\rho\frac{x^\rho}{\rho}+\text{elementary terms}.
+ \psi_C(x)=x-\sum_\rho\frac{x^\rho}{\rho}+\cdots.
  \label{eq:explicit-formula-schematic}
 \end{equation}
 Writing $x=e^u$ turns each zero contribution into
@@ -526,17 +528,22 @@ The useful synthesis is therefore
 \begin{equation}
 \boxed{
 \begin{array}{ccccc}
- & \text{reduced theta kernel} & & &\\
+ & \mathcal K_\Theta & & &\\
  & \displaystyle\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2} & & &\\[2mm]
  \swarrow & \downarrow & \searrow & &\\[-1mm]
- \text{Fourier/Laplace} & \text{Mellin} & \text{Poisson/Jacobi} & &\\
- \delta\text{-lines/resolvent} & Z_\Theta(s;t) & \text{winding/path sum} & &\\
+ \mathcal F_t/\mathcal L_\psi & \mathcal M_\psi & \mathcal P & &\\
+ \mathcal D & Z_\Theta(s;t) & \mathcal W & &\\
  & \downarrow\ t=0 & \downarrow\ t\in\mathbb Q & &\\
- & \zeta(2s) & \text{Gauss/revival arithmetic} & &\\
+ & \zeta(2s) & \mathcal G_{\mathbb Q} & &\\
  & \downarrow & & &\\
- & \text{Euler product / prime powers / zeros} & & &
+ & \mathcal E_p & & &
 \end{array}}
 \end{equation}
+In the diagram, $\mathcal K_\Theta$ is the reduced theta kernel,
+$\mathcal P$ is the Poisson/Jacobi transform, $\mathcal D$ denotes the
+delta-line/resolvent branch, $\mathcal W$ the winding/path sum,
+$\mathcal G_{\mathbb Q}$ rational-time Gauss arithmetic, and $\mathcal E_p$
+the Euler-product, prime-power, and zero branch.
 The classical arrows are exact.  The research task is to determine which of them survive
 when the reduced kernel is replaced by a canonical UBT operator and whether either prime
 route explains the existing UBT $\alpha$ sectors.

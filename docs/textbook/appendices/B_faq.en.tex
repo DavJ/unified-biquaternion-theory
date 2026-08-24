@@ -9,4 +9,36 @@
 % UBT-AI-PROVENANCE-END
 
 \chapter{FAQ for reviewers and engineers}
-% Kurátorované otázky a odpovědi k typickým námitkám a reprodukci výsledků.
+
+\section{Is the metric obtained by projecting a biquaternion?}
+No. On the classical Lorentz slice the symmetrised product
+\[
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ =g_{\mu\nu}\mathbf1
+\]
+is already central. A trace, real-part prescription, preferred phase section
+or fibre average is not part of the canonical local definition.
+
+\section{Does one eight-real-component field have too few components for a metric?}
+The metric is constructed from four covariant first derivatives, not from the
+value of $\Theta$ alone. Their Lorentz-real components form a tetrad with
+sixteen entries. After the six local Lorentz directions are removed, the
+tetrad-to-metric differential has rank ten.
+
+\section{Is the connection an additional fundamental field?}
+Not in the locked classical architecture. A nondegenerate tetrad and specified
+torsion determine the metric-compatible connection. What remains open is the
+dynamical law selecting torsion and the precise composite or auxiliary
+realisation required by the final action.
+
+\section{Has Einstein dynamics been derived unconditionally?}
+No. Local kinematic representability and several conditional Palatini results
+are established, but microscopic selection and normalisation of the complete
+action remain open. The status must not be promoted from conditional closure
+without that derivation.
+
+\section{How can a calculation be reproduced?}
+Start from the cited active source, record its assumptions and claim tier, run
+the named verifier and its pytest wrapper, and distinguish algebraic checks
+from physical selection. A successful CAS or Lean check verifies only the
+statement that was encoded.
