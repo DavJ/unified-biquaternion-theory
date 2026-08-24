@@ -53,6 +53,60 @@ E^a\wedge E^b\wedge R^{cd}(\omega)
 Tříforma ve čtyřech rozměrech nemá lokální propagující stupeň volnosti.
 Neexistuje nezávislé tetrádové pole ani pevná pozaďová objemová forma.
 
+<!-- BILINGUAL-UNIT: unimodular-one-constant.minimality -->
+## Omezený teorém minimality / jednoznačnosti
+
+Výše uvedený Henneauxův--Teitelboimův člen není globálně jedinou možností mezi
+všemi myslitelnými vyššími derivacemi či nelineárními pomocnými teoriemi. Je ale
+jednoznačný v přesně vymezené minimální třídě.
+
+Předpokládejme, že pomocná část lokální čtyřrozměrné akce:
+
+1. je difeomorfismově invariantní čtyřforma sestavená pouze z `Lambda`, `C_3` a
+   tetrádové objemové formy `nu_E`;
+2. je invariantní vůči `C_3 -> C_3 + dB_2`, takže `C_3` vstupuje pouze přes
+   `dC_3`;
+3. neobsahuje pozaďovou objemovou formu, Hodgeovu hvězdu ani derivaci `Lambda`;
+4. je afinní v `Lambda` a `dC_3`;
+5. nezavádí druhou spojitou vazbu akce.
+
+Pak má nejobecnější pomocná čtyřforma v této třídě tvar
+
+\[
+\mathcal L_{\rm aux}
+=(a_0+a_1\Lambda)\nu_E+(b_0+b_1\Lambda)dC_3.
+\]
+
+Člen `b_0 dC_3` je hraniční člen. Člen `a_0 nu_E` je explicitní bare
+kosmologická vazba a pravidlo jediné vazby jej vylučuje. Netriviální
+multiplikátorové rovnice vyžadují
+
+\[
+a_1b_1\ne0.
+\]
+
+Definujme invertibilní lineární redefinice pomocných polí
+
+\[
+\widetilde\Lambda=-a_1\Lambda,
+\qquad
+\widetilde C_3=-\frac{b_1}{a_1}C_3.
+\]
+
+Potom modulo hraniční člen
+
+\[
+\boxed{
+\mathcal L_{\rm aux}
+=-\widetilde\Lambda\left(\nu_E-d\widetilde C_3\right).}
+\]
+
+Proto je **v této explicitně omezené afinní, background-free, first-order
+pomocné třídě** HT doplnění jednoznačné až na invertibilní lineární redefinice,
+konvenci znaménka/orientace a hraniční člen. Jde o omezený klasifikační teorém;
+netvrdí jednoznačnost vůči nelineárním funkcím `Lambda`, vyšším derivacím,
+dalším topologickým polím nebo jiným rozšířeným dynamickým principům.
+
 <!-- BILINGUAL-UNIT: unimodular-one-constant.lambda -->
 ## Přesný mechanismus kosmologické konstanty [STD + L1 composition]
 
@@ -159,6 +213,10 @@ odhadu automatickou supresi o 120 řádů, takže zde taková predikce není tvr
 **ONE-COUPLING LOCAL EINSTEIN-`Lambda` SOLUTION-SET RECOVERY: DERIVED FROM THE
 ADOPTED SPLIT-JET PALATINI POSTULATE PLUS THE STANDARD DIFFEOMORPHISM-INVARIANT
 UNIMODULAR COMPLETION.**
+
+**AFFINE BACKGROUND-FREE FIRST-ORDER AUXILIARY COMPLETION: UNIQUE UP TO
+INVERTIBLE LINEAR AUXILIARY REDEFINITIONS, SIGN/ORIENTATION AND A BOUNDARY TERM
+WITHIN THE DECLARED CLASS.**
 
 **`Lambda_0` AS AN INTEGRATION CONSTANT RATHER THAN A SECOND ACTION COUPLING:
 PROVED WITHIN THIS VARIATIONAL SYSTEM.**
