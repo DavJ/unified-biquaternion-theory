@@ -78,6 +78,46 @@ motivation for why Palatini and cosmological structures belong to the same
 extended Clifford curvature sector, but the earlier `ell -> infinity` choice
 and `Lambda_bare=0` are not part of this postulate.
 
+<!-- BILINGUAL-UNIT: gr-dynamical-postulate.selection -->
+## Selection rationale: minimal low-energy principle
+
+The postulate is not claimed to follow from kinematics alone. Its form is,
+however, substantially narrower than an arbitrary choice of field equations.
+Adopt the following gravity-sector low-energy requirements on the regular
+Lorentz-real branch:
+
+1. locality and diffeomorphism invariance;
+2. local Lorentz invariance of the tetrad description;
+3. metric equations of at most second differential order in the classical
+   low-energy sector;
+4. no additional light propagating geometric field beyond the composite metric
+   degrees of freedom;
+5. at most one independent continuous action coupling.
+
+The existing four-dimensional Lovelock theorem recorded in
+`canonical/gr_closure/gap_10d_low_energy_uniqueness.tex` then restricts every
+natural symmetric divergence-free metric equation in this class to
+
+\[
+\boxed{\mathcal E_{\mu\nu}=aG_{\mu\nu}+bg_{\mu\nu}.}
+\]
+
+Thus the metric endpoint is Einstein--`Lambda` up to normalization; it is not
+one arbitrary tensor equation among many. The Palatini term above is the
+minimal first-order tetrad/connection representative of that endpoint, while
+the HT sector realizes the cosmological term without a second action coupling.
+Within the separately declared affine, background-free, first-order auxiliary
+class, that HT completion is unique up to invertible linear auxiliary-field
+redefinitions, sign/orientation and a boundary term.
+
+This rationale does **not** prove that the deeper microscopic UBT uniquely
+forces locality, second order or the no-extra-light-field hypothesis. Those are
+part of the adopted classical dynamical principle. A future microscopic
+derivation may explain them, but the current claim is deliberately the weaker
+and defensible one: once these minimal low-energy principles are adopted, the
+Einstein--`Lambda` endpoint and the one-coupling auxiliary realization are
+strongly constrained.
+
 <!-- BILINGUAL-UNIT: gr-dynamical-postulate.lambda -->
 ## Cosmological constant as integration data [STD]
 
