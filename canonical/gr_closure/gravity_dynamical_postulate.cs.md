@@ -2,12 +2,12 @@
 <!--
 UBT-AI-PROVENANCE-BEGIN
 schema: ubt-ai-provenance/v1
-tier: C_working
+tier: B_machine_verified
 ai_assistance: disclosed
-human_review: risk-based
+human_review: machine-verification
 editorial_responsibility: Ing. David Jaroš
 policy: ../../AI_PROVENANCE.md
-notice: Working canonicalization proposal; merge constitutes adoption of the stated gravity-sector dynamical postulate.
+notice: Machine-verified against named sources or verifiers; individual attestation is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
@@ -112,9 +112,9 @@ platí
 
 \[
 \boxed{
-\{\text{lokální stacionární body }S_G\}
+\operatorname{Sol}_{\rm loc}(S_G)/\operatorname{Stab}_{\rm jet}
 \longleftrightarrow
-\{\text{lokální vakuová řešení GR s }\Lambda_{\rm bare}=0\}.}
+\operatorname{Sol}_{\rm loc}(\mathrm{GR},\Lambda_{\rm bare}=0).}
 \]
 
 Schwarzschild, Kerr a linearizovaný gravitačně-vlnový sektor jsou zahrnuty přes
