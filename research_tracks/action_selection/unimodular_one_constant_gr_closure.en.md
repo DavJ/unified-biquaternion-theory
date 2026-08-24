@@ -133,6 +133,20 @@ Variation of `Lambda` gives
 Thus `Lambda_0` labels solutions but is absent from the list of action
 couplings. This is the standard unimodular/Henneaux--Teitelboim mechanism.
 
+<!-- BILINGUAL-UNIT: unimodular-one-constant.auxiliary-dof -->
+## Auxiliary character and local degrees of freedom
+
+The pair `(Lambda,C_3)` does not introduce an additional local propagating
+physical field in this action. `C_3` occurs only through its exterior derivative
+and has the gauge redundancy `C_3 -> C_3 + dB_2`; its Euler--Lagrange equation is
+the first-order constraint `dLambda=0`, not a wave equation. Conversely,
+`Lambda` has no derivative term and its equation is the algebraic/differential
+volume constraint `nu_E=dC_3`. Hence, locally, the pair carries only constraint,
+integration and global/topological data. This statement is limited to the
+linear HT auxiliary sector written above; adding kinetic or higher-derivative
+terms would change the degree-of-freedom count and is outside the adopted
+postulate.
+
 <!-- BILINGUAL-UNIT: unimodular-one-constant.einstein -->
 ## Complete Einstein equation from split-jet variation
 
@@ -220,6 +234,9 @@ UNIMODULAR COMPLETION.**
 **AFFINE BACKGROUND-FREE FIRST-ORDER AUXILIARY COMPLETION: UNIQUE UP TO
 INVERTIBLE LINEAR AUXILIARY REDEFINITIONS, SIGN/ORIENTATION AND A BOUNDARY TERM
 WITHIN THE DECLARED CLASS.**
+
+**THE `(Lambda,C_3)` PAIR HAS NO LOCAL PROPAGATING MODE WITHIN THE ADOPTED LINEAR
+HT AUXILIARY SECTOR; IT CARRIES CONSTRAINT/INTEGRATION/GLOBAL DATA.**
 
 **`Lambda_0` AS AN INTEGRATION CONSTANT RATHER THAN A SECOND ACTION COUPLING:
 PROVED WITHIN THIS VARIATIONAL SYSTEM.**
