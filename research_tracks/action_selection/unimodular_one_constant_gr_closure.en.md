@@ -54,6 +54,61 @@ E^a\wedge E^b\wedge R^{cd}(\omega)
 three-form has no local propagating degree of freedom in four dimensions.
 There is no independent tetrad field and no fixed background volume form.
 
+<!-- BILINGUAL-UNIT: unimodular-one-constant.minimality -->
+## Restricted minimality / uniqueness theorem
+
+The Henneaux--Teitelboim term above is not globally unique among every
+conceivable higher-derivative or nonlinear auxiliary theory. It is, however,
+unique in a sharply declared minimal class.
+
+Assume that the auxiliary part of the local four-dimensional action:
+
+1. is a diffeomorphism-invariant four-form built only from `Lambda`, `C_3` and
+   the tetrad volume form `nu_E`;
+2. is invariant under `C_3 -> C_3 + dB_2`, so `C_3` enters only through `dC_3`;
+3. contains no background volume form, no Hodge star and no derivative of
+   `Lambda`;
+4. is affine in `Lambda` and `dC_3`;
+5. introduces no second continuous action coupling.
+
+Then the most general auxiliary four-form in this class is
+
+\[
+\mathcal L_{\rm aux}
+=(a_0+a_1\Lambda)\nu_E+(b_0+b_1\Lambda)dC_3.
+\]
+
+The term `b_0 dC_3` is a boundary term. The term `a_0 nu_E` is an explicit bare
+cosmological coupling and is excluded by the one-coupling rule. Nontrivial
+multiplier equations require
+
+\[
+a_1b_1\ne0.
+\]
+
+Define the invertible linear auxiliary-field redefinitions
+
+\[
+\widetilde\Lambda=-a_1\Lambda,
+\qquad
+\widetilde C_3=-\frac{b_1}{a_1}C_3.
+\]
+
+Then, modulo the boundary term,
+
+\[
+\boxed{
+\mathcal L_{\rm aux}
+=-\widetilde\Lambda\left(\nu_E-d\widetilde C_3\right).}
+\]
+
+Therefore, **within this explicitly restricted affine, background-free,
+first-order auxiliary class**, the HT completion is unique up to invertible
+linear redefinitions, orientation/sign convention and a boundary term. This is
+a restricted classification theorem; it does not claim uniqueness against
+nonlinear functions of `Lambda`, higher derivatives, extra topological fields
+or other enlarged dynamical principles.
+
 <!-- BILINGUAL-UNIT: unimodular-one-constant.lambda -->
 ## Exact cosmological-constant mechanism [STD + L1 composition]
 
@@ -161,6 +216,10 @@ claimed here.
 **ONE-COUPLING LOCAL EINSTEIN-`Lambda` SOLUTION-SET RECOVERY: DERIVED FROM THE
 ADOPTED SPLIT-JET PALATINI POSTULATE PLUS THE STANDARD DIFFEOMORPHISM-INVARIANT
 UNIMODULAR COMPLETION.**
+
+**AFFINE BACKGROUND-FREE FIRST-ORDER AUXILIARY COMPLETION: UNIQUE UP TO
+INVERTIBLE LINEAR AUXILIARY REDEFINITIONS, SIGN/ORIENTATION AND A BOUNDARY TERM
+WITHIN THE DECLARED CLASS.**
 
 **`Lambda_0` AS AN INTEGRATION CONSTANT RATHER THAN A SECOND ACTION COUPLING:
 PROVED WITHIN THIS VARIATIONAL SYSTEM.**
