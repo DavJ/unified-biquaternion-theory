@@ -35,8 +35,9 @@ G=\begin{pmatrix}
 \end{pmatrix}.
 \]
 
-The connected UBT field action is complex linear and preserves `H`. By complex
-polarization, it therefore preserves the full Hermitian form
+The connected constant field representation used in the invariant
+classification is complex linear and preserves `H`. By complex polarization,
+it therefore preserves the full Hermitian form
 
 \[
 \boxed{h(u,v)=u^\dagger Gv.}
@@ -67,8 +68,9 @@ Hence
 \]
 
 so `omega` is nondegenerate. It is antisymmetric because `h` is Hermitian, and
-it is invariant because `h` is invariant. Its coefficients are constant in
-the linear field coordinates, hence
+it is invariant under the same constant connected field representation because
+`h` is invariant. Its coefficients are constant in the linear field
+coordinates, hence
 
 \[
 \boxed{d\omega=0.}
@@ -76,7 +78,8 @@ the linear field coordinates, hence
 
 The current UBT field representation therefore carries a canonical invariant
 pseudo-Kaehler/symplectic structure without introducing a second physical
-field.
+field. This is a field-space statement; local gauge covariance of a spacetime
+action requires a separate covariantization theorem.
 
 <!-- BILINGUAL-UNIT: theta-multisymplectic.action -->
 ## A no-extra-field first-order variational family [L1]
@@ -89,18 +92,20 @@ Let
 
 and let `F` be any real scalar invariant of the field value, for example a
 function of the already classified invariants `H` and `D=|det X|^2`. For a
-four-dimensional spacetime map `Theta:M_4 -> R^8`, define
+four-dimensional spacetime map `Theta:M_4 -> R^8`, define the ordinary-pullback
+functional
 
 \[
 \boxed{S_F[\Theta]=\int_{M_4}\Theta^*(F\,\Omega_4).}
 \]
 
-This action:
+This functional:
 
-- uses only `Theta` and its first derivatives;
+- uses only `Theta` and its ordinary first derivatives;
 - is invariant under spacetime coordinate changes because it integrates a
   pulled-back four-form;
-- is invariant under the connected UBT internal action when `F` is invariant;
+- is invariant under the constant/global connected field action when `F` is
+  invariant;
 - contains no independent tetrad, metric or connection;
 - has a first-jet Hessian in the double-antisymmetric sector required by the
   exact first-order Hessian criterion.
@@ -122,6 +127,13 @@ Lagrangian. For nonconstant invariant `F`, the five-form
 `dF wedge Omega_4` is generically nonzero and the variational principle is not
 identically a boundary term.
 
+This ordinary-pullback construction is **not yet a locally gauge-covariant UBT
+action**. Under an `x`-dependent spin/gauge transformation, `dTheta` acquires a
+derivative of the transformation. Replacing it by `DTheta` is not a literal
+pullback of the target-space form, so the Cartan argument and first-order
+cancellation must be rederived for the covariantized functional. That is a
+separate open theorem.
+
 <!-- BILINGUAL-UNIT: theta-multisymplectic.witness -->
 ## Nontriviality witness
 
@@ -139,25 +151,27 @@ is injective on one-forms. Therefore
 \boxed{dH\wedge\omega^2\ne0}
 \]
 
-at that point. Thus `S_H` is an explicit invariant member of the family whose
-bulk first-order Euler--Lagrange form is not identically zero.
+at that point. Thus `S_H` is an explicit globally field-symmetry-invariant
+member of the ordinary-pullback family whose bulk first-order
+Euler--Lagrange form is not identically zero.
 
 <!-- BILINGUAL-UNIT: theta-multisymplectic.limit -->
 ## What this does and does not solve
 
-This closes an important existence question left by the generalized-Dirac
-action-order obstruction: **canonical UBT data do admit nontrivial,
-no-extra-field, invariant first-jet actions whose Euler--Lagrange equations are
-genuinely first order.** The obstruction from the ordinary symmetric quadratic
-kinetic term is therefore not a universal no-go against first-order UBT
-dynamics.
+This closes a restricted but important existence question left by the
+generalized-Dirac action-order obstruction: **the canonical UBT field
+representation admits nontrivial, no-extra-field, globally symmetry-invariant
+first-jet functionals whose Euler--Lagrange equations are genuinely first
+order.** The obstruction from the ordinary symmetric quadratic kinetic term is
+therefore not a universal algebraic no-go against first-order field dynamics.
 
-However, the family `S_F` is not yet the desired unique fundamental action.
-The invariant scalar `F` is not selected; its Euler--Lagrange equation has not
-yet been proved equivalent to the canonical generalized-Dirac equation; rank
-ten transversality, curved GR recovery, the physical `psi` sector, and the
-quantum Hessian remain to be tested. In particular, existence of this family
-must not be reported as closure of `UBT-FUND-GR-ACTION`.
+However, a locally gauge-covariant completion has not been proved. The family
+`S_F` is not yet the desired unique fundamental action: `F` is not selected;
+local spin/gauge covariance after replacing ordinary derivatives by covariant
+ones is open; equivalence to the canonical generalized-Dirac equation is open;
+and rank-ten transversality, curved GR recovery, the physical `psi` sector and
+the quantum Hessian remain to be tested. Existence of this family must not be
+reported as closure of `UBT-FUND-GR-ACTION`.
 
 <!-- BILINGUAL-UNIT: theta-multisymplectic.verification -->
 ## Verification
@@ -167,14 +181,16 @@ symplectic matrix is antisymmetric and nondegenerate and constructs a nonzero
 component of `dH wedge omega wedge omega`. The paired pytest keeps these finite
 algebraic claims in CI.
 
-The polarization and Cartan-variation arguments are analytic. Lean
-formalization of the finite matrix/symplectic claims is `LEAN-PENDING`.
+The polarization and ordinary-pullback Cartan-variation arguments are
+analytic. Lean formalization of the finite matrix/symplectic claims is
+`LEAN-PENDING`. Local gauge covariantization is explicitly not included in the
+proved claim.
 
 <!-- BILINGUAL-UNIT: theta-multisymplectic.status -->
 ## Status impact
 
-**EXISTENCE OF AN INVARIANT NO-EXTRA-FIELD FIRST-ORDER VARIATIONAL FAMILY:
-PROVED [L1].**
+**EXISTENCE OF AN INVARIANT FIELD-SPACE SYMPLECTIC FORM AND A NONTRIVIAL
+GLOBAL-SYMMETRY FIRST-ORDER PULLBACK FAMILY: PROVED [L1].**
 
-**SELECTION OF A UNIQUE MEMBER AND EQUIVALENCE TO GENERALIZED-DIRAC/GR
-DYNAMICS: OPEN.**
+**LOCAL GAUGE-COVARIANT COMPLETION, UNIQUE SELECTION AND EQUIVALENCE TO
+GENERALIZED-DIRAC/GR DYNAMICS: OPEN.**
