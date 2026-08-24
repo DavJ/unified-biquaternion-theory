@@ -45,7 +45,7 @@ Einsteinovy–Hilbertovy akce pišme ve vakuu
 \delta S_{\rm EH}
  =c\int d^4x\sqrt{-g}\,\mathcal E^{\mu\nu}\delta g_{\mu\nu},
 \qquad
-\mathcal E^{\mu\nu}=G^{\mu\nu}+\Lambda g^{\mu\nu}.
+\mathcal E^{\mu\nu}=G^{\mu\nu}+\Lambda g^{\mu\nu}
 \]
 
 Dosazení kompozitní variace a integrace per partes dávají
