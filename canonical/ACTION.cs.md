@@ -94,8 +94,26 @@ zaznamenány v
 `research_tracks/action_selection/theta_potential_invariants.cs.md`. Kladná
 hermitovská veličina `Tr(X^dagger X)` je vyloučena explicitním protipříkladem
 s neunitárním boostem. Tato klasifikace určuje invariantní bázi, nikoli reálné
-koeficienty. Další působení na vnitřní nosič, diskrétní involuce, omezenost zdola
-a stabilita mohou rodinu dále zúžit.
+koeficienty.
+
+Také problém omezenosti zdola této úplné kvartické rodiny je nyní vyřešen
+exaktně. Potenciál je zdola omezený právě v těchto oblastech koeficientů:
+`lambda1 > 0` s `lambda2 >= 0` a libovolným `m^2`; nebo `lambda1 = 0`,
+`lambda2 > 0`, `m^2 <= 0`; případně v konstantním případě
+`lambda1 = lambda2 = m^2 = 0`. Ještě důležitější je, že každá volba
+koeficientů má nekompaktní paprsek
+
+\[
+ X_t=t\begin{pmatrix}1&0\\0&0\end{pmatrix},
+ \qquad H(X_t)=|\det X_t|^2=0,
+\]
+
+na němž `V(X_t)=V0`. Pouhé ladění potenciálu tedy nemůže učinit potenciál na
+obecném prostoru polí koercivním ani vybrat izolované vakuum. Přesný důkaz,
+svědecké paprsky a CI kontrola jsou zaznamenány v
+`research_tracks/action_selection/theta_potential_stability.cs.md`. Další
+selektor proto musí pocházet z derivační struktury, gauge kvocientu nebo
+omezení téže jediné akce, nikoli z další volby těchto koeficientů potenciálu.
 
 <!-- BILINGUAL-UNIT: single-action.falsification -->
 ## Předem stanovené falzifikační kritérium
