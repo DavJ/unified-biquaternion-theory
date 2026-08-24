@@ -16,9 +16,9 @@ UBT-AI-PROVENANCE-END
 <!-- BILINGUAL-UNIT: split-jet-palatii.question -->
 ## Question
 
-The existing split-jet theorem proves that every local Lorentz tetrad can be
+The existing split-jet theorem establishes that every local Lorentz tetrad can be
 represented by one `Theta` plus algebraic jet variables, but its pure multiplier
-implementation cannot select the tetrad. The separate Palatini theorem proves
+implementation cannot select the tetrad. The separate Palatini theorem establishes
 that an independently varied tetrad and Lorentz connection give the standard
 Einstein--Cartan equations, but that formulation does not satisfy the strict
 single-fundamental-field architecture by itself.
@@ -161,7 +161,7 @@ through the composite tetrad. Therefore
 
 The second term vanishes once the jet equations have imposed
 `mathcal E_a=0`. The remaining equation is exactly the standard Palatini
-connection equation. In spinless vacuum the already proved invertibility of
+connection equation. In spinless vacuum the already established invertibility of
 the Cartan map gives
 
 \[
