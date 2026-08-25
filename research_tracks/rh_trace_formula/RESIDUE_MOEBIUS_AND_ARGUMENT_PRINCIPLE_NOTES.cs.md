@@ -228,8 +228,42 @@ Kritická přímka RH \(\Re s=1/2\) se proto zobrazuje na \(\Re w=1/4\), nikoli 
 
 Je-li řada přes mocniny prvočísel zapsána bez faktoru \(2\), čárka označuje derivaci podle argumentu zeta \(s=2w\), nikoli derivaci podle \(w\).
 
-<a id="d2-admissible-bridge"></a>
-### D.2 Co by představovalo necirkulární most UBT
+<a id="d2-why-ubt-rh"></a>
+### D.2 Proč se RH týká UBT
+
+UBT se setkává s RH z přesného strukturálního důvodu, nikoli proto, že by bikvaterniony nebo komplexní čas automaticky implikovaly tvrzení o nulách zeta. Kanonická UBT vychází z \(\Theta(q,\tau)\) s \(\tau=t+i\psi\). Současný redukovaný most izoluje kvadratický sektor tlumený v \(\psi\), jehož tepelné jádro je theta řadou. Jeho Mellinova transformace je přesně
+
+\[
+\Theta(q,\tau)
+\rightsquigarrow S(0,\psi)
+\xrightarrow{\mathcal M_\psi}
+\Gamma(w)\pi^{-w}\zeta(2w).
+\]
+
+Tatáž funkce zeta má Eulerův součin a logaritmickou derivaci s koeficienty \(\Lambda(n)\). Její nulové body potom řídí oscilující korekce v explicitních vzorcích pro počítání prvočísel. Nulový bod
+
+\[
+\rho=\beta+i\gamma
+\]
+
+přispívá členy s následujícím tvarem měřítka a frekvence:
+
+\[
+x^\rho=x^\beta e^{i\gamma\log x}.
+\]
+
+RH říká, že každý netriviální příspěvek má tentýž exponent amplitudy druhé odmocniny \(\beta=1/2\); mění se pouze jeho logaritmická frekvence \(\gamma\). Nula mimo přímku by vytvářela jinou mocninnou amplitudu a díky symetrii funkcionální rovnice také partnera v \(1-\beta\). RH je proto ostrou hranicí rušení/stability pro multiplikativní aritmetický sektor, k němuž tento theta–Mellinův most dospívá.
+
+Možný význam pro UBT má proto tři části:
+
+1. vývoj v komplexním čase poskytuje tepelnou/theta stranu mostu;
+2. Mellinova transformace poskytuje aritmetickou zeta stranu a mocniny prvočísel;
+3. budoucí samosdružený operátor, determinant, identita pozitivity nebo zákon Möbiova rušení odvozený z UBT by mohl změnit polohu nul zeta na vnitřní podmínku spektrální konzistence.
+
+V současnosti existují pouze první dvě položky v matematice redukovaného mostu. Kanonická UBT dosud neodvodila potřebný theta propagátor ani aritmetický operátor ze své akce. UBT proto pro svou kanonickou platnost nyní nezávisí na RH a RH z UBT neplyne. Spojení určuje konkrétní výzkumné rozhraní a chybějící větu, která by z něj učinila fyzikální, nikoli vložený most.
+
+<a id="d3-admissible-bridge"></a>
+### D.3 Co by představovalo necirkulární most UBT
 
 Uvedené identity nabízejí dva přesné, navzájem neekvivalentní cíle:
 
@@ -238,8 +272,8 @@ Uvedené identity nabízejí dva přesné, navzájem neekvivalentní cíle:
 
 Definovat formální algebru \(D_n\), dosadit \(\mu\) nebo \(\Lambda\) ručně nebo použít Mellinovu inverzi na známou identitu zeta není odvozením z UBT. Koeficienty musí vzniknout z kanonické akce, dokázaného theta/revival mechanismu nebo odvozené stopové/orbitální struktury bez použití nul zeta jako vstupu.
 
-<a id="d3-current-verdict"></a>
-### D.3 Současný verdikt a otevřená mezera
+<a id="d4-current-verdict"></a>
+### D.4 Současný verdikt a otevřená mezera
 
 Tvrzení o reziduích, obtáčení, Möbiově a Mertensově funkci a logaritmické derivaci jsou zavedenou klasickou matematikou. Zpřesňují cíl, ale neuzavírají současné mezery UBT `GAP-THETA-PROP` a `GAP-THETA-PRIME-1`.
 
