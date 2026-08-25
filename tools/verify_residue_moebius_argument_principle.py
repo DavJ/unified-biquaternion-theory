@@ -126,7 +126,8 @@ def main() -> None:
     check_winding(args.samples)
     print(
         "PASS: Dirichlet inverse, mu*log=Lambda, finite Abel summation, "
-        "and zeta pole/zero winding diagnostics"
+        f"and zeta pole/zero winding diagnostics (cutoff={args.cutoff}, "
+        f"samples={args.samples})"
     )
 
 
