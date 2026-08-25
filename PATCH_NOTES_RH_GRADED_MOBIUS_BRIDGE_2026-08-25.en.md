@@ -29,6 +29,8 @@ It connects this identity to the existing bosonic prime-Fock track and to the ra
 
 The patch also adds the first joint theta-Mellin decision experiment. The exact factorization establishes that the scalar Mellin channels of \(\vartheta_2,\vartheta_3,\vartheta_4\) have only one zeta degree of freedom and therefore impose no independent zero condition inside the open critical strip.
 
+The characteristic extension modulo \(5\) then raises the coefficient-channel rank to four Dirichlet \(L\)-channels. The UBT-derived coupling between them remains open.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
