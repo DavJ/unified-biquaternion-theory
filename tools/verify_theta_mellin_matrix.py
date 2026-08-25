@@ -10,6 +10,7 @@ import math
 
 
 S_MATRIX = ((0, 0, 1), (0, 1, 0), (1, 0, 0))
+UNITS_MOD_5 = (1, 2, 4, 3)
 
 
 def mat_vec(matrix, vector):
@@ -91,13 +92,94 @@ def check_mellin_series(tolerance: float = 2e-6) -> None:
                 raise AssertionError(("Mellin channel", channel, s, lhs, rhs))
 
 
+def character_mod_5(k: int, n: int) -> complex:
+    residue = n % 5
+    if residue == 0:
+        return 0j
+    exponent = UNITS_MOD_5.index(residue)
+    return complex(0, 1) ** (k * exponent)
+
+
+def character_matrix_mod_5() -> tuple[tuple[complex, ...], ...]:
+    return tuple(
+        tuple(character_mod_5(k, residue) for residue in UNITS_MOD_5)
+        for k in range(4)
+    )
+
+
+def conjugate_transpose(matrix):
+    return tuple(tuple(matrix[j][i].conjugate() for j in range(4)) for i in range(4))
+
+
+def mat_mul_4(left, right):
+    return tuple(
+        tuple(sum(left[i][k] * right[k][j] for k in range(4)) for j in range(4))
+        for i in range(4)
+    )
+
+
+def matrix_rank(matrix, tolerance: float = 1e-12) -> int:
+    work = [list(row) for row in matrix]
+    rank = 0
+    for column in range(len(work[0])):
+        pivot = next(
+            (row for row in range(rank, len(work)) if abs(work[row][column]) > tolerance),
+            None,
+        )
+        if pivot is None:
+            continue
+        work[rank], work[pivot] = work[pivot], work[rank]
+        pivot_value = work[rank][column]
+        work[rank] = [entry / pivot_value for entry in work[rank]]
+        for row in range(len(work)):
+            if row != rank:
+                factor = work[row][column]
+                work[row] = [
+                    entry - factor * pivot_entry
+                    for entry, pivot_entry in zip(work[row], work[rank])
+                ]
+        rank += 1
+    return rank
+
+
+def check_character_channels_mod_5() -> None:
+    matrix = character_matrix_mod_5()
+    gram = mat_mul_4(matrix, conjugate_transpose(matrix))
+    expected = tuple(
+        tuple((4 + 0j) if i == j else 0j for j in range(4))
+        for i in range(4)
+    )
+    if gram != expected:
+        raise AssertionError(("character orthogonality", gram))
+    if matrix_rank(matrix) != 4:
+        raise AssertionError("mod-5 character matrix does not have rank four")
+    for k in range(4):
+        if character_mod_5(k, -1) != complex((-1) ** k, 0):
+            raise AssertionError(("character parity", k, character_mod_5(k, -1)))
+    for n in range(1, 100):
+        principal = character_mod_5(0, n)
+        expected_principal = 0j if n % 5 == 0 else 1 + 0j
+        if principal != expected_principal:
+            raise AssertionError(("principal character", n))
+
+
+def check_principal_l_factor(s: float = 2.5, cutoff: int = 400_000) -> None:
+    lhs = math.fsum(n ** (-s) for n in range(1, cutoff + 1) if n % 5)
+    rhs = (1 - 5 ** (-s)) * zeta_real(s, cutoff)
+    if not math.isclose(lhs, rhs, rel_tol=2e-6, abs_tol=2e-6):
+        raise AssertionError(("principal L factor", lhs, rhs))
+
+
 def main() -> None:
     check_s_matrix()
     check_boundary_zero_lines()
     check_open_strip_nonvanishing()
     check_mellin_series()
+    check_character_channels_mod_5()
+    check_principal_l_factor()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
-          "open-strip nonvanishing, and three independent Mellin-series checks")
+          "open-strip nonvanishing, three Mellin-series checks, and rank-four "
+          "mod-5 character channels")
 
 
 if __name__ == "__main__":
