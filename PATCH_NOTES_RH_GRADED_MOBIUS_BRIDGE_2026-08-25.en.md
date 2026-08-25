@@ -27,7 +27,7 @@ This patch adds paired English/Czech research notes deriving the classical grade
 
 It connects this identity to the existing bosonic prime-Fock track and to the rational theta-revival programme.
 
-The patch also adds the first joint theta-Mellin decision experiment. It proves that the scalar Mellin channels of \(\vartheta_2,\vartheta_3,\vartheta_4\) have only one zeta degree of freedom and therefore impose no independent zero condition inside the open critical strip.
+The patch also adds the first joint theta-Mellin decision experiment. The exact factorization establishes that the scalar Mellin channels of \(\vartheta_2,\vartheta_3,\vartheta_4\) have only one zeta degree of freedom and therefore impose no independent zero condition inside the open critical strip.
 
 <a id="patch-claim-control"></a>
 ## Claim control
