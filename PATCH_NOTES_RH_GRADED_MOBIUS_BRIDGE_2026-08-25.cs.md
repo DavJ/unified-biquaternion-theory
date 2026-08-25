@@ -29,6 +29,8 @@ Propojuje tuto identitu s existující bosonickou prvočíselnou Fockovou větv�
 
 Patch také přidává první společný rozhodovací experiment theta–Mellin. Přesná faktorizace ukazuje, že skalární Mellinovy kanály \(\vartheta_2,\vartheta_3,\vartheta_4\) mají pouze jeden stupeň volnosti zeta, a proto uvnitř otevřeného kritického pásu neukládají nulám nezávislou podmínku.
 
+Rozšíření charakteristikami modulo \(5\) poté zvyšuje hodnost koeficientových kanálů na čtyři Dirichletovy \(L\)-kanály. Jejich vazba odvozená z UBT zůstává otevřená.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 
