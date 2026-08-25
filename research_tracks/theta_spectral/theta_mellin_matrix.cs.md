@@ -153,7 +153,7 @@ S=
 Vlastní kanály jsou
 
 \[
-\vartheta_3,qquad \vartheta_2+\vartheta_4,qquad \vartheta_2-\vartheta_4,
+\vartheta_3,\qquad \vartheta_2+\vartheta_4,\qquad \vartheta_2-\vartheta_4,
 \]
 
 s vlastními čísly \(+1,+1,-1\). Modulární rozklad vysvětluje reflexní symetrii, avšak hodnost jedna skalárních Mellinových dat neumožňuje umístit všechny nuly na osu symetrie.
