@@ -228,8 +228,42 @@ The RH critical line \(\Re s=1/2\) therefore maps to \(\Re w=1/4\), not \(\Re w=
 
 If the prime-power series is written without the factor \(2\), the prime denotes differentiation with respect to the zeta argument \(s=2w\), not differentiation with respect to \(w\).
 
-<a id="d2-admissible-bridge"></a>
-### D.2 What would constitute a noncircular UBT bridge
+<a id="d2-why-ubt-rh"></a>
+### D.2 Why RH is relevant to UBT
+
+UBT meets RH for a precise structural reason, not because biquaternions or complex time automatically imply a statement about zeta zeros. Canonical UBT starts from \(\Theta(q,\tau)\) with \(\tau=t+i\psi\). The current reduced bridge isolates a quadratic \(\psi\)-damped sector, whose heat kernel is a theta series. Its Mellin transform is exactly
+
+\[
+\Theta(q,\tau)
+\rightsquigarrow S(0,\psi)
+\xrightarrow{\mathcal M_\psi}
+\Gamma(w)\pi^{-w}\zeta(2w).
+\]
+
+The same zeta function has an Euler product and a logarithmic derivative with \(\Lambda(n)\) coefficients. Its zeros then govern the oscillatory corrections in the explicit formulas for prime counting. A zero
+
+\[
+\rho=\beta+i\gamma
+\]
+
+contributes terms with the scale/frequency form
+
+\[
+x^\rho=x^\beta e^{i\gamma\log x}.
+\]
+
+RH states that every nontrivial contribution has the same square-root amplitude exponent \(\beta=1/2\); only its logarithmic frequency \(\gamma\) varies. An off-line zero would produce a different power-law amplitude and, by functional-equation symmetry, a partner at \(1-\beta\). RH is therefore the sharp cancellation/stability boundary for the multiplicative arithmetic sector reached by this theta–Mellin bridge.
+
+The possible UBT significance is consequently threefold:
+
+1. complex-time evolution supplies the heat/theta side of the bridge;
+2. Mellin transformation supplies the arithmetic zeta and prime-power side;
+3. a future UBT-derived self-adjoint operator, determinant, positivity identity, or Möbius cancellation law could turn the location of zeta zeros into an internal spectral-consistency condition.
+
+At present only the first two items exist in the reduced bridge mathematics. Canonical UBT has not yet derived the required theta propagator or arithmetic operator from its action. UBT therefore does not currently depend on RH for its canonical validity, and RH does not follow from UBT. The connection identifies a concrete research interface and the missing theorem that would make it physical rather than inserted.
+
+<a id="d3-admissible-bridge"></a>
+### D.3 What would constitute a noncircular UBT bridge
 
 The identities above suggest two precise, non-equivalent targets:
 
@@ -238,8 +272,8 @@ The identities above suggest two precise, non-equivalent targets:
 
 Defining the formal \(D_n\) algebra, inserting \(\mu\) or \(\Lambda\) by hand, or applying Mellin inversion to a known zeta identity is not a UBT derivation. The coefficients must arise from the canonical action, a proved theta/revival mechanism, or a derived trace/orbit structure without using zeta zeros as input.
 
-<a id="d3-current-verdict"></a>
-### D.3 Current verdict and open gap
+<a id="d4-current-verdict"></a>
+### D.4 Current verdict and open gap
 
 The residue, winding, Möbius, Mertens, and logarithmic-derivative statements are established classical mathematics. They sharpen the target but do not close the current UBT gaps `GAP-THETA-PROP` and `GAP-THETA-PRIME-1`.
 
