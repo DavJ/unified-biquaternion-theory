@@ -27,6 +27,8 @@ This patch adds paired English/Czech research notes deriving the classical grade
 
 It connects this identity to the existing bosonic prime-Fock track and to the rational theta-revival programme.
 
+The patch also adds the first joint theta-Mellin decision experiment. It proves that the scalar Mellin channels of \(\vartheta_2,\vartheta_3,\vartheta_4\) have only one zeta degree of freedom and therefore impose no independent zero condition inside the open critical strip.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
@@ -37,6 +39,7 @@ The finite and \(\Re s>1\) identities are standard mathematics. The patch does n
 
 - Exact subset, product-expansion, factorization, and Dirichlet-convolution checks are in tools/verify_graded_mobius_bridge.py.
 - Regression coverage is in tests/test_graded_mobius_bridge.py.
+- The theta-Mellin no-go result is independently checked by tools/verify_theta_mellin_matrix.py and tests/test_theta_mellin_matrix.py.
 - Lean status is LEAN-PENDING; no formal verification is claimed.
 - Bilingual structure and displayed equations must match before merge.
 
@@ -44,4 +47,3 @@ The finite and \(\Re s>1\) identities are standard mathematics. The patch does n
 ## Provenance maintenance
 
 The source inventory and its declared SHA-256 entry are synchronized to include the previously merged residue–Möbius pair and the four new governed Markdown sources in this patch.
-
