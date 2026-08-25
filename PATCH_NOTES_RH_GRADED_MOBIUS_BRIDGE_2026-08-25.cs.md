@@ -27,6 +27,8 @@ Tento patch přidává spárované anglické/české výzkumné poznámky odvozu
 
 Propojuje tuto identitu s existující bosonickou prvočíselnou Fockovou větví a s programem racionálních theta revivalů.
 
+Patch také přidává první společný rozhodovací experiment theta–Mellin. Dokazuje, že skalární Mellinovy kanály \(\vartheta_2,\vartheta_3,\vartheta_4\) mají pouze jeden stupeň volnosti zeta, a proto uvnitř otevřeného kritického pásu neukládají nulám nezávislou podmínku.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 
@@ -37,6 +39,7 @@ Konečné identity a identity v \(\Re s>1\) jsou standardní matematikou. Patch 
 
 - Exaktní kontroly podmnožin, rozvoje součinu, faktorizace a Dirichletovy konvoluce jsou v tools/verify_graded_mobius_bridge.py.
 - Regresní pokrytí je v tests/test_graded_mobius_bridge.py.
+- Theta–Mellinův no-go výsledek nezávisle kontrolují tools/verify_theta_mellin_matrix.py a tests/test_theta_mellin_matrix.py.
 - Status Lean je LEAN-PENDING; formální ověření se netvrdí.
 - Dvojjazyčná struktura a zobrazené rovnice se musí před sloučením shodovat.
 
@@ -44,4 +47,3 @@ Konečné identity a identity v \(\Re s>1\) jsou standardní matematikou. Patch 
 ## Údržba provenience
 
 Inventář zdrojů a jeho deklarovaný záznam SHA-256 jsou synchronizovány tak, aby zahrnovaly dříve sloučenou dvojici rezidua–Möbius a čtyři nové spravované zdroje Markdown v tomto patchi.
-
