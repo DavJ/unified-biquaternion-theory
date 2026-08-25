@@ -1,80 +1,122 @@
-schema: ubt-gr-recovery-status/v1
-recorded: 2026-08-23
-scope: four-dimensional local infrared general-relativity recovery
-overall_status: CLOSED_CONDITIONALLY
+schema: ubt-gr-recovery-status/v3
+recorded: 2026-08-24
+scope: four-dimensional local classical gravity-sector Einstein-Lambda recovery on regular non-null split-jet patches
+overall_status: CLOSED
+activation: This status becomes canonical when the paired gravity_dynamical_postulate EN/CZ documents are merged.
+independent_continuous_action_couplings: 1
+gravity_constant: kappa
+Lambda_role: INTEGRATION_CONSTANT
+Lambda_allowed_signs: [POSITIVE, ZERO, NEGATIVE]
+fundamental_physical_field: Theta
+independent_tetrad: false
 primary_sources:
-  - canonical/gr_closure/gap_10_gr_effective_completion.tex
+  - canonical/gr_closure/gravity_dynamical_postulate.en.md
+  - canonical/gr_closure/gravity_dynamical_postulate.cs.md
+  - research_tracks/action_selection/unimodular_one_constant_gr_closure.en.md
+  - research_tracks/action_selection/unimodular_one_constant_gr_closure.cs.md
+  - research_tracks/action_selection/single_theta_macdowell_mansouri_candidate.en.md
+  - research_tracks/action_selection/single_theta_macdowell_mansouri_candidate.cs.md
   - canonical/gr_closure/gap_10t_split_jet_right_inverse.tex
   - canonical/gr_closure/gap_10t_split_jet_auxiliary_completion.tex
-  - canonical/gr_closure/gap_10d_induced_gravity_endgame.tex
+  - canonical/gr_closure/gap_10t_palatini_torsion_dynamics.tex
   - canonical/gr_closure/gr_recovery_completion.en.tex
   - canonical/gr_closure/gr_recovery_completion.cs.tex
-  - canonical/gr_closure/gr_unconditional_closure_audit.en.tex
-  - canonical/gr_closure/gr_unconditional_closure_audit.cs.tex
-status_upgrade_audit:
-  requested_target: CLOSED
-  decision: RETAIN_CLOSED_CONDITIONALLY
-  reason: Current kinematic axioms admit an arbitrary Einstein-Hilbert coefficient, including zero; the direct quadratic composite-Theta first-jet scalar collapses to a volume term and supplies no selector.
-  theorem_critical_verification:
-    exact_checker: tools/verify_gr_unconditional_closure.py
-    lean_status: CHECKED_IMPLICATIONS_FROM_EXPLICIT_PREMISES_ONLY
-    lean_version: 4.33.1
-    mathlib_version: 4.33.1
-    lean_artifacts:
-      - formal/lean/UBT/GR/CompositeKinetic.lean
-      - formal/lean/UBT/GR/CurvatureUnderdetermination.lean
-    limitation: The formal proofs establish only the contraction and a logical underdetermination implication from explicit premises. In particular, compatibility of the zero-coefficient model with UBT kinematics is an input hypothesis, not a Lean result. They do not derive the microscopic selector, composite Hessian, constrained measure, or psi stability.
-assumptions:
-  - The infrared effective action contains a finite positive renormalized Einstein-Hilbert coefficient and the stated matter sector.
-  - The split-jet construction is used only on regular non-null local patches and its auxiliary multiplier is eliminated on shell.
-  - The physical spacetime connection in the recovered GR branch is Levi-Civita.
-  - Higher-derivative corrections are negligible at the infrared order being claimed.
+postulate:
+  id: ONE_COUPLING_UNIMODULAR_SPLIT_JET_PALATINI
+  status: CANONICAL_ON_MERGE
+  action: S_G=(1/(4*kappa))*int epsilon_abcd E^a wedge E^b wedge R^cd(omega) -(1/kappa)*int Lambda*(nu_E-dC3)
+  parameter_rule: kappa is the sole independent continuous action coupling; N0 is unit-setting only; Lambda is an on-shell integration constant rather than a Lagrangian coupling
+  cosmological_equation: dLambda=0
+  volume_constraint: nu_E=dC3
+  restricted_auxiliary_uniqueness: Within the affine background-free first-order class built only from Lambda, C3 and nu_E, with C3 gauge invariance, no dLambda and no second continuous coupling, the HT term is unique up to invertible linear auxiliary redefinitions, sign/orientation and a boundary term.
+closure_chain:
+  - The split-jet composite tetrad has no independent tetrad field and its algebraic variation map is surjective onto all tetrad directions on every regular non-null patch.
+  - Variation of C3 gives dLambda=0, so Lambda=Lambda0 is constant on each connected local patch.
+  - Variation of Lambda gives the covariant volume constraint nu_E=dC3 without introducing a fixed background volume form.
+  - In the declared minimal affine background-free first-order auxiliary class, the most general nontrivial multiplier four-form reduces to the HT form by invertible linear auxiliary redefinitions after excluding an explicit bare cosmological coupling and a boundary term.
+  - Surjective split-jet variation imposes the complete Palatini tetrad equation epsilon_abcd E^b wedge (R^cd-(Lambda/3)E^c wedge E^d)=0.
+  - On that tetrad equation, the chain-rule contribution in the physical connection variation vanishes and the remaining Cartan equation has an invertible torsion map.
+  - In spinless vacuum T=0 and omega is the Levi-Civita spin connection.
+  - The resulting metric equation is G_munu+Lambda0*g_munu=0.
+  - Every regular local Einstein solution with any constant Lambda0 has an explicit split-jet lift; on a contractible four-dimensional patch its volume four-form is locally exact and admits C3 with dC3=nu_E.
 recovery_gaps:
+  GAP-10K:
+    status: CLOSED
+    reason: Nondegenerate tetrad-to-metric rank is ten with six Lorentz gauge directions.
+  GAP-10Omega-KIN:
+    status: CLOSED
+    reason: Specified tetrad and torsion uniquely determine the metric-compatible frame connection.
+  GAP-10Omega-GR:
+    status: CLOSED
+    reason: Vacuum Cartan dynamics gives zero torsion and the unique Levi-Civita connection.
+  GAP-10T-PALATINI:
+    status: CLOSED
+    reason: The adopted gravity law contains the Palatini connection variation and the 24-component Cartan map is pointwise invertible.
+  GAP-10T-JET-KIN:
+    status: CLOSED_LOCALLY
+    reason: Every smooth local GR tetrad has the explicit non-null split-jet right inverse.
+  GAP-10T-JET-AUX:
+    status: CLOSED
+    reason: The jet variables are algebraic/nonpropagating and the variation map to the tetrad is rank four.
   GAP-10T-JET-DYN:
-    status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
-    reason: The split-jet variables are algebraic and nonpropagating; the Einstein-Hilbert term supplies the non-surjective metric selector in the effective branch.
+    status: CLOSED_FOR_LOCAL_GRAVITY
+    reason: In the adopted action the split-jet variables occur inside the gravitational functional; their surjective variation enforces the entire Einstein-Lambda tetrad equation.
   GAP-10T-DYN:
-    status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
-    reason: The physical connection is Levi-Civita and auxiliary jet variables decouple on shell in the effective action.
+    status: CLOSED_FOR_LOCAL_VACUUM_GRAVITY
+    reason: The physical connection equation reduces to the Cartan equation after the tetrad equation and selects Levi-Civita in spinless vacuum.
+  GAP-10L-CONN:
+    status: CLOSED
+    reason: The adopted connection is Lorentz-valued and preserves the Lorentz metric/slice.
   GAP-10L-DYN:
-    status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
-    reason: The effective tetrad/metric action is local-Lorentz covariant and uses the already proved Lorentz-compatible connection sector.
+    status: CLOSED_WITHIN_THE_CLASSICAL_GR_SECTOR
+    reason: The gravity postulate is locally Lorentz covariant on the declared Lorentz-real classical sector; UV evolution away from that sector is a stronger full-theory question.
   GAP-10I-CURVED:
-    status: CLOSED_LOCALLY_FOR_GR_RECOVERY
-    reason: Every smooth local GR tetrad admits the split-jet right inverse while the physical curvature remains Levi-Civita.
+    status: CLOSED_LOCALLY_FOR_GRAVITY
+    reason: Every regular local Einstein-Lambda tetrad has a single-Theta split-jet representative while physical curvature remains Levi-Civita on shell.
+  GAP-10D-PALATINI:
+    status: CLOSED
+    reason: The adopted one-coupling action gives the Hilbert-Palatini tetrad and Cartan equations with Lambda generated as integration data.
+  GAP-10D-UNIQUENESS:
+    status: CLOSED_WITHIN_DECLARED_MINIMAL_AUXILIARY_CLASS
+    reason: In the affine background-free first-order class built only from Lambda, C3 and nu_E, with C3 gauge invariance, no dLambda and no second continuous coupling, every nontrivial auxiliary four-form is equivalent to the HT completion up to invertible linear auxiliary redefinitions, sign/orientation and a boundary term. Uniqueness against nonlinear, higher-derivative or enlarged field classes is not claimed.
   GAP-10D:
-    status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
-    reason: GR recovery requires a finite renormalized Newton coefficient, not a first-principles numerical prediction of that coefficient; the two-derivative effective action is Einstein-Lambda under the stated spectral/Hessian assumptions.
+    status: CLOSED_AS_ONE_COUPLING_GRAVITY
+    reason: Newton response is represented by the sole allowed continuous action coupling kappa; Lambda0 is integration/state data rather than a second coupling.
   GAP-10psi:
-    status: NOT_A_GR_RECOVERY_BLOCKER
-    reason: The recovered four-dimensional GR branch is the psi-stable/zero-mode infrared sector; derivation of its UV stability is a stronger fundamental-completion problem.
+    status: NOT_A_LOCAL_GRAVITY_BLOCKER
+    reason: The local classical theorem is a declared Lorentz-real GR sector. UV psi stability belongs to full-theory completion.
   GAP-U2Theta:
-    status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
-    reason: Every local Schwarzschild tetrad including the lapse is an Einstein vacuum solution and therefore lifts, by the split-jet theorem with vanishing on-shell multiplier, to the effective UBT GR branch.
+    status: CLOSED_LOCALLY
+    reason: Schwarzschild, de Sitter, Schwarzschild-de Sitter and every other regular local Einstein-Lambda solution lift through the split-jet solution-set equivalence; the invalid legacy direct ansatz remains superseded.
   GAP-B-MASTER:
-    status: CLOSED_CONDITIONALLY_FOR_GR_RECOVERY
-    reason: Linearization of the recovered Einstein branch about Schwarzschild gives the standard linearized Einstein system and the already documented Regge-Wheeler/Zerilli reductions.
-open_fundamental_nonblocking_questions:
-  UBT-FUND-GR-ACTION:
+    status: CLOSED_FOR_CLASSICAL_GR_PERTURBATIONS
+    reason: Linearization of the adopted Einstein-Lambda branch gives the standard local linearized Einstein system on the chosen GR background and the corresponding classical perturbation reductions.
+nonblocking_full_theory_questions:
+  UBT-FULL-ACTION:
     status: OPEN
-    scope: Derive the complete effective metric selector from a finalized microscopic Theta-only action rather than adopt/induce it conditionally.
-  UBT-UV-G-PREDICTION:
+    scope: Finalize the unique action including gauge, matter and quantum reductions without separately normalized fundamental sector actions.
+  UBT-SOURCE-REDUCTION:
     status: OPEN
-    scope: Derive the composite gauge-fixed Hessian, physical mode count, curvature coupling, cutoff identification, and constrained measure needed to predict Newton's constant rather than recover GR with a renormalized G.
-  UBT-FUND-PDE:
-    status: OPEN
-    scope: Prove well-posedness and symmetry propagation for the finalized microscopic Theta equations.
+    scope: Derive the microscopic source/matter stress tensor from the same unique UBT action; kappa must remain the sole gravitational response coupling.
+  UBT-LAMBDA-NUMERICAL-SELECTION:
+    status: OPEN_COSMOLOGY
+    scope: Derive or select the observed tiny positive value of the integration constant Lambda0 from global, topological, vacuum or quantum state data. The first-pass UBT zeta vacuum-energy estimate does not supply the required 120-order suppression.
   UBT-FUND-GLOBAL:
     status: OPEN
-    scope: Establish global Theta/auxiliary patching across null patches, caustics, horizons, and nontrivial topology.
+    scope: Establish a regular atlas through X^2=0 patches, horizons/caustics and nontrivial global topology.
   UBT-UV-PSI-STABILITY:
     status: OPEN
-    scope: Derive the physical psi-sector stability and exclude unstable UV modes from the microscopic dynamics.
-  UBT-FUND-PERTURBATION:
+    scope: Prove stability and physical selection of the psi sector in the full microscopic theory.
+  UBT-RPSI-ABSOLUTE-SCALE:
     status: OPEN
-    scope: Derive the same infrared perturbation operator directly from the original microscopic master equation rather than from the recovered Einstein effective action.
+    scope: The historical logarithmic one-loop potential has no finite stationary point; modular self-duality can fix a ratio but not the absolute length scale as currently written.
 forbidden_wording:
-  - GR is derived unconditionally from microscopic UBT
-  - Newton constant is predicted from UBT without spectral and measure assumptions
+  - the older kinematic axioms alone uniquely forced the gravitational action
+  - Newton constant is predicted numerically with zero input constants
+  - the observed numerical cosmological constant has already been predicted
+  - Lambda is fixed to zero by the closed GR branch
+  - the HT completion is uniquely forced among all conceivable auxiliary or higher-derivative theories
   - the legacy Schwarzschild ansatz is a valid canonical single-Theta solution
-  - all fundamental UBT completion problems are solved
+  - the full Standard Model and quantum UBT action are already closed
+allowed_summary:
+  - After adoption of the one-coupling unimodular split-jet Palatini dynamical postulate, local classical single-Theta Einstein-Lambda recovery is CLOSED on regular non-null patches with kappa as the sole independent continuous action coupling and Lambda0 as an integration constant; the HT auxiliary completion is unique only within the explicitly declared minimal affine background-free first-order class.
