@@ -27,7 +27,7 @@ Tento patch přidává spárované anglické/české výzkumné poznámky odvozu
 
 Propojuje tuto identitu s existující bosonickou prvočíselnou Fockovou větví a s programem racionálních theta revivalů.
 
-Patch také přidává první společný rozhodovací experiment theta–Mellin. Dokazuje, že skalární Mellinovy kanály \(\vartheta_2,\vartheta_3,\vartheta_4\) mají pouze jeden stupeň volnosti zeta, a proto uvnitř otevřeného kritického pásu neukládají nulám nezávislou podmínku.
+Patch také přidává první společný rozhodovací experiment theta–Mellin. Přesná faktorizace ukazuje, že skalární Mellinovy kanály \(\vartheta_2,\vartheta_3,\vartheta_4\) mají pouze jeden stupeň volnosti zeta, a proto uvnitř otevřeného kritického pásu neukládají nulám nezávislou podmínku.
 
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
