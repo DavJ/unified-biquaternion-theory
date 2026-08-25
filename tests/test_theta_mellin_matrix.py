@@ -37,3 +37,11 @@ def test_multipliers_nonzero_in_sampled_open_strip() -> None:
 
 def test_three_mellin_series() -> None:
     TOOL.check_mellin_series()
+
+
+def test_rank_four_character_channels_mod_5() -> None:
+    TOOL.check_character_channels_mod_5()
+
+
+def test_principal_character_l_factor() -> None:
+    TOOL.check_principal_l_factor()
