@@ -14,7 +14,7 @@ UBT-AI-PROVENANCE-END
 # Společná Mellinova analýza Jacobiho theta sektorů
 
 **Datum:** 2026-08-25  
-**Status:** klasické Mellinovy identity a tříkanálový no-go výsledek jsou zavedeny; rozšířené jádro odvozené z UBT zůstává otevřené.
+**Status:** klasické Mellinovy identity, tříkanálový no-go výsledek a rozšíření hodnosti čtyři s charakteristikami modulo \(5\) jsou zavedeny; vazba odvozená z UBT zůstává otevřená.
 
 <a id="tmm-question"></a>
 ## 1. Otázka
@@ -184,4 +184,63 @@ Artefakt `tools/verify_theta_mellin_matrix.py` kontroluje přímky nul násobite
 | pozitivita nebo samoadjungovanost vynucující RH | **[OPEN]** |
 | formalizace v Lean | **LEAN-PENDING** |
 
-Následující experiment má přidat theta charakteristiky a spočítat hodnost výsledné rodiny po vytknutí známých dokončených \(L\)-funkcí. Zvýšení hodnosti se matematicky očekává; otázkou UBT je, zda kanonická dynamika vybere netriviální kombinaci s vlastností pozitivity.
+<a id="tmm-characteristics"></a>
+## 8. Rozšíření charakteristikami modulo \(5\)
+
+Nechť \(U_5=(\mathbb Z/5\mathbb Z)^\times\). Protože \(2\) generuje \(U_5\), zapišme každou jednotku jako \(2^j\bmod5\) a definujme
+
+\[
+\chi_k(2^j)=e^{2\pi i k j/4},\qquad k=0,1,2,3.
+\]
+
+Tabulkou charakterů je čtyřbodová diskrétní Fourierova matice
+
+\[
+C_{kj}=\chi_k(2^j),
+\qquad
+CC^\dagger=4I,
+\qquad
+\operatorname{rank}C=4.
+\]
+
+Parita je
+
+\[
+\chi_k(-1)=(-1)^k.
+\]
+
+Položme \(a_k=0\) pro sudé \(k\) a \(a_k=1\) pro liché \(k\) a definujme theta jádra charakterů
+
+\[
+\Theta_k(t)=
+\sum_{n\in\mathbb Z}
+\chi_k(n)n^{a_k}e^{-\pi n^2t/5}.
+\]
+
+Pro \(\Re s>1\) dává integrace po členech
+
+\[
+\frac12\int_0^\infty
+t^{(s+a_k)/2-1}\Theta_k(t)\,dt
+=
+\left(\frac5\pi\right)^{(s+a_k)/2}
+\Gamma\!\left(\frac{s+a_k}{2}\right)L(s,\chi_k).
+\]
+
+Rozšíření charakteristikami má tedy čtyři nezávislé koeficientové kanály. Hlavní kanál splňuje
+
+\[
+L(s,\chi_0)=(1-5^{-s})\zeta(s),
+\]
+
+zatímco \(\chi_1,\chi_2,\chi_3\) poskytují tři nehlavní Dirichletovy \(L\)-funkce.
+
+**Výsledek TMM-2.** Racionální charakteristiky zvyšují konečnou hodnost kanálů charakterů z jedné na čtyři. Jde o skutečně bohatší aritmetickou informaci, avšak nulám \(\zeta\) stále neukládá novou podmínku, dokud UBT neodvodí vazbu, determinant, formu pozitivity nebo společný spektrální operátor propojující čtyři dokončené \(L\)-kanály.
+
+Následující experiment proto musí odvodit, nikoli zvolit, matici \(G_{\mathrm{UBT}}(s)\) působící na tyto kanály a otestovat, zda
+
+\[
+\mathbf\Lambda(s)^\dagger G_{\mathrm{UBT}}(s)\mathbf\Lambda(s)
+\]
+
+má kanonickou pozitivní nebo samoadjungovanou spektrální reprezentaci.
