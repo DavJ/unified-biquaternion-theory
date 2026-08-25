@@ -153,7 +153,7 @@ S=
 The eigenchannels are
 
 \[
-\vartheta_3,qquad \vartheta_2+\vartheta_4,qquad \vartheta_2-\vartheta_4,
+\vartheta_3,\qquad \vartheta_2+\vartheta_4,\qquad \vartheta_2-\vartheta_4,
 \]
 
 with eigenvalues \(+1,+1,-1\). This modular decomposition explains reflection symmetry, but rank one of the scalar Mellin data prevents it from locating all zeros on the symmetry axis.
