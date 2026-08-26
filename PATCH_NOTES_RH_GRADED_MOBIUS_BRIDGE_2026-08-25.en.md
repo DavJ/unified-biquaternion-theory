@@ -31,6 +31,8 @@ The patch also adds the first joint theta-Mellin decision experiment. The exact 
 
 The characteristic extension modulo \(5\) then raises the coefficient-channel rank to four Dirichlet \(L\)-channels. The UBT-derived coupling between them remains open.
 
+Phase and conjugation symmetry classify the admissible Hermitian channel metrics as \(\operatorname{diag}(g_0,g_1,g_2,g_1)\). An additional, not-yet-derived cyclic channel symmetry reduces this family to \(cI\), whose positivity alone still does not constrain the principal zeta zeros.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
