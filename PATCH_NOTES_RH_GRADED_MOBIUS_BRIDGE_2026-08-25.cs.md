@@ -33,6 +33,8 @@ Rozšíření charakteristikami modulo \(5\) poté zvyšuje hodnost koeficientov
 
 Fázová a konjugační symetrie klasifikují přípustné hermitovské metriky kanálů jako \(\operatorname{diag}(g_0,g_1,g_2,g_1)\). Dodatečná, dosud neodvozená cyklická symetrie kanálů redukuje tuto rodinu na \(cI\), jehož samotná pozitivita stále neomezuje nuly hlavního kanálu zeta.
 
+Funkcionální rovnice primitivních charakterů modulo \(5\) zaměňují sdružené liché charaktery a ponechávají kvadratický charakter pevný, ale zachovávají stejné nestejné váhy kanálů. Hlavní charakter je imprimitivní a při konduktoru \(5\) nemá konstantní kořenové číslo, takže tyto funkcionální rovnice neposkytují směšování s kanálem zeta.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 
