@@ -170,6 +170,123 @@ def check_principal_l_factor(s: float = 2.5, cutoff: int = 400_000) -> None:
         raise AssertionError(("principal L factor", lhs, rhs))
 
 
+def phase_matrix_mod_5():
+    return tuple(
+        tuple((complex(0, 1) ** i) if i == j else 0j for j in range(4))
+        for i in range(4)
+    )
+
+
+def conjugation_permutation():
+    return (
+        (1 + 0j, 0j, 0j, 0j),
+        (0j, 0j, 0j, 1 + 0j),
+        (0j, 0j, 1 + 0j, 0j),
+        (0j, 1 + 0j, 0j, 0j),
+    )
+
+
+def cyclic_shift():
+    return (
+        (0j, 0j, 0j, 1 + 0j),
+        (1 + 0j, 0j, 0j, 0j),
+        (0j, 1 + 0j, 0j, 0j),
+        (0j, 0j, 1 + 0j, 0j),
+    )
+
+
+def diagonal_metric(g0: float, g1: float, g2: float):
+    values = (g0, g1, g2, g1)
+    return tuple(
+        tuple(complex(values[i], 0) if i == j else 0j for j in range(4))
+        for i in range(4)
+    )
+
+
+def conjugate_matrix(matrix):
+    return tuple(tuple(entry.conjugate() for entry in row) for row in matrix)
+
+
+def matrices_close(left, right, tolerance: float = 1e-12) -> bool:
+    return all(
+        abs(left[i][j] - right[i][j]) <= tolerance
+        for i in range(4)
+        for j in range(4)
+    )
+
+
+def matrix_unit(row: int, column: int):
+    return [
+        [1.0 if (i, j) == (row, column) else 0.0 for j in range(4)]
+        for i in range(4)
+    ]
+
+
+def check_metric_classification() -> None:
+    phase = phase_matrix_mod_5()
+    conjugation = conjugation_permutation()
+    shift = cyclic_shift()
+
+    # The four phase eigenvalues are distinct.  Checking all sixteen matrix
+    # units proves that D^dagger G D = G retains exactly the diagonal modes.
+    surviving_modes = set()
+    for row in range(4):
+        for column in range(4):
+            unit = matrix_unit(row, column)
+            transformed = mat_mul_4(
+                mat_mul_4(conjugate_transpose(phase), unit),
+                phase,
+            )
+            if matrices_close(transformed, unit):
+                surviving_modes.add((row, column))
+    if surviving_modes != {(0, 0), (1, 1), (2, 2), (3, 3)}:
+        raise AssertionError(
+            f"unexpected phase-invariant matrix modes: {surviving_modes}"
+        )
+
+    # On diagonal Hermitian matrices the antiunitary permutation fixes 0 and
+    # 2 and exchanges 1 with 3, leaving precisely three real parameters.
+    diagonal_orbits = []
+    unseen = {0, 1, 2, 3}
+    permutation = {0: 0, 1: 3, 2: 2, 3: 1}
+    while unseen:
+        index = min(unseen)
+        orbit = frozenset({index, permutation[index]})
+        diagonal_orbits.append(orbit)
+        unseen -= orbit
+    if set(diagonal_orbits) != {
+        frozenset({0}),
+        frozenset({2}),
+        frozenset({1, 3}),
+    }:
+        raise AssertionError(f"unexpected conjugation orbits: {diagonal_orbits}")
+
+    metric = diagonal_metric(2.0, 3.0, 5.0)
+    phase_invariant = mat_mul_4(
+        mat_mul_4(conjugate_transpose(phase), metric),
+        phase,
+    )
+    if not matrices_close(phase_invariant, metric):
+        raise AssertionError("phase invariance failed")
+    conjugation_compatible = mat_mul_4(
+        mat_mul_4(conjugate_transpose(conjugation), metric),
+        conjugation,
+    )
+    if not matrices_close(conjugation_compatible, conjugate_matrix(metric)):
+        raise AssertionError("conjugation compatibility failed")
+    if matrices_close(
+        mat_mul_4(mat_mul_4(conjugate_transpose(shift), metric), shift),
+        metric,
+    ):
+        raise AssertionError("unequal weights unexpectedly have cyclic symmetry")
+    scalar_metric = diagonal_metric(7.0, 7.0, 7.0)
+    if not matrices_close(
+        mat_mul_4(mat_mul_4(conjugate_transpose(shift), scalar_metric), shift),
+        scalar_metric,
+    ):
+        raise AssertionError("scalar metric lacks cyclic symmetry")
+
+
 def main() -> None:
     check_s_matrix()
     check_boundary_zero_lines()
@@ -177,9 +294,10 @@ def main() -> None:
     check_mellin_series()
     check_character_channels_mod_5()
     check_principal_l_factor()
+    check_metric_classification()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
-          "mod-5 character channels")
+          "mod-5 character channels with symmetry-admissible metrics")
 
 
 if __name__ == "__main__":
