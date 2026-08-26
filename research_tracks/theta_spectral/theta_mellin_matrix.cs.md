@@ -330,3 +330,106 @@ Toto omezení odpovídá auditu akce v repozitáři: reálné bikvaternionové p
 | získat samoadjungovaný determinant síly RH | **[OPEN]** |
 
 Ukotvení v repozitáři: `canonical/ACTION.en.md:50-98`, `canonical/symmetry/discrete_symmetries.tex:311-317` a `canonical/symmetry/discrete_symmetries.tex:449-454`.
+
+<a id="tmm-functional-equations"></a>
+## 10. Gaussovy součty a no-go výsledek funkcionálních rovnic
+
+Pro tři nehlavní charaktery \(\chi_k\), \(k=1,2,3\), položme \(a_k=k\bmod2\) a
+
+\[
+\tau_k=\sum_{r=1}^{4}\chi_k(r)e^{2\pi i r/5},
+\qquad
+\varepsilon_k=\frac{\tau_k}{i^{a_k}\sqrt5}.
+\]
+
+Všechny tři charaktery jsou primitivní. Jejich dokončené funkce
+
+\[
+\Lambda_k(s)=
+\left(\frac5\pi\right)^{(s+a_k)/2}
+\Gamma\!\left(\frac{s+a_k}{2}\right)L(s,\chi_k)
+\]
+
+splňují
+
+\[
+\Lambda_k(s)=\varepsilon_k\Lambda_{4-k}(1-s).
+\]
+
+Přímý výpočet Gaussových součtů dává
+
+\[
+|\tau_k|=\sqrt5,
+\qquad
+\varepsilon_2=1,
+\qquad
+\varepsilon_3=\overline{\varepsilon_1},
+\qquad
+\varepsilon_1\varepsilon_3=1.
+\]
+
+Na \(\mathbf\Lambda_{\mathrm{prim}}=(\Lambda_1,\Lambda_2,\Lambda_3)^T\) má tedy funkcionální rovnice tvar
+
+\[
+\mathbf\Lambda_{\mathrm{prim}}(s)
+=R\mathbf\Lambda_{\mathrm{prim}}(1-s),
+\qquad
+R=
+\begin{pmatrix}
+0&0&\varepsilon_1\\
+0&1&0\\
+\varepsilon_3&0&0
+\end{pmatrix},
+\qquad
+R^\dagger R=R^2=I.
+\]
+
+Omezení metriky TMM-3 na tyto kanály je
+
+\[
+G_{\mathrm{prim}}=\operatorname{diag}(g_1,g_2,g_1).
+\]
+
+Pro všechna reálná \(g_1,g_2\), nikoli pouze pro stejná, platí
+
+\[
+R^\dagger G_{\mathrm{prim}}R=G_{\mathrm{prim}}.
+\]
+
+Funkcionální rovnice proto nepřidává žádný vztah mezi vahou lichých charakterů \(g_1\) a vahou kvadratického charakteru \(g_2\).
+
+Hlavní charakter je odlišný. Je indukován z triviálního charakteru konduktoru jedna a
+
+\[
+L(s,\chi_0)=(1-5^{-s})\zeta(s).
+\]
+
+Je-li \(\Lambda_\zeta(s)=\pi^{-s/2}\Gamma(s/2)\zeta(s)\), jeho normalizace s konduktorem pět je
+
+\[
+\Lambda_0^{(5)}(s)
+=\left(5^{s/2}-5^{-s/2}\right)\Lambda_\zeta(s).
+\]
+
+Protože \(\Lambda_\zeta(s)=\Lambda_\zeta(1-s)\), dostáváme nekonstantní násobitel
+
+\[
+\Lambda_0^{(5)}(s)
+=\frac{5^{s/2}-5^{-s/2}}
+{5^{(1-s)/2}-5^{-(1-s)/2}}
+\Lambda_0^{(5)}(1-s).
+\]
+
+Čtyři kanály tudíž netvoří konstantní unitární \(4\times4\) reprezentaci funkcionální rovnice: tři primitivní kanály tvoří uzavřený blok, zatímco hlavní kanál zeta zůstává oddělený.
+
+**Věta TMM-4.** Přesné Gaussovy součty modulo 5 a Dirichletovy funkcionální rovnice neredukují tříparametrickou rodinu metrik z TMM-3 a nesměšují hlavní kanál zeta s primitivními kanály. Neukládají proto žádnou další podmínku netriviálním nulám \(\zeta\).
+
+Jde o druhý no-go výsledek, nikoli o selhání výpočtu. Jakákoli silnější vazba musí pocházet z rozšířené aditivní reprezentace theta tříd, operátoru odvozeného z UBT nebo jiné identity, která není obsažena v oddělených Dirichletových funkcionálních rovnicích.
+
+| Podmínka | Status |
+|---|---|
+| primitivní Gaussovy součty a kořenová čísla | **[PROVED]** |
+| unitární involuce na primitivním bloku | **[PROVED]** |
+| hlavní kanál má konstantní kořenové číslo při konduktoru pět | **[DISPROVED]** |
+| funkcionální rovnice vynucují \(g_1=g_2\) | **[DISPROVED]** |
+| vazba s hlavním kanálem odvozená z UBT | **[OPEN]** |
