@@ -244,3 +244,89 @@ The next experiment must therefore derive, rather than choose, a matrix \(G_{\ma
 \]
 
 has a canonical positivity or self-adjoint spectral representation.
+
+<a id="tmm-ubt-metric"></a>
+## 9. Symmetry-admissible coupling metrics
+
+Write the four completed character channels as
+
+\[
+\mathbf\Lambda=(\Lambda_0,\Lambda_1,\Lambda_2,\Lambda_3)^T.
+\]
+
+Multiplication by the generator of \(U_5\) acts in the character basis through
+
+\[
+D=\operatorname{diag}(1,i,-1,-i).
+\]
+
+Complex conjugation exchanges \(\chi_1\leftrightarrow\chi_3\) and fixes \(\chi_0,\chi_2\). Let
+
+\[
+P=
+\begin{pmatrix}
+1&0&0&0\\
+0&0&0&1\\
+0&0&1&0\\
+0&1&0&0
+\end{pmatrix}.
+\]
+
+For a Hermitian coupling matrix \(G\), impose character-phase invariance and antiunitary conjugation compatibility,
+
+\[
+D^\dagger G D=G,
+\qquad
+P^\dagger G P=\overline G.
+\]
+
+**Theorem TMM-3.** These conditions are equivalent to
+
+\[
+G=\operatorname{diag}(g_0,g_1,g_2,g_1),
+\qquad g_0,g_1,g_2\in\mathbb R.
+\]
+
+The form is positive definite exactly when
+
+\[
+g_0>0,\qquad g_1>0,\qquad g_2>0.
+\]
+
+Hence phase and conjugation symmetry leave three independent real weights and do not select a canonical metric.
+
+If one additionally postulates cyclic channel symmetry
+
+\[
+X(\Lambda_0,\Lambda_1,\Lambda_2,\Lambda_3)^T
+=(\Lambda_3,\Lambda_0,\Lambda_1,\Lambda_2)^T,
+\qquad X^\dagger G X=G,
+\]
+
+then
+
+\[
+G=cI.
+\]
+
+This stronger conclusion is conditional because the repository does not derive the action of \(X\) on the Mellin-character channels from the canonical UBT field.
+
+Even the maximally symmetric positive candidate gives only
+
+\[
+Q(s)=c\sum_{k=0}^3|\Lambda_k(s)|^2.
+\]
+
+Its positivity says that \(Q(s)=0\) only when all four channels vanish. RH concerns the zeros of the principal channel alone, so positivity of \(Q\) does not locate those zeros without an additional identity forcing simultaneous vanishing or a self-adjoint operator whose characteristic determinant is the principal completed zeta channel.
+
+This limitation matches the repository action audit: the real biquaternionic pairing, sign and scale are not finalized; the positive Hermitian quantity \(\operatorname{Tr}(X^\dagger X)\) is not Lorentz invariant for a generic field under nonunitary boosts; and the canonical sesquilinear form needed for antiunitary time reversal remains open. Therefore TMM-3 is a classification of admissible candidates, not a UBT derivation.
+
+| Gate | Status |
+|---|---|
+| phase-plus-conjugation classification | **[PROVED]** |
+| scalar metric under additional cyclic symmetry | **[PROVED, CONDITIONAL ON \(X\)]** |
+| derive the channel symmetries from canonical UBT | **[OPEN]** |
+| reconcile positive channel metric with Lorentz-invariant field pairing | **[OPEN]** |
+| obtain an RH-strength self-adjoint determinant | **[OPEN]** |
+
+Repository grounding: `canonical/ACTION.en.md:50-98`, `canonical/symmetry/discrete_symmetries.tex:311-317`, and `canonical/symmetry/discrete_symmetries.tex:449-454`.
