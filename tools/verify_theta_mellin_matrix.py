@@ -297,7 +297,8 @@ def main() -> None:
     check_metric_classification()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
-          "mod-5 character channels with symmetry-admissible metrics")
+          "mod-5 character channels with exhaustive symmetry-admissible "
+          "metric classification")
 
 
 if __name__ == "__main__":
