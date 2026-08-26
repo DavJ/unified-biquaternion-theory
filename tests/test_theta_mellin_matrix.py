@@ -49,3 +49,7 @@ def test_principal_character_l_factor() -> None:
 
 def test_symmetry_admissible_metric_classification() -> None:
     TOOL.check_metric_classification()
+
+
+def test_primitive_mod_5_functional_equations() -> None:
+    TOOL.check_primitive_functional_equations_mod_5()
