@@ -552,3 +552,96 @@ Tento experiment poskytuje kanonické modulární směšování a skalární met
 | aditivní systém obsahuje Mellinův kanál zeta | **[PROVED]** |
 | pozitivita určuje polohu nul tohoto lineárního kanálu | **[DISPROVED]** |
 | samoadjungovaný operátor zeta odvozený z UBT | **[OPEN]** |
+
+<a id="tmm-elliptic-derivatives"></a>
+## 12. Eliptické derivace a lichý sektor
+
+Zaveďme eliptická reziduální jádra
+
+\[
+\Theta_r(z,\tau)=
+\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+\exp\!\left(\frac{\pi i\tau n^2}{5}
++\frac{2\pi i n z}{5}\right)
+\]
+
+a jejich první derivace v \(z=0\), normalizované jako
+
+\[
+\Phi_r(t)=
+\frac5{2\pi i}
+\left.\frac{\partial}{\partial z}\Theta_r(z,it)\right|_{z=0}
+=\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+n e^{-\pi n^2t/5}.
+\]
+
+Mají lichou paritu reziduí,
+
+\[
+\Phi_0(t)=0,
+\qquad
+\Phi_{-r}(t)=-\Phi_r(t),
+\qquad
+\sum_{r=0}^{4}\Phi_r(t)=0.
+\]
+
+Vektor derivací tedy leží v
+
+\[
+V_-=\operatorname{span}
+\left\{\frac{e_1-e_4}{\sqrt2},
+\frac{e_2-e_3}{\sqrt2}\right\}.
+\]
+
+Derivování Poissonovy transformace nebo přímá transformace váženého Gaussova jádra dává
+
+\[
+\mathbf\Phi(t)
+=-i\,t^{-3/2}\mathcal S\mathbf\Phi(1/t).
+\]
+
+Mocnina se mění z \(t^{-1/2}\) na \(t^{-3/2}\): sektor derivací má modulární váhu vyšší o jedna. Posun o dvě stále působí prostřednictvím \(\mathcal T\).
+
+Omezený komutant na \(V_-\) má dimenzi jedna, takže jeho invariantní hermitovská metrika je
+
+\[
+G_-=bI_2.
+\]
+
+Úplná metrika skalárních a derivovaných kanálů je proto
+
+\[
+G=aI_3\oplus bI_2
+=a\Pi_+ + b\Pi_-.
+\]
+
+Mohlo by se zdát, že derivace vynutí \(a=b\). Nevynutí. Vyřešení všech rovnic pro konstantní intertwiner
+
+\[
+Q\mathcal S_+=(-i\mathcal S_-)Q,
+\qquad
+Q\mathcal T_+=\mathcal T_-Q,
+\qquad
+Q:V_+\longrightarrow V_-
+\]
+
+dává pouze
+
+\[
+Q=0.
+\]
+
+To odpovídá rozdílným dimenzím a modulárním vahám obou ireducibilních sektorů. Derivace propojuje podkladové funkce, není však konstantním endomorfismem konečné reprezentace koeficientů.
+
+**Věta TMM-6.** První eliptické derivace realizují dva chybějící liché reziduální kanály a dávají jim skalární invariantní metriku. Sdružená Jacobiho data zachovávají dvě nezávislé pozitivní škály \(a,b\); modulární kovariance neposkytuje nenulový konstantní intertwiner ze sudého do lichého sektoru, a proto nevynucuje \(a=b\).
+
+Sudé/liché rozdělení lze použít jako pečlivě omezenou bosonickou/fermionickou analogii: skalární theta hodnoty jsou sudé a derivované kanály liché, přičemž v druhých nastává párové rušení. Nejde o odvození fyzikálních částic, spinové statistiky ani stavů částice-antičástice. Taková interpretace by vyžadovala gradovaný Hilbertův prostor odvozený z UBT a operátor Diracova typu nebo supernáboj měnící váhu.
+
+| Podmínka | Status |
+|---|---|
+| lichá derivovaná jádra a jejich Poissonův zákon | **[PROVED]** |
+| skalární invariantní metrika \(bI_2\) | **[PROVED]** |
+| nenulový konstantní modulární intertwiner \(V_+\to V_-\) | **[DISPROVED]** |
+| modulární kovariance vynucuje \(a=b\) | **[DISPROVED]** |
+| Diracova nebo supernábojová vazba odvozená z UBT | **[OPEN]** |
+| interpretace fyzikálních fermionů | **[OPEN]** |
