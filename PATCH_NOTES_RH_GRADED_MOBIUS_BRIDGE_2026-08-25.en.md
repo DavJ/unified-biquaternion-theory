@@ -37,6 +37,8 @@ The primitive functional equations modulo \(5\) exchange the conjugate odd chara
 
 The five additive residue channels do provide canonical Fourier mixing. Their full invariant metric has separate even and odd weights, while the scalar theta constants occupy only the three-dimensional even sector, where the metric is fixed up to scale. The zeta Mellin transform is a linear combination of this sector, but positivity of the sector norm still does not locate its zeros.
 
+First elliptic derivatives realize the two odd residue channels with modular weight higher by one. Their invariant metric is scalar, but the constant modular intertwiner space between the three even and two odd channels is zero-dimensional. Hence Jacobi covariance alone does not identify the two metric scales; a UBT-derived weight-changing operator remains necessary.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
