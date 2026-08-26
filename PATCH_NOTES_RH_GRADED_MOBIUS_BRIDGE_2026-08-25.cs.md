@@ -37,6 +37,8 @@ Funkcionální rovnice primitivních charakterů modulo \(5\) zaměňují sdruž
 
 Pět aditivních reziduálních kanálů poskytuje kanonické Fourierovo směšování. Jejich úplná invariantní metrika má oddělené sudé a liché váhy, zatímco skalární theta konstanty obsazují pouze třírozměrný sudý sektor, kde je metrika určena až na škálu. Mellinova transformace zeta je lineární kombinací tohoto sektoru, ale pozitivita sektorové normy stále neurčuje polohu jejích nul.
 
+První eliptické derivace realizují dva liché reziduální kanály s modulární vahou vyšší o jedna. Jejich invariantní metrika je skalární, avšak prostor konstantních modulárních intertwinerů mezi třemi sudými a dvěma lichými kanály má nulovou dimenzi. Jacobiho kovariance proto sama neztotožňuje obě škály metriky; nadále je nutný operátor měnící váhu a odvozený z UBT.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 
