@@ -314,6 +314,22 @@ def commutant_dimension(generators, dimension: int) -> int:
     return dimension * dimension - matrix_rank(constraints, tolerance=1e-9)
 
 
+def intertwiner_dimension(source_generators, target_generators,
+                          source_dimension: int, target_dimension: int) -> int:
+    constraints = []
+    for source, target in zip(source_generators, target_generators):
+        for i in range(target_dimension):
+            for j in range(source_dimension):
+                constraints.append([
+                    (source[b][j] if i == a else 0j)
+                    - (target[i][a] if b == j else 0j)
+                    for a in range(target_dimension)
+                    for b in range(source_dimension)
+                ])
+    variable_count = source_dimension * target_dimension
+    return variable_count - matrix_rank(constraints, tolerance=1e-9)
+
+
 def check_additive_residue_representation_mod_5() -> None:
     fourier = additive_fourier_mod_5()
     translation = additive_translation_mod_5()
@@ -370,6 +386,73 @@ def check_additive_residue_representation_mod_5() -> None:
                 abs_tol=1e-12,
             ):
                 raise AssertionError(("residue-theta parity", residue, t))
+
+
+def check_elliptic_derivative_odd_sector_mod_5() -> None:
+    fourier = additive_fourier_mod_5()
+    translation = additive_translation_mod_5()
+    root_two = math.sqrt(2)
+    even_basis = (
+        (1 + 0j, 0j, 0j),
+        (0j, 1 / root_two, 0j),
+        (0j, 0j, 1 / root_two),
+        (0j, 0j, 1 / root_two),
+        (0j, 1 / root_two, 0j),
+    )
+    odd_basis = (
+        (0j, 0j),
+        (1 / root_two, 0j),
+        (0j, 1 / root_two),
+        (0j, -1 / root_two),
+        (-1 / root_two, 0j),
+    )
+
+    def restrict(operator, basis):
+        return mat_mul_n(
+            mat_mul_n(conjugate_transpose_n(basis), operator), basis
+        )
+
+    even_fourier = restrict(fourier, even_basis)
+    even_translation = restrict(translation, even_basis)
+    odd_fourier = restrict(fourier, odd_basis)
+    odd_translation = restrict(translation, odd_basis)
+    if commutant_dimension((odd_fourier, odd_translation), 2) != 1:
+        raise AssertionError("odd derivative-sector commutant is not scalar")
+    weighted_odd_fourier = tuple(
+        tuple(-1j * entry for entry in row) for row in odd_fourier
+    )
+    if intertwiner_dimension(
+        (even_fourier, even_translation),
+        (weighted_odd_fourier, odd_translation),
+        3,
+        2,
+    ) != 0:
+        raise AssertionError("unexpected constant even-to-odd modular intertwiner")
+
+    def derivative_kernel(residue: int, t: float, cutoff: int = 100) -> float:
+        return math.fsum(
+            (5 * n + residue)
+            * math.exp(-math.pi * t * (5 * n + residue) ** 2 / 5)
+            for n in range(-cutoff, cutoff + 1)
+        )
+
+    for t in (0.4, 1.0, 2.5):
+        values = tuple(derivative_kernel(r, t) for r in range(5))
+        reciprocal = tuple(derivative_kernel(r, 1 / t) for r in range(5))
+        transformed = tuple(
+            -1j * t ** (-1.5)
+            * sum(fourier[r][s] * reciprocal[s] for s in range(5))
+            for r in range(5)
+        )
+        if any(abs(left - right) > 2e-11 for left, right in zip(values, transformed)):
+            raise AssertionError(("derivative Poisson transformation", t))
+        if abs(values[0]) > 1e-12:
+            raise AssertionError(("zero-residue derivative channel", t, values[0]))
+        for residue in (1, 2):
+            if abs(values[residue] + values[-residue]) > 1e-12:
+                raise AssertionError(("derivative residue parity", residue, t))
+        if abs(sum(values)) > 1e-12:
+            raise AssertionError(("odd-channel total cancellation", t, sum(values)))
 
 
 def phase_matrix_mod_5():
@@ -499,10 +582,12 @@ def main() -> None:
     check_metric_classification()
     check_primitive_functional_equations_mod_5()
     check_additive_residue_representation_mod_5()
+    check_elliptic_derivative_odd_sector_mod_5()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
           "mod-5 character channels with exhaustive symmetry-admissible "
-          "metric, functional-equation, and additive-residue classifications")
+          "metric, functional-equation, additive-residue, and elliptic-derivative "
+          "classifications")
 
 
 if __name__ == "__main__":
