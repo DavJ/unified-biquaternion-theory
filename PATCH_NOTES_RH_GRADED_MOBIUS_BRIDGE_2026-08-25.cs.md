@@ -35,6 +35,8 @@ Fázová a konjugační symetrie klasifikují přípustné hermitovské metriky 
 
 Funkcionální rovnice primitivních charakterů modulo \(5\) zaměňují sdružené liché charaktery a ponechávají kvadratický charakter pevný, ale zachovávají stejné nestejné váhy kanálů. Hlavní charakter je imprimitivní a při konduktoru \(5\) nemá konstantní kořenové číslo, takže tyto funkcionální rovnice neposkytují směšování s kanálem zeta.
 
+Pět aditivních reziduálních kanálů poskytuje kanonické Fourierovo směšování. Jejich úplná invariantní metrika má oddělené sudé a liché váhy, zatímco skalární theta konstanty obsazují pouze třírozměrný sudý sektor, kde je metrika určena až na škálu. Mellinova transformace zeta je lineární kombinací tohoto sektoru, ale pozitivita sektorové normy stále neurčuje polohu jejích nul.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 
