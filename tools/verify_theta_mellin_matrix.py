@@ -252,6 +252,126 @@ def check_primitive_functional_equations_mod_5() -> None:
         raise AssertionError(("principal completion unexpectedly has constant epsilon", ratios))
 
 
+def mat_mul_n(left, right):
+    return tuple(
+        tuple(
+            sum(left[i][k] * right[k][j] for k in range(len(right)))
+            for j in range(len(right[0]))
+        )
+        for i in range(len(left))
+    )
+
+
+def conjugate_transpose_n(matrix):
+    return tuple(
+        tuple(matrix[j][i].conjugate() for j in range(len(matrix)))
+        for i in range(len(matrix[0]))
+    )
+
+
+def matrices_close_n(left, right, tolerance: float = 1e-11) -> bool:
+    return all(
+        abs(left[i][j] - right[i][j]) <= tolerance
+        for i in range(len(left))
+        for j in range(len(left[0]))
+    )
+
+
+def additive_fourier_mod_5():
+    root = complex(math.cos(2 * math.pi / 5), math.sin(2 * math.pi / 5))
+    return tuple(
+        tuple(root ** (r * s) / math.sqrt(5) for s in range(5))
+        for r in range(5)
+    )
+
+
+def additive_translation_mod_5():
+    root = complex(math.cos(2 * math.pi / 5), math.sin(2 * math.pi / 5))
+    return tuple(
+        tuple(root ** (r * r) if r == s else 0j for s in range(5))
+        for r in range(5)
+    )
+
+
+def additive_reflection_mod_5():
+    return tuple(
+        tuple(1 + 0j if s == (-r) % 5 else 0j for s in range(5))
+        for r in range(5)
+    )
+
+
+def commutant_dimension(generators, dimension: int) -> int:
+    constraints = []
+    for generator in generators:
+        for i in range(dimension):
+            for j in range(dimension):
+                constraints.append([
+                    (generator[b][j] if i == a else 0j)
+                    - (generator[i][a] if b == j else 0j)
+                    for a in range(dimension)
+                    for b in range(dimension)
+                ])
+    return dimension * dimension - matrix_rank(constraints, tolerance=1e-9)
+
+
+def check_additive_residue_representation_mod_5() -> None:
+    fourier = additive_fourier_mod_5()
+    translation = additive_translation_mod_5()
+    reflection = additive_reflection_mod_5()
+    identity = tuple(
+        tuple(1 + 0j if i == j else 0j for j in range(5))
+        for i in range(5)
+    )
+    if not matrices_close_n(
+        mat_mul_n(conjugate_transpose_n(fourier), fourier), identity
+    ):
+        raise AssertionError("additive Fourier matrix is not unitary")
+    if not matrices_close_n(mat_mul_n(fourier, fourier), reflection):
+        raise AssertionError("additive Fourier square is not residue reflection")
+    if not matrices_close_n(
+        mat_mul_n(translation, reflection),
+        mat_mul_n(reflection, translation),
+    ):
+        raise AssertionError("translation does not preserve residue parity")
+    if commutant_dimension((fourier, translation), 5) != 2:
+        raise AssertionError("full additive commutant does not have dimension two")
+
+    # Orthonormal basis of the even sector: e0, (e1+e4)/sqrt(2),
+    # (e2+e3)/sqrt(2).  Scalar theta constants at z=0 live here.
+    root_two = math.sqrt(2)
+    even_basis = (
+        (1 + 0j, 0j, 0j),
+        (0j, 1 / root_two, 0j),
+        (0j, 0j, 1 / root_two),
+        (0j, 0j, 1 / root_two),
+        (0j, 1 / root_two, 0j),
+    )
+    even_fourier = mat_mul_n(
+        mat_mul_n(conjugate_transpose_n(even_basis), fourier), even_basis
+    )
+    even_translation = mat_mul_n(
+        mat_mul_n(conjugate_transpose_n(even_basis), translation), even_basis
+    )
+    if commutant_dimension((even_fourier, even_translation), 3) != 1:
+        raise AssertionError("even additive commutant is not scalar")
+
+    def residue_theta(residue: int, t: float, cutoff: int = 100) -> float:
+        return math.fsum(
+            math.exp(-math.pi * t * (5 * n + residue) ** 2 / 5)
+            for n in range(-cutoff, cutoff + 1)
+        )
+
+    for t in (0.4, 1.0, 2.5):
+        for residue in (1, 2):
+            if not math.isclose(
+                residue_theta(residue, t),
+                residue_theta((-residue) % 5, t),
+                rel_tol=1e-12,
+                abs_tol=1e-12,
+            ):
+                raise AssertionError(("residue-theta parity", residue, t))
+
+
 def phase_matrix_mod_5():
     return tuple(
         tuple((complex(0, 1) ** i) if i == j else 0j for j in range(4))
@@ -378,10 +498,11 @@ def main() -> None:
     check_principal_l_factor()
     check_metric_classification()
     check_primitive_functional_equations_mod_5()
+    check_additive_residue_representation_mod_5()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
           "mod-5 character channels with exhaustive symmetry-admissible "
-          "metric and functional-equation classification")
+          "metric, functional-equation, and additive-residue classifications")
 
 
 if __name__ == "__main__":
