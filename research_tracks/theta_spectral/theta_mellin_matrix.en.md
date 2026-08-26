@@ -552,3 +552,96 @@ This experiment supplies canonical modular mixing and a scalar metric on the rea
 | additive system contains the zeta Mellin channel | **[PROVED]** |
 | positivity locates the zeros of that linear channel | **[DISPROVED]** |
 | UBT-derived self-adjoint zeta operator | **[OPEN]** |
+
+<a id="tmm-elliptic-derivatives"></a>
+## 12. Elliptic derivatives and the odd sector
+
+Introduce the elliptic residue kernels
+
+\[
+\Theta_r(z,\tau)=
+\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+\exp\!\left(\frac{\pi i\tau n^2}{5}
++\frac{2\pi i n z}{5}\right)
+\]
+
+and their first derivatives at \(z=0\), normalized as
+
+\[
+\Phi_r(t)=
+\frac5{2\pi i}
+\left.\frac{\partial}{\partial z}\Theta_r(z,it)\right|_{z=0}
+=\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+n e^{-\pi n^2t/5}.
+\]
+
+They have odd residue parity,
+
+\[
+\Phi_0(t)=0,
+\qquad
+\Phi_{-r}(t)=-\Phi_r(t),
+\qquad
+\sum_{r=0}^{4}\Phi_r(t)=0.
+\]
+
+Thus the derivative vector lies in
+
+\[
+V_-=\operatorname{span}
+\left\{\frac{e_1-e_4}{\sqrt2},
+\frac{e_2-e_3}{\sqrt2}\right\}.
+\]
+
+Differentiating the Poisson transformation, or transforming the weighted Gaussian directly, gives
+
+\[
+\mathbf\Phi(t)
+=-i\,t^{-3/2}\mathcal S\mathbf\Phi(1/t).
+\]
+
+The power changes from \(t^{-1/2}\) to \(t^{-3/2}\): the derivative sector has modular weight higher by one. Translation by two still acts through \(\mathcal T\).
+
+The restricted commutant on \(V_-\) has dimension one, so its invariant Hermitian metric is
+
+\[
+G_-=bI_2.
+\]
+
+The complete scalar-plus-derivative metric is consequently
+
+\[
+G=aI_3\oplus bI_2
+=a\Pi_+ + b\Pi_-.
+\]
+
+One might hope that the derivative operation forces \(a=b\). It does not. Solving all constant intertwiner equations
+
+\[
+Q\mathcal S_+=(-i\mathcal S_-)Q,
+\qquad
+Q\mathcal T_+=\mathcal T_-Q,
+\qquad
+Q:V_+\longrightarrow V_-
+\]
+
+gives only
+
+\[
+Q=0.
+\]
+
+This is consistent with the unequal dimensions and modular weights of the two irreducible sectors. Differentiation relates the underlying functions but is not a constant endomorphism of the finite coefficient representation.
+
+**Theorem TMM-6.** First elliptic derivatives realize the two missing odd residue channels and give them a scalar invariant metric. The combined Jacobi data retain two independent positive scales \(a,b\); modular covariance supplies no nonzero constant even-to-odd intertwiner and therefore does not enforce \(a=b\).
+
+The even/odd split may be used as a carefully limited bosonic/fermionic analogy: scalar theta values are even and derivative channels are odd, with pairwise cancellation in the latter. It is not a derivation of physical particles, spin-statistics, or particle-antiparticle states. Such an interpretation would require a UBT-derived graded Hilbert space and a weight-changing Dirac or supercharge operator.
+
+| Gate | Status |
+|---|---|
+| odd derivative kernels and their Poisson law | **[PROVED]** |
+| scalar invariant metric \(bI_2\) | **[PROVED]** |
+| nonzero constant modular intertwiner \(V_+\to V_-\) | **[DISPROVED]** |
+| modular covariance forces \(a=b\) | **[DISPROVED]** |
+| UBT-derived Dirac or supercharge coupling | **[OPEN]** |
+| physical fermion interpretation | **[OPEN]** |
