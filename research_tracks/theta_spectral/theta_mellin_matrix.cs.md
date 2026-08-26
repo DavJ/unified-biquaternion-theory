@@ -433,3 +433,122 @@ Jde o druhý no-go výsledek, nikoli o selhání výpočtu. Jakákoli silnějš�
 | hlavní kanál má konstantní kořenové číslo při konduktoru pět | **[DISPROVED]** |
 | funkcionální rovnice vynucují \(g_1=g_2\) | **[DISPROVED]** |
 | vazba s hlavním kanálem odvozená z UBT | **[OPEN]** |
+
+<a id="tmm-additive-residues"></a>
+## 11. Aditivní reziduální kanály a konečná Weilova reprezentace
+
+Pro \(r\in\mathbb Z/5\mathbb Z\) definujme
+
+\[
+\Theta_r(t)=
+\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+e^{-\pi n^2t/5},
+\qquad t>0.
+\]
+
+Poissonova sumace dává vektorovou transformaci
+
+\[
+\mathbf\Theta(t)=t^{-1/2}\mathcal S\mathbf\Theta(1/t),
+\qquad
+\mathcal S_{rs}=\frac1{\sqrt5}e^{2\pi i rs/5}.
+\]
+
+Pro holomorfní verzi působí posun o dvě modulární jednotky vztahem
+
+\[
+\Theta_r(\tau+2)=e^{2\pi i r^2/5}\Theta_r(\tau),
+\qquad
+\mathcal T=\operatorname{diag}
+\left(e^{2\pi i r^2/5}\right)_{r=0}^{4}.
+\]
+
+Nechť \(\mathcal P\) obrací rezidua, \((\mathcal Pv)_r=v_{-r}\). Přímý výpočet dává
+
+\[
+\mathcal S^\dagger\mathcal S=I,
+\qquad
+\mathcal S^2=\mathcal P,
+\qquad
+\mathcal S^4=I,
+\qquad
+[\mathcal T,\mathcal P]=0.
+\]
+
+Úplný prostor koeficientů se rozkládá na sektory parity reziduí
+
+\[
+\mathbb C^5=V_+\oplus V_-,
+\qquad
+\dim V_+=3,
+\qquad
+\dim V_-=2,
+\qquad
+\Pi_\pm=\frac12(I\pm\mathcal P).
+\]
+
+Vyřešení úplných rovnic komutantu
+
+\[
+[G,\mathcal S]=[G,\mathcal T]=0
+\]
+
+dává
+
+\[
+G=a\Pi_+ + b\Pi_-.
+\]
+
+Pro hermitovské \(G\) jsou koeficienty \(a,b\) reálné a pozitivita vyžaduje \(a,b>0\). Úplná pětirozměrná reprezentace má tedy dvě nezávislé invariantní váhy.
+
+Skalární theta konstanty však splňují
+
+\[
+\Theta_r(t)=\Theta_{-r}(t).
+\]
+
+Obsazují proto pouze
+
+\[
+V_+=\operatorname{span}
+\left\{e_0,\frac{e_1+e_4}{\sqrt2},
+\frac{e_2+e_3}{\sqrt2}\right\}.
+\]
+
+Omezený komutant \(\mathcal S\) a \(\mathcal T\) na tomto třírozměrném sektoru má dimenzi jedna. Jeho invariantní hermitovská metrika je tudíž
+
+\[
+G_+=aI_3.
+\]
+
+Dva liché kanály při \(z=0\) chybějí; lze je dodat derivacemi podle eliptické proměnné, analogicky k chybějícímu skalárnímu kanálu \(\vartheta_1\).
+
+Hlavní funkce zeta je nyní skutečně obsažena v aditivním systému, protože
+
+\[
+\frac12\sum_{r=0}^{4}
+\left(\Theta_r(t)-\delta_{r0}\right)
+=\sum_{n=1}^{\infty}e^{-\pi n^2t/5},
+\]
+
+a tedy pro \(\Re s>1\)
+
+\[
+\frac12\int_0^\infty t^{s/2-1}
+\sum_{r=0}^{4}\left(\Theta_r(t)-\delta_{r0}\right)dt
+=\left(\frac5\pi\right)^{s/2}
+\Gamma\!\left(\frac s2\right)\zeta(s).
+\]
+
+**Věta TMM-5.** Aditivní reziduální reprezentace skutečně směšuje nulovou reziduální třídu se čtyřmi nenulovými třídami. Modulární invariance určuje metriku skalárního sudého sektoru jednoznačně až na celkovou škálu. Kanál zeta je však lineárním funkcionálem tří theta složek, zatímco pozitivita \(aI_3\) kontroluje jejich současné anulování. Nevyplývá z ní proto, že nuly tohoto lineárního funkcionálu leží na \(\Re s=1/2\).
+
+Tento experiment poskytuje kanonické modulární směšování a skalární metriku na realizovaném sektoru, nikoli však spektrální operátor síly RH. Zbývající chybějící složkou je samoadjungovaný operátor odvozený z UBT, jehož determinant nebo význačný vlastní kanál se rovná dokončené funkci zeta.
+
+| Podmínka | Status |
+|---|---|
+| Fourierova transformace pěti reziduí | **[PROVED]** |
+| úplný komutant \(a\Pi_++b\Pi_-\) | **[PROVED]** |
+| skalární metrika na realizovaném sudém sektoru | **[PROVED]** |
+| aditivní systém obsahuje Mellinův kanál zeta | **[PROVED]** |
+| pozitivita určuje polohu nul tohoto lineárního kanálu | **[DISPROVED]** |
+| samoadjungovaný operátor zeta odvozený z UBT | **[OPEN]** |
