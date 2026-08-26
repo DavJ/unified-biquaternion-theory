@@ -330,3 +330,106 @@ This limitation matches the repository action audit: the real biquaternionic pai
 | obtain an RH-strength self-adjoint determinant | **[OPEN]** |
 
 Repository grounding: `canonical/ACTION.en.md:50-98`, `canonical/symmetry/discrete_symmetries.tex:311-317`, and `canonical/symmetry/discrete_symmetries.tex:449-454`.
+
+<a id="tmm-functional-equations"></a>
+## 10. Gauss sums and the functional-equation no-go result
+
+For the three nonprincipal characters \(\chi_k\), \(k=1,2,3\), set \(a_k=k\bmod2\) and
+
+\[
+\tau_k=\sum_{r=1}^{4}\chi_k(r)e^{2\pi i r/5},
+\qquad
+\varepsilon_k=\frac{\tau_k}{i^{a_k}\sqrt5}.
+\]
+
+All three characters are primitive. Their completed functions
+
+\[
+\Lambda_k(s)=
+\left(\frac5\pi\right)^{(s+a_k)/2}
+\Gamma\!\left(\frac{s+a_k}{2}\right)L(s,\chi_k)
+\]
+
+satisfy
+
+\[
+\Lambda_k(s)=\varepsilon_k\Lambda_{4-k}(1-s).
+\]
+
+Direct Gauss-sum evaluation gives
+
+\[
+|\tau_k|=\sqrt5,
+\qquad
+\varepsilon_2=1,
+\qquad
+\varepsilon_3=\overline{\varepsilon_1},
+\qquad
+\varepsilon_1\varepsilon_3=1.
+\]
+
+Thus, on \(\mathbf\Lambda_{\mathrm{prim}}=(\Lambda_1,\Lambda_2,\Lambda_3)^T\), the functional equation is
+
+\[
+\mathbf\Lambda_{\mathrm{prim}}(s)
+=R\mathbf\Lambda_{\mathrm{prim}}(1-s),
+\qquad
+R=
+\begin{pmatrix}
+0&0&\varepsilon_1\\
+0&1&0\\
+\varepsilon_3&0&0
+\end{pmatrix},
+\qquad
+R^\dagger R=R^2=I.
+\]
+
+The restriction of the TMM-3 metric to these channels is
+
+\[
+G_{\mathrm{prim}}=\operatorname{diag}(g_1,g_2,g_1).
+\]
+
+For every real \(g_1,g_2\), not only when they are equal,
+
+\[
+R^\dagger G_{\mathrm{prim}}R=G_{\mathrm{prim}}.
+\]
+
+The functional equation therefore adds no relation between the odd-character weight \(g_1\) and the quadratic-character weight \(g_2\).
+
+The principal character is different. It is induced from the conductor-one trivial character and
+
+\[
+L(s,\chi_0)=(1-5^{-s})\zeta(s).
+\]
+
+If \(\Lambda_\zeta(s)=\pi^{-s/2}\Gamma(s/2)\zeta(s)\), its conductor-five normalization is
+
+\[
+\Lambda_0^{(5)}(s)
+=\left(5^{s/2}-5^{-s/2}\right)\Lambda_\zeta(s).
+\]
+
+Since \(\Lambda_\zeta(s)=\Lambda_\zeta(1-s)\), one obtains the nonconstant multiplier
+
+\[
+\Lambda_0^{(5)}(s)
+=\frac{5^{s/2}-5^{-s/2}}
+{5^{(1-s)/2}-5^{-(1-s)/2}}
+\Lambda_0^{(5)}(1-s).
+\]
+
+Consequently the four channels do not form a constant unitary \(4\times4\) functional-equation representation: the three primitive channels form a closed block, while the principal zeta channel remains separate.
+
+**Theorem TMM-4.** The exact mod-5 Gauss sums and Dirichlet functional equations do not reduce the three-parameter metric family of TMM-3 and do not mix the principal zeta channel with the primitive channels. Hence they impose no additional condition on the nontrivial zeros of \(\zeta\).
+
+This is a second no-go result, not a failure of the calculation. Any stronger coupling must come from an enlarged additive-residue theta representation, a UBT-derived operator, or another identity not contained in the separate Dirichlet functional equations.
+
+| Gate | Status |
+|---|---|
+| primitive Gauss sums and root numbers | **[PROVED]** |
+| unitary involution on the primitive block | **[PROVED]** |
+| principal channel has a constant conductor-five root number | **[DISPROVED]** |
+| functional equations force \(g_1=g_2\) | **[DISPROVED]** |
+| UBT-derived mixing with the principal channel | **[OPEN]** |
