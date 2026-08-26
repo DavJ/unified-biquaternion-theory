@@ -33,6 +33,8 @@ The characteristic extension modulo \(5\) then raises the coefficient-channel ra
 
 Phase and conjugation symmetry classify the admissible Hermitian channel metrics as \(\operatorname{diag}(g_0,g_1,g_2,g_1)\). An additional, not-yet-derived cyclic channel symmetry reduces this family to \(cI\), whose positivity alone still does not constrain the principal zeta zeros.
 
+The primitive mod-5 functional equations exchange the conjugate odd characters and fix the quadratic character, but preserve the same unequal channel weights. The principal character is imprimitive and has no constant root number at conductor \(5\), so these functional equations provide no mixing with the zeta channel.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
