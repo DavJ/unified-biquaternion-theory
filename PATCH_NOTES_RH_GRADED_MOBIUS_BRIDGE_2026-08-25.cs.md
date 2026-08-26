@@ -31,6 +31,8 @@ Patch také přidává první společný rozhodovací experiment theta–Mellin.
 
 Rozšíření charakteristikami modulo \(5\) poté zvyšuje hodnost koeficientových kanálů na čtyři Dirichletovy \(L\)-kanály. Jejich vazba odvozená z UBT zůstává otevřená.
 
+Fázová a konjugační symetrie klasifikují přípustné hermitovské metriky kanálů jako \(\operatorname{diag}(g_0,g_1,g_2,g_1)\). Dodatečná, dosud neodvozená cyklická symetrie kanálů redukuje tuto rodinu na \(cI\), jehož samotná pozitivita stále neomezuje nuly hlavního kanálu zeta.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 
