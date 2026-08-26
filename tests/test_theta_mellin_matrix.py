@@ -57,3 +57,7 @@ def test_primitive_mod_5_functional_equations() -> None:
 
 def test_additive_residue_representation_mod_5() -> None:
     TOOL.check_additive_residue_representation_mod_5()
+
+
+def test_elliptic_derivative_odd_sector_mod_5() -> None:
+    TOOL.check_elliptic_derivative_odd_sector_mod_5()
