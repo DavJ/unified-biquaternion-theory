@@ -35,6 +35,8 @@ Phase and conjugation symmetry classify the admissible Hermitian channel metrics
 
 The primitive functional equations modulo \(5\) exchange the conjugate odd characters and fix the quadratic character, but preserve the same unequal channel weights. The principal character is imprimitive and has no constant root number at conductor \(5\), so these functional equations provide no mixing with the zeta channel.
 
+The five additive residue channels do provide canonical Fourier mixing. Their full invariant metric has separate even and odd weights, while the scalar theta constants occupy only the three-dimensional even sector, where the metric is fixed up to scale. The zeta Mellin transform is a linear combination of this sector, but positivity of the sector norm still does not locate its zeros.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
