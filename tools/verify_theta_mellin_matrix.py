@@ -170,6 +170,88 @@ def check_principal_l_factor(s: float = 2.5, cutoff: int = 400_000) -> None:
         raise AssertionError(("principal L factor", lhs, rhs))
 
 
+def gauss_sum_mod_5(k: int) -> complex:
+    return sum(
+        character_mod_5(k, residue)
+        * complex(math.cos(2 * math.pi * residue / 5),
+                  math.sin(2 * math.pi * residue / 5))
+        for residue in range(1, 5)
+    )
+
+
+def root_number_mod_5(k: int) -> complex:
+    parity = k % 2
+    return gauss_sum_mod_5(k) / (complex(0, 1) ** parity * math.sqrt(5))
+
+
+def primitive_functional_equation_matrix():
+    epsilon_1 = root_number_mod_5(1)
+    epsilon_2 = root_number_mod_5(2)
+    epsilon_3 = root_number_mod_5(3)
+    return (
+        (0j, 0j, epsilon_1),
+        (0j, epsilon_2, 0j),
+        (epsilon_3, 0j, 0j),
+    )
+
+
+def conjugate_transpose_3(matrix):
+    return tuple(tuple(matrix[j][i].conjugate() for j in range(3)) for i in range(3))
+
+
+def matrices_close_3(left, right, tolerance: float = 1e-12) -> bool:
+    return all(
+        abs(left[i][j] - right[i][j]) <= tolerance
+        for i in range(3)
+        for j in range(3)
+    )
+
+
+def check_primitive_functional_equations_mod_5() -> None:
+    root_numbers = {k: root_number_mod_5(k) for k in (1, 2, 3)}
+    for k, epsilon in root_numbers.items():
+        if not math.isclose(abs(gauss_sum_mod_5(k)), math.sqrt(5), abs_tol=1e-12):
+            raise AssertionError(("Gauss-sum magnitude", k, gauss_sum_mod_5(k)))
+        if not math.isclose(abs(epsilon), 1.0, abs_tol=1e-12):
+            raise AssertionError(("root-number magnitude", k, epsilon))
+    if abs(root_numbers[2] - 1) > 1e-12:
+        raise AssertionError(("quadratic root number", root_numbers[2]))
+    if abs(root_numbers[3] - root_numbers[1].conjugate()) > 1e-12:
+        raise AssertionError(("conjugate root numbers", root_numbers))
+
+    functional_equation = primitive_functional_equation_matrix()
+    identity = ((1 + 0j, 0j, 0j), (0j, 1 + 0j, 0j), (0j, 0j, 1 + 0j))
+    if not matrices_close_3(mat_mul(functional_equation, functional_equation), identity):
+        raise AssertionError("primitive functional-equation matrix is not involutive")
+    if not matrices_close_3(
+        mat_mul(conjugate_transpose_3(functional_equation), functional_equation),
+        identity,
+    ):
+        raise AssertionError("primitive functional-equation matrix is not unitary")
+
+    # The phase/conjugation metric has independent odd-pair and quadratic
+    # weights.  The functional equation preserves arbitrary unequal values.
+    metric = ((3 + 0j, 0j, 0j), (0j, 7 + 0j, 0j), (0j, 0j, 3 + 0j))
+    transformed = mat_mul(
+        mat_mul(conjugate_transpose_3(functional_equation), metric),
+        functional_equation,
+    )
+    if not matrices_close_3(transformed, metric):
+        raise AssertionError("primitive metric is not functional-equation invariant")
+
+    # The principal mod-5 character is imprimitive.  Its completion is
+    # f(s) Lambda_zeta(s), and f(s)/f(1-s) is not a constant root number.
+    def principal_multiplier(s: float) -> float:
+        return 5 ** (s / 2) - 5 ** (-s / 2)
+
+    ratios = tuple(
+        principal_multiplier(s) / principal_multiplier(1 - s)
+        for s in (1.25, 1.75)
+    )
+    if math.isclose(ratios[0], ratios[1], rel_tol=1e-12, abs_tol=1e-12):
+        raise AssertionError(("principal completion unexpectedly has constant epsilon", ratios))
+
+
 def phase_matrix_mod_5():
     return tuple(
         tuple((complex(0, 1) ** i) if i == j else 0j for j in range(4))
@@ -295,10 +377,11 @@ def main() -> None:
     check_character_channels_mod_5()
     check_principal_l_factor()
     check_metric_classification()
+    check_primitive_functional_equations_mod_5()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
           "mod-5 character channels with exhaustive symmetry-admissible "
-          "metric classification")
+          "metric and functional-equation classification")
 
 
 if __name__ == "__main__":
