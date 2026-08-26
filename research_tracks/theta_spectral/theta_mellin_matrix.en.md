@@ -433,3 +433,122 @@ This is a second no-go result, not a failure of the calculation. Any stronger co
 | principal channel has a constant conductor-five root number | **[DISPROVED]** |
 | functional equations force \(g_1=g_2\) | **[DISPROVED]** |
 | UBT-derived mixing with the principal channel | **[OPEN]** |
+
+<a id="tmm-additive-residues"></a>
+## 11. Additive residue channels and the finite Weil representation
+
+For \(r\in\mathbb Z/5\mathbb Z\), define
+
+\[
+\Theta_r(t)=
+\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+e^{-\pi n^2t/5},
+\qquad t>0.
+\]
+
+Poisson summation gives the vector transformation
+
+\[
+\mathbf\Theta(t)=t^{-1/2}\mathcal S\mathbf\Theta(1/t),
+\qquad
+\mathcal S_{rs}=\frac1{\sqrt5}e^{2\pi i rs/5}.
+\]
+
+For the holomorphic version, translation by two modular units acts through
+
+\[
+\Theta_r(\tau+2)=e^{2\pi i r^2/5}\Theta_r(\tau),
+\qquad
+\mathcal T=\operatorname{diag}
+\left(e^{2\pi i r^2/5}\right)_{r=0}^{4}.
+\]
+
+Let \(\mathcal P\) reflect residues, \((\mathcal Pv)_r=v_{-r}\). Direct calculation yields
+
+\[
+\mathcal S^\dagger\mathcal S=I,
+\qquad
+\mathcal S^2=\mathcal P,
+\qquad
+\mathcal S^4=I,
+\qquad
+[\mathcal T,\mathcal P]=0.
+\]
+
+The full coefficient space decomposes into residue-parity sectors
+
+\[
+\mathbb C^5=V_+\oplus V_-,
+\qquad
+\dim V_+=3,
+\qquad
+\dim V_-=2,
+\qquad
+\Pi_\pm=\frac12(I\pm\mathcal P).
+\]
+
+Solving the complete commutant equations
+
+\[
+[G,\mathcal S]=[G,\mathcal T]=0
+\]
+
+gives
+
+\[
+G=a\Pi_+ + b\Pi_-.
+\]
+
+For Hermitian \(G\), the coefficients \(a,b\) are real, and positivity requires \(a,b>0\). Thus the full five-dimensional representation has two independent invariant weights.
+
+However, the scalar theta constants satisfy
+
+\[
+\Theta_r(t)=\Theta_{-r}(t).
+\]
+
+They therefore occupy only
+
+\[
+V_+=\operatorname{span}
+\left\{e_0,\frac{e_1+e_4}{\sqrt2},
+\frac{e_2+e_3}{\sqrt2}\right\}.
+\]
+
+The restricted commutant of \(\mathcal S\) and \(\mathcal T\) on this three-dimensional sector has dimension one. Consequently its invariant Hermitian metric is
+
+\[
+G_+=aI_3.
+\]
+
+The two odd channels are absent at \(z=0\); they can be supplied by derivatives with respect to the elliptic variable, analogously to the missing scalar \(\vartheta_1\) channel.
+
+The principal zeta function is now genuinely contained in the additive system because
+
+\[
+\frac12\sum_{r=0}^{4}
+\left(\Theta_r(t)-\delta_{r0}\right)
+=\sum_{n=1}^{\infty}e^{-\pi n^2t/5},
+\]
+
+and hence, for \(\Re s>1\),
+
+\[
+\frac12\int_0^\infty t^{s/2-1}
+\sum_{r=0}^{4}\left(\Theta_r(t)-\delta_{r0}\right)dt
+=\left(\frac5\pi\right)^{s/2}
+\Gamma\!\left(\frac s2\right)\zeta(s).
+\]
+
+**Theorem TMM-5.** The additive residue representation does mix the zero residue class with the four nonzero classes. Modular invariance fixes the scalar even-sector metric uniquely up to an overall scale. Nevertheless, the zeta channel is a linear functional of the three theta components, whereas positivity of \(aI_3\) controls their simultaneous vanishing. It therefore does not imply that zeros of this linear functional lie on \(\Re s=1/2\).
+
+This experiment supplies canonical modular mixing and a scalar metric on the realized sector, but not an RH-strength spectral operator. The remaining missing ingredient is a UBT-derived self-adjoint operator whose determinant or distinguished eigenchannel equals the completed zeta function.
+
+| Gate | Status |
+|---|---|
+| five-residue Fourier transformation | **[PROVED]** |
+| full commutant \(a\Pi_++b\Pi_-\) | **[PROVED]** |
+| scalar metric on the realized even sector | **[PROVED]** |
+| additive system contains the zeta Mellin channel | **[PROVED]** |
+| positivity locates the zeros of that linear channel | **[DISPROVED]** |
+| UBT-derived self-adjoint zeta operator | **[OPEN]** |
