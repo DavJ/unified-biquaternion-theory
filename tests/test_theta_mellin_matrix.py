@@ -53,3 +53,7 @@ def test_symmetry_admissible_metric_classification() -> None:
 
 def test_primitive_mod_5_functional_equations() -> None:
     TOOL.check_primitive_functional_equations_mod_5()
+
+
+def test_additive_residue_representation_mod_5() -> None:
+    TOOL.check_additive_residue_representation_mod_5()
