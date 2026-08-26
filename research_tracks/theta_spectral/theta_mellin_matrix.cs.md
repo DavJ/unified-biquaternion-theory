@@ -244,3 +244,89 @@ Následující experiment proto musí odvodit, nikoli zvolit, matici \(G_{\mathr
 \]
 
 má kanonickou pozitivní nebo samoadjungovanou spektrální reprezentaci.
+
+<a id="tmm-ubt-metric"></a>
+## 9. Vazebné metriky přípustné symetriemi
+
+Zapišme čtyři dokončené kanály charakterů jako
+
+\[
+\mathbf\Lambda=(\Lambda_0,\Lambda_1,\Lambda_2,\Lambda_3)^T.
+\]
+
+Násobení generátorem \(U_5\) působí v bázi charakterů prostřednictvím
+
+\[
+D=\operatorname{diag}(1,i,-1,-i).
+\]
+
+Komplexní konjugace zaměňuje \(\chi_1\leftrightarrow\chi_3\) a ponechává \(\chi_0,\chi_2\) pevné. Položme
+
+\[
+P=
+\begin{pmatrix}
+1&0&0&0\\
+0&0&0&1\\
+0&0&1&0\\
+0&1&0&0
+\end{pmatrix}.
+\]
+
+Pro hermitovskou vazebnou matici \(G\) požadujme invarianci vůči fázi charakterů a kompatibilitu s antiunitární konjugací,
+
+\[
+D^\dagger G D=G,
+\qquad
+P^\dagger G P=\overline G.
+\]
+
+**Věta TMM-3.** Tyto podmínky jsou ekvivalentní tvaru
+
+\[
+G=\operatorname{diag}(g_0,g_1,g_2,g_1),
+\qquad g_0,g_1,g_2\in\mathbb R.
+\]
+
+Forma je pozitivně definitní právě tehdy, když
+
+\[
+g_0>0,\qquad g_1>0,\qquad g_2>0.
+\]
+
+Fázová a konjugační symetrie tedy ponechávají tři nezávislé reálné váhy a nevybírají kanonickou metriku.
+
+Pokud navíc postulujeme cyklickou symetrii kanálů
+
+\[
+X(\Lambda_0,\Lambda_1,\Lambda_2,\Lambda_3)^T
+=(\Lambda_3,\Lambda_0,\Lambda_1,\Lambda_2)^T,
+\qquad X^\dagger G X=G,
+\]
+
+potom
+
+\[
+G=cI.
+\]
+
+Tento silnější závěr je podmíněný, protože repozitář neodvozuje působení \(X\) na Mellinovy kanály charakterů z kanonického pole UBT.
+
+I maximálně symetrický pozitivní kandidát dává pouze
+
+\[
+Q(s)=c\sum_{k=0}^3|\Lambda_k(s)|^2.
+\]
+
+Jeho pozitivita říká, že \(Q(s)=0\) pouze při anulování všech čtyř kanálů. RH se týká nul samotného hlavního kanálu, takže pozitivita \(Q\) jejich polohu neurčuje bez další identity vynucující současné anulování nebo bez samoadjungovaného operátoru, jehož charakteristickým determinantem je hlavní dokončený kanál zeta.
+
+Toto omezení odpovídá auditu akce v repozitáři: reálné bikvaternionové párování, znaménko a škála nejsou dokončeny; pozitivní hermitovská veličina \(\operatorname{Tr}(X^\dagger X)\) není pro obecné pole Lorentzovsky invariantní při neunitárních boostech; a kanonická seskvilineární forma potřebná pro antiunitární obrácení času zůstává otevřená. TMM-3 je proto klasifikací přípustných kandidátů, nikoli odvozením z UBT.
+
+| Podmínka | Status |
+|---|---|
+| klasifikace z fáze a konjugace | **[PROVED]** |
+| skalární metrika při dodatečné cyklické symetrii | **[PROVED, CONDITIONAL ON \(X\)]** |
+| odvodit symetrie kanálů z kanonické UBT | **[OPEN]** |
+| sladit pozitivní metriku kanálů s Lorentzovsky invariantním párováním pole | **[OPEN]** |
+| získat samoadjungovaný determinant síly RH | **[OPEN]** |
+
+Ukotvení v repozitáři: `canonical/ACTION.en.md:50-98`, `canonical/symmetry/discrete_symmetries.tex:311-317` a `canonical/symmetry/discrete_symmetries.tex:449-454`.
