@@ -45,3 +45,7 @@ def test_rank_four_character_channels_mod_5() -> None:
 
 def test_principal_character_l_factor() -> None:
     TOOL.check_principal_l_factor()
+
+
+def test_symmetry_admissible_metric_classification() -> None:
+    TOOL.check_metric_classification()
