@@ -125,7 +125,7 @@ ukazuje, že chvost je holomorfní pro \(\Re s>1/2\). V okolí \(V_\rho\) nuly \
 
 \[
 P(s)=m_\rho\log(s-\rho)+h_\rho(s),
-\qquad h_\rho\in\mathcal O(V_\rho),
+\qquad h_\rho\in\mathcal O(V_\rho).
 \]
 
 Prvočíselná zeta funkce má také logaritmickou singularitu vyvolanou pólem v \(s=1\). RH je tedy ekvivalentně přeformulována jako neexistence jakéhokoli dalšího logaritmického bodu větvení \(P(s)\) v \(\Re s>1/2\). Tato ekvivalence je klasickým přeformulováním, nikoli pokrokem v důkazu požadované neexistence.

@@ -125,7 +125,7 @@ shows that the tail is holomorphic for \(\Re s>1/2\). Therefore, in a neighborho
 
 \[
 P(s)=m_\rho\log(s-\rho)+h_\rho(s),
-\qquad h_\rho\in\mathcal O(V_\rho),
+\qquad h_\rho\in\mathcal O(V_\rho).
 \]
 
 The prime-zeta function also has the pole-induced logarithmic singularity at \(s=1\). Hence RH is equivalently reformulated as the absence of any other logarithmic branch point of \(P(s)\) in \(\Re s>1/2\). This equivalence is a classical reformulation, not progress toward proving the required absence.
