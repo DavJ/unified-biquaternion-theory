@@ -45,3 +45,35 @@ def test_rank_four_character_channels_mod_5() -> None:
 
 def test_principal_character_l_factor() -> None:
     TOOL.check_principal_l_factor()
+
+
+def test_symmetry_admissible_metric_classification() -> None:
+    TOOL.check_metric_classification()
+
+
+def test_primitive_mod_5_functional_equations() -> None:
+    TOOL.check_primitive_functional_equations_mod_5()
+
+
+def test_additive_residue_representation_mod_5() -> None:
+    TOOL.check_additive_residue_representation_mod_5()
+
+
+def test_elliptic_derivative_odd_sector_mod_5() -> None:
+    TOOL.check_elliptic_derivative_odd_sector_mod_5()
+
+
+def test_jacobi_dirac_factorization_mod_5() -> None:
+    TOOL.check_jacobi_dirac_factorization_mod_5()
+
+
+def test_local_polynomial_jacobi_operator_no_go() -> None:
+    TOOL.check_local_polynomial_jacobi_operator_no_go()
+
+
+def test_infinite_series_and_nonlocal_baseline() -> None:
+    TOOL.check_infinite_series_and_nonlocal_baseline()
+
+
+def test_regulated_prime_phase_operator() -> None:
+    TOOL.check_regulated_prime_phase_operator()

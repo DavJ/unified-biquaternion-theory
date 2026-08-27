@@ -244,3 +244,691 @@ The next experiment must therefore derive, rather than choose, a matrix \(G_{\ma
 \]
 
 has a canonical positivity or self-adjoint spectral representation.
+
+<a id="tmm-ubt-metric"></a>
+## 9. Symmetry-admissible coupling metrics
+
+Write the four completed character channels as
+
+\[
+\mathbf\Lambda=(\Lambda_0,\Lambda_1,\Lambda_2,\Lambda_3)^T.
+\]
+
+Multiplication by the generator of \(U_5\) acts in the character basis through
+
+\[
+D=\operatorname{diag}(1,i,-1,-i).
+\]
+
+Complex conjugation exchanges \(\chi_1\leftrightarrow\chi_3\) and fixes \(\chi_0,\chi_2\). Let
+
+\[
+P=
+\begin{pmatrix}
+1&0&0&0\\
+0&0&0&1\\
+0&0&1&0\\
+0&1&0&0
+\end{pmatrix}.
+\]
+
+For a Hermitian coupling matrix \(G\), impose character-phase invariance and antiunitary conjugation compatibility,
+
+\[
+D^\dagger G D=G,
+\qquad
+P^\dagger G P=\overline G.
+\]
+
+**Theorem TMM-3.** These conditions are equivalent to
+
+\[
+G=\operatorname{diag}(g_0,g_1,g_2,g_1),
+\qquad g_0,g_1,g_2\in\mathbb R.
+\]
+
+The form is positive definite exactly when
+
+\[
+g_0>0,\qquad g_1>0,\qquad g_2>0.
+\]
+
+Hence phase and conjugation symmetry leave three independent real weights and do not select a canonical metric.
+
+If one additionally postulates cyclic channel symmetry
+
+\[
+X(\Lambda_0,\Lambda_1,\Lambda_2,\Lambda_3)^T
+=(\Lambda_3,\Lambda_0,\Lambda_1,\Lambda_2)^T,
+\qquad X^\dagger G X=G,
+\]
+
+then
+
+\[
+G=cI.
+\]
+
+This stronger conclusion is conditional because the repository does not derive the action of \(X\) on the Mellin-character channels from the canonical UBT field.
+
+Even the maximally symmetric positive candidate gives only
+
+\[
+Q(s)=c\sum_{k=0}^3|\Lambda_k(s)|^2.
+\]
+
+Its positivity says that \(Q(s)=0\) only when all four channels vanish. RH concerns the zeros of the principal channel alone, so positivity of \(Q\) does not locate those zeros without an additional identity forcing simultaneous vanishing or a self-adjoint operator whose characteristic determinant is the principal completed zeta channel.
+
+This limitation matches the repository action audit: the real biquaternionic pairing, sign and scale are not finalized; the positive Hermitian quantity \(\operatorname{Tr}(X^\dagger X)\) is not Lorentz invariant for a generic field under nonunitary boosts; and the canonical sesquilinear form needed for antiunitary time reversal remains open. Therefore TMM-3 is a classification of admissible candidates, not a UBT derivation.
+
+| Gate | Status |
+|---|---|
+| phase-plus-conjugation classification | **[PROVED]** |
+| scalar metric under additional cyclic symmetry | **[PROVED, CONDITIONAL ON \(X\)]** |
+| derive the channel symmetries from canonical UBT | **[OPEN]** |
+| reconcile positive channel metric with Lorentz-invariant field pairing | **[OPEN]** |
+| obtain an RH-strength self-adjoint determinant | **[OPEN]** |
+
+Repository grounding: `canonical/ACTION.en.md:50-98`, `canonical/symmetry/discrete_symmetries.tex:311-317`, and `canonical/symmetry/discrete_symmetries.tex:449-454`.
+
+<a id="tmm-functional-equations"></a>
+## 10. Gauss sums and the functional-equation no-go result
+
+For the three nonprincipal characters \(\chi_k\), \(k=1,2,3\), set \(a_k=k\bmod2\) and
+
+\[
+\tau_k=\sum_{r=1}^{4}\chi_k(r)e^{2\pi i r/5},
+\qquad
+\varepsilon_k=\frac{\tau_k}{i^{a_k}\sqrt5}.
+\]
+
+All three characters are primitive. Their completed functions
+
+\[
+\Lambda_k(s)=
+\left(\frac5\pi\right)^{(s+a_k)/2}
+\Gamma\!\left(\frac{s+a_k}{2}\right)L(s,\chi_k)
+\]
+
+satisfy
+
+\[
+\Lambda_k(s)=\varepsilon_k\Lambda_{4-k}(1-s).
+\]
+
+Direct Gauss-sum evaluation gives
+
+\[
+|\tau_k|=\sqrt5,
+\qquad
+\varepsilon_2=1,
+\qquad
+\varepsilon_3=\overline{\varepsilon_1},
+\qquad
+\varepsilon_1\varepsilon_3=1.
+\]
+
+Thus, on \(\mathbf\Lambda_{\mathrm{prim}}=(\Lambda_1,\Lambda_2,\Lambda_3)^T\), the functional equation is
+
+\[
+\mathbf\Lambda_{\mathrm{prim}}(s)
+=R\mathbf\Lambda_{\mathrm{prim}}(1-s),
+\qquad
+R=
+\begin{pmatrix}
+0&0&\varepsilon_1\\
+0&1&0\\
+\varepsilon_3&0&0
+\end{pmatrix},
+\qquad
+R^\dagger R=R^2=I.
+\]
+
+The restriction of the TMM-3 metric to these channels is
+
+\[
+G_{\mathrm{prim}}=\operatorname{diag}(g_1,g_2,g_1).
+\]
+
+For every real \(g_1,g_2\), not only when they are equal,
+
+\[
+R^\dagger G_{\mathrm{prim}}R=G_{\mathrm{prim}}.
+\]
+
+The functional equation therefore adds no relation between the odd-character weight \(g_1\) and the quadratic-character weight \(g_2\).
+
+The principal character is different. It is induced from the conductor-one trivial character and
+
+\[
+L(s,\chi_0)=(1-5^{-s})\zeta(s).
+\]
+
+If \(\Lambda_\zeta(s)=\pi^{-s/2}\Gamma(s/2)\zeta(s)\), its conductor-five normalization is
+
+\[
+\Lambda_0^{(5)}(s)
+=\left(5^{s/2}-5^{-s/2}\right)\Lambda_\zeta(s).
+\]
+
+Since \(\Lambda_\zeta(s)=\Lambda_\zeta(1-s)\), one obtains the nonconstant multiplier
+
+\[
+\Lambda_0^{(5)}(s)
+=\frac{5^{s/2}-5^{-s/2}}
+{5^{(1-s)/2}-5^{-(1-s)/2}}
+\Lambda_0^{(5)}(1-s).
+\]
+
+Consequently the four channels do not form a constant unitary \(4\times4\) functional-equation representation: the three primitive channels form a closed block, while the principal zeta channel remains separate.
+
+**Theorem TMM-4.** The exact mod-5 Gauss sums and Dirichlet functional equations do not reduce the three-parameter metric family of TMM-3 and do not mix the principal zeta channel with the primitive channels. Hence they impose no additional condition on the nontrivial zeros of \(\zeta\).
+
+This is a second no-go result, not a failure of the calculation. Any stronger coupling must come from an enlarged additive-residue theta representation, a UBT-derived operator, or another identity not contained in the separate Dirichlet functional equations.
+
+| Gate | Status |
+|---|---|
+| primitive Gauss sums and root numbers | **[PROVED]** |
+| unitary involution on the primitive block | **[PROVED]** |
+| principal channel has a constant conductor-five root number | **[DISPROVED]** |
+| functional equations force \(g_1=g_2\) | **[DISPROVED]** |
+| UBT-derived mixing with the principal channel | **[OPEN]** |
+
+<a id="tmm-additive-residues"></a>
+## 11. Additive residue channels and the finite Weil representation
+
+For \(r\in\mathbb Z/5\mathbb Z\), define
+
+\[
+\Theta_r(t)=
+\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+e^{-\pi n^2t/5},
+\qquad t>0.
+\]
+
+Poisson summation gives the vector transformation
+
+\[
+\mathbf\Theta(t)=t^{-1/2}\mathcal S\mathbf\Theta(1/t),
+\qquad
+\mathcal S_{rs}=\frac1{\sqrt5}e^{2\pi i rs/5}.
+\]
+
+For the holomorphic version, translation by two modular units acts through
+
+\[
+\Theta_r(\tau+2)=e^{2\pi i r^2/5}\Theta_r(\tau),
+\qquad
+\mathcal T=\operatorname{diag}
+\left(e^{2\pi i r^2/5}\right)_{r=0}^{4}.
+\]
+
+Let \(\mathcal P\) reflect residues, \((\mathcal Pv)_r=v_{-r}\). Direct calculation yields
+
+\[
+\mathcal S^\dagger\mathcal S=I,
+\qquad
+\mathcal S^2=\mathcal P,
+\qquad
+\mathcal S^4=I,
+\qquad
+[\mathcal T,\mathcal P]=0.
+\]
+
+The full coefficient space decomposes into residue-parity sectors
+
+\[
+\mathbb C^5=V_+\oplus V_-,
+\qquad
+\dim V_+=3,
+\qquad
+\dim V_-=2,
+\qquad
+\Pi_\pm=\frac12(I\pm\mathcal P).
+\]
+
+Solving the complete commutant equations
+
+\[
+[G,\mathcal S]=[G,\mathcal T]=0
+\]
+
+gives
+
+\[
+G=a\Pi_+ + b\Pi_-.
+\]
+
+For Hermitian \(G\), the coefficients \(a,b\) are real, and positivity requires \(a,b>0\). Thus the full five-dimensional representation has two independent invariant weights.
+
+However, the scalar theta constants satisfy
+
+\[
+\Theta_r(t)=\Theta_{-r}(t).
+\]
+
+They therefore occupy only
+
+\[
+V_+=\operatorname{span}
+\left\{e_0,\frac{e_1+e_4}{\sqrt2},
+\frac{e_2+e_3}{\sqrt2}\right\}.
+\]
+
+The restricted commutant of \(\mathcal S\) and \(\mathcal T\) on this three-dimensional sector has dimension one. Consequently its invariant Hermitian metric is
+
+\[
+G_+=aI_3.
+\]
+
+The two odd channels are absent at \(z=0\); they can be supplied by derivatives with respect to the elliptic variable, analogously to the missing scalar \(\vartheta_1\) channel.
+
+The principal zeta function is now genuinely contained in the additive system because
+
+\[
+\frac12\sum_{r=0}^{4}
+\left(\Theta_r(t)-\delta_{r0}\right)
+=\sum_{n=1}^{\infty}e^{-\pi n^2t/5},
+\]
+
+and hence, for \(\Re s>1\),
+
+\[
+\frac12\int_0^\infty t^{s/2-1}
+\sum_{r=0}^{4}\left(\Theta_r(t)-\delta_{r0}\right)dt
+=\left(\frac5\pi\right)^{s/2}
+\Gamma\!\left(\frac s2\right)\zeta(s).
+\]
+
+**Theorem TMM-5.** The additive residue representation does mix the zero residue class with the four nonzero classes. Modular invariance fixes the scalar even-sector metric uniquely up to an overall scale. Nevertheless, the zeta channel is a linear functional of the three theta components, whereas positivity of \(aI_3\) controls their simultaneous vanishing. It therefore does not imply that zeros of this linear functional lie on \(\Re s=1/2\).
+
+This experiment supplies canonical modular mixing and a scalar metric on the realized sector, but not an RH-strength spectral operator. The remaining missing ingredient is a UBT-derived self-adjoint operator whose determinant or distinguished eigenchannel equals the completed zeta function.
+
+| Gate | Status |
+|---|---|
+| five-residue Fourier transformation | **[PROVED]** |
+| full commutant \(a\Pi_++b\Pi_-\) | **[PROVED]** |
+| scalar metric on the realized even sector | **[PROVED]** |
+| additive system contains the zeta Mellin channel | **[PROVED]** |
+| positivity locates the zeros of that linear channel | **[DISPROVED]** |
+| UBT-derived self-adjoint zeta operator | **[OPEN]** |
+
+<a id="tmm-elliptic-derivatives"></a>
+## 12. Elliptic derivatives and the odd sector
+
+Introduce the elliptic residue kernels
+
+\[
+\Theta_r(z,\tau)=
+\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+\exp\!\left(\frac{\pi i\tau n^2}{5}
++\frac{2\pi i n z}{5}\right)
+\]
+
+and their first derivatives at \(z=0\), normalized as
+
+\[
+\Phi_r(t)=
+\frac5{2\pi i}
+\left.\frac{\partial}{\partial z}\Theta_r(z,it)\right|_{z=0}
+=\sum_{n\equiv r\ (\mathrm{mod}\ 5)}
+n e^{-\pi n^2t/5}.
+\]
+
+They have odd residue parity,
+
+\[
+\Phi_0(t)=0,
+\qquad
+\Phi_{-r}(t)=-\Phi_r(t),
+\qquad
+\sum_{r=0}^{4}\Phi_r(t)=0.
+\]
+
+Thus the derivative vector lies in
+
+\[
+V_-=\operatorname{span}
+\left\{\frac{e_1-e_4}{\sqrt2},
+\frac{e_2-e_3}{\sqrt2}\right\}.
+\]
+
+Differentiating the Poisson transformation, or transforming the weighted Gaussian directly, gives
+
+\[
+\mathbf\Phi(t)
+=-i\,t^{-3/2}\mathcal S\mathbf\Phi(1/t).
+\]
+
+The power changes from \(t^{-1/2}\) to \(t^{-3/2}\): the derivative sector has modular weight higher by one. Translation by two still acts through \(\mathcal T\).
+
+The restricted commutant on \(V_-\) has dimension one, so its invariant Hermitian metric is
+
+\[
+G_-=bI_2.
+\]
+
+The complete scalar-plus-derivative metric is consequently
+
+\[
+G=aI_3\oplus bI_2
+=a\Pi_+ + b\Pi_-.
+\]
+
+One might hope that the derivative operation forces \(a=b\). It does not. Solving all constant intertwiner equations
+
+\[
+Q\mathcal S_+=(-i\mathcal S_-)Q,
+\qquad
+Q\mathcal T_+=\mathcal T_-Q,
+\qquad
+Q:V_+\longrightarrow V_-
+\]
+
+gives only
+
+\[
+Q=0.
+\]
+
+This is consistent with the unequal dimensions and modular weights of the two irreducible sectors. Differentiation relates the underlying functions but is not a constant endomorphism of the finite coefficient representation.
+
+**Theorem TMM-6.** First elliptic derivatives realize the two missing odd residue channels and give them a scalar invariant metric. The combined Jacobi data retain two independent positive scales \(a,b\); modular covariance supplies no nonzero constant even-to-odd intertwiner and therefore does not enforce \(a=b\).
+
+The even/odd split may be used as a carefully limited bosonic/fermionic analogy: scalar theta values are even and derivative channels are odd, with pairwise cancellation in the latter. It is not a derivation of physical particles, spin-statistics, or particle-antiparticle states. Such an interpretation would require a UBT-derived graded Hilbert space and a weight-changing Dirac or supercharge operator.
+
+| Gate | Status |
+|---|---|
+| odd derivative kernels and their Poisson law | **[PROVED]** |
+| scalar invariant metric \(bI_2\) | **[PROVED]** |
+| nonzero constant modular intertwiner \(V_+\to V_-\) | **[DISPROVED]** |
+| modular covariance forces \(a=b\) | **[DISPROVED]** |
+| UBT-derived Dirac or supercharge coupling | **[OPEN]** |
+| physical fermion interpretation | **[OPEN]** |
+
+<a id="tmm-jacobi-dirac"></a>
+## 13. Jacobi Dirac factorization and its spectral limit
+
+Work on the Hilbert space of \(5\)-periodic functions of the elliptic variable,
+
+\[
+\mathcal H_z=L^2(\mathbb R/5\mathbb Z),
+\qquad
+\langle f,g\rangle_z=\frac15\int_0^5\overline{f\(z\)}g\(z\)\,dz,
+\]
+
+with dense domain \(H^1(\mathbb R/5\mathbb Z)\).  The normalized elliptic derivative
+
+\[
+\mathscr D_z:=\frac5{2\pi i}\frac{\partial}{\partial z}
+\]
+
+is self-adjoint on the periodic domain and obeys
+
+\[
+\mathscr D_z e^{2\pi i n z/5}=n e^{2\pi i n z/5}.
+\]
+
+Let \((\mathcal Pf)(z)=f(-z)\).  Then
+
+\[
+\mathcal P\mathscr D_z\mathcal P=-\mathscr D_z.
+\]
+
+Thus \(\mathscr D_z\) is an odd operator for the parity grading and exchanges the even and odd function spaces.  Applied to the residue theta kernels, it gives exactly the channels of TMM-6,
+
+\[
+\left.\mathscr D_z\Theta_r(z,it)\right|_{z=0}=\Phi_r(t).
+\]
+
+It also factors the free theta heat generator.  If
+
+\[
+H_0 e^{2\pi i n z/5}=\frac{\pi n^2}{5}e^{2\pi i n z/5},
+\]
+
+then
+
+\[
+\boxed{H_0=\frac\pi5\mathscr D_z^2},
+\qquad
+e^{-tH_0}e^{2\pi i n z/5}=e^{-\pi n^2t/5}e^{2\pi i n z/5}.
+\]
+
+Relative to \(\mathcal H_z=\mathcal H_+\oplus\mathcal H_-\), the operator has Dirac form
+
+\[
+\mathscr D_z=
+\begin{pmatrix}
+0&\mathscr D_-\\
+\mathscr D_+&0
+\end{pmatrix},
+\qquad
+\mathscr D_- = \mathscr D_+^\dagger.
+\]
+
+This is a genuine weight-changing differential operator, not the constant intertwiner excluded by TMM-6.  However, it does not identify the two finite-sector metric scales.  For the graded metric \(aI_3\oplus bI_2\), the adjoint of a map \(D:V_+\to V_-\) is \(D^{\dagger_{a,b}}=(b/a)D^\dagger\); self-adjoint block completion is therefore possible for every \(a,b>0\).  Requiring the same unrescaled differential expression in both off-diagonal blocks would impose \(a=b\), but that is an additional normalization choice, not a consequence of modular covariance.
+
+**Theorem TMM-7.** The Jacobi derivative gives a canonical parity-odd self-adjoint square root of the free theta Hamiltonian on the periodic elliptic Hilbert space.  Its spectrum is
+
+\[
+\operatorname{spec}(\mathscr D_z)=\mathbb Z,
+\qquad
+\operatorname{spec}(H_0)=\left\{\frac{\pi n^2}{5}:n\in\mathbb Z\right\}.
+\]
+
+Consequently this operator does not have the nontrivial zeta ordinates as eigenvalues, and its spectral determinant is not the completed zeta function.  The repository also does not derive an identification of the auxiliary Jacobi coordinate \(z\) with a canonical biquaternionic spacetime or complex-time direction.  Hence \(\mathscr D_z\) closes the local graded-factorization problem but does not close the UBT or Hilbert--Pólya bridge.
+
+| Gate | Status |
+|---|---|
+| self-adjoint elliptic derivative on the periodic domain | **[PROVED]** |
+| parity-odd map and \(H_0=(\pi/5)\mathscr D_z^2\) | **[PROVED]** |
+| same block normalization follows from modular symmetry | **[DISPROVED]** |
+| spectrum equals the nontrivial zeta ordinates | **[DISPROVED]** |
+| \(z\) identified with a canonical UBT direction | **[OPEN]** |
+| Hilbert--Pólya operator derived from UBT | **[OPEN]** |
+
+Verification: `tools/verify_theta_mellin_matrix.py` checks the Fourier eigenvalues, parity anticommutation, heat-generator factorization, and metric-adjoint scaling on finite invariant mode truncations; `tests/test_theta_mellin_matrix.py` provides the regression entry point.  These finite exact/numerical checks do not prove an unbounded-operator domain theorem or a UBT identification.  **LEAN-PENDING:** the theorem uses Fourier/Sobolev operator-domain facts not yet represented in the repository's Lean environment.
+
+<a id="tmm-local-polynomial-no-go"></a>
+## 14. Finite-order local-operator no-go
+
+Let \(P(x)=\sum_{k=0}^{m}c_kx^k\) be a real polynomial and apply \(P(\mathscr D_z)\) to the scalar theta kernel.  For \(\Re s>2j+1\), termwise Mellin integration gives
+
+\[
+\frac12\int_0^\infty t^{s/2-1}
+\left.
+P(\mathscr D_z)
+\sum_{n\ne0}e^{-\pi n^2t/5}e^{2\pi inz/5}
+\right|_{z=0}dt
+=
+\left(\frac5\pi\right)^{s/2}\Gamma\!\left(\frac s2\right)
+\sum_{j=0}^{\lfloor m/2\rfloor}c_{2j}\zeta(s-2j).
+\]
+
+All odd powers cancel because the modes \(n\) and \(-n\) occur with equal coefficients.  Thus every finite-order local differential polynomial produces only a finite linear combination of shifted zeta functions in the principal scalar channel.  Residue or characteristic projections replace these by the corresponding finite combinations of Hurwitz or Dirichlet \(L\)-functions; they do not create a new spectral determinant.
+
+There is an independent asymptotic obstruction.  If \(m\ge1\) and \(c_m\ne0\), the eigenvalues are \(P(n)\), \(n\in\mathbb Z\), and their absolute counting function satisfies
+
+\[
+N_P(T):=\#\{n\in\mathbb Z:|P(n)|\le T\}
+=2|c_m|^{-1/m}T^{1/m}+O(1).
+\]
+
+A fixed finite internal multiplicity changes only the leading constant.  By contrast, the Riemann--von Mangoldt formula for positive nontrivial zeta ordinates is
+
+\[
+N_\zeta(T)=
+\frac{T}{2\pi}\log\!\frac{T}{2\pi}
+-\frac{T}{2\pi}+O(\log T).
+\]
+
+No exponent \(1/m\) yields the \(T\log T\) growth.  The constant polynomial case has infinite degeneracy and no compact resolvent, so it does not evade the obstruction.
+
+**Theorem TMM-8.** No self-adjoint finite-order differential polynomial in the periodic Jacobi operator \(\mathscr D_z\), even with fixed finite matrix multiplicity, can have the nontrivial zeta ordinates as its complete spectrum.  Its scalar Mellin channel is a finite combination of shifted zeta functions and its eigenvalue counting law is incompatible with the Riemann--von Mangoldt law.
+
+This theorem does not exclude a nonlocal pseudodifferential operator, a noncompact phase space, an energy-dependent boundary condition, or an arithmetic prime/Euler interaction.  It says that at least one such ingredient is necessary; adding more finite powers of \(\partial_z\) cannot close the Hilbert--Pólya bridge.
+
+| Gate | Status |
+|---|---|
+| Mellin image of every polynomial \(P(\mathscr D_z)\) | **[PROVED]** |
+| odd-power cancellation in the scalar channel | **[PROVED]** |
+| polynomial spectral counting versus \(T\log T\) | **[PROVED]** |
+| finite-order local Jacobi operator realizes all zeta ordinates | **[DISPROVED]** |
+| nonlocal arithmetic operator derived from UBT | **[OPEN]** |
+
+Verification: the repository verifier independently compares the truncated Dirichlet series for the monomials \(1,n^2,n^4\) with \(\zeta(s),\zeta(s-2),\zeta(s-4)\), checks cancellation of odd monomials, and checks the polynomial counting exponents on increasing cutoffs.  The analytic theorem uses termwise integration in the displayed absolute-convergence half-plane and the standard Riemann--von Mangoldt formula.  **LEAN-PENDING:** asymptotic counting and Mellin interchange have not yet been formalized in Lean.
+
+<a id="tmm-infinite-series-nonlocal"></a>
+## 15. Infinite Maclaurin series and the first nonlocal baseline
+
+Consider a convergent infinite functional calculus
+
+\[
+F(\mathscr D_z)=\sum_{k=0}^{\infty}a_k\mathscr D_z^k,
+\qquad
+F(\mathscr D_z)e_n=F(n)e_n,
+\qquad
+e_n\(z\)=e^{2\pi inz/5}.
+\]
+
+This escapes the finite-order counting theorem, but it does not generally remain local.  A translation-invariant operator on the circle is convolution by a periodic distribution \(K_F\) whose Fourier coefficients are \(F(n)\).  If the operator is local, the convolution kernel is supported at the identity.  A distribution supported at one point is a finite sum of derivatives of a delta distribution, so its Fourier coefficients are polynomial in \(n\).  Consequently
+
+\[
+\operatorname{supp}K_F\subseteq\{0\}
+\quad\Longleftrightarrow\quad
+\exists P\in\mathbb C[x]\ \forall n\in\mathbb Z:\ F(n)=P(n).
+\]
+
+Thus a genuinely nonpolynomial infinite Maclaurin series is already a nonlocal infinite-order or pseudodifferential operator.  The qualification by the integer sequence is essential: two entire functions that agree on all integers define the same Fourier multiplier.
+
+Existence alone has no predictive force.  Entire interpolation on the discrete set \(\mathbb Z\) can produce an \(F\) with prescribed values \(F(n)=\gamma_n\), where \(\gamma_n\) are zeta ordinates.  It is infinitely nonunique, since for every entire \(G\),
+
+\[
+\widetilde F(z)=F(z)+\sin(\pi z)G(z)
+\quad\Longrightarrow\quad
+\widetilde F(n)=F(n).
+\]
+
+Such an operator merely stores the desired zeros in its definition and is not a Hilbert--Pólya derivation.
+
+A non-fitted baseline can nevertheless reproduce the required smooth density.  Let \(W\) be the positive principal Lambert function and define the odd real symbol
+
+\[
+A_0(0)=0,
+\qquad
+A_0(n)=\operatorname{sgn}(n)
+\frac{2\pi|n|}{W(|n|/e)},
+\qquad n\ne0.
+\]
+
+The corresponding diagonal Fourier multiplier is self-adjoint on its maximal spectral domain.  Define the smooth two-term counting approximation
+
+\[
+N_0(T)=\frac{T}{2\pi}
+\left(\log\frac{T}{2\pi}-1\right).
+\]
+
+Writing \(w=W(n/e)\), the identity \(we^w=n/e\) gives exactly
+
+\[
+\frac{A_0(n)}{2\pi}=\frac n w,
+\qquad
+\log\frac{A_0(n)}{2\pi}=w+1,
+\qquad
+\boxed{N_0(A_0(n))=n}
+\]
+
+for every positive integer \(n\).  Hence \(A_0\) exactly inverts the smooth leading Riemann--von Mangoldt law.  This is the missing \(T\log T\) density that no finite differential polynomial could supply.
+
+**Theorem TMM-9.** An infinite Maclaurin functional calculus can evade TMM-8 only by becoming nonlocal unless its integer symbol reduces to a polynomial sequence.  Arbitrary entire interpolation of zeta ordinates is possible but circular and nonunique.  The explicit nonlocal multiplier \(A_0\) is self-adjoint and matches the smooth two-term zeta-zero counting law without using individual zeros, but it does not reproduce the oscillatory term, the \(7/8\) correction, or the individual ordinates.
+
+The remaining arithmetic problem is therefore sharply isolated: derive from UBT or theta/Euler data a self-adjoint correction \(V_{\mathrm{arith}}\) such that
+
+\[
+A=A_0+V_{\mathrm{arith}}
+\]
+
+reproduces the prime-controlled fluctuation while preserving a justified domain and self-adjointness.  The primitive input must be derived \(\log p\) data, not a table of zeta zeros.
+
+| Gate | Status |
+|---|---|
+| locality criterion for translation-invariant \(F(\mathscr D_z)\) | **[PROVED]** |
+| arbitrary entire interpolation exists and is nonunique | **[CLASSICAL / PROVED]** |
+| interpolation constitutes a derivation of RH | **[DISPROVED]** |
+| Lambert-\(W\) baseline exactly inverts \(N_0\) | **[PROVED]** |
+| baseline reproduces individual zeta ordinates | **[DISPROVED]** |
+| prime/\(\log p\) correction derived from UBT | **[OPEN]** |
+
+Verification: `tools/verify_theta_mellin_matrix.py` checks the Lambert equation, the exact identity \(N_0(A_0(n))=n\) over multiple scales, monotonicity and oddness of the symbol, and integer-spectrum nonuniqueness under addition of \(\sin(\pi z)G(z)\).  The locality statement uses the classical structure theorem for point-supported distributions.  **LEAN-PENDING:** distribution support and unbounded spectral functional calculus are not formalized in the repository's Lean environment.
+
+<a id="tmm-regulated-prime-operator"></a>
+## 16. Regulated prime-phase operator
+
+Let \(A_0\) be the self-adjoint Lambert-\(W\) baseline from TMM-9 and put \(\sigma=\tfrac12+\varepsilon>1\). Functional calculus gives
+
+\[
+U_{p,k}=e^{ik(\log p)A_0},
+\qquad U_{p,k}^\dagger=U_{p,k}^{-1}.
+\]
+
+Define
+
+\[
+\mathcal D_\sigma=-\frac1\pi\sum_{p,k\ge1}
+\frac{\log p}{p^{k\sigma}}\cos\!\bigl(k(\log p)A_0\bigr),
+\]
+
+\[
+\mathcal S_\sigma=-\frac1\pi\sum_{p,k\ge1}
+\frac{1}{k p^{k\sigma}}\sin\!\bigl(k(\log p)A_0\bigr).
+\]
+
+For \(\sigma>1\), both coefficient sums converge absolutely, hence in operator norm, to bounded self-adjoint operators. On a spectral value \(T\),
+
+\[
+d_\sigma(T)=\frac1\pi\operatorname{Re}\frac{\zeta'}{\zeta}(\sigma+iT),
+\qquad
+s_\sigma'(T)=d_\sigma(T).
+\]
+
+The density \(d_\sigma\) cannot be added directly to an ordinate. The quantization equation and its first-order correction are
+
+\[
+N_0(T)+s_\sigma(T)=n,
+\qquad
+\delta_\sigma(T)=-\frac{s_\sigma(T)}{N_0'(T)},
+\qquad
+N_0'(T)=\frac1{2\pi}\log\frac{T}{2\pi}.
+\]
+
+On the positive spectral sector,
+
+\[
+A_\sigma^{(1)}
+=A_0-\bigl[N_0'(A_0)\bigr]^{-1}\mathcal S_\sigma.
+\]
+
+All factors are real Borel functions of the same self-adjoint \(A_0\), so they commute. The correction is bounded for fixed \(\sigma>1\), \(A_\sigma^{(1)}\) is self-adjoint on \(\operatorname{Dom}(A_0)\), and
+
+\[
+N_0'(T_n^{(0)})\delta_\sigma(T_n^{(0)})
++s_\sigma(T_n^{(0)})=0.
+\]
+
+**Theorem TMM-10.** For every \(\sigma>1\), Euler prime-power data define explicit norm-convergent bounded self-adjoint density and counting-phase functions of \(A_0\). The counting phase gives a regulated first-order ordinate correction using primes but no zeta-zero table.
+
+At \(\sigma=\tfrac12\), absolute norm convergence is lost. The density diverges on the zero mode, while loss of absolute convergence for the integrated sine phase does not by itself exclude a conditional or renormalized limit. The exact nonlinear quantization equation, archimedean \(7/8\) and gamma corrections, and derivation of primitive \(\log p\) phases from UBT remain open. TMM-10 is not a Hilbert--Pólya construction and does not imply RH.
+
+| Gate | Status |
+|---|---|
+| norm convergence for \(\sigma>1\) | **[PROVED]** |
+| bounded self-adjoint prime density and phase | **[PROVED]** |
+| \(s_\sigma'(T)=d_\sigma(T)\) | **[PROVED]** |
+| first-order ordinate correction | **[PROVED, REGULATED]** |
+| density norm limit at \(\sigma=1/2\) on the full space | **[DISPROVED]** |
+| conditional/renormalized critical phase | **[OPEN]** |
+| primitive \(\log p\) phases derived from UBT | **[OPEN]** |
+| RH follows from this construction | **[DISPROVED]** |
+
+Verification: the verifier independently generates primes, checks the phase derivative against the density, parity symmetries, and first-order cancellation. It checks finite truncations, not the analytic critical limit. **LEAN-PENDING:** spectral functional calculus and prime-series convergence are not formalized in Lean.

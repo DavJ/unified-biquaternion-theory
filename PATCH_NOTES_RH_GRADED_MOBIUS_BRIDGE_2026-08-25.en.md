@@ -31,6 +31,22 @@ The patch also adds the first joint theta-Mellin decision experiment. The exact 
 
 The characteristic extension modulo \(5\) then raises the coefficient-channel rank to four Dirichlet \(L\)-channels. The UBT-derived coupling between them remains open.
 
+Phase and conjugation symmetry classify the admissible Hermitian channel metrics as \(\operatorname{diag}(g_0,g_1,g_2,g_1)\). An additional, not-yet-derived cyclic channel symmetry reduces this family to \(cI\), whose positivity alone still does not constrain the principal zeta zeros.
+
+The primitive functional equations modulo \(5\) exchange the conjugate odd characters and fix the quadratic character, but preserve the same unequal channel weights. The principal character is imprimitive and has no constant root number at conductor \(5\), so these functional equations provide no mixing with the zeta channel.
+
+The five additive residue channels do provide canonical Fourier mixing. Their full invariant metric has separate even and odd weights, while the scalar theta constants occupy only the three-dimensional even sector, where the metric is fixed up to scale. The zeta Mellin transform is a linear combination of this sector, but positivity of the sector norm still does not locate its zeros.
+
+First elliptic derivatives realize the two odd residue channels with modular weight higher by one. Their invariant metric is scalar, but the constant modular intertwiner space between the three even and two odd channels is zero-dimensional. Hence Jacobi covariance alone does not identify the two metric scales; a UBT-derived weight-changing operator remains necessary.
+
+The periodic Jacobi derivative \(\mathscr D_z=5(2\pi i)^{-1}\partial_z\) supplies a parity-odd self-adjoint differential map and factors the free theta Hamiltonian as \(H_0=(\pi/5)\mathscr D_z^2\). Its integer spectrum is not the spectrum of nontrivial zeta ordinates, metric adjoints still permit unequal even/odd scales, and the identification of \(z\) with a canonical UBT direction remains open.
+
+Every finite differential polynomial in this Jacobi operator has a scalar Mellin channel that is only a finite combination of shifted zeta functions, while its eigenvalue count grows as a power of the cutoff rather than by the Riemann--von Mangoldt (T\log T) law. Thus the entire finite-order local Jacobi class is excluded as a Hilbert--Pólya realization; a nonlocal or arithmetic ingredient remains necessary.
+
+A genuinely nonpolynomial infinite Maclaurin functional calculus is already nonlocal on the Jacobi circle. Entire interpolation can encode arbitrary zeta ordinates but is circular and infinitely nonunique. The explicit self-adjoint multiplier (A_0(n)=2\pi n/W(n/e)) for positive modes instead uses no individual zeros and exactly inverts the smooth two-term Riemann--von Mangoldt count; the missing step is a derived prime/(\log p) fluctuation operator.
+
+For every regulator \(\sigma>1\), norm-convergent sine and cosine functions of \(A_0\), weighted only by prime powers, define bounded self-adjoint counting-phase and density operators. Differentiating the phase gives the density, while division by \(N_0'\) gives the first-order ordinate shift. The critical limit and UBT origin of primitive \(\log p\) phases remain open.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
