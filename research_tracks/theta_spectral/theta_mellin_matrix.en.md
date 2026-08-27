@@ -729,3 +729,52 @@ Consequently this operator does not have the nontrivial zeta ordinates as eigenv
 | Hilbert--Pólya operator derived from UBT | **[OPEN]** |
 
 Verification: `tools/verify_theta_mellin_matrix.py` checks the Fourier eigenvalues, parity anticommutation, heat-generator factorization, and metric-adjoint scaling on finite invariant mode truncations; `tests/test_theta_mellin_matrix.py` provides the regression entry point.  These finite exact/numerical checks do not prove an unbounded-operator domain theorem or a UBT identification.  **LEAN-PENDING:** the theorem uses Fourier/Sobolev operator-domain facts not yet represented in the repository's Lean environment.
+
+<a id="tmm-local-polynomial-no-go"></a>
+## 14. Finite-order local-operator no-go
+
+Let (P(x)=\sum_{k=0}^{m}c_kx^k) be a real polynomial and apply (P(\mathscr D_z)) to the scalar theta kernel.  For (Re s>2j+1), termwise Mellin integration gives
+
+\[
+\frac12\int_0^\infty t^{s/2-1}
+\left.
+P(\mathscr D_z)
+\sum_{n\ne0}e^{-\pi n^2t/5}e^{2\pi inz/5}
+\right|_{z=0}dt
+=
+\left(\frac5\pi\right)^{s/2}\Gamma\!\left(\frac s2\right)
+\sum_{j=0}^{\lfloor m/2\rfloor}c_{2j}\zeta(s-2j).
+\]
+
+All odd powers cancel because the modes (n) and (-n) occur with equal coefficients.  Thus every finite-order local differential polynomial produces only a finite linear combination of shifted zeta functions in the principal scalar channel.  Residue or characteristic projections replace these by the corresponding finite combinations of Hurwitz or Dirichlet (L)-functions; they do not create a new spectral determinant.
+
+There is an independent asymptotic obstruction.  If (m\ge1) and (c_m\ne0), the eigenvalues are (P(n)), (n\in\mathbb Z), and their absolute counting function satisfies
+
+\[
+N_P(T):=\#\{n\in\mathbb Z:|P(n)|\le T\}
+=2|c_m|^{-1/m}T^{1/m}+O(1).
+\]
+
+A fixed finite internal multiplicity changes only the leading constant.  By contrast, the Riemann--von Mangoldt formula for positive nontrivial zeta ordinates is
+
+\[
+N_\zeta(T)=
+\frac{T}{2\pi}\log\!\frac{T}{2\pi}
+-\frac{T}{2\pi}+O(\log T).
+\]
+
+No exponent (1/m) yields the (T\log T) growth.  The constant polynomial case has infinite degeneracy and no compact resolvent, so it does not evade the obstruction.
+
+**Theorem TMM-8.** No self-adjoint finite-order differential polynomial in the periodic Jacobi operator (mathscr D_z), even with fixed finite matrix multiplicity, can have the nontrivial zeta ordinates as its complete spectrum.  Its scalar Mellin channel is a finite combination of shifted zeta functions and its eigenvalue counting law is incompatible with the Riemann--von Mangoldt law.
+
+This theorem does not exclude a nonlocal pseudodifferential operator, a noncompact phase space, an energy-dependent boundary condition, or an arithmetic prime/Euler interaction.  It says that at least one such ingredient is necessary; adding more finite powers of (partial_z) cannot close the Hilbert--Pólya bridge.
+
+| Gate | Status |
+|---|---|
+| Mellin image of every polynomial (P(\mathscr D_z)) | **[PROVED]** |
+| odd-power cancellation in the scalar channel | **[PROVED]** |
+| polynomial spectral counting versus (T\log T) | **[PROVED]** |
+| finite-order local Jacobi operator realizes all zeta ordinates | **[DISPROVED]** |
+| nonlocal arithmetic operator derived from UBT | **[OPEN]** |
+
+Verification: the repository verifier independently compares the truncated Dirichlet series for the monomials (1,n^2,n^4) with (zeta(s),\zeta(s-2),\zeta(s-4)), checks cancellation of odd monomials, and checks the polynomial counting exponents on increasing cutoffs.  The analytic theorem uses termwise integration in the displayed absolute-convergence half-plane and the standard Riemann--von Mangoldt formula.  **LEAN-PENDING:** asymptotic counting and Mellin interchange have not yet been formalized in Lean.

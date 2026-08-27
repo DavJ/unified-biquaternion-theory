@@ -729,3 +729,52 @@ Tento operátor proto nemá za vlastní hodnoty ordináty netriviálních nul ze
 | Hilbertův--Pólyův operátor je odvozen z UBT | **[OPEN]** |
 
 Ověření: `tools/verify_theta_mellin_matrix.py` kontroluje Fourierovy vlastní hodnoty, antikomutaci s paritou, faktorizaci tepelného generátoru a škálování adjungovaného operátoru podle metriky na konečných invariantních ořezech módů; `tests/test_theta_mellin_matrix.py` poskytuje regresní vstup. Tyto konečné exaktní/numerické kontroly nedokazují větu o definičním oboru neomezeného operátoru ani identifikaci s UBT. **LEAN-PENDING:** věta používá fakta o Fourierových/Sobolevových definičních oborech operátorů, která zatím nejsou reprezentována v Lean prostředí repozitáře.
+
+<a id="tmm-local-polynomial-no-go"></a>
+## 14. No-go pro lokální operátory konečného řádu
+
+Nechť (P(x)=\sum_{k=0}^{m}c_kx^k) je reálný polynom a aplikujme (P(\mathscr D_z)) na skalární theta jádro. Pro (Re s>2j+1) dává členová Mellinova integrace
+
+\[
+\frac12\int_0^\infty t^{s/2-1}
+\left.
+P(\mathscr D_z)
+\sum_{n\ne0}e^{-\pi n^2t/5}e^{2\pi inz/5}
+\right|_{z=0}dt
+=
+\left(\frac5\pi\right)^{s/2}\Gamma\!\left(\frac s2\right)
+\sum_{j=0}^{\lfloor m/2\rfloor}c_{2j}\zeta(s-2j).
+\]
+
+Všechny liché mocniny se zruší, protože módy (n) a (-n) mají stejné koeficienty. Každý lokální diferenciální polynom konečného řádu tedy v hlavním skalárním kanálu vytváří pouze konečnou lineární kombinaci posunutých zeta funkcí. Projekce na rezidua nebo charakteristiky je nahrazují odpovídajícími konečnými kombinacemi Hurwitzových nebo Dirichletových (L)-funkcí; nevytvářejí nový spektrální determinant.
+
+Existuje i nezávislá asymptotická překážka. Jestliže (m\ge1) a (c_m\ne0), vlastní hodnoty jsou (P(n)), (n\in\mathbb Z), a jejich absolutní počítací funkce splňuje
+
+\[
+N_P(T):=\#\{n\in\mathbb Z:|P(n)|\le T\}
+=2|c_m|^{-1/m}T^{1/m}+O(1).
+\]
+
+Pevná konečná vnitřní násobnost mění pouze vedoucí konstantu. Naproti tomu Riemannův--von Mangoldtův vzorec pro kladné ordináty netriviálních nul zeta je
+
+\[
+N_\zeta(T)=
+\frac{T}{2\pi}\log\!\frac{T}{2\pi}
+-\frac{T}{2\pi}+O(\log T).
+\]
+
+Žádný exponent (1/m) nedává růst (T\log T). Konstantní polynom má nekonečnou degeneraci a nemá kompaktní rezolventu, takže překážku neobchází.
+
+**Věta TMM-8.** Žádný samoadjungovaný diferenciální polynom konečného řádu v periodickém Jacobiho operátoru (mathscr D_z), ani s pevnou konečnou maticovou násobností, nemůže mít za své úplné spektrum ordináty netriviálních nul zeta. Jeho skalární Mellinův kanál je konečnou kombinací posunutých zeta funkcí a jeho zákon počtu vlastních hodnot je neslučitelný s Riemannovým--von Mangoldtovým zákonem.
+
+Věta nevylučuje nelokální pseudodiferenciální operátor, nekompaktní fázový prostor, energeticky závislou okrajovou podmínku ani aritmetickou prime/Eulerovu interakci. Říká, že alespoň jedna taková složka je nutná; přidávání dalších konečných mocnin (partial_z) Hilbertův--Pólyův most neuzavře.
+
+| Podmínka | Status |
+|---|---|
+| Mellinův obraz každého polynomu (P(\mathscr D_z)) | **[PROVED]** |
+| rušení lichých mocnin ve skalárním kanálu | **[PROVED]** |
+| polynomiální spektrální počet oproti (T\log T) | **[PROVED]** |
+| lokální Jacobiho operátor konečného řádu realizuje všechny ordináty zeta | **[DISPROVED]** |
+| nelokální aritmetický operátor je odvozen z UBT | **[OPEN]** |
+
+Ověření: repozitářový verifier nezávisle porovnává oříznuté Dirichletovy řady pro monomy (1,n^2,n^4) s (zeta(s),\zeta(s-2),\zeta(s-4)), kontroluje rušení lichých monomů a polynomiální exponenty počítací funkce na rostoucích ořezech. Analytická věta používá členovou integraci v uvedené polorovině absolutní konvergence a standardní Riemannův--von Mangoldtův vzorec. **LEAN-PENDING:** asymptotické počítání a záměna Mellinovy integrace dosud nebyly formalizovány v Lean.

@@ -41,6 +41,8 @@ First elliptic derivatives realize the two odd residue channels with modular wei
 
 The periodic Jacobi derivative \(\mathscr D_z=5(2\pi i)^{-1}\partial_z\) supplies a parity-odd self-adjoint differential map and factors the free theta Hamiltonian as \(H_0=(\pi/5)\mathscr D_z^2\). Its integer spectrum is not the spectrum of nontrivial zeta ordinates, metric adjoints still permit unequal even/odd scales, and the identification of \(z\) with a canonical UBT direction remains open.
 
+Every finite differential polynomial in this Jacobi operator has a scalar Mellin channel that is only a finite combination of shifted zeta functions, while its eigenvalue count grows as a power of the cutoff rather than by the Riemann--von Mangoldt (T\log T) law. Thus the entire finite-order local Jacobi class is excluded as a Hilbert--Pólya realization; a nonlocal or arithmetic ingredient remains necessary.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 

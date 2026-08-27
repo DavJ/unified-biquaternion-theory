@@ -41,6 +41,8 @@ První eliptické derivace realizují dva liché reziduální kanály s modulár
 
 Periodická Jacobiho derivace \(\mathscr D_z=5(2\pi i)^{-1}\partial_z\) poskytuje paritně lichou samoadjungovanou diferenciální mapu a faktorizuje volný theta Hamiltonián jako \(H_0=(\pi/5)\mathscr D_z^2\). Její celočíselné spektrum není spektrem ordinát netriviálních nul zeta, metrické adjungování stále připouští nestejné škály sudého a lichého sektoru a identifikace \(z\) s kanonickým směrem UBT zůstává otevřená.
 
+Každý konečný diferenciální polynom v tomto Jacobiho operátoru má skalární Mellinův kanál tvořený pouze konečnou kombinací posunutých zeta funkcí, zatímco počet jeho vlastních hodnot roste jako mocnina ořezu, nikoli podle Riemannova--von Mangoldtova zákona (T\log T). Celá třída lokálních Jacobiho operátorů konečného řádu je tedy vyloučena jako realizace Hilbertova--Pólyova programu; nadále je nutná nelokální nebo aritmetická složka.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 

@@ -505,6 +505,41 @@ def check_jacobi_dirac_factorization_mod_5() -> None:
         raise AssertionError("graded metric-adjoint scaling failed")
 
 
+def check_local_polynomial_jacobi_operator_no_go() -> None:
+    # For the scalar +/-n sum, odd monomials cancel exactly.  Even monomials
+    # give shifted zeta Dirichlet series.  Work in a half-plane where all
+    # displayed series converge absolutely and compare independent sums.
+    s = 7.5
+    cutoff = 400_000
+    for power in (0, 2, 4):
+        paired_series = math.fsum(
+            n ** (power - s) for n in range(1, cutoff + 1)
+        )
+        expected = zeta_real(s - power, cutoff)
+        if not math.isclose(paired_series, expected, rel_tol=3e-6, abs_tol=3e-6):
+            raise AssertionError(("shifted zeta channel", power, paired_series, expected))
+    for power in (1, 3, 5):
+        paired_odd = math.fsum(
+            n ** (power - s) + (-n) ** power * n ** (-s)
+            for n in range(1, 10_000)
+        )
+        if abs(paired_odd) > 1e-13:
+            raise AssertionError(("odd polynomial channel did not cancel", power, paired_odd))
+
+    # A degree-m polynomial of the integer Fourier mode has counting exponent
+    # 1/m.  Exact monomials make the asymptotic mismatch transparent.
+    for degree in (1, 2, 3, 4):
+        normalized_counts = []
+        for threshold in (10_000.0, 1_000_000.0):
+            radius = int(threshold ** (1 / degree))
+            count = 2 * radius + 1
+            normalized_counts.append(count / threshold ** (1 / degree))
+        if abs(normalized_counts[-1] - 2.0) > 0.04:
+            raise AssertionError(
+                ("polynomial counting normalization", degree, normalized_counts)
+            )
+
+
 def phase_matrix_mod_5():
     return tuple(
         tuple((complex(0, 1) ** i) if i == j else 0j for j in range(4))
@@ -634,11 +669,12 @@ def main() -> None:
     check_additive_residue_representation_mod_5()
     check_elliptic_derivative_odd_sector_mod_5()
     check_jacobi_dirac_factorization_mod_5()
+    check_local_polynomial_jacobi_operator_no_go()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
           "mod-5 character channels with exhaustive symmetry-admissible "
           "metric, functional-equation, additive-residue, and elliptic-derivative "
-          "classifications and Jacobi-Dirac factorization")
+          "classifications, Jacobi-Dirac factorization, and local-polynomial no-go")
 
 
 if __name__ == "__main__":

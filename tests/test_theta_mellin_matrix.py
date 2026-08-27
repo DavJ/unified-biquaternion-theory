@@ -65,3 +65,7 @@ def test_elliptic_derivative_odd_sector_mod_5() -> None:
 
 def test_jacobi_dirac_factorization_mod_5() -> None:
     TOOL.check_jacobi_dirac_factorization_mod_5()
+
+
+def test_local_polynomial_jacobi_operator_no_go() -> None:
+    TOOL.check_local_polynomial_jacobi_operator_no_go()
