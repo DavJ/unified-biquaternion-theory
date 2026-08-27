@@ -540,6 +540,68 @@ def check_local_polynomial_jacobi_operator_no_go() -> None:
             )
 
 
+def lambert_w_positive(x: float) -> float:
+    if x <= 0:
+        raise ValueError("positive Lambert W requires x > 0")
+    w = x if x < 1 else math.log(x) - math.log(math.log(x) + 1)
+    for _ in range(30):
+        exponential = math.exp(w)
+        residual = w * exponential - x
+        denominator = exponential * (w + 1)
+        update = residual / denominator
+        w -= update
+        if abs(update) < 1e-15 * max(1.0, abs(w)):
+            break
+    return w
+
+
+def smooth_zero_baseline(mode: int) -> float:
+    if mode == 0:
+        return 0.0
+    magnitude = abs(mode)
+    return math.copysign(
+        2 * math.pi * magnitude / lambert_w_positive(magnitude / math.e),
+        mode,
+    )
+
+
+def smooth_zero_count(ordinate: float) -> float:
+    scaled = ordinate / (2 * math.pi)
+    return scaled * (math.log(scaled) - 1)
+
+
+def check_infinite_series_and_nonlocal_baseline() -> None:
+    previous = 0.0
+    for mode in (1, 2, 5, 10, 100, 10_000, 1_000_000):
+        w = lambert_w_positive(mode / math.e)
+        if not math.isclose(w * math.exp(w), mode / math.e,
+                            rel_tol=2e-14, abs_tol=2e-14):
+            raise AssertionError(("Lambert equation", mode, w))
+        ordinate = smooth_zero_baseline(mode)
+        if not math.isclose(smooth_zero_count(ordinate), mode,
+                            rel_tol=2e-13, abs_tol=2e-11):
+            raise AssertionError(("smooth counting inverse", mode, ordinate))
+        if ordinate <= previous:
+            raise AssertionError(("nonmonotone smooth baseline", mode, ordinate))
+        if smooth_zero_baseline(-mode) != -ordinate:
+            raise AssertionError(("baseline is not odd", mode))
+        previous = ordinate
+
+    # Adding sin(pi z) G(z) to an analytic symbol does not change any integer
+    # Fourier eigenvalue.  This explicit sample records the interpolation
+    # nonuniqueness without importing any zeta-zero data.
+    def base_symbol(x: float) -> float:
+        return x * x + 2 * x + 3
+
+    def modified_symbol(x: float) -> float:
+        return base_symbol(x) + math.sin(math.pi * x) * math.exp(-x * x / 10)
+
+    for mode in range(-20, 21):
+        if not math.isclose(base_symbol(mode), modified_symbol(mode),
+                            rel_tol=0.0, abs_tol=2e-13):
+            raise AssertionError(("integer interpolation ambiguity", mode))
+
+
 def phase_matrix_mod_5():
     return tuple(
         tuple((complex(0, 1) ** i) if i == j else 0j for j in range(4))
@@ -670,11 +732,13 @@ def main() -> None:
     check_elliptic_derivative_odd_sector_mod_5()
     check_jacobi_dirac_factorization_mod_5()
     check_local_polynomial_jacobi_operator_no_go()
+    check_infinite_series_and_nonlocal_baseline()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
           "mod-5 character channels with exhaustive symmetry-admissible "
           "metric, functional-equation, additive-residue, and elliptic-derivative "
-          "classifications, Jacobi-Dirac factorization, and local-polynomial no-go")
+          "classifications, Jacobi-Dirac factorization, local-polynomial no-go, "
+          "and nonlocal smooth-counting baseline")
 
 
 if __name__ == "__main__":

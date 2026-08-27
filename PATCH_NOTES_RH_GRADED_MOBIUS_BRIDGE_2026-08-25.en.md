@@ -43,6 +43,8 @@ The periodic Jacobi derivative \(\mathscr D_z=5(2\pi i)^{-1}\partial_z\) supplie
 
 Every finite differential polynomial in this Jacobi operator has a scalar Mellin channel that is only a finite combination of shifted zeta functions, while its eigenvalue count grows as a power of the cutoff rather than by the Riemann--von Mangoldt (T\log T) law. Thus the entire finite-order local Jacobi class is excluded as a Hilbert--Pólya realization; a nonlocal or arithmetic ingredient remains necessary.
 
+A genuinely nonpolynomial infinite Maclaurin functional calculus is already nonlocal on the Jacobi circle. Entire interpolation can encode arbitrary zeta ordinates but is circular and infinitely nonunique. The explicit self-adjoint multiplier (A_0(n)=2\pi n/W(n/e)) for positive modes instead uses no individual zeros and exactly inverts the smooth two-term Riemann--von Mangoldt count; the missing step is a derived prime/(\log p) fluctuation operator.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 

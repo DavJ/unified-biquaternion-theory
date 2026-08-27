@@ -69,3 +69,7 @@ def test_jacobi_dirac_factorization_mod_5() -> None:
 
 def test_local_polynomial_jacobi_operator_no_go() -> None:
     TOOL.check_local_polynomial_jacobi_operator_no_go()
+
+
+def test_infinite_series_and_nonlocal_baseline() -> None:
+    TOOL.check_infinite_series_and_nonlocal_baseline()

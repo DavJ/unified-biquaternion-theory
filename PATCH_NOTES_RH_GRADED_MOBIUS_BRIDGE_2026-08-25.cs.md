@@ -43,6 +43,8 @@ Periodická Jacobiho derivace \(\mathscr D_z=5(2\pi i)^{-1}\partial_z\) poskytuj
 
 Každý konečný diferenciální polynom v tomto Jacobiho operátoru má skalární Mellinův kanál tvořený pouze konečnou kombinací posunutých zeta funkcí, zatímco počet jeho vlastních hodnot roste jako mocnina ořezu, nikoli podle Riemannova--von Mangoldtova zákona (T\log T). Celá třída lokálních Jacobiho operátorů konečného řádu je tedy vyloučena jako realizace Hilbertova--Pólyova programu; nadále je nutná nelokální nebo aritmetická složka.
 
+Skutečně nepolynomiální nekonečný Maclaurinův funkcionální kalkul je na Jacobiho kružnici už nelokální. Celá interpolace může zakódovat libovolné ordináty zeta, ale je kruhová a nekonečně nejednoznačná. Explicitní samoadjungovaný multiplikátor (A_0(n)=2\pi n/W(n/e)) pro kladné módy naproti tomu nepoužívá jednotlivé nuly a přesně invertuje hladkou dvoučlennou Riemannovu--von Mangoldtovu počítací funkci; chybějícím krokem je odvozený fluktuační operátor s prime/(\log p) daty.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 

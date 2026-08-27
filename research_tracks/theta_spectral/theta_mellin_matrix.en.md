@@ -778,3 +778,86 @@ This theorem does not exclude a nonlocal pseudodifferential operator, a noncompa
 | nonlocal arithmetic operator derived from UBT | **[OPEN]** |
 
 Verification: the repository verifier independently compares the truncated Dirichlet series for the monomials (1,n^2,n^4) with (zeta(s),\zeta(s-2),\zeta(s-4)), checks cancellation of odd monomials, and checks the polynomial counting exponents on increasing cutoffs.  The analytic theorem uses termwise integration in the displayed absolute-convergence half-plane and the standard Riemann--von Mangoldt formula.  **LEAN-PENDING:** asymptotic counting and Mellin interchange have not yet been formalized in Lean.
+
+<a id="tmm-infinite-series-nonlocal"></a>
+## 15. Infinite Maclaurin series and the first nonlocal baseline
+
+Consider a convergent infinite functional calculus
+
+\[
+F(\mathscr D_z)=\sum_{k=0}^{\infty}a_k\mathscr D_z^k,
+\qquad
+F(\mathscr D_z)e_n=F(n)e_n,
+\qquad
+e_n(z)=e^{2\pi inz/5}.
+\]
+
+This escapes the finite-order counting theorem, but it does not generally remain local.  A translation-invariant operator on the circle is convolution by a periodic distribution (K_F) whose Fourier coefficients are (F(n)).  If the operator is local, the convolution kernel is supported at the identity.  A distribution supported at one point is a finite sum of derivatives of a delta distribution, so its Fourier coefficients are polynomial in (n).  Consequently
+
+\[
+\operatorname{supp}K_F\subseteq\{0\}
+\quad\Longleftrightarrow\quad
+\exists P\in\mathbb C[x]\ \forall n\in\mathbb Z:\ F(n)=P(n).
+\]
+
+Thus a genuinely nonpolynomial infinite Maclaurin series is already a nonlocal infinite-order or pseudodifferential operator.  The qualification by the integer sequence is essential: two entire functions that agree on all integers define the same Fourier multiplier.
+
+Existence alone has no predictive force.  Entire interpolation on the discrete set (mathbb Z) can produce an (F) with prescribed values (F(n)=\gamma_n), where (gamma_n) are zeta ordinates.  It is infinitely nonunique, since for every entire (G),
+
+\[
+\widetilde F(z)=F(z)+\sin(\pi z)G(z)
+\quad\Longrightarrow\quad
+\widetilde F(n)=F(n).
+\]
+
+Such an operator merely stores the desired zeros in its definition and is not a Hilbert--Pólya derivation.
+
+A non-fitted baseline can nevertheless reproduce the required smooth density.  Let (W) be the positive principal Lambert function and define the odd real symbol
+
+\[
+A_0(0)=0,
+\qquad
+A_0(n)=\operatorname{sgn}(n)
+\frac{2\pi|n|}{W(|n|/e)},
+\qquad n\ne0.
+\]
+
+The corresponding diagonal Fourier multiplier is self-adjoint on its maximal spectral domain.  Define the smooth two-term counting approximation
+
+\[
+N_0(T)=\frac{T}{2\pi}
+\left(\log\frac{T}{2\pi}-1\right).
+\]
+
+Writing (w=W(n/e)), the identity (we^w=n/e) gives exactly
+
+\[
+\frac{A_0(n)}{2\pi}=\frac n w,
+\qquad
+\log\frac{A_0(n)}{2\pi}=w+1,
+\qquad
+\boxed{N_0(A_0(n))=n}
+\]
+
+for every positive integer (n).  Hence (A_0) exactly inverts the smooth leading Riemann--von Mangoldt law.  This is the missing (T\log T) density that no finite differential polynomial could supply.
+
+**Theorem TMM-9.** An infinite Maclaurin functional calculus can evade TMM-8 only by becoming nonlocal unless its integer symbol reduces to a polynomial sequence.  Arbitrary entire interpolation of zeta ordinates is possible but circular and nonunique.  The explicit nonlocal multiplier (A_0) is self-adjoint and matches the smooth two-term zeta-zero counting law without using individual zeros, but it does not reproduce the oscillatory term, the (7/8) correction, or the individual ordinates.
+
+The remaining arithmetic problem is therefore sharply isolated: derive from UBT or theta/Euler data a self-adjoint correction (V_{\mathrm{arith}}) such that
+
+\[
+A=A_0+V_{\mathrm{arith}}
+\]
+
+reproduces the prime-controlled fluctuation while preserving a justified domain and self-adjointness.  The primitive input must be derived (log p) data, not a table of zeta zeros.
+
+| Gate | Status |
+|---|---|
+| locality criterion for translation-invariant (F(\mathscr D_z)) | **[PROVED]** |
+| arbitrary entire interpolation exists and is nonunique | **[CLASSICAL / PROVED]** |
+| interpolation constitutes a derivation of RH | **[DISPROVED]** |
+| Lambert-(W) baseline exactly inverts (N_0) | **[PROVED]** |
+| baseline reproduces individual zeta ordinates | **[DISPROVED]** |
+| prime/(\log p) correction derived from UBT | **[OPEN]** |
+
+Verification: `tools/verify_theta_mellin_matrix.py` checks the Lambert equation, the exact identity (N_0(A_0(n))=n) over multiple scales, monotonicity and oddness of the symbol, and integer-spectrum nonuniqueness under addition of (sin(\pi z)G(z)).  The locality statement uses the classical structure theorem for point-supported distributions.  **LEAN-PENDING:** distribution support and unbounded spectral functional calculus are not formalized in the repository's Lean environment.

@@ -778,3 +778,86 @@ Věta nevylučuje nelokální pseudodiferenciální operátor, nekompaktní fáz
 | nelokální aritmetický operátor je odvozen z UBT | **[OPEN]** |
 
 Ověření: repozitářový verifier nezávisle porovnává oříznuté Dirichletovy řady pro monomy (1,n^2,n^4) s (zeta(s),\zeta(s-2),\zeta(s-4)), kontroluje rušení lichých monomů a polynomiální exponenty počítací funkce na rostoucích ořezech. Analytická věta používá členovou integraci v uvedené polorovině absolutní konvergence a standardní Riemannův--von Mangoldtův vzorec. **LEAN-PENDING:** asymptotické počítání a záměna Mellinovy integrace dosud nebyly formalizovány v Lean.
+
+<a id="tmm-infinite-series-nonlocal"></a>
+## 15. Nekonečná Maclaurinova řada a první nelokální baseline
+
+Uvažujme konvergentní nekonečný funkcionální kalkul
+
+\[
+F(\mathscr D_z)=\sum_{k=0}^{\infty}a_k\mathscr D_z^k,
+\qquad
+F(\mathscr D_z)e_n=F(n)e_n,
+\qquad
+e_n(z)=e^{2\pi inz/5}.
+\]
+
+Tím lze obejít větu o konečném řádu, ale operátor obecně nezůstane lokální. Translačně invariantní operátor na kružnici je konvoluce s periodickou distribucí (K_F), jejíž Fourierovy koeficienty jsou (F(n)). Je-li operátor lokální, má konvoluční jádro podporu v neutrálním prvku. Distribuce podporovaná v jediném bodě je konečnou sumou derivací delta distribuce, takže její Fourierovy koeficienty jsou polynomy v (n). Proto
+
+\[
+\operatorname{supp}K_F\subseteq\{0\}
+\quad\Longleftrightarrow\quad
+\exists P\in\mathbb C[x]\ \forall n\in\mathbb Z:\ F(n)=P(n).
+\]
+
+Skutečně nepolynomiální nekonečná Maclaurinova řada je tedy už nelokální operátor nekonečného řádu nebo pseudodiferenciální operátor. Kvalifikace pomocí celočíselné posloupnosti je podstatná: dvě celé funkce shodné na všech celých číslech definují tentýž Fourierův multiplikátor.
+
+Pouhá existence nemá predikční sílu. Celá interpolace na diskrétní množině (mathbb Z) může vytvořit (F) s předepsanými hodnotami (F(n)=\gamma_n), kde (gamma_n) jsou ordináty zeta. Je nekonečně nejednoznačná, protože pro každou celou funkci (G)
+
+\[
+\widetilde F(z)=F(z)+\sin(\pi z)G(z)
+\quad\Longrightarrow\quad
+\widetilde F(n)=F(n).
+\]
+
+Takový operátor pouze ukládá požadované nuly do své definice a není odvozením Hilbertova--Pólyova programu.
+
+Neladěný baseline však může reprodukovat potřebnou hladkou hustotu. Nechť (W) je kladná hlavní Lambertova funkce a definujme lichý reálný symbol
+
+\[
+A_0(0)=0,
+\qquad
+A_0(n)=\operatorname{sgn}(n)
+\frac{2\pi|n|}{W(|n|/e)},
+\qquad n\ne0.
+\]
+
+Odpovídající diagonální Fourierův multiplikátor je samoadjungovaný na svém maximálním spektrálním oboru. Definujme hladkou dvoučlennou aproximaci počítací funkce
+
+\[
+N_0(T)=\frac{T}{2\pi}
+\left(\log\frac{T}{2\pi}-1\right).
+\]
+
+Pro (w=W(n/e)) dává identita (we^w=n/e) přesně
+
+\[
+\frac{A_0(n)}{2\pi}=\frac n w,
+\qquad
+\log\frac{A_0(n)}{2\pi}=w+1,
+\qquad
+\boxed{N_0(A_0(n))=n}
+\]
+
+pro každé kladné celé (n). Operátor (A_0) tedy přesně invertuje hladký vedoucí Riemannův--von Mangoldtův zákon. Poskytuje chybějící hustotu (T\log T), kterou nemohl dát žádný konečný diferenciální polynom.
+
+**Věta TMM-9.** Nekonečný Maclaurinův funkcionální kalkul může obejít TMM-8 pouze tím, že se stane nelokálním, pokud se jeho celočíselný symbol neredukuje na polynomiální posloupnost. Libovolná celá interpolace ordinát zeta je možná, ale kruhová a nejednoznačná. Explicitní nelokální multiplikátor (A_0) je samoadjungovaný a bez použití jednotlivých nul odpovídá hladkému dvoučlennému zákonu počtu nul zeta, nereprodukuje však oscilační člen, korekci (7/8) ani jednotlivé ordináty.
+
+Zbývající aritmetický problém je tím ostře izolován: odvodit z UBT nebo theta/Eulerových dat samoadjungovanou korekci (V_{\mathrm{arith}}) takovou, že
+
+\[
+A=A_0+V_{\mathrm{arith}}
+\]
+
+reprodukuje prvočísly řízenou fluktuaci a přitom zachová odůvodněný definiční obor a samoadjungovanost. Primitivním vstupem musejí být odvozená data (log p), nikoli tabulka nul zeta.
+
+| Podmínka | Status |
+|---|---|
+| kritérium lokality translačně invariantního (F(\mathscr D_z)) | **[PROVED]** |
+| libovolná celá interpolace existuje a je nejednoznačná | **[CLASSICAL / PROVED]** |
+| interpolace představuje odvození RH | **[DISPROVED]** |
+| Lambertův-(W) baseline přesně invertuje (N_0) | **[PROVED]** |
+| baseline reprodukuje jednotlivé ordináty zeta | **[DISPROVED]** |
+| prime/(\log p) korekce je odvozena z UBT | **[OPEN]** |
+
+Ověření: `tools/verify_theta_mellin_matrix.py` kontroluje Lambertovu rovnici, přesnou identitu (N_0(A_0(n))=n) v několika škálách, monotonii a lichost symbolu a nejednoznačnost celočíselného spektra po přičtení (sin(\pi z)G(z)). Tvrzení o lokalitě používá klasickou strukturní větu pro distribuce podporované v bodě. **LEAN-PENDING:** podpora distribucí a neomezený spektrální funkcionální kalkul nejsou formalizovány v Lean prostředí repozitáře.
