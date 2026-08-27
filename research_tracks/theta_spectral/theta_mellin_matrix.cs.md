@@ -645,3 +645,87 @@ Sudé/liché rozdělení lze použít jako pečlivě omezenou bosonickou/fermion
 | modulární kovariance vynucuje \(a=b\) | **[DISPROVED]** |
 | Diracova nebo supernábojová vazba odvozená z UBT | **[OPEN]** |
 | interpretace fyzikálních fermionů | **[OPEN]** |
+
+<a id="tmm-jacobi-dirac"></a>
+## 13. Jacobiho Diracova faktorizace a její spektrální mez
+
+Pracujme v Hilbertově prostoru (5)-periodických funkcí eliptické proměnné,
+
+\[
+\mathcal H_z=L^2(\mathbb R/5\mathbb Z),
+\qquad
+\langle f,g\rangle_z=\frac15\int_0^5\overline{f(z)}g(z)\,dz,
+\]
+
+s hustým definičním oborem (H^1(\mathbb R/5\mathbb Z)). Normalizovaná eliptická derivace
+
+\[
+\mathscr D_z:=\frac5{2\pi i}\frac{\partial}{\partial z}
+\]
+
+je na periodickém oboru samoadjungovaná a splňuje
+
+\[
+\mathscr D_z e^{2\pi i n z/5}=n e^{2\pi i n z/5}.
+\]
+
+Nechť ((\mathcal Pf)(z)=f(-z)). Potom
+
+\[
+\mathcal P\mathscr D_z\mathcal P=-\mathscr D_z.
+\]
+
+Operátor (mathscr D_z) je tedy lichý vzhledem k paritnímu gradování a zaměňuje sudý a lichý funkční prostor. Aplikace na reziduální theta jádra dává přesně kanály z TMM-6,
+
+\[
+\left.\mathscr D_z\Theta_r(z,it)\right|_{z=0}=\Phi_r(t).
+\]
+
+Současně faktorizuje volný theta tepelný generátor. Jestliže
+
+\[
+H_0 e^{2\pi i n z/5}=\frac{\pi n^2}{5}e^{2\pi i n z/5},
+\]
+
+pak
+
+\[
+\boxed{H_0=\frac\pi5\mathscr D_z^2},
+\qquad
+e^{-tH_0}e^{2\pi i n z/5}=e^{-\pi n^2t/5}e^{2\pi i n z/5}.
+\]
+
+V rozkladu (mathcal H_z=\mathcal H_+\oplus\mathcal H_-) má operátor Diracův tvar
+
+\[
+\mathscr D_z=
+\begin{pmatrix}
+0&\mathscr D_-\\
+\mathscr D_+&0
+\end{pmatrix},
+\qquad
+\mathscr D_- = \mathscr D_+^\dagger.
+\]
+
+Jde o skutečný diferenciální operátor měnící váhu, nikoli o konstantní intertwiner vyloučený v TMM-6. Neztotožňuje však dvě škály metrik konečných sektorů. Pro gradovanou metriku (aI_3\oplus bI_2) je adjungovaný operátor k mapě (D:V_+\to V_-) roven (D^{\dagger_{a,b}}=(b/a)D^\dagger); samoadjungované blokové doplnění proto existuje pro všechna (a,b>0). Požadavek stejného nepřeškálovaného diferenciálního výrazu v obou mimodiagonálních blocích by uložil (a=b), ale jde o dodatečnou volbu normalizace, nikoli o důsledek modulární kovariance.
+
+**Věta TMM-7.** Jacobiho derivace dává kanonickou paritně lichou samoadjungovanou odmocninu volného theta Hamiltoniánu na periodickém eliptickém Hilbertově prostoru. Její spektrum je
+
+\[
+\operatorname{spec}(\mathscr D_z)=\mathbb Z,
+\qquad
+\operatorname{spec}(H_0)=\left\{\frac{\pi n^2}{5}:n\in\mathbb Z\right\}.
+\]
+
+Tento operátor proto nemá za vlastní hodnoty ordináty netriviálních nul zeta a jeho spektrální determinant není dokončená zeta funkce. Repozitář navíc neodvozuje identifikaci pomocné Jacobiho souřadnice (z) s kanonickým bikvaternionovým prostoročasovým směrem nebo směrem komplexního času. Operátor (mathscr D_z) tedy uzavírá lokální problém gradované faktorizace, nikoli most UBT nebo Hilbertův--Pólyův program.
+
+| Podmínka | Status |
+|---|---|
+| samoadjungovaná eliptická derivace na periodickém oboru | **[PROVED]** |
+| paritně lichá mapa a (H_0=(\pi/5)\mathscr D_z^2) | **[PROVED]** |
+| stejná normalizace bloků plyne z modulární symetrie | **[DISPROVED]** |
+| spektrum se rovná ordinátám netriviálních nul zeta | **[DISPROVED]** |
+| (z) je ztotožněno s kanonickým směrem UBT | **[OPEN]** |
+| Hilbertův--Pólyův operátor je odvozen z UBT | **[OPEN]** |
+
+Ověření: `tools/verify_theta_mellin_matrix.py` kontroluje Fourierovy vlastní hodnoty, antikomutaci s paritou, faktorizaci tepelného generátoru a škálování adjungovaného operátoru podle metriky na konečných invariantních ořezech módů; `tests/test_theta_mellin_matrix.py` poskytuje regresní vstup. Tyto konečné exaktní/numerické kontroly nedokazují větu o definičním oboru neomezeného operátoru ani identifikaci s UBT. **LEAN-PENDING:** věta používá fakta o Fourierových/Sobolevových definičních oborech operátorů, která zatím nejsou reprezentována v Lean prostředí repozitáře.

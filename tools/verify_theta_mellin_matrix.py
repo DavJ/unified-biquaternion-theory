@@ -455,6 +455,56 @@ def check_elliptic_derivative_odd_sector_mod_5() -> None:
             raise AssertionError(("odd-channel total cancellation", t, sum(values)))
 
 
+def check_jacobi_dirac_factorization_mod_5() -> None:
+    modes = tuple(range(-8, 9))
+    index = {mode: position for position, mode in enumerate(modes)}
+    dimension = len(modes)
+    dirac = tuple(
+        tuple(complex(mode, 0) if row == column else 0j
+              for column in range(dimension))
+        for row, mode in enumerate(modes)
+    )
+    parity = tuple(
+        tuple(1 + 0j if column == index[-mode] else 0j
+              for column in range(dimension))
+        for mode in modes
+    )
+    identity = tuple(
+        tuple(1 + 0j if row == column else 0j for column in range(dimension))
+        for row in range(dimension)
+    )
+    if not matrices_close_n(mat_mul_n(parity, parity), identity):
+        raise AssertionError("mode reflection is not an involution")
+    if not matrices_close_n(conjugate_transpose_n(dirac), dirac):
+        raise AssertionError("finite Jacobi Dirac truncation is not self-adjoint")
+    reflected = mat_mul_n(mat_mul_n(parity, dirac), parity)
+    minus_dirac = tuple(tuple(-entry for entry in row) for row in dirac)
+    if not matrices_close_n(reflected, minus_dirac):
+        raise AssertionError("Jacobi Dirac operator does not anticommute with parity")
+    hamiltonian = tuple(
+        tuple((math.pi / 5) * entry for entry in row)
+        for row in mat_mul_n(dirac, dirac)
+    )
+    expected_hamiltonian = tuple(
+        tuple(complex(math.pi * mode * mode / 5, 0) if row == column else 0j
+              for column in range(dimension))
+        for row, mode in enumerate(modes)
+    )
+    if not matrices_close_n(hamiltonian, expected_hamiltonian):
+        raise AssertionError("free theta Hamiltonian is not pi/5 times Dirac squared")
+
+    # With source weight a and target weight b, the metric adjoint of a scalar
+    # map is (b/a) times the ordinary adjoint.  Self-adjoint block completion
+    # therefore exists without forcing the two positive weights to coincide.
+    a, b = 3.0, 7.0
+    d_plus = 2 - 1j
+    metric_adjoint = (b / a) * d_plus.conjugate()
+    lhs = b * (d_plus * 1.25).conjugate() * (-0.4j)
+    rhs = a * (1.25 + 0j).conjugate() * metric_adjoint * (-0.4j)
+    if abs(lhs - rhs) > 1e-12:
+        raise AssertionError("graded metric-adjoint scaling failed")
+
+
 def phase_matrix_mod_5():
     return tuple(
         tuple((complex(0, 1) ** i) if i == j else 0j for j in range(4))
@@ -583,11 +633,12 @@ def main() -> None:
     check_primitive_functional_equations_mod_5()
     check_additive_residue_representation_mod_5()
     check_elliptic_derivative_odd_sector_mod_5()
+    check_jacobi_dirac_factorization_mod_5()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
           "mod-5 character channels with exhaustive symmetry-admissible "
           "metric, functional-equation, additive-residue, and elliptic-derivative "
-          "classifications")
+          "classifications and Jacobi-Dirac factorization")
 
 
 if __name__ == "__main__":

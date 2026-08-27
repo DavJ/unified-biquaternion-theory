@@ -39,6 +39,8 @@ Pět aditivních reziduálních kanálů poskytuje kanonické Fourierovo směšo
 
 První eliptické derivace realizují dva liché reziduální kanály s modulární vahou vyšší o jedna. Jejich invariantní metrika je skalární, avšak prostor konstantních modulárních intertwinerů mezi třemi sudými a dvěma lichými kanály má nulovou dimenzi. Jacobiho kovariance proto sama neztotožňuje obě škály metriky; nadále je nutný operátor měnící váhu a odvozený z UBT.
 
+Periodická Jacobiho derivace \(\mathscr D_z=5(2\pi i)^{-1}\partial_z\) poskytuje paritně lichou samoadjungovanou diferenciální mapu a faktorizuje volný theta Hamiltonián jako \(H_0=(\pi/5)\mathscr D_z^2\). Její celočíselné spektrum není spektrem ordinát netriviálních nul zeta, metrické adjungování stále připouští nestejné škály sudého a lichého sektoru a identifikace \(z\) s kanonickým směrem UBT zůstává otevřená.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 

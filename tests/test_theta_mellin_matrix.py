@@ -61,3 +61,7 @@ def test_additive_residue_representation_mod_5() -> None:
 
 def test_elliptic_derivative_odd_sector_mod_5() -> None:
     TOOL.check_elliptic_derivative_odd_sector_mod_5()
+
+
+def test_jacobi_dirac_factorization_mod_5() -> None:
+    TOOL.check_jacobi_dirac_factorization_mod_5()

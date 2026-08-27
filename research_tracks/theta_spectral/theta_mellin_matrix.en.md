@@ -645,3 +645,87 @@ The even/odd split may be used as a carefully limited bosonic/fermionic analogy:
 | modular covariance forces \(a=b\) | **[DISPROVED]** |
 | UBT-derived Dirac or supercharge coupling | **[OPEN]** |
 | physical fermion interpretation | **[OPEN]** |
+
+<a id="tmm-jacobi-dirac"></a>
+## 13. Jacobi Dirac factorization and its spectral limit
+
+Work on the Hilbert space of (5)-periodic functions of the elliptic variable,
+
+\[
+\mathcal H_z=L^2(\mathbb R/5\mathbb Z),
+\qquad
+\langle f,g\rangle_z=\frac15\int_0^5\overline{f(z)}g(z)\,dz,
+\]
+
+with dense domain (H^1(\mathbb R/5\mathbb Z)).  The normalized elliptic derivative
+
+\[
+\mathscr D_z:=\frac5{2\pi i}\frac{\partial}{\partial z}
+\]
+
+is self-adjoint on the periodic domain and obeys
+
+\[
+\mathscr D_z e^{2\pi i n z/5}=n e^{2\pi i n z/5}.
+\]
+
+Let ((\mathcal Pf)(z)=f(-z)).  Then
+
+\[
+\mathcal P\mathscr D_z\mathcal P=-\mathscr D_z.
+\]
+
+Thus (mathscr D_z) is an odd operator for the parity grading and exchanges the even and odd function spaces.  Applied to the residue theta kernels, it gives exactly the channels of TMM-6,
+
+\[
+\left.\mathscr D_z\Theta_r(z,it)\right|_{z=0}=\Phi_r(t).
+\]
+
+It also factors the free theta heat generator.  If
+
+\[
+H_0 e^{2\pi i n z/5}=\frac{\pi n^2}{5}e^{2\pi i n z/5},
+\]
+
+then
+
+\[
+\boxed{H_0=\frac\pi5\mathscr D_z^2},
+\qquad
+e^{-tH_0}e^{2\pi i n z/5}=e^{-\pi n^2t/5}e^{2\pi i n z/5}.
+\]
+
+Relative to (mathcal H_z=\mathcal H_+\oplus\mathcal H_-), the operator has Dirac form
+
+\[
+\mathscr D_z=
+\begin{pmatrix}
+0&\mathscr D_-\\
+\mathscr D_+&0
+\end{pmatrix},
+\qquad
+\mathscr D_- = \mathscr D_+^\dagger.
+\]
+
+This is a genuine weight-changing differential operator, not the constant intertwiner excluded by TMM-6.  However, it does not identify the two finite-sector metric scales.  For the graded metric (aI_3\oplus bI_2), the adjoint of a map (D:V_+\to V_-) is (D^{\dagger_{a,b}}=(b/a)D^\dagger); self-adjoint block completion is therefore possible for every (a,b>0).  Requiring the same unrescaled differential expression in both off-diagonal blocks would impose (a=b), but that is an additional normalization choice, not a consequence of modular covariance.
+
+**Theorem TMM-7.** The Jacobi derivative gives a canonical parity-odd self-adjoint square root of the free theta Hamiltonian on the periodic elliptic Hilbert space.  Its spectrum is
+
+\[
+\operatorname{spec}(\mathscr D_z)=\mathbb Z,
+\qquad
+\operatorname{spec}(H_0)=\left\{\frac{\pi n^2}{5}:n\in\mathbb Z\right\}.
+\]
+
+Consequently this operator does not have the nontrivial zeta ordinates as eigenvalues, and its spectral determinant is not the completed zeta function.  The repository also does not derive an identification of the auxiliary Jacobi coordinate (z) with a canonical biquaternionic spacetime or complex-time direction.  Hence (mathscr D_z) closes the local graded-factorization problem but does not close the UBT or Hilbert--Pólya bridge.
+
+| Gate | Status |
+|---|---|
+| self-adjoint elliptic derivative on the periodic domain | **[PROVED]** |
+| parity-odd map and (H_0=(\pi/5)\mathscr D_z^2) | **[PROVED]** |
+| same block normalization follows from modular symmetry | **[DISPROVED]** |
+| spectrum equals the nontrivial zeta ordinates | **[DISPROVED]** |
+| (z) identified with a canonical UBT direction | **[OPEN]** |
+| Hilbert--Pólya operator derived from UBT | **[OPEN]** |
+
+Verification: `tools/verify_theta_mellin_matrix.py` checks the Fourier eigenvalues, parity anticommutation, heat-generator factorization, and metric-adjoint scaling on finite invariant mode truncations; `tests/test_theta_mellin_matrix.py` provides the regression entry point.  These finite exact/numerical checks do not prove an unbounded-operator domain theorem or a UBT identification.  **LEAN-PENDING:** the theorem uses Fourier/Sobolev operator-domain facts not yet represented in the repository's Lean environment.

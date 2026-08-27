@@ -39,6 +39,8 @@ The five additive residue channels do provide canonical Fourier mixing. Their fu
 
 First elliptic derivatives realize the two odd residue channels with modular weight higher by one. Their invariant metric is scalar, but the constant modular intertwiner space between the three even and two odd channels is zero-dimensional. Hence Jacobi covariance alone does not identify the two metric scales; a UBT-derived weight-changing operator remains necessary.
 
+The periodic Jacobi derivative \(\mathscr D_z=5(2\pi i)^{-1}\partial_z\) supplies a parity-odd self-adjoint differential map and factors the free theta Hamiltonian as \(H_0=(\pi/5)\mathscr D_z^2\). Its integer spectrum is not the spectrum of nontrivial zeta ordinates, metric adjoints still permit unequal even/odd scales, and the identification of \(z\) with a canonical UBT direction remains open.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 
