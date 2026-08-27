@@ -73,3 +73,7 @@ def test_local_polynomial_jacobi_operator_no_go() -> None:
 
 def test_infinite_series_and_nonlocal_baseline() -> None:
     TOOL.check_infinite_series_and_nonlocal_baseline()
+
+
+def test_regulated_prime_phase_operator() -> None:
+    TOOL.check_regulated_prime_phase_operator()

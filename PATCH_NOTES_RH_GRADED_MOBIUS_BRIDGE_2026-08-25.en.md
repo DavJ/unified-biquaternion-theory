@@ -45,6 +45,8 @@ Every finite differential polynomial in this Jacobi operator has a scalar Mellin
 
 A genuinely nonpolynomial infinite Maclaurin functional calculus is already nonlocal on the Jacobi circle. Entire interpolation can encode arbitrary zeta ordinates but is circular and infinitely nonunique. The explicit self-adjoint multiplier (A_0(n)=2\pi n/W(n/e)) for positive modes instead uses no individual zeros and exactly inverts the smooth two-term Riemann--von Mangoldt count; the missing step is a derived prime/(\log p) fluctuation operator.
 
+For every regulator \(\sigma>1\), norm-convergent sine and cosine functions of \(A_0\), weighted only by prime powers, define bounded self-adjoint counting-phase and density operators. Differentiating the phase gives the density, while division by \(N_0'\) gives the first-order ordinate shift. The critical limit and UBT origin of primitive \(\log p\) phases remain open.
+
 <a id="patch-claim-control"></a>
 ## Claim control
 

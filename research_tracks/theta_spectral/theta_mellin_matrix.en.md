@@ -649,15 +649,15 @@ The even/odd split may be used as a carefully limited bosonic/fermionic analogy:
 <a id="tmm-jacobi-dirac"></a>
 ## 13. Jacobi Dirac factorization and its spectral limit
 
-Work on the Hilbert space of (5)-periodic functions of the elliptic variable,
+Work on the Hilbert space of \(5\)-periodic functions of the elliptic variable,
 
 \[
 \mathcal H_z=L^2(\mathbb R/5\mathbb Z),
 \qquad
-\langle f,g\rangle_z=\frac15\int_0^5\overline{f(z)}g(z)\,dz,
+\langle f,g\rangle_z=\frac15\int_0^5\overline{f\(z\)}g\(z\)\,dz,
 \]
 
-with dense domain (H^1(\mathbb R/5\mathbb Z)).  The normalized elliptic derivative
+with dense domain \(H^1(\mathbb R/5\mathbb Z)\).  The normalized elliptic derivative
 
 \[
 \mathscr D_z:=\frac5{2\pi i}\frac{\partial}{\partial z}
@@ -669,13 +669,13 @@ is self-adjoint on the periodic domain and obeys
 \mathscr D_z e^{2\pi i n z/5}=n e^{2\pi i n z/5}.
 \]
 
-Let ((\mathcal Pf)(z)=f(-z)).  Then
+Let \((\mathcal Pf)(z)=f(-z)\).  Then
 
 \[
 \mathcal P\mathscr D_z\mathcal P=-\mathscr D_z.
 \]
 
-Thus (mathscr D_z) is an odd operator for the parity grading and exchanges the even and odd function spaces.  Applied to the residue theta kernels, it gives exactly the channels of TMM-6,
+Thus \(\mathscr D_z\) is an odd operator for the parity grading and exchanges the even and odd function spaces.  Applied to the residue theta kernels, it gives exactly the channels of TMM-6,
 
 \[
 \left.\mathscr D_z\Theta_r(z,it)\right|_{z=0}=\Phi_r(t).
@@ -695,7 +695,7 @@ then
 e^{-tH_0}e^{2\pi i n z/5}=e^{-\pi n^2t/5}e^{2\pi i n z/5}.
 \]
 
-Relative to (mathcal H_z=\mathcal H_+\oplus\mathcal H_-), the operator has Dirac form
+Relative to \(\mathcal H_z=\mathcal H_+\oplus\mathcal H_-\), the operator has Dirac form
 
 \[
 \mathscr D_z=
@@ -707,7 +707,7 @@ Relative to (mathcal H_z=\mathcal H_+\oplus\mathcal H_-), the operator has Dirac
 \mathscr D_- = \mathscr D_+^\dagger.
 \]
 
-This is a genuine weight-changing differential operator, not the constant intertwiner excluded by TMM-6.  However, it does not identify the two finite-sector metric scales.  For the graded metric (aI_3\oplus bI_2), the adjoint of a map (D:V_+\to V_-) is (D^{\dagger_{a,b}}=(b/a)D^\dagger); self-adjoint block completion is therefore possible for every (a,b>0).  Requiring the same unrescaled differential expression in both off-diagonal blocks would impose (a=b), but that is an additional normalization choice, not a consequence of modular covariance.
+This is a genuine weight-changing differential operator, not the constant intertwiner excluded by TMM-6.  However, it does not identify the two finite-sector metric scales.  For the graded metric \(aI_3\oplus bI_2\), the adjoint of a map \(D:V_+\to V_-\) is \(D^{\dagger_{a,b}}=(b/a)D^\dagger\); self-adjoint block completion is therefore possible for every \(a,b>0\).  Requiring the same unrescaled differential expression in both off-diagonal blocks would impose \(a=b\), but that is an additional normalization choice, not a consequence of modular covariance.
 
 **Theorem TMM-7.** The Jacobi derivative gives a canonical parity-odd self-adjoint square root of the free theta Hamiltonian on the periodic elliptic Hilbert space.  Its spectrum is
 
@@ -717,15 +717,15 @@ This is a genuine weight-changing differential operator, not the constant intert
 \operatorname{spec}(H_0)=\left\{\frac{\pi n^2}{5}:n\in\mathbb Z\right\}.
 \]
 
-Consequently this operator does not have the nontrivial zeta ordinates as eigenvalues, and its spectral determinant is not the completed zeta function.  The repository also does not derive an identification of the auxiliary Jacobi coordinate (z) with a canonical biquaternionic spacetime or complex-time direction.  Hence (mathscr D_z) closes the local graded-factorization problem but does not close the UBT or Hilbert--Pólya bridge.
+Consequently this operator does not have the nontrivial zeta ordinates as eigenvalues, and its spectral determinant is not the completed zeta function.  The repository also does not derive an identification of the auxiliary Jacobi coordinate \(z\) with a canonical biquaternionic spacetime or complex-time direction.  Hence \(\mathscr D_z\) closes the local graded-factorization problem but does not close the UBT or Hilbert--Pólya bridge.
 
 | Gate | Status |
 |---|---|
 | self-adjoint elliptic derivative on the periodic domain | **[PROVED]** |
-| parity-odd map and (H_0=(\pi/5)\mathscr D_z^2) | **[PROVED]** |
+| parity-odd map and \(H_0=(\pi/5)\mathscr D_z^2\) | **[PROVED]** |
 | same block normalization follows from modular symmetry | **[DISPROVED]** |
 | spectrum equals the nontrivial zeta ordinates | **[DISPROVED]** |
-| (z) identified with a canonical UBT direction | **[OPEN]** |
+| \(z\) identified with a canonical UBT direction | **[OPEN]** |
 | Hilbert--Pólya operator derived from UBT | **[OPEN]** |
 
 Verification: `tools/verify_theta_mellin_matrix.py` checks the Fourier eigenvalues, parity anticommutation, heat-generator factorization, and metric-adjoint scaling on finite invariant mode truncations; `tests/test_theta_mellin_matrix.py` provides the regression entry point.  These finite exact/numerical checks do not prove an unbounded-operator domain theorem or a UBT identification.  **LEAN-PENDING:** the theorem uses Fourier/Sobolev operator-domain facts not yet represented in the repository's Lean environment.
@@ -733,7 +733,7 @@ Verification: `tools/verify_theta_mellin_matrix.py` checks the Fourier eigenvalu
 <a id="tmm-local-polynomial-no-go"></a>
 ## 14. Finite-order local-operator no-go
 
-Let (P(x)=\sum_{k=0}^{m}c_kx^k) be a real polynomial and apply (P(\mathscr D_z)) to the scalar theta kernel.  For (Re s>2j+1), termwise Mellin integration gives
+Let \(P(x)=\sum_{k=0}^{m}c_kx^k\) be a real polynomial and apply \(P(\mathscr D_z)\) to the scalar theta kernel.  For \(\Re s>2j+1\), termwise Mellin integration gives
 
 \[
 \frac12\int_0^\infty t^{s/2-1}
@@ -746,9 +746,9 @@ P(\mathscr D_z)
 \sum_{j=0}^{\lfloor m/2\rfloor}c_{2j}\zeta(s-2j).
 \]
 
-All odd powers cancel because the modes (n) and (-n) occur with equal coefficients.  Thus every finite-order local differential polynomial produces only a finite linear combination of shifted zeta functions in the principal scalar channel.  Residue or characteristic projections replace these by the corresponding finite combinations of Hurwitz or Dirichlet (L)-functions; they do not create a new spectral determinant.
+All odd powers cancel because the modes \(n\) and \(-n\) occur with equal coefficients.  Thus every finite-order local differential polynomial produces only a finite linear combination of shifted zeta functions in the principal scalar channel.  Residue or characteristic projections replace these by the corresponding finite combinations of Hurwitz or Dirichlet \(L\)-functions; they do not create a new spectral determinant.
 
-There is an independent asymptotic obstruction.  If (m\ge1) and (c_m\ne0), the eigenvalues are (P(n)), (n\in\mathbb Z), and their absolute counting function satisfies
+There is an independent asymptotic obstruction.  If \(m\ge1\) and \(c_m\ne0\), the eigenvalues are \(P(n)\), \(n\in\mathbb Z\), and their absolute counting function satisfies
 
 \[
 N_P(T):=\#\{n\in\mathbb Z:|P(n)|\le T\}
@@ -763,21 +763,21 @@ N_\zeta(T)=
 -\frac{T}{2\pi}+O(\log T).
 \]
 
-No exponent (1/m) yields the (T\log T) growth.  The constant polynomial case has infinite degeneracy and no compact resolvent, so it does not evade the obstruction.
+No exponent \(1/m\) yields the \(T\log T\) growth.  The constant polynomial case has infinite degeneracy and no compact resolvent, so it does not evade the obstruction.
 
-**Theorem TMM-8.** No self-adjoint finite-order differential polynomial in the periodic Jacobi operator (mathscr D_z), even with fixed finite matrix multiplicity, can have the nontrivial zeta ordinates as its complete spectrum.  Its scalar Mellin channel is a finite combination of shifted zeta functions and its eigenvalue counting law is incompatible with the Riemann--von Mangoldt law.
+**Theorem TMM-8.** No self-adjoint finite-order differential polynomial in the periodic Jacobi operator \(\mathscr D_z\), even with fixed finite matrix multiplicity, can have the nontrivial zeta ordinates as its complete spectrum.  Its scalar Mellin channel is a finite combination of shifted zeta functions and its eigenvalue counting law is incompatible with the Riemann--von Mangoldt law.
 
-This theorem does not exclude a nonlocal pseudodifferential operator, a noncompact phase space, an energy-dependent boundary condition, or an arithmetic prime/Euler interaction.  It says that at least one such ingredient is necessary; adding more finite powers of (partial_z) cannot close the Hilbert--Pólya bridge.
+This theorem does not exclude a nonlocal pseudodifferential operator, a noncompact phase space, an energy-dependent boundary condition, or an arithmetic prime/Euler interaction.  It says that at least one such ingredient is necessary; adding more finite powers of \(\partial_z\) cannot close the Hilbert--Pólya bridge.
 
 | Gate | Status |
 |---|---|
-| Mellin image of every polynomial (P(\mathscr D_z)) | **[PROVED]** |
+| Mellin image of every polynomial \(P(\mathscr D_z)\) | **[PROVED]** |
 | odd-power cancellation in the scalar channel | **[PROVED]** |
-| polynomial spectral counting versus (T\log T) | **[PROVED]** |
+| polynomial spectral counting versus \(T\log T\) | **[PROVED]** |
 | finite-order local Jacobi operator realizes all zeta ordinates | **[DISPROVED]** |
 | nonlocal arithmetic operator derived from UBT | **[OPEN]** |
 
-Verification: the repository verifier independently compares the truncated Dirichlet series for the monomials (1,n^2,n^4) with (zeta(s),\zeta(s-2),\zeta(s-4)), checks cancellation of odd monomials, and checks the polynomial counting exponents on increasing cutoffs.  The analytic theorem uses termwise integration in the displayed absolute-convergence half-plane and the standard Riemann--von Mangoldt formula.  **LEAN-PENDING:** asymptotic counting and Mellin interchange have not yet been formalized in Lean.
+Verification: the repository verifier independently compares the truncated Dirichlet series for the monomials \(1,n^2,n^4\) with \(\zeta(s),\zeta(s-2),\zeta(s-4)\), checks cancellation of odd monomials, and checks the polynomial counting exponents on increasing cutoffs.  The analytic theorem uses termwise integration in the displayed absolute-convergence half-plane and the standard Riemann--von Mangoldt formula.  **LEAN-PENDING:** asymptotic counting and Mellin interchange have not yet been formalized in Lean.
 
 <a id="tmm-infinite-series-nonlocal"></a>
 ## 15. Infinite Maclaurin series and the first nonlocal baseline
@@ -789,10 +789,10 @@ F(\mathscr D_z)=\sum_{k=0}^{\infty}a_k\mathscr D_z^k,
 \qquad
 F(\mathscr D_z)e_n=F(n)e_n,
 \qquad
-e_n(z)=e^{2\pi inz/5}.
+e_n\(z\)=e^{2\pi inz/5}.
 \]
 
-This escapes the finite-order counting theorem, but it does not generally remain local.  A translation-invariant operator on the circle is convolution by a periodic distribution (K_F) whose Fourier coefficients are (F(n)).  If the operator is local, the convolution kernel is supported at the identity.  A distribution supported at one point is a finite sum of derivatives of a delta distribution, so its Fourier coefficients are polynomial in (n).  Consequently
+This escapes the finite-order counting theorem, but it does not generally remain local.  A translation-invariant operator on the circle is convolution by a periodic distribution \(K_F\) whose Fourier coefficients are \(F(n)\).  If the operator is local, the convolution kernel is supported at the identity.  A distribution supported at one point is a finite sum of derivatives of a delta distribution, so its Fourier coefficients are polynomial in \(n\).  Consequently
 
 \[
 \operatorname{supp}K_F\subseteq\{0\}
@@ -802,7 +802,7 @@ This escapes the finite-order counting theorem, but it does not generally remain
 
 Thus a genuinely nonpolynomial infinite Maclaurin series is already a nonlocal infinite-order or pseudodifferential operator.  The qualification by the integer sequence is essential: two entire functions that agree on all integers define the same Fourier multiplier.
 
-Existence alone has no predictive force.  Entire interpolation on the discrete set (mathbb Z) can produce an (F) with prescribed values (F(n)=\gamma_n), where (gamma_n) are zeta ordinates.  It is infinitely nonunique, since for every entire (G),
+Existence alone has no predictive force.  Entire interpolation on the discrete set \(\mathbb Z\) can produce an \(F\) with prescribed values \(F(n)=\gamma_n\), where \(\gamma_n\) are zeta ordinates.  It is infinitely nonunique, since for every entire \(G\),
 
 \[
 \widetilde F(z)=F(z)+\sin(\pi z)G(z)
@@ -812,7 +812,7 @@ Existence alone has no predictive force.  Entire interpolation on the discrete s
 
 Such an operator merely stores the desired zeros in its definition and is not a Hilbert--Pólya derivation.
 
-A non-fitted baseline can nevertheless reproduce the required smooth density.  Let (W) be the positive principal Lambert function and define the odd real symbol
+A non-fitted baseline can nevertheless reproduce the required smooth density.  Let \(W\) be the positive principal Lambert function and define the odd real symbol
 
 \[
 A_0(0)=0,
@@ -829,7 +829,7 @@ N_0(T)=\frac{T}{2\pi}
 \left(\log\frac{T}{2\pi}-1\right).
 \]
 
-Writing (w=W(n/e)), the identity (we^w=n/e) gives exactly
+Writing \(w=W(n/e)\), the identity \(we^w=n/e\) gives exactly
 
 \[
 \frac{A_0(n)}{2\pi}=\frac n w,
@@ -839,25 +839,96 @@ Writing (w=W(n/e)), the identity (we^w=n/e) gives exactly
 \boxed{N_0(A_0(n))=n}
 \]
 
-for every positive integer (n).  Hence (A_0) exactly inverts the smooth leading Riemann--von Mangoldt law.  This is the missing (T\log T) density that no finite differential polynomial could supply.
+for every positive integer \(n\).  Hence \(A_0\) exactly inverts the smooth leading Riemann--von Mangoldt law.  This is the missing \(T\log T\) density that no finite differential polynomial could supply.
 
-**Theorem TMM-9.** An infinite Maclaurin functional calculus can evade TMM-8 only by becoming nonlocal unless its integer symbol reduces to a polynomial sequence.  Arbitrary entire interpolation of zeta ordinates is possible but circular and nonunique.  The explicit nonlocal multiplier (A_0) is self-adjoint and matches the smooth two-term zeta-zero counting law without using individual zeros, but it does not reproduce the oscillatory term, the (7/8) correction, or the individual ordinates.
+**Theorem TMM-9.** An infinite Maclaurin functional calculus can evade TMM-8 only by becoming nonlocal unless its integer symbol reduces to a polynomial sequence.  Arbitrary entire interpolation of zeta ordinates is possible but circular and nonunique.  The explicit nonlocal multiplier \(A_0\) is self-adjoint and matches the smooth two-term zeta-zero counting law without using individual zeros, but it does not reproduce the oscillatory term, the \(7/8\) correction, or the individual ordinates.
 
-The remaining arithmetic problem is therefore sharply isolated: derive from UBT or theta/Euler data a self-adjoint correction (V_{\mathrm{arith}}) such that
+The remaining arithmetic problem is therefore sharply isolated: derive from UBT or theta/Euler data a self-adjoint correction \(V_{\mathrm{arith}}\) such that
 
 \[
 A=A_0+V_{\mathrm{arith}}
 \]
 
-reproduces the prime-controlled fluctuation while preserving a justified domain and self-adjointness.  The primitive input must be derived (log p) data, not a table of zeta zeros.
+reproduces the prime-controlled fluctuation while preserving a justified domain and self-adjointness.  The primitive input must be derived \(\log p\) data, not a table of zeta zeros.
 
 | Gate | Status |
 |---|---|
-| locality criterion for translation-invariant (F(\mathscr D_z)) | **[PROVED]** |
+| locality criterion for translation-invariant \(F(\mathscr D_z)\) | **[PROVED]** |
 | arbitrary entire interpolation exists and is nonunique | **[CLASSICAL / PROVED]** |
 | interpolation constitutes a derivation of RH | **[DISPROVED]** |
-| Lambert-(W) baseline exactly inverts (N_0) | **[PROVED]** |
+| Lambert-\(W\) baseline exactly inverts \(N_0\) | **[PROVED]** |
 | baseline reproduces individual zeta ordinates | **[DISPROVED]** |
-| prime/(\log p) correction derived from UBT | **[OPEN]** |
+| prime/\(\log p\) correction derived from UBT | **[OPEN]** |
 
-Verification: `tools/verify_theta_mellin_matrix.py` checks the Lambert equation, the exact identity (N_0(A_0(n))=n) over multiple scales, monotonicity and oddness of the symbol, and integer-spectrum nonuniqueness under addition of (sin(\pi z)G(z)).  The locality statement uses the classical structure theorem for point-supported distributions.  **LEAN-PENDING:** distribution support and unbounded spectral functional calculus are not formalized in the repository's Lean environment.
+Verification: `tools/verify_theta_mellin_matrix.py` checks the Lambert equation, the exact identity \(N_0(A_0(n))=n\) over multiple scales, monotonicity and oddness of the symbol, and integer-spectrum nonuniqueness under addition of \(\sin(\pi z)G(z)\).  The locality statement uses the classical structure theorem for point-supported distributions.  **LEAN-PENDING:** distribution support and unbounded spectral functional calculus are not formalized in the repository's Lean environment.
+
+<a id="tmm-regulated-prime-operator"></a>
+## 16. Regulated prime-phase operator
+
+Let \(A_0\) be the self-adjoint Lambert-\(W\) baseline from TMM-9 and put \(\sigma=\tfrac12+\varepsilon>1\). Functional calculus gives
+
+\[
+U_{p,k}=e^{ik(\log p)A_0},
+\qquad U_{p,k}^\dagger=U_{p,k}^{-1}.
+\]
+
+Define
+
+\[
+\mathcal D_\sigma=-\frac1\pi\sum_{p,k\ge1}
+\frac{\log p}{p^{k\sigma}}\cos\!\bigl(k(\log p)A_0\bigr),
+\]
+
+\[
+\mathcal S_\sigma=-\frac1\pi\sum_{p,k\ge1}
+\frac{1}{k p^{k\sigma}}\sin\!\bigl(k(\log p)A_0\bigr).
+\]
+
+For \(\sigma>1\), both coefficient sums converge absolutely, hence in operator norm, to bounded self-adjoint operators. On a spectral value \(T\),
+
+\[
+d_\sigma(T)=\frac1\pi\operatorname{Re}\frac{\zeta'}{\zeta}(\sigma+iT),
+\qquad
+s_\sigma'(T)=d_\sigma(T).
+\]
+
+The density \(d_\sigma\) cannot be added directly to an ordinate. The quantization equation and its first-order correction are
+
+\[
+N_0(T)+s_\sigma(T)=n,
+\qquad
+\delta_\sigma(T)=-\frac{s_\sigma(T)}{N_0'(T)},
+\qquad
+N_0'(T)=\frac1{2\pi}\log\frac{T}{2\pi}.
+\]
+
+On the positive spectral sector,
+
+\[
+A_\sigma^{(1)}
+=A_0-\bigl[N_0'(A_0)\bigr]^{-1}\mathcal S_\sigma.
+\]
+
+All factors are real Borel functions of the same self-adjoint \(A_0\), so they commute. The correction is bounded for fixed \(\sigma>1\), \(A_\sigma^{(1)}\) is self-adjoint on \(\operatorname{Dom}(A_0)\), and
+
+\[
+N_0'(T_n^{(0)})\delta_\sigma(T_n^{(0)})
++s_\sigma(T_n^{(0)})=0.
+\]
+
+**Theorem TMM-10.** For every \(\sigma>1\), Euler prime-power data define explicit norm-convergent bounded self-adjoint density and counting-phase functions of \(A_0\). The counting phase gives a regulated first-order ordinate correction using primes but no zeta-zero table.
+
+At \(\sigma=\tfrac12\), absolute norm convergence is lost. The density diverges on the zero mode, while loss of absolute convergence for the integrated sine phase does not by itself exclude a conditional or renormalized limit. The exact nonlinear quantization equation, archimedean \(7/8\) and gamma corrections, and derivation of primitive \(\log p\) phases from UBT remain open. TMM-10 is not a Hilbert--Pólya construction and does not imply RH.
+
+| Gate | Status |
+|---|---|
+| norm convergence for \(\sigma>1\) | **[PROVED]** |
+| bounded self-adjoint prime density and phase | **[PROVED]** |
+| \(s_\sigma'(T)=d_\sigma(T)\) | **[PROVED]** |
+| first-order ordinate correction | **[PROVED, REGULATED]** |
+| density norm limit at \(\sigma=1/2\) on the full space | **[DISPROVED]** |
+| conditional/renormalized critical phase | **[OPEN]** |
+| primitive \(\log p\) phases derived from UBT | **[OPEN]** |
+| RH follows from this construction | **[DISPROVED]** |
+
+Verification: the verifier independently generates primes, checks the phase derivative against the density, parity symmetries, and first-order cancellation. It checks finite truncations, not the analytic critical limit. **LEAN-PENDING:** spectral functional calculus and prime-series convergence are not formalized in Lean.

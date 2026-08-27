@@ -45,6 +45,8 @@ Každý konečný diferenciální polynom v tomto Jacobiho operátoru má skalá
 
 Skutečně nepolynomiální nekonečný Maclaurinův funkcionální kalkul je na Jacobiho kružnici už nelokální. Celá interpolace může zakódovat libovolné ordináty zeta, ale je kruhová a nekonečně nejednoznačná. Explicitní samoadjungovaný multiplikátor (A_0(n)=2\pi n/W(n/e)) pro kladné módy naproti tomu nepoužívá jednotlivé nuly a přesně invertuje hladkou dvoučlennou Riemannovu--von Mangoldtovu počítací funkci; chybějícím krokem je odvozený fluktuační operátor s prime/(\log p) daty.
 
+Pro každý regulátor \(\sigma>1\) definují normově konvergentní sinusové a kosinusové funkce \(A_0\), vážené pouze mocninami prvočísel, omezené samoadjungované operátory počítací fáze a hustoty. Derivace fáze dává hustotu, zatímco podíl s \(N_0'\) dává posun ordinát v prvním řádu. Kritický limit a původ primitivních fází \(\log p\) v UBT zůstávají otevřené.
+
 <a id="patch-claim-control"></a>
 ## Kontrola tvrzení
 

@@ -649,15 +649,15 @@ Sudé/liché rozdělení lze použít jako pečlivě omezenou bosonickou/fermion
 <a id="tmm-jacobi-dirac"></a>
 ## 13. Jacobiho Diracova faktorizace a její spektrální mez
 
-Pracujme v Hilbertově prostoru (5)-periodických funkcí eliptické proměnné,
+Pracujme v Hilbertově prostoru \(5\)-periodických funkcí eliptické proměnné,
 
 \[
 \mathcal H_z=L^2(\mathbb R/5\mathbb Z),
 \qquad
-\langle f,g\rangle_z=\frac15\int_0^5\overline{f(z)}g(z)\,dz,
+\langle f,g\rangle_z=\frac15\int_0^5\overline{f\(z\)}g\(z\)\,dz,
 \]
 
-s hustým definičním oborem (H^1(\mathbb R/5\mathbb Z)). Normalizovaná eliptická derivace
+s hustým definičním oborem \(H^1(\mathbb R/5\mathbb Z)\). Normalizovaná eliptická derivace
 
 \[
 \mathscr D_z:=\frac5{2\pi i}\frac{\partial}{\partial z}
@@ -669,13 +669,13 @@ je na periodickém oboru samoadjungovaná a splňuje
 \mathscr D_z e^{2\pi i n z/5}=n e^{2\pi i n z/5}.
 \]
 
-Nechť ((\mathcal Pf)(z)=f(-z)). Potom
+Nechť \((\mathcal Pf)(z)=f(-z)\). Potom
 
 \[
 \mathcal P\mathscr D_z\mathcal P=-\mathscr D_z.
 \]
 
-Operátor (mathscr D_z) je tedy lichý vzhledem k paritnímu gradování a zaměňuje sudý a lichý funkční prostor. Aplikace na reziduální theta jádra dává přesně kanály z TMM-6,
+Operátor \(\mathscr D_z\) je tedy lichý vzhledem k paritnímu gradování a zaměňuje sudý a lichý funkční prostor. Aplikace na reziduální theta jádra dává přesně kanály z TMM-6,
 
 \[
 \left.\mathscr D_z\Theta_r(z,it)\right|_{z=0}=\Phi_r(t).
@@ -695,7 +695,7 @@ pak
 e^{-tH_0}e^{2\pi i n z/5}=e^{-\pi n^2t/5}e^{2\pi i n z/5}.
 \]
 
-V rozkladu (mathcal H_z=\mathcal H_+\oplus\mathcal H_-) má operátor Diracův tvar
+V rozkladu \(\mathcal H_z=\mathcal H_+\oplus\mathcal H_-\) má operátor Diracův tvar
 
 \[
 \mathscr D_z=
@@ -707,7 +707,7 @@ V rozkladu (mathcal H_z=\mathcal H_+\oplus\mathcal H_-) má operátor Diracův t
 \mathscr D_- = \mathscr D_+^\dagger.
 \]
 
-Jde o skutečný diferenciální operátor měnící váhu, nikoli o konstantní intertwiner vyloučený v TMM-6. Neztotožňuje však dvě škály metrik konečných sektorů. Pro gradovanou metriku (aI_3\oplus bI_2) je adjungovaný operátor k mapě (D:V_+\to V_-) roven (D^{\dagger_{a,b}}=(b/a)D^\dagger); samoadjungované blokové doplnění proto existuje pro všechna (a,b>0). Požadavek stejného nepřeškálovaného diferenciálního výrazu v obou mimodiagonálních blocích by uložil (a=b), ale jde o dodatečnou volbu normalizace, nikoli o důsledek modulární kovariance.
+Jde o skutečný diferenciální operátor měnící váhu, nikoli o konstantní intertwiner vyloučený v TMM-6. Neztotožňuje však dvě škály metrik konečných sektorů. Pro gradovanou metriku \(aI_3\oplus bI_2\) je adjungovaný operátor k mapě \(D:V_+\to V_-\) roven \(D^{\dagger_{a,b}}=(b/a)D^\dagger\); samoadjungované blokové doplnění proto existuje pro všechna \(a,b>0\). Požadavek stejného nepřeškálovaného diferenciálního výrazu v obou mimodiagonálních blocích by uložil \(a=b\), ale jde o dodatečnou volbu normalizace, nikoli o důsledek modulární kovariance.
 
 **Věta TMM-7.** Jacobiho derivace dává kanonickou paritně lichou samoadjungovanou odmocninu volného theta Hamiltoniánu na periodickém eliptickém Hilbertově prostoru. Její spektrum je
 
@@ -717,15 +717,15 @@ Jde o skutečný diferenciální operátor měnící váhu, nikoli o konstantní
 \operatorname{spec}(H_0)=\left\{\frac{\pi n^2}{5}:n\in\mathbb Z\right\}.
 \]
 
-Tento operátor proto nemá za vlastní hodnoty ordináty netriviálních nul zeta a jeho spektrální determinant není dokončená zeta funkce. Repozitář navíc neodvozuje identifikaci pomocné Jacobiho souřadnice (z) s kanonickým bikvaternionovým prostoročasovým směrem nebo směrem komplexního času. Operátor (mathscr D_z) tedy uzavírá lokální problém gradované faktorizace, nikoli most UBT nebo Hilbertův--Pólyův program.
+Tento operátor proto nemá za vlastní hodnoty ordináty netriviálních nul zeta a jeho spektrální determinant není dokončená zeta funkce. Repozitář navíc neodvozuje identifikaci pomocné Jacobiho souřadnice \(z\) s kanonickým bikvaternionovým prostoročasovým směrem nebo směrem komplexního času. Operátor \(\mathscr D_z\) tedy uzavírá lokální problém gradované faktorizace, nikoli most UBT nebo Hilbertův--Pólyův program.
 
 | Podmínka | Status |
 |---|---|
 | samoadjungovaná eliptická derivace na periodickém oboru | **[PROVED]** |
-| paritně lichá mapa a (H_0=(\pi/5)\mathscr D_z^2) | **[PROVED]** |
+| paritně lichá mapa a \(H_0=(\pi/5)\mathscr D_z^2\) | **[PROVED]** |
 | stejná normalizace bloků plyne z modulární symetrie | **[DISPROVED]** |
 | spektrum se rovná ordinátám netriviálních nul zeta | **[DISPROVED]** |
-| (z) je ztotožněno s kanonickým směrem UBT | **[OPEN]** |
+| \(z\) je ztotožněno s kanonickým směrem UBT | **[OPEN]** |
 | Hilbertův--Pólyův operátor je odvozen z UBT | **[OPEN]** |
 
 Ověření: `tools/verify_theta_mellin_matrix.py` kontroluje Fourierovy vlastní hodnoty, antikomutaci s paritou, faktorizaci tepelného generátoru a škálování adjungovaného operátoru podle metriky na konečných invariantních ořezech módů; `tests/test_theta_mellin_matrix.py` poskytuje regresní vstup. Tyto konečné exaktní/numerické kontroly nedokazují větu o definičním oboru neomezeného operátoru ani identifikaci s UBT. **LEAN-PENDING:** věta používá fakta o Fourierových/Sobolevových definičních oborech operátorů, která zatím nejsou reprezentována v Lean prostředí repozitáře.
@@ -733,7 +733,7 @@ Ověření: `tools/verify_theta_mellin_matrix.py` kontroluje Fourierovy vlastní
 <a id="tmm-local-polynomial-no-go"></a>
 ## 14. No-go pro lokální operátory konečného řádu
 
-Nechť (P(x)=\sum_{k=0}^{m}c_kx^k) je reálný polynom a aplikujme (P(\mathscr D_z)) na skalární theta jádro. Pro (Re s>2j+1) dává členová Mellinova integrace
+Nechť \(P(x)=\sum_{k=0}^{m}c_kx^k\) je reálný polynom a aplikujme \(P(\mathscr D_z)\) na skalární theta jádro. Pro \(\Re s>2j+1\) dává členová Mellinova integrace
 
 \[
 \frac12\int_0^\infty t^{s/2-1}
@@ -746,9 +746,9 @@ P(\mathscr D_z)
 \sum_{j=0}^{\lfloor m/2\rfloor}c_{2j}\zeta(s-2j).
 \]
 
-Všechny liché mocniny se zruší, protože módy (n) a (-n) mají stejné koeficienty. Každý lokální diferenciální polynom konečného řádu tedy v hlavním skalárním kanálu vytváří pouze konečnou lineární kombinaci posunutých zeta funkcí. Projekce na rezidua nebo charakteristiky je nahrazují odpovídajícími konečnými kombinacemi Hurwitzových nebo Dirichletových (L)-funkcí; nevytvářejí nový spektrální determinant.
+Všechny liché mocniny se zruší, protože módy \(n\) a \(-n\) mají stejné koeficienty. Každý lokální diferenciální polynom konečného řádu tedy v hlavním skalárním kanálu vytváří pouze konečnou lineární kombinaci posunutých zeta funkcí. Projekce na rezidua nebo charakteristiky je nahrazují odpovídajícími konečnými kombinacemi Hurwitzových nebo Dirichletových \(L\)-funkcí; nevytvářejí nový spektrální determinant.
 
-Existuje i nezávislá asymptotická překážka. Jestliže (m\ge1) a (c_m\ne0), vlastní hodnoty jsou (P(n)), (n\in\mathbb Z), a jejich absolutní počítací funkce splňuje
+Existuje i nezávislá asymptotická překážka. Jestliže \(m\ge1\) a \(c_m\ne0\), vlastní hodnoty jsou \(P(n)\), \(n\in\mathbb Z\), a jejich absolutní počítací funkce splňuje
 
 \[
 N_P(T):=\#\{n\in\mathbb Z:|P(n)|\le T\}
@@ -763,21 +763,21 @@ N_\zeta(T)=
 -\frac{T}{2\pi}+O(\log T).
 \]
 
-Žádný exponent (1/m) nedává růst (T\log T). Konstantní polynom má nekonečnou degeneraci a nemá kompaktní rezolventu, takže překážku neobchází.
+Žádný exponent \(1/m\) nedává růst \(T\log T\). Konstantní polynom má nekonečnou degeneraci a nemá kompaktní rezolventu, takže překážku neobchází.
 
-**Věta TMM-8.** Žádný samoadjungovaný diferenciální polynom konečného řádu v periodickém Jacobiho operátoru (mathscr D_z), ani s pevnou konečnou maticovou násobností, nemůže mít za své úplné spektrum ordináty netriviálních nul zeta. Jeho skalární Mellinův kanál je konečnou kombinací posunutých zeta funkcí a jeho zákon počtu vlastních hodnot je neslučitelný s Riemannovým--von Mangoldtovým zákonem.
+**Věta TMM-8.** Žádný samoadjungovaný diferenciální polynom konečného řádu v periodickém Jacobiho operátoru \(\mathscr D_z\), ani s pevnou konečnou maticovou násobností, nemůže mít za své úplné spektrum ordináty netriviálních nul zeta. Jeho skalární Mellinův kanál je konečnou kombinací posunutých zeta funkcí a jeho zákon počtu vlastních hodnot je neslučitelný s Riemannovým--von Mangoldtovým zákonem.
 
-Věta nevylučuje nelokální pseudodiferenciální operátor, nekompaktní fázový prostor, energeticky závislou okrajovou podmínku ani aritmetickou prime/Eulerovu interakci. Říká, že alespoň jedna taková složka je nutná; přidávání dalších konečných mocnin (partial_z) Hilbertův--Pólyův most neuzavře.
+Věta nevylučuje nelokální pseudodiferenciální operátor, nekompaktní fázový prostor, energeticky závislou okrajovou podmínku ani aritmetickou prime/Eulerovu interakci. Říká, že alespoň jedna taková složka je nutná; přidávání dalších konečných mocnin \(\partial_z\) Hilbertův--Pólyův most neuzavře.
 
 | Podmínka | Status |
 |---|---|
-| Mellinův obraz každého polynomu (P(\mathscr D_z)) | **[PROVED]** |
+| Mellinův obraz každého polynomu \(P(\mathscr D_z)\) | **[PROVED]** |
 | rušení lichých mocnin ve skalárním kanálu | **[PROVED]** |
-| polynomiální spektrální počet oproti (T\log T) | **[PROVED]** |
+| polynomiální spektrální počet oproti \(T\log T\) | **[PROVED]** |
 | lokální Jacobiho operátor konečného řádu realizuje všechny ordináty zeta | **[DISPROVED]** |
 | nelokální aritmetický operátor je odvozen z UBT | **[OPEN]** |
 
-Ověření: repozitářový verifier nezávisle porovnává oříznuté Dirichletovy řady pro monomy (1,n^2,n^4) s (zeta(s),\zeta(s-2),\zeta(s-4)), kontroluje rušení lichých monomů a polynomiální exponenty počítací funkce na rostoucích ořezech. Analytická věta používá členovou integraci v uvedené polorovině absolutní konvergence a standardní Riemannův--von Mangoldtův vzorec. **LEAN-PENDING:** asymptotické počítání a záměna Mellinovy integrace dosud nebyly formalizovány v Lean.
+Ověření: repozitářový verifier nezávisle porovnává oříznuté Dirichletovy řady pro monomy \(1,n^2,n^4\) s \(\zeta(s),\zeta(s-2),\zeta(s-4)\), kontroluje rušení lichých monomů a polynomiální exponenty počítací funkce na rostoucích ořezech. Analytická věta používá členovou integraci v uvedené polorovině absolutní konvergence a standardní Riemannův--von Mangoldtův vzorec. **LEAN-PENDING:** asymptotické počítání a záměna Mellinovy integrace dosud nebyly formalizovány v Lean.
 
 <a id="tmm-infinite-series-nonlocal"></a>
 ## 15. Nekonečná Maclaurinova řada a první nelokální baseline
@@ -789,10 +789,10 @@ F(\mathscr D_z)=\sum_{k=0}^{\infty}a_k\mathscr D_z^k,
 \qquad
 F(\mathscr D_z)e_n=F(n)e_n,
 \qquad
-e_n(z)=e^{2\pi inz/5}.
+e_n\(z\)=e^{2\pi inz/5}.
 \]
 
-Tím lze obejít větu o konečném řádu, ale operátor obecně nezůstane lokální. Translačně invariantní operátor na kružnici je konvoluce s periodickou distribucí (K_F), jejíž Fourierovy koeficienty jsou (F(n)). Je-li operátor lokální, má konvoluční jádro podporu v neutrálním prvku. Distribuce podporovaná v jediném bodě je konečnou sumou derivací delta distribuce, takže její Fourierovy koeficienty jsou polynomy v (n). Proto
+Tím lze obejít větu o konečném řádu, ale operátor obecně nezůstane lokální. Translačně invariantní operátor na kružnici je konvoluce s periodickou distribucí \(K_F\), jejíž Fourierovy koeficienty jsou \(F(n)\). Je-li operátor lokální, má konvoluční jádro podporu v neutrálním prvku. Distribuce podporovaná v jediném bodě je konečnou sumou derivací delta distribuce, takže její Fourierovy koeficienty jsou polynomy v \(n\). Proto
 
 \[
 \operatorname{supp}K_F\subseteq\{0\}
@@ -802,7 +802,7 @@ Tím lze obejít větu o konečném řádu, ale operátor obecně nezůstane lok
 
 Skutečně nepolynomiální nekonečná Maclaurinova řada je tedy už nelokální operátor nekonečného řádu nebo pseudodiferenciální operátor. Kvalifikace pomocí celočíselné posloupnosti je podstatná: dvě celé funkce shodné na všech celých číslech definují tentýž Fourierův multiplikátor.
 
-Pouhá existence nemá predikční sílu. Celá interpolace na diskrétní množině (mathbb Z) může vytvořit (F) s předepsanými hodnotami (F(n)=\gamma_n), kde (gamma_n) jsou ordináty zeta. Je nekonečně nejednoznačná, protože pro každou celou funkci (G)
+Pouhá existence nemá predikční sílu. Celá interpolace na diskrétní množině \(\mathbb Z\) může vytvořit \(F\) s předepsanými hodnotami \(F(n)=\gamma_n\), kde \(\gamma_n\) jsou ordináty zeta. Je nekonečně nejednoznačná, protože pro každou celou funkci \(G\)
 
 \[
 \widetilde F(z)=F(z)+\sin(\pi z)G(z)
@@ -812,7 +812,7 @@ Pouhá existence nemá predikční sílu. Celá interpolace na diskrétní množ
 
 Takový operátor pouze ukládá požadované nuly do své definice a není odvozením Hilbertova--Pólyova programu.
 
-Neladěný baseline však může reprodukovat potřebnou hladkou hustotu. Nechť (W) je kladná hlavní Lambertova funkce a definujme lichý reálný symbol
+Neladěný baseline však může reprodukovat potřebnou hladkou hustotu. Nechť \(W\) je kladná hlavní Lambertova funkce a definujme lichý reálný symbol
 
 \[
 A_0(0)=0,
@@ -829,7 +829,7 @@ N_0(T)=\frac{T}{2\pi}
 \left(\log\frac{T}{2\pi}-1\right).
 \]
 
-Pro (w=W(n/e)) dává identita (we^w=n/e) přesně
+Pro \(w=W(n/e)\) dává identita \(we^w=n/e\) přesně
 
 \[
 \frac{A_0(n)}{2\pi}=\frac n w,
@@ -839,25 +839,96 @@ Pro (w=W(n/e)) dává identita (we^w=n/e) přesně
 \boxed{N_0(A_0(n))=n}
 \]
 
-pro každé kladné celé (n). Operátor (A_0) tedy přesně invertuje hladký vedoucí Riemannův--von Mangoldtův zákon. Poskytuje chybějící hustotu (T\log T), kterou nemohl dát žádný konečný diferenciální polynom.
+pro každé kladné celé \(n\). Operátor \(A_0\) tedy přesně invertuje hladký vedoucí Riemannův--von Mangoldtův zákon. Poskytuje chybějící hustotu \(T\log T\), kterou nemohl dát žádný konečný diferenciální polynom.
 
-**Věta TMM-9.** Nekonečný Maclaurinův funkcionální kalkul může obejít TMM-8 pouze tím, že se stane nelokálním, pokud se jeho celočíselný symbol neredukuje na polynomiální posloupnost. Libovolná celá interpolace ordinát zeta je možná, ale kruhová a nejednoznačná. Explicitní nelokální multiplikátor (A_0) je samoadjungovaný a bez použití jednotlivých nul odpovídá hladkému dvoučlennému zákonu počtu nul zeta, nereprodukuje však oscilační člen, korekci (7/8) ani jednotlivé ordináty.
+**Věta TMM-9.** Nekonečný Maclaurinův funkcionální kalkul může obejít TMM-8 pouze tím, že se stane nelokálním, pokud se jeho celočíselný symbol neredukuje na polynomiální posloupnost. Libovolná celá interpolace ordinát zeta je možná, ale kruhová a nejednoznačná. Explicitní nelokální multiplikátor \(A_0\) je samoadjungovaný a bez použití jednotlivých nul odpovídá hladkému dvoučlennému zákonu počtu nul zeta, nereprodukuje však oscilační člen, korekci \(7/8\) ani jednotlivé ordináty.
 
-Zbývající aritmetický problém je tím ostře izolován: odvodit z UBT nebo theta/Eulerových dat samoadjungovanou korekci (V_{\mathrm{arith}}) takovou, že
+Zbývající aritmetický problém je tím ostře izolován: odvodit z UBT nebo theta/Eulerových dat samoadjungovanou korekci \(V_{\mathrm{arith}}\) takovou, že
 
 \[
 A=A_0+V_{\mathrm{arith}}
 \]
 
-reprodukuje prvočísly řízenou fluktuaci a přitom zachová odůvodněný definiční obor a samoadjungovanost. Primitivním vstupem musejí být odvozená data (log p), nikoli tabulka nul zeta.
+reprodukuje prvočísly řízenou fluktuaci a přitom zachová odůvodněný definiční obor a samoadjungovanost. Primitivním vstupem musejí být odvozená data \(\log p\), nikoli tabulka nul zeta.
 
 | Podmínka | Status |
 |---|---|
-| kritérium lokality translačně invariantního (F(\mathscr D_z)) | **[PROVED]** |
+| kritérium lokality translačně invariantního \(F(\mathscr D_z)\) | **[PROVED]** |
 | libovolná celá interpolace existuje a je nejednoznačná | **[CLASSICAL / PROVED]** |
 | interpolace představuje odvození RH | **[DISPROVED]** |
-| Lambertův-(W) baseline přesně invertuje (N_0) | **[PROVED]** |
+| Lambertův-\(W\) baseline přesně invertuje \(N_0\) | **[PROVED]** |
 | baseline reprodukuje jednotlivé ordináty zeta | **[DISPROVED]** |
-| prime/(\log p) korekce je odvozena z UBT | **[OPEN]** |
+| prime/\(\log p\) korekce je odvozena z UBT | **[OPEN]** |
 
-Ověření: `tools/verify_theta_mellin_matrix.py` kontroluje Lambertovu rovnici, přesnou identitu (N_0(A_0(n))=n) v několika škálách, monotonii a lichost symbolu a nejednoznačnost celočíselného spektra po přičtení (sin(\pi z)G(z)). Tvrzení o lokalitě používá klasickou strukturní větu pro distribuce podporované v bodě. **LEAN-PENDING:** podpora distribucí a neomezený spektrální funkcionální kalkul nejsou formalizovány v Lean prostředí repozitáře.
+Ověření: `tools/verify_theta_mellin_matrix.py` kontroluje Lambertovu rovnici, přesnou identitu \(N_0(A_0(n))=n\) v několika škálách, monotonii a lichost symbolu a nejednoznačnost celočíselného spektra po přičtení \(\sin(\pi z)G(z)\). Tvrzení o lokalitě používá klasickou strukturní větu pro distribuce podporované v bodě. **LEAN-PENDING:** podpora distribucí a neomezený spektrální funkcionální kalkul nejsou formalizovány v Lean prostředí repozitáře.
+
+<a id="tmm-regulated-prime-operator"></a>
+## 16. Regulovaný operátor prvočíselné fáze
+
+Nechť \(A_0\) je samoadjungovaný Lambertův-\(W\) baseline z TMM-9 a položme \(\sigma=\tfrac12+\varepsilon>1\). Funkcionální kalkul dává
+
+\[
+U_{p,k}=e^{ik(\log p)A_0},
+\qquad U_{p,k}^\dagger=U_{p,k}^{-1}.
+\]
+
+Definujme
+
+\[
+\mathcal D_\sigma=-\frac1\pi\sum_{p,k\ge1}
+\frac{\log p}{p^{k\sigma}}\cos\!\bigl(k(\log p)A_0\bigr),
+\]
+
+\[
+\mathcal S_\sigma=-\frac1\pi\sum_{p,k\ge1}
+\frac{1}{k p^{k\sigma}}\sin\!\bigl(k(\log p)A_0\bigr).
+\]
+
+Pro \(\sigma>1\) konvergují obě sumy koeficientů absolutně, a tedy v operátorové normě, k omezeným samoadjungovaným operátorům. Na spektrální hodnotě \(T\)
+
+\[
+d_\sigma(T)=\frac1\pi\operatorname{Re}\frac{\zeta'}{\zeta}(\sigma+iT),
+\qquad
+s_\sigma'(T)=d_\sigma(T).
+\]
+
+Hustotu \(d_\sigma\) nelze přičíst přímo k ordinátě. Kvantizační rovnice a její korekce v prvním řádu jsou
+
+\[
+N_0(T)+s_\sigma(T)=n,
+\qquad
+\delta_\sigma(T)=-\frac{s_\sigma(T)}{N_0'(T)},
+\qquad
+N_0'(T)=\frac1{2\pi}\log\frac{T}{2\pi}.
+\]
+
+Na kladném spektrálním sektoru
+
+\[
+A_\sigma^{(1)}
+=A_0-\bigl[N_0'(A_0)\bigr]^{-1}\mathcal S_\sigma.
+\]
+
+Všechny faktory jsou reálnými borelovskými funkcemi téhož samoadjungovaného \(A_0\), takže komutují. Korekce je pro pevné \(\sigma>1\) omezená, \(A_\sigma^{(1)}\) je samoadjungovaný na \(\operatorname{Dom}(A_0)\) a
+
+\[
+N_0'(T_n^{(0)})\delta_\sigma(T_n^{(0)})
++s_\sigma(T_n^{(0)})=0.
+\]
+
+**Věta TMM-10.** Pro každé \(\sigma>1\) definují Eulerova data prvočíselných mocnin explicitní normově konvergentní omezené samoadjungované funkce hustoty a počítací fáze operátoru \(A_0\). Počítací fáze dává regulovanou korekci ordinát v prvním řádu pouze z prvočísel, bez tabulky nul zeta.
+
+Pro \(\sigma=\tfrac12\) se ztrácí absolutní normová konvergence. Hustota diverguje na nulovém módu, zatímco ztráta absolutní konvergence integrované sinusové fáze sama nevylučuje podmíněný nebo renormalizovaný limit. Exaktní nelineární kvantizační rovnice, archimédovská korekce \(7/8\) a gama korekce i odvození primitivních fází \(\log p\) z UBT zůstávají otevřené. TMM-10 není Hilbertův--Pólyův operátor a neimplikuje RH.
+
+| Podmínka | Status |
+|---|---|
+| normová konvergence pro \(\sigma>1\) | **[PROVED]** |
+| omezená samoadjungovaná prvočíselná hustota a fáze | **[PROVED]** |
+| \(s_\sigma'(T)=d_\sigma(T)\) | **[PROVED]** |
+| korekce ordinát v prvním řádu | **[PROVED, REGULATED]** |
+| normový limit hustoty při \(\sigma=1/2\) na celém prostoru | **[DISPROVED]** |
+| podmíněná/renormalizovaná kritická fáze | **[OPEN]** |
+| primitivní fáze \(\log p\) jsou odvozeny z UBT | **[OPEN]** |
+| RH plyne z této konstrukce | **[DISPROVED]** |
+
+Ověření: verifier nezávisle generuje prvočísla, kontroluje derivaci fáze proti hustotě, paritní symetrie a rušení v prvním řádu. Kontroluje konečné ořezy, nikoli analytický kritický limit. **LEAN-PENDING:** spektrální funkcionální kalkul a konvergence prvočíselných řad nejsou formalizovány v Lean.

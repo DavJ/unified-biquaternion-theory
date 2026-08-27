@@ -602,6 +602,59 @@ def check_infinite_series_and_nonlocal_baseline() -> None:
             raise AssertionError(("integer interpolation ambiguity", mode))
 
 
+
+def primes_up_to(limit: int) -> tuple[int, ...]:
+    sieve = bytearray(b"\x01") * (limit + 1)
+    sieve[:2] = b"\x00\x00"
+    for candidate in range(2, int(math.isqrt(limit)) + 1):
+        if sieve[candidate]:
+            start = candidate * candidate
+            sieve[start::candidate] = b"\x00" * (((limit - start) // candidate) + 1)
+    return tuple(i for i, value in enumerate(sieve) if value)
+
+
+def regularized_prime_phase(t: float, sigma: float,
+                            prime_limit: int = 4000,
+                            power_limit: int = 30) -> float:
+    return -math.fsum(
+        p ** (-k * sigma) * math.sin(t * k * math.log(p)) / k
+        for p in primes_up(prime_limit) for k in range(1, power_limit + 1)
+    ) / math.pi
+
+
+def regularized_prime_density(t: float, sigma: float,
+                              prime_limit: int = 4000,
+                              power_limit: int = 30) -> float:
+    return -math.fsum(
+        math.log(p) * p ** (-k * sigma) * math.cos(t * k * math.log(p))
+        for p in primes_up(prime_limit) for k in range(1, power_limit + 1)
+    ) / math.pi
+
+
+def check_regulated_prime_phase_operator() -> None:
+    sigma, step = 1.35, 2e-6
+    for ordinate in (3.0, 11.0, 27.0):
+        phase = regularized_prime_phase(ordinate, sigma)
+        density = regularized_prime_density(ordinate, sigma)
+        derivative = (
+            regularized_prime_phase(ordinate + step, sigma)
+            - regularized_prime_phase(ordinate - step, sigma)
+        ) / (2 * step)
+        if not math.isclose(derivative, density, rel_tol=2e-7, abs_tol=2e-7):
+            raise AssertionError(("prime phase derivative", ordinate, derivative, density))
+        if abs(regularized_prime_phase(-ordinate, sigma) + phase) > 2e-13:
+            raise AssertionError(("prime phase is not odd", ordinate))
+        if abs(regularized_prime_density(-ordinate, sigma) - density) > 2e-13:
+            raise AssertionError(("prime density is not even", ordinate))
+    for mode in (2, 10, 100):
+        ordinate = smooth_zero_baseline(mode)
+        phase = regularized_prime_phase(ordinate, sigma)
+        smooth_density = math.log(ordinate / (2 * math.pi)) / (2 * math.pi)
+        correction = -phase / smooth_density
+        if abs(smooth_density * correction + phase) > 2e-13:
+            raise AssertionError(("first-order prime quantization", mode))
+
+
 def phase_matrix_mod_5():
     return tuple(
         tuple((complex(0, 1) ** i) if i == j else 0j for j in range(4))
@@ -733,12 +786,13 @@ def main() -> None:
     check_jacobi_dirac_factorization_mod_5()
     check_local_polynomial_jacobi_operator_no_go()
     check_infinite_series_and_nonlocal_baseline()
+    check_regulated_prime_phase_operator()
     print("PASS: S-matrix involution/eigenchannels, boundary multiplier zeros, "
           "open-strip nonvanishing, three Mellin-series checks, and rank-four "
           "mod-5 character channels with exhaustive symmetry-admissible "
           "metric, functional-equation, additive-residue, and elliptic-derivative "
           "classifications, Jacobi-Dirac factorization, local-polynomial no-go, "
-          "and nonlocal smooth-counting baseline")
+          "nonlocal smooth-counting baseline, and regulated prime phase")
 
 
 if __name__ == "__main__":
