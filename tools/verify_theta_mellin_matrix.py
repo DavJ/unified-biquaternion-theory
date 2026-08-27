@@ -618,7 +618,7 @@ def regularized_prime_phase(t: float, sigma: float,
                             power_limit: int = 30) -> float:
     return -math.fsum(
         p ** (-k * sigma) * math.sin(t * k * math.log(p)) / k
-        for p in primes_up(prime_limit) for k in range(1, power_limit + 1)
+        for p in primes_up_to(prime_limit) for k in range(1, power_limit + 1)
     ) / math.pi
 
 
@@ -627,7 +627,7 @@ def regularized_prime_density(t: float, sigma: float,
                               power_limit: int = 30) -> float:
     return -math.fsum(
         math.log(p) * p ** (-k * sigma) * math.cos(t * k * math.log(p))
-        for p in primes_up(prime_limit) for k in range(1, power_limit + 1)
+        for p in primes_up_to(prime_limit) for k in range(1, power_limit + 1)
     ) / math.pi
 
 
