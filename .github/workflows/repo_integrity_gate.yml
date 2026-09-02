@@ -133,3 +133,100 @@ jobs:
             fi
           done <<< "${{ steps.detect.outputs.scripts }}"
           exit $FAILED
+
+  size-and-binary-check:
+    name: "Check Repository Size and Binary Files"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Check no unwhitelisted PDFs are tracked
+        run: |
+          ALLOWED_PDFS=(
+            "docs/pdfs/UBT_Textbook_CS.pdf"
+            "docs/pdfs/UBT_Textbook_EN.pdf"
+            "docs/pdfs/UBT_canonical_main.pdf"
+            "docs/pdfs/UBT_GR_Submission.pdf"
+          )
+          ALL_PDFS=$(git ls-files -- "*.pdf")
+          FAILED=0
+          while IFS= read -r pdf; do
+            [ -z "$pdf" ] && continue
+            FOUND=0
+            for allowed in "${ALLOWED_PDFS[@]}"; do
+              if [ "$pdf" = "$allowed" ]; then FOUND=1; break; fi
+            done
+            if [ "$FOUND" -eq 0 ]; then
+              echo "::error::Tracked PDF outside whitelist: $pdf"
+              FAILED=1
+            fi
+          done <<< "$ALL_PDFS"
+          [ "$FAILED" -eq 0 ] || exit 1
+          echo "PDF check passed ($(echo "$ALL_PDFS" | grep -c . || echo 0) tracked PDFs, all whitelisted)."
+
+      - name: Check no latex build logs are tracked
+        run: |
+          LOGS=$(git ls-files -- "reports/latex_build/logs/**" 2>/dev/null || true)
+          if [ -n "$LOGS" ]; then
+            echo "::error::Tracked latex build logs found (should be .gitignored):"
+            echo "$LOGS"
+            exit 1
+          fi
+          echo "No tracked build logs found."
+
+      - name: Check no Parquet files in prime_mod24 project
+        run: |
+          PARQUETS=$(git ls-files -- "projects/prime_mod24_resonance/**/*.parquet" 2>/dev/null || true)
+          if [ -n "$PARQUETS" ]; then
+            echo "::error::Tracked Parquet files found in prime_mod24 project:"
+            echo "$PARQUETS"
+            exit 1
+          fi
+          echo "No tracked Parquet files found."
+
+      - name: Check individual new binary files do not exceed 500 kB
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git fetch origin "$BASE_SHA" --depth=1 2>/dev/null || true
+          ADDED=$(git diff --name-only --diff-filter=A "$BASE_SHA" "$HEAD_SHA" 2>/dev/null || \
+                  git diff --name-only --diff-filter=A HEAD~1 HEAD 2>/dev/null || true)
+          FAILED=0
+          EXEMPT_PDFS=(
+            "docs/pdfs/UBT_Textbook_CS.pdf"
+            "docs/pdfs/UBT_Textbook_EN.pdf"
+            "docs/pdfs/UBT_canonical_main.pdf"
+            "docs/pdfs/UBT_GR_Submission.pdf"
+          )
+          while IFS= read -r f; do
+            [ -z "$f" ] || [ ! -f "$f" ] && continue
+            SIZE=$(stat -c %s "$f" 2>/dev/null || echo 0)
+            if [ "$SIZE" -gt 512000 ]; then
+              # Check if it's an explicitly exempted whitelisted PDF
+              EXEMPT=0
+              for ep in "${EXEMPT_PDFS[@]}"; do
+                [ "$f" = "$ep" ] && EXEMPT=1 && break
+              done
+              if [ "$EXEMPT" -eq 0 ]; then
+                echo "::error::New binary file exceeds 500 kB: $f (${SIZE} bytes). Add an explicit exception or use a CI artifact instead."
+                FAILED=1
+              fi
+            fi
+          done <<< "$ADDED"
+          [ "$FAILED" -eq 0 ] || exit 1
+          echo "Binary size check passed."
+
+      - name: Check git archive size does not exceed 12 MiB
+        run: |
+          ZIP_SIZE=$(git archive --format=zip HEAD | wc -c)
+          echo "git archive ZIP size: ${ZIP_SIZE} bytes ($(( ZIP_SIZE / 1048576 )) MiB)"
+          if [ "$ZIP_SIZE" -gt 12582912 ]; then
+            echo "::error::git archive HEAD exceeds 12 MiB (${ZIP_SIZE} bytes). Clean up large or generated files before merging."
+            exit 1
+          fi
+          echo "Archive size check passed."

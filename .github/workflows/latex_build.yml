@@ -146,11 +146,14 @@ jobs:
             exit 0
           fi
 
-          git add -f reports/latex_build
-          git add docs/pdfs SHA256SUMS.txt PROVENANCE_INVENTORY_2026-08-01.txt
+          # Only commit the curated latex-build summary (no logs), the two
+          # whitelisted canonical PDFs, and provenance/checksum files.
+          git add -f reports/latex_build/summary.md || true
+          git add -f docs/pdfs/UBT_canonical_main.pdf docs/pdfs/UBT_GR_Submission.pdf || true
+          git add SHA256SUMS.txt PROVENANCE_INVENTORY_2026-08-01.txt || true
           if git diff --cached --quiet; then
             echo "No report or PDF changes to commit"
             exit 0
           fi
-          git commit -m "chore: refresh LaTeX audit and PDFs [skip ci]"
+          git commit -m "chore: refresh LaTeX audit and curated PDFs [skip ci]"
           git push origin HEAD:master

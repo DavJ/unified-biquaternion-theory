@@ -14,10 +14,13 @@
 *.snm
 *.vrb
 
-# LaTeX output - PDFs generated locally
-# Note: docs/pdfs/ may contain committed PDFs from CI/CD
+# LaTeX output - PDFs generated locally.
+# Only these four distribution PDFs are tracked; all others are CI artifacts.
 *.pdf
-!docs/pdfs/*.pdf
+!docs/pdfs/UBT_Textbook_CS.pdf
+!docs/pdfs/UBT_Textbook_EN.pdf
+!docs/pdfs/UBT_canonical_main.pdf
+!docs/pdfs/UBT_GR_Submission.pdf
 
 # Python cache
 __pycache__/
@@ -38,9 +41,28 @@ ubt_mass_spectrum_analysis.png
 !docs/**/*.png
 !consolidation_project/img/*.png
 !consolidation_project/fig_*.png
-!projects/prime_mod24_resonance/reports/prime_mod24/*.png
 !research_tracks/hecke_spectrum/plots/*.png
+!research_tracks/legacy_theory_variants/unified_biquaternion_theory/solution_P5_dark_matter/*.png
+!ARCHIVE/archive_legacy/consolidation_project/fig_*.png
+!ARCHIVE/archive_legacy/consolidation_project/doc/fig_*.png
 consolidation_project/masses/.pytest_cache/
+
+# Prime mod24 project: generated outputs go to build/, not tracked
+projects/prime_mod24_resonance/data/*.parquet
+projects/prime_mod24_resonance/DATA/**/*.parquet
+projects/prime_mod24_resonance/reports/prime_mod24/*.png
+
+# Prime resonance: full generated table goes to build/
+speculative_extensions/prime_resonance_channels/data/prime_resonance_harmonic_table_full.csv
+speculative_extensions/prime_resonance_channels/data/last_run_output.txt
+
+# Backup files
+*.bak*
+
+# Build output directories (except committed summary report)
+build/**
+reports/latex_build/logs/**
+
 
 # Research phase lock results (exclude from commits)
 research_phase_lock/results/
