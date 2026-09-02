@@ -2,8 +2,15 @@
 """
 Regression / CAS checks for the complex-time branch-selection research track.
 
-This script checks only the finite-dimensional or exact symbolic identities
-encoded below. It is not a proof of the infinite-dimensional bounded-semigroup
+Run:
+    python tools/verify_psi_branch_selection.py
+
+This standalone verifier distinguishes:
+- exact symbolic/algebraic checks;
+- finite-dimensional numerical illustrations;
+- the infinite-dimensional theorem status (proof sketch / formal proof pending).
+
+It is not a rigorous proof of the infinite-dimensional bounded-semigroup
 selection proposition.
 
 LEAN-PENDING: no compiled Lean proof is added here.
@@ -41,6 +48,7 @@ def matrix_is_zero(mat: sp.MatrixBase) -> bool:
     return all(sp.simplify(entry) == 0 for entry in mat)
 
 
+print("=== Exact symbolic/algebraic checks ===")
 print("V1: Exact factorization")
 t = sp.symbols("t", real=True)
 A = sp.symbols("A", real=True)
@@ -103,6 +111,7 @@ check(
     "e^{-sλ}e^{+sλ}=1",
 )
 
+print("=== Finite-dimensional checks ===")
 print("V5: Finite-dimensional diagonal boundedness example")
 P_eps = sp.diag(0, 1, 1)
 u_bad = sp.Matrix([0, 1, 0])
@@ -128,6 +137,11 @@ check(
     "V5d_good_bounded",
     sp.simplify((continued_good.T * continued_good)[0] - 25) == 0,
     "a kernel-only vector remains bounded",
+)
+check(
+    "V5e_numeric_illustration",
+    abs(float(sp.N(sp.exp(sp.Integer(2)))) - 7.38905609893065) < 1e-12,
+    "numerical illustration: e^2 gives the expected finite-dimensional growth factor",
 )
 
 print("V6: Zero mode")
@@ -210,8 +224,9 @@ n_pass = sum(1 for _name, status, _detail in results if status == PASS)
 n_fail = sum(1 for _name, status, _detail in results if status == FAIL)
 n_not_run = sum(1 for _name, status, _detail in results if status == NOT_RUN)
 print(f"Results: {n_pass} passed, {n_fail} failed, {n_not_run} not run")
-print("NOTE: This script is a regression / CAS check, not a proof of the")
-print("  infinite-dimensional bounded-semigroup proposition.")
+print("Exact symbolic/algebraic checks: encoded identities verified above.")
+print("Finite-dimensional numerical illustration: limited examples only; not a proof.")
+print("Infinite-dimensional theorem: PROOF SKETCH only; formal proof pending.")
 print("LEAN-PENDING: operator-domain and continuation existence details remain open.")
 
 if n_fail:

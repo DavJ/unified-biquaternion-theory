@@ -16,7 +16,7 @@ UBT-AI-PROVENANCE-END
 
 **Track type:** RESEARCH TRACK — MATHEMATICAL SELECTION LEMMA PLUS CONJECTURAL UBT INTERPRETATION  
 **Date:** 2026-09-02  
-**Status:** holomorphy alone is `CLOSED AS NO-GO [L0]`; the bounded branch-selection lemma is `PROPOSITION / PROOF SKETCH`; the UBT identification `s ?= \psi` is `OPEN / CONJECTURAL`; the Dirac-type operator is `RESEARCH ANSATZ`; the multiverse reading is `SPECULATIVE`; the RH connection is `CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH`.
+**Status:** holomorphy alone is `CLOSED AS NO-GO [L0]`; the bounded branch-selection lemma is `PROPOSITION / PROOF SKETCH`; the UBT identification `s ?= \psi` is `OPEN / CONJECTURAL`; the Dirac-type operator is `RESEARCH ANSATZ`; the multiverse reading is `SPECULATIVE`; the RH connection is `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
 
 **Czech edition:** `psi_branch_selection.cs.md`  
 **Bilingual policy:** `../../BILINGUAL_CONTENT_POLICY.en.md`  
@@ -349,9 +349,17 @@ $$
 \Gamma_*^2=I_4.
 $$
 
-This is an exact algebraic availability statement, not an open gap in the
-present repository. What remains open is the **dynamical use** of
-\(\Gamma_*D_\psi\) in a first-order UBT operator and its action-level origin.
+This is an established algebraic availability statement, not an open gap in
+the present repository:
+
+$$
+\boxed{\text{algebraic existence and anticommutation of }\Gamma_*:\ \text{ESTABLISHED / tier A\_attested / [L0]}}
+$$
+
+The source is the canonical file
+`../../canonical/geometry/biquaternion_dirac_lift.tex`. What remains open is
+the **dynamical use** of \(\Gamma_*D_\psi\) in a first-order UBT operator, its
+normalization, its left/right action, and its action-level origin.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-flat -->
 ### 5.2 Flat constant-coefficient model
@@ -558,7 +566,7 @@ The multiverse reading therefore remains strictly `SPECULATIVE`.
 <!-- BILINGUAL-UNIT: psi-branch.sec8 -->
 ## 8. Conditional note on the Riemann Hypothesis
 
-> **Status: CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH**
+> **Status: CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH**
 
 <!-- BILINGUAL-UNIT: psi-branch.rh-structural -->
 ### 8.1 Structural observation only
@@ -604,8 +612,14 @@ Run
 python tools/verify_psi_branch_selection.py
 ```
 
-The script is a regression / CAS check, not a proof of the infinite-dimensional
-lemma. Its checks are:
+The script is a standalone verifier:
+
+```bash
+python tools/verify_psi_branch_selection.py
+```
+
+It is a regression / CAS check, not a proof of the infinite-dimensional lemma.
+Its checks are:
 
 | Check | Description |
 |---|---|
@@ -638,9 +652,9 @@ infinite-dimensional spectral-measure argument.
 |---|---|---|
 | G1 | Bounded branch-selection lemma: full domain and continuation verification | PROPOSITION / PROOF SKETCH |
 | G2 | Identification \(s\stackrel{?}{=}\psi\) | OPEN / CONJECTURAL |
-| G3 | Compatibility of the non-compact selector with compact \(S^1_\psi\) | OPEN |
-| G4 | Dynamical use of \(\Gamma_*D_\psi\) in a first-order UBT operator | OPEN |
-| G5 | Origin, normalization, representation, and transformation law of \(D_\psi\), \(A_\psi\), \(B_\psi\) | OPEN / ANSATZ |
+| G3-DYN | Dynamic use of \(\Gamma_*D_\psi\), its normalization, left/right action and action origin | OPEN |
+| G4 | Compatibility of the non-compact selector with compact \(S^1_\psi\) | OPEN |
+| G5 | Origin, normalization, representation, and transformation law of \(D_\psi\), \(A_\psi\), \(B_\psi\) beyond the flat ansatz | OPEN / ANSATZ |
 | G6 | Action-level derivation of the full first-order operator and its spectral / energy selector | OPEN |
 | G7 | Lean proof of the infinite-dimensional statement | LEAN-PENDING |
 
@@ -656,7 +670,7 @@ infinite-dimensional spectral-measure argument.
 | S5: Candidate complex-time / fibre Dirac-type operator | RESEARCH ANSATZ |
 | S6: Hierarchy of limits | STANDARD PHYSICS FACT |
 | S7: Multiverse interpretation | SPECULATIVE |
-| S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH |
+| S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |
 | S10: Formal verification status | LEAN-PENDING |
 
 No canonical axiom, definition, master equation, claim, or gap status is

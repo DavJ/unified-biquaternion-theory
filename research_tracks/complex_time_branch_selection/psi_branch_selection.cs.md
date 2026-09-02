@@ -16,7 +16,7 @@ UBT-AI-PROVENANCE-END
 
 **Typ stopy:** RESEARCH TRACK — MATHEMATICAL SELECTION LEMMA PLUS CONJECTURAL UBT INTERPRETATION  
 **Datum:** 2026-09-02  
-**Status:** holomorphy alone je `CLOSED AS NO-GO [L0]`; lemma o výběru větve pomocí omezenosti je `PROPOSITION / PROOF SKETCH`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; Dirac-type operátor je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; RH spojitost je `CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH`.
+**Status:** holomorphy alone je `CLOSED AS NO-GO [L0]`; lemma o výběru větve pomocí omezenosti je `PROPOSITION / PROOF SKETCH`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; Dirac-type operátor je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; RH spojitost je `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
 
 **Anglická edice:** `psi_branch_selection.en.md`  
 **Bilingvní politika:** `../../BILINGUAL_CONTENT_POLICY.cs.md`  
@@ -350,9 +350,17 @@ $$
 \Gamma_*^2=I_4.
 $$
 
-Jde o tvrzení o exaktní algebraické dostupnosti, nikoli o otevřenou mezeru v
-aktuálním repozitáři. Otevřené zůstává **dynamické použití**
-\(\Gamma_*D_\psi\) v first-order UBT operátoru a jeho action-level původ.
+Jde o ustavené tvrzení o algebraické dostupnosti, nikoli o otevřenou mezeru v
+aktuálním repozitáři:
+
+$$
+\boxed{\text{algebraic existence and anticommutation of }\Gamma_*:\ \text{ESTABLISHED / tier A\_attested / [L0]}}
+$$
+
+Zdrojem je kanonický soubor
+`../../canonical/geometry/biquaternion_dirac_lift.tex`. Otevřené zůstává
+**dynamické použití** \(\Gamma_*D_\psi\) v first-order UBT operátoru, jeho
+normalizace, levé/pravé působení a action-level původ.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-flat -->
 ### 5.2 Plochý model s konstantními koeficienty
@@ -557,7 +565,7 @@ Multivesmírné čtení tedy zůstává přísně `SPECULATIVE`.
 <!-- BILINGUAL-UNIT: psi-branch.sec8 -->
 ## 8. Podmíněná poznámka k Riemannově hypotéze
 
-> **Status: CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH**
+> **Status: CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH**
 
 <!-- BILINGUAL-UNIT: psi-branch.rh-structural -->
 ### 8.1 Pouze strukturální pozorování
@@ -603,7 +611,13 @@ Spusťte
 python tools/verify_psi_branch_selection.py
 ```
 
-Skript je regresní / CAS kontrola, nikoli důkaz nekonečněrozměrného lemmatu.
+Skript je samostatně spouštěný verifier:
+
+```bash
+python tools/verify_psi_branch_selection.py
+```
+
+Je to regresní / CAS kontrola, nikoli důkaz nekonečněrozměrného lemmatu.
 Jeho kontroly jsou:
 
 | Check | Description |
@@ -637,9 +651,9 @@ a plný nekonečněrozměrný argument se spektrální mírou.
 |---|---|---|
 | G1 | Bounded branch-selection lemma: full domain and continuation verification | PROPOSITION / PROOF SKETCH |
 | G2 | Identification \(s\stackrel{?}{=}\psi\) | OPEN / CONJECTURAL |
-| G3 | Compatibility of the non-compact selector with compact \(S^1_\psi\) | OPEN |
-| G4 | Dynamical use of \(\Gamma_*D_\psi\) in a first-order UBT operator | OPEN |
-| G5 | Origin, normalization, representation, and transformation law of \(D_\psi\), \(A_\psi\), \(B_\psi\) | OPEN / ANSATZ |
+| G3-DYN | Dynamic use of \(\Gamma_*D_\psi\), its normalization, left/right action and action origin | OPEN |
+| G4 | Compatibility of the non-compact selector with compact \(S^1_\psi\) | OPEN |
+| G5 | Origin, normalization, representation, and transformation law of \(D_\psi\), \(A_\psi\), \(B_\psi\) beyond the flat ansatz | OPEN / ANSATZ |
 | G6 | Action-level derivation of the full first-order operator and its spectral / energy selector | OPEN |
 | G7 | Lean proof of the infinite-dimensional statement | LEAN-PENDING |
 
@@ -655,7 +669,7 @@ a plný nekonečněrozměrný argument se spektrální mírou.
 | S5: Candidate complex-time / fibre Dirac-type operator | RESEARCH ANSATZ |
 | S6: Hierarchy of limits | STANDARD PHYSICS FACT |
 | S7: Multiverse interpretation | SPECULATIVE |
-| S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH |
+| S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |
 | S10: Formal verification status | LEAN-PENDING |
 
 Touto stopou se nemění žádný kanonický axiom, definice, master equation, claim
