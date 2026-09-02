@@ -16,7 +16,7 @@ UBT-AI-PROVENANCE-END
 
 **Typ stopy:** RESEARCH TRACK — MATHEMATICAL SELECTION LEMMA PLUS CONJECTURAL UBT INTERPRETATION  
 **Datum:** 2026-09-02  
-**Status:** holomorphy alone je `CLOSED AS NO-GO [L0]`; bounded branch-selection lemma je `PROPOSITION / PROOF SKETCH`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; Dirac-type operátor je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; RH spojitost je `CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH`.
+**Status:** holomorphy alone je `CLOSED AS NO-GO [L0]`; lemma o výběru větve pomocí omezenosti je `PROPOSITION / PROOF SKETCH`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; Dirac-type operátor je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; RH spojitost je `CONDITIONAL RESEARCH DIRECTION — NOT AN ADVANCE TOWARD RH`.
 
 **Anglická edice:** `psi_branch_selection.en.md`  
 **Bilingvní politika:** `../../BILINGUAL_CONTENT_POLICY.cs.md`  
@@ -26,8 +26,8 @@ UBT-AI-PROVENANCE-END
 
 <!-- BILINGUAL-UNIT: psi-branch.scope -->
 > **Rozsah tohoto dokumentu.** Tato výzkumná stopa opravuje existující patch
-> bez změny jakéhokoli kanonického axiomu, definice, master equation, claimu
-> nebo gap statusu. Výslovně respektuje
+> bez změny jakéhokoli kanonického axiomu, definice, master equation, tvrzení
+> nebo statusu mezery. Výslovně respektuje
 > `../action_selection/holomorphy_factor_selection_no_go.en.md`,
 > `../action_selection/holomorphy_factor_selection_no_go.cs.md`,
 > `../canonical_relation_generalized_dirac/action_origin_obstruction.tex` a
@@ -90,7 +90,7 @@ $$
 <!-- BILINGUAL-UNIT: psi-branch.holomorphy-status -->
 ### 2.2 Statusové tvrzení
 
-To dává přesný research-track status
+To dává přesný status této výzkumné stopy
 
 $$
 \boxed{\text{holomorphy alone: CLOSED AS NO-GO [L0]}}
@@ -108,7 +108,7 @@ používá dodatečná data:
 
 1. samosdruženost a nezápornost \(A\);
 2. orientovanou komplexní polorovinu;
-3. globální podmínku boundedness;
+3. globální podmínku omezenosti;
 4. spektrální / energetickou podmínku.
 
 Proto je zesílené tvrzení pouze
@@ -235,10 +235,10 @@ $$
 (i\partial_t-A)\Phi=0.
 $$
 
-To je lemma o výběru větve pomocí boundedness, které tato stopa používá.
+To je lemma o výběru větve pomocí omezenosti, které tato stopa používá.
 
 <!-- BILINGUAL-UNIT: psi-branch.semigroup-warning -->
-### 3.4 Nulový mód a varování o boundedness
+### 3.4 Nulový mód a varování o omezenosti
 
 Pro \(A=0\) má second-order rovnice obecné zero-mode řešení
 
@@ -247,7 +247,7 @@ $$
 $$
 
 To **není** automaticky konstanta. Konstantním se stane až po dodatečné
-podmínce, například boundedness v reálném \(t\), která vynutí \(v_0=0\).
+podmínce, například omezenosti v reálném \(t\), která vynutí \(v_0=0\).
 
 Dokument proto rozlišuje:
 
@@ -261,7 +261,7 @@ $$
 \boxed{\text{For each fixed finite }s,\ e^{sA}u\in H\ \text{does not imply }u\in\ker A.}
 $$
 
-Rozhodujícím vstupem je uniformní boundedness pro \(s\to\infty\), nikoli pouhá
+Rozhodujícím vstupem je uniformní omezenost pro \(s\to\infty\), nikoli pouhá
 existence pro každé konečné \(s\).
 
 Pokud budoucí formulace použije Hardyho prostory, musí uvést přesný funkční
@@ -269,7 +269,7 @@ prostor a přesnou podpůrnou větu. Žádná neověřená ekvivalence se standa
 Hardy-\(H^2\) větou se zde netvrdí.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec4 -->
-## 4. UBT bookkeeping času a překážka kompaktnosti
+## 4. Značení času v UBT a překážka kompaktnosti
 
 <!-- BILINGUAL-UNIT: psi-branch.time-symbols -->
 ### 4.1 Odlišné symboly, které se nesmějí ztotožnit
@@ -277,7 +277,7 @@ Hardy-\(H^2\) větou se zde netvrdí.
 | Symbol | Role |
 |---|---|
 | \(\tau_{\mathrm{UBT}}=t+i\psi\) | Kanonický komplexní čas UBT |
-| \(\bar\tau_{\mathrm{UBT}}=t-i\psi\) | Komplexně sdružená bookkeeping proměnná |
+| \(\bar\tau_{\mathrm{UBT}}=t-i\psi\) | Komplexně sdružená pomocná proměnná |
 | \(z=t-is\) | Pomocná proměnná pokračování v dolní polorovině |
 | \(\tau_\theta\) | Theta modulus |
 | \(z_\theta\) | Theta argument |
@@ -307,7 +307,7 @@ kanonické \(\psi\) je periodická / kompaktní vláknová souřadnice, zatímco
 <!-- BILINGUAL-UNIT: psi-branch.compact-obstruction -->
 ### 4.3 Proč kompaktní \(\psi\) zůstává překážkou
 
-Kanonická UBT používá bookkeeping
+Kanonická UBT používá značení
 
 $$
 \tau_{\mathrm{UBT}}=t+i\psi,
@@ -322,7 +322,7 @@ $$
 e^{-sA}
 $$
 
-není v \(s\) periodický. Argument s boundedness v dolní polorovině tedy
+není v \(s\) periodický. Argument s omezeností v dolní polorovině tedy
 automaticky nesestupuje na globální tvrzení na kompaktním \(S^1_\psi\).
 
 Tím zůstávají dva odlišné otevřené problémy:
@@ -331,7 +331,7 @@ Tím zůstávají dva odlišné otevřené problémy:
 2. kompatibilita nekompaktního selektoru s kompaktním \(S^1_\psi\).
 
 <!-- BILINGUAL-UNIT: psi-branch.sec5 -->
-## 5. Kandidátní complex-time / fibre Dirac-type operátor
+## 5. Kandidátní operátor Diracova typu pro complex-time / fibre
 
 > **Status: RESEARCH ANSATZ — NOT A DERIVED CANONICAL EQUATION**
 
@@ -350,12 +350,12 @@ $$
 \Gamma_*^2=I_4.
 $$
 
-Jde o tvrzení o exaktní algebraické dostupnosti, nikoli o otevřený gap v
+Jde o tvrzení o exaktní algebraické dostupnosti, nikoli o otevřenou mezeru v
 aktuálním repozitáři. Otevřené zůstává **dynamické použití**
 \(\Gamma_*D_\psi\) v first-order UBT operátoru a jeho action-level původ.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-flat -->
-### 5.2 Flat model s konstantními koeficienty
+### 5.2 Plochý model s konstantními koeficienty
 
 Pro omezený exaktní výpočet čtverce použijme flat model s konstantními
 koeficienty
@@ -370,18 +370,18 @@ $$
 To **není** automatické tvrzení, že kanonická UBT je obyčejná
 pětidimenzionální spacetime teorie. Proměnnou \(\psi\) lze interpretovat jako
 
-1. imaginární složku komplexně-časového fibre bookkeepingu;
+1. imaginární složku komplexně-časového vláknového značení;
 2. interní kompaktní souřadnici;
 3. skutečnou další reálnou dimenzi pouze v rozšířené interpretaci.
 
 Použití nezávislého \(\partial_\psi\) nebo \(D_\psi\) může změnit počítání
 nezávislých souřadnic a musí být explicitně porovnáno s kanonickým
-bookkeepingem \(\tau_{\mathrm{UBT}}=t+i\psi\).
+značením \(\tau_{\mathrm{UBT}}=t+i\psi\).
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-general -->
-### 5.3 Obecný research ansatz s definovaným \(D_\psi\)
+### 5.3 Obecný výzkumný ansatz s definovaným \(D_\psi\)
 
-Zapíše-li se křivý nebo gauge-coupled research ansatz, musí být \(D_\psi\)
+Zapíše-li se křivý nebo gauge-coupled výzkumný ansatz, musí být \(D_\psi\)
 explicitně definováno:
 
 $$
@@ -450,7 +450,7 @@ $$
 Samotný theta / heat Gaussian tedy znaménko větve **nevybírá**.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-square -->
-### 5.5 Exaktní flat čtverec a nekřivá výhrada
+### 5.5 Exaktní plochý čtverec a nekřivá výhrada
 
 Za předpokladů flat modelu
 
@@ -470,7 +470,7 @@ $$
 $$
 
 To je jediný smysl, v němž se zde tvrdí exaktní algebraický / spektrální
-bridge.
+můstek.
 
 Pro obecnou křivou, gauge nebo \(\Theta\)-dependent situaci obsahuje čtverec
 další cross-termy, které musejí zůstat explicitní:
@@ -479,7 +479,7 @@ další cross-termy, které musejí zůstat explicitní:
 2. derivace \(\Gamma_*\);
 3. derivace hmotového funkcionálu;
 4. left/right curvature terms;
-5. chain-rule terms z kompozitní geometrie.
+5. členy řetězového pravidla z kompozitní geometrie.
 
 Každé tvrzení o heat kernelu patří odpovídajícímu nezápornému eukleidovskému
 čtverci, nikoli automaticky Lorentzovskému operátoru.
@@ -513,7 +513,7 @@ $$
 <!-- BILINGUAL-UNIT: psi-branch.not-implied -->
 ### 6.2 Co výběr větve neodvozuje
 
-Lemma o výběru větve pomocí boundedness samo o sobě **neodvozuje** nic z
+Lemma o výběru větve pomocí omezenosti samo o sobě **neodvozuje** nic z
 následujícího:
 
 1. lokální Cliffordův Diracův operátor;
@@ -579,10 +579,10 @@ Jednoduchý winding operátor \(N_\psi\) má celočíselné spektrum. To samo o 
 neodpovídá ordinátám nul zeta funkce.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec9 -->
-## 9. Interpretační a architektonické guardrails
+## 9. Interpretační a architektonické mantinely
 
 <!-- BILINGUAL-UNIT: psi-branch.guardrails -->
-1. Bounded branch-selection lemma je matematická propozice, nikoli kanonická
+1. Lemma o výběru větve pomocí omezenosti je matematická propozice, nikoli kanonická
    UBT věta o selektoru.
 2. Identifikace \(s\stackrel{?}{=}\psi\) je otevřená a conjectural.
 3. Kompatibilita s compact-\(\psi\) je otevřená.
