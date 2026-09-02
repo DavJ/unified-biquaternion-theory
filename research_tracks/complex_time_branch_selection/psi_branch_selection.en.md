@@ -1,3 +1,4 @@
+<!-- BILINGUAL-UNIT: psi-branch.provenance -->
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 <!--
 UBT-AI-PROVENANCE-BEGIN
@@ -11,353 +12,494 @@ notice: Working material; exhaustive human review is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
-# First-order dynamic branch selection via complex time ψ
+# First-order dynamic branch selection via complex-time continuation and fibre data
 
 **Track type:** RESEARCH TRACK — MATHEMATICAL SELECTION LEMMA PLUS CONJECTURAL UBT INTERPRETATION  
 **Date:** 2026-09-02  
-**Status:** Mathematical selection lemma stated as PROPOSITION / PROOF SKETCH; UBT interpretation is CONJECTURAL; multiverse reading is SPECULATIVE; RH connection is CONDITIONAL RESEARCH DIRECTION.
+**Status:** holomorphy alone is `CLOSED AS NO-GO [L0]`; the bounded branch-selection lemma is `PROPOSITION / PROOF SKETCH`; the UBT identification `s ?= \psi` is `OPEN / CONJECTURAL`; the Dirac-type operator is `RESEARCH ANSATZ`; the multiverse reading is `SPECULATIVE`; the RH connection is `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
 
 **Czech edition:** `psi_branch_selection.cs.md`  
 **Bilingual policy:** `../../BILINGUAL_CONTENT_POLICY.en.md`  
-**Verification script:** `../../tools/verify_psi_branch_selection.py`
+**Verification scripts:** `../../tools/verify_psi_branch_selection.py`, `../../tools/verify_holomorphy_factor_no_go.py`
 
 ---
 
-> **Scope of this document.** This research track records a rigorous hypothesis
-> about how analytic continuation into the complex-time coordinate
-> \(\psi\) could select a first-order dynamical branch from the canonical
-> second-order UBT field equation. Nothing in this track modifies the canonical
-> axioms, the canonical master equation, `CLAIMS.yaml`, or any gap status.
-> No gap is promoted to `PROVED` or `CLOSED` here.
+<!-- BILINGUAL-UNIT: psi-branch.scope -->
+> **Scope of this document.** This research track repairs the existing patch
+> without changing any canonical axiom, definition, master equation, claim, or
+> gap status. It explicitly respects
+> `../action_selection/holomorphy_factor_selection_no_go.en.md`,
+> `../action_selection/holomorphy_factor_selection_no_go.cs.md`,
+> `../canonical_relation_generalized_dirac/action_origin_obstruction.tex`, and
+> the existing canonical fifth/complex-time Clifford channel in
+> `../../canonical/geometry/biquaternion_dirac_lift.tex`.
 
 ---
 
-<a id="psi-bs-sec1"></a>
+<!-- BILINGUAL-UNIT: psi-branch.sec1 -->
 ## 1. Motivation and precise branch taxonomy
 
-The following distinct notions of "branch" appear in the literature and
-must not be conflated.
+The following notions of "branch" must not be conflated.
 
-<a id="psi-bs-taxonomy"></a>
-
+<!-- BILINGUAL-UNIT: psi-branch.taxonomy -->
 | ID | Notion | Definition domain |
 |---|---|---|
-| B1 | Frequency branches of a factorised second-order ODE/PDE | Functional-analytic; eigenvalue sign |
+| B1 | Frequency branches of a factorized second-order ODE/PDE | Functional analysis; sign of the generator |
 | B2 | Fourier / winding modes on \(S^1_\psi\) | Spectral theory on a circle |
-| B3 | Holomorphic vs. anti-holomorphic sector | Complex analysis; Hardy spaces |
+| B3 | Holomorphic branch selection in an oriented complex half-plane | Complex analysis plus boundedness / spectral data |
 | B4 | Dirac particle vs. anti-particle sectors | Representation theory; CPT |
-| B5 | Decohered or Everettian macroscopic branches | Decoherence theory; interpretational |
+| B5 | Decohered or Everettian macroscopic branches | Decoherence theory; interpretation |
 
-**These five notions are not automatically identical.**
-Identifying any two of them requires an explicit dynamical operator and a proof
-that the operator maps one notion to the other. The present track explores only
-B1–B3 within a mathematically controlled setting; the connections to B4 and B5
-are explicitly conjectural or speculative (see Sections 5 and 7).
+**These five notions are not automatically identical.** The present track
+addresses B1–B3 only. Any map from B1–B3 to B4 or B5 requires an explicit
+dynamical operator and an independent proof.
 
-<a id="psi-bs-sec2"></a>
-## 2. Standard mathematical lemma on analytic branch selection
+<!-- BILINGUAL-UNIT: psi-branch.sec2 -->
+## 2. Holomorphy alone: exact no-go
+
+<!-- BILINGUAL-UNIT: psi-branch.holomorphy-counterexample -->
+### 2.1 Exact counterexample [L0]
+
+The existing no-go note remains binding:
+
+$$
+(\partial_\tau-m)(\partial_\tau+m)f=0,
+\qquad m\ne0.
+$$
+
+It has the two entire holomorphic branches
+
+$$
+f_\pm(\tau)=e^{\pm m\tau}.
+$$
+
+Indeed,
+
+$$
+(\partial_\tau-m)f_+=0,
+\qquad
+(\partial_\tau+m)f_-=0.
+$$
+
+Therefore both branches solve the same second-order equation, and
+
+$$
+\boxed{\text{Holomorphy alone does not select the first-order factor.}}
+$$
+
+<!-- BILINGUAL-UNIT: psi-branch.holomorphy-status -->
+### 2.2 Status statement
+
+This yields the exact research-track status
+
+$$
+\boxed{\text{holomorphy alone: CLOSED AS NO-GO [L0]}}
+$$
+
+and is fully consistent with
+`../action_selection/holomorphy_factor_selection_no_go.en.md` and
+`../action_selection/holomorphy_factor_selection_no_go.cs.md`.
+
+<!-- BILINGUAL-UNIT: psi-branch.holomorphy-strengthened -->
+### 2.3 What is still available
+
+The present note does **not** contradict that no-go, because the proposed
+selection principle uses additional data:
+
+1. self-adjointness and non-negativity of \(A\);
+2. an oriented complex half-plane;
+3. a global boundedness condition;
+4. a spectral / energy condition.
+
+Accordingly the strengthened claim is only
+
+$$
+\boxed{\text{holomorphy + positivity + oriented boundedness: PROPOSITION / PROOF SKETCH}}
+$$
+
+No canonical UBT derivation of this stronger selector is claimed here.
+
+<!-- BILINGUAL-UNIT: psi-branch.sec3 -->
+## 3. Bounded semigroup selection lemma
 
 > **Status: PROPOSITION / PROOF SKETCH**
-> All domain and regularity conditions listed below must be verified for each
-> concrete application. In particular, the infinite-dimensional case requires
-> a self-adjoint extension theorem and a careful treatment of the operator
-> domain.
+> The statement below is intentionally narrower than a standard Hardy-\(H^2\)
+> theorem claim. It isolates the bounded-semigroup argument that is actually
+> used here and leaves unbounded-operator domains, continuation existence, and
+> full infinite-dimensional functional analysis as open verification work.
 
-<a id="psi-bs-setup"></a>
-### 2.1 Setup
+<!-- BILINGUAL-UNIT: psi-branch.semigroup-setup -->
+### 3.1 Setup on \((\ker A)^\perp\)
 
-Let \(H\) be a separable complex Hilbert space and \(A\) a self-adjoint,
-non-negative operator on a dense domain \(\mathcal D(A)\subset H\),
-
-$$
-A = A^*, \qquad A \ge 0.
-$$
-
-Consider the second-order abstract wave equation
+Let \(H\) be a complex Hilbert space and let \(A\) be self-adjoint and
+non-negative on a dense domain:
 
 $$
-(\partial_t^2 + A^2)\Phi = 0, \qquad \Phi : \mathbb R \to H.
+A=A^*,
+\qquad
+A\ge0.
 $$
 
-<a id="psi-bs-spectral"></a>
-### 2.2 Spectral decomposition
-
-By the spectral theorem every solution with initial data
-\((\Phi(0), \dot\Phi(0)) \in \mathcal D(A) \times H\) decomposes as
+Assume that the solution on \((\ker A)^\perp\) admits the branch decomposition
 
 $$
-\Phi(t) = e^{-itA} u_+ + e^{itA} u_-, \qquad u_\pm \in H.
+\Phi(t)=e^{-itA}u_+ + e^{itA}u_-,
+\qquad
+u_\pm\in(\ker A)^\perp.
 $$
 
-The two summands are the **positive-frequency** and **negative-frequency** branches (B1).
-They are equal as sets of initial data only when \(A\) has pure point spectrum with both signs; for a non-negative \(A\) the labelling is by the sign of the generator \(\pm iA\).
+This is the B1 frequency-branch split. The kernel sector is separate and is
+treated in Section 3.4.
 
-<a id="psi-bs-continuation"></a>
-### 2.3 Analytic continuation into the lower half-plane
+<!-- BILINGUAL-UNIT: psi-branch.semigroup-continuation -->
+### 3.2 Oriented continuation parameter \(s>0\)
 
-Introduce the complex time variable
-
-$$
-z = t - i\psi, \qquad \psi > 0.
-$$
-
-Formal substitution \(t \mapsto z\) in the spectral decomposition yields
+For the mathematical lemma, do **not** begin with the canonical UBT symbol
+\(\psi\). Introduce instead the auxiliary non-compact continuation depth
 
 $$
-\Phi(t,\psi)
+z=t-is,
+\qquad
+s>0.
+$$
+
+The analytically continued expression is
+
+$$
+\Phi(t,s)
 =
-e^{-itA}e^{-\psi A} u_+
+e^{-itA}e^{-sA}u_+
 +
-e^{itA}e^{+\psi A} u_-.
+e^{itA}e^{sA}u_-.
 $$
 
-<a id="psi-bs-selection"></a>
-### 2.4 Boundedness / Hardy H² selection
+This is a lower-half-plane statement. Reversing the orientation of the
+half-plane reverses which branch is damped.
 
-**Proposition (branch selection).** Suppose that \(A \ge 0\) and that we
-require the bounded-energy condition
+<!-- BILINGUAL-UNIT: psi-branch.semigroup-proposition -->
+### 3.3 Proposition and proof sketch
 
-$$
-\sup_{\psi > 0} \|\Phi(\,\cdot\,,\psi)\|_H < \infty,
-\qquad\text{(or the \(H^2\)-Hardy condition in the lower half-plane)}.
-$$
-
-Then the growing term must satisfy \(e^{+\psi A} u_- \in H\) for all
-\(\psi > 0\), which forces
+Assume that the continuation exists for all \(s>0\) and satisfies a uniform
+boundedness condition such as
 
 $$
-u_- \in \ker A.
+\sup_{s>0}\|\Phi(0,s)\|_H<\infty.
 $$
 
-Equivalently, outside the kernel of \(A\), **only the positive-frequency branch
-survives**:
+Let \(E_A\) be the spectral measure of \(A\). For every \(\varepsilon>0\),
 
 $$
-\Phi(t,\psi) \xrightarrow{\ker A = 0}
-e^{-itA}e^{-\psi A} u_+.
+\left\|e^{sA}E_A([\varepsilon,\infty))u_-\right\|_H^2
+=
+\int_{[\varepsilon,\infty)} e^{2s\lambda}\,d\mu_-(\lambda),
 $$
 
-The residual equation satisfied by this branch is
+where
 
 $$
-(i\partial_t - A)\Phi = 0.
+\mu_-(B)=\|E_A(B)u_-\|_H^2.
 $$
 
-**Zero-mode exception.** Elements of \(\ker A\) (if any) are constant in \(t\)
-and bounded for all \(\psi\); they belong to neither branch and must be treated
-as a separate, independent sector.
-
-**Opposite half-plane.** The upper half-plane \(\psi < 0\) selects the
-negative-frequency factor \(e^{itA}\) by the same argument.
-
-*Proof sketch.* The argument is the standard one-variable Hardy-space
-decomposition for operator-valued analytic functions; see Rudin (1987) or
-Reed–Simon vol. II for the scalar case. The operator-valued extension holds
-under the self-adjointness and non-negativity assumptions stated.
-A Lean formalisation does not yet exist: **LEAN-PENDING** (full
-infinite-dimensional operator domain verification required).
-
-<a id="psi-bs-sec3"></a>
-## 3. Signs and UBT complex time
-
-<a id="psi-bs-ubt-tau"></a>
-### 3.1 Canonical UBT time variable
-
-The canonical UBT complex time is
+Hence
 
 $$
-\tau_{\mathrm{UBT}} = t + i\psi.
+\left\|e^{sA}E_A([\varepsilon,\infty))u_-\right\|_H^2
+\ge
+e^{2s\varepsilon}\|E_A([\varepsilon,\infty))u_-\|_H^2.
 $$
 
-This definition is fixed and **must not be changed** by this track.
-
-<a id="psi-bs-damped-branch"></a>
-### 3.2 Damped positive-frequency branch and \(\bar\tau_{\mathrm{UBT}}\)
-
-The damped positive-frequency branch selected in Section 2.4 can be written in
-terms of the complex conjugate
+Uniform boundedness for all \(s>0\) forces
 
 $$
-\bar\tau_{\mathrm{UBT}} = t - i\psi
+E_A([\varepsilon,\infty))u_-=0
+\qquad
+\text{for every }\varepsilon>0.
 $$
 
-as
+Therefore
 
 $$
-e^{-iA\bar\tau_{\mathrm{UBT}}} = e^{-itA} e^{-\psi A}.
+u_-\in\ker A.
 $$
 
-This is an algebraic identity. The choice of orientation
-(lower vs. upper half-plane) is **not physically derived** here; it reflects
-a convention for the sign of the imaginary time displacement.
+On \((\ker A)^\perp\) this implies
 
-<a id="psi-bs-distinct-params"></a>
-### 3.3 Distinct parameters — do not conflate
+$$
+u_-=0,
+$$
 
-The following parameters appear in UBT and related literature and are
-**distinct until an explicit scaling map is derived**:
+so the surviving branch satisfies
+
+$$
+(i\partial_t-A)\Phi=0.
+$$
+
+This is the bounded branch-selection lemma used in this track.
+
+<!-- BILINGUAL-UNIT: psi-branch.semigroup-warning -->
+### 3.4 Zero mode and the boundedness warning
+
+For \(A=0\), the second-order equation has the general zero-mode solution
+
+$$
+\Phi_0(t)=u_0+t\,v_0.
+$$
+
+It is **not** automatically constant. It becomes constant only after an
+additional condition, for example boundedness in real \(t\), which forces
+\(v_0=0\).
+
+Accordingly the document distinguishes:
+
+1. frequency-branch selection on \((\ker A)^\perp\);
+2. the separate dynamics of \(\ker A\);
+3. any additional condition used to remove the linear zero mode.
+
+Also note the following limitation:
+
+$$
+\boxed{\text{For each fixed finite }s,\ e^{sA}u\in H\ \text{does not imply }u\in\ker A.}
+$$
+
+The decisive input is uniform boundedness as \(s\to\infty\), not mere existence
+for each finite \(s\).
+
+If a future formulation uses Hardy spaces, it must state the exact function
+space and the exact supporting theorem. No unverified equivalence with a
+standard Hardy-\(H^2\) theorem is claimed here.
+
+<!-- BILINGUAL-UNIT: psi-branch.sec4 -->
+## 4. UBT time bookkeeping and the compactness obstruction
+
+<!-- BILINGUAL-UNIT: psi-branch.time-symbols -->
+### 4.1 Distinct symbols that must not be conflated
 
 | Symbol | Role |
 |---|---|
-| \(\tau_{\mathrm{UBT}} = t+i\psi\) | Canonical UBT complex time / fibre coordinate |
-| \(\tau_\theta\) | Dimensionless Jacobi modular or heat parameter |
-| \(z\) | Elliptic argument of a theta function |
-| \(s > 0\) | Independent heat / proper-time parameter (Schwinger–DeWitt) |
+| \(\tau_{\mathrm{UBT}}=t+i\psi\) | Canonical UBT complex time |
+| \(\bar\tau_{\mathrm{UBT}}=t-i\psi\) | Complex-conjugate bookkeeping variable |
+| \(z=t-is\) | Auxiliary lower-half-plane continuation variable |
+| \(\tau_\theta\) | Theta modulus |
+| \(z_\theta\) | Theta argument |
+| \(s>0\) | Heat / proper-time / continuation-depth parameter |
 
-None of these may be identified with another without a derived scaling map.
-
-<a id="psi-bs-sec4"></a>
-## 4. Obstruction from compact ψ
-
-<a id="psi-bs-compact-obstruction"></a>
-### 4.1 The core obstruction
-
-Canonical UBT assumes \(\psi\) to be periodic or to parametrise a compact
-circle \(S^1_\psi\) of radius \(R_\psi\). The damping factor
+The canonical definition
 
 $$
-e^{-\psi A}
+\tau_{\mathrm{UBT}}=t+i\psi
 $$
 
-is **not periodic in \(\psi\)** for a general non-negative operator \(A\).
-Consequently, the limit \(\psi \to +\infty\) used to kill the growing branch is
-**not globally defined on \(S^1_\psi\)**.
+is not redefined by this note.
 
-**Conclusion.** The half-plane / Hardy selection argument of Section 2.4
-cannot be directly identified with a global dynamical selection on
-\(S^1_\psi\). Any such identification requires additional structure and a proof.
+<!-- BILINGUAL-UNIT: psi-branch.s-equals-psi -->
+### 4.2 Open identification \(s\stackrel{?}{=}\psi\)
 
-<a id="psi-bs-open-options"></a>
-### 4.2 Open options (not conclusions)
-
-The following are **open research options**, stated without claiming any is
-canonical:
-
-1. **Universal cover / local analytic collar.** Work on the universal cover
-   \(\widetilde{S^1_\psi} \cong \mathbb R\) or a local collar
-   \(\psi \in [0,\psi_\mathrm{max})\), where the half-plane argument applies,
-   then impose periodicity as a separate quantisation condition.
-
-2. **Separate non-compact heat parameter.** Introduce an independent
-   Schwinger–DeWitt parameter \(s > 0\) for the damping, while \(\psi\) remains
-   an angular coordinate. The branch selection would then act on \(s\)-families,
-   not on \(\psi\) itself.
-
-3. **Spectral selection via \(N_\psi\).** Define the winding-number operator
-
-   $$
-   N_\psi = -i R_\psi \partial_\psi,
-   $$
-
-   whose eigenvalues on \(S^1_\psi\) are \(n \in \mathbb Z\). A positivity
-   condition on \(N_\psi\) could serve as a global substitute for the
-   half-plane boundedness.
-
-4. **Derived first-order coupling between \(N_\psi\) and the four-dimensional
-   Dirac operator.** If the canonical UBT equations forced
-   \(N_\psi \sim \mathscr D_4\) on-shell, positivity of the spectrum of
-   \(\mathscr D_4\) could impose positivity of \(N_\psi\). This requires a
-   full dynamic derivation.
-
-None of these options has been canonically selected.
-
-<a id="psi-bs-sec5"></a>
-## 5. Candidate UBT Dirac structure
-
-> **Status: RESEARCH ANSATZ — NOT A DERIVED EQUATION**
-
-<a id="psi-bs-dirac5"></a>
-### 5.1 Candidate five-dimensional operator
-
-As a working hypothesis, introduce the formal operator
+Only in the UBT interpretation section may one pose the hypothesis
 
 $$
-\mathscr D_5 \Theta
+s\stackrel{?}{=}\psi.
+$$
+
+That identification remains `OPEN / CONJECTURAL`. The reason is structural:
+canonical \(\psi\) is a periodic / compact fibre coordinate, whereas \(s>0\) is
+a non-compact half-plane or heat parameter.
+
+<!-- BILINGUAL-UNIT: psi-branch.compact-obstruction -->
+### 4.3 Why compact \(\psi\) is still an obstruction
+
+Canonical UBT uses the bookkeeping
+
+$$
+\tau_{\mathrm{UBT}}=t+i\psi,
+\qquad
+\bar\tau_{\mathrm{UBT}}=t-i\psi,
+$$
+
+and may treat \(\psi\) as periodic with radius \(R_\psi\). The damping factor
+
+$$
+e^{-sA}
+$$
+
+is not periodic in \(s\). Therefore the lower-half-plane boundedness argument
+does not automatically descend to a global statement on compact \(S^1_\psi\).
+
+This leaves the following two distinct open issues:
+
+1. the interpretive identification \(s\stackrel{?}{=}\psi\);
+2. compatibility of the non-compact selector with compact \(S^1_\psi\).
+
+<!-- BILINGUAL-UNIT: psi-branch.sec5 -->
+## 5. Candidate complex-time / fibre Dirac-type operator
+
+> **Status: RESEARCH ANSATZ — NOT A DERIVED CANONICAL EQUATION**
+
+<!-- BILINGUAL-UNIT: psi-branch.gamma-star-status -->
+### 5.1 Canonical algebraic status of \(\Gamma_*\)
+
+The algebraic fifth / complex-time Clifford channel is **already** present in
+current canonical material. In
+`../../canonical/geometry/biquaternion_dirac_lift.tex` one has
+
+$$
+\Gamma_*=\operatorname{diag}(I_2,-I_2),
+\qquad
+\{\Gamma_*,\Gamma_\mu\}=0,
+\qquad
+\Gamma_*^2=I_4.
+$$
+
+This is an established algebraic availability statement, not an open gap in
+the present repository:
+
+$$
+\boxed{\text{algebraic existence and anticommutation of }\Gamma_*:\ \text{ESTABLISHED / tier A\_attested / [L0]}}
+$$
+
+The source is the canonical file
+`../../canonical/geometry/biquaternion_dirac_lift.tex`. What remains open is
+the **dynamical use** of \(\Gamma_*D_\psi\) in a first-order UBT operator, its
+normalization, its left/right action, and its action-level origin.
+
+<!-- BILINGUAL-UNIT: psi-branch.dirac-flat -->
+### 5.2 Flat constant-coefficient model
+
+For the limited exact square computation, use the flat constant-coefficient
+model
+
+$$
+\mathscr D_5^{(0)}
 =
-\left(
-i\hbar \Gamma^\mu D_\mu
-+ i\hbar \Gamma_* D_\psi
-- \mathcal M[\Theta]
-\right)\Theta = 0,
+\mathscr D_4^{(0)}
++ i\hbar\Gamma_*\partial_\psi.
 $$
 
-where:
+This is **not** an automatic claim that canonical UBT is an ordinary
+five-dimensional spacetime theory. The variable \(\psi\) may be interpreted as
 
-- \(\Gamma^\mu\) are the canonical four-dimensional UBT Clifford channels;
-- \(\Gamma_*\) is the complex-time Clifford channel, **if and only if** such
-  a channel appears in the current canonical definition (see
-  `canonical/CANONICAL_DEFINITIONS.md`); otherwise this symbol is an ansatz
-  requiring a definition;
-- \(D_\mu = \partial_\mu + A_\mu(\cdot) - (\cdot) B_\mu\) is the canonical
-  two-sided covariant derivative;
-- \(\mathcal M[\Theta]\) is a mass-type functional whose form is **not derived**
-  here.
+1. the imaginary component of complex-time fibre bookkeeping;
+2. an internal compact coordinate;
+3. a genuine extra real dimension only in an extended interpretation.
 
-<a id="psi-bs-psi-mode"></a>
-### 5.2 Action on a ψ-mode
+Using an independent \(\partial_\psi\) or \(D_\psi\) may change the counting of
+independent coordinates and must be compared explicitly with the canonical
+bookkeeping \(\tau_{\mathrm{UBT}}=t+i\psi\).
 
-On a mode of the form
+<!-- BILINGUAL-UNIT: psi-branch.dirac-general -->
+### 5.3 General research ansatz with a defined \(D_\psi\)
 
-$$
-\Theta_n(q,t)\, e^{in\psi/R_\psi},
-$$
-
-differentiation gives the purely algebraic identity
+If one writes a curved or gauge-coupled research ansatz, \(D_\psi\) must be
+defined explicitly:
 
 $$
--i\partial_\psi \Theta_n = \frac{n}{R_\psi}\,\Theta_n.
+D_\psi\Theta
+=
+\partial_\psi\Theta
++ A_\psi\Theta
+- \Theta B_\psi.
 $$
 
-The sign of \(n\) distinguishes two orientations of the \(\psi\)-winding.
-**It does not by itself establish** any of the following:
-
-- identification with a physical frequency branch;
-- chirality or handedness;
-- particle vs. antiparticle sector;
-- mass eigenvalue;
-- independent universe sector.
-
-Any such identification requires an independent derivation from the canonical UBT dynamics.
-
-<a id="psi-bs-dirac5-square"></a>
-### 5.3 Schematic square of the candidate operator
-
-Under the anticommutation assumptions
-\(\{\Gamma^\mu,\Gamma^\nu\} = 2\eta^{\mu\nu}\),
-\(\{\Gamma^\mu,\Gamma_*\} = 0\),
-\(\Gamma_*^2 = +1\) (or \(-1\); the sign must be fixed by definition),
-and neglecting mass, gauge and curvature cross-terms for the schematic,
+The corresponding candidate equation is then
 
 $$
-\mathscr D_5^2
-\sim
-\mathscr D_4^2 - \partial_\psi^2
-+ \text{mass, gauge, and curvature terms}.
+i\hbar\Gamma^\mu D_\mu\Theta
++ i\hbar\Gamma_*D_\psi\Theta
+- \mathcal M[\Theta]\Theta
+=
+0.
 $$
 
-On a mode \(e^{in\psi/R_\psi}\), the \(\psi\)-Laplacian contributes an
-eigenvalue
+Here \(A_\psi\), \(B_\psi\), their transformation laws, their relation to the
+four-dimensional \(A_\mu,B_\mu\), and their origin from the canonical action are
+all `OPEN / ANSATZ`.
+
+<!-- BILINGUAL-UNIT: psi-branch.psi-mode -->
+### 5.4 Correct action on a \(\psi\)-Fourier mode
+
+For a Fourier mode
 
 $$
--\partial_\psi^2 \longrightarrow \frac{n^2}{R_\psi^2},
+\Theta_n(q,t)e^{in\psi/R_\psi},
 $$
 
-and the heat trace over \(\psi\)-modes accordingly contains Jacobi weights
+the coefficient \(\Theta_n(q,t)\) is \(\psi\)-independent in that
+decomposition, and therefore
 
 $$
-e^{-s n^2/R_\psi^2}.
+-i\partial_\psi
+\left[
+\Theta_n(q,t)e^{in\psi/R_\psi}
+\right]
+=
+\frac{n}{R_\psi}
+\Theta_n(q,t)e^{in\psi/R_\psi}.
 $$
 
-This is an **exact algebraic / spectral bridge** under the anticommutation
-assumptions stated. It does **not** by itself derive the full UBT dynamics.
+Likewise,
 
-<a id="psi-bs-sec6"></a>
+$$
+-\partial_\psi^2
+\left[
+\Theta_n(q,t)e^{in\psi/R_\psi}
+\right]
+=
+\frac{n^2}{R_\psi^2}
+\Theta_n(q,t)e^{in\psi/R_\psi}.
+$$
+
+The Gaussian weight is sign-degenerate:
+
+$$
+e^{-sn^2/R_\psi^2}
+=
+e^{-s(-n)^2/R_\psi^2}.
+$$
+
+Therefore the theta / heat Gaussian alone does **not** select the sign of the
+branch.
+
+<!-- BILINGUAL-UNIT: psi-branch.dirac-square -->
+### 5.5 Exact flat square and non-flat caveat
+
+Under the flat-model assumptions
+
+$$
+\{\mathscr D_4^{(0)},\Gamma_*\}=0,
+\qquad
+\Gamma_*^2=\varepsilon_\psi I,
+$$
+
+one obtains the exact identity
+
+$$
+\left(\mathscr D_5^{(0)}\right)^2
+=
+\left(\mathscr D_4^{(0)}\right)^2
+-\hbar^2\varepsilon_\psi\partial_\psi^2.
+$$
+
+This is the only sense in which an exact algebraic / spectral bridge is claimed
+here.
+
+For a general curved, gauge, or \(\Theta\)-dependent situation, the square
+contains additional cross-terms that must remain explicit:
+
+1. connection commutators;
+2. derivatives of \(\Gamma_*\);
+3. derivatives of the mass functional;
+4. left/right curvature terms;
+5. chain-rule terms from composite geometry.
+
+Any heat-kernel statement belongs to the corresponding non-negative Euclidean
+square, not automatically to a Lorentzian operator.
+
+<!-- BILINGUAL-UNIT: psi-branch.sec6 -->
 ## 6. Dirac and Schrödinger limits
 
-<a id="psi-bs-hierarchy"></a>
+<!-- BILINGUAL-UNIT: psi-branch.hierarchy -->
 ### 6.1 Correct hierarchy
 
-The physically correct operator hierarchy is:
+The operator hierarchy is
 
 $$
 \text{first-order Dirac}
@@ -370,212 +512,166 @@ and separately
 $$
 \text{Dirac}^2
 \longrightarrow
-\text{Laplace / Klein–Gordon type}
+\text{Laplace / Klein--Gordon type}
 \longrightarrow
 \text{heat kernel}
 \longrightarrow
 \text{theta function}.
 $$
 
-<a id="psi-bs-not-implied"></a>
-### 6.2 What analytic frequency selection does NOT imply
+<!-- BILINGUAL-UNIT: psi-branch.not-implied -->
+### 6.2 What branch selection does not derive
 
-Analytic selection of the positive-frequency sector of the second-order
-equation (Section 2) **does not by itself create** any of the following:
+The bounded-semigroup branch selection lemma does **not** by itself derive any
+of the following:
 
-- A local Clifford-algebra Dirac operator.
-- A spinor subspace or representation.
-- A mass term or mass matrix.
-- Grassmann / fermionic statistics.
-- An anti-particle interpretation.
+1. a local Clifford Dirac operator;
+2. a spinor representation;
+3. a mass term;
+4. fermionic statistics;
+5. a particle / anti-particle interpretation.
 
-Each of these structures must be **independently derived** from the canonical
-UBT field equations and algebra.
+Each item requires an independent derivation from canonical UBT.
 
-<a id="psi-bs-sec7"></a>
+<!-- BILINGUAL-UNIT: psi-branch.sec7 -->
 ## 7. Multiverse interpretation
 
 > **Status: SPECULATIVE**
 
-<a id="psi-bs-mode-decomp"></a>
+<!-- BILINGUAL-UNIT: psi-branch.mode-decomposition -->
 ### 7.1 Mode decomposition
 
 One may formally write
 
 $$
-\Theta(q, t, \psi)
-= \sum_\alpha \Theta_\alpha(q,t)\, \chi_\alpha(\psi),
+\Theta(q,t,\psi)
+=
+\sum_\alpha \Theta_\alpha(q,t)\chi_\alpha(\psi),
 $$
 
-where \(\{\chi_\alpha\}\) is a basis adapted to \(S^1_\psi\) (e.g., Fourier
-modes \(e^{in\psi/R_\psi}\)).
+with a basis \(\{\chi_\alpha\}\) adapted to \(S^1_\psi\), for example Fourier
+modes.
 
-<a id="psi-bs-mw-caveats"></a>
-### 7.2 Caveats — why this does not establish many worlds
+<!-- BILINGUAL-UNIT: psi-branch.multiverse-caveats -->
+### 7.2 Why this does not establish many worlds
 
-- A **point value** \(\psi = \psi_0\) is in general a superposition of all
-  Fourier modes \(n\); it does not select a single mode.
-- A physical branch requires definition via a projector, a superselection
-  sector, spatial localisation, or a decoherence mechanism.
-- Born-rule weights and wavefunction collapse do **not** follow from this
-  ansatz.
-- The identification of a \(\psi\)-sector with an independent universe requires
-  a full decoherence derivation, not merely a mode expansion.
+1. A point value \(\psi=\psi_0\) is generally a superposition of many Fourier
+   modes; it is not a projector onto one mode.
+2. No Born rule, decoherence theorem, or universe interpretation is derived
+   here.
+3. Mode labels are not automatically universes.
 
-<a id="psi-bs-speculative-ext"></a>
-### 7.3 Reference to speculative extensions
+The multiverse reading therefore remains strictly `SPECULATIVE`.
 
-Purely interpretational claims regarding cosmological or many-worlds scenarios
-are recorded separately in the `speculative_extensions/` subtree, consistent
-with repository policy.
-
-<a id="psi-bs-sec8"></a>
+<!-- BILINGUAL-UNIT: psi-branch.sec8 -->
 ## 8. Conditional note on the Riemann Hypothesis
 
-> **Status: CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE
-> TOWARD RH**
+> **Status: CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH**
 
-<a id="psi-bs-rh-structural"></a>
-### 8.1 Structural connection only
+<!-- BILINGUAL-UNIT: psi-branch.rh-structural -->
+### 8.1 Structural observation only
 
-Under the logarithmic substitution \(u = e^{2\psi}\) the Jacobi theta function
-satisfies
+Under the logarithmic substitution \(u=e^{2\psi}\), the classical Mellin link
+between the Jacobi theta function and \(\xi(s)\) concerns the functional
+equation structure only. It does **not** produce the Riemann Hypothesis.
 
-$$
-\vartheta \xrightarrow{\mathrm{Mellin}} \xi(s),
-\qquad
-u \mapsto 1/u \;\leftrightarrow\; \psi \mapsto -\psi.
-$$
+<!-- BILINGUAL-UNIT: psi-branch.rh-missing -->
+### 8.2 What is still missing
 
-This Mellin relation is classical and gives the **functional equation** for
-\(\xi(s)\), not the Riemann Hypothesis.
+The following ingredients remain missing:
 
-<a id="psi-bs-rh-gaps"></a>
-### 8.2 What is missing for any RH connection
+1. a self-adjoint operator with spectrum tied to zeta-zero ordinates;
+2. a determinant or trace formula containing prime lengths \(k\log p\);
+3. a derivation relating such an operator to \(N_\psi=-iR_\psi\partial_\psi\).
 
-1. An **operator** \(A_\psi\), self-adjoint on a suitable Hilbert space, with
-   the property that
+The simple winding operator \(N_\psi\) has integer spectrum. That does not by
+itself match the ordinates of zeta zeros.
 
-   $$
-   \det(E - A_\psi) \propto \xi(1/2 + iE),
-   $$
+<!-- BILINGUAL-UNIT: psi-branch.sec9 -->
+## 9. Interpretive and architectural guardrails
 
-   together with an independent proof of this identification.
+<!-- BILINGUAL-UNIT: psi-branch.guardrails -->
+1. The bounded branch-selection lemma is a mathematical proposition, not a
+   canonical UBT selector theorem.
+2. The identification \(s\stackrel{?}{=}\psi\) is open and conjectural.
+3. Compact-\(\psi\) compatibility is open.
+4. The Dirac-type operator with \(D_\psi\) is a research ansatz, not a derived
+   canonical equation.
+5. The algebraic existence of \(\Gamma_*\) is already available; only its
+   physical/dynamical use is open.
 
-2. Appearance of **prime-number lengths** \(k \log p\) (for primes \(p\) and
-   positive integers \(k\)) in the spectrum, e.g., through a genuinely derived
-   trace formula.
-
-3. A proof that the winding-number operator \(N_\psi = -iR_\psi\partial_\psi\)
-   (which has **integer** eigenvalues \(n\)) is related to the operator
-   \(A_\psi\) above. The integer spectrum of \(N_\psi\) does not by itself
-   match the ordinates of zeta zeros.
-
-4. Confirmation that any zeta-zero suppression is not a circular rewriting of
-   the RH hypothesis.
-
-None of these elements has been established in UBT. The structural observation
-is recorded as a conditional direction for future research only.
-
-<a id="psi-bs-sec9"></a>
-## 9. Audit of existing claim inconsistencies
-
-> **Scope.** This section records observable inconsistencies in the current
-> repository without modifying any canonical file. A corrective canonical patch
-> is a **separate future task**.
-
-<a id="psi-bs-audit-list"></a>
-
-1. **Second-order master equation vs. first-order candidates.** The canonical
-   master equation is second-order:
-   \(D^\dagger D\Theta = \kappa\mathcal T\).
-   Several research-track documents introduce first-order equations in \(t\)
-   without showing how they are derived from the canonical form.
-
-2. **Schrödinger-emergence document.** The document on Schrödinger emergence
-   uses \(\partial_\tau\Theta = \Box\Theta\), which differs from both the
-   canonical master equation and the candidate first-order Dirac form.
-   Its status and derivation path must be clarified.
-
-3. **Labelling confusion: first-order vs. Klein–Gordon.** A first-order
-   equation in \(t\) must not be labelled a Klein–Gordon wave equation;
-   Klein–Gordon is second-order in time by definition.
-
-4. **Palatini QED Dirac variation.** Varying a postulated QED Dirac Lagrangian
-   yields the standard Dirac equation of motion by construction. This does not
-   derive the QED Lagrangian from UBT; the derivation runs in the wrong
-   direction.
-
-5. **Quadratic commuting-Θ action.** The current candidate quadratic action in
-   a commuting \(\Theta\) field cannot be converted into a first-order fermionic
-   Dirac action by a mere field redefinition, because a first-order fermionic
-   action requires Grassmann-valued fields (or a Clifford-valued kinetic
-   term). This is a structural obstruction, not a calculational gap.
-
-<a id="psi-bs-sec10"></a>
+<!-- BILINGUAL-UNIT: psi-branch.sec10 -->
 ## 10. Verification
 
-<a id="psi-bs-verif-script"></a>
+<!-- BILINGUAL-UNIT: psi-branch.verification-script -->
 ### 10.1 Verification script
 
-The script `tools/verify_psi_branch_selection.py` performs finite-dimensional
-algebraic and numerical checks. Run it with:
+Run
 
 ```bash
 python tools/verify_psi_branch_selection.py
 ```
 
-Items checked:
+The script is a standalone verifier:
+
+```bash
+python tools/verify_psi_branch_selection.py
+```
+
+It is a regression / CAS check, not a proof of the infinite-dimensional lemma.
+Its checks are:
 
 | Check | Description |
 |---|---|
-| V1 | Factorisation of the second-order scalar operator \((\partial_t^2 + A^2)\) |
-| V2 | Both time branches \(e^{\pm itA}\) are solutions |
-| V3 | Analytic continuation \(t \mapsto t - i\psi\) |
-| V4 | Decay / growth signs for the two branches under \(\psi > 0\) |
-| V5 | Finite-dimensional diagonal example with positive self-adjoint \(A\) |
-| V6 | Zero-mode degeneracy (\(\ker A\) sector) |
-| V7 | Fourier eigenvalues \(n\) and \(n^2\) on \(S^1\) |
-| V8 | Gaussian \(e^{-sn^2}\) does not distinguish \(n\) from \(-n\) |
+| V1 | Exact factorization \((i\partial_t-A)(-i\partial_t-A)=\partial_t^2+A^2\) on a generic scalar test function |
+| V2 | Exact verification of both exponential branches and of the correct annihilating first-order factor |
+| V3 | Exact verification of \(e^{-iA(t-is)}=e^{-itA}e^{-sA}\) and its growing companion |
+| V4 | Decay / growth sign check for the two branches under \(s>0\), \(A>0\) |
+| V5 | Finite-dimensional diagonal spectral boundedness example for \(A=A^*\ge0\) |
+| V6 | General zero mode \(\Phi_0(t)=u_0+t\,v_0\) and the boundedness caveat |
+| V7 | Correct differentiation of the whole Fourier mode \(\Theta_n(q,t)e^{in\psi/R_\psi}\) |
+| V8 | Eigenvalues \(n/R_\psi\) and \(n^2/R_\psi^2\) |
+| V9 | Gaussian degeneracy \(n\leftrightarrow -n\) |
+| V10 | Cross-term cancellation in the flat \(\Gamma_*\) model square |
 
-<a id="psi-bs-lean"></a>
-### 10.2 Lean formalisation status
+`../../tools/verify_holomorphy_factor_no_go.py` remains the exact regression
+check for the holomorphy-only no-go.
 
-**LEAN-PENDING.** A Lean 4 proof of the infinite-dimensional
-Hardy-\(H^2\) branch selection proposition (Section 2.4) does not yet exist.
-The required formalization must cover:
-- self-adjoint operator domain theory in Lean/Mathlib;
-- the spectral theorem for unbounded operators;
-- Hardy-space \(H^2(\mathbb C^-)\) theory for operator-valued functions.
+<!-- BILINGUAL-UNIT: psi-branch.lean-status -->
+### 10.2 Lean status
 
-<a id="psi-bs-sec11"></a>
+**LEAN-PENDING.** No compiled Lean proof is added here. The remaining formal
+work includes operator-domain details, continuation existence, and the full
+infinite-dimensional spectral-measure argument.
+
+<!-- BILINGUAL-UNIT: psi-branch.sec11 -->
 ## 11. Open gaps
 
-<a id="psi-bs-gap-list"></a>
-
+<!-- BILINGUAL-UNIT: psi-branch.gap-table -->
 | Gap | Description | Status |
 |---|---|---|
-| G1 | Hardy-\(H^2\) proposition: full domain verification | PROPOSITION / PROOF SKETCH |
-| G2 | Compatibility of half-plane selection with compact \(S^1_\psi\) | OPEN |
-| G3 | Derivation of \(\Gamma_*\) Clifford channel from canonical UBT | OPEN |
-| G4 | Action-level derivation of the candidate Dirac operator \(\mathscr D_5\) | OPEN |
-| G5 | Physical torsion suppression and coupling to mass | OPEN |
-| G6 | Derived trace formula with prime lengths | OPEN |
-| G7 | Lean proof of infinite-dimensional branch selection | LEAN-PENDING |
+| G1 | Bounded branch-selection lemma: full domain and continuation verification | PROPOSITION / PROOF SKETCH |
+| G2 | Identification \(s\stackrel{?}{=}\psi\) | OPEN / CONJECTURAL |
+| G3-DYN | Dynamic use of \(\Gamma_*D_\psi\), its normalization, left/right action and action origin | OPEN |
+| G4 | Compatibility of the non-compact selector with compact \(S^1_\psi\) | OPEN |
+| G5 | Origin, normalization, representation, and transformation law of \(D_\psi\), \(A_\psi\), \(B_\psi\) beyond the flat ansatz | OPEN / ANSATZ |
+| G6 | Action-level derivation of the full first-order operator and its spectral / energy selector | OPEN |
+| G7 | Lean proof of the infinite-dimensional statement | LEAN-PENDING |
 
-<a id="psi-bs-sec12"></a>
+<!-- BILINGUAL-UNIT: psi-branch.sec12 -->
 ## 12. Summary of statuses
 
+<!-- BILINGUAL-UNIT: psi-branch.status-table -->
 | Section | Status |
 |---|---|
-| S2: Mathematical selection lemma | PROPOSITION / PROOF SKETCH |
-| S3: Sign and UBT-τ algebra | ALGEBRAIC IDENTITY (no physical content derived) |
-| S4: Compact-ψ obstruction | OPEN PROBLEM identified |
-| S5: Candidate Dirac structure | RESEARCH ANSATZ |
-| S6: Hierarchy of limits | STANDARD PHYSICS FACT (documented) |
+| S2: Holomorphy-alone selector | CLOSED AS NO-GO [L0] |
+| S3: Bounded branch-selection lemma | PROPOSITION / PROOF SKETCH |
+| S4: \(s\) vs. canonical \(\psi\) and compactness | OPEN / CONJECTURAL plus OPEN |
+| S5: Candidate complex-time / fibre Dirac-type operator | RESEARCH ANSATZ |
+| S6: Hierarchy of limits | STANDARD PHYSICS FACT |
 | S7: Multiverse interpretation | SPECULATIVE |
-| S8: RH structural note | CONDITIONAL RESEARCH DIRECTION |
-| S9: Existing inconsistencies | AUDIT RECORD (no canonical file changed) |
+| S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |
+| S10: Formal verification status | LEAN-PENDING |
 
-No canonical axiom, definition, master equation, or gap status has been
+No canonical axiom, definition, master equation, claim, or gap status is
 modified by this track.
