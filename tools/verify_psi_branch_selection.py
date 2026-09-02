@@ -38,10 +38,10 @@ def check(name: str, condition: bool, detail: str) -> None:
 try:
     import sympy as sp
 except ImportError:
-    print("NOT RUN: SymPy is not installed, so exact CAS checks are unavailable.")
+    print("NOT RUN: SymPy is not installed; no CAS check was performed.")
     print("LEAN-PENDING: the infinite-dimensional bounded-semigroup proposition is")
     print("  not formally proved in this environment.")
-    raise SystemExit(0)
+    raise SystemExit(2)
 
 
 def matrix_is_zero(mat: sp.MatrixBase) -> bool:
@@ -197,26 +197,39 @@ check(
     "e^{-sn^2/R_ψ^2}=e^{-s(-n)^2/R_ψ^2}",
 )
 
-print("V10: Flat Γ_* square")
-a, hbar, p = sp.symbols("a hbar p", real=True)
-D4 = sp.Matrix([[0, a], [a, 0]])
-Gamma_star = sp.diag(1, -1)
+print("V10: Flat Γ_* square (general symbolic 4×4 block model)")
+hbar, p = sp.symbols("hbar p", real=True)
+# General symbolic 2x2 off-diagonal blocks with independent entries
+x11, x12, x21, x22 = sp.symbols("x11 x12 x21 x22")
+y11, y12, y21, y22 = sp.symbols("y11 y12 y21 y22")
+X = sp.Matrix([[x11, x12], [x21, x22]])
+Y = sp.Matrix([[y11, y12], [y21, y22]])
+Z2 = sp.zeros(2)
+I2 = sp.eye(2)
+D4 = sp.Matrix(sp.BlockMatrix([[Z2, X], [Y, Z2]]))
+Gamma_star = sp.Matrix(sp.BlockMatrix([[I2, Z2], [Z2, -I2]]))
 check(
     "V10a_anticommutator",
-    matrix_is_zero(D4 * Gamma_star + Gamma_star * D4),
-    "{D_4^(0),Γ_*}=0 in the explicit flat model",
+    matrix_is_zero(sp.expand(D4 * Gamma_star + Gamma_star * D4)),
+    "{D_4,Γ_*}=0 for general symbolic block off-diagonal D_4 and block-diagonal Γ_*",
 )
 for eps_name, gamma_psi, eps_value in (
     ("plus", Gamma_star, 1),
     ("minus", sp.I * Gamma_star, -1),
 ):
     D5 = D4 + sp.I * hbar * gamma_psi * p
-    target = D4**2 - hbar**2 * eps_value * p**2 * sp.eye(2)
+    target = D4**2 - hbar**2 * eps_value * p**2 * sp.eye(4)
     check(
         f"V10b_square_{eps_name}",
-        matrix_is_zero(sp.simplify(D5**2 - target)),
-        f"(D_5^(0))^2=(D_4^(0))^2-hbar^2·{eps_value}·p^2·I",
+        matrix_is_zero(sp.expand(D5**2 - target)),
+        f"(D_4+i·hbar·Γ_ψ·p)²=D_4²-hbar²·{eps_value}·p²·I₄",
     )
+check(
+    "V10c_claim_scope",
+    True,
+    "V10 verifies only the exact block constant-coefficient identity; "
+    "not a proof of a curved or Θ-dependent operator",
+)
 
 print()
 print("=" * 60)
