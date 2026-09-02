@@ -108,11 +108,13 @@ def test_agent_instructions_guard_conditional_subclosures() -> None:
 
 
 def test_publish_map_contains_v10_3_subclosure_papers() -> None:
-    mapping = (ROOT / ".github/latex_publish_map.tsv").read_text(encoding="utf-8")
-    for name in (
-        "gap_10t_palatini_torsion_dynamics.pdf",
-        "gap_10l_psi_symmetry_propagation.pdf",
-        "gap_10i_augmented_holonomy.pdf",
-        "gap_10d_low_energy_uniqueness.pdf",
+    # Policy change: milestone PDFs are uploaded as CI artifacts, not tracked.
+    # Verify the canonical .tex sources exist and are compiled by the LaTeX audit.
+    gr = ROOT / "canonical" / "gr_closure"
+    for stem in (
+        "gap_10t_palatini_torsion_dynamics",
+        "gap_10l_psi_symmetry_propagation",
+        "gap_10i_augmented_holonomy",
+        "gap_10d_low_energy_uniqueness",
     ):
-        assert name in mapping
+        assert (gr / f"{stem}.tex").is_file(), f"Missing milestone source: {stem}.tex"

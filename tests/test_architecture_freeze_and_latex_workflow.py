@@ -37,17 +37,33 @@ def test_latex_workflow_uses_non_fail_fast_batch_report() -> None:
     assert "--strict" in tool
 
 
-def test_pdf_publish_map_contains_tetrad_milestone_documents() -> None:
+def test_pdf_publish_map_contains_only_whitelisted_pdfs() -> None:
+    """New policy: only two curated PDFs are tracked in git.
+    All other milestone PDFs are produced as CI artifacts (not committed).
+    """
     mapping = (ROOT / ".github/latex_publish_map.tsv").read_text(encoding="utf-8")
-    for required in (
-        "canonical/UBT_canonical_main.pdf",
-        "papers/UBT_GR_Submission.pdf",
-        "gap_10omega_connection_elimination.pdf",
-        "gap_10i_integrability_selection.pdf",
-        "gap_10t_palatini_torsion_dynamics.pdf",
-        "gap_10l_psi_symmetry_propagation.pdf",
-        "gap_10i_augmented_holonomy.pdf",
-        "gap_10d_low_energy_uniqueness.pdf",
-        "covariant_tetrad_student_paper.pdf",
+    # Only the two whitelisted PDFs appear in the publish map.
+    assert "canonical/UBT_canonical_main.pdf" in mapping
+    assert "papers/UBT_GR_Submission.pdf" in mapping
+    # General git add of the whole pdfs directory is forbidden.
+    assert "git add docs/pdfs" not in mapping
+
+    # Milestone .tex sources still exist and are compiled by the LaTeX audit.
+    gr = ROOT / "canonical" / "gr_closure"
+    for stem in (
+        "gap_10omega_connection_elimination",
+        "gap_10i_integrability_selection",
+        "gap_10t_palatini_torsion_dynamics",
+        "gap_10l_psi_symmetry_propagation",
+        "gap_10i_augmented_holonomy",
+        "gap_10d_low_energy_uniqueness",
+        "covariant_tetrad_rank_theorem",
     ):
-        assert required in mapping
+        assert (gr / f"{stem}.tex").is_file(), f"Missing milestone source: {stem}.tex"
+
+    # The two whitelisted destination paths are present.
+    for tracked in (
+        "docs/pdfs/UBT_canonical_main.pdf",
+        "docs/pdfs/UBT_GR_Submission.pdf",
+    ):
+        assert tracked in mapping

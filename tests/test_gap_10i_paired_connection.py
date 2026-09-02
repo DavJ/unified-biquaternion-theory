@@ -32,8 +32,9 @@ def test_pairing_audit_has_honest_status():
 
 
 def test_pairing_audit_is_published_and_canonical_ledgers_are_updated():
-    mapping = (ROOT / ".github" / "latex_publish_map.tsv").read_text(encoding="utf-8")
-    assert "gap_10i_paired_connection_audit.pdf" in mapping
+    # Policy change: milestone PDFs are CI artifacts, not tracked in publish map.
+    # Verify the TEX source exists and canonical ledgers mention the gap identifiers.
+    assert (ROOT / "canonical" / "gr_closure" / "gap_10i_paired_connection_audit.tex").is_file()
     for rel in (
         "CLAIMS.yaml",
         "STATUS_OF_UBT.md",

@@ -15,7 +15,6 @@ def test_active_status_surfaces_use_correct_name() -> None:
         ROOT / "CLAIMS.yaml",
         ROOT / "DERIVATION_INDEX.md",
         ROOT / "WHAT_IS_PROVED.md",
-        ROOT / ".github/latex_publish_map.tsv",
         ROOT / "canonical/gr_closure/README.md",
         ROOT / "papers/UBT_GR_Submission.tex",
     )
