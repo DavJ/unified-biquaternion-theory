@@ -17,6 +17,9 @@ N0 = 137 * 139
 LAMBDA = 0.015
 OUT = Path(__file__).resolve().parents[2] / 'speculative_extensions' / 'prime_resonance_channels' / 'data'
 OUT.mkdir(parents=True, exist_ok=True)
+# Large full-table goes to build/ (not tracked in git)
+BUILD_OUT = Path(__file__).resolve().parents[2] / 'build' / 'prime_resonance'
+BUILD_OUT.mkdir(parents=True, exist_ok=True)
 
 
 def divisor_count(k: int) -> int:
@@ -103,7 +106,7 @@ def main() -> None:
             "scale_label": scale_label(T),
         })
 
-    full_csv = OUT / "prime_resonance_harmonic_table_full.csv"
+    full_csv = BUILD_OUT / "prime_resonance_harmonic_table_full.csv"
     with full_csv.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(full_rows[0].keys()))
         writer.writeheader()

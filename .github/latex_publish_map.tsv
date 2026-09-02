@@ -1,18 +1,5 @@
 # Successful build path (relative to build/latex-audit/pdfs) <TAB> tracked destination
+# Only these two PDFs are committed back to the repository by latex_build.yml.
+# All other PDFs are uploaded as workflow artifacts (latex-pdfs-* artifact).
 canonical/UBT_canonical_main.pdf	docs/pdfs/UBT_canonical_main.pdf
 papers/UBT_GR_Submission.pdf	docs/pdfs/UBT_GR_Submission.pdf
-canonical/gr_closure/covariant_tetrad_rank_theorem.pdf	docs/pdfs/covariant_tetrad_rank_theorem.pdf
-canonical/gr_closure/gap_10omega_connection_elimination.pdf	docs/pdfs/gap_10omega_connection_elimination.pdf
-canonical/gr_closure/gap_10i_integrability_selection.pdf	docs/pdfs/gap_10i_integrability_selection.pdf
-canonical/gr_closure/gap_10i_paired_connection_audit.pdf	docs/pdfs/gap_10i_paired_connection_audit.pdf
-docs/textbook/covariant_tetrad_student_paper.pdf	docs/pdfs/covariant_tetrad_student_paper.pdf
-canonical/gr_closure/gap_10t_palatini_torsion_dynamics.pdf	docs/pdfs/gap_10t_palatini_torsion_dynamics.pdf
-canonical/gr_closure/gap_10l_psi_symmetry_propagation.pdf	docs/pdfs/gap_10l_psi_symmetry_propagation.pdf
-canonical/gr_closure/gap_10i_augmented_holonomy.pdf	docs/pdfs/gap_10i_augmented_holonomy.pdf
-canonical/gr_closure/gap_10d_low_energy_uniqueness.pdf	docs/pdfs/gap_10d_low_energy_uniqueness.pdf
-
-canonical/gr_closure/gap_10i_torsionful_local_representer.pdf	docs/pdfs/gap_10i_torsionful_local_representer.pdf
-canonical/gr_closure/gap_10t_minimal_one_connection_gr_no_go.pdf	docs/pdfs/gap_10t_minimal_one_connection_gr_no_go.pdf
-canonical/gr_closure/gap_10t_split_jet_right_inverse.pdf	docs/pdfs/gap_10t_split_jet_right_inverse.pdf
-canonical/gr_closure/gap_10d_theta_hessian_principal_symbol.pdf	docs/pdfs/gap_10d_theta_hessian_principal_symbol.pdf
-canonical/gr_closure/gap_10d_induced_gravity_endgame.pdf	docs/pdfs/gap_10d_induced_gravity_endgame.pdf

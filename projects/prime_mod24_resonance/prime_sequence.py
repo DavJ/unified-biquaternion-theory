@@ -75,8 +75,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Generate prime mod-24 sequence dataset")
     ap.add_argument("--n", type=float, default=1e5,
                     help="Upper bound for prime sieve (default: 1e5)")
-    ap.add_argument("--out", default="DATA/prime_mod24/primes_mod24.parquet",
-                    help="Output Parquet path (default: DATA/prime_mod24/primes_mod24.parquet)")
+    ap.add_argument("--out", default="../../build/prime_mod24/primes_mod24.parquet",
+                    help="Output Parquet path (default: ../../build/prime_mod24/primes_mod24.parquet)")
     args = ap.parse_args()
 
     n = int(args.n)
