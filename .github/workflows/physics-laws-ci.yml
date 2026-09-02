@@ -140,6 +140,14 @@ jobs:
         run: |
           python tools/verify_gr_unconditional_closure.py
 
+      - name: Holomorphy-only factor-selection no-go
+        run: |
+          python tools/verify_holomorphy_factor_no_go.py
+
+      - name: Complex-time branch-selection identities
+        run: |
+          python tools/verify_psi_branch_selection.py
+
   # -----------------------------------------------------------------------
   # 5. Property-based tests (Hypothesis)
   # -----------------------------------------------------------------------

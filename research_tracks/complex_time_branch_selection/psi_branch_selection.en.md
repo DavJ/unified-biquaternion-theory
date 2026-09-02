@@ -84,7 +84,7 @@ $$
 Therefore both branches solve the same second-order equation, and
 
 $$
-\boxed{\text{Holomorphy alone does not select the first-order factor.}}
+\boxed{\text{HOLOMORPHY-ALONE-SELECTOR: CLOSED AS NO-GO [L0]}}
 $$
 
 <!-- BILINGUAL-UNIT: psi-branch.holomorphy-status -->
@@ -208,12 +208,44 @@ $$
 e^{2s\varepsilon}\|E_A([\varepsilon,\infty))u_-\|_H^2.
 $$
 
+Designate
+$$
+E_\varepsilon:=E_A([\varepsilon,\infty)),
+\qquad
+M:=\sup_{s>0}\|\Phi(0,s)\|_H.
+$$
+
+To exclude cancellation between the growing and damping branches, note:
+$$
+\begin{aligned}
+\|e^{sA}E_\varepsilon u_-\|_H
+&\le
+\|E_\varepsilon\Phi(0,s)\|_H
++
+\|e^{-sA}E_\varepsilon u_+\|_H \\
+&\le M+\|u_+\|_H.
+\end{aligned}
+$$
+Here we used that $E_\varepsilon$ commutes with the functional calculus and that $e^{-sA}$ is contractive for $A\ge0$.
+
+Combining with the lower bound
+$$
+\|e^{sA}E_\varepsilon u_-\|_H
+\ge
+e^{s\varepsilon}\|E_\varepsilon u_-\|_H
+$$
+we obtain
+$$
+e^{s\varepsilon}\|E_\varepsilon u_-\|_H \le M+\|u_+\|_H
+$$
+for all $s>0$. Since $e^{s\varepsilon}\to\infty$ as $s\to\infty$ (for fixed $\varepsilon>0$), this forces
+
 Uniform boundedness for all \(s>0\) forces
 
 $$
 E_A([\varepsilon,\infty))u_-=0
 \qquad
-\text{for every }\varepsilon>0.
+\forall\varepsilon>0.
 $$
 
 Therefore
@@ -258,7 +290,7 @@ Accordingly the document distinguishes:
 Also note the following limitation:
 
 $$
-\boxed{\text{For each fixed finite }s,\ e^{sA}u\in H\ \text{does not imply }u\in\ker A.}
+\boxed{e^{s_0 A}u\in H,\quad s_0>0\quad\not\!\!\Rightarrow\quad u\in\ker A}
 $$
 
 The decisive input is uniform boundedness as \(s\to\infty\), not mere existence
@@ -353,7 +385,7 @@ This is an established algebraic availability statement, not an open gap in
 the present repository:
 
 $$
-\boxed{\text{algebraic existence and anticommutation of }\Gamma_*:\ \text{ESTABLISHED / tier A\_attested / [L0]}}
+\boxed{\text{algebraic existence and anticommutation of }\Gamma_*:\ \text{ESTABLISHED [L0]; recorded in the A-attested status ledger, with the detailed canonical source at tier B\_machine\_verified}}
 $$
 
 The source is the canonical file
@@ -385,36 +417,57 @@ Using an independent \(\partial_\psi\) or \(D_\psi\) may change the counting of
 independent coordinates and must be compared explicitly with the canonical
 bookkeeping \(\tau_{\mathrm{UBT}}=t+i\psi\).
 
+<!-- BILINGUAL-UNIT: psi-branch.dirac-carrier -->
+### 5.3 Columnar carrier \(\Psi=\operatorname{vec}(\Theta)\)
+
+The $4\times4$ gamma matrices $\Gamma^\mu$, $\Gamma_*$ act on a four-component column vector.
+Since $\Theta\in\mathbb C\otimes\mathbb H\simeq M_2(\mathbb C)$, define
+
+$$
+\Psi:=\operatorname{vec}(\Theta)\in\mathbb C^4,
+$$
+
+where $\operatorname{vec}$ stacks the columns of the $2\times2$ matrix $\Theta$.
+**$\Psi$ is not a new fundamental field**; it is the columnar representation of the same $\Theta$.
+
+The two-sided biquaternion derivative is
+
+$$
+D_\psi^{(\Theta)}\Theta
+:=
+\partial_\psi\Theta+A_\psi\Theta-\Theta B_\psi.
+$$
+
+The induced derivative on the columnar carrier is
+
+$$
+\nabla_\psi\Psi
+:=
+\operatorname{vec}\!\left(D_\psi^{(\Theta)}\Theta\right).
+$$
+
+Note that vectorization of right multiplication by $B_\psi$ generally induces a matrix action involving the transpose of the right-representation; this must not be silently replaced by ordinary left multiplication.
+
+Analogously, $\nabla_\mu\Psi:=\operatorname{vec}(D_\mu^{(\Theta)}\Theta)$ is induced from the two-sided $D_\mu\Theta$.
+
+The flat operator $\mathscr D_4^{(0)}$ is likewise an operator on $\Psi\in\mathbb C^4$, not directly on the matrix $\Theta$.
+
 <!-- BILINGUAL-UNIT: psi-branch.dirac-general -->
-### 5.3 General research ansatz with a defined \(D_\psi\)
+### 5.4 General research ansatz with defined \(D_\psi\)
 
-If one writes a curved or gauge-coupled research ansatz, \(D_\psi\) must be
-defined explicitly:
-
-$$
-D_\psi\Theta
-=
-\partial_\psi\Theta
-+ A_\psi\Theta
-- \Theta B_\psi.
-$$
-
-The corresponding candidate equation is then
+If one writes a curved or gauge-coupled research ansatz, $D_\psi$ must be defined explicitly as above. The candidate equation, correctly typed, is then
 
 $$
-i\hbar\Gamma^\mu D_\mu\Theta
-+ i\hbar\Gamma_*D_\psi\Theta
-- \mathcal M[\Theta]\Theta
-=
-0.
+i\hbar\Gamma^\mu\nabla_\mu\Psi
++ i\hbar\Gamma_*\nabla_\psi\Psi
+- \mathcal M[\Theta,D\Theta]\Psi
+=0.
 $$
 
-Here \(A_\psi\), \(B_\psi\), their transformation laws, their relation to the
-four-dimensional \(A_\mu,B_\mu\), and their origin from the canonical action are
-all `OPEN / ANSATZ`.
+Here $A_\psi$, $B_\psi$, their transformation laws, their relation to the four-dimensional $A_\mu,B_\mu$, and their origin from the canonical action are all `OPEN / ANSATZ`.
 
 <!-- BILINGUAL-UNIT: psi-branch.psi-mode -->
-### 5.4 Correct action on a \(\psi\)-Fourier mode
+### 5.5 Correct action on a \(\psi\)-Fourier mode
 
 For a Fourier mode
 
@@ -459,7 +512,7 @@ Therefore the theta / heat Gaussian alone does **not** select the sign of the
 branch.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-square -->
-### 5.5 Exact flat square and non-flat caveat
+### 5.6 Exact flat square and non-flat caveat
 
 Under the flat-model assumptions
 
@@ -533,6 +586,10 @@ of the following:
 
 Each item requires an independent derivation from canonical UBT.
 
+Furthermore, according to `../canonical_relation_generalized_dirac/action_origin_obstruction.tex`, a non-degenerate quadratic action in first derivatives of $\Theta$ leads to a second-order Euler–Lagrange equation and therefore cannot be directly identical to the first-order generalised Dirac equation. This is a no-go only for the documented non-degenerate action class, not for all conceivable UBT actions. A possible resolution requires derived degeneracy, exact factorisation plus a selection theorem, or an equivalent constrained variational principle. The analytic-continuation lemma may, under its assumptions, select a branch of an already-factorised equation, but does not by itself derive the factorisation, the Dirac operator, or its action origin.
+
+The present $\psi$-track does not resolve the action-origin obstruction.
+
 <!-- BILINGUAL-UNIT: psi-branch.sec7 -->
 ## 7. Multiverse interpretation
 
@@ -587,8 +644,74 @@ The following ingredients remain missing:
 The simple winding operator \(N_\psi\) has integer spectrum. That does not by
 itself match the ordinates of zeta zeros.
 
+<!-- BILINGUAL-UNIT: psi-branch.gr-claim-boundary -->
+## 9. Relation to the current GR claim boundary
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-kinematics -->
+### 9.1 What is established kinematically
+
+The following are established within the exact stated assumptions:
+
+- central metric from the anticommutator identity: $\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf{1}$;
+- rank-10 map from tetrad to metric, with six local-Lorentz null directions: `GAP-10K: CLOSED locally`;
+- reconstruction of the metric-compatible frame connection from a specified tetrad and torsion: `GAP-10Omega-KIN: CLOSED [L1]`;
+- torsion-free branch as the Levi-Civita spin connection: `GAP-10Omega-GR: CLOSED [L1]`;
+- flat Minkowski representer: `GAP-10I-SR: CLOSED [L1]`;
+- local representability of curved tetrads on regular non-null patches via the composite/split-jet mechanism: `GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1]`.
+
+Local representability does **not** imply dynamical selection of the tetrad from $\Theta$.
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-conditional -->
+### 9.2 What is closed only conditionally
+
+`GR-RECOVERY: CLOSED CONDITIONALLY`
+
+The conditional local infrared effective branch composes:
+
+- split-jet right inverse;
+- non-propagating auxiliary sector;
+- assumed/derived conditional Einstein–Hilbert effective branch;
+- Levi-Civita physical connection;
+- higher-derivative suppression at the relevant infrared order.
+
+The conditional relation is
+
+$$
+\frac{1}{G_{\mathrm{ind}}}
+=
+\frac{N_B(1-6\xi)I_1}{12\pi}.
+$$
+
+Its conditions are: a specified gauge-fixed Laplace-type Hessian, the number of real bosonic modes $N_B$, coupling $\xi$, cutoff/scale identification, regulator, and constrained measure.
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-not-derived -->
+### 9.3 What is not derived
+
+Per `AXIOM D` of `canonical/AXIOMS.md`, the implication
+
+$$
+\mathrm{UBT}
+\Longrightarrow
+G_{\mu\nu}=\kappa T_{\mu\nu}
+$$
+
+(canonical UBT equations implying Einstein's field equations) is **not** unconditionally proved.
+
+Open status items:
+
+- `UBT-FUND-GR-ACTION: OPEN`
+- `UBT-UV-G-PREDICTION: OPEN`
+- `UBT-FUND-GLOBAL: OPEN`
+
+The current axioms do not determine the numerical Newton constant; `canonical/CANONICAL_DEFINITIONS.md` lists $G$ as an `Input`, not a `Prediction`. The pure split-jet constraint cannot select a tetrad because it is universally surjective: `GAP-10T-JET-CONSTRAINT-SELECTION: CLOSED AS NO-GO [L1]`. Action-level selection from the microscopic $\Theta$-action remains open. Global continuation across null surfaces, horizons, and topologically non-trivial regions is not proved. The earlier promotion of the spatial Schwarzschild identity to a complete on-shell solution from a single $\Theta$ remains `SUPERSEDED_INVALID_DERIVATION`. Schwarzschild as a solution of the conditionally recovered Einstein branch is not the same as a direct derivation of the Schwarzschild solution from the microscopic $\Theta$-equation.
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-psi-relation -->
+### 9.4 Relation of the present \(\psi\)-track to GR
+
+This research track does **not** change any GR status. Branch-frequency selection does not derive the Einstein–Hilbert action, does not predict $G$, does not resolve global continuation, and does not repair the retracted direct Schwarzschild ansatz. Any first-order UBT operator must first be derived from a consistent action; only then can its GR limit be examined.
+
 <!-- BILINGUAL-UNIT: psi-branch.sec9 -->
-## 9. Interpretive and architectural guardrails
+## 10. Interpretive and architectural guardrails
 
 <!-- BILINGUAL-UNIT: psi-branch.guardrails -->
 1. The bounded branch-selection lemma is a mathematical proposition, not a
@@ -601,10 +724,10 @@ itself match the ordinates of zeta zeros.
    physical/dynamical use is open.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec10 -->
-## 10. Verification
+## 11. Verification
 
 <!-- BILINGUAL-UNIT: psi-branch.verification-script -->
-### 10.1 Verification script
+### 11.1 Verification script
 
 Run
 
@@ -612,13 +735,7 @@ Run
 python tools/verify_psi_branch_selection.py
 ```
 
-The script is a standalone verifier:
-
-```bash
-python tools/verify_psi_branch_selection.py
-```
-
-It is a regression / CAS check, not a proof of the infinite-dimensional lemma.
+The script is a standalone verifier. It is a regression / CAS check, not a proof of the infinite-dimensional lemma.
 Its checks are:
 
 | Check | Description |
@@ -638,14 +755,14 @@ Its checks are:
 check for the holomorphy-only no-go.
 
 <!-- BILINGUAL-UNIT: psi-branch.lean-status -->
-### 10.2 Lean status
+### 11.2 Lean status
 
 **LEAN-PENDING.** No compiled Lean proof is added here. The remaining formal
 work includes operator-domain details, continuation existence, and the full
 infinite-dimensional spectral-measure argument.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec11 -->
-## 11. Open gaps
+## 12. Open gaps
 
 <!-- BILINGUAL-UNIT: psi-branch.gap-table -->
 | Gap | Description | Status |
@@ -659,7 +776,7 @@ infinite-dimensional spectral-measure argument.
 | G7 | Lean proof of the infinite-dimensional statement | LEAN-PENDING |
 
 <!-- BILINGUAL-UNIT: psi-branch.sec12 -->
-## 12. Summary of statuses
+## 13. Summary of statuses
 
 <!-- BILINGUAL-UNIT: psi-branch.status-table -->
 | Section | Status |
@@ -671,7 +788,8 @@ infinite-dimensional spectral-measure argument.
 | S6: Hierarchy of limits | STANDARD PHYSICS FACT |
 | S7: Multiverse interpretation | SPECULATIVE |
 | S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |
-| S10: Formal verification status | LEAN-PENDING |
+| S9: Relation to GR | KINEMATICS ESTABLISHED; GR-RECOVERY CLOSED CONDITIONALLY; FUNDAMENTAL / UV / GLOBAL DERIVATION OPEN |
+| S11: Formal verification status | LEAN-PENDING |
 
 No canonical axiom, definition, master equation, claim, or gap status is
 modified by this track.

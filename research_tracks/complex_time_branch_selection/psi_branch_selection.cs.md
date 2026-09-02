@@ -12,11 +12,11 @@ notice: Working material; exhaustive human review is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
-# Výběr first-order dynamické větve pomocí komplexně-časového pokračování a vláknových dat
+# Výběr větve prvního řádu pomocí komplexně-časového pokračování a vláknových dat
 
-**Typ stopy:** RESEARCH TRACK — MATHEMATICAL SELECTION LEMMA PLUS CONJECTURAL UBT INTERPRETATION  
+**Typ stopy:** VÝZKUMNÁ STOPA — MATEMATICKÉ LEMMA O SELEKCI PLUS KONJEKTURÁLNÍ UBT INTERPRETACE
 **Datum:** 2026-09-02  
-**Status:** holomorphy alone je `CLOSED AS NO-GO [L0]`; lemma o výběru větve pomocí omezenosti je `PROPOSITION / PROOF SKETCH`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; Dirac-type operátor je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; RH spojitost je `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
+**Status:** holomorfie samotná je `CLOSED AS NO-GO [L0]`; lemma o výběru větve pomocí omezenosti je `PROPOSITION / PROOF SKETCH`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; operátor Diracova typu je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; vztah k RH je `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
 
 **Anglická edice:** `psi_branch_selection.en.md`  
 **Bilingvní politika:** `../../BILINGUAL_CONTENT_POLICY.cs.md`  
@@ -25,13 +25,13 @@ UBT-AI-PROVENANCE-END
 ---
 
 <!-- BILINGUAL-UNIT: psi-branch.scope -->
-> **Rozsah tohoto dokumentu.** Tato výzkumná stopa opravuje existující patch
-> bez změny jakéhokoli kanonického axiomu, definice, master equation, tvrzení
+> **Rozsah tohoto dokumentu.** Tato výzkumná stopa opravuje stávající záplatu
+> bez změny jakéhokoli kanonického axiomu, definice, master rovnice, tvrzení
 > nebo statusu mezery. Výslovně respektuje
 > `../action_selection/holomorphy_factor_selection_no_go.en.md`,
 > `../action_selection/holomorphy_factor_selection_no_go.cs.md`,
 > `../canonical_relation_generalized_dirac/action_origin_obstruction.tex` a
-> existující kanonický pátý / complex-time Cliffordův kanál v
+> existující kanonický pátý / komplexně-časový Cliffordův kanál v
 > `../../canonical/geometry/biquaternion_dirac_lift.tex`.
 
 ---
@@ -44,9 +44,9 @@ Následující pojmy „větve“ se nesmějí zaměňovat.
 <!-- BILINGUAL-UNIT: psi-branch.taxonomy -->
 | ID | Pojem | Doména definice |
 |---|---|---|
-| B1 | Frekvenční větve faktorizované second-order ODE/PDE | Funkcionální analýza; znaménko generátoru |
+| B1 | Frekvenční větve faktorizované ODE/PDE druhého řádu | Funkcionální analýza; znaménko generátoru |
 | B2 | Fourierovy / winding módy na \(S^1_\psi\) | Spektrální teorie na kružnici |
-| B3 | Holomorfní výběr větve v orientované komplexní polorovině | Komplexní analýza plus boundedness / spektrální data |
+| B3 | Holomorfní výběr větve v orientované komplexní polorovině | Komplexní analýza plus omezenost / spektrální data |
 | B4 | Diracovy sektory částice vs. antičástice | Teorie reprezentací; CPT |
 | B5 | Dekoherované nebo Everettovské makroskopické větve | Teorie dekoherence; interpretace |
 
@@ -81,10 +81,10 @@ $$
 (\partial_\tau+m)f_-=0.
 $$
 
-Obě větve tedy řeší stejnou second-order rovnici, a proto
+Obě větve tedy řeší stejnou rovnici druhého řádu, a proto
 
 $$
-\boxed{\text{Holomorphy alone does not select the first-order factor.}}
+\boxed{\text{HOLOMORPHY-ALONE-SELECTOR: CLOSED AS NO-GO [L0]}}
 $$
 
 <!-- BILINGUAL-UNIT: psi-branch.holomorphy-status -->
@@ -129,7 +129,7 @@ $$
 > nekonečněrozměrnou funkcionální analýzu jako otevřenou verifikační práci.
 
 <!-- BILINGUAL-UNIT: psi-branch.semigroup-setup -->
-### 3.1 Setup na \((\ker A)^\perp\)
+### 3.1 Nastavení na \((\ker A)^\perp\)
 
 Nechť \(H\) je komplexní Hilbertův prostor a \(A\) je samosdružený a
 nezáporný operátor na husté doméně:
@@ -180,7 +180,7 @@ větev je tlumena.
 ### 3.3 Propozice a náčrt důkazu
 
 Předpokládejme, že pokračování existuje pro všechna \(s>0\) a splňuje
-uniformní podmínku boundedness, například
+uniformní podmínku omezenosti, například
 
 $$
 \sup_{s>0}\|\Phi(0,s)\|_H<\infty.
@@ -209,12 +209,44 @@ $$
 e^{2s\varepsilon}\|E_A([\varepsilon,\infty))u_-\|_H^2.
 $$
 
-Uniformní boundedness pro všechna \(s>0\) vynutí
+Označme
+$$
+E_\varepsilon:=E_A([\varepsilon,\infty)),
+\qquad
+M:=\sup_{s>0}\|\Phi(0,s)\|_H.
+$$
+
+Abychom vyloučili vzájemné rušení rostoucí a klesající větve při odhadu normy, poznamenáme:
+$$
+\begin{aligned}
+\|e^{sA}E_\varepsilon u_-\|_H
+&\le
+\|E_\varepsilon\Phi(0,s)\|_H
++
+\|e^{-sA}E_\varepsilon u_+\|_H \\
+&\le M+\|u_+\|_H.
+\end{aligned}
+$$
+Zde jsme použili, že $E_\varepsilon$ komutuje s funkcionálním kalkulem, a kontraktivitu $e^{-sA}$ pro $A\ge0$.
+
+Kombinací s dolní mezí
+$$
+\|e^{sA}E_\varepsilon u_-\|_H
+\ge
+e^{s\varepsilon}\|E_\varepsilon u_-\|_H
+$$
+dostaneme
+$$
+e^{s\varepsilon}\|E_\varepsilon u_-\|_H \le M+\|u_+\|_H
+$$
+pro všechna $s>0$. Protože $e^{s\varepsilon}\to\infty$ pro $s\to\infty$ (při pevném $\varepsilon>0$), z toho plyne
+
+Uniformní omezenost pro všechna \(s>0\) vynutí
 
 $$
 E_A([\varepsilon,\infty))u_-=0
 \qquad
-\text{for every }\varepsilon>0.
+\forall\varepsilon>0.
 $$
 
 Tedy
@@ -240,7 +272,7 @@ To je lemma o výběru větve pomocí omezenosti, které tato stopa používá.
 <!-- BILINGUAL-UNIT: psi-branch.semigroup-warning -->
 ### 3.4 Nulový mód a varování o omezenosti
 
-Pro \(A=0\) má second-order rovnice obecné zero-mode řešení
+Pro \(A=0\) má rovnice druhého řádu obecné řešení nulových módů
 
 $$
 \Phi_0(t)=u_0+t\,v_0.
@@ -258,7 +290,7 @@ Dokument proto rozlišuje:
 Platí také následující omezení:
 
 $$
-\boxed{\text{For each fixed finite }s,\ e^{sA}u\in H\ \text{does not imply }u\in\ker A.}
+\boxed{e^{s_0 A}u\in H,\quad s_0>0\quad\not\!\!\Rightarrow\quad u\in\ker A}
 $$
 
 Rozhodujícím vstupem je uniformní omezenost pro \(s\to\infty\), nikoli pouhá
@@ -302,7 +334,7 @@ $$
 
 Tato identifikace zůstává `OPEN / CONJECTURAL`. Důvod je strukturální:
 kanonické \(\psi\) je periodická / kompaktní vláknová souřadnice, zatímco
-\(s>0\) je nekompaktní parametr poloroviny nebo heat parametru.
+\(s>0\) je nekompaktní parametr poloroviny nebo tepelného parametru.
 
 <!-- BILINGUAL-UNIT: psi-branch.compact-obstruction -->
 ### 4.3 Proč kompaktní \(\psi\) zůstává překážkou
@@ -331,14 +363,14 @@ Tím zůstávají dva odlišné otevřené problémy:
 2. kompatibilita nekompaktního selektoru s kompaktním \(S^1_\psi\).
 
 <!-- BILINGUAL-UNIT: psi-branch.sec5 -->
-## 5. Kandidátní operátor Diracova typu pro complex-time / fibre
+## 5. Kandidátní operátor Diracova typu pro komplexní čas / vlákno
 
 > **Status: RESEARCH ANSATZ — NOT A DERIVED CANONICAL EQUATION**
 
 <!-- BILINGUAL-UNIT: psi-branch.gamma-star-status -->
 ### 5.1 Kanonický algebraický status \(\Gamma_*\)
 
-Algebraický pátý / complex-time Cliffordův kanál je v aktuálním kanonickém
+Algebraický pátý / komplexně-časový Cliffordův kanál je v aktuálním kanonickém
 materiálu **již přítomen**. V
 `../../canonical/geometry/biquaternion_dirac_lift.tex` platí
 
@@ -354,18 +386,18 @@ Jde o ustavené tvrzení o algebraické dostupnosti, nikoli o otevřenou mezeru 
 aktuálním repozitáři:
 
 $$
-\boxed{\text{algebraic existence and anticommutation of }\Gamma_*:\ \text{ESTABLISHED / tier A\_attested / [L0]}}
+\boxed{\text{algebraic existence and anticommutation of }\Gamma_*:\ \text{ESTABLISHED [L0]; recorded in the A-attested status ledger, with the detailed canonical source at tier B\_machine\_verified}}
 $$
 
 Zdrojem je kanonický soubor
 `../../canonical/geometry/biquaternion_dirac_lift.tex`. Otevřené zůstává
-**dynamické použití** \(\Gamma_*D_\psi\) v first-order UBT operátoru, jeho
-normalizace, levé/pravé působení a action-level původ.
+**dynamické použití** \(\Gamma_*D_\psi\) v UBT operátoru prvního řádu, jeho
+normalizace, levé/pravé působení a původ na úrovni akce.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-flat -->
 ### 5.2 Plochý model s konstantními koeficienty
 
-Pro omezený exaktní výpočet čtverce použijme flat model s konstantními
+Pro omezený exaktní výpočet čtverce použijme plochý model s konstantními
 koeficienty
 
 $$
@@ -376,7 +408,7 @@ $$
 $$
 
 To **není** automatické tvrzení, že kanonická UBT je obyčejná
-pětidimenzionální spacetime teorie. Proměnnou \(\psi\) lze interpretovat jako
+pětidimenzionální prostoročasová teorie. Proměnnou \(\psi\) lze interpretovat jako
 
 1. imaginární složku komplexně-časového vláknového značení;
 2. interní kompaktní souřadnici;
@@ -386,36 +418,57 @@ Použití nezávislého \(\partial_\psi\) nebo \(D_\psi\) může změnit počít
 nezávislých souřadnic a musí být explicitně porovnáno s kanonickým
 značením \(\tau_{\mathrm{UBT}}=t+i\psi\).
 
+<!-- BILINGUAL-UNIT: psi-branch.dirac-carrier -->
+### 5.3 Sloupcový nosič \(\Psi=\operatorname{vec}(\Theta)\)
+
+Matice $4\times4$ gamma $\Gamma^\mu$, $\Gamma_*$ působí na čtyřsložkový sloupcový vektor.
+Protože $\Theta\in\mathbb C\otimes\mathbb H\simeq M_2(\mathbb C)$, definujeme
+
+$$
+\Psi:=\operatorname{vec}(\Theta)\in\mathbb C^4,
+$$
+
+kde $\operatorname{vec}$ skládá sloupce matice $2\times2$ $\Theta$ do jednoho sloupce.
+**$\Psi$ není nové fundamentální pole**; jde o sloupcovou reprezentaci téhož $\Theta$.
+
+Dvoustranná biquaternionová derivace je
+
+$$
+D_\psi^{(\Theta)}\Theta
+:=
+\partial_\psi\Theta+A_\psi\Theta-\Theta B_\psi.
+$$
+
+Indukovaná derivace na sloupcovém nosiči je
+
+$$
+\nabla_\psi\Psi
+:=
+\operatorname{vec}\!\left(D_\psi^{(\Theta)}\Theta\right).
+$$
+
+Poznamenejme, že vectorizace pravého násobení $B_\psi$ obecně indukuje maticové působení obsahující transponovanou pravou reprezentaci; nesmí se tiše zaměnit za obyčejné levé násobení.
+
+Analogicky $\nabla_\mu\Psi:=\operatorname{vec}(D_\mu^{(\Theta)}\Theta)$ je indukováno z dvoustranného $D_\mu\Theta$.
+
+Plochý operátor $\mathscr D_4^{(0)}$ je rovněž operátorem na $\Psi\in\mathbb C^4$, nikoli přímo na maticovém $\Theta$.
+
 <!-- BILINGUAL-UNIT: psi-branch.dirac-general -->
-### 5.3 Obecný výzkumný ansatz s definovaným \(D_\psi\)
+### 5.4 Obecný výzkumný ansatz s definovaným \(D_\psi\)
 
-Zapíše-li se křivý nebo gauge-coupled výzkumný ansatz, musí být \(D_\psi\)
-explicitně definováno:
-
-$$
-D_\psi\Theta
-=
-\partial_\psi\Theta
-+ A_\psi\Theta
-- \Theta B_\psi.
-$$
-
-Odpovídající kandidátní rovnice je pak
+Zapíše-li se křivý nebo gauge-coupled výzkumný ansatz, musí být $D_\psi$ explicitně definováno jako výše. Kandidátní rovnice, typově správně zapsaná, je pak
 
 $$
-i\hbar\Gamma^\mu D_\mu\Theta
-+ i\hbar\Gamma_*D_\psi\Theta
-- \mathcal M[\Theta]\Theta
-=
-0.
+i\hbar\Gamma^\mu\nabla_\mu\Psi
++ i\hbar\Gamma_*\nabla_\psi\Psi
+- \mathcal M[\Theta,D\Theta]\Psi
+=0.
 $$
 
-Zde \(A_\psi\), \(B_\psi\), jejich transformační zákony, jejich vztah ke
-čtyřrozměrným \(A_\mu,B_\mu\) i jejich původ z kanonické akce zůstávají
-`OPEN / ANSATZ`.
+Zde $A_\psi$, $B_\psi$, jejich transformační zákony, jejich vztah ke čtyřrozměrným $A_\mu,B_\mu$ i jejich původ z kanonické akce zůstávají `OPEN / ANSATZ`.
 
 <!-- BILINGUAL-UNIT: psi-branch.psi-mode -->
-### 5.4 Správné působení na \(\psi\)-Fourierův mód
+### 5.5 Správné působení na \(\psi\)-Fourierův mód
 
 Pro Fourierův mód
 
@@ -458,9 +511,9 @@ $$
 Samotný theta / heat Gaussian tedy znaménko větve **nevybírá**.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-square -->
-### 5.5 Exaktní plochý čtverec a nekřivá výhrada
+### 5.6 Exaktní plochý čtverec a nekřivá výhrada
 
-Za předpokladů flat modelu
+Za předpokladů plochého modelu
 
 $$
 \{\mathscr D_4^{(0)},\Gamma_*\}=0,
@@ -481,12 +534,12 @@ To je jediný smysl, v němž se zde tvrdí exaktní algebraický / spektrální
 můstek.
 
 Pro obecnou křivou, gauge nebo \(\Theta\)-dependent situaci obsahuje čtverec
-další cross-termy, které musejí zůstat explicitní:
+další smíšené členy, které musejí zůstat explicitní:
 
 1. komutátory konexí;
 2. derivace \(\Gamma_*\);
 3. derivace hmotového funkcionálu;
-4. left/right curvature terms;
+4. členy křivosti levé/pravé strany;
 5. členy řetězového pravidla z kompozitní geometrie.
 
 Každé tvrzení o heat kernelu patří odpovídajícímu nezápornému eukleidovskému
@@ -531,6 +584,10 @@ následujícího:
 5. interpretaci částice / antičástice.
 
 Každá položka vyžaduje nezávislé odvození z kanonické UBT.
+
+Navíc, podle `../canonical_relation_generalized_dirac/action_origin_obstruction.tex`, nedegenerovaná kvadratická akce prvních derivací $\Theta$ vede k rovnici Eulera–Lagrangeovy druhého řádu a nemůže být proto přímo totožná s first-order zobecněnou Diracovou rovnicí. Jde o no-go pouze pro dokumentovanou nedegenerovanou třídu akcí, nikoli pro všechny myslitelné UBT akce. Možné uzavření vyžaduje odvozenou degeneraci, přesnou faktorizaci plus selekční teorém, nebo ekvivalentní vazbový variační princip. Lemma s analytickým pokračováním může za svých předpokladů vybrat větev již faktorizované rovnice, ale samo neodvozuje faktorizaci, Diracův operátor ani jeho akci.
+
+Tento $\psi$-track neodstraňuje překážku action-origin.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec7 -->
 ## 7. Multivesmírná interpretace
@@ -586,24 +643,90 @@ Nadále chybějí tyto složky:
 Jednoduchý winding operátor \(N_\psi\) má celočíselné spektrum. To samo o sobě
 neodpovídá ordinátám nul zeta funkce.
 
+<!-- BILINGUAL-UNIT: psi-branch.gr-claim-boundary -->
+## 9. Vztah k aktuální hranici tvrzení o GR
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-kinematics -->
+### 9.1 Co je dokázáno kinematicky
+
+V rámci přesných předpokladů jsou ustaveny zejména:
+
+- centrální metrika z antikomutátorové identity: $\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf{1}$;
+- hodnost 10 zobrazení tetrády na metriku a šest lokálních Lorentzových nulových směrů: `GAP-10K: CLOSED locally`;
+- rekonstrukce metrické konexe ze zadané tetrády a torze: `GAP-10Omega-KIN: CLOSED [L1]`;
+- torzně volná větev jako Levi-Civitova spinová konexe: `GAP-10Omega-GR: CLOSED [L1]`;
+- plochý Minkowského reprezentant: `GAP-10I-SR: CLOSED [L1]`;
+- lokální reprezentovatelnost zakřivených tetrád na regulárních nenulových patchích pomocí kompozitního/split-jet mechanismu: `GAP-10I-TORSION-LOCAL: CLOSED LOCALLY [L1]`.
+
+Lokální reprezentovatelnost **neznamená** dynamický výběr tetrády z $\Theta$.
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-conditional -->
+### 9.2 Co je uzavřeno pouze podmíněně
+
+`GR-RECOVERY: CLOSED CONDITIONALLY`
+
+Podmíněná lokální infračervená efektivní větev skládá:
+
+- split-jet pravou inverzi;
+- nepropagující pomocný sektor;
+- předpokládanou/odvozenou podmíněnou Einsteinovu–Hilbertovu efektivní větev;
+- Levi-Civitovu fyzickou konexi;
+- potlačení vyšších derivací v příslušném infračerveném řádu.
+
+Podmíněný vztah je
+
+$$
+\frac{1}{G_{\mathrm{ind}}}
+=
+\frac{N_B(1-6\xi)I_1}{12\pi}.
+$$
+
+Jeho podmínky jsou: specifikovaný gauge-fixed Laplace-type Hessián, počet reálných bosonických módů $N_B$, coupling $\xi$, cutoff/scale identification, regulátor a constrained measure.
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-not-derived -->
+### 9.3 Co odvozeno není
+
+Podle `AXIOM D` v `canonical/AXIOMS.md` není implikace
+
+$$
+\mathrm{UBT}
+\Longrightarrow
+G_{\mu\nu}=\kappa T_{\mu\nu}
+$$
+
+(kanonické UBT rovnice implikují Einsteinovy polní rovnice) bezpodmínečně dokázána.
+
+Otevřené statusové položky:
+
+- `UBT-FUND-GR-ACTION: OPEN`
+- `UBT-UV-G-PREDICTION: OPEN`
+- `UBT-FUND-GLOBAL: OPEN`
+
+Současné axiomy neurčují numerickou Newtonovu konstantu; `canonical/CANONICAL_DEFINITIONS.md` vede $G$ jako `Input`, nikoli `Prediction`. Čistý split-jet constraint nemůže vybrat tetrádu, protože je univerzálně surjektivní: `GAP-10T-JET-CONSTRAINT-SELECTION: CLOSED AS NO-GO [L1]`. Action-level selekce z mikroskopické $\Theta$-akce zůstává otevřená. Globální pokračování přes nulové plochy, horizonty a topologicky netriviální oblasti není dokázáno. Starší povýšení prostorové Schwarzschildovy identity na úplné on-shell řešení z jediného $\Theta$ zůstává `SUPERSEDED_INVALID_DERIVATION`. Schwarzschild jako řešení podmíněně obnovené Einsteinovy větve není totéž jako přímé odvození Schwarzschildova řešení z mikroskopické $\Theta$-rovnice.
+
+<!-- BILINGUAL-UNIT: psi-branch.gr-psi-relation -->
+### 9.4 Vztah nového \(\psi\)-tracku ke GR
+
+Tato výzkumná stopa **nemění** žádný GR status. Selekce frekvenční větve neodvozuje Einsteinovu–Hilbertovu akci, nepredikuje $G$, neřeší globální pokračování a neopravuje stažený přímý Schwarzschildův ansatz. Každý first-order UBT operátor musí být nejprve odvozen z konzistentní akce; teprve poté lze zkoumat jeho GR limit.
+
 <!-- BILINGUAL-UNIT: psi-branch.sec9 -->
-## 9. Interpretační a architektonické mantinely
+## 10. Interpretační a architektonické mantinely
 
 <!-- BILINGUAL-UNIT: psi-branch.guardrails -->
 1. Lemma o výběru větve pomocí omezenosti je matematická propozice, nikoli kanonická
    UBT věta o selektoru.
-2. Identifikace \(s\stackrel{?}{=}\psi\) je otevřená a conjectural.
-3. Kompatibilita s compact-\(\psi\) je otevřená.
-4. Dirac-type operátor s \(D_\psi\) je research ansatz, nikoli odvozená
+2. Identifikace \(s\stackrel{?}{=}\psi\) je otevřená a konjekturální.
+3. Kompatibilita s kompaktním \(\psi\) je otevřená.
+4. Operátor Diracova typu s \(D_\psi\) je výzkumný ansatz, nikoli odvozená
    kanonická rovnice.
 5. Algebraická existence \(\Gamma_*\) je již dostupná; otevřené je pouze její
    fyzikální / dynamické použití.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec10 -->
-## 10. Verifikace
+## 11. Verifikace
 
 <!-- BILINGUAL-UNIT: psi-branch.verification-script -->
-### 10.1 Verifikační skript
+### 11.1 Verifikační skript
 
 Spusťte
 
@@ -611,66 +734,61 @@ Spusťte
 python tools/verify_psi_branch_selection.py
 ```
 
-Skript je samostatně spouštěný verifier:
-
-```bash
-python tools/verify_psi_branch_selection.py
-```
-
-Je to regresní / CAS kontrola, nikoli důkaz nekonečněrozměrného lemmatu.
+Skript je samostatně spouštěný ověřovač. Je to regresní / CAS kontrola, nikoli důkaz nekonečněrozměrného lemmatu.
 Jeho kontroly jsou:
 
-| Check | Description |
+| Kontrola | Popis |
 |---|---|
-| V1 | Exact factorization \((i\partial_t-A)(-i\partial_t-A)=\partial_t^2+A^2\) on a generic scalar test function |
-| V2 | Exact verification of both exponential branches and of the correct annihilating first-order factor |
-| V3 | Exact verification of \(e^{-iA(t-is)}=e^{-itA}e^{-sA}\) and its growing companion |
-| V4 | Decay / growth sign check for the two branches under \(s>0\), \(A>0\) |
-| V5 | Finite-dimensional diagonal spectral boundedness example for \(A=A^*\ge0\) |
-| V6 | General zero mode \(\Phi_0(t)=u_0+t\,v_0\) and the boundedness caveat |
-| V7 | Correct differentiation of the whole Fourier mode \(\Theta_n(q,t)e^{in\psi/R_\psi}\) |
-| V8 | Eigenvalues \(n/R_\psi\) and \(n^2/R_\psi^2\) |
-| V9 | Gaussian degeneracy \(n\leftrightarrow -n\) |
-| V10 | Cross-term cancellation in the flat \(\Gamma_*\) model square |
+| V1 | Exaktní faktorizace \((i\partial_t-A)(-i\partial_t-A)=\partial_t^2+A^2\) na obecné skalární testovací funkci |
+| V2 | Exaktní ověření obou exponenciálních větví a správného anihilujícího faktoru prvního řádu |
+| V3 | Exaktní ověření \(e^{-iA(t-is)}=e^{-itA}e^{-sA}\) a jeho rostoucího protějšku |
+| V4 | Kontrola znaménka tlumení/růstu pro obě větve při \(s>0\), \(A>0\) |
+| V5 | Konečněrozměrný příklad diagonální spektrální omezenosti pro \(A=A^*\ge0\) |
+| V6 | Obecný nulový mód \(\Phi_0(t)=u_0+t\,v_0\) a výhrada omezenosti |
+| V7 | Správná derivace celého Fourierova módu \(\Theta_n(q,t)e^{in\psi/R_\psi}\) |
+| V8 | Vlastní hodnoty \(n/R_\psi\) a \(n^2/R_\psi^2\) |
+| V9 | Gaussianová degenerace \(n\leftrightarrow -n\) |
+| V10 | Rušení smíšených členů při umocnění plochého modelu \(\Gamma_*\) |
 
 `../../tools/verify_holomorphy_factor_no_go.py` zůstává exaktní regresní
 kontrolou pro no-go založené pouze na holomorfii.
 
 <!-- BILINGUAL-UNIT: psi-branch.lean-status -->
-### 10.2 Stav Lean
+### 11.2 Stav Lean
 
 **LEAN-PENDING.** Není přidán žádný zkompilovaný Lean důkaz. Zbývající
 formalizační práce zahrnuje detaily operátorových domén, existenci pokračování
 a plný nekonečněrozměrný argument se spektrální mírou.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec11 -->
-## 11. Otevřené gapy
+## 12. Otevřené gapy
 
 <!-- BILINGUAL-UNIT: psi-branch.gap-table -->
-| Gap | Description | Status |
+| Mezera | Popis | Status |
 |---|---|---|
-| G1 | Bounded branch-selection lemma: full domain and continuation verification | PROPOSITION / PROOF SKETCH |
-| G2 | Identification \(s\stackrel{?}{=}\psi\) | OPEN / CONJECTURAL |
-| G3-DYN | Dynamic use of \(\Gamma_*D_\psi\), its normalization, left/right action and action origin | OPEN |
-| G4 | Compatibility of the non-compact selector with compact \(S^1_\psi\) | OPEN |
-| G5 | Origin, normalization, representation, and transformation law of \(D_\psi\), \(A_\psi\), \(B_\psi\) beyond the flat ansatz | OPEN / ANSATZ |
-| G6 | Action-level derivation of the full first-order operator and its spectral / energy selector | OPEN |
+| G1 | Lemma o výběru větve pomocí omezenosti: úplná doména a ověření pokračování | PROPOSITION / PROOF SKETCH |
+| G2 | Identifikace \(s\stackrel{?}{=}\psi\) | OPEN / CONJECTURAL |
+| G3-DYN | Dynamické použití \(\Gamma_*D_\psi\), jeho normalizace, levé/pravé působení a původ na úrovni akce | OPEN |
+| G4 | Kompatibilita nekompaktního selektoru s kompaktním \(S^1_\psi\) | OPEN |
+| G5 | Původ, normalizace, reprezentace a transformační zákon \(D_\psi\), \(A_\psi\), \(B_\psi\) za plochým ansatzem | OPEN / ANSATZ |
+| G6 | Odvození na úrovni akce celého operátoru prvního řádu a jeho spektrálního / energetického selektoru | OPEN |
 | G7 | Lean proof of the infinite-dimensional statement | LEAN-PENDING |
 
 <!-- BILINGUAL-UNIT: psi-branch.sec12 -->
-## 12. Přehled statusů
+## 13. Přehled statusů
 
 <!-- BILINGUAL-UNIT: psi-branch.status-table -->
-| Section | Status |
+| Oddíl | Status |
 |---|---|
-| S2: Holomorphy-alone selector | CLOSED AS NO-GO [L0] |
-| S3: Bounded branch-selection lemma | PROPOSITION / PROOF SKETCH |
-| S4: \(s\) vs. canonical \(\psi\) and compactness | OPEN / CONJECTURAL plus OPEN |
-| S5: Candidate complex-time / fibre Dirac-type operator | RESEARCH ANSATZ |
-| S6: Hierarchy of limits | STANDARD PHYSICS FACT |
-| S7: Multiverse interpretation | SPECULATIVE |
-| S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |
-| S10: Formal verification status | LEAN-PENDING |
+| S2: Selektor samotné holomorfie | CLOSED AS NO-GO [L0] |
+| S3: Lemma o výběru větve pomocí omezenosti | PROPOSITION / PROOF SKETCH |
+| S4: \(s\) vs. kanonické \(\psi\) a kompaktnost | OPEN / CONJECTURAL plus OPEN |
+| S5: Kandidátní operátor Diracova typu pro komplexní čas / vlákno | RESEARCH ANSATZ |
+| S6: Hierarchie limit | STANDARD PHYSICS FACT |
+| S7: Multivesmírná interpretace | SPECULATIVE |
+| S8: Strukturální poznámka k RH | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |
+| S9: Vztah k GR | KINEMATICS ESTABLISHED; GR-RECOVERY CLOSED CONDITIONALLY; FUNDAMENTAL / UV / GLOBAL DERIVATION OPEN |
+| S11: Stav formální verifikace | LEAN-PENDING |
 
-Touto stopou se nemění žádný kanonický axiom, definice, master equation, claim
-ani gap status.
+Touto stopou se nemění žádný kanonický axiom, definice, master rovnice, tvrzení
+ani status mezery.
