@@ -27,10 +27,14 @@ def _deterministic_id(rel_path: str, cell_index: int, source: str) -> str:
     return hashlib.sha1(payload).hexdigest()[:8]
 
 
-def stabilize(nb_path: Path) -> bool:
+def stabilize(nb_path: Path, *, check: bool = False) -> bool:
     """Rewrite *nb_path* with deterministic cell IDs.
 
-    Returns True if the file was modified, False if it was already stable.
+    Returns True if the file was modified (or would be modified when
+    *check* is True), False if it was already stable.
+
+    When *check* is True the file is never written; the function only
+    reports whether a write would have been required.
     """
     rel_path = str(nb_path.relative_to(ROOT))
     text = nb_path.read_text(encoding="utf-8")
@@ -44,7 +48,7 @@ def stabilize(nb_path: Path) -> bool:
             cell["id"] = expected
             changed = True
 
-    if changed:
+    if changed and not check:
         nb_path.write_text(json.dumps(nb, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return changed
 
@@ -52,6 +56,11 @@ def stabilize(nb_path: Path) -> bool:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("notebooks", nargs="+", type=Path, help="Notebook file(s) to stabilize")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Report whether IDs would change without writing any file",
+    )
     args = parser.parse_args()
 
     any_changed = False
@@ -60,8 +69,9 @@ def main() -> None:
         if not path.is_file():
             print(f"WARNING: {path} does not exist, skipping", file=sys.stderr)
             continue
-        if stabilize(path):
-            print(f"Stabilized IDs: {path}")
+        if stabilize(path, check=args.check):
+            action = "Would stabilize" if args.check else "Stabilized IDs:"
+            print(f"{action}: {path}")
             any_changed = True
         else:
             print(f"Already stable: {path}")

@@ -61,7 +61,6 @@ speculative_extensions/prime_resonance_channels/data/last_run_output.txt
 
 # Build output directories (except committed summary report)
 build/**
-reports/latex_build/logs/**
 
 
 # Research phase lock results (exclude from commits)
@@ -94,11 +93,12 @@ research_front/cmb_2d_fft/out/
 EXPERIMENTS/channel_selection/test_results/
 EXPERIMENTS/channel_selection/results/
 
-# Repository-wide LaTeX audit: generated from scratch and committed by CI.
-# The report contains text/JSON only; successful PDFs stay in workflow artifacts
-# except for the curated docs/pdfs publication map.
+# Repository-wide LaTeX audit.
+# Full reports and logs are uploaded as CI artifacts; only summary.md is tracked.
+reports/latex_build/**
 !reports/latex_build/
-!reports/latex_build/**
+!reports/latex_build/summary.md
+
 /build/latex-audit/
 
 # Test/build caches anywhere in the tree

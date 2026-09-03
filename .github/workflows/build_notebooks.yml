@@ -31,6 +31,7 @@ jobs:
 
       - name: Convert scripts to notebooks
         run: |
+          set -euo pipefail
           mkdir -p docs/notebooks/verify
           mkdir -p docs/notebooks/experiments
           mkdir -p docs/notebooks/research_tracks
@@ -43,15 +44,15 @@ jobs:
                     tools/explore_r_factor.py; do
             [ -f "$f" ] || continue
             name=$(basename "$f" .py)
-            jupytext --to notebook --output "docs/notebooks/verify/${name}.ipynb" "$f" || echo "Warning: Failed to convert $f"
-            python tools/stabilize_notebook_ids.py "docs/notebooks/verify/${name}.ipynb" || true
+            jupytext --to notebook --output "docs/notebooks/verify/${name}.ipynb" "$f"
+            python tools/stabilize_notebook_ids.py "docs/notebooks/verify/${name}.ipynb"
           done
 
           for f in experiments/constants_derivation/derive_fine_structure.py; do
             [ -f "$f" ] || continue
             name=$(basename "$f" .py)
-            jupytext --to notebook --output "docs/notebooks/experiments/${name}.ipynb" "$f" || echo "Warning: Failed to convert $f"
-            python tools/stabilize_notebook_ids.py "docs/notebooks/experiments/${name}.ipynb" || true
+            jupytext --to notebook --output "docs/notebooks/experiments/${name}.ipynb" "$f"
+            python tools/stabilize_notebook_ids.py "docs/notebooks/experiments/${name}.ipynb"
           done
 
           for f in research_tracks/THEORY_COMPARISONS/penrose_twistor/experiments/e01_incidence_sanity.py \
@@ -59,8 +60,8 @@ jobs:
                     research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/experiments/e01_mapping_summary.py; do
             [ -f "$f" ] || continue
             name=$(basename "$f" .py)
-            jupytext --to notebook --output "docs/notebooks/research_tracks/${name}.ipynb" "$f" || echo "Warning: Failed to convert $f"
-            python tools/stabilize_notebook_ids.py "docs/notebooks/research_tracks/${name}.ipynb" || true
+            jupytext --to notebook --output "docs/notebooks/research_tracks/${name}.ipynb" "$f"
+            python tools/stabilize_notebook_ids.py "docs/notebooks/research_tracks/${name}.ipynb"
           done
 
       - name: Commit notebooks

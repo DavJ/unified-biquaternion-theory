@@ -31,21 +31,19 @@ def _load(path: Path) -> dict:
 
 
 def test_stabilize_is_idempotent() -> None:
-    """Running stabilize_notebook_ids twice must produce the same notebook."""
+    """Running stabilize_notebook_ids twice must produce the same notebook.
+
+    Uses check=True so tracked notebooks are never modified, even on failure.
+    """
     for nb_path in SAMPLE_NOTEBOOKS:
         if not nb_path.is_file():
             continue
-        before = _load(nb_path)
-        # First pass: should already be stable (applied at build time).
-        changed = stabilize(nb_path)
-        assert not changed, (
-            f"{nb_path.name}: stabilize changed IDs on second run — "
+        # check=True: read-only — reports whether a write would be needed
+        # without touching the file.
+        would_change = stabilize(nb_path, check=True)
+        assert not would_change, (
+            f"{nb_path.name}: stabilize would change IDs — "
             "build is non-deterministic; check tools/stabilize_notebook_ids.py"
-        )
-        after = _load(nb_path)
-        assert before == after, (
-            f"{nb_path.name}: notebook content changed after stabilize even though "
-            "changed==False — internal inconsistency in stabilizer"
         )
 
 
