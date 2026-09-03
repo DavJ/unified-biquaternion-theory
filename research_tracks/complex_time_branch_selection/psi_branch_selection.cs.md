@@ -45,7 +45,7 @@ Následující pojmy „větve“ se nesmějí zaměňovat.
 | ID | Pojem | Doména definice |
 |---|---|---|
 | B1 | Frekvenční větve faktorizované ODE/PDE druhého řádu | Funkcionální analýza; znaménko generátoru |
-| B2 | Fourierovy / winding módy na \(S^1_\psi\) | Spektrální teorie na kružnici |
+| B2 | Fourierovy módy / módy vinutí na \(S^1_\psi\) | Spektrální teorie na kružnici |
 | B3 | Holomorfní výběr větve v orientované komplexní polorovině | Komplexní analýza plus omezenost / spektrální data |
 | B4 | Diracovy sektory částice vs. antičástice | Teorie reprezentací; CPT |
 | B5 | Dekoherované nebo Everettovské makroskopické větve | Teorie dekoherence; interpretace |
@@ -456,7 +456,7 @@ Plochý operátor $\mathscr D_4^{(0)}$ je rovněž operátorem na $\Psi\in\mathb
 <!-- BILINGUAL-UNIT: psi-branch.dirac-general -->
 ### 5.4 Obecný výzkumný ansatz s definovaným \(D_\psi\)
 
-Zapíše-li se křivý nebo gauge-coupled výzkumný ansatz, musí být $D_\psi$ explicitně definováno jako výše. Kandidátní rovnice, typově správně zapsaná, je pak
+Zapíše-li se křivý nebo kalibračně vázaný výzkumný ansatz, musí být $D_\psi$ explicitně definováno jako výše. Kandidátní rovnice, typově správně zapsaná, je pak
 
 $$
 i\hbar\Gamma^\mu\nabla_\mu\Psi
@@ -585,9 +585,9 @@ následujícího:
 
 Každá položka vyžaduje nezávislé odvození z kanonické UBT.
 
-Navíc, podle `../canonical_relation_generalized_dirac/action_origin_obstruction.tex`, nedegenerovaná kvadratická akce prvních derivací $\Theta$ vede k rovnici Eulera–Lagrangeovy druhého řádu a nemůže být proto přímo totožná s first-order zobecněnou Diracovou rovnicí. Jde o no-go pouze pro dokumentovanou nedegenerovanou třídu akcí, nikoli pro všechny myslitelné UBT akce. Možné uzavření vyžaduje odvozenou degeneraci, přesnou faktorizaci plus selekční teorém, nebo ekvivalentní vazbový variační princip. Lemma s analytickým pokračováním může za svých předpokladů vybrat větev již faktorizované rovnice, ale samo neodvozuje faktorizaci, Diracův operátor ani jeho akci.
+Navíc, podle `../canonical_relation_generalized_dirac/action_origin_obstruction.tex`, nedegenerovaná kvadratická akce prvních derivací $\Theta$ vede k rovnici Eulera–Lagrangeovy druhého řádu a nemůže být proto přímo totožná se zobecněnou Diracovou rovnicí prvního řádu. Jde o no-go pouze pro dokumentovanou nedegenerovanou třídu akcí, nikoli pro všechny myslitelné UBT akce. Možné uzavření vyžaduje odvozenou degeneraci, přesnou faktorizaci plus selekční teorém, nebo ekvivalentní vazbový variační princip. Lemma s analytickým pokračováním může za svých předpokladů vybrat větev již faktorizované rovnice, ale samo neodvozuje faktorizaci, Diracův operátor ani jeho akci.
 
-Tento $\psi$-track neodstraňuje překážku action-origin.
+Tento $\psi$-track neodstraňuje překážku odvození akce (action-origin).
 
 <!-- BILINGUAL-UNIT: psi-branch.sec7 -->
 ## 7. Multivesmírná interpretace
@@ -629,7 +629,7 @@ Multivesmírné čtení tedy zůstává přísně `SPECULATIVE`.
 
 Při logaritmické substituci \(u=e^{2\psi}\) se klasická Mellinova vazba mezi
 Jacobiho theta funkcí a \(\xi(s)\) týká pouze struktury funkcionální rovnice.
-Riemannovu hypotézu tím **nevzniká**.
+Riemannova hypotéza z toho **neplyne**.
 
 <!-- BILINGUAL-UNIT: psi-branch.rh-missing -->
 ### 8.2 Co stále chybí
@@ -637,10 +637,10 @@ Riemannovu hypotézu tím **nevzniká**.
 Nadále chybějí tyto složky:
 
 1. samosdružený operátor se spektrem svázaným s ordinátami nul zeta funkce;
-2. determinantová nebo trace formula obsahující prvočíselné délky \(k\log p\);
+2. determinantová nebo stopová formule obsahující prvočíselné délky \(k\log p\);
 3. odvození vztahu takového operátoru k \(N_\psi=-iR_\psi\partial_\psi\).
 
-Jednoduchý winding operátor \(N_\psi\) má celočíselné spektrum. To samo o sobě
+Jednoduchý operátor vinutí \(N_\psi\) má celočíselné spektrum. To samo o sobě
 neodpovídá ordinátám nul zeta funkce.
 
 <!-- BILINGUAL-UNIT: psi-branch.gr-claim-boundary -->
@@ -681,7 +681,7 @@ $$
 \frac{N_B(1-6\xi)I_1}{12\pi}.
 $$
 
-Jeho podmínky jsou: specifikovaný gauge-fixed Laplace-type Hessián, počet reálných bosonických módů $N_B$, coupling $\xi$, cutoff/scale identification, regulátor a constrained measure.
+Jeho podmínky jsou: specifikovaný kalibračně fixovaný Hessián Laplaceova typu (gauge-fixed Laplace-type Hessian), počet reálných bosonických módů $N_B$, vazební konstanta $\xi$, identifikace mezní škály (cutoff/scale identification), regulátor a míra s vazbami (constrained measure).
 
 <!-- BILINGUAL-UNIT: psi-branch.gr-not-derived -->
 ### 9.3 Co odvozeno není
@@ -707,7 +707,7 @@ Současné axiomy neurčují numerickou Newtonovu konstantu; `canonical/CANONICA
 <!-- BILINGUAL-UNIT: psi-branch.gr-psi-relation -->
 ### 9.4 Vztah nového \(\psi\)-tracku ke GR
 
-Tato výzkumná stopa **nemění** žádný GR status. Selekce frekvenční větve neodvozuje Einsteinovu–Hilbertovu akci, nepredikuje $G$, neřeší globální pokračování a neopravuje stažený přímý Schwarzschildův ansatz. Každý first-order UBT operátor musí být nejprve odvozen z konzistentní akce; teprve poté lze zkoumat jeho GR limit.
+Tato výzkumná stopa **nemění** žádný GR status. Selekce frekvenční větve neodvozuje Einsteinovu–Hilbertovu akci, nepredikuje $G$, neřeší globální pokračování a neopravuje stažený přímý Schwarzschildův ansatz. Každý UBT operátor prvního řádu musí být nejprve odvozen z konzistentní akce; teprve poté lze zkoumat jeho GR limit.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec9 -->
 ## 10. Interpretační a architektonické mantinely
@@ -772,7 +772,7 @@ a plný nekonečněrozměrný argument se spektrální mírou.
 | G4 | Kompatibilita nekompaktního selektoru s kompaktním \(S^1_\psi\) | OPEN |
 | G5 | Původ, normalizace, reprezentace a transformační zákon \(D_\psi\), \(A_\psi\), \(B_\psi\) za plochým ansatzem | OPEN / ANSATZ |
 | G6 | Odvození na úrovni akce celého operátoru prvního řádu a jeho spektrálního / energetického selektoru | OPEN |
-| G7 | Lean proof of the infinite-dimensional statement | LEAN-PENDING |
+| G7 | Leanův důkaz tvrzení v nekonečnodimenzionálním případě | LEAN-PENDING |
 
 <!-- BILINGUAL-UNIT: psi-branch.sec12 -->
 ## 13. Přehled statusů

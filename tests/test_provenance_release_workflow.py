@@ -30,7 +30,10 @@ def test_automated_commit_is_success_only_and_includes_checksums() -> None:
     commit = text.index("- name: Commit report and curated PDFs")
     block = text[commit:]
     assert "if: success() && github.event_name == 'push'" in block
-    assert "git add docs/pdfs SHA256SUMS.txt" in block
+    # Policy: explicit whitelist of exactly two tracked PDFs; general
+    # 'git add docs/pdfs' is forbidden because it would stage milestone PDFs.
+    assert "git add -f docs/pdfs/UBT_canonical_main.pdf docs/pdfs/UBT_GR_Submission.pdf" in block
+    assert "git add docs/pdfs SHA256SUMS.txt" not in block
     assert "if: always() && github.event_name == 'push'" not in block
 
 
