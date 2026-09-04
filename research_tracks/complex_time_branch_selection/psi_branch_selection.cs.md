@@ -26,7 +26,7 @@ UBT-AI-PROVENANCE-END
 
 <!-- BILINGUAL-UNIT: psi-branch.scope -->
 > **Rozsah tohoto dokumentu.** Tato výzkumná stopa opravuje stávající záplatu
-> bez změny jakéhokoli kanonického axiomu, definice, master rovnice, tvrzení
+> bez změny jakéhokoli kanonického axiomu, definice, hlavní rovnice, tvrzení
 > nebo statusu mezery. Výslovně respektuje
 > `../action_selection/holomorphy_factor_selection_no_go.en.md`,
 > `../action_selection/holomorphy_factor_selection_no_go.cs.md`,
@@ -508,7 +508,7 @@ e^{-sn^2/R_\psi^2}
 e^{-s(-n)^2/R_\psi^2}.
 $$
 
-Samotný theta / heat Gaussian tedy znaménko větve **nevybírá**.
+Samotný theta-heat Gaussián tedy znaménko větve **nevybírá**.
 
 <!-- BILINGUAL-UNIT: psi-branch.dirac-square -->
 ### 5.6 Exaktní plochý čtverec a nekřivá výhrada
@@ -533,7 +533,7 @@ $$
 To je jediný smysl, v němž se zde tvrdí exaktní algebraický / spektrální
 můstek.
 
-Pro obecnou křivou, gauge nebo \(\Theta\)-dependent situaci obsahuje čtverec
+Pro obecnou křivou, kalibrační nebo na \(\Theta\) závislou situaci obsahuje čtverec
 další smíšené členy, které musejí zůstat explicitní:
 
 1. komutátory konexí;
@@ -542,7 +542,7 @@ další smíšené členy, které musejí zůstat explicitní:
 4. členy křivosti levé/pravé strany;
 5. členy řetězového pravidla z kompozitní geometrie.
 
-Každé tvrzení o heat kernelu patří odpovídajícímu nezápornému eukleidovskému
+Každé tvrzení o tepelném jádru patří odpovídajícímu nezápornému eukleidovskému
 čtverci, nikoli automaticky Lorentzovskému operátoru.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec6 -->
@@ -587,7 +587,7 @@ Každá položka vyžaduje nezávislé odvození z kanonické UBT.
 
 Navíc, podle `../canonical_relation_generalized_dirac/action_origin_obstruction.tex`, nedegenerovaná kvadratická akce prvních derivací $\Theta$ vede k rovnici Eulera–Lagrangeovy druhého řádu a nemůže být proto přímo totožná se zobecněnou Diracovou rovnicí prvního řádu. Jde o no-go pouze pro dokumentovanou nedegenerovanou třídu akcí, nikoli pro všechny myslitelné UBT akce. Možné uzavření vyžaduje odvozenou degeneraci, přesnou faktorizaci plus selekční teorém, nebo ekvivalentní vazbový variační princip. Lemma s analytickým pokračováním může za svých předpokladů vybrat větev již faktorizované rovnice, ale samo neodvozuje faktorizaci, Diracův operátor ani jeho akci.
 
-Tento $\psi$-track neodstraňuje překážku odvození akce (action-origin).
+Tato výzkumná stopa pro $\psi$ neodstraňuje překážku původu rovnice v akci.
 
 <!-- BILINGUAL-UNIT: psi-branch.sec7 -->
 ## 7. Multivesmírná interpretace
@@ -681,7 +681,7 @@ $$
 \frac{N_B(1-6\xi)I_1}{12\pi}.
 $$
 
-Jeho podmínky jsou: specifikovaný kalibračně fixovaný Hessián Laplaceova typu (gauge-fixed Laplace-type Hessian), počet reálných bosonických módů $N_B$, vazební konstanta $\xi$, identifikace mezní škály (cutoff/scale identification), regulátor a míra s vazbami (constrained measure).
+Jeho podmínkami jsou specifikovaný kalibračně fixovaný Hessián Laplaceova typu, počet reálných bosonických módů $N_B$, vazební konstanta $\xi$, identifikace mezní škály, regulátor a vázaná integrační míra.
 
 <!-- BILINGUAL-UNIT: psi-branch.gr-not-derived -->
 ### 9.3 Co odvozeno není
@@ -790,5 +790,5 @@ a plný nekonečněrozměrný argument se spektrální mírou.
 | S9: Vztah k GR | KINEMATICS ESTABLISHED; GR-RECOVERY CLOSED CONDITIONALLY; FUNDAMENTAL / UV / GLOBAL DERIVATION OPEN |
 | S11: Stav formální verifikace | LEAN-PENDING |
 
-Touto stopou se nemění žádný kanonický axiom, definice, master rovnice, tvrzení
+Touto stopou se nemění žádný kanonický axiom, definice, hlavní rovnice, tvrzení
 ani status mezery.
