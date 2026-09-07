@@ -1,0 +1,240 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% N_eff Derivation from UBT Action S[Θ] — Step 1: Mode Decomposition
+% Track: CORE — α derivation / B-coefficient
+% Date: 2026-03-05
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\R}{\mathbb{R}}
+  \renewcommand{\H}{\mathbb{H}}
+  \newcommand{\B}{\mathbb{B}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+  \newcommand{\re}{\mathrm{Re}}
+  \newcommand{\Sc}{\mathrm{Sc}}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{definition}[theorem]{Definition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{N$_{\mathrm{eff}}$ Derivation from UBT Action $S[\Theta]$\\
+    \large Step 1: Mode Decomposition of $\Theta$ Under $U(1)_{\mathrm{EM}}$}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-05}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Step 1: Mode Decomposition of $\Theta$ Under $U(1)_{\mathrm{EM}}$}
+\label{sec:step1_mode_decomposition}
+
+\subsection{Goal}
+
+Determine how many \textbf{independent charged complex degrees of freedom} the field
+$\Theta(x,\tau) \in \C \otimes \H$ possesses under the electromagnetic $U(1)_{\mathrm{EM}}$
+gauge symmetry. This count, $N_{\mathrm{charged}}$, enters directly into the one-loop
+vacuum polarization coefficient:
+\begin{equation}
+  B_0 = \frac{2\pi\,N_{\mathrm{charged}}}{3}.
+  \label{eq:B0_formula}
+\end{equation}
+
+\subsection{Algebraic Structure of $\Theta$}
+
+\begin{definition}[Biquaternion Field]
+The biquaternionic field is
+\begin{equation}
+  \Theta(x,\tau) \in \C \otimes_{\R} \H,
+  \label{eq:Theta_def}
+\end{equation}
+where $\H$ is the quaternion algebra with basis $\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\}$
+satisfying $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{i}\mathbf{j}\mathbf{k} = -1$,
+and $\C$ provides the complex structure.
+\end{definition}
+
+\begin{proposition}[Matrix Representation]
+There is a canonical algebra isomorphism
+\begin{equation}
+  \phi: \C \otimes_{\R} \H \xrightarrow{\;\sim\;} \mathrm{Mat}(2,\C),
+  \label{eq:CxH_isom}
+\end{equation}
+given explicitly by
+\begin{equation}
+  \phi(z_0 + z_1\mathbf{i} + z_2\mathbf{j} + z_3\mathbf{k})
+  = \begin{pmatrix} z_0 + iz_1 & z_2 + iz_3 \\ -z_2 + iz_3 & z_0 - iz_1 \end{pmatrix},
+  \label{eq:phi_explicit}
+\end{equation}
+where $z_\alpha \in \C$ and $i = \sqrt{-1}$ is the complex unit.
+\end{proposition}
+
+Under this isomorphism, the field $\Theta$ is parametrised by \textbf{four independent complex
+scalars} $z_0, z_1, z_2, z_3 \in \C$, for a total of $4$ complex (or $8$ real) degrees of
+freedom.
+
+\subsection{Basis Adapted to Charge: $\Theta$ in the $E_a$ Basis}
+
+Write
+\begin{equation}
+  \Theta = z_0 E_0 + z_1 E_1 + z_2 E_2 + z_3 E_3, \qquad z_a \in \C,
+  \label{eq:Theta_basis}
+\end{equation}
+where the basis elements of $\C \otimes \H$ are
+\begin{equation}
+  E_0 = 1, \quad E_1 = \mathbf{i}, \quad E_2 = \mathbf{j}, \quad E_3 = \mathbf{k}.
+  \label{eq:basis_elements}
+\end{equation}
+
+\subsection{$U(1)_{\mathrm{EM}}$ Action on $\Theta$}
+
+From the canonical QED action on $\Theta$ (see \texttt{canonical/interactions/qed.tex}),
+the electromagnetic gauge transformation is:
+\begin{equation}
+  \Theta(x) \;\to\; e^{i\alpha(x)}\,\Theta(x),
+  \label{eq:U1_action}
+\end{equation}
+where $e^{i\alpha(x)} \in U(1)$ acts by \textbf{left multiplication}. In $\C$, the phase factor
+$e^{i\alpha}$ is a central element, so left and right multiplication coincide.
+
+\begin{lemma}[Transformation of Components]
+Under $\Theta \to e^{i\alpha}\Theta$, each component $z_a$ transforms as:
+\begin{equation}
+  z_a \;\to\; e^{i\alpha}\,z_a, \qquad a = 0,1,2,3.
+  \label{eq:component_transform}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Using $e^{i\alpha} \in \C \subset \C \otimes \H$ and the linearity of the $E_a$ basis:
+\begin{align}
+  e^{i\alpha}\,\Theta
+  &= e^{i\alpha}(z_0 E_0 + z_1 E_1 + z_2 E_2 + z_3 E_3) \notag\\
+  &= (e^{i\alpha} z_0) E_0 + (e^{i\alpha} z_1) E_1
+   + (e^{i\alpha} z_2) E_2 + (e^{i\alpha} z_3) E_3,
+\end{align}
+since $e^{i\alpha} \in \C$ commutes with every quaternion basis element.
+\end{proof}
+
+\begin{corollary}[All Components are Charged]
+Every component $z_a$ ($a = 0,1,2,3$) transforms non-trivially under $U(1)_{\mathrm{EM}}$
+with charge $+1$. None is invariant (neutral).
+\end{corollary}
+
+\begin{remark}[Contrast with Right-Multiplication]
+If the gauge action were $\Theta \to \Theta\,e^{i\alpha}$ (right multiplication), the same
+argument applies because $e^{i\alpha} \in \C$ is central.  The charge structure is unchanged.
+\end{remark}
+
+\subsection{Gauge-Fixing and Physical Degrees of Freedom}
+
+The $U(1)_{\mathrm{EM}}$ gauge symmetry~\eqref{eq:U1_action} allows one to eliminate one
+real degree of freedom (the overall phase of $\Theta$) by Lorenz/Unitary gauge.
+However, this removes a \textbf{gauge d.o.f.}, not a charged propagating mode.
+
+In the background field method used to compute the vacuum polarization, we expand
+\begin{equation}
+  \Theta = \bar\Theta + \delta\Theta
+\end{equation}
+and integrate over quantum fluctuations $\delta\Theta$.  Each component $z_a$ of $\delta\Theta$
+is an independent complex fluctuation with charge $+1$, contributing independently to the
+one-loop photon self-energy.
+
+\paragraph{Constraint analysis.}
+The kinetic action $S_{\mathrm{kin}}[\Theta] = \int d^4x\,d\psi\;\Sc[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$
+(where $\Sc[\cdot]$ extracts the scalar part of the biquaternion product) is a sum of four
+independent charged scalar kinetic terms after expanding in the $E_a$ basis:
+\begin{equation}
+  S_{\mathrm{kin}} = \int d^4x\,d\psi \;\sum_{a=0}^{3}
+  \overline{(D_\mu z_a)}\,(D^\mu z_a) + (\text{cross terms from } \Sc),
+  \label{eq:Skin_expanded}
+\end{equation}
+where $D_\mu z_a = \partial_\mu z_a + ie A_\mu z_a$.
+
+The scalar extraction $\Sc[\cdot]$ projects onto the real (quaternion-scalar) part of the
+biquaternion product. For $\Theta = \sum_a z_a E_a$:
+\begin{equation}
+  \Sc[\Theta^\dagger \Theta]
+  = \Sc\!\left[\sum_{a,b} \bar z_a z_b \,E_a^\dagger E_b\right]
+  = \sum_a |z_a|^2,
+\end{equation}
+since $\Sc[E_a^\dagger E_b] = \delta_{ab}$ for the orthonormal basis $\{E_a\}$.
+Therefore the cross terms vanish and the kinetic action is exactly a sum of four independent
+complex scalar kinetic terms.
+
+\subsection{Result: $N_{\mathrm{charged}}$ from $\C \otimes \H$}
+
+\begin{theorem}[Mode Count from $\C \otimes \H$]
+\label{thm:Ncharged_CxH}
+The field $\Theta \in \C \otimes \H$ decomposes, under the kinetic action $S_{\mathrm{kin}}$
+and the $U(1)_{\mathrm{EM}}$ transformation $\Theta \to e^{i\alpha}\Theta$, into
+\begin{equation}
+  \boxed{N_{\mathrm{charged}}^{(\C\otimes\H)} = 4}
+\end{equation}
+independent propagating complex charged scalar modes, each with charge $+1$.
+No modes are neutral.
+\end{theorem}
+
+\begin{proof}
+By the basis expansion~\eqref{eq:Theta_basis}, $\Theta$ has 4 complex d.o.f.\ $z_0,\ldots,z_3$.
+By Lemma~1, each transforms with charge $+1$; none is neutral.
+The action is diagonal in this basis (no cross terms in $\Sc$), so each $z_a$ propagates
+independently.  Hence $N_{\mathrm{charged}} = 4$.
+\end{proof}
+
+\subsection{QED Limit Check}
+
+In the QED limit, $\Theta$ reduces to a single complex scalar field $\phi \equiv z_0$
+(only the $E_0 = 1$ component is active; the quaternionic components are frozen).
+Then $N_{\mathrm{charged}} = 1$ and
+\begin{equation}
+  B_0^{\mathrm{QED}} = \frac{2\pi \cdot 1}{3} = \frac{2\pi}{3}, \qquad \checkmark
+  \label{eq:qed_limit_check}
+\end{equation}
+which is the standard QED one-loop result.
+
+\subsection{Summary of Step 1}
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+Quantity & Value \\
+\midrule
+Algebra & $\C \otimes \H \cong \mathrm{Mat}(2,\C)$ \\
+Total complex d.o.f.\ of $\Theta$ & 4 \\
+Neutral modes & 0 \\
+Charged modes (charge $+1$) & 4 \\
+$N_{\mathrm{charged}}^{(\C\otimes\H)}$ & \textbf{4} \\
+\midrule
+$B_0^{(\C\otimes\H)}$ & $2\pi \cdot 4/3 = 8\pi/3 \approx 8.38$ \\
+$B_0^{\mathrm{SM}} = B_0(N_{\mathrm{eff}}=12)$ & $8\pi \approx 25.13$ \\
+\midrule
+QED limit ($N_{\mathrm{charged}}=1$) & $B_0 = 2\pi/3$ \checkmark \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{Conclusion.}
+$\C \otimes \H$ alone provides $N_{\mathrm{charged}} = 4$ independent charged modes.
+The value $N_{\mathrm{eff}} = 12$ required for $B_0 = 8\pi \approx 25.13$ cannot be
+obtained from $\C \otimes \H$ alone.  The missing factor of 3 is the QCD color multiplicity,
+which requires the octonionic extension $\C \otimes \mathbb{O}$ (Track~B).
+This is derived explicitly in Step~3.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

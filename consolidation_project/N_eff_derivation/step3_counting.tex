@@ -1,0 +1,279 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% N_eff Derivation from UBT Action S[Θ] — Step 3: Counting N_charged from Algebra
+% Track: CORE — α derivation / B-coefficient
+% Date: 2026-03-05
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\R}{\mathbb{R}}
+  \renewcommand{\H}{\mathbb{H}}
+  \renewcommand{\O}{\mathbb{O}}
+  \newcommand{\B}{\mathbb{B}}
+  \newcommand{\su}{\mathfrak{su}}
+  \newcommand{\uu}{\mathfrak{u}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+  \newcommand{\Sc}{\mathrm{Sc}}
+  \newcommand{\Aut}{\mathrm{Aut}}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{definition}[theorem]{Definition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{N$_{\mathrm{eff}}$ Derivation from UBT Action $S[\Theta]$\\
+    \large Step 3: Counting $N_{\mathrm{charged}}$ from the Algebra of $\C\otimes\H$}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-05}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Step 3: Counting $N_{\mathrm{charged}}$ from the Algebra}
+\label{sec:step3_counting}
+
+\subsection{Goal}
+
+Steps~1--2 established that $N_{\mathrm{eff}} = N_{\mathrm{charged}}$ and that
+$\C \otimes \H$ has $N_{\mathrm{charged}}^{(\C\otimes\H)} = 4$.
+Step~3 determines:
+\begin{enumerate}
+  \item[(A)] What $N_{\mathrm{eff}}$ value is derivable from $\C\otimes\H$ alone.
+  \item[(B)] What additional structure is needed to reach $N_{\mathrm{eff}} = 12$.
+  \item[(C)] Whether the existing ``$3 \times 2 \times 2 = 12$'' counting is derivable
+    from the algebra or remains semi-empirical.
+\end{enumerate}
+
+\subsection{Approach A: Direct Counting from $\C \otimes \H$}
+
+\subsubsection{Degrees of Freedom Count}
+
+From Step~1 (Theorem~\ref{thm:Ncharged_CxH} of \texttt{step1\_mode\_decomposition.tex}):
+
+\begin{center}
+\begin{tabular}{lcc}
+  \toprule
+  Source & Complex d.o.f.\ & Real d.o.f. \\
+  \midrule
+  $\Theta \in \C\otimes\H$ (total) & 4 & 8 \\
+  Gauge d.o.f.\ (removed by $U(1)$ fixing) & $\frac{1}{2}$ & 1 \\
+  Physical propagating modes & $\frac{7}{2}$ & 7 \\
+  \midrule
+  Charged modes (charged under $U(1)_{\mathrm{EM}}$) & 4 & 8 \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[Gauge Fixing and Charged Count]
+In the background field method used for the vacuum polarization, we do not gauge-fix the
+\emph{matter} field $\Theta$; gauge fixing is applied to the \emph{photon} $A_\mu$.
+Therefore the full 4 complex charged scalars $z_0, z_1, z_2, z_3$ contribute to the loop,
+and $N_{\mathrm{charged}} = 4$.
+\end{remark}
+
+\subsubsection{Result from $\C\otimes\H$ Alone}
+
+\begin{proposition}[$N_{\mathrm{eff}}$ from $\C\otimes\H$]
+\label{prop:Neff_CxH}
+From the associative algebra $\C\otimes\H$ alone, with the electromagnetic $U(1)_{\mathrm{EM}}$
+action $\Theta \to e^{i\alpha}\Theta$:
+\begin{equation}
+  N_{\mathrm{eff}}^{(\C\otimes\H)} = 4.
+  \label{eq:Neff_CxH}
+\end{equation}
+The corresponding one-loop coefficient is:
+\begin{equation}
+  B_0^{(\C\otimes\H)} = \frac{2\pi \cdot 4}{3} = \frac{8\pi}{3} \approx 8.38.
+  \label{eq:B0_CxH}
+\end{equation}
+\end{proposition}
+
+\subsection{Approach B: Representation Theory of $\C\otimes\H$ Under $U(1)_{\mathrm{EM}}$}
+
+\subsubsection{Decomposition as a $U(1)_{\mathrm{EM}}$ Module}
+
+As a module over $U(1)_{\mathrm{EM}}$, the algebra $\C\otimes\H$ decomposes into irreducible
+representations (irreps) labelled by charge $q \in \Z$:
+\begin{equation}
+  \C\otimes\H = \bigoplus_{q} V_q, \quad \dim V_q = \text{multiplicity of charge } q.
+\end{equation}
+
+Since $U(1)_{\mathrm{EM}}$ acts as $\Theta \to e^{i\alpha}\Theta$ (left multiplication by a
+central element of $\C$), every component of $\Theta$ carries charge $q = +1$.
+There are no components with $q = 0$ or $q \neq 1$.
+
+Therefore:
+\begin{equation}
+  \C\otimes\H = V_{+1}^{(4)}, \quad \dim V_{+1} = 4.
+\end{equation}
+
+\subsubsection{Weighted Sum}
+
+The vacuum polarization is proportional to $\sum_q \dim(V_q)\cdot q^2$:
+\begin{equation}
+  N_{\mathrm{eff}} = \sum_q \dim(V_q)\cdot q^2 = 4 \cdot 1^2 = 4.
+  \label{eq:Neff_rep_theory}
+\end{equation}
+
+This confirms Proposition~\ref{prop:Neff_CxH}: $N_{\mathrm{eff}}^{(\C\otimes\H)} = 4$.
+
+\subsection{The Gap: From $N_{\mathrm{eff}} = 4$ to $N_{\mathrm{eff}} = 12$}
+
+The required value is $N_{\mathrm{eff}} = 12$, giving $B_0 = 8\pi \approx 25.13$.
+The factor of 3 missing from $\C\otimes\H$ is the QCD \textbf{color multiplicity}.
+
+\subsubsection{Gauge Group Content by Algebra}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Algebra & Gauge group & $\dim$ (gauge bosons) \\
+  \midrule
+  $\C\otimes\H$ (associative sector) & $SU(2)_L \times U(1)_Y$ & $3 + 1 = 4$ \\
+  $\C\otimes\O$ (octonionic extension, Track~B) & $SU(3)_c$ (additional) & $8$ \\
+  Full ($\C\otimes\H$ + Track~B) & $SU(3)_c \times SU(2)_L \times U(1)_Y$ & $8+3+1 = 12$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The SM gauge group has total dimension 12, matching the 12 gauge bosons
+(8 gluons $+$ 3 weak bosons $+$ 1 photon).
+
+\subsubsection{Color Multiplicity Factor}
+
+In QCD with $N_c = 3$ colors, quark fields transform in the fundamental representation of
+$SU(3)_c$. When $\Theta$ carries color (i.e., is a color triplet), each of the 4
+electroweak modes acquires a color index $c \in \{r, g, b\}$, giving:
+\begin{equation}
+  N_{\mathrm{charged}}^{(\mathrm{full})}
+  = N_{\mathrm{charged}}^{(\C\otimes\H)} \times N_c
+  = 4 \times 3 = 12.
+  \label{eq:Ncharged_full}
+\end{equation}
+
+\subsubsection{Requirement for Color: Octonionic Extension}
+
+From Appendix~E2 (\texttt{appendix\_E2\_SM\_geometry.tex}), $SU(3)_c$ arises via embedding
+$\C\otimes\H \hookrightarrow \C\otimes\O$ (the \textbf{Octonionic Completion Hypothesis},
+Track~B). It does \emph{not} follow from $\C\otimes\H$ alone:
+\begin{itemize}
+  \item $\Aut(\H) = SO(3) \cong SU(2)/\Z_2$ — no color.
+  \item $\Aut(\O) = G_2 \supset SU(3)$ — provides $SU(3)_c$.
+\end{itemize}
+
+\begin{theorem}[$N_{\mathrm{eff}} = 12$ Requires Track~B]
+\label{thm:Neff12_requires_TrackB}
+The value $N_{\mathrm{eff}} = 12$ cannot be derived from $\C\otimes\H$ alone.
+It requires the octonionic extension $\C\otimes\O$ (Track~B, Octonionic Completion
+Hypothesis), which provides the $SU(3)_c$ color factor of 3:
+\begin{equation}
+  \boxed{N_{\mathrm{eff}} = 12
+    \;\Longleftrightarrow\;
+    N_{\mathrm{charged}}^{(\C\otimes\H)} \times N_c = 4 \times 3,
+    \;\text{ with } N_c = 3 \text{ from } SU(3)_c \subset \Aut(\C\otimes\O).}
+\end{equation}
+\end{theorem}
+
+\subsection{Reinterpretation of the $3 \times 2 \times 2 = 12$ Counting}
+
+The existing semi-empirical counting $N_{\mathrm{eff}} = N_{\mathrm{phases}} \times
+N_{\mathrm{helicity}} \times N_{\mathrm{charge}} = 3 \times 2 \times 2 = 12$ from
+\texttt{STATUS\_ALPHA.md} can now be identified with the algebraic structure:
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Factor & Semi-empirical label & Algebraic origin \\
+  \midrule
+  3 & $N_{\mathrm{phases}}$ (3 quaternion imaginary directions $\mathbf{i},\mathbf{j},\mathbf{k}$)
+    & Color $N_c = 3$ from $SU(3)_c \subset \Aut(\C\otimes\O)$ (Track~B) \\
+  2 & $N_{\mathrm{helicity}}$ & 2 complex d.o.f.\ per electroweak doublet \\
+  2 & $N_{\mathrm{charge}}$ & Weak doublet $(W^+, W^-)$ or particle/antiparticle \\
+  \midrule
+  12 & $N_{\mathrm{eff}}$ & $N_c \times \dim_{\C}(\text{EW representation})$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[Semi-empirical to Algebraic]
+The ``$3 \times 2 \times 2$'' formula coincidentally produces the correct answer
+$N_{\mathrm{eff}} = 12$, but the identification of its factors with algebraic structure is:
+\begin{itemize}
+  \item The factor 3 corresponds to the color multiplicity from $SU(3)_c$, which requires
+    Track~B octonionic extension.
+  \item The factor $2 \times 2 = 4$ corresponds to the 4 independent complex charged modes of
+    $\Theta \in \C\otimes\H$ (Step~1 result).
+  \item The counting $3 \times 4 = 12$ is therefore \emph{not} independent of the SM: the
+    factor 3 (= $N_c$) is an input from QCD, even if the factor 4 is derived from $\C\otimes\H$.
+\end{itemize}
+\end{remark}
+
+\subsection{Status Summary}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Claim & Status & Notes \\
+  \midrule
+  $N_{\mathrm{eff}} = 4$ from $\C\otimes\H$ & \textbf{Proved} (Steps 1--3)
+    & Associative sector only \\
+  $N_{\mathrm{eff}} = 12$ from $\C\otimes\H$ alone & \textbf{Not derivable}
+    & Needs Track~B \\
+  $N_{\mathrm{eff}} = 12$ from $\C\otimes\H$ + Track~B & \textbf{Conditionally proved}
+    & Requires $SU(3)_c$ via $\C\otimes\O$ \\
+  $N_{\mathrm{eff}} = 3\times 2\times 2$ (existing) & \textbf{Semi-empirical}
+    & Factor 3 = $N_c$ from SM \\
+  $B_0 = 2\pi\cdot 4/3 \approx 8.38$ & \textbf{Derived} from $\C\otimes\H$
+    & Zero free parameters \\
+  $B_0 = 2\pi\cdot 12/3 = 8\pi \approx 25.13$ & \textbf{Conditional}
+    & Needs Track~B for factor 3 \\
+  QED limit $N_{\mathrm{eff}} \to 1$, $B_0 \to 2\pi/3$ & \checkmark holds
+    & Throughout \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{QED Limit Check}
+
+In the QED limit ($\Theta$ = single complex scalar, no color, no $SU(2)$):
+$N_{\mathrm{eff}} = 1$ and $B_0 = 2\pi/3$. \checkmark
+
+With $\C\otimes\H$ and $U(1)_{\mathrm{EM}}$ only (no color):
+$N_{\mathrm{eff}} = 4$ and $B_0 = 8\pi/3$. This is the electroweak-sector result.
+
+With $\C\otimes\O$ (Track~B, full SM): $N_{\mathrm{eff}} = 12$ and $B_0 = 8\pi$. \checkmark
+
+\subsection{Conclusion}
+
+\begin{center}
+\textbf{The ``Likely Case'' of the problem statement holds:}\\[4pt]
+\begin{minipage}{0.88\textwidth}
+$\C\otimes\H$ alone gives $N_{\mathrm{eff}} = 4$ (electroweak only).
+The value $N_{\mathrm{eff}} = 12$ requires the QCD color factor $N_c = 3$,
+which enters UBT through the Octonionic Completion Hypothesis (Track~B,
+$\C\otimes\O$ extension).
+
+$B_0 = 25.1$ is a \emph{conditional} zero-free-parameter result:
+conditional on Track~B establishing $SU(3)_c$ in UBT.
+The semi-empirical counting ``$3 \times 2 \times 2$'' is replaced by
+the algebraic statement $N_{\mathrm{eff}} = N_c \times N_{\mathrm{EW}} = 3 \times 4 = 12$.
+\end{minipage}
+\end{center}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
