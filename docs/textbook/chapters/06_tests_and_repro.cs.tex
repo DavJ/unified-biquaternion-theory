@@ -14,15 +14,16 @@
 Živou ověřovací vrstvou je aktivní repozitář, nikoli \texttt{ARCHIVE/}.
 Důležité vstupní body jsou:
 \begin{itemize}
- \item \texttt{tests/} pro vědecké, provenance a architektonické regresní testy;
+ \item \texttt{tests/} pro vědecké, provenienční a architektonické regresní testy;
  \item \texttt{tools/apply\_provenance\_headers.py} pro značení AI provenance;
  \item \texttt{tools/latex\_audit.py} pro izolované překlady LaTeX dokumentů;
- \item \texttt{tools/check\_alpha\_claims.py} a aktivní alpha testy pro
-       kontrolu tvrzení citlivých na aktuální status;
- \item \texttt{research\_tracks/theta\_spectral/theta\_zeta\_probe.py} pro
-       numerické kontroly theta/Mellin/Gaussovy větve;
+ \item \texttt{tools/check\_alpha\_claims.py} a aktivní testy programu alfa pro
+       kontrolu tvrzení citlivých na aktuální stav;
+ \item numerické kontroly větve theta/Mellin/Gauss zajišťuje\\
+       \texttt{research\_tracks/theta\_spectral/}\\
+       \texttt{theta\_zeta\_probe.py};
  \item \texttt{docs/DERIVATION\_VERIFICATION\_POLICY.md} jako závazná pravidla
-       kontroly odvození v paperech.
+       kontroly odvození v článcích.
 \end{itemize}
 
 \section{Čtyři různé druhy kontroly}
@@ -42,19 +43,19 @@ hotová nebo v daném prostředí Lean není dostupný, musí být stav výslovn
 označen jako \texttt{LEAN-PENDING}; nesmí se napsat, že tvrzení je ``formálně
 dokázáno'' jen proto, že agent vygeneroval Lean syntaxi.
 
-Lean nenahrazuje ostatní kontroly. U hlavního výsledku paperu je žádoucí druhý,
+Lean nenahrazuje ostatní kontroly. U hlavního výsledku článku je žádoucí druhý,
 nezávislý kanál: například SymPy/Maxima pro symbolickou algebru a
 NumPy/Octave/MATLAB/Mathcad pro numerickou reprodukci. Dvě implementace by měly
 pokud možno používat odlišnou formulaci, aby pouze neopakovaly stejnou chybu.
 
-\section{Povinný záznam verifikace paperu}
-Každý nový nebo podstatně změněný paper má obsahovat sekci\emph{Verification}
+\section{Povinný záznam ověření článku}
+Každý nový nebo podstatně změněný článek má obsahovat oddíl \emph{Ověření}
 nebo odkaz na doprovodný záznam. Pro hlavní tvrzení se zapisuje alespoň:
 \begin{itemize}
  \item identifikátor tvrzení, rovnice nebo lemmatu;
- \item analytický status a předpoklady;
+ \item analytický stav a předpoklady;
  \item použitý nástroj a jeho verze;
- \item cesta k reprodukčnímu skriptu, testu, worksheetu nebo \texttt{.lean}
+ \item cesta k reprodukčnímu skriptu, testu, pracovnímu listu nebo \texttt{.lean}
        souboru;
  \item výsledek a případná tolerance;
  \item přesně co kontrola ověřuje a co naopak neověřuje;
@@ -62,30 +63,32 @@ nebo odkaz na doprovodný záznam. Pro hlavní tvrzení se zapisuje alespoň:
        \texttt{LEAN-PENDING} nebo \texttt{NOT-APPLICABLE}.
 \end{itemize}
 
-\section{CI učebnice}
-Vyhrazený workflow je \texttt{.github/workflows/textbook.yml}. Spouští se při
-relevantních pushích a pull requestech a lze jej spustit také ručně. Nejprve
+\section{Průběžná integrace učebnice}
+Vyhrazený pracovní postup je \texttt{.github/workflows/textbook.yml}. Spouští
+se při relevantních odesláních změn a požadavcích na sloučení a lze jej spustit
+také ručně. Nejprve
 kontroluje shodu jazykových verzí a poté používá
 \texttt{tools/latex\_audit.py --strict}. Chyba kteréhokoli samostatného
-dokumentu učebnice proto způsobí selhání workflow.
+dokumentu učebnice proto způsobí selhání pracovního postupu.
 
-Po strict auditu workflow volá stejný Makefile jako při lokálním sestavení a
+Po přísném auditu pracovní postup volá stejný Makefile jako při lokálním sestavení a
 vytvoří přesně dvě oficiální PDF v \texttt{build/textbook/public/}:
 \begin{itemize}
  \item \texttt{UBT\_Textbook\_EN.pdf} --- anglická edice;
  \item \texttt{UBT\_Textbook\_CS.pdf} --- česká edice.
 \end{itemize}
 Každé PDF se nahraje jako samostatně pojmenovaný GitHub Actions artefakt.
-E-mailová distribuce přikládá obě edice a je povolena pouze po úspěšném pushi
-do \texttt{master}; pull request ani ruční spuštění e-mail nikdy neodesílají.
+E-mailová distribuce přikládá obě edice a je povolena pouze po úspěšném
+odeslání změn do \texttt{master}; požadavek na sloučení ani ruční spuštění
+e-mail nikdy neodesílají.
 
 Pro lokální publikovanou kopii lze spustit
 \begin{verbatim}
 make -C docs/textbook publish
 \end{verbatim}
 což zkopíruje stejnou dvojici do \texttt{docs/pdfs/}. Vygenerovaná PDF jsou
-pouze publikační výstupy; vědecký status zůstává řízen zdrojovým textem a
-provenance/status registrem.
+pouze publikační výstupy; vědecký stav zůstává řízen zdrojovým textem a
+registrem provenience a stavu.
 
 \section{Minimální lokální kontrola před textbook patchem}
 Doporučená sekvence je:
@@ -94,7 +97,7 @@ python tools/apply_provenance_headers.py --apply
 python tools/apply_provenance_headers.py --check
 python tools/latex_audit.py --include 'docs/textbook/*.tex' \
   --include 'docs/textbook/**/*.tex' --jobs 2 --timeout 240 --strict
-provést ověření dokumentů/učebnic -C
+make -C docs/textbook verify
 \end{verbatim}
-Úspěšný build potvrzuje syntaktické a reprodukční vlastnosti. Nezvyšuje sám od
-sebe Tier-C tvrzení na dokázaný výsledek UBT.
+Úspěšné sestavení potvrzuje syntaktické a reprodukční vlastnosti. Nezvyšuje samo od
+sebe tvrzení úrovně C na dokázaný výsledek UBT.

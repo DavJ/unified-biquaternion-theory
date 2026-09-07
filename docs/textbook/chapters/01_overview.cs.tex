@@ -12,126 +12,126 @@
 \label{ch:overview}
 
 \section{K čemu tato kapitola slouží}
-Unified Biquaternion Theory (UBT) se ptá, zda geometrie prostoročasu a vnitřní
-Struktura pole může být zakódována do jednoho komplexního hlavního pole s kvaternionovou hodnotou,
-spíše než představeny jako nesouvisející základní objekty.  Aktivní spouštění
-zápis je
+Unified Biquaternion Theory (UBT) zkoumá, zda lze geometrii prostoročasu a
+vnitřní strukturu polí zakódovat do jediného hlavního pole s hodnotami v
+komplexifikovaných kvaternionech, místo aby byly zavedeny jako nesouvisející
+základní objekty. Výchozí zápis současné teorie je
 \[
  \Theta(q,\tau)\in\mathbb B=\mathbb C\otimes\mathbb H,
  \qquad \tau=t+i\psi .
 \]
 Zápis je kompaktní, ale skrývá několik logicky odlišných otázek:
-co je definováno, co je kinematicky reprezentovatelné, co vyplývá z an
-akce a co je pouze výzkumná hypotéza.  Učebnice je uchovává
-úrovně jsou v celém rozsahu odděleny.
+co je definováno, co lze kinematicky reprezentovat, co vyplývá z akce a co je
+pouze výzkumnou hypotézou. Učebnice tyto úrovně důsledně odděluje.
 
 \section{Současný lokální geometrický řetězec}
-Čistá místní větev GR začíná od kovariančního derivátu singlu
-pole,
+Čistá lokální větev GR vychází z kovariantní derivace jediného pole,
 \[
  E_\mu:=\mathcal N_0^{-1/2}D_\mu\Theta .
 \]
-Napište na skutečný Lorentzův plátek
+Na reálném Lorentzově řezu píšeme
 \[
  E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
  \qquad e_\mu{}^a\in\mathbb R.
 \]
-Kvaternionová konjugace je označena $\sharp$.  Symetrický produkt je
-centrální a definuje metriku,
+Kvaternionovou konjugaci značíme $\sharp$. Symetrizovaný součin je centrální
+a definuje metriku:
 \[
  \boxed{
  \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
  =g_{\mu\nu}\mathbf1 .}
 \]
-Minimální místní metrická konstrukce tedy nevyžaduje pozorovatele
-projekce, průměr z kompaktních vláken nebo mapa pro vkládání.  Toto nahrazuje an
-starší architektonický snímek dochovaný v historickém archivu.
+Minimální lokální konstrukce metriky tedy nevyžaduje projekci na pozorovatele,
+průměrování přes kompaktní vlákno ani vkládací mapu. Nahrazuje tím starší
+architektonický obraz dochovaný v historickém archivu.
 
-Stejná první derivace se chová jako tetráda.  Pro nedegenerovanou tetrádu
-mapa $e_\mu{}^a\mapsto g_{\mu\nu}$ má známé počítání
+Tatáž první derivace pole se chová jako tetráda. Pro nedegenerovanou tetrádu
+má zobrazení $e_\mu{}^a\mapsto g_{\mu\nu}$ známý počet nezávislých složek
 \[
  16-6=10,
 \]
-protože šest lokálních Lorentzových změn ponechává deset metrických komponent neměnných.
-To řeší problém místního pořadí na kinematické úrovni.
+protože šest lokálních Lorentzových transformací ponechává deset složek
+metriky beze změny. Tím se na kinematické úrovni řeší lokální problém hodnosti.
 
 \section{Konexe, křivost a co je stále dynamické}
-Místní Lorentz/bikvaternionické spojení vstupuje do $D_\mu$.  V nekrouceném GR
-Odbočte kompatibilní spinové připojení je Levi--Civita spinové připojení
-počítáno z tetrády.  S kroucením,
+Lokální Lorentzova neboli bikvaternionová konexe vstupuje do $D_\mu$. Ve větvi
+GR bez torze je kompatibilní spinovou konexí Leviho--Civitova spinová konexe
+vypočtená z tetrády. Je-li torze nenulová, platí
 \[
  \omega=\mathring\omega(e)+K(T),
 \]
-takže zadání tetrády a torze určuje metricky kompatibilní
-spojení.  Zakřivení patří ke komutátoru kovariančních derivátů,
-ne na algebraický komutátor nohou tetrády:
+takže tetráda spolu s torzí určují metricky kompatibilní konexi. Křivost je
+obsažena v komutátoru kovariantních derivací, nikoli v algebraickém komutátoru
+vektorů tetrády:
 \[
- [D_\mu,D_\nu]\quad\hbox{contains curvature.}
+ \mathcal R_{\mu\nu}:=[D_\mu,D_\nu].
 \]
 
-Současná GR práce uzavírá důležité otázky místní reprezentativnosti, ale je
-ještě neodvozuje veškerou Einsteinovu dynamiku z původní mistrovské akce UBT.
-Zejména výběr akce, omezení fyzického kroucení, plný
-poruchový můstek a globální pokračování zůstávají stavově řízené otevřené
-problémy.  Směrodatné znění je zachováno v
+Současná práce na GR uzavírá důležité otázky lokální reprezentovatelnosti,
+dosud však neodvozuje úplnou Einsteinovu dynamiku z původní hlavní akce UBT.
+Výběr akce, fyzikální omezení torze, úplné propojení s poruchovou teorií a
+globální pokračování proto zůstávají otevřenými problémy s výslovně vedeným
+stavem. Směrodatné znění je uvedeno v souborech
 \texttt{STATUS.md} a \texttt{WHAT\_IS\_PROVED.md}.
 
 \section{Komplexní čas a theta/spektrální větev}
-Kanonický zápis zůstává zachován
+Kanonický zápis zachovává vztah
 \[
  \tau=t+i\psi,
 \]
-s $\psi$ interpretovaným v aktivní komplexní časové větvi jako vnitřní fáze
-spíše než druhé makroskopické hodiny.  Pak zmenšené theta modely
-přirozeně obsahují faktory formy
+přičemž $\psi$ se v aktivní větvi komplexního času interpretuje jako vnitřní
+fázová souřadnice, nikoli jako druhý makroskopický čas. Redukované theta modely
+pak přirozeně obsahují členy tvaru
 \[
  S(t,\psi)=\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2}.
 \]
-Tento jeden výraz připouští několik standardních reprezentací: Fourier v $t$,
-Laplace nebo Mellin v $\psi$, Jacobi/Poisson dualitě a v řízeném
-kvadratické příklady, vztah mezi součty režimů a součty dráhy/vinutí.  Tito
-klasické nástroje jsou vyvinuty výslovně později, protože organizují několik
-jinak odpojené výzkumné dráhy UBT.
+Jediný výraz tak připouští několik standardních reprezentací: Fourierovu v
+$t$, Laplaceovu či Mellinovu v $\psi$, Jacobiho--Poissonovu dualitu a v
+kontrolovaných kvadratických příkladech také vztah mezi součty módů a součty
+dráhových či topologických tříd. Tyto klasické nástroje jsou podrobně rozvedeny
+v dalších kapitolách, protože propojují několik jinak oddělených směrů výzkumu
+UBT.
 
 \section{Kalibrační a částicové sektory}
-Algebru $\mathbb C\otimes\mathbb H\cong M_2(\mathbb C)$ přirozeně podporuje
-levé a pravé akce, spinorální Lorentzovy transformace a vnitřní
-symetrické konstrukce.  Některá měřidla-sektorová tvrzení jsou prokázána popř
-podmíněné na uvedených úrovních; ostatní, včetně částí hypercharge,
-výběr generací a dynamické narušení symetrie zůstávají otevřené.  Tento
-učebnice proto nikdy neodvozuje úplné odvození standardního modelu pouze z
-existence biquaternionové algebry.
+Algebra $\mathbb C\otimes\mathbb H\cong M_2(\mathbb C)$ přirozeně podporuje
+levé i pravé působení, spinorové Lorentzovy transformace a konstrukce vnitřních
+symetrií. Některá tvrzení o kalibračním sektoru jsou na uvedených úrovních
+dokázána nebo podmíněně uzavřena; jiná zůstávají otevřená, včetně částí
+hypernáboje, výběru generací a dynamického narušení symetrie. Učebnice proto z
+pouhé existence bikvaternionové algebry nevyvozuje úplné odvození standardního
+modelu.
 
 \section{Konstanta jemné struktury: současné bezpečné tvrzení}
 Program alfa obsahuje reprodukovatelný strukturální mechanismus, který vybírá
-celé číslo $137$ za uvedených předpokladů, včetně výsledku prvočísla stability.
-Celková trať však v současné době není odvozením prvních principů
-fyzikální konstanta jemné struktury.  Zvláště důležité jsou dva blokátory:
+celé číslo $137$ za uvedených předpokladů, včetně výsledku o stabilitě vůči
+prvočíselným kandidátům. Celý výzkumný směr však v současnosti nepředstavuje
+odvození fyzikální konstanty jemné struktury z prvních principů. Zvlášť
+důležité jsou dvě překážky:
 \begin{enumerate}
- \item efektivní koeficient požadovaný potenciálem vinutí nebyl splněn
-       odvozeno jedinečně z působení UBT (Gap G137-B);
- \item multiplicita auditované smyčky a multiplicita twist-sektoru nejsou
-       přesto identifikovaný prokázaným mostem.
+ \item efektivní koeficient požadovaný potenciálem vinutí dosud nebyl
+       jednoznačně odvozen z akce UBT (mezera G137-B);
+ \item auditovaná násobnost smyček a násobnost sektoru se zkroucením dosud
+       nebyly ztotožněny dokázaným propojením.
 \end{enumerate}
-V důsledku toho ani fráze ``odvození alfa bez fit'' ani numerické
-hodnota $137.036\ldots$ by zde měla být prezentována jako uzavřená predikce UBT.
-Kapitola~\ref{ch:alpha} odvozuje podmíněnou matematiku a uvádí mezery
-na každém kroku.
+Proto zde nelze ani označení „odvození alfa bez přizpůsobování parametrů“, ani číselnou hodnotu
+$137.036\ldots$ prezentovat jako uzavřenou předpověď UBT.
+Kapitola~\ref{ch:alpha} odvozuje podmíněně platnou matematiku a v každém kroku
+uvádí zbývající mezery.
 
-\section{Jak číst statusové značky}
-Úložiště používá dva nezávislé účetní systémy, které nesmí být
-zmatený.
+\section{Jak číst značky stavu}
+Repozitář používá dva nezávislé systémy evidence, které se nesmějí zaměňovat.
 
-Za prvé, úrovně vědeckých tvrzení rozlišují standardní identity, prokázané UBT
-lemmata, podmíněné výsledky, motivované dohady, pozorování a otevřené
-mezery.  Za druhé, úrovně původu AI zaznamenávají stav redakce/revize souborů.
-Ty jsou definovány \texttt{PROVENANCE\_TIERS.yaml}:
-Úroveň A je ověřena autory, úroveň B strojově ověřená, úroveň C funkční a úroveň D
-historický.  Tato učebnice je pracovním materiálem úrovně C.  Jeho úlohou je vysvětlovat
-a propojit matematiku, ne tiše prosazovat nárok na úroveň A.
+Úrovně vědeckých tvrzení rozlišují standardní identity, dokázaná lemmata UBT,
+podmíněné výsledky, motivované domněnky, pozorování a otevřené mezery. Úrovně
+provenience AI naproti tomu zaznamenávají redakční stav a míru kontroly souborů.
+Definuje je \texttt{PROVENANCE\_TIERS.yaml}: úroveň A potvrzuje autor, úroveň B
+je strojově ověřená, úroveň C je pracovní a úroveň D historická. Tato učebnice
+je pracovním materiálem úrovně C. Jejím účelem je vysvětlit a propojit
+matematiku, nikoli bez dokladů povýšit některé tvrzení na úroveň A.
 
 \section{Pravidlo autoritativního zdroje pro učebnici}
-Zdrojová mapa v \texttt{docs/textbook/SOURCE\_MAP.md} zaznamenává, kde každý
-kapitola získá svůj živý stav.  Historický materiál v \texttt{ARCHIV/} může být
-cenné pro pochopení toho, jak se nápad vyvíjel, ale nikdy není tichý
-\texttt{\textbackslash input} jako součást aktuální teorie.
+Zdrojová mapa v \texttt{docs/textbook/SOURCE\_MAP.md} zaznamenává, odkud každá
+kapitola přebírá aktuální stav tvrzení. Historický materiál v
+\texttt{ARCHIVE/} může být cenný pro pochopení vývoje určité myšlenky, nikdy se
+však bez výslovného označení nevkládá příkazem
+\texttt{\textbackslash input} jako součást současné teorie.

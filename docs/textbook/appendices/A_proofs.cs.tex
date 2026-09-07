@@ -9,5 +9,66 @@
 % UBT-AI-PROVENANCE-END
 
 \chapter{Formální důkazy a lemmata}
-% Sem patří rigorózní tvrzení (A1--A3), Wardovy identity a redukce CT→QED.
-% Živé sekce lze znovu použít, pokud tím nevznikne závislost na archivu.
+
+Tento dodatek shrnuje tři krátké argumenty, které se v učebnici opakovaně
+používají. Jsou uvedeny zde, aby hlavní kapitoly zůstaly čitelné a současně
+nepřebíraly standardní algebru jako vnější předpoklad.
+
+\section{Centrální antikomutátor na Lorentzově řezu}
+Nechť
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+ \qquad
+ E_\mu^\sharp=i e_\mu{}^0\mathbf1-e_\mu{}^k\mathbf e_k.
+\]
+Při použití vztahu
+\[
+ \mathbf e_j\mathbf e_k=-\delta_{jk}\mathbf1
+ +\epsilon_{jk\ell}\mathbf e_\ell
+\]
+se antisymetrické členy odpovídající vektorovému součinu po symetrizaci
+zruší. Proto
+\[
+ \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+ =\left(-e_\mu{}^0e_\nu{}^0+\sum_{k=1}^3e_\mu{}^ke_\nu{}^k\right)\mathbf1.
+\]
+Koeficientem je tetrádová metrika
+$g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}$. Není třeba stopa ani projekce
+na reálnou část.
+
+\section{Hodnost zobrazení tetrády na metriku}
+Pro
+\[
+ g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}
+\]
+je diferenciál
+\[
+ \delta g_{\mu\nu}
+ =\eta_{ab}\left(\delta e_\mu{}^a e_\nu{}^b
+ +e_\mu{}^a\delta e_\nu{}^b\right).
+\]
+U nedegenerované tetrády vznikne každý symetrický tenzor $h_{\mu\nu}$ volbou
+\[
+ \delta e_\mu{}^a=\frac12h_{\mu\rho}e^{\rho a}.
+\]
+Obraz má tedy rozměr deset. Jádro tvoří šest infinitezimálních
+Lorentzových transformací
+$\delta e_\mu{}^a=\lambda^a{}_b e_\mu{}^b$ s
+$\lambda_{ab}=-\lambda_{ba}$.
+
+\section{Proč variace není derivace}
+Časoprostorová derivace a variace v prostoru polí působí v odlišných
+směrech:
+\[
+ D_\mu\Theta=\partial_\mu\Theta+\rho_*(\Omega_\mu)\Theta,
+ \qquad
+ \Theta_\varepsilon=\Theta+\varepsilon\,\delta\Theta.
+\]
+Závisí-li konexe na poli, dává řetězové pravidlo
+\[
+ \delta(D_\mu\Theta)
+ =D_\mu(\delta\Theta)+\rho_*(\delta\Omega_\mu)\Theta.
+\]
+Vynechání druhého členu mění kompozitní Eulerův--Lagrangeův systém.
+Proto nelze výpočet s pevnou konexí automaticky znovu použít po dosazení
+kompozitní konexe.

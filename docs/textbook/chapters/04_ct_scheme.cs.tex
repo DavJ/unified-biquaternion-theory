@@ -12,102 +12,102 @@
 \label{ch:ct-scheme}
 
 \section{Proč tato kapitola zůstává v učebnici}
-Starší alfa práce používala ,,CT schéma'' postavené na analytickém pokračování
-\(\tau=t+i\psi\). Archivovaná implementace není aktuálním zdrojem
-záznam, ale základní matematika --- analytické pokračování, měřidlo
-identity a limit v reálném čase --- je standardní a užitečný.  Tato kapitola
-proto učí tyto přísady a pak přesně uvádí, co dělají a dělají
-nezaložit pro UBT.
+Starší práce na konstantě alfa používaly „schéma CT“ založené na analytickém
+pokračování \(\tau=t+i\psi\). Archivovaná implementace není aktuálním zdrojem
+tvrzení, avšak základní matematika --- analytické pokračování, kalibrační
+identity a limita reálného času --- je standardní a užitečná. Tato kapitola
+proto nejprve vysvětluje jednotlivé prvky a poté přesně vymezuje, co pro UBT
+zakládají a co nikoli.
 
 \section{Komplexní čas jako parametr}
-Pro analytickou veličinu $F(\tau)$,
+Pro analytickou veličinu $F(\tau)$ umožňuje vztah
 \[
  \tau=t+i\psi
 \]
-umožňuje pohyb mezi oscilačními a tlumenými popisy.  Pro energii
-vlastní mód, např.
+přecházet mezi oscilačním a tlumeným popisem. Například pro energetický vlastní
+mód platí
 \[
  e^{-iE\tau/\hbar}=e^{-iEt/\hbar}e^{+E\psi/\hbar},
 \]
-se znaménkem tlumení určeným konvencí pro imaginární
-směr.  V theta konvenci použité později,
+přičemž znaménko tlumení určuje konvence imaginárního směru. V konvenci theta
+použité v dalších kapitolách je
 \[
  e^{-\pi(\psi-it)n^2}
  =e^{-\pi\psi n^2}e^{i\pi t n^2}.
 \]
-Nic v této analytické identitě samo o sobě nevytváří novou renormalizaci
-konstantní nebo fixuje fyzickou vazbu.
+Žádná z těchto analytických identit sama o sobě nevytváří novou renormalizační
+konstantu ani neurčuje fyzikální vazbu.
 
 \section{Wardova--Takahashiho identita: standardní argument}
-V QED nechť je $S(p)$ úplným fermionovým propagátorem a
-$\Gamma^\mu(p+q,p)$ plný elektromagnetický vrchol.  Invariance měřidla dává
-Ward -- identita Takahashi
+Nechť je v QED $S(p)$ úplným fermionovým propagátorem a
+$\Gamma^\mu(p+q,p)$ úplným elektromagnetickým vrcholem. Kalibrační invariance
+dává Wardovu--Takahashiho identitu
 \[
  q_\mu\Gamma^\mu(p+q,p)
  =S^{-1}(p+q)-S^{-1}(p).
 \]
-Vezmeme-li limitní výnosy $q\to0$
+V limitě $q\to0$ dostáváme
 \[
  \Gamma^\mu(p,p)=\frac{\partial S^{-1}(p)}{\partial p_\mu}.
 \]
-Na úrovni renormalizačních konstant se to prosazuje
+Na úrovni renormalizačních konstant z toho plyne
 \[
  \boxed{Z_1=Z_2,}
 \]
-za předpokladu, že regulátor a předpis pro odečítání zachovají symetrii měřidla.
-Toto je výsledek standardní kalibrační teorie.  Může být použito komplexní časové pokračování
-pouze po prokázání, že jeho obrys/regulátor zachovává hypotézy
-vyžaduje identita.
+za předpokladu, že regulátor a odečítací předpis zachovávají kalibrační
+symetrii. Jde o standardní výsledek kalibrační teorie. Na pokračování do
+komplexního času jej lze použít teprve po důkazu, že zvolená kontura a regulátor
+zachovávají předpoklady této identity.
 
 \section{Transverzalita vlastní energie fotonu}
-Z toho vyplývá stejná symetrie měřidla
+Ze stejné kalibrační symetrie plyne
 \[
  q_\mu\Pi^{\mu\nu}(q)=0,
 \]
-takže vakuová polarizace má tvar
+takže vakuová polarizace má až na volbu konvencí tvar
 \[
  \Pi^{\mu\nu}(q)
- =\left(q^2g^{\mu\nu}-q^\mu q^\nu\right)\Pi(q^2)
+ =\left(q^2g^{\mu\nu}-q^\mu q^\nu\right)\Pi(q^2).
 \]
-(až do konvence).  Proto může být vyjádřena renormalizace náboje
-členy příčné fotonové dvoubodové funkce.  Opět se jedná o standard
-omezení teorie pole, nikoli teorém specifický pro UBT.
+Renormalizaci náboje lze proto vyjádřit pomocí příčné dvoubodové funkce fotonu.
+Opět jde o standardní omezení kvantové teorie pole, nikoli o teorém specifický
+pro UBT.
 
-\section{Kontrolovaný UBT most}
-Bylo by nutné vytvořit komplexní renormalizační konstrukci UBT, např
-jeho skutečná akce a obrys:
+\section{Kontrolované propojení s UBT}
+Konstrukce renormalizace UBT v komplexním čase by musela na základě skutečné
+akce a skutečné integrační kontury doložit:
 \begin{enumerate}
- \item Analytika dostatečná pro pokračování mezi vybraným obrysem $\psi$
-       a řez v reálném čase;
- \item zachování příslušných identit měřidla/BRST;
- \item regulační a protitermické schéma kompatibilní s těmito identitami;
- \item kontinuita na standardní QED v příslušném limitu reálného času;
- \item explicitní výpočet jakéhokoli konečného CT-specifického zbytku spíše než
-       nastavení podle definice.
+ \item dostatečnou analyticitu pro pokračování mezi zvolenou konturou v $\psi$
+       a řezem reálného času;
+ \item zachování příslušných kalibračních nebo BRST identit;
+ \item regularizační a protitermové schéma slučitelné s těmito identitami;
+ \item spojitý přechod ke standardní QED v příslušné limitě reálného času;
+ \item výslovný výpočet každého konečného zbytku specifického pro schéma CT,
+       nikoli jeho určení definicí.
 \end{enumerate}
-Teprve po těchto krocích mohl být z modelování propagován faktor specifický pro CT
-výběr k odvozené veličině.
+Teprve poté by bylo možné povýšit faktor specifický pro CT z modelového
+předpokladu na odvozenou veličinu.
 
-\section{Proč se archivní text \(\mathcal R_{\rm UBT}=1\) nepřebírá}
-Historická větev alfa uvedla základní linii se dvěma smyčkami
-\(\mathcal R_{\rm UBT}=1\) za předpokladů označených A1--A3 a následně označila
-výsledná alfa základní čára ,,bez fit''.  Aktuální dokumenty o stavu Tier-A č
-déle umožnit, aby toto znění stálo jako dokončená alfa derivace:
-součinitelový můstek G137-B je otevřený a efektivní multiplicita má audit
-mezera.  Živá učebnice proto zachovává Ward-identity matematiky, ale ano
-znovu nepoužívat archivovanou větu jako aktuální zdroj záznamu.
+\section{Proč se archivní tvrzení \(\mathcal R_{\rm UBT}=1\) nepřebírá}
+Historická větev programu alfa uváděla za předpokladů A1--A3 dvousmyčkovou
+výchozí hodnotu \(\mathcal R_{\rm UBT}=1\) a následně označila výslednou základní
+hodnotu alfa za „bez přizpůsobování parametrů“. Současné stavové dokumenty úrovně A již
+nedovolují vydávat toto znění za dokončené odvození konstanty alfa: propojení
+koeficientu v mezeře G137-B zůstává otevřené a audit efektivní násobnosti není
+uzavřen. Aktuální učebnice proto zachovává matematiku Wardových identit, ale
+archivované tvrzení znovu nepoužívá jako platný zdroj současného stavu.
 
-Toto je užitečný příklad obecného pravidla: správná podmíněná teorie pole
-identita může přežít, i když bude vybudována větší fenomenologická interpretace
-navíc je snížená klasifikace.
+Jde o užitečný příklad obecného pravidla: správná podmíněná identita kvantové
+teorie pole může zůstat platná, i když je širší fenomenologická interpretace,
+která na ní byla vystavěna, přeřazena na nižší úroveň jistoty.
 
-\section{Vazba na theta kapitolu}
+\section{Vazba na kapitolu o theta funkcích}
 Redukované jádro theta
 \[
  S(t,\psi)=\sum_n a_n e^{-\pi\psi n^2}e^{i\pi t n^2}
 \]
-poskytuje čistší kontrolovanou laboratoř po složitou dobu než stará alfa
-renormalizační cesta.  Stejný parametr $\psi$ funguje jako proměnná doby ohřevu,
-zatímco $t$ nese oscilační fázi.  Fourier, Laplace, Mellin a
-Poissonovo/Jacobiho transformace pak mohou být odvozeny přesně před jakýmkoli fyzickým UBT
-nárok je k nim připojen.
+poskytuje čistší kontrolovanou laboratoř pro komplexní čas než starší
+renormalizační cesta programu alfa. Parametr $\psi$ zde působí jako proměnná
+tepelného času, zatímco $t$ nese oscilační fázi. Fourierovu, Laplaceovu,
+Mellinovu a Poissonovu--Jacobiho transformaci lze poté přesně odvodit ještě
+předtím, než se k nim připojí jakékoli fyzikální tvrzení UBT.

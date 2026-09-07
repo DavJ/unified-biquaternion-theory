@@ -8,5 +8,38 @@
 % notice: Working material; exhaustive human review is not claimed.
 % UBT-AI-PROVENANCE-END
 
-\chapter{FAQ pro recenzenty a inženýry}
-% Kurátorované otázky a odpovědi k typickým námitkám a reprodukci výsledků.
+\chapter{Časté otázky pro recenzenty a inženýry}
+
+\section{Vzniká metrika projekcí biquaternionu?}
+Ne. Na klasickém Lorentzově řezu je symetrizovaný součin
+\[
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ =g_{\mu\nu}\mathbf1
+\]
+již centrální. Stopa, předpis reálné části, preferovaný fázový řez ani
+průměrování přes vlákno nejsou součástí kanonické lokální definice.
+
+\section{Má jedno pole s osmi reálnými složkami příliš málo složek pro metriku?}
+Metrika se konstruuje ze čtyř prvních kovariantních derivací, nikoli pouze
+z hodnoty $\Theta$. Jejich Lorentzovsky reálné složky tvoří tetrádu se
+šestnácti prvky. Po odečtení šesti lokálních Lorentzových směrů má
+diferenciál zobrazení tetrády na metriku hodnost deset.
+
+\section{Je konexe dalším fundamentálním polem?}
+V zamčené klasické architektuře nikoli. Nedegenerovaná tetráda a zadaná
+torze určují metricky kompatibilní konexi. Otevřený zůstává dynamický zákon,
+který torzi vybírá, a přesná kompozitní nebo pomocná realizace požadovaná
+konečnou akcí.
+
+\section{Byla Einsteinova dynamika odvozena nepodmíněně?}
+Ne. Lokální kinematická reprezentovatelnost a několik podmíněných
+Palatiniho výsledků jsou odvozeny, ale mikroskopický výběr a normalizace úplné
+akce zůstávají otevřené. Bez tohoto odvození se stav nesmí povýšit z
+podmíněného uzavření.
+
+\section{Jak lze výpočet reprodukovat?}
+Začněte od citovaného aktivního zdroje, zaznamenejte jeho předpoklady a
+úroveň tvrzení, spusťte uvedený verifikátor a jeho doprovodný test pytest a
+odlište algebraickou kontrolu od fyzikálního výběru. Úspěšná kontrola v systému
+počítačové algebry (CAS) nebo
+Leanu ověřuje pouze tvrzení, které v ní bylo zakódováno.
