@@ -248,6 +248,82 @@ the older inventory's F5, while the UBT operator origin and interpretation of
 zeta zeros remain open. The old unpaired inventory is not silently promoted
 or rewritten by this companion.
 
+<!-- BILINGUAL-UNIT: selector-completion.resolvent -->
+### 5.1 The direct prime resolvent has no finite Schatten order
+
+**Proposition S4 [L1].** For every real shift \(a>0\),
+\(R_a=(H_{\rm p}+aI)^{-1}\) is compact but belongs to no finite Schatten
+class. Its singular values tend to zero, but for every \(r>0\),
+
+\[
+s_n(R_a)=(a+\log n)^{-1},\qquad
+\sum_{n\ge1}s_n(R_a)^r=\infty.
+\]
+
+**Proof.** Compactness follows from the diagonal entries tending to zero.
+For positive integers \(m\), the block of integers between \(e^m\) and
+\(e^{m+1}\) gives the lower bound
+
+\[
+\sum_{e^m\le n<e^{m+1}}(a+\log n)^{-r}
+\ge\frac{\lfloor e^{m+1}\rfloor-\lceil e^m\rceil}{(a+m+1)^r}
+\longrightarrow\infty.
+\]
+
+Thus no standard finite-order regularized Fredholm determinant of
+\(I-zR_a\) applies. Likewise the usual spectral-zeta trace series for
+\(H_{\rm p}+aI\) has no half-plane of absolute convergence to start from.
+This does not rule out every alternative regularization; none is constructed
+or identified with the completed Riemann zeta function here.
+
+<!-- BILINGUAL-UNIT: selector-completion.heatdet -->
+### 5.2 A valid heat determinant, with an exactly different zero set
+
+**Proposition S5 [L1].** A fixed real damping parameter \(\beta>1\) does give
+a trace-class operator and an ordinary Fredholm determinant:
+
+\[
+K_\beta=e^{-\beta H_{\rm p}},\qquad
+D_\beta(z)=\det(I-zK_\beta)=\prod_{n\ge1}(1-z n^{-\beta}).
+\]
+
+**Proof.** The sum of the diagonal eigenvalues converges, so the product
+converges locally uniformly. Its zeros are exactly \(z=n^\beta\), each
+simple. For \(|z|<1\), absolute convergence also permits the logarithmic
+expansion
+
+\[
+\log D_\beta(z)=-\sum_{k\ge1}\frac{z^k}{k}\zeta(\beta k).
+\]
+
+In particular Euler's sine product gives the exact closed form
+
+\[
+D_2(z)=\frac{\sin(\pi\sqrt z)}{\pi\sqrt z}
+=\sum_{j\ge0}\frac{(-1)^j\pi^{2j}z^j}{(2j+1)!},\qquad D_2(0)=1.
+\]
+
+The power series makes its entire nature and independence of a square-root
+branch explicit. There is also an exact symmetry obstruction: the determinant
+vanishes at the positive unit argument and does not vanish at the negative
+unit argument, whereas the target completed zeta function is even:
+
+\[
+D_\beta(1)=0,\quad D_\beta(-1)=\prod_{n\ge1}(1+n^{-\beta})>0,
+\qquad \xi(1/2+iz)=\xi(1/2-iz).
+\]
+
+No everywhere nonvanishing multiplier can repair that zero-set mismatch.
+This obstruction concerns this determinant, not all possible modifications.
+Therefore the step from a prime heat trace to a determinant
+can be performed exactly, but this determinant has the known integer-power
+zeros, not the required zeros of the completed zeta function. Obtaining a
+determinant is not sufficient; its exact identity with the target is the
+missing step. The sine product is standard; see
+[DLMF, infinite products](https://dlmf.nist.gov/4.22).
+For the operator determinant conventions see
+[Bornemann, Fredholm determinants](https://arxiv.org/abs/0804.2543).
+
 <!-- BILINGUAL-UNIT: selector-completion.rh -->
 ## 6. What would actually establish RH
 
@@ -303,7 +379,9 @@ bookkeeping gaps; the RH proof gap remains open.
 Run `python tools/verify_null_and_spectral_gap_steps.py`. Its report is
 `../../reports/null_and_spectral_gap_steps_2026_09_08.json`.
 Exact SymPy checks cover branch signs, scalar window constants, kernel slopes,
-periodicity and the heat-trace counterexample. Independent SciPy quadrature
+periodicity, the heat-trace counterexample, resolvent block growth and the
+sine determinant's series. A separate product-versus-sine calculation checks
+truncation errors. Independent SciPy quadrature
 tests a continuous multiplication spectrum reaching zero; a separate matrix
 exponential calculation tests non-diagonal generators. Finite computations do
 not prove S1 or the infinite-dimensional domain statement in S3.

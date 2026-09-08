@@ -191,11 +191,80 @@ mizí na hustém doplňku s nenulovou normou, a tedy ze spojitosti i na nadploš
 Pro hladké řešení je identicky nulový v celém okolí, takže mizí i jeho
 derivace. Existující argument o odpojení pomocného sektoru se proto rozšiřuje
 na tyto hladké kompatibilní průchody. Netýká se distribučních zdrojů,
-singulárních polí, kvantové míry vazeb ani úplné Palatiniho variace
-v izolovaném bodě s nulovou normou.
+singulárních polí ani kvantové míry vazeb. Následující věta se zabývá úplnou
+Palatiniho variací přes hladkou nadplochu; nevychází z izolovaného bodu
+s nulovou normou.
+
+<!-- BILINGUAL-UNIT: null-jet.palatini -->
+## 5. Podmíněná Palatiniho dynamika přes nulovou normu
+
+**Věta N4 [L1].** V existujícím kandidátu s rozděleným jetem a Palatiniho akcí
+nechť jsou pole hladká, kompozitní tetráda nedegenerovaná, pole nikde nemizí
+a množina nulové normy je regulární nadplocha nebo prázdná. Vezměme nenulovou
+Palatiniho vazebnou konstantu a pevný kosmologický koeficient. Požadujeme, aby
+akce závisela na poli a jetových proměnných pouze přes kompozitní tetrádu:
+
+\[
+E^a=c_0^{-1}(dX^a+\omega^a{}_bX^b+K^a{}_bX^b+wX^a),\qquad
+S_{\rm SJHP}=S_{\rm HP}[E,\omega].
+\]
+
+Fyzikální Lorentzova konexe je při variaci nezávislá. Všechny variace mají
+kompaktní nosič. Stacionarita je pak ekvivalentní Palatiniho rovnicím
+vyhodnoceným na kompozitní tetrádě, včetně nulové nadplochy.
+
+**Důkaz.** Eulerovy formy tetrády a konexe zapišme jako
+
+\[
+\delta S_{\rm HP}=\int\mathcal E_a\wedge\delta E^a
+ +\int\mathcal C_{ab}\wedge\delta\omega^{ab}.
+\]
+
+Mimo nulovou množinu věta N3 a libovolné jetové variace vynutí
+\(\mathcal E_a=0\). Tento doplněk je hustý, takže spojitost Eulerových
+forem vynutí stejnou rovnici i na nadploše. Variace fyzikální konexe je
+
+\[
+\delta_\omega S_{\rm SJHP}=\int\mathcal C_{ab}\wedge\delta\omega^{ab}
+ +c_0^{-1}\int\mathcal E_a\wedge(\delta\omega^a{}_bX^b).
+\]
+
+Dává \(\mathcal C_{ab}=0\) všude. Variace pole je diferenciálním
+důsledkem identicky nulové tetrádové Eulerovy formy. Obráceně, pokud obě
+Palatiniho Eulerovy formy mizí, řetězové pravidlo činí každou kompozitní
+variaci stacionární, aniž by používalo bodovou hodnost jetu na nulové ploše.
+To dokazuje ekvivalenci rovnic pro danou hladkou konfiguraci, nikoli
+existenci této konfigurace.
+
+Pro předepsané hladké vakuové Palatiniho řešení a nikde nemizející pole
+splňující N2 konstruuje věta N1 hladký zdvih přes nulovou nadplochu.
+Obvyklá vakuová Cartanova rovnice bez spinu dává fyzikální Levi-Civitovu
+konexi. Podmíněné lokální obnovení GR se tedy rozšiřuje přes tyto
+kompatibilní hladké průchody. Palatiniho akce a její koeficienty nadále
+zůstávají vstupy, nikoli odvozenou mikroskopickou dynamikou UBT.
+
+<!-- BILINGUAL-UNIT: null-jet.fibres -->
+### 5.1 Ekvivalence rovnic neztotožňuje všechny reprezentanty
+
+Zapomenutí reprezentantu pole a jetových proměnných dává surjekci na
+přípustná Palatiniho řešení. Podíl pouze podle stabilizátoru jetového tenzoru
+ji neučiní injektivní, protože tento stabilizátor nemění pole.
+Pro standardní plochou tetrádu, nulovou fyzikální konexi, \(c_0=1\) a nulový
+kosmologický člen mají obě konstantní pole
+
+\[
+X=(1,0,0,0),\qquad \widetilde X=(2,0,0,0)
+\]
+
+pravé inverze pro nenulovou normu a dávají stejné vakuové Palatiniho řešení.
+Nelze je spojit změnou pouze tenzoru anulujícího pevné pole.
+Bijekce by vyžadovala podíl podle celého vlákna reprezentace; fyzikální
+kalibrační interpretace celého tohoto vlákna zde není odvozena.
+Dřívější diagram v `split_jet_palatii_variational_lift.cs.md` je opraven
+na surjektivní zobrazení řešení.
 
 <!-- BILINGUAL-UNIT: null-jet.examples -->
-## 5. Přesné příklady a omezení
+## 6. Přesné příklady a omezení
 
 Pro standardní plochou tetrádu vezměme \(c_0=1\) a \(X^a=x^a\). Potom
 \(Z=0\) a \(K=w=0\) všude. Norma pole prochází nulovým kuželem
@@ -222,7 +291,7 @@ splňují bodovou kompatibilitu při \(v=0\), ale nutný podíl je mimo nulu
 pro jednu složku nesouladu, nikoli o tvrzené řešení úplných rovnic pole.
 
 <!-- BILINGUAL-UNIT: null-jet.verification -->
-## 6. Verifikace a zbývající práce
+## 7. Verifikace a zbývající práce
 
 Spusťte `python tools/verify_null_and_spectral_gap_steps.py`. Záznam výsledku je
 `../../reports/null_and_spectral_gap_steps_2026_09_08.json`.

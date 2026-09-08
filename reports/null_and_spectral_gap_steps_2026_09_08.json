@@ -57,6 +57,15 @@
       "seed": 20260908
     },
     {
+      "id": "N4",
+      "result": "PASS",
+      "channel": "SymPy exact polynomial linear algebra and right inverses",
+      "scope": "Polynomial Euler sections cannot be supported only at the rank-drop point; two distinct X representatives give the same flat tetrad",
+      "polynomial_unknowns": 12,
+      "polynomial_system_rank": 12,
+      "limitation": "Finite polynomial model is not a proof for arbitrary smooth Euler forms; the analytic argument uses continuity on a dense complement."
+    },
+    {
       "id": "S1-exact",
       "result": "PASS",
       "channel": "SymPy exact differentiation",
@@ -105,13 +114,40 @@
         0.0033277839506034024,
         0.0003332777839504253
       ]
+    },
+    {
+      "id": "S4",
+      "result": "PASS",
+      "channel": "SymPy symbolic asymptotic limit",
+      "scope": "Exponential integer-block lower bound diverges for arbitrary fixed positive shift and exponent; no finite Schatten order"
+    },
+    {
+      "id": "S5-exact",
+      "result": "PASS",
+      "channel": "SymPy series and exact trigonometric values",
+      "scope": "Heat-determinant logarithmic trace series versus sine formula through fourth order; positive square zeros and nonzero negative unit argument"
+    },
+    {
+      "id": "S5-independent",
+      "result": "PASS",
+      "channel": "NumPy product versus independent complex sine evaluation",
+      "scope": "Determinant convergence at three nonzero complex/real points with a logarithmic tail bound",
+      "truncations": [
+        100,
+        1000,
+        10000
+      ],
+      "max_error": 0.010178255933921854,
+      "roundoff_allowance": 2e-12
     }
   ],
   "proof_scope": {
     "N1-N3": "Analytic local smooth divisibility and null-rank theorem; exact algebra and independent finite checks only.",
+    "N4": "Analytic extension of the chosen Palatini action's equations across compatible smooth regular null hypersurfaces; surjective solution map, not a bijection modulo only fixed-X stabilizers.",
     "S1": "Analytic proof for weak norm-holomorphic solutions of a nonnegative self-adjoint operator equation with a bounded vertical ray and strong boundary value.",
     "S2": "Direct periodic damping under S1 forces kernel support.",
-    "S3": "Analytic self-adjoint closure of the diagonal prime operator; trace class only for Re(omega)>1."
+    "S3": "Analytic self-adjoint closure of the diagonal prime operator; trace class only for Re(omega)>1.",
+    "S4-S5": "Prime resolvent belongs to no finite Schatten class; the trace-class heat determinant has integer-power zeros and fails the required xi identity."
   },
   "not_verified": [
     "Formal infinite-dimensional spectral or smooth-manifold proofs",
@@ -122,13 +158,15 @@
   ],
   "canonical_claims_changed": false,
   "source_sha256": {
-    "research_tracks/action_selection/split_jet_null_continuation.en.md": "0427b0ba89f6889fe2de6daa0620b77d30aecebab4defeea8855f494b0a1db73",
-    "research_tracks/action_selection/split_jet_null_continuation.cs.md": "66e88b1a4b954073f8046efe81a20a91a1aae6bd0b8193ff27f00eedec43251b",
-    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md": "bca4a1ace834f5ed0ce8c7166d5bfee6dc8b6088498ba2706ba8cf126bd37ae6",
-    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md": "b135a3b9df093814621a9a00628410e0771afecaf1b52c5b411c333ff9ac1ea7",
+    "research_tracks/action_selection/split_jet_null_continuation.en.md": "78f249f3c703b4b89f0c083de3ed617fefd98fcb28b241ef82e51a0fdf82321c",
+    "research_tracks/action_selection/split_jet_null_continuation.cs.md": "8cebd09a0563c27c2c1740831926fe1235338811d26b74ca054c32192612e213",
+    "research_tracks/action_selection/split_jet_palatii_variational_lift.en.md": "47c424df93a59c5725a9b5662211aea85c94183084316f2a9a4388d76cfc74a6",
+    "research_tracks/action_selection/split_jet_palatii_variational_lift.cs.md": "da5cf49558461738cecb0b1ed2317cd2a7c3526beda57fc4e5db32d311b1f5e2",
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md": "0b5612dd298a008a58aa8ddd02b7a90da77c3fdb47cceb1a90b6f5a65db98c8b",
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md": "7f7ff6d7cee02b5ada58da0694b9d290a083d83ad9e4d0a071af88f3ccd018af",
     "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md": "00f588dc95ebee6f0b10d7b34d403f0f05e81d8a39de769f3b93c70c2c2eebeb",
     "research_tracks/complex_time_branch_selection/psi_branch_selection.cs.md": "69443ce16f0b436f51f84eedeb9d26a9e418f5da68be6bf6a8b508b3de1a494f",
-    "tools/verify_null_and_spectral_gap_steps.py": "96cb46430a567082c34fe341165e22dba1689688af3ed964643e1481db3708ef",
+    "tools/verify_null_and_spectral_gap_steps.py": "027cfa88cc138161412986457dbe2d57aaf7ac8933244858a4b059b09e143f67",
     "tools/verify_psi_branch_selection.py": "f116b565dec74ea396351348adf7932704fb9981eac3e443cbfea848ad586f3c"
   }
 }

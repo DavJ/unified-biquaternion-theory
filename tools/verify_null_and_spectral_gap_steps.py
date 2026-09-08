@@ -8,6 +8,7 @@ research notes. No result here proves Einstein dynamics, RH or a UBT action.
 from __future__ import annotations
 
 import argparse
+import cmath
 import hashlib
 import json
 import math
@@ -147,6 +148,32 @@ def numerical_null_checks() -> None:
            incompatible_residual=incompatible_residual, seed=20260908)
 
 
+def variational_crossing_checks() -> None:
+    v = sp.Symbol("v", real=True)
+    x = sp.Matrix([1, 1 + v, 0, 0])
+    linear_map = sp.Matrix.hstack(*(b * x for b in lorentz_basis()), x)
+    coeffs = sp.symbols("c0:12")
+    euler = sp.Matrix([sum(coeffs[3 * i + j] * v ** j for j in range(3)) for i in range(4)])
+    equations = [c for component in linear_map.T * euler for c in sp.Poly(component, v).all_coeffs()]
+    system, _ = sp.linear_eq_to_matrix(equations, coeffs)
+    assert system.rank() == len(coeffs)
+    assert linear_map.subs(v, 0).rank() == 3
+    # Two distinct constant representatives of one flat tetrad. Changing only
+    # a fixed-X stabilizer cannot identify them. Both right inverses are exact.
+    for scale in [1, 2]:
+        x = sp.Matrix([scale, 0, 0, 0])
+        chi = (x.T * ETA * x)[0]
+        for target in sp.eye(4).columnspace():
+            w = (x.T * ETA * target)[0] / chi
+            u = target - w * x
+            k = (u * (ETA * x).T - x * (ETA * u).T) / chi
+            symbolic_zero(k * x + w * x - target)
+    record("N4", "SymPy exact polynomial linear algebra and right inverses",
+           "Polynomial Euler sections cannot be supported only at the rank-drop point; two distinct X representatives give the same flat tetrad",
+           polynomial_unknowns=len(coeffs), polynomial_system_rank=system.rank(),
+           limitation="Finite polynomial model is not a proof for arbitrary smooth Euler forms; the analytic argument uses continuity on a dense complement.")
+
+
 def exact_spectral_checks() -> None:
     t, s, s0, lam = sp.symbols("t s s0 lam", positive=True, real=True)
     a, b = sp.symbols("a b")
@@ -231,17 +258,60 @@ def independent_spectral_checks() -> None:
            truncations=[30, 300, 3000], tails=tails)
 
 
+def determinant_checks() -> None:
+    m = sp.Symbol("m", positive=True)
+    a, r = sp.symbols("a r", positive=True)
+    block_lower_bound = (sp.exp(m + 1) - sp.exp(m) - 2) / (a + m + 1) ** r
+    assert sp.limit(block_lower_bound, m, sp.oo) == sp.oo
+    record("S4", "SymPy symbolic asymptotic limit",
+           "Exponential integer-block lower bound diverges for arbitrary fixed positive shift and exponent; no finite Schatten order")
+
+    z = sp.Symbol("z")
+    sine_form = sp.sin(sp.pi * sp.sqrt(z)) / (sp.pi * sp.sqrt(z))
+    trace_series = -sum(z ** k * sp.zeta(2 * k) / k for k in range(1, 5))
+    assert sp.simplify(sp.series(sp.log(sine_form), z, 0, 5).removeO() - trace_series) == 0
+    assert sp.limit(sine_form, z, 0) == 1
+    for n in range(1, 5):
+        assert sp.simplify(sine_form.subs(z, n ** 2)) == 0
+    assert sp.simplify(sine_form.subs(z, -1) - sp.sinh(sp.pi) / sp.pi) == 0
+    record("S5-exact", "SymPy series and exact trigonometric values",
+           "Heat-determinant logarithmic trace series versus sine formula through fourth order; positive square zeros and nonzero negative unit argument")
+
+    errors = []
+    for z in [0.35 + 0.2j, -0.5 + 0j, 2.4 + 0.1j]:
+        exact = cmath.sin(math.pi * cmath.sqrt(z)) / (math.pi * cmath.sqrt(z))
+        previous = float("inf")
+        for n in [100, 1000, 10000]:
+            k = np.arange(1, n + 1, dtype=float)
+            truncated = np.exp(np.sum(np.log1p(-z / k ** 2)))
+            error = float(abs(truncated - exact))
+            log_tail_bound = abs(z) / (n * (1 - abs(z) / (n + 1) ** 2))
+            bound = abs(truncated) * math.expm1(log_tail_bound)
+            assert error <= bound + 2e-12
+            assert error < previous
+            previous = error
+            errors.append(error)
+    record("S5-independent", "NumPy product versus independent complex sine evaluation",
+           "Determinant convergence at three nonzero complex/real points with a logarithmic tail bound",
+           truncations=[100, 1000, 10000], max_error=max(errors),
+           roundoff_allowance=2e-12)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     exact_null_checks()
     numerical_null_checks()
+    variational_crossing_checks()
     exact_spectral_checks()
     independent_spectral_checks()
+    determinant_checks()
     paths = [
         "research_tracks/action_selection/split_jet_null_continuation.en.md",
         "research_tracks/action_selection/split_jet_null_continuation.cs.md",
+        "research_tracks/action_selection/split_jet_palatii_variational_lift.en.md",
+        "research_tracks/action_selection/split_jet_palatii_variational_lift.cs.md",
         "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md",
         "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md",
         "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md",
@@ -262,9 +332,11 @@ def main() -> None:
         "checks": CHECKS,
         "proof_scope": {
             "N1-N3": "Analytic local smooth divisibility and null-rank theorem; exact algebra and independent finite checks only.",
+            "N4": "Analytic extension of the chosen Palatini action's equations across compatible smooth regular null hypersurfaces; surjective solution map, not a bijection modulo only fixed-X stabilizers.",
             "S1": "Analytic proof for weak norm-holomorphic solutions of a nonnegative self-adjoint operator equation with a bounded vertical ray and strong boundary value.",
             "S2": "Direct periodic damping under S1 forces kernel support.",
             "S3": "Analytic self-adjoint closure of the diagonal prime operator; trace class only for Re(omega)>1.",
+            "S4-S5": "Prime resolvent belongs to no finite Schatten class; the trace-class heat determinant has integer-power zeros and fails the required xi identity.",
         },
         "not_verified": [
             "Formal infinite-dimensional spectral or smooth-manifold proofs",

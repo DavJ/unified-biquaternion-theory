@@ -251,6 +251,82 @@ přehledu, zatímco původ operátoru z UBT a interpretace nul zeta funkce
 zůstávají otevřené. Starý nepárovaný přehled tímto doplňkem tiše
 nepovyšujeme ani nepřepisujeme.
 
+<!-- BILINGUAL-UNIT: selector-completion.resolvent -->
+### 5.1 Přímá prvočíselná rezolventa nemá konečný Schattenův řád
+
+**Tvrzení S4 [L1].** Pro každý reálný posun \(a>0\) je
+\(R_a=(H_{\rm p}+aI)^{-1}\) kompaktní, ale nepatří do žádné konečné
+Schattenovy třídy. Její singulární hodnoty jdou k nule, ale pro každé \(r>0\)
+platí
+
+\[
+s_n(R_a)=(a+\log n)^{-1},\qquad
+\sum_{n\ge1}s_n(R_a)^r=\infty.
+\]
+
+**Důkaz.** Kompaktnost plyne z konvergence diagonálních prvků k nule.
+Pro kladná celá čísla \(m\) dává blok celých čísel mezi \(e^m\) a
+\(e^{m+1}\) dolní mez
+
+\[
+\sum_{e^m\le n<e^{m+1}}(a+\log n)^{-r}
+\ge\frac{\lfloor e^{m+1}\rfloor-\lceil e^m\rceil}{(a+m+1)^r}
+\longrightarrow\infty.
+\]
+
+Nelze tedy použít standardní regularizovaný Fredholmův determinant konečného
+řádu pro \(I-zR_a\). Obvyklá stopová řada spektrální zeta funkce pro
+\(H_{\rm p}+aI\) rovněž nemá počáteční polorovinu absolutní konvergence.
+To nevylučuje každou alternativní regularizaci; žádnou zde nekonstruujeme
+ani neidentifikujeme s doplněnou Riemannovou zeta funkcí.
+
+<!-- BILINGUAL-UNIT: selector-completion.heatdet -->
+### 5.2 Platný tepelný determinant s přesně jinou množinou nul
+
+**Tvrzení S5 [L1].** Pevný reálný parametr tlumení \(\beta>1\) skutečně
+dává operátor třídy stopy a obyčejný Fredholmův determinant:
+
+\[
+K_\beta=e^{-\beta H_{\rm p}},\qquad
+D_\beta(z)=\det(I-zK_\beta)=\prod_{n\ge1}(1-z n^{-\beta}).
+\]
+
+**Důkaz.** Součet diagonálních vlastních hodnot konverguje, takže součin
+konverguje lokálně stejnoměrně. Jeho nuly jsou přesně \(z=n^\beta\), všechny
+jednoduché. Pro \(|z|<1\) absolutní konvergence navíc dovoluje logaritmický
+rozvoj
+
+\[
+\log D_\beta(z)=-\sum_{k\ge1}\frac{z^k}{k}\zeta(\beta k).
+\]
+
+Konkrétně Eulerův součin pro sinus dává přesný uzavřený tvar
+
+\[
+D_2(z)=\frac{\sin(\pi\sqrt z)}{\pi\sqrt z}
+=\sum_{j\ge0}\frac{(-1)^j\pi^{2j}z^j}{(2j+1)!},\qquad D_2(0)=1.
+\]
+
+Mocninná řada výslovně ukazuje celistvost funkce a nezávislost na větvi
+odmocniny. Existuje také přesná překážka symetrie: determinant mizí
+v kladném jednotkovém argumentu a nemizí v záporném jednotkovém argumentu,
+zatímco cílová doplněná zeta funkce je sudá:
+
+\[
+D_\beta(1)=0,\quad D_\beta(-1)=\prod_{n\ge1}(1+n^{-\beta})>0,
+\qquad \xi(1/2+iz)=\xi(1/2-iz).
+\]
+
+Žádný všude nenulový násobící faktor tuto neshodu množiny nul nenapraví.
+Tato překážka se týká tohoto determinantu, nikoli všech možných úprav.
+Krok od prvočíselné tepelné stopy k determinantu tedy lze provést
+přesně, ale tento determinant má známé nuly v mocninách celých čísel,
+nikoli požadované nuly doplněné zeta funkce. Získání determinantu nestačí;
+chybí jeho přesná identita s cílovou funkcí. Součin pro sinus je standardní; viz
+[DLMF, nekonečné součiny](https://dlmf.nist.gov/4.22).
+Konvence operátorových determinantů uvádí
+[Bornemann, Fredholmovy determinanty](https://arxiv.org/abs/0804.2543).
+
 <!-- BILINGUAL-UNIT: selector-completion.rh -->
 ## 6. Co by skutečně dokazovalo RH
 
@@ -306,7 +382,9 @@ v matematickém vymezení; mezera důkazu RH zůstává otevřená.
 Spusťte `python tools/verify_null_and_spectral_gap_steps.py`. Zpráva je
 `../../reports/null_and_spectral_gap_steps_2026_09_08.json`.
 Přesné kontroly v SymPy pokrývají znaménka větví, konstanty skalárních oken,
-sklony v jádře, periodicitu a protipříklad tepelné stopy. Nezávislá kvadratura
+sklony v jádře, periodicitu, protipříklad tepelné stopy, růst bloků rezolventy
+a řadu sinového determinantu. Samostatný výpočet porovnávající součin
+se sinem kontroluje chyby ořezu. Nezávislá kvadratura
 v SciPy testuje spojité spektrum operátoru násobení dosahující nuly;
 samostatný výpočet maticové exponenciály testuje nediagonální generátory.
 Konečné výpočty nedokazují S1 ani nekonečněrozměrné tvrzení o doméně v S3.

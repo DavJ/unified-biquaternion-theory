@@ -194,10 +194,80 @@ continuity on the hypersurface. For a smooth solution it is identically zero
 on the neighbourhood, so its derivatives also vanish. Thus the existing
 auxiliary decoupling argument extends to these smooth compatible crossings.
 This does not cover distributional sources, singular fields, a quantum
-constraint measure, or the full Palatini variation at an isolated null point.
+constraint measure. The next theorem treats full Palatini variation across a
+smooth hypersurface; it does not argue from a null point in isolation.
+
+<!-- BILINGUAL-UNIT: null-jet.palatini -->
+## 5. Conditional Palatini dynamics through the crossing
+
+**Theorem N4 [L1].** In the existing split-jet Palatini candidate let the fields
+be smooth, the composite tetrad nondegenerate, the field nowhere zero, and the
+null-norm set a regular hypersurface or empty. Take a nonzero Palatini coupling
+and a fixed cosmological coefficient. Require that the action depend on the
+field and jet variables only through the composite tetrad:
+
+\[
+E^a=c_0^{-1}(dX^a+\omega^a{}_bX^b+K^a{}_bX^b+wX^a),\qquad
+S_{\rm SJHP}=S_{\rm HP}[E,\omega].
+\]
+
+The physical Lorentz connection is independent during variation. All variations
+have compact support. Stationarity is then equivalent to the Palatini equations
+evaluated on the composite tetrad, including on the null hypersurface.
+
+**Proof.** Write the tetrad and connection Euler forms as
+
+\[
+\delta S_{\rm HP}=\int\mathcal E_a\wedge\delta E^a
+ +\int\mathcal C_{ab}\wedge\delta\omega^{ab}.
+\]
+
+Away from the null set, N3 and arbitrary jet variations force
+\(\mathcal E_a=0\). This complement is dense, so continuity of the Euler
+forms forces the same equation on the hypersurface. The physical-connection
+variation is
+
+\[
+\delta_\omega S_{\rm SJHP}=\int\mathcal C_{ab}\wedge\delta\omega^{ab}
+ +c_0^{-1}\int\mathcal E_a\wedge(\delta\omega^a{}_bX^b).
+\]
+
+It gives \(\mathcal C_{ab}=0\) everywhere. Field variation is a differential
+consequence of the identically vanishing tetrad Euler form. Conversely, if
+both Palatini Euler forms vanish, the chain rule makes every composite
+variation stationary, without using pointwise jet rank on the null surface.
+This proves equivalence of equations at a given smooth configuration, not
+existence of that configuration.
+
+For a prescribed smooth vacuum Palatini solution and a nowhere-zero field
+satisfying N2, N1 constructs a smooth lift across the null hypersurface.
+The usual spinless vacuum Cartan equation gives the physical Levi-Civita
+connection. Conditional local GR recovery therefore extends across these
+compatible smooth crossings. The Palatini action and its coefficients are
+still inputs, not derived microscopic UBT dynamics.
+
+<!-- BILINGUAL-UNIT: null-jet.fibres -->
+### 5.1 Equation equivalence does not identify all representatives
+
+Forgetting the field representative and jet variables gives a surjection onto
+admissible Palatini solutions. Quotienting only by the jet tensor's stabilizer
+does not make it injective, since that stabilizer does not change the field.
+For the flat standard tetrad, zero physical connection, \(c_0=1\) and zero
+cosmological term, both constant fields
+
+\[
+X=(1,0,0,0),\qquad \widetilde X=(2,0,0,0)
+\]
+
+have non-null right inverses and produce the same vacuum Palatini solution.
+They cannot be related by changing only a tensor annihilating a fixed field.
+A bijection would require quotienting the entire representation fibre; no
+physical gauge interpretation of that whole fibre is established here.
+The earlier diagram in `split_jet_palatii_variational_lift.en.md` is corrected
+to a surjective solution map.
 
 <!-- BILINGUAL-UNIT: null-jet.examples -->
-## 5. Exact examples and limits
+## 6. Exact examples and limits
 
 For the flat standard tetrad take \(c_0=1\) and \(X^a=x^a\). Then
 \(Z=0\) and \(K=w=0\) everywhere. The field norm crosses the null cone
@@ -225,7 +295,7 @@ is an algebraic example for one mismatch slot, not an asserted solution of
 the full field equations.
 
 <!-- BILINGUAL-UNIT: null-jet.verification -->
-## 6. Verification and remaining work
+## 7. Verification and remaining work
 
 Run `python tools/verify_null_and_spectral_gap_steps.py`. The recorded result is
 `../../reports/null_and_spectral_gap_steps_2026_09_08.json`.

@@ -224,13 +224,17 @@ Tedy na každém nenulovém patchi
 
 \[
 \boxed{
-\{\text{stationary points of }S_{\rm SJHP}\}/\text{jet stabilizer}
-\quad\longleftrightarrow\quad
-\{\text{Palatini stationary points}\}.}
+\mathcal P:\operatorname{Crit}(S_{\rm SJHP})
+\twoheadrightarrow\operatorname{Crit}(S_{\rm HP}),\qquad
+\mathcal P(X,\omega,K_J,w)=(E,\omega).}
 \]
 
-Ekvivalence je lokální a vylučuje nulové patche `X`, kde je explicitní pravá
-inverze singulární.
+Jde o ekvivalenci rovnic na dané konfiguraci a surjektivní zobrazení množin
+řešení, nikoli o bijekci pouze modulo stabilizátor jetového tenzoru.
+Různé reprezentanty pole mohou dávat stejnou tetrádu; tento stabilizátor
+ponechává pole pevné. Protipříklad a rozšíření na kompatibilní hladké
+průchody nulovou normou jsou dokázány v `split_jet_null_continuation.cs.md`.
+Výše uvedená pravá inverze pro nenulovou normu sama nulové průchody nepokrývá.
 
 <!-- BILINGUAL-UNIT: split-jet-palatii.significance -->
 ## Co tento výsledek uzavírá
