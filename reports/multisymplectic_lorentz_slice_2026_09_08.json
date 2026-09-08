@@ -1,0 +1,114 @@
+{
+  "schema": "ubt-verification/v1",
+  "date": "2026-09-08",
+  "base_commit": "7059bda2094b691b0d2eb0a61130788a34c77fff",
+  "result": "PASS",
+  "check_groups": 7,
+  "checks": [
+    {
+      "id": "M1",
+      "result": "PASS",
+      "channel": "SymPy exact matrix algebra",
+      "scope": "Lorentz Gram matrix, half-dimensional isotropy, arbitrary real tetrad",
+      "gram_diagonal": [
+        2,
+        -2,
+        -2,
+        -2
+      ],
+      "slice_rank": 4
+    },
+    {
+      "id": "M2",
+      "result": "PASS",
+      "channel": "SymPy exact differentiation",
+      "scope": "Unrestricted density gradient in all 32 real jet variables at two nondegenerate slice jets; coefficient derivative vanishes too"
+    },
+    {
+      "id": "M3",
+      "result": "PASS",
+      "channel": "SymPy exact polynomial algebra",
+      "scope": "Slice-tangent first variation of Q is zero; a normal jet has nonzero pointwise density second variation, not a propagating bulk Hessian certificate",
+      "normal_density": "f0*eps^2+f1*eps^3+f2*eps^4",
+      "normal_second_derivative": "2*f0"
+    },
+    {
+      "id": "M4-jet",
+      "result": "PASS",
+      "channel": "SymPy exact differentiation",
+      "scope": "Non-null single-field representer with Lorentz jet connection; distinct torsion-free physical connection and composite difference",
+      "tetrad_diagonal": [
+        "1",
+        "t^2",
+        "t^2",
+        "t^2"
+      ],
+      "field_norm": "-c0^2*t^2",
+      "determinant": "t^6"
+    },
+    {
+      "id": "M4-Ricci",
+      "result": "PASS",
+      "channel": "SymPy full coordinate curvature",
+      "scope": "Explicit metric is not Ricci-proportional, even for a variable proportionality factor",
+      "ricci_diagonal": [
+        "-6/t^2",
+        "10*t^2",
+        "10*t^2",
+        "10*t^2"
+      ],
+      "scalar_curvature": "36/t^2",
+      "proportionality_mismatch": "-4/t^2"
+    },
+    {
+      "id": "M1-independent",
+      "result": "PASS",
+      "channel": "NumPy complex 2x2 algebra / SciPy exponential",
+      "scope": "24 seeded nondegenerate coframes, Lorentz transformations and common phases; no realification matrix reused",
+      "seed": 648202609,
+      "witnesses": 24,
+      "max_scaled_residual": 9.776124547143617e-17
+    },
+    {
+      "id": "M2-M3-independent",
+      "result": "PASS",
+      "channel": "NumPy complex density / central differences",
+      "scope": "First derivative tends to zero quadratically while a normal pointwise second derivative tends to four; not a bulk fluctuation-mode calculation",
+      "first_derivative_estimates": [
+        3.0000000000000136e-06,
+        7.499999999999505e-07,
+        1.8749999999998762e-07
+      ],
+      "expected_second_derivative": 4
+    }
+  ],
+  "tools": {
+    "python": "3.12.13",
+    "sympy": "1.14.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "lean": {
+    "status": "LEAN-PENDING",
+    "lean_available": false,
+    "lake_available": false,
+    "reason": "No compiled Lean proof; Lean and Lake absent in the inspected runtime."
+  },
+  "source_sha256": {
+    "tools/verify_multisymplectic_lorentz_slice.py": "66e378782cb91084c4f473f7d727966824b3e5a603fc1d02a76329735a1be18d",
+    "research_tracks/action_selection/multisymplectic_lorentz_slice_audit.en.md": "4535add1e941651ce0c4e25dcdd1d2221bd8ebe31ffec68e3e93cd268bf7d6e4",
+    "research_tracks/action_selection/multisymplectic_lorentz_slice_audit.cs.md": "1a466a0126b89d473696e40acc8bf08e976a24226779c3bbf09348aa93b1e4e3",
+    "research_tracks/action_selection/theta_covariant_multisymplectic_gauging.en.md": "b6d74f99bb432c909ed5bd9ea4bc75f00555580b8e8533d708225b8ee674536d",
+    "research_tracks/action_selection/theta_covariant_multisymplectic_gauging.cs.md": "065d1e6228ef1279a1e7cc8a5d313e3e529031713f46a19dc0c509a7573f19dd",
+    "research_tracks/action_selection/unconditional_gr_action_decision.en.md": "6d04a9acc11990cf578a0e2a29342f4c64f203645acbd692c787b7aa6fb7b831",
+    "research_tracks/action_selection/unconditional_gr_action_decision.cs.md": "56fd5f1b1af37408469e9ee83fcf40f621d57f6ad1ca7513fd7e63f0b734362a"
+  },
+  "scope": "Finite exact and numerical certificates accompanying an analytic local theorem for the specified F Q wedge Q family.",
+  "limitations": [
+    "No formal proof of the full smooth functional chain rule or infinite-dimensional variational statement.",
+    "A pointwise density Hessian witness does not establish a nonzero integrated bulk Hessian or propagating modes.",
+    "The curved witness uses the approved distinction between a composite jet connection and the physical Levi-Civita connection.",
+    "No claim about other actions, quantum corrections, RH, or unconditional UBT gravity is closed."
+  ],
+  "canonical_claim_status_changes": []
+}

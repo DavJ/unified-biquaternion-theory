@@ -39,7 +39,12 @@ obstrukcí:
   směrem až po důkazu diferenciální injektivity adjungovaného operátoru nebo
   ekvivalence, kterou bodová hodnost metriky neposkytuje;
 - split-jet omezení je surjektivní pro každou tetrádu, takže konfigurace GR
-  reprezentuje, ale nemůže z `Theta` jednu vybrat.
+  reprezentuje, ale nemůže z `Theta` jednu vybrat;
+- pro existující skalární multisymplektickou rodinu platí
+  \(Q=0\), \(S_F=0\) a \(\delta S_F=0\) na kanonickém Lorentzově jetu,
+  a to i po diferencovatelném dosazení složené konexe; explicitní stacionární
+  neeinsteinovskou metriku poskytuje
+  [audit Lorentzova řezu](multisymplectic_lorentz_slice_audit.cs.md).
 
 Žádná poctivá změna statusu proto nemůže zbývající gap na úrovni akce
 odstranit. Je nutná nová **odvozená dynamická věta** nebo explicitně schválený

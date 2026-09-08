@@ -38,7 +38,12 @@ several exact obstructions:
   direction only after a differential adjoint-injectivity/equivalence theorem,
   which pointwise metric rank does not supply;
 - the split-jet constraint is surjective for every tetrad, hence it represents
-  GR configurations but cannot select one from `Theta`.
+  GR configurations but cannot select one from `Theta`;
+- the existing scalar multisymplectic family has
+  \(Q=0\), \(S_F=0\) and \(\delta S_F=0\) on the canonical Lorentz jet,
+  even after a differentiable composite-connection substitution; an explicit
+  stationary noneinsteinian metric is supplied by the
+  [Lorentz-slice audit](multisymplectic_lorentz_slice_audit.en.md).
 
 Accordingly, no honest status edit can remove the remaining action-level gap.
 A new **derived dynamical theorem** or an explicitly approved **new dynamical
