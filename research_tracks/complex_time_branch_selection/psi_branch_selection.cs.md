@@ -16,7 +16,7 @@ UBT-AI-PROVENANCE-END
 
 **Typ stopy:** VÝZKUMNÁ STOPA — MATEMATICKÉ LEMMA O SELEKCI PLUS KONJEKTURÁLNÍ UBT INTERPRETACE
 **Datum:** 2026-09-02  
-**Status:** holomorfie samotná je `CLOSED AS NO-GO [L0]`; lemma o výběru větve pomocí omezenosti je `PROPOSITION / PROOF SKETCH`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; operátor Diracova typu je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; vztah k RH je `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
+**Status:** holomorfie samotná je `CLOSED AS NO-GO [L0]`; lemma o výběru větve pomocí omezenosti je `ANALYTIC PROOF [L1]; LEAN-PENDING`; UBT identifikace `s ?= \psi` je `OPEN / CONJECTURAL`; operátor Diracova typu je `RESEARCH ANSATZ`; multivesmírné čtení je `SPECULATIVE`; vztah k RH je `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
 
 **Anglická edice:** `psi_branch_selection.en.md`  
 **Bilingvní politika:** `../../BILINGUAL_CONTENT_POLICY.cs.md`  
@@ -114,7 +114,7 @@ používá dodatečná data:
 Proto je zesílené tvrzení pouze
 
 $$
-\boxed{\text{holomorphy + positivity + oriented boundedness: PROPOSITION / PROOF SKETCH}}
+\boxed{\text{holomorphy + positivity + oriented boundedness: ANALYTIC PROOF [L1]; LEAN-PENDING}}
 $$
 
 Žádné kanonické UBT odvození tohoto silnějšího selektoru se zde netvrdí.
@@ -122,11 +122,13 @@ $$
 <!-- BILINGUAL-UNIT: psi-branch.sec3 -->
 ## 3. Lemma o výběru větve pomocí omezené semigrupy
 
-> **Status: PROPOSITION / PROOF SKETCH**
-> Níže uvedené tvrzení je záměrně užší než odkaz na standardní Hardy-\(H^2\)
-> větu. Izoluje argument s omezenou semigrupou, který se zde skutečně používá,
-> a ponechává domény neomezených operátorů, existenci pokračování i úplnou
-> nekonečněrozměrnou funkcionální analýzu jako otevřenou verifikační práci.
+> **Status: ANALYTIC PROOF [L1]; LEAN-PENDING**
+> Úplný analytický důkaz s doménami operátorů, existencí pokračování,
+> spojitým spektrem a nulovým módem je v
+> `bounded_selector_domain_completion.cs.md`, věta S1. Níže uvedený argument
+> je jeho nástinem přes rozklad do větví. Rovnice prvního řádu na reálné hranici
+> platí pro obecná Hilbertovská data v mírném smyslu a na doméně generátoru silně.
+> Nejde o Hardyho větu pro \(H^2\); formální verifikace v Leanu zůstává nedokončená.
 
 <!-- BILINGUAL-UNIT: psi-branch.semigroup-setup -->
 ### 3.1 Nastavení na \((\ker A)^\perp\)
@@ -766,7 +768,7 @@ a plný nekonečněrozměrný argument se spektrální mírou.
 <!-- BILINGUAL-UNIT: psi-branch.gap-table -->
 | Mezera | Popis | Status |
 |---|---|---|
-| G1 | Lemma o výběru větve pomocí omezenosti: úplná doména a ověření pokračování | PROPOSITION / PROOF SKETCH |
+| G1 | Lemma o výběru větve pomocí omezenosti: úplná doména a ověření pokračování | ANALYTIC PROOF [L1]; LEAN-PENDING |
 | G2 | Identifikace \(s\stackrel{?}{=}\psi\) | OPEN / CONJECTURAL |
 | G3-DYN | Dynamické použití \(\Gamma_*D_\psi\), jeho normalizace, levé/pravé působení a původ na úrovni akce | OPEN |
 | G4 | Kompatibilita nekompaktního selektoru s kompaktním \(S^1_\psi\) | OPEN |
@@ -781,7 +783,7 @@ a plný nekonečněrozměrný argument se spektrální mírou.
 | Oddíl | Status |
 |---|---|
 | S2: Selektor samotné holomorfie | CLOSED AS NO-GO [L0] |
-| S3: Lemma o výběru větve pomocí omezenosti | PROPOSITION / PROOF SKETCH |
+| S3: Lemma o výběru větve pomocí omezenosti | ANALYTIC PROOF [L1]; LEAN-PENDING |
 | S4: \(s\) vs. kanonické \(\psi\) a kompaktnost | OPEN / CONJECTURAL plus OPEN |
 | S5: Kandidátní operátor Diracova typu pro komplexní čas / vlákno | RESEARCH ANSATZ |
 | S6: Hierarchie limit | STANDARD PHYSICS FACT |

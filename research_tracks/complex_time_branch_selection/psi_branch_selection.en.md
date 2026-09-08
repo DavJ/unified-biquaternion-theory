@@ -16,7 +16,7 @@ UBT-AI-PROVENANCE-END
 
 **Track type:** RESEARCH TRACK — MATHEMATICAL SELECTION LEMMA PLUS CONJECTURAL UBT INTERPRETATION  
 **Date:** 2026-09-02  
-**Status:** holomorphy alone is `CLOSED AS NO-GO [L0]`; the bounded branch-selection lemma is `PROPOSITION / PROOF SKETCH`; the UBT identification `s ?= \psi` is `OPEN / CONJECTURAL`; the Dirac-type operator is `RESEARCH ANSATZ`; the multiverse reading is `SPECULATIVE`; the RH connection is `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
+**Status:** holomorphy alone is `CLOSED AS NO-GO [L0]`; the bounded branch-selection lemma is `ANALYTIC PROOF [L1]; LEAN-PENDING`; the UBT identification `s ?= \psi` is `OPEN / CONJECTURAL`; the Dirac-type operator is `RESEARCH ANSATZ`; the multiverse reading is `SPECULATIVE`; the RH connection is `CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH`.
 
 **Czech edition:** `psi_branch_selection.cs.md`  
 **Bilingual policy:** `../../BILINGUAL_CONTENT_POLICY.en.md`  
@@ -114,7 +114,7 @@ selection principle uses additional data:
 Accordingly the strengthened claim is only
 
 $$
-\boxed{\text{holomorphy + positivity + oriented boundedness: PROPOSITION / PROOF SKETCH}}
+\boxed{\text{holomorphy + positivity + oriented boundedness: ANALYTIC PROOF [L1]; LEAN-PENDING}}
 $$
 
 No canonical UBT derivation of this stronger selector is claimed here.
@@ -122,11 +122,13 @@ No canonical UBT derivation of this stronger selector is claimed here.
 <!-- BILINGUAL-UNIT: psi-branch.sec3 -->
 ## 3. Bounded semigroup selection lemma
 
-> **Status: PROPOSITION / PROOF SKETCH**
-> The statement below is intentionally narrower than a standard Hardy-\(H^2\)
-> theorem claim. It isolates the bounded-semigroup argument that is actually
-> used here and leaves unbounded-operator domains, continuation existence, and
-> full infinite-dimensional functional analysis as open verification work.
+> **Status: ANALYTIC PROOF [L1]; LEAN-PENDING**
+> The complete analytic proof with operator domains, continuation existence,
+> continuous spectrum and the zero mode is in
+> `bounded_selector_domain_completion.en.md`, Theorem S1. The argument below
+> is its branch-decomposition outline. The real-boundary first-order equation
+> is mild for general Hilbert-space data and strong on the generator domain.
+> This is not a Hardy-\(H^2\) theorem; formal Lean verification remains pending.
 
 <!-- BILINGUAL-UNIT: psi-branch.semigroup-setup -->
 ### 3.1 Setup on \((\ker A)^\perp\)
@@ -767,7 +769,7 @@ infinite-dimensional spectral-measure argument.
 <!-- BILINGUAL-UNIT: psi-branch.gap-table -->
 | Gap | Description | Status |
 |---|---|---|
-| G1 | Bounded branch-selection lemma: full domain and continuation verification | PROPOSITION / PROOF SKETCH |
+| G1 | Bounded branch-selection lemma: full domain and continuation verification | ANALYTIC PROOF [L1]; LEAN-PENDING |
 | G2 | Identification \(s\stackrel{?}{=}\psi\) | OPEN / CONJECTURAL |
 | G3-DYN | Dynamic use of \(\Gamma_*D_\psi\), its normalization, left/right action and action origin | OPEN |
 | G4 | Compatibility of the non-compact selector with compact \(S^1_\psi\) | OPEN |
@@ -782,7 +784,7 @@ infinite-dimensional spectral-measure argument.
 | Section | Status |
 |---|---|
 | S2: Holomorphy-alone selector | CLOSED AS NO-GO [L0] |
-| S3: Bounded branch-selection lemma | PROPOSITION / PROOF SKETCH |
+| S3: Bounded branch-selection lemma | ANALYTIC PROOF [L1]; LEAN-PENDING |
 | S4: \(s\) vs. canonical \(\psi\) and compactness | OPEN / CONJECTURAL plus OPEN |
 | S5: Candidate complex-time / fibre Dirac-type operator | RESEARCH ANSATZ |
 | S6: Hierarchy of limits | STANDARD PHYSICS FACT |

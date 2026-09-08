@@ -239,8 +239,8 @@ n_not_run = sum(1 for _name, status, _detail in results if status == NOT_RUN)
 print(f"Results: {n_pass} passed, {n_fail} failed, {n_not_run} not run")
 print("Exact symbolic/algebraic checks: encoded identities verified above.")
 print("Finite-dimensional numerical illustration: limited examples only; not a proof.")
-print("Infinite-dimensional theorem: PROOF SKETCH only; formal proof pending.")
-print("LEAN-PENDING: operator-domain and continuation existence details remain open.")
+print("Infinite-dimensional theorem: analytic proof in bounded_selector_domain_completion.en.md; not proved by this verifier.")
+print("LEAN-PENDING: the domain-complete analytic argument has not been formally checked in Lean.")
 
 if n_fail:
     print("FAILED checks:")

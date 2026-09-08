@@ -1,0 +1,134 @@
+{
+  "schema": "ubt.research-gap-verification/v1",
+  "date": "2026-09-08",
+  "base_commit": "6ee61b98bb7578d67c2babe16134128d1f0f910c",
+  "result": "PASS",
+  "versions": {
+    "python": "3.12.13",
+    "sympy": "1.14.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "lean_status": "LEAN-PENDING",
+  "lean_reason": "Neither Lean nor Lake found in the inspected runtime; no compiled formal proof supplied.",
+  "runtime_tools": {
+    "lean": null,
+    "lake": null
+  },
+  "checks": [
+    {
+      "id": "N1",
+      "result": "PASS",
+      "channel": "SymPy exact rational functions",
+      "scope": "General Lorentz tensor, contraction, antisymmetry and dual-vector reconstruction in x0 != 0 chart"
+    },
+    {
+      "id": "N3",
+      "result": "PASS",
+      "channel": "SymPy exact linear algebra",
+      "scope": "Timelike, spacelike, nonzero-null and zero witnesses; null multiplier direction",
+      "ranks": [
+        4,
+        4,
+        3,
+        0
+      ]
+    },
+    {
+      "id": "N2-counterexample",
+      "result": "PASS",
+      "channel": "SymPy exact polynomial arithmetic",
+      "scope": "Vanishing on a nonregular zero set is not smooth divisibility"
+    },
+    {
+      "id": "N2-affine",
+      "result": "PASS",
+      "channel": "SymPy exact differentiation",
+      "scope": "Flat affine smooth cone crossing and incompatible constant null representative"
+    },
+    {
+      "id": "N-independent",
+      "result": "PASS",
+      "channel": "NumPy SVD and independent Lorentz generators",
+      "scope": "Compatible smooth algebraic data around a null crossing; rejection of an incompatible null target",
+      "max_residual": 1.7199501139797033e-15,
+      "tolerance": 2e-12,
+      "incompatible_residual": 0.7071067811865476,
+      "seed": 20260908
+    },
+    {
+      "id": "S1-exact",
+      "result": "PASS",
+      "channel": "SymPy exact differentiation",
+      "scope": "Continuation signs, first/second-order equations, bounded-window coefficient formulas and kernel affine solution"
+    },
+    {
+      "id": "S2-S3-exact",
+      "result": "PASS",
+      "channel": "SymPy exact scalar identities",
+      "scope": "Periodic damping factor, real diagonal deficiency-factor nonvanishing and nonreal heat-trace zero"
+    },
+    {
+      "id": "S1-continuous",
+      "result": "PASS",
+      "channel": "SciPy adaptive quadrature versus analytic integrals",
+      "scope": "Unbounded continuous multiplication spectrum reaching zero; finite continuation is not uniform boundedness",
+      "max_absolute_error": 2.842170943040401e-14,
+      "tolerance": 2e-09,
+      "growing_squared_norms": [
+        0.6799652007628082,
+        1.738525905851847,
+        112.66744811017458
+      ]
+    },
+    {
+      "id": "S1-matrix",
+      "result": "PASS",
+      "channel": "SciPy matrix exponential versus NumPy diagonal spectral calculus",
+      "scope": "Non-diagonal positive semidefinite complex Hermitian generator; damping and contraction",
+      "max_residual": 2.4298417309597575e-15,
+      "tolerance": 2e-12,
+      "seed": 20260908
+    },
+    {
+      "id": "S3-truncation",
+      "result": "PASS",
+      "channel": "NumPy sums versus exact zeta(2) and integral-test bounds",
+      "scope": "Convergent trace truncations at exponent two and harmonic growth at the trace-class threshold",
+      "truncations": [
+        30,
+        300,
+        3000
+      ],
+      "tails": [
+        0.03278394924662864,
+        0.0033277839506034024,
+        0.0003332777839504253
+      ]
+    }
+  ],
+  "proof_scope": {
+    "N1-N3": "Analytic local smooth divisibility and null-rank theorem; exact algebra and independent finite checks only.",
+    "S1": "Analytic proof for weak norm-holomorphic solutions of a nonnegative self-adjoint operator equation with a bounded vertical ray and strong boundary value.",
+    "S2": "Direct periodic damping under S1 forces kernel support.",
+    "S3": "Analytic self-adjoint closure of the diagonal prime operator; trace class only for Re(omega)>1."
+  },
+  "not_verified": [
+    "Formal infinite-dimensional spectral or smooth-manifold proofs",
+    "A microscopic UBT action or generator and its domain or physical boundary condition",
+    "Einstein dynamics, Newton coefficient, generic global/null continuation or quantum measure",
+    "Riemann hypothesis, a Hilbert-Polya operator or the required determinant identity",
+    "Human semantic equivalence of the bilingual prose"
+  ],
+  "canonical_claims_changed": false,
+  "source_sha256": {
+    "research_tracks/action_selection/split_jet_null_continuation.en.md": "0427b0ba89f6889fe2de6daa0620b77d30aecebab4defeea8855f494b0a1db73",
+    "research_tracks/action_selection/split_jet_null_continuation.cs.md": "66e88b1a4b954073f8046efe81a20a91a1aae6bd0b8193ff27f00eedec43251b",
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md": "bca4a1ace834f5ed0ce8c7166d5bfee6dc8b6088498ba2706ba8cf126bd37ae6",
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md": "b135a3b9df093814621a9a00628410e0771afecaf1b52c5b411c333ff9ac1ea7",
+    "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md": "00f588dc95ebee6f0b10d7b34d403f0f05e81d8a39de769f3b93c70c2c2eebeb",
+    "research_tracks/complex_time_branch_selection/psi_branch_selection.cs.md": "69443ce16f0b436f51f84eedeb9d26a9e418f5da68be6bf6a8b508b3de1a494f",
+    "tools/verify_null_and_spectral_gap_steps.py": "96cb46430a567082c34fe341165e22dba1689688af3ed964643e1481db3708ef",
+    "tools/verify_psi_branch_selection.py": "f116b565dec74ea396351348adf7932704fb9981eac3e443cbfea848ad586f3c"
+  }
+}
