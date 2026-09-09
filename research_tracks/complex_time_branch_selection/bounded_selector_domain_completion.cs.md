@@ -50,7 +50,7 @@ M=\sup_{s>0}\|F(-is)\|_H<\infty.
 \]
 
 Parametr \(s\) je pomocná hloubka pokračování. Neztotožňujeme jej
-s kanonickou kompaktní souřadnicí \(\psi\).
+s periodickou realizací souřadnice UBT \(\psi\).
 
 <!-- BILINGUAL-UNIT: selector-completion.theorem -->
 ## 2. Výběr omezené větve bez spektrální mezery
@@ -199,7 +199,7 @@ spektrální míra je nesena nulou. Obrácený směr je okamžitý.
 Přímé periodické ztotožnění této hloubky tlumení s kompaktní souřadnicí
 \(S^1_\psi\) tedy nemůže zachovat vybranou orbitu s nenulovou frekvencí.
 To vylučuje pouze toto přímé ztotožnění za předpokladů S1. Nevylučuje
-jiné vláknové konstrukce, tepelné korelační funkce ani zkroucená data.
+jiné konstrukce s periodickým psi, tepelné korelační funkce ani zkroucená data.
 Odvození jakékoli alternativy z UBT zůstává otevřené; její existenci
 zde netvrdíme.
 
@@ -379,8 +379,8 @@ v matematickém vymezení; mezera důkazu RH zůstává otevřená.
 <!-- BILINGUAL-UNIT: selector-completion.verification -->
 ## 7. Verifikace, zdroje a hranice statusu
 
-Spusťte `python tools/verify_null_and_spectral_gap_steps.py`. Zpráva je
-`../../reports/null_and_spectral_gap_steps_2026_09_08.json`.
+Spusťte `python tools/verify_bounded_spectral_gap_steps.py`. Zpráva je
+`../../reports/bounded_spectral_gap_steps_2026_09_08.json`.
 Přesné kontroly v SymPy pokrývají znaménka větví, konstanty skalárních oken,
 sklony v jádře, periodicitu, protipříklad tepelné stopy, růst bloků rezolventy
 a řadu sinového determinantu. Samostatný výpočet porovnávající součin

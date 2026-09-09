@@ -1,6 +1,6 @@
 {
   "schema": "ubt-verification/v1",
-  "date": "2026-09-08",
+  "date": "2026-09-09",
   "base_commit": "7059bda2094b691b0d2eb0a61130788a34c77fff",
   "result": "PASS",
   "check_groups": 7,
@@ -83,7 +83,7 @@
     }
   ],
   "tools": {
-    "python": "3.12.13",
+    "python": "3.12.14",
     "sympy": "1.14.0",
     "numpy": "2.3.5",
     "scipy": "1.17.0"
@@ -95,13 +95,13 @@
     "reason": "No compiled Lean proof; Lean and Lake absent in the inspected runtime."
   },
   "source_sha256": {
-    "tools/verify_multisymplectic_lorentz_slice.py": "66e378782cb91084c4f473f7d727966824b3e5a603fc1d02a76329735a1be18d",
+    "tools/verify_multisymplectic_lorentz_slice.py": "fdca6dc4ccd9c59664fb4672bd830853eaed0a212e89804340b624484b239225",
     "research_tracks/action_selection/multisymplectic_lorentz_slice_audit.en.md": "4535add1e941651ce0c4e25dcdd1d2221bd8ebe31ffec68e3e93cd268bf7d6e4",
     "research_tracks/action_selection/multisymplectic_lorentz_slice_audit.cs.md": "1a466a0126b89d473696e40acc8bf08e976a24226779c3bbf09348aa93b1e4e3",
     "research_tracks/action_selection/theta_covariant_multisymplectic_gauging.en.md": "b6d74f99bb432c909ed5bd9ea4bc75f00555580b8e8533d708225b8ee674536d",
     "research_tracks/action_selection/theta_covariant_multisymplectic_gauging.cs.md": "065d1e6228ef1279a1e7cc8a5d313e3e529031713f46a19dc0c509a7573f19dd",
-    "research_tracks/action_selection/unconditional_gr_action_decision.en.md": "6d04a9acc11990cf578a0e2a29342f4c64f203645acbd692c787b7aa6fb7b831",
-    "research_tracks/action_selection/unconditional_gr_action_decision.cs.md": "56fd5f1b1af37408469e9ee83fcf40f621d57f6ad1ca7513fd7e63f0b734362a"
+    "research_tracks/action_selection/unconditional_gr_action_decision.en.md": "7f31df95c8557ebc1105b260860e2d6b0b99bd787759b4c926d5baac90cc38ee",
+    "research_tracks/action_selection/unconditional_gr_action_decision.cs.md": "b46b9e7cac1494f1c7f17bff81a6bafd053a42faa8ec7e82ffc8979e7c3fe8fc"
   },
   "scope": "Finite exact and numerical certificates accompanying an analytic local theorem for the specified F Q wedge Q family.",
   "limitations": [

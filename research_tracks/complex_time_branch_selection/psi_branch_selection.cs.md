@@ -12,7 +12,7 @@ notice: Working material; exhaustive human review is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
-# Výběr větve prvního řádu pomocí komplexně-časového pokračování a vláknových dat
+# Výběr větve prvního řádu pomocí komplexně-časového pokračování a periodických dat psi
 
 **Typ stopy:** VÝZKUMNÁ STOPA — MATEMATICKÉ LEMMA O SELEKCI PLUS KONJEKTURÁLNÍ UBT INTERPRETACE
 **Datum:** 2026-09-02  
@@ -335,8 +335,8 @@ s\stackrel{?}{=}\psi.
 $$
 
 Tato identifikace zůstává `OPEN / CONJECTURAL`. Důvod je strukturální:
-kanonické \(\psi\) je periodická / kompaktní vláknová souřadnice, zatímco
-\(s>0\) je nekompaktní parametr poloroviny nebo tepelného parametru.
+pokud je komplexně-časová souřadnice \(\psi\) realizována periodicky, \(s>0\)
+je naproti tomu nekompaktní parametr poloroviny nebo tepelný parametr.
 
 <!-- BILINGUAL-UNIT: psi-branch.compact-obstruction -->
 ### 4.3 Proč kompaktní \(\psi\) zůstává překážkou
@@ -365,7 +365,7 @@ Tím zůstávají dva odlišné otevřené problémy:
 2. kompatibilita nekompaktního selektoru s kompaktním \(S^1_\psi\).
 
 <!-- BILINGUAL-UNIT: psi-branch.sec5 -->
-## 5. Kandidátní operátor Diracova typu pro komplexní čas / vlákno
+## 5. Kandidátní operátor Diracova typu pro komplexní čas / periodické psi
 
 > **Status: RESEARCH ANSATZ — NOT A DERIVED CANONICAL EQUATION**
 
@@ -412,7 +412,7 @@ $$
 To **není** automatické tvrzení, že kanonická UBT je obyčejná
 pětidimenzionální prostoročasová teorie. Proměnnou \(\psi\) lze interpretovat jako
 
-1. imaginární složku komplexně-časového vláknového značení;
+1. imaginární složku komplexně-časového značení;
 2. interní kompaktní souřadnici;
 3. skutečnou další reálnou dimenzi pouze v rozšířené interpretaci.
 
@@ -785,7 +785,7 @@ a plný nekonečněrozměrný argument se spektrální mírou.
 | S2: Selektor samotné holomorfie | CLOSED AS NO-GO [L0] |
 | S3: Lemma o výběru větve pomocí omezenosti | ANALYTIC PROOF [L1]; LEAN-PENDING |
 | S4: \(s\) vs. kanonické \(\psi\) a kompaktnost | OPEN / CONJECTURAL plus OPEN |
-| S5: Kandidátní operátor Diracova typu pro komplexní čas / vlákno | RESEARCH ANSATZ |
+| S5: Kandidátní operátor Diracova typu pro komplexní čas / periodické psi | RESEARCH ANSATZ |
 | S6: Hierarchie limit | STANDARD PHYSICS FACT |
 | S7: Multivesmírná interpretace | SPECULATIVE |
 | S8: Strukturální poznámka k RH | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |

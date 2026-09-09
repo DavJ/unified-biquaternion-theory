@@ -12,7 +12,7 @@ notice: Working material; exhaustive human review is not claimed.
 UBT-AI-PROVENANCE-END
 -->
 
-# First-order dynamic branch selection via complex-time continuation and fibre data
+# First-order dynamic branch selection via complex-time continuation and periodic psi data
 
 **Track type:** RESEARCH TRACK — MATHEMATICAL SELECTION LEMMA PLUS CONJECTURAL UBT INTERPRETATION  
 **Date:** 2026-09-02  
@@ -335,8 +335,8 @@ s\stackrel{?}{=}\psi.
 $$
 
 That identification remains `OPEN / CONJECTURAL`. The reason is structural:
-canonical \(\psi\) is a periodic / compact fibre coordinate, whereas \(s>0\) is
-a non-compact half-plane or heat parameter.
+if the complex-time coordinate \(\psi\) is realized periodically, \(s>0\)
+is instead a non-compact half-plane or heat parameter.
 
 <!-- BILINGUAL-UNIT: psi-branch.compact-obstruction -->
 ### 4.3 Why compact \(\psi\) is still an obstruction
@@ -364,7 +364,7 @@ This leaves the following two distinct open issues:
 2. compatibility of the non-compact selector with compact \(S^1_\psi\).
 
 <!-- BILINGUAL-UNIT: psi-branch.sec5 -->
-## 5. Candidate complex-time / fibre Dirac-type operator
+## 5. Candidate complex-time / periodic-psi Dirac-type operator
 
 > **Status: RESEARCH ANSATZ — NOT A DERIVED CANONICAL EQUATION**
 
@@ -411,7 +411,7 @@ $$
 This is **not** an automatic claim that canonical UBT is an ordinary
 five-dimensional spacetime theory. The variable \(\psi\) may be interpreted as
 
-1. the imaginary component of complex-time fibre bookkeeping;
+1. the imaginary component of complex-time bookkeeping;
 2. an internal compact coordinate;
 3. a genuine extra real dimension only in an extended interpretation.
 
@@ -786,7 +786,7 @@ infinite-dimensional spectral-measure argument.
 | S2: Holomorphy-alone selector | CLOSED AS NO-GO [L0] |
 | S3: Bounded branch-selection lemma | ANALYTIC PROOF [L1]; LEAN-PENDING |
 | S4: \(s\) vs. canonical \(\psi\) and compactness | OPEN / CONJECTURAL plus OPEN |
-| S5: Candidate complex-time / fibre Dirac-type operator | RESEARCH ANSATZ |
+| S5: Candidate complex-time / periodic-psi Dirac-type operator | RESEARCH ANSATZ |
 | S6: Hierarchy of limits | STANDARD PHYSICS FACT |
 | S7: Multiverse interpretation | SPECULATIVE |
 | S8: RH structural note | CONDITIONAL RESEARCH DIRECTION — NOT A PROOF OF RH OR AN ADVANCE TOWARD RH |

@@ -30,8 +30,8 @@ klasický důsledek. Nepovyšuje kandidáta na zamčenou akci UBT.
 <!-- BILINGUAL-UNIT: single-theta-mm.fields -->
 ## Architektura polí
 
-Nechť `X` je existující Lorentzovsky reálný vektorový reprezentant jediného
-fundamentálního pole `Theta` a pracujme na oblasti s
+Nechť `X` je Lorentzovsky reálná projekce jediného fundamentálního pole
+`Theta` a pracujme na patchi s
 
 \[
 X^2\ne0.
@@ -144,31 +144,19 @@ protože `X` vstupuje do objemové gravitační akce přes kompozitní `E`. Obr�
 lze každé lokální Palatiniho řešení liftovat do split-jet proměnných pomocí
 explicitní nenulové pravé inverze.
 
-Při pevných okrajových a topologických datech tedy zapomenutí reprezentantu
-dává lokální surjekci. Označíme-li stacionární konfigurace symbolem `Crit`,
+Proto až na algebraický jetový stabilizátor a okrajová/topologická data platí
 
 \[
 \boxed{
-\mathcal P:\operatorname{Crit}(S_{\rm cand})
-\twoheadrightarrow\operatorname{Crit}(S_{\rm HP}),\qquad
-\mathcal P(X,\omega,K_J,w)=(E,\omega)}
+\{\text{local stationary points of }S_{\rm cand}\}
+\longleftrightarrow
+\{\text{local Einstein--Lambda Palatini solutions}\}}
 \]
 
-na oblasti s nenulovou normou v konstrukci s oddělenou jetovou konexí.
-Kvocient pouze stabilizátorem při pevném `X` nedává bijekci: různí
-reprezentanti pole mohou vést ke stejnému koreperu a fyzikální konexi.
-Jde o stejné rozlišení vláken dokázané v
-[poznámce o hladkém pokračování](split_jet_null_continuation.cs.md).
+na nenulovém split-jet patchi.
 
 Jde o lokální podmíněnou větu o ekvivalenci pro **zvoleného kandidáta**.
 Nejde o odvození tohoto kandidáta ze starší zamčené kinetické akce.
-
-[Věta o ekvivalenci kanálů křivosti](curvature_channel_dynamical_equivalence.cs.md)
-také ukazuje, že přidání negradovaného čtverce rozšířené křivosti
-s konstantním koeficientem zachová všechny tyto lokální objemové Eulerovy
-formy. Hladké kompatibilní regulární přechody přes nulovou normu při
-nenulovém poli přebírají ekvivalenci rovnic spojitostí; to nedokazuje
-libovolná ani globální zvednutí.
 
 <!-- BILINGUAL-UNIT: single-theta-mm.advance -->
 ## Skutečný posun
@@ -204,9 +192,8 @@ následující body:
    kandidátem, dokud není určen fyzický význam kanálu `psi`;
 4. **celková vazba:** odvodit `g_G` nebo jeho vztah k jiné nezávisle odvozené
    vazbě UBT; existující poznámky o `8 pi` jej neurčují;
-5. **globální dokončení:** nad rámec nyní zvládnutých hladkých kompatibilních
-   regulárních přechodů `X^2=0` s nenulovým polem ošetřit nuly reprezentantu,
-   další singulární případy, topologii/hranice a globální pokračování;
+5. **globální dokončení:** ošetřit patche `X^2=0`, topologii/hranice a
+   globální pokračování;
 6. **úplné sektory:** ukázat, že tatáž fundamentální akce dává také
    požadovanou kalibrační, hmotovou, kvantovou a fyzickou `psi` dynamiku bez
    přidání samostatných fundamentálních akcí.

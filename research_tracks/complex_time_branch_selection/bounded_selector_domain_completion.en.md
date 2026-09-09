@@ -50,7 +50,7 @@ M=\sup_{s>0}\|F(-is)\|_H<\infty.
 \]
 
 The parameter \(s\) is an auxiliary continuation depth. No identification
-with the canonical compact coordinate \(\psi\) is made.
+with a periodic realization of the UBT coordinate \(\psi\) is made.
 
 <!-- BILINGUAL-UNIT: selector-completion.theorem -->
 ## 2. Bounded selection without a spectral gap
@@ -197,7 +197,7 @@ spectral measure is supported at zero. The converse is immediate.
 
 Therefore direct periodic identification of this damping depth with a compact
 \(S^1_\psi\) cannot retain a nonzero-frequency selected orbit. This excludes
-only that direct identification under S1. It does not exclude other fibre
+only that direct identification under S1. It does not exclude other periodic psi
 constructions, thermal correlation functions or twisted data. Deriving any
 alternative from UBT is still open; its existence is not asserted here.
 
@@ -376,8 +376,8 @@ bookkeeping gaps; the RH proof gap remains open.
 <!-- BILINGUAL-UNIT: selector-completion.verification -->
 ## 7. Verification, sources and status boundary
 
-Run `python tools/verify_null_and_spectral_gap_steps.py`. Its report is
-`../../reports/null_and_spectral_gap_steps_2026_09_08.json`.
+Run `python tools/verify_bounded_spectral_gap_steps.py`. Its report is
+`../../reports/bounded_spectral_gap_steps_2026_09_08.json`.
 Exact SymPy checks cover branch signs, scalar window constants, kernel slopes,
 periodicity, the heat-trace counterexample, resolvent block growth and the
 sine determinant's series. A separate product-versus-sine calculation checks

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Exact algebra plus independent numerical checks, not an infinite-dimensional proof.
+"""Exact and independent checks for the bounded spectral-domain results.
 
-Run with Python, SymPy, NumPy and SciPy. Optional --output writes a JSON record.
-The analytic smooth/PDE/spectral proofs and their hypotheses are in the paired
-research notes. No result here proves Einstein dynamics, RH or a UBT action.
+The analytic infinite-dimensional proofs and their hypotheses are in the
+paired research note.  These finite checks do not prove RH, Einstein dynamics,
+or a microscopic UBT action.
 """
 from __future__ import annotations
 
@@ -25,153 +25,12 @@ import sympy as sp
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ETA = sp.diag(-1, 1, 1, 1)
-ETA_NP = np.diag([-1.0, 1.0, 1.0, 1.0])
 CHECKS: list[dict] = []
 
 
 def record(identifier: str, channel: str, scope: str, **details) -> None:
     CHECKS.append(dict(id=identifier, result="PASS", channel=channel,
                        scope=scope, **details))
-
-
-def symbolic_zero(matrix) -> None:
-    for value in matrix:
-        if sp.cancel(value) != 0:
-            raise AssertionError(f"Nonzero exact residual: {value}")
-
-
-def lorentz_basis():
-    basis = []
-    for a in range(4):
-        for b in range(a + 1, 4):
-            lower = sp.zeros(4)
-            lower[a, b], lower[b, a] = 1, -1
-            basis.append(ETA * lower)
-    return basis
-
-
-def exact_null_checks() -> None:
-    x0 = sp.Symbol("x0", real=True, nonzero=True)
-    x1, x2, x3, w = sp.symbols("x1 x2 x3 w", real=True)
-    x = sp.Matrix([x0, x1, x2, x3])
-    basis = lorentz_basis()
-    coeffs = sp.symbols("k0:6", real=True)
-    original = sum((c * b for c, b in zip(coeffs, basis)), sp.zeros(4))
-    z = original * x + w * x
-    chi = (x.T * ETA * x)[0]
-    r = (x.T * ETA * z)[0]
-    assert sp.expand(r - w * chi) == 0
-    y = sp.Matrix([-1 / x0, 0, 0, 0])
-    u = z - w * x
-    candidate = u * (ETA * y).T - y * (ETA * u).T
-    symbolic_zero(candidate.T * ETA + ETA * candidate)
-    symbolic_zero(candidate * x + w * x - z)
-    # This representative only needs a nonzero local component, not chi != 0.
-    for value in candidate:
-        denominator = sp.denom(sp.cancel(value))
-        assert not denominator.has(x1, x2, x3)
-    record("N1", "SymPy exact rational functions",
-           "General Lorentz tensor, contraction, antisymmetry and dual-vector reconstruction in x0 != 0 chart")
-
-    cases = [(sp.Matrix([2, 0, 0, 0]), 4),
-             (sp.Matrix([0, 2, 1, 0]), 4),
-             (sp.Matrix([1, 1, 0, 0]), 3),
-             (sp.zeros(4, 1), 0)]
-    for vector, rank in cases:
-        linear_map = sp.Matrix.hstack(*(b * vector for b in basis), vector)
-        assert linear_map.rank() == rank
-        if rank == 3:
-            symbolic_zero(linear_map.T * ETA * vector)
-            assert len(linear_map.T.nullspace()) == 1
-    record("N3", "SymPy exact linear algebra",
-           "Timelike, spacelike, nonzero-null and zero witnesses; null multiplier direction",
-           ranks=[4, 4, 3, 0])
-
-    v = sp.Symbol("v", real=True)
-    x_bad, z_bad = sp.Matrix([1, 1, v, 0]), sp.Matrix([0, 0, 1, 0])
-    chi_bad = (x_bad.T * ETA * x_bad)[0]
-    r_bad = (x_bad.T * ETA * z_bad)[0]
-    assert chi_bad == v ** 2 and r_bad == v
-    assert r_bad.subs(v, 0) == 0
-    assert sp.cancel(r_bad / chi_bad) == 1 / v
-    record("N2-counterexample", "SymPy exact polynomial arithmetic",
-           "Vanishing on a nonregular zero set is not smooth divisibility")
-
-    t, a, b, c = sp.symbols("t a b c", real=True)
-    coords = sp.Matrix([t, a, b, c])
-    chi_affine = (coords.T * ETA * coords)[0]
-    dchi = sp.Matrix([sp.diff(chi_affine, q) for q in coords])
-    symbolic_zero(dchi - 2 * ETA * coords)
-    assert sp.expand((dchi.T * ETA * dchi)[0] - 4 * chi_affine) == 0
-    constant_null = sp.Matrix([1, 1, 0, 0])
-    assert (constant_null.T * ETA * sp.eye(4)[:, 0])[0] == -1
-    record("N2-affine", "SymPy exact differentiation",
-           "Flat affine smooth cone crossing and incompatible constant null representative")
-
-
-def numerical_null_checks() -> None:
-    # Independent numerical formulation: a full 4-by-7 linear system, solved by SVD.
-    generators = []
-    for i in range(4):
-        for j in range(i + 1, 4):
-            generator = np.zeros((4, 4))
-            generator[i, j] = 1
-            generator[j, i] = -ETA_NP[i, i] / ETA_NP[j, j]
-            generators.append(generator)
-    rng = np.random.default_rng(20260908)
-    residuals = []
-    compatibility = []
-    for v in [-0.1, -1e-5, 0.0, 1e-5, 0.1]:
-        x = np.array([1.0, 1.0 + v, 0.0, 0.0])
-        linear_map = np.column_stack([b @ x for b in generators] + [x])
-        original_coeffs = rng.normal(size=7)
-        z = linear_map @ original_coeffs
-        solved, *_ = np.linalg.lstsq(linear_map, z, rcond=None)
-        residuals.append(float(np.linalg.norm(linear_map @ solved - z)))
-        w = original_coeffs[-1]
-        u = z - w * x
-        y = np.array([-1.0, 0.0, 0.0, 0.0])
-        reconstructed = np.outer(u, ETA_NP @ y) - np.outer(y, ETA_NP @ u)
-        residuals.append(float(np.linalg.norm(reconstructed @ x + w * x - z)))
-        compatibility.append(abs(float(x @ ETA_NP @ z - (x @ ETA_NP @ x) * w)))
-    null_x = np.array([1.0, 1.0, 0.0, 0.0])
-    null_map = np.column_stack([b @ null_x for b in generators] + [null_x])
-    incompatible = np.array([1.0, 0.0, 0.0, 0.0])
-    solved, *_ = np.linalg.lstsq(null_map, incompatible, rcond=None)
-    incompatible_residual = float(np.linalg.norm(null_map @ solved - incompatible))
-    assert max(residuals + compatibility) < 2e-12
-    assert incompatible_residual > 0.5
-    record("N-independent", "NumPy SVD and independent Lorentz generators",
-           "Compatible smooth algebraic data around a null crossing; rejection of an incompatible null target",
-           max_residual=max(residuals + compatibility), tolerance=2e-12,
-           incompatible_residual=incompatible_residual, seed=20260908)
-
-
-def variational_crossing_checks() -> None:
-    v = sp.Symbol("v", real=True)
-    x = sp.Matrix([1, 1 + v, 0, 0])
-    linear_map = sp.Matrix.hstack(*(b * x for b in lorentz_basis()), x)
-    coeffs = sp.symbols("c0:12")
-    euler = sp.Matrix([sum(coeffs[3 * i + j] * v ** j for j in range(3)) for i in range(4)])
-    equations = [c for component in linear_map.T * euler for c in sp.Poly(component, v).all_coeffs()]
-    system, _ = sp.linear_eq_to_matrix(equations, coeffs)
-    assert system.rank() == len(coeffs)
-    assert linear_map.subs(v, 0).rank() == 3
-    # Two distinct constant representatives of one flat tetrad. Changing only
-    # a fixed-X stabilizer cannot identify them. Both right inverses are exact.
-    for scale in [1, 2]:
-        x = sp.Matrix([scale, 0, 0, 0])
-        chi = (x.T * ETA * x)[0]
-        for target in sp.eye(4).columnspace():
-            w = (x.T * ETA * target)[0] / chi
-            u = target - w * x
-            k = (u * (ETA * x).T - x * (ETA * u).T) / chi
-            symbolic_zero(k * x + w * x - target)
-    record("N4", "SymPy exact polynomial linear algebra and right inverses",
-           "Polynomial Euler sections cannot be supported only at the rank-drop point; two distinct X representatives give the same flat tetrad",
-           polynomial_unknowns=len(coeffs), polynomial_system_rank=system.rank(),
-           limitation="Finite polynomial model is not a proof for arbitrary smooth Euler forms; the analytic argument uses continuity on a dense complement.")
 
 
 def exact_spectral_checks() -> None:
@@ -301,27 +160,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    exact_null_checks()
-    numerical_null_checks()
-    variational_crossing_checks()
     exact_spectral_checks()
     independent_spectral_checks()
     determinant_checks()
     paths = [
-        "research_tracks/action_selection/split_jet_null_continuation.en.md",
-        "research_tracks/action_selection/split_jet_null_continuation.cs.md",
-        "research_tracks/action_selection/split_jet_palatii_variational_lift.en.md",
-        "research_tracks/action_selection/split_jet_palatii_variational_lift.cs.md",
         "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md",
         "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md",
         "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md",
         "research_tracks/complex_time_branch_selection/psi_branch_selection.cs.md",
-        "tools/verify_null_and_spectral_gap_steps.py",
+        "tools/verify_bounded_spectral_gap_steps.py",
         "tools/verify_psi_branch_selection.py",
     ]
     report = {
         "schema": "ubt.research-gap-verification/v1",
-        "date": "2026-09-08",
+        "date": "2026-09-09",
         "base_commit": "6ee61b98bb7578d67c2babe16134128d1f0f910c",
         "result": "PASS",
         "versions": {"python": platform.python_version(), "sympy": sp.__version__,
@@ -331,17 +183,14 @@ def main() -> None:
         "runtime_tools": {"lean": shutil.which("lean"), "lake": shutil.which("lake")},
         "checks": CHECKS,
         "proof_scope": {
-            "N1-N3": "Analytic local smooth divisibility and null-rank theorem; exact algebra and independent finite checks only.",
-            "N4": "Analytic extension of the chosen Palatini action's equations across compatible smooth regular null hypersurfaces; surjective solution map, not a bijection modulo only fixed-X stabilizers.",
             "S1": "Analytic proof for weak norm-holomorphic solutions of a nonnegative self-adjoint operator equation with a bounded vertical ray and strong boundary value.",
             "S2": "Direct periodic damping under S1 forces kernel support.",
             "S3": "Analytic self-adjoint closure of the diagonal prime operator; trace class only for Re(omega)>1.",
             "S4-S5": "Prime resolvent belongs to no finite Schatten class; the trace-class heat determinant has integer-power zeros and fails the required xi identity.",
         },
         "not_verified": [
-            "Formal infinite-dimensional spectral or smooth-manifold proofs",
-            "A microscopic UBT action or generator and its domain or physical boundary condition",
-            "Einstein dynamics, Newton coefficient, generic global/null continuation or quantum measure",
+            "Formal infinite-dimensional spectral proofs",
+            "A microscopic UBT action or generator and its physical boundary condition",
             "Riemann hypothesis, a Hilbert-Polya operator or the required determinant identity",
             "Human semantic equivalence of the bilingual prose",
         ],
@@ -353,7 +202,7 @@ def main() -> None:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(payload, encoding="utf-8")
         print(f"PASS: {len(CHECKS)} check groups; record: {args.output}")
-        print("LEAN-PENDING. Not a proof of RH, Einstein dynamics or the infinite-dimensional theorem by computation.")
+        print("LEAN-PENDING. Not a proof of RH or the infinite-dimensional theorem by computation.")
     else:
         print(payload)
 

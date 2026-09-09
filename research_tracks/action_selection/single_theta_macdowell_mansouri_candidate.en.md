@@ -30,8 +30,8 @@ consequence. It does not promote the candidate to the locked UBT action.
 <!-- BILINGUAL-UNIT: single-theta-mm.fields -->
 ## Field architecture
 
-Let `X` be the existing Lorentz-real vector representative of the single
-fundamental field `Theta`, and work on a patch with
+Let `X` be the Lorentz-real projection of the single fundamental field `Theta`
+and work on a patch with
 
 \[
 X^2\ne0.
@@ -145,29 +145,19 @@ equation because `X` enters the bulk gravitational action through the
 composite `E`. Conversely every local Palatini solution can be lifted to the
 split-jet variables by the explicit non-null right inverse.
 
-Consequently, at fixed boundary/topology data, forgetting the representative
-gives a local surjection. Writing `Crit` for stationary configurations,
+Consequently, modulo the algebraic jet stabilizer and boundary/topology data,
 
 \[
 \boxed{
-\mathcal P:\operatorname{Crit}(S_{\rm cand})
-\twoheadrightarrow\operatorname{Crit}(S_{\rm HP}),\qquad
-\mathcal P(X,\omega,K_J,w)=(E,\omega)}
+\{\text{local stationary points of }S_{\rm cand}\}
+\longleftrightarrow
+\{\text{local Einstein--Lambda Palatini solutions}\}}
 \]
 
-on the non-null split-jet patch. Quotienting only the stabilizer at fixed
-`X` does not give a bijection: distinct field representatives can yield
-the same coframe and physical connection. This is the same fibre distinction
-proved in the [smooth continuation note](split_jet_null_continuation.en.md).
+on the non-null split-jet patch.
 
 This is a local conditional equivalence theorem for the **chosen candidate**.
 It is not a derivation of that candidate from the older locked kinetic action.
-
-The [curvature-channel equivalence theorem](curvature_channel_dynamical_equivalence.en.md)
-also shows that adding the ungraded extended curvature square with a constant
-coefficient preserves all these local bulk Euler forms. Smooth compatible
-regular nonzero-null crossings inherit the equation equivalence by continuity;
-this does not establish arbitrary or global lifts.
 
 <!-- BILINGUAL-UNIT: single-theta-mm.advance -->
 ## What has genuinely advanced
@@ -203,9 +193,8 @@ following points:
    a candidate until the physical meaning of the `psi` channel is fixed;
 4. **overall coupling:** derive `g_G` or its relation to another independently
    derived UBT coupling; the existing `8 pi` notes do not fix this;
-5. **global completion:** beyond the now controlled smooth compatible regular
-   `X^2=0` crossings with nonzero field, treat zeros of the representative,
-   other singular cases, topology/boundaries and global continuation;
+5. **global completion:** treat `X^2=0` patches, topology/boundaries and global
+   continuation;
 6. **full sectors:** show that the same fundamental action also yields the
    required gauge, matter, quantum and physical `psi` dynamics without adding
    separate fundamental actions.

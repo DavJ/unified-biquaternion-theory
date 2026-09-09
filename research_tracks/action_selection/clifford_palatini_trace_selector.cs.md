@@ -150,14 +150,6 @@ Palatiniho směr uvnitř této rodiny, ale k vyloučení nezávislého negradova
 koeficientu je potřeba další UBT-native grading/parity/chirality selekční
 princip.
 
-Jde o otázku jednoznačnosti akce.
-[Věta o dynamické ekvivalenci](curvature_channel_dynamical_equivalence.cs.md)
-ukazuje, že konstantní reálný Holstův koeficient nebrání lokální vakuové
-GR při nenulovém Palatiniho koeficientu, nedegenerovaném koreperu a nulovém
-spinovém proudu. Jeho nepřítomnost proto není nutnou podmínkou tohoto
-omezeného cíle klasické obnovy. Spinové zdroje a koeficienty závislé
-na poli vyžadují samostatné posouzení.
-
 <!-- BILINGUAL-UNIT: clifford-palatini.conditional-uniqueness -->
 ## Podmíněná jednoznačnost curvature formy
 
@@ -189,10 +181,8 @@ jednoznačně spojovala.
 
 Zbývající problém původu křivosti se proto rozděluje do dvou menších úloh:
 
-- **gravitační kanál:** odvodit nenulový Palatiniho koeficient; určení
-  nezávislého Holstova koeficientu zůstává otázkou jednoznačnosti akce
-  a hmotového či kvantového sektoru, ale uvedená věta o klasické vakuové
-  ekvivalenci je nevyžaduje;
+- **výběr kanálu:** odvodit, proč je vybrán kanonický graded kanál a proč
+  nezávislý Holstův kanál chybí nebo je fixován;
 - **celková normalizace:** odvodit `kappa` (a samostatně `Lambda`) z
   mikroskopických dat UBT.
 

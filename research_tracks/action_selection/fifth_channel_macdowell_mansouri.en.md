@@ -231,15 +231,6 @@ symmetry reduction rather than adding an external preferred internal vector.
 Until that theorem exists, the construction is a highly constrained candidate,
 not the finalized fundamental action.
 
-The [curvature-channel equivalence audit](curvature_channel_dynamical_equivalence.en.md)
-sharpens this requirement. Constant Lorentz-scalar matrix insertions span the
-identity and the grading; imposing the full extended commuting conditions
-leaves only the identity. The ungraded extended trace has zero local bulk
-variation, so an arbitrary constant coefficient of that term does not change
-the equations of this candidate. Local gravity requires a nonzero graded
-coefficient and its symmetry-reduction origin, rather than a proof that the
-constant ungraded term is absent.
-
 <!-- BILINGUAL-UNIT: fifth-channel-mm.verification -->
 ## Verification
 

@@ -228,17 +228,13 @@ Thus, on every non-null patch,
 
 \[
 \boxed{
-\mathcal P:\operatorname{Crit}(S_{\rm SJHP})
-\twoheadrightarrow\operatorname{Crit}(S_{\rm HP}),\qquad
-\mathcal P(X,\omega,K_J,w)=(E,\omega).}
+\{\text{stationary points of }S_{\rm SJHP}\}/\text{jet stabilizer}
+\quad\longleftrightarrow\quad
+\{\text{Palatini stationary points}\}.}
 \]
 
-This is equivalence of the equations on a given configuration and a surjective
-map of solution sets, not a bijection modulo only the jet-tensor stabilizer.
-Different field representatives may produce the same tetrad; that stabilizer
-leaves the field fixed. A counterexample and the extension to compatible
-smooth null crossings are proved in `split_jet_null_continuation.en.md`.
-The non-null right inverse above does not by itself cover null crossings.
+The equivalence is local and excludes null patches of `X` where the explicit
+right inverse becomes singular.
 
 <!-- BILINGUAL-UNIT: split-jet-palatii.significance -->
 ## What this closes

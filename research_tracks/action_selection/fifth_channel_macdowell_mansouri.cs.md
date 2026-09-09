@@ -225,15 +225,6 @@ namísto přidání externího preferovaného interního vektoru. Dokud tato vě
 neexistuje, jde o silně omezeného kandidáta, nikoli finalizovanou fundamentální
 akci.
 
-[Audit ekvivalence kanálů křivosti](curvature_channel_dynamical_equivalence.cs.md)
-tento požadavek zpřesňuje. Konstantní Lorentzovsky skalární maticové vložky
-tvoří lineární obal jednotkové matice a graduace; úplné rozšířené komutační
-podmínky ponechávají jen jednotkovou matici. Negradovaná rozšířená stopa má
-nulovou lokální objemovou variaci, takže libovolný konstantní koeficient tohoto
-členu nemění rovnice kandidáta. Lokální gravitace vyžaduje nenulový gradovaný
-koeficient a odvození příslušné redukce symetrie, nikoli důkaz nepřítomnosti
-konstantního negradovaného členu.
-
 <!-- BILINGUAL-UNIT: fifth-channel-mm.verification -->
 ## Ověření
 

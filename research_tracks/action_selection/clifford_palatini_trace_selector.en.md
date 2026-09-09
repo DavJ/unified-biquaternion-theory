@@ -153,14 +153,6 @@ canonical grading identifies the Palatini direction inside that family, but a
 further UBT-native grading/parity/chirality selection principle is required to
 exclude an independent ungraded coefficient.
 
-This is a question of action uniqueness. The
-[dynamical equivalence theorem](curvature_channel_dynamical_equivalence.en.md)
-shows that a constant real Holst coefficient does not obstruct local vacuum
-GR when the Palatini coefficient is nonzero, the coframe is nondegenerate,
-and the spin current vanishes. Its absence is therefore not a necessary
-condition for that restricted classical recovery target. Spin sources and
-field-dependent coefficients require separate treatment.
-
 <!-- BILINGUAL-UNIT: clifford-palatini.conditional-uniqueness -->
 ## Conditional uniqueness of the curvature form
 
@@ -194,10 +186,8 @@ contains no theorem relating it uniquely to `kappa`.
 Accordingly the remaining curvature-origin problem has now separated into two
 smaller tasks:
 
-- **gravitational channel:** derive a nonzero Palatini coefficient; fixing
-  the independent Holst coefficient remains an action-uniqueness and
-  matter/quantum question, but is not required by the stated classical
-  vacuum-equivalence theorem;
+- **channel selection:** derive why the canonical grading channel is selected
+  and why an independent Holst channel is absent or fixed;
 - **overall normalization:** derive `kappa` (and separately `Lambda`) from UBT
   microscopic data.
 

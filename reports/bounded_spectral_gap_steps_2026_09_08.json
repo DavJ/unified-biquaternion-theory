@@ -1,10 +1,10 @@
 {
   "schema": "ubt.research-gap-verification/v1",
-  "date": "2026-09-08",
+  "date": "2026-09-09",
   "base_commit": "6ee61b98bb7578d67c2babe16134128d1f0f910c",
   "result": "PASS",
   "versions": {
-    "python": "3.12.13",
+    "python": "3.12.14",
     "sympy": "1.14.0",
     "numpy": "2.3.5",
     "scipy": "1.17.0"
@@ -16,55 +16,6 @@
     "lake": null
   },
   "checks": [
-    {
-      "id": "N1",
-      "result": "PASS",
-      "channel": "SymPy exact rational functions",
-      "scope": "General Lorentz tensor, contraction, antisymmetry and dual-vector reconstruction in x0 != 0 chart"
-    },
-    {
-      "id": "N3",
-      "result": "PASS",
-      "channel": "SymPy exact linear algebra",
-      "scope": "Timelike, spacelike, nonzero-null and zero witnesses; null multiplier direction",
-      "ranks": [
-        4,
-        4,
-        3,
-        0
-      ]
-    },
-    {
-      "id": "N2-counterexample",
-      "result": "PASS",
-      "channel": "SymPy exact polynomial arithmetic",
-      "scope": "Vanishing on a nonregular zero set is not smooth divisibility"
-    },
-    {
-      "id": "N2-affine",
-      "result": "PASS",
-      "channel": "SymPy exact differentiation",
-      "scope": "Flat affine smooth cone crossing and incompatible constant null representative"
-    },
-    {
-      "id": "N-independent",
-      "result": "PASS",
-      "channel": "NumPy SVD and independent Lorentz generators",
-      "scope": "Compatible smooth algebraic data around a null crossing; rejection of an incompatible null target",
-      "max_residual": 1.7199501139797033e-15,
-      "tolerance": 2e-12,
-      "incompatible_residual": 0.7071067811865476,
-      "seed": 20260908
-    },
-    {
-      "id": "N4",
-      "result": "PASS",
-      "channel": "SymPy exact polynomial linear algebra and right inverses",
-      "scope": "Polynomial Euler sections cannot be supported only at the rank-drop point; two distinct X representatives give the same flat tetrad",
-      "polynomial_unknowns": 12,
-      "polynomial_system_rank": 12,
-      "limitation": "Finite polynomial model is not a proof for arbitrary smooth Euler forms; the analytic argument uses continuity on a dense complement."
-    },
     {
       "id": "S1-exact",
       "result": "PASS",
@@ -142,31 +93,24 @@
     }
   ],
   "proof_scope": {
-    "N1-N3": "Analytic local smooth divisibility and null-rank theorem; exact algebra and independent finite checks only.",
-    "N4": "Analytic extension of the chosen Palatini action's equations across compatible smooth regular null hypersurfaces; surjective solution map, not a bijection modulo only fixed-X stabilizers.",
     "S1": "Analytic proof for weak norm-holomorphic solutions of a nonnegative self-adjoint operator equation with a bounded vertical ray and strong boundary value.",
     "S2": "Direct periodic damping under S1 forces kernel support.",
     "S3": "Analytic self-adjoint closure of the diagonal prime operator; trace class only for Re(omega)>1.",
     "S4-S5": "Prime resolvent belongs to no finite Schatten class; the trace-class heat determinant has integer-power zeros and fails the required xi identity."
   },
   "not_verified": [
-    "Formal infinite-dimensional spectral or smooth-manifold proofs",
-    "A microscopic UBT action or generator and its domain or physical boundary condition",
-    "Einstein dynamics, Newton coefficient, generic global/null continuation or quantum measure",
+    "Formal infinite-dimensional spectral proofs",
+    "A microscopic UBT action or generator and its physical boundary condition",
     "Riemann hypothesis, a Hilbert-Polya operator or the required determinant identity",
     "Human semantic equivalence of the bilingual prose"
   ],
   "canonical_claims_changed": false,
   "source_sha256": {
-    "research_tracks/action_selection/split_jet_null_continuation.en.md": "78f249f3c703b4b89f0c083de3ed617fefd98fcb28b241ef82e51a0fdf82321c",
-    "research_tracks/action_selection/split_jet_null_continuation.cs.md": "8cebd09a0563c27c2c1740831926fe1235338811d26b74ca054c32192612e213",
-    "research_tracks/action_selection/split_jet_palatii_variational_lift.en.md": "47c424df93a59c5725a9b5662211aea85c94183084316f2a9a4388d76cfc74a6",
-    "research_tracks/action_selection/split_jet_palatii_variational_lift.cs.md": "da5cf49558461738cecb0b1ed2317cd2a7c3526beda57fc4e5db32d311b1f5e2",
-    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md": "0b5612dd298a008a58aa8ddd02b7a90da77c3fdb47cceb1a90b6f5a65db98c8b",
-    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md": "7f7ff6d7cee02b5ada58da0694b9d290a083d83ad9e4d0a071af88f3ccd018af",
-    "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md": "00f588dc95ebee6f0b10d7b34d403f0f05e81d8a39de769f3b93c70c2c2eebeb",
-    "research_tracks/complex_time_branch_selection/psi_branch_selection.cs.md": "69443ce16f0b436f51f84eedeb9d26a9e418f5da68be6bf6a8b508b3de1a494f",
-    "tools/verify_null_and_spectral_gap_steps.py": "027cfa88cc138161412986457dbe2d57aaf7ac8933244858a4b059b09e143f67",
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md": "d5fa74d4cc514d00f332ede04834e825d0b1cc8e754166d04d6612e3a62aafdc",
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md": "670ce8f8d43acffda98b03487c4fcedd872a85c31d3850fecb071176e25aadf2",
+    "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md": "66014b6d62aedaa67da7a3a56aa525379a923685896110d8933dd766df24d1ad",
+    "research_tracks/complex_time_branch_selection/psi_branch_selection.cs.md": "6fd21b597a81adc8409e07cfc63cb0a3afd04efd9d8cd2ca3fb2f23955efe499",
+    "tools/verify_bounded_spectral_gap_steps.py": "27aae8a2d48a695dfb134044ad6a88fe6714974b90c54a0fac3ee7ea2e2d3dd8",
     "tools/verify_psi_branch_selection.py": "f116b565dec74ea396351348adf7932704fb9981eac3e443cbfea848ad586f3c"
   }
 }
