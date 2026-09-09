@@ -37,9 +37,9 @@ def detFour (e : Mat) : ℝ :=
 set_option maxRecDepth 4096 in
 theorem detFour_eq_det (e : Mat) : detFour e = e.det := by
   rw [Matrix.det_succ_row_zero]
-  norm_num [detFour, Fin.sum_univ_succ, Matrix.det_fin_three,
-    Matrix.submatrix, Fin.succAbove, Fin.succ, Fin.castSucc,
-    Fin.lt_def, Fin.le_def, Fin.ext_iff]
+  simp only [Fin.sum_univ_succ, Matrix.det_fin_three]
+  dsimp [Matrix.submatrix, Fin.succAbove, Fin.succ, Fin.castSucc]
+  norm_num [detFour]
   <;> ring
 
 /-- A first-jet increment with one spacetime covector and one field vector. -/

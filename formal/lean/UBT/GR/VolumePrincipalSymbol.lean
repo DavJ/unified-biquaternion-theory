@@ -44,7 +44,7 @@ theorem contDiff_density_firstJet (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
   fun_prop
 
 /-- The first-jet symbol is defined using the actual second Frechet derivative. -/
-def firstJetSymbol (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
+noncomputable def firstJetSymbol (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
     (x : Vec) (p : Mat) (k u v : Vec) : ℝ :=
   fderiv ℝ (fderiv ℝ (density c f b x)) p (rankOne k u) (rankOne k v)
 

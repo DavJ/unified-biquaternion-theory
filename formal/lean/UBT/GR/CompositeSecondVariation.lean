@@ -43,4 +43,28 @@ theorem secondVariation_composite
       H (g₁ t) (g₁ t) + fderiv ℝ f (g t) g₂ :=
   (hasSecondVariation_composite f g g₁ g₂ t H hf hH hg hg₂).deriv
 
+/-- The full bilinear Hessian chain rule, for arbitrary pairs of variations.
+Both derivatives on the right are actual Frechet derivatives of the stated
+functions. This includes the derivative of the substituted connection/tetrad
+map whenever it is part of g. -/
+theorem secondFDeriv_composite
+    {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    [NormedAddCommGroup F] [NormedSpace ℝ F]
+    (f : F → ℝ) (g : E → F) (x u v : E)
+    (hf : Differentiable ℝ f) (hg : Differentiable ℝ g)
+    (hf₂ : DifferentiableAt ℝ (fderiv ℝ f) (g x))
+    (hg₂ : DifferentiableAt ℝ (fderiv ℝ g) x) :
+    fderiv ℝ (fderiv ℝ (f ∘ g)) x u v =
+      fderiv ℝ (fderiv ℝ f) (g x) (fderiv ℝ g x u) (fderiv ℝ g x v)
+        + fderiv ℝ f (g x) (fderiv ℝ (fderiv ℝ g) x u v) := by
+  have first : fderiv ℝ (f ∘ g) =
+      (fun y => (fderiv ℝ f (g y)).comp (fderiv ℝ g y)) := by
+    funext y
+    exact fderiv_comp y (hf (g y)) (hg y)
+  rw [first]
+  have hd := hf₂.hasFDerivAt.comp x (hg x).hasFDerivAt
+  have hfull := hd.clm_comp hg₂.hasFDerivAt
+  simpa [add_comm] using
+    congrArg (fun A : E →L[ℝ] E →L[ℝ] ℝ => A u v) hfull.fderiv
+
 end UBT.GR
