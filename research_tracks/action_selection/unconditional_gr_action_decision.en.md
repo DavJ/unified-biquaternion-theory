@@ -38,7 +38,12 @@ several exact obstructions:
   direction only after a differential adjoint-injectivity/equivalence theorem,
   which pointwise metric rank does not supply;
 - the split-jet constraint is surjective for every tetrad, hence it represents
-  GR configurations but cannot select one from `Theta`.
+  GR configurations but cannot select one from `Theta`;
+- the existing scalar multisymplectic family has
+  \(Q=0\), \(S_F=0\) and \(\delta S_F=0\) on the canonical Lorentz jet,
+  even after a differentiable composite-connection substitution; an explicit
+  stationary noneinsteinian metric is supplied by the
+  [Lorentz-slice audit](multisymplectic_lorentz_slice_audit.en.md).
 
 Accordingly, no honest status edit can remove the remaining action-level gap.
 A new **derived dynamical theorem** or an explicitly approved **new dynamical
@@ -90,27 +95,37 @@ modular or Jacobi heat identity is yet established as the physical dynamical
 selection principle. Promoting the theta heat equation to dynamics would be a
 new theory choice unless separately derived.
 
-### Route D — induced gravity from a finalized nondegenerate Theta Hessian
+### Route D — direct biquaternionic induced gravity
 
 Derive a genuine gauge-fixed nondegenerate fluctuation operator from the final
-single action and compute its heat-kernel coefficient. This remains viable in
-principle, but the pure-gradient quadratic metric-lock term cannot provide the
-assumed Laplace-type Hessian by itself because it is a null Lagrangian.
+single-`Theta` action and compute its heat-kernel coefficient while retaining
+the canonical covariant tetrad. This is the route called “B” in the current
+research discussion. It remains a research possibility. In the Lorentz-real
+restricted volume action, the full Hessian has zero second-order symbol for
+both a fixed curved Lorentz connection and a connection depending only on
+field values, including all of that dependence in the variation. The result
+does not cover a derivative-dependent connection or all eight real
+biquaternionic fluctuation directions. The complete fixed-connection Euler
+and Jacobi formulas, the value-dependent proof and the remaining composite
+chain rule are recorded in
+[the biquaternionic induced-gravity audit](biquaternionic_induced_gravity_boundary.en.md).
 
 <!-- BILINGUAL-UNIT: action-decision.recommendation -->
 ## Research recommendation
 
-For UBT's unification goal, Route B or Route C is scientifically stronger than
-closing the ledger by postulating Route A. Route A is valuable as an exact
-recovery target and consistency check; by itself it does not explain why GR
-emerges from the biquaternionic/theta structure.
+The preferred route is now Route D, formulated directly with the original
+biquaternionic field and the covariant tetrad
+\(E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta\). A Clifford or generalized-Dirac lift
+may remain an algebraic diagnostic, but it must not replace `Theta`, the
+tetrad, or the physical fluctuation Hessian.
 
-The next high-value theorem should therefore test whether the **existing
-canonical generalized-Dirac structure can define a unique admissible spectral
-operator/action without importing the GR metric action as an independent
-premise**. If that fails, the result should be recorded as a no-go and the
-minimal new UBT dynamical axiom should be presented explicitly for author
-approval rather than hidden in an effective-action assumption.
+The next high-value calculation is therefore the complete composite
+biquaternionic Hessian, including the induced variations of `E`, `g` and the
+physical connection. Its gauge/constraint quotient, Euclidean contour,
+curvature coupling and UV-scale principle must then be derived before the
+heat-kernel coefficient can be called a prediction of `G`. Route A remains a
+consistent one-coefficient effective completion if the author elects to adopt
+it, but it is not the preferred first-principles result.
 
 <!-- BILINGUAL-UNIT: action-decision.status -->
 ## Status

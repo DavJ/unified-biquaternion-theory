@@ -31,8 +31,13 @@ note asks two sharper questions:
 2. can the required connection be made a purely auxiliary variable while
    retaining a nondegenerate four-dimensional UBT tetrad?
 
-The answers are respectively **yes** and, on the generic nondegenerate branch,
-**no**.
+The fixed-connection first-order answer is **yes**. The auxiliary rank
+argument below assumes a symplectic spacetime two-form. The
+[Lorentz-slice audit](multisymplectic_lorentz_slice_audit.en.md) proves
+\(Q=0\) on every canonical Lorentz jet, so the nonzero wedge-square assumption
+does not cover that sector. There the action and its full first variation
+vanish instead, including under differentiable composite substitutions.
+The distinction between these two branches is essential.
 
 <!-- BILINGUAL-UNIT: theta-covariant-multisymplectic.symplectic-connection -->
 ## The UBT connected generators are symplectic [L0]
@@ -160,7 +165,7 @@ its algebraic equation is a moment-map constraint rather than the desired UBT
 connection-reconstruction theorem.
 
 <!-- BILINGUAL-UNIT: theta-covariant-multisymplectic.no-go -->
-## Generic auxiliary-gauging no-go for a nondegenerate tetrad [L1]
+## Conditional auxiliary-gauging obstruction on the symplectic branch [L1]
 
 Assume at a point that
 
@@ -256,6 +261,12 @@ The results leave three logically distinct routes:
    generally introduces derivatives of the tetrad and hence higher jets of
    `Theta`; the first-order theorem above cannot simply be reused after that
    substitution.
+
+For the canonical Lorentz sector, replacing the connection by a smooth
+composite inside this same action cannot by itself supply the missing
+selection: the full first variation still vanishes by the
+[Lorentz-slice theorem](multisymplectic_lorentz_slice_audit.en.md).
+Additional action structure is needed for this family to select a coframe.
 
 This sharply moves the action-selection problem. The next viable target is a
 **Theta-only higher-jet/composite completion, or a connection action whose

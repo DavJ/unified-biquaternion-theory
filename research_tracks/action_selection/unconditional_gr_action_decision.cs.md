@@ -39,7 +39,12 @@ obstrukcí:
   směrem až po důkazu diferenciální injektivity adjungovaného operátoru nebo
   ekvivalence, kterou bodová hodnost metriky neposkytuje;
 - split-jet omezení je surjektivní pro každou tetrádu, takže konfigurace GR
-  reprezentuje, ale nemůže z `Theta` jednu vybrat.
+  reprezentuje, ale nemůže z `Theta` jednu vybrat;
+- pro existující skalární multisymplektickou rodinu platí
+  \(Q=0\), \(S_F=0\) a \(\delta S_F=0\) na kanonickém Lorentzově jetu,
+  a to i po diferencovatelném dosazení složené konexe; explicitní stacionární
+  neeinsteinovskou metriku poskytuje
+  [audit Lorentzova řezu](multisymplectic_lorentz_slice_audit.cs.md).
 
 Žádná poctivá změna statusu proto nemůže zbývající gap na úrovni akce
 odstranit. Je nutná nová **odvozená dynamická věta** nebo explicitně schválený
@@ -91,27 +96,36 @@ nebo Jacobiho tepelná identita zatím není ustanovena jako fyzikální dynamic
 selektor. Povýšení theta heat equation na dynamiku by bylo novou volbou teorie,
 pokud nebude samostatně odvozeno.
 
-### Cesta D — indukovaná gravitace z finalizovaného nedegenerovaného Hessiánu Theta
+### Cesta D — přímá biquaternionová indukovaná gravitace
 
 Odvodit skutečný gauge-fixovaný nedegenerovaný fluktuační operátor z finální
-jediné akce a spočítat jeho koeficient tepelného jádra. Tato cesta zůstává v
-principu možná, ale čistě gradientový kvadratický metric-lock člen sám nemůže
-dodat předpokládaný Hessián Laplaceova typu, protože je null Lagrangianem.
+jediné akce `Theta` a spočítat jeho koeficient tepelného jádra při zachování
+kanonické kovariantní tetrády. Jde o cestu nazvanou „B“ v současné výzkumné
+diskusi. Zůstává výzkumnou možností. V Lorentzově reálné omezené objemové
+akci má úplný Hessián nulový symbol druhého řádu jak pro pevnou zakřivenou
+Lorentzovu konexi, tak pro konexi závislou pouze na hodnotách pole, včetně
+zahrnutí celé této závislosti do variace. Výsledek nepokrývá konexi závislou
+na derivacích ani všech osm reálných biquaternionových fluktuačních směrů.
+Úplné Eulerovy a Jacobiho vzorce pro pevnou konexi, důkaz pro závislost na
+hodnotách pole a zbývající kompozitní řetězové pravidlo uvádí
+[audit biquaternionové indukované gravitace](biquaternionic_induced_gravity_boundary.cs.md).
 
 <!-- BILINGUAL-UNIT: action-decision.recommendation -->
 ## Výzkumné doporučení
 
-Pro unifikační cíl UBT je cesta B nebo C vědecky silnější než uzavření ledgeru
-pouhým postulováním cesty A. Cesta A je cenná jako přesný cíl obnovy a kontrola
-konzistence; sama nevysvětluje, proč GR emerguje z bikvaternionové/theta
-struktury.
+Upřednostněnou cestou je nyní cesta D, formulovaná přímo s původním
+biquaternionovým polem a kovariantní tetrádou
+\(E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta\). Cliffordův nebo generalizovaný
+Diracův lift může zůstat algebraickou diagnostikou, ale nesmí nahradit
+`Theta`, tetrádu ani fyzický fluktuační Hessián.
 
-Další vysoce hodnotná věta by proto měla testovat, zda **existující kanonická
-generalizovaná Diracova struktura může definovat jednoznačný přípustný
-spektrální operátor/akci bez importu metrické akce GR jako nezávislé premisy**.
-Pokud to selže, má být výsledek zapsán jako no-go a minimální nový dynamický
-axiom UBT má být předložen explicitně ke schválení autora, nikoli skryt v
-předpokladu efektivní akce.
+Dalším vysoce hodnotným výpočtem je proto úplný kompozitní biquaternionový
+Hessián včetně indukovaných variací `E`, `g` a fyzikální konexe. Jeho
+kalibrační/omezující podíl, eukleidovská kontura, vazba na křivost a princip UV
+škály musí být poté odvozeny, než lze koeficient tepelného jádra označit za
+predikci `G`. Cesta A zůstává konzistentním efektivním doplněním s jedním
+koeficientem, pokud se ji autor rozhodne přijmout, ale není preferovaným
+výsledkem z prvních principů.
 
 <!-- BILINGUAL-UNIT: action-decision.status -->
 ## Status

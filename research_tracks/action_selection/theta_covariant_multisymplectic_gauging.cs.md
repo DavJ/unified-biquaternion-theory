@@ -31,7 +31,13 @@ Tato poznámka klade dvě ostřejší otázky:
 2. lze potřebnou konexi učinit čistě pomocnou proměnnou a přitom zachovat
    nedegenerovanou čtyřrozměrnou tetrádu UBT?
 
-Odpovědi jsou po řadě **ano** a na obecné nedegenerované větvi **ne**.
+Pro první řád s pevnou konexí je odpověď **ano**. Níže uvedený argument
+s hodností pomocné konexe předpokládá symplektickou časoprostorovou dvouformu.
+[Audit Lorentzova řezu](multisymplectic_lorentz_slice_audit.cs.md) dokazuje
+\(Q=0\) na každém kanonickém Lorentzově jetu, takže předpoklad nenulového
+vnějšího čtverce tento sektor nepokrývá. V něm místo toho mizí akce i její
+úplná první variace, včetně diferencovatelných složených dosazení.
+Rozlišení těchto dvou větví je zásadní.
 
 <!-- BILINGUAL-UNIT: theta-covariant-multisymplectic.symplectic-connection -->
 ## Spojené generátory UBT jsou symplektické [L0]
@@ -158,7 +164,7 @@ rovnice je moment-map omezení, nikoli požadovaná věta o rekonstrukci konexe
 UBT.
 
 <!-- BILINGUAL-UNIT: theta-covariant-multisymplectic.no-go -->
-## Obecný no-go pomocné gauge konexe pro nedegenerovanou tetrádu [L1]
+## Podmíněná překážka pomocného kalibrování na symplektické větvi [L1]
 
 Předpokládejme v bodě
 
@@ -252,6 +258,12 @@ Výsledky ponechávají tři logicky odlišné cesty:
    Eliminace kompozitní konexe Levi–Civitova typu obecně zavádí derivace
    tetrády, a tedy vyšší jety `Theta`; výše uvedenou first-order větu po této
    substituci nelze prostě znovu použít.
+
+Pro kanonický Lorentzův sektor samotné nahrazení konexe hladkým složeným
+objektem v téže akci nemůže dodat chybějící výběr: podle
+[věty o Lorentzově řezu](multisymplectic_lorentz_slice_audit.cs.md)
+úplná první variace stále mizí. Aby tato rodina vybírala koreper,
+je třeba dodatečné struktury akce.
 
 Tím se problém výběru akce výrazně posouvá. Dalším životaschopným cílem je
 **Theta-only vyšší-jet/kompozitní dokončení, nebo akce konexe, jejíž dodatečná

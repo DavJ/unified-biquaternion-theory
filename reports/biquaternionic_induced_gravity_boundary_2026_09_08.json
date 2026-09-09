@@ -1,0 +1,106 @@
+{
+  "schema": "ubt-verification/v1",
+  "date": "2026-09-09",
+  "base_commit": "98fbc114f8dfcd88d8dbc24614b555f80f04ffeb",
+  "result": "PASS",
+  "check_groups": 7,
+  "checks": [
+    {
+      "id": "B1",
+      "channel": "SymPy exact quadratic-form algebra",
+      "scope": "Connected-symmetry pairing on generic biquaternions and its Lorentz-real restriction",
+      "result": "PASS",
+      "generic_signature": [
+        2,
+        6
+      ],
+      "lorentz_slice_signature": [
+        1,
+        3
+      ],
+      "restricted_matrix": "[[2, 0, 0, 0], [0, -2, 0, 0], [0, 0, -2, 0], [0, 0, 0, -2]]"
+    },
+    {
+      "id": "B2",
+      "channel": "SymPy exact 4D Hessian",
+      "scope": "Metric-locked volume determinant has doubly antisymmetric first-jet Hessian and zero second-order symbol",
+      "result": "PASS",
+      "components_checked": 256,
+      "field_blocks_checked": 16
+    },
+    {
+      "id": "B3",
+      "channel": "mpmath quadrature plus independent convergent series",
+      "scope": "Periodic-psi self-dual heat factor and conditional Planck ratios",
+      "result": "PASS",
+      "C_psi": "1.3034102518592793083762365147875848",
+      "planck_ratio_N8": "0.1049059378244545021",
+      "planck_ratio_N4": "0.074179700022406109055",
+      "absolute_difference": "0.0",
+      "analytic_series_tail_bound": "1.681663e-698",
+      "numerical_note": "The tail bound does not certify floating-point quadrature error."
+    },
+    {
+      "id": "B4",
+      "channel": "SymPy exact coefficient algebra",
+      "scope": "Scalar-like induced Einstein coefficient need not be nonzero",
+      "result": "PASS",
+      "minimal_weight": "1",
+      "conformal_weight": "0"
+    },
+    {
+      "id": "B5",
+      "channel": "Independent coordinate determinant and exterior-curvature calculations in SymPy",
+      "scope": "Euler and complete Jacobi formulas on a nonflat Lorentz connection with symbolic c0",
+      "result": "PASS",
+      "euler_components": 4,
+      "jacobi_components": 4,
+      "nondegenerate_origin_determinant": "c0**(-4)",
+      "limitation": "A polynomial example cross-checks the general analytic proof; it is not a universal formal proof."
+    },
+    {
+      "id": "B6",
+      "channel": "SymPy differentiation of a nonlinear value-dependent Lorentz connection",
+      "scope": "All symmetric second-jet coefficients vanish with induced C variations and an algebraic prefactor",
+      "result": "PASS",
+      "symmetric_second_jet_blocks": 160,
+      "full_minus_frozen_field_derivative": "52",
+      "limitation": "The unrestricted proof for every smooth C(x,X) and f(x,X) is in Lemma B-VAL."
+    },
+    {
+      "id": "B7",
+      "channel": "Direct composite determinant versus two-term Hessian chain rule",
+      "scope": "Omitting the tetrad second-variation term changes the Hessian",
+      "result": "PASS",
+      "direct_hessian": "[[2, 0], [0, 0]]",
+      "limitation": "An algebraic first-jet example; no canonical connection or elliptic UBT operator is selected."
+    }
+  ],
+  "tools": {
+    "python": "3.12.14",
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0"
+  },
+  "lean": {
+    "status": "LEAN-PENDING",
+    "lean_available": false,
+    "lake_available": false,
+    "reason": "No compiled Lean proof; Lean and Lake are absent in the inspected runtime."
+  },
+  "source_sha256": {
+    "tools/verify_biquaternionic_induced_gravity_boundary.py": "7daf238ec057c2bf746c7a6cddacafc26b1c27d3fc5be3f03f88189aafa09fe2",
+    "canonical/gr_closure/gap_10d_induced_gravity_endgame.tex": "4bcffdad257a9049307ee52b3f8516df9cc3dd1002dbacc5aed54bcb1d02d168",
+    "canonical/gr_closure/gap_10d_theta_hessian_principal_symbol.tex": "bee57d42d7db1802ce61d461b09e3283355907dfe910464dcdf9201cdf6af7fd",
+    "research_tracks/action_selection/biquaternionic_induced_gravity_boundary.en.md": "62af5cf08a17b36ff5614991a9409526e8406e36b3168c862ccb1cacdf937145",
+    "research_tracks/action_selection/biquaternionic_induced_gravity_boundary.cs.md": "c1eb9ec510f8ab2a9627fb2bd4f70949456303801fe0f6b1ffdbdf2ed21a65c8",
+    "tests/test_biquaternionic_induced_gravity_boundary.py": "a9d2bd510becc42f1803a12b6f32677f89c766a7a39bf6618009ac53e73c375b"
+  },
+  "limitations": [
+    "The finite checks do not construct the full composite gauge-fixed Theta Hessian or its functional measure.",
+    "The heat coefficient applies only to the stated scalar-like bosonic Laplace operators and proper-time prescription.",
+    "The signature calculation does not choose a Euclidean integration contour or identify physical and gauge modes.",
+    "The Lorentz-real four-component volume lemmas do not classify all eight real biquaternionic fluctuation directions.",
+    "No Newton constant, microscopic gravitational action, full UBT closure, or RH theorem is claimed."
+  ],
+  "canonical_claim_status_changes": []
+}

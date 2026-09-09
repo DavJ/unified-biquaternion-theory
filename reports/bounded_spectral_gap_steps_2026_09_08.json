@@ -1,0 +1,116 @@
+{
+  "schema": "ubt.research-gap-verification/v1",
+  "date": "2026-09-09",
+  "base_commit": "6ee61b98bb7578d67c2babe16134128d1f0f910c",
+  "result": "PASS",
+  "versions": {
+    "python": "3.12.14",
+    "sympy": "1.14.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "lean_status": "LEAN-PENDING",
+  "lean_reason": "Neither Lean nor Lake found in the inspected runtime; no compiled formal proof supplied.",
+  "runtime_tools": {
+    "lean": null,
+    "lake": null
+  },
+  "checks": [
+    {
+      "id": "S1-exact",
+      "result": "PASS",
+      "channel": "SymPy exact differentiation",
+      "scope": "Continuation signs, first/second-order equations, bounded-window coefficient formulas and kernel affine solution"
+    },
+    {
+      "id": "S2-S3-exact",
+      "result": "PASS",
+      "channel": "SymPy exact scalar identities",
+      "scope": "Periodic damping factor, real diagonal deficiency-factor nonvanishing and nonreal heat-trace zero"
+    },
+    {
+      "id": "S1-continuous",
+      "result": "PASS",
+      "channel": "SciPy adaptive quadrature versus analytic integrals",
+      "scope": "Unbounded continuous multiplication spectrum reaching zero; finite continuation is not uniform boundedness",
+      "max_absolute_error": 2.842170943040401e-14,
+      "tolerance": 2e-09,
+      "growing_squared_norms": [
+        0.6799652007628082,
+        1.738525905851847,
+        112.66744811017458
+      ]
+    },
+    {
+      "id": "S1-matrix",
+      "result": "PASS",
+      "channel": "SciPy matrix exponential versus NumPy diagonal spectral calculus",
+      "scope": "Non-diagonal positive semidefinite complex Hermitian generator; damping and contraction",
+      "max_residual": 2.4298417309597575e-15,
+      "tolerance": 2e-12,
+      "seed": 20260908
+    },
+    {
+      "id": "S3-truncation",
+      "result": "PASS",
+      "channel": "NumPy sums versus exact zeta(2) and integral-test bounds",
+      "scope": "Convergent trace truncations at exponent two and harmonic growth at the trace-class threshold",
+      "truncations": [
+        30,
+        300,
+        3000
+      ],
+      "tails": [
+        0.03278394924662864,
+        0.0033277839506034024,
+        0.0003332777839504253
+      ]
+    },
+    {
+      "id": "S4",
+      "result": "PASS",
+      "channel": "SymPy symbolic asymptotic limit",
+      "scope": "Exponential integer-block lower bound diverges for arbitrary fixed positive shift and exponent; no finite Schatten order"
+    },
+    {
+      "id": "S5-exact",
+      "result": "PASS",
+      "channel": "SymPy series and exact trigonometric values",
+      "scope": "Heat-determinant logarithmic trace series versus sine formula through fourth order; positive square zeros and nonzero negative unit argument"
+    },
+    {
+      "id": "S5-independent",
+      "result": "PASS",
+      "channel": "NumPy product versus independent complex sine evaluation",
+      "scope": "Determinant convergence at three nonzero complex/real points with a logarithmic tail bound",
+      "truncations": [
+        100,
+        1000,
+        10000
+      ],
+      "max_error": 0.010178255933921854,
+      "roundoff_allowance": 2e-12
+    }
+  ],
+  "proof_scope": {
+    "S1": "Analytic proof for weak norm-holomorphic solutions of a nonnegative self-adjoint operator equation with a bounded vertical ray and strong boundary value.",
+    "S2": "Direct periodic damping under S1 forces kernel support.",
+    "S3": "Analytic self-adjoint closure of the diagonal prime operator; trace class only for Re(omega)>1.",
+    "S4-S5": "Prime resolvent belongs to no finite Schatten class; the trace-class heat determinant has integer-power zeros and fails the required xi identity."
+  },
+  "not_verified": [
+    "Formal infinite-dimensional spectral proofs",
+    "A microscopic UBT action or generator and its physical boundary condition",
+    "Riemann hypothesis, a Hilbert-Polya operator or the required determinant identity",
+    "Human semantic equivalence of the bilingual prose"
+  ],
+  "canonical_claims_changed": false,
+  "source_sha256": {
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.en.md": "d5fa74d4cc514d00f332ede04834e825d0b1cc8e754166d04d6612e3a62aafdc",
+    "research_tracks/complex_time_branch_selection/bounded_selector_domain_completion.cs.md": "670ce8f8d43acffda98b03487c4fcedd872a85c31d3850fecb071176e25aadf2",
+    "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md": "66014b6d62aedaa67da7a3a56aa525379a923685896110d8933dd766df24d1ad",
+    "research_tracks/complex_time_branch_selection/psi_branch_selection.cs.md": "6fd21b597a81adc8409e07cfc63cb0a3afd04efd9d8cd2ca3fb2f23955efe499",
+    "tools/verify_bounded_spectral_gap_steps.py": "27aae8a2d48a695dfb134044ad6a88fe6714974b90c54a0fac3ee7ea2e2d3dd8",
+    "tools/verify_psi_branch_selection.py": "f116b565dec74ea396351348adf7932704fb9981eac3e443cbfea848ad586f3c"
+  }
+}
