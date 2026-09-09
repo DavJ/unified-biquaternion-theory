@@ -27,7 +27,7 @@ theorem mixedSecondDeriv_eq_fderiv
     simpa using ((hasDerivAt_id (0 : ℝ)).smul_const w).const_add q
   have first (q : E) :
       deriv (fun t : ℝ => L (q + t • v)) 0 = fderiv ℝ L q v := by
-    simpa only [Function.comp_apply, zero_smul, add_zero] using
+    simpa only [Function.comp_def, zero_smul, add_zero] using
       ((hL (q + (0 : ℝ) • v)).hasFDerivAt.comp_hasDerivAt 0 (line q v)).deriv
   simp_rw [first]
   have hd := (hL₂ (p + (0 : ℝ) • u)).hasFDerivAt.comp_hasDerivAt 0 (line p u)
@@ -35,6 +35,8 @@ theorem mixedSecondDeriv_eq_fderiv
   simpa using ha.deriv
 
 namespace VolumeVariation
+
+open scoped Matrix.Norms.Elementwise
 
 set_option maxHeartbeats 4000000 in
 theorem contDiff_density_firstJet (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)

@@ -40,7 +40,7 @@ theorem detFour_eq_det (e : Mat) : detFour e = e.det := by
   simp only [Fin.sum_univ_succ, Matrix.det_fin_three]
   dsimp [Matrix.submatrix, Fin.succAbove, Fin.succ, Fin.castSucc]
   norm_num [detFour]
-  <;> ring
+  ring
 
 /-- A first-jet increment with one spacetime covector and one field vector. -/
 def rankOne (k v : Vec) : Mat := fun μ a => k μ * v a
