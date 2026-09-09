@@ -41,7 +41,8 @@ open scoped Matrix.Norms.Elementwise
 set_option maxHeartbeats 4000000 in
 theorem contDiff_density_firstJet (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
     (x : Vec) : ContDiff ℝ 2 (density c f b x) := by
-  simp only [density, ← detFour_eq_det, detFour,
+  change ContDiff ℝ 2 (fun p : Mat => f x * (c • (p + b x)).det)
+  simp only [← detFour_eq_det, detFour,
     Matrix.add_apply, Matrix.smul_apply, smul_eq_mul]
   fun_prop
 
@@ -56,11 +57,9 @@ theorem firstJetSymbol_eq_zero (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
     (x : Vec) (p : Mat) (k u v : Vec) :
     firstJetSymbol c f b x p k u v = 0 := by
   have hc := contDiff_density_firstJet c f b x
-  have hL : Differentiable ℝ (density c f b x) := hc.differentiable (by norm_num)
-  have hc₁ : ContDiff ℝ 1 (fderiv ℝ (density c f b x)) :=
-    (contDiff_succ_iff_fderiv.mp hc).2.2
-  have hL₂ : Differentiable ℝ (fderiv ℝ (density c f b x)) :=
-    hc₁.differentiable one_ne_zero
+  have hL := hc.differentiable (by norm_num)
+  have hc₁ := ((contDiff_succ_iff_fderiv (𝕜 := ℝ) (n := 1)).mp hc).2.2
+  have hL₂ := hc₁.differentiable one_ne_zero
   exact (mixedSecondDeriv_eq_fderiv (density c f b x) hL hL₂ p
     (rankOne k u) (rankOne k v)).symm.trans
     (mixedSecondDeriv_density_common_covector c f b x p k u v)
