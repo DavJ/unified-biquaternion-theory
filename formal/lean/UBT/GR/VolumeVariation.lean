@@ -37,7 +37,8 @@ def detFour (e : Mat) : ℝ :=
 theorem detFour_eq_det (e : Mat) : detFour e = e.det := by
   rw [Matrix.det_succ_row_zero]
   norm_num [detFour, Fin.sum_univ_succ, Matrix.det_fin_three,
-    Matrix.submatrix, Fin.succAbove]
+    Matrix.submatrix, Fin.succAbove, Fin.succ, Fin.castSucc,
+    Fin.lt_def, Fin.le_def, Fin.ext_iff]
   <;> ring
 
 /-- A first-jet increment with one spacetime covector and one field vector. -/
@@ -105,9 +106,9 @@ theorem hasDerivAt_density_rankOne (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
 /-- The second directional derivative is zero at every first jet. -/
 theorem secondDeriv_density_rankOne (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
     (x : Vec) (p : Mat) (k v : Vec) (t : ℝ) :
-    deriv (fun s => deriv (fun r => density c f b x (p + r • rankOne k v)) s) t = 0 := by
-  have h : (fun s => deriv (fun r => density c f b x (p + r • rankOne k v)) s) =
-      (fun _ => density c f b x (p + rankOne k v) - density c f b x p) := by
+    deriv (fun s : ℝ => deriv (fun r : ℝ => density c f b x (p + r • rankOne k v)) s) t = 0 := by
+  have h : (fun s : ℝ => deriv (fun r : ℝ => density c f b x (p + r • rankOne k v)) s) =
+      (fun _ : ℝ => density c f b x (p + rankOne k v) - density c f b x p) := by
     funext s
     exact (hasDerivAt_density_rankOne c f b x p k v s).deriv
   rw [h]
@@ -118,11 +119,11 @@ zero. This is stronger than checking a selected matrix or numerical jet. -/
 theorem mixedSecondDeriv_density_common_covector
     (c : ℝ) (f : Vec → ℝ) (b : Vec → Mat)
     (x : Vec) (p : Mat) (k u v : Vec) :
-    deriv (fun s => deriv
-      (fun t => density c f b x (p + s • rankOne k u + t • rankOne k v)) 0) 0 = 0 := by
-  have h : (fun s => deriv
-      (fun t => density c f b x (p + s • rankOne k u + t • rankOne k v)) 0) =
-      (fun _ => density c f b x (p + rankOne k v) - density c f b x p) := by
+    deriv (fun s : ℝ => deriv
+      (fun t : ℝ => density c f b x (p + s • rankOne k u + t • rankOne k v)) 0) 0 = 0 := by
+  have h : (fun s : ℝ => deriv
+      (fun t : ℝ => density c f b x (p + s • rankOne k u + t • rankOne k v)) 0) =
+      (fun _ : ℝ => density c f b x (p + rankOne k v) - density c f b x p) := by
     funext s
     simp_rw [density_common_covector_affine]
     exact (by
