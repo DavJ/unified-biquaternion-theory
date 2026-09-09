@@ -28,8 +28,7 @@ theorem hasSecondVariation_composite
     funext r
     exact ((hf (g r)).hasFDerivAt.comp_hasDerivAt r (hg r)).deriv
   rw [first]
-  have hd : HasDerivAt (fun r => fderiv ℝ f (g r)) (H (g₁ t)) t := by
-    simpa only [Function.comp_apply] using hH.comp_hasDerivAt t (hg t)
+  have hd := hH.comp_hasDerivAt t (hg t)
   exact hd.clm_apply hg₂
 
 theorem secondVariation_composite

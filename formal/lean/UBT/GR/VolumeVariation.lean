@@ -34,6 +34,7 @@ def detFour (e : Mat) : ℝ :=
     + e 1 2 * e 2 0 * e 3 1 - e 1 2 * e 2 1 * e 3 0
     - e 1 1 * e 2 0 * e 3 2 - e 1 0 * e 2 2 * e 3 1)
 
+set_option maxRecDepth 4096 in
 theorem detFour_eq_det (e : Mat) : detFour e = e.det := by
   rw [Matrix.det_succ_row_zero]
   norm_num [detFour, Fin.sum_univ_succ, Matrix.det_fin_three,
@@ -131,7 +132,7 @@ theorem mixedSecondDeriv_density_common_covector
         (density c f b x (p + rankOne k v) - density c f b x p)).const_add
         (density c f b x p +
           s * (density c f b x (p + rankOne k u) - density c f b x p))
-      : HasDerivAt _ _ 0).deriv
+      : HasDerivAt _ _ (0 : ℝ)).deriv
   rw [h]
   simp
 
